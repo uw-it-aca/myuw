@@ -5,9 +5,25 @@ ingress:
       secretName: test.my.uw.edu-ingress-cert
       hosts:
         - test.my.uw.edu
+    devmy:
+      secretName: dev.my.uw.edu-ingress-cert
+      hosts:
+        - dev.my.uw.edu
+    myuwdev:
+      secretName: myuwdev.u.washington.edu-ingress-cert
+      hosts:
+        - myuwdev.u.washington.edu
   hosts:
     myuw:
       host: test.my.uw.edu
+      paths:
+        - "/"
+    devmy:
+      host: dev.my.uw.edu
+      paths:
+        - "/"
+    myuwdev:
+      host: myuwdev.u.washington.edu
       paths:
         - "/"
   annotations:
@@ -15,6 +31,10 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host != 'test.my.uw.edu') {
+        return 301 $scheme://test.my.uw.edu;
+      }
 lifecycle:
   enabled: true
   preStop:
@@ -53,6 +73,10 @@ certs:
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
   keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
   secretName: test.my.uw.edu-uwca-certs
+mountedSecrets:
+  enabled: true
+  mountPath: /ssl
+  secretName: test.my.uw.edu-openssl-conf
 cronjob:
   enabled: true
   jobs:
@@ -229,6 +253,9 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
 
+  - name: OPENSSL_CONF
+    value: /ssl/openssl.cnf
+
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
@@ -236,7 +263,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: test.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/test/secrets
+      externalKey: my/test/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -267,29 +294,34 @@ externalSecrets:
         - name: google-search-key
           property: google-search-key
     - name: test.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/test/sql-secrets
+      externalKey: my/test/sql-secrets
       data:
         - name: username
           property: sql_user
         - name: password
           property: sql_pass
     - name: test.my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/test/uwca-certs
+      externalKey: my/test/uwca-certs
       data:
         - name: myuw-dev.s.uw.edu-uwca.key
           property: key
         - name: myuw-dev.s.uw.edu-uwca.cert
           property: cert
     - name: test.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/test/ic-certs
+      externalKey: my/test/ic-certs
       data:
         - name: test.my.uw.edu.cert
           property: cert
     - name: test.my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
+    - name: test.my.uw.edu-openssl-conf
+      externalKey: openssl-conf
+      data:
+        - name: openssl.cnf
+          property: openssl.cnf
 
 environmentVariablesSecrets:
   django-secret:

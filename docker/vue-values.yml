@@ -51,6 +51,10 @@ certs:
   certPath: /certs/myuw.s.uw.edu-uwca.cert
   keyPath: /certs/myuw.s.uw.edu-uwca.key
   secretName: vue.my.uw.edu-uwca-certs
+mountedSecrets:
+  enabled: true
+  mountPath: /ssl
+  secretName: vue.my.uw.edu-openssl-conf
 cronjob:
   enabled: true
   jobs:
@@ -221,6 +225,9 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: vue.my.uw.edu
 
+  - name: OPENSSL_CONF
+    value: /ssl/openssl.cnf
+
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
@@ -228,7 +235,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: vue.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/vue/secrets
+      externalKey: my/vue/secrets
       data:
         - name: django-secret
           property: django-secret
@@ -260,7 +267,7 @@ externalSecrets:
           property: google-search-key
 
     - name: vue.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/test/sql-secrets
+      externalKey: my/test/sql-secrets
       data:
         - name: username
           property: sql_user
@@ -268,7 +275,7 @@ externalSecrets:
           property: sql_pass
 
     - name: vue.my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/prod/uwca-certs
+      externalKey: my/prod/uwca-certs
       data:
         - name: myuw.s.uw.edu-uwca.key
           property: key
@@ -276,16 +283,22 @@ externalSecrets:
           property: cert
 
     - name: vue.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/vue/ic-certs
+      externalKey: my/vue/ic-certs
       data:
         - name: vue.my.uw.edu.cert
           property: cert
 
     - name: vue.my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
+
+    - name: vue.my.uw.edu-openssl-conf
+      externalKey: openssl-conf
+      data:
+        - name: openssl.cnf
+          property: openssl.cnf
 
 environmentVariablesSecrets:
   django-secret:

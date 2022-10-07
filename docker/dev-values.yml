@@ -210,7 +210,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: dev.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/dev/secrets
+      externalKey: my/dev/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -241,26 +241,26 @@ externalSecrets:
         - name: google-search-key
           property: google-search-key
     - name: dev.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/dev/sql-secrets
+      externalKey: my/dev/sql-secrets
       data:
         - name: username
           property: sql_user
         - name: password
           property: sql_pass
     - name: myuw-dev.s.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/dev/uwca-certs
+      externalKey: my/dev/uwca-certs
       data:
         - name: myuw-dev.s.uw.edu-uwca.key
           property: key
         - name: myuw-dev.s.uw.edu-uwca.cert
           property: cert
     - name: dev.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/dev/ic-certs
+      externalKey: my/dev/ic-certs
       data:
         - name: dev.my.uw.edu.cert
           property: cert
     - name: dev.my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
