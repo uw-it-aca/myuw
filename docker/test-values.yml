@@ -5,9 +5,25 @@ ingress:
       secretName: test.my.uw.edu-ingress-cert
       hosts:
         - test.my.uw.edu
+    devmy:
+      secretName: dev.my.uw.edu-ingress-cert
+      hosts:
+        - dev.my.uw.edu
+    myuwdev:
+      secretName: myuwdev.u.washington.edu-ingress-cert
+      hosts:
+        - myuwdev.u.washington.edu
   hosts:
     myuw:
       host: test.my.uw.edu
+      paths:
+        - "/"
+    devmy:
+      host: dev.my.uw.edu
+      paths:
+        - "/"
+    myuwdev:
+      host: myuwdev.u.washington.edu
       paths:
         - "/"
   annotations:
