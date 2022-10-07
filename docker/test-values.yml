@@ -15,6 +15,10 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host != 'test.my.uw.edu') {
+        return 301 $scheme://test.my.uw.edu;
+      }
 lifecycle:
   enabled: true
   preStop:
@@ -236,7 +240,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: test.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/test/secrets
+      externalKey: my/test/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -267,26 +271,26 @@ externalSecrets:
         - name: google-search-key
           property: google-search-key
     - name: test.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/test/sql-secrets
+      externalKey: my/test/sql-secrets
       data:
         - name: username
           property: sql_user
         - name: password
           property: sql_pass
     - name: test.my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/test/uwca-certs
+      externalKey: my/test/uwca-certs
       data:
         - name: myuw-dev.s.uw.edu-uwca.key
           property: key
         - name: myuw-dev.s.uw.edu-uwca.cert
           property: cert
     - name: test.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/test/ic-certs
+      externalKey: my/test/ic-certs
       data:
         - name: test.my.uw.edu.cert
           property: cert
     - name: test.my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert

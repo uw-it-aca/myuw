@@ -6,11 +6,6 @@ import sys
 import os
 import logging
 
-ALLOWED_HOSTS += [
-    'myuw.washington.edu',
-    'myuw.uw.edu'
-]
-
 INSTALLED_APPS += [
     'uw_oidc',
     'compressor',
