@@ -300,6 +300,7 @@ externalSecrets:
           property: sql_user
         - name: password
           property: sql_pass
+
     - name: test.my.uw.edu-ic-certs
       externalKey: my/test/ic-certs
       data:

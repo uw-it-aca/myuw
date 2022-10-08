@@ -51,6 +51,7 @@ certs:
   certPath: /certs/my.uw.edu-ic.cert
   keyPath: /certs/my.uw.edu-ic.key
   secretName: vue.my.uw.edu-ic-certs
+
 mountedSecrets:
   enabled: true
   mountPath: /ssl

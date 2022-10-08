@@ -45,7 +45,8 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
-    if ($host != 'my.uw.edu') {
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host != 'my.uw.edu') {
         return 301 $scheme://my.uw.edu;
       }
 lifecycle:
@@ -112,10 +113,12 @@ certs:
   certPath: /certs/my.uw.edu-ic.cert
   keyPath: /certs/my.uw.edu-ic.key
   secretName: my.uw.edu-ic-certs
+
 mountedSecrets:
   enabled: true
   mountPath: /ssl
   secretName: my.uw.edu-openssl-conf
+
 cronjob:
   enabled: true
   jobs:
@@ -350,7 +353,7 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: my.uw.edu
 
-    - name: OPENSSL_CONF
+  - name: OPENSSL_CONF
     value: /ssl/openssl.cnf
 
   - name: MEMCACHED_MAX_POOL_SIZE
@@ -397,6 +400,7 @@ externalSecrets:
           property: sql_user
         - name: password
           property: sql_pass
+
     - name: my.uw.edu-ic-certs
       externalKey: my/prod/ic-certs
       data:
