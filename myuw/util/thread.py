@@ -3,6 +3,7 @@
 
 import sys
 import restclients_core.thread
+from django.db import connection
 from django.conf import settings
 from userservice.user import UserServiceMiddleware
 
@@ -37,6 +38,9 @@ class PrefetchThread(Thread):
             # We need to be sure that any prefetch errors don't crash the page!
             pass
 
+        if self._use_thread:
+            connection.close()
+
 
 class ThreadWithResponse(Thread):
 
@@ -56,3 +60,6 @@ class ThreadWithResponse(Thread):
                     self.response = self._target(*self._args, **self._kwargs)
         except Exception as ex:
             self.exception = ex
+
+        if self._use_thread:
+            connection.close()
