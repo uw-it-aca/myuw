@@ -49,7 +49,6 @@ class PrefetchThread(Thread):
             self.method(self.request)
         except Exception as ex:
             # We need to be sure that any prefetch errors don't crash the page!
-            print(ex)
             pass
 
         self.close_connection()
