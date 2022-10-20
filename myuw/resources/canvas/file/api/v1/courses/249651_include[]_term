@@ -8,6 +8,8 @@
 "account_id":84378,
 "name":"INRTO TRAIN",
 "workflow_state":"available",
+"is_public":false,
+"is_public_to_auth_users":false,
 "public_syllabus":false,
 "enrollments":[{"type":"teacher"}],
 "calendar":{"ics":"https://canvas.uw.edu/feeds/calendars/course_UdeVj2RQpRVlZDSJdWYn3xFQ1EjDNojfypjM9h1h.ics"},
