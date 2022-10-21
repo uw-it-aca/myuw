@@ -20,13 +20,6 @@ def raise_async_exception():
     raise Exception('oops!')
 
 
-class TestThread(TestCase):
-    def test_setting_on(self):
-        thread = Thread()
-        self.assertTrue(thread._use_thread)
-        self.assertIsNotNone(thread.parent)
-
-
 class TestPrefetchThread(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/')
