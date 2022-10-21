@@ -21,20 +21,12 @@ def raise_async_exception():
 
 
 class TestThread(TestCase):
-    @override_settings(MYUW_PREFETCH_THREADING=True)
     def test_setting_on(self):
         thread = Thread()
         self.assertTrue(thread._use_thread)
         self.assertIsNotNone(thread.parent)
 
-    @override_settings(MYUW_PREFETCH_THREADING=False)
-    def test_setting_on(self):
-        thread = Thread()
-        self.assertFalse(thread._use_thread)
-        self.assertIsNone(thread.parent)
 
-
-@override_settings(MYUW_PREFETCH_THREADING=True)
 class TestPrefetchThread(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/')
@@ -54,7 +46,6 @@ class TestPrefetchThread(TestCase):
         self.assertEqual(self.request.prefetched_data, '123456789ABCDEF')
 
 
-@override_settings(MYUW_PREFETCH_THREADING=True)
 class TestThreadWithResponse(TestCase):
     def test_run(self):
         thread = ThreadWithResponse(target=set_async_data, args=())

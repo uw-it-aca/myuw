@@ -13,27 +13,12 @@ class Thread(threading.Thread):
     _use_thread = False
 
     def __init__(self, *args, **kwargs):
-        if getattr(settings, "MYUW_PREFETCH_THREADING", True):
-            self.parent = threading.currentThread()
-            self._use_thread = True
-
         super().__init__(*args, **kwargs)
-
-    def start(self):
-        if self._use_thread:
-            super().start()
-        else:
-            self.run()
-
-    def join(self):
-        if self._use_thread:
-            return super().join()
-        return True
+        self.parent = threading.currentThread()
 
     def close_connection(self):
-        if self._use_thread:
-            if not connection.in_atomic_block:
-                connection.close()
+        if not connection.in_atomic_block:
+            connection.close()
 
 
 class PrefetchThread(Thread):
