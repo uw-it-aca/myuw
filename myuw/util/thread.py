@@ -4,36 +4,13 @@
 import sys
 import threading
 from django.db import connection
-from django.conf import settings
 from userservice.user import UserServiceMiddleware
 
 
 class Thread(threading.Thread):
-    parent = None
-    _use_thread = False
-
-    def __init__(self, *args, **kwargs):
-        if getattr(settings, "MYUW_PREFETCH_THREADING", True):
-            self.parent = threading.currentThread()
-            self._use_thread = True
-
-        super().__init__(*args, **kwargs)
-
-    def start(self):
-        if self._use_thread:
-            super().start()
-        else:
-            self.run()
-
-    def join(self):
-        if self._use_thread:
-            return super().join()
-        return True
-
-    def close_connection(self):
-        if self._use_thread:
-            if not connection.in_atomic_block:
-                connection.close()
+    def close_db_connection(self):
+        if not connection.in_atomic_block:
+            connection.close()
 
 
 class PrefetchThread(Thread):
@@ -51,14 +28,14 @@ class PrefetchThread(Thread):
             # We need to be sure that any prefetch errors don't crash the page!
             pass
 
-        self.close_connection()
+        self.close_db_connection()
 
 
 class ThreadWithResponse(Thread):
-    def run(self):
-        self.response = None
-        self.exception = None
+    response = None
+    exception = None
 
+    def run(self):
         try:
             if sys.version_info[0] == 2:
                 if self._Thread__target is not None:
@@ -70,4 +47,4 @@ class ThreadWithResponse(Thread):
         except Exception as ex:
             self.exception = ex
 
-        self.close_connection()
+        self.close_db_connection()
