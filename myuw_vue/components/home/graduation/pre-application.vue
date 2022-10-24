@@ -8,7 +8,7 @@
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation Preparation
+        Graduation Preparation (pre app)
       </h2>
     </template>
 
@@ -17,6 +17,8 @@
         <strong>To graduate, you'll need to apply.</strong> Don't worry, it's an easy
         process that you complete with your departmental adviser!
       </p>
+
+      <p>asdfjklsajlkjasdflkjadsflkjasdfl</p>
     </template>
 
     <template #card-disclosure>
@@ -39,19 +41,19 @@
           <strong>Get all the details:
           <a href="https://www.washington.edu/students/graduation-checklist/">
           Follow the UW Seattle Graduation checklist</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="tacoma" class="myuw-text-md">
           <strong>Get an
           <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
             overview of the UW Tacoma graduation process</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="bothell" class="myuw-text-md">
           <strong>Get all the details on
           <a href="https://www.uwb.edu/registration/graduation">
             UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="bothell && intlStudent" class="myuw-text-md">
           International students, may find
