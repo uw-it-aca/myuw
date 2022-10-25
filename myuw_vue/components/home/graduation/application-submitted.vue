@@ -248,8 +248,17 @@
         </div>
       </div>
 
-      <uw-feedback :prompt="'What color is the sky?'" :form-url="'https://my.uw.edu'"></uw-feedback>
-      <uw-feedback :prompt="'How old are you?'" :form-url="'https://my.uw.edu'"></uw-feedback>
+      <uw-feedback
+        :id="'Modal1'"
+        :prompt="'What color is the sky?'"
+        :form-id="'1FAIpQLScfflgEgKcWObo-xP5Zy8sVFrDzikgFxDGMGqWRsFfOvWKRPw'"
+      ></uw-feedback>
+
+      <uw-feedback
+        :id="'Modal2'"
+        :prompt="'How old are you?'"
+        :form-id="'1FAIpQLScfflgEgKcWObo-xP5Zy8sVFrDzikgFxDGMGqWRsFfOvWKRPw'"
+      ></uw-feedback>
 
     </template>
     <template #card-disclosure>
@@ -414,7 +423,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
 import CollapsedItem from './collapsed-item.vue';
 import Collapse from '../../_templates/collapse.vue';
-import Feedback from '../../_templates/feedback.vue'
+import Feedback from '../../_templates/feedback.vue';
 
 export default {
   components: {
