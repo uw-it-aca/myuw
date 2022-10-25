@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('affiliation', models.CharField(max_length=80, null=True)),
-                ('pce', models.NullBooleanField()),
+                ('pce', models.BooleanField(null=True)),
                 ('campus', models.CharField(max_length=8, null=True)),
                 ('url', models.CharField(max_length=512)),
                 ('label', models.CharField(max_length=50)),
