@@ -25,6 +25,10 @@
     },
     "DeleteFlag": "active",
     "DistanceLearning": false,
+    "DistanceLearningCalendarType": {
+        "Code": "0",
+        "Description": "Not a Distance Learning section"
+    },
     "DistanceLearningType": {
         "Code": null,
         "Description": null
@@ -171,8 +175,8 @@
     "Metadata": "SectionSourceKey=SDB;",
     "MinimumTermCredit": "5.0",
     "OnlineLearningType": {
-        "Code": "00",
-        "Description": "No online learning component"
+        "Code": "20",
+        "Description": "Online Learning - Hybrid"
     },
     "PrimaryLMS": null,
     "PrimarySection": {
@@ -287,12 +291,15 @@
                     "Text": "CLOTHING REQ'D FIRST DAY OF LAB."
                 },
                 {
-                    "Text": "OFFERED VIA REMOTE LEARNING"
+                    "Text": "HYBRID. CLASS WILL MEET ON CAMPUS"
                 }
             ]
         },
         "TimeScheduleGeneratedComments": {
             "Lines": [
+                {
+                    "Text": "Online Learning - Hybrid"
+                },
                 {
                     "Text": "$75 course fee - auditors exempt"
                 },
