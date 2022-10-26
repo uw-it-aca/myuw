@@ -5,7 +5,7 @@
         Congratulations, You've Graduated!
       </h2>
       <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation Preparation (applied and approved)
+        Graduation Preparation
       </h2>
     </template>
     <template #card-body>
@@ -249,15 +249,9 @@
       </div>
 
       <uw-feedback
-        :id="'Modal1'"
-        :prompt="'What color is the sky?'"
-        :form-id="'1FAIpQLScfflgEgKcWObo-xP5Zy8sVFrDzikgFxDGMGqWRsFfOvWKRPw'"
-      ></uw-feedback>
-
-      <uw-feedback
-        :id="'Modal2'"
-        :prompt="'How old are you?'"
-        :form-id="'1FAIpQLScfflgEgKcWObo-xP5Zy8sVFrDzikgFxDGMGqWRsFfOvWKRPw'"
+        :id="'ApprovedApplicationModal'"
+        :prompt="'Is this Graduation Preparation information helpful?'"
+        :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
       ></uw-feedback>
 
     </template>

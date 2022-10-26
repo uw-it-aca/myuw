@@ -8,7 +8,7 @@
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation Preparation (pre app)
+        Graduation Preparation
       </h2>
     </template>
 
@@ -18,7 +18,12 @@
         process that you complete with your departmental adviser!
       </p>
 
-      <p>asdfjklsajlkjasdflkjadsflkjasdfl</p>
+      <uw-feedback
+        :id="'PreApplicationModal'"
+        :prompt="'Is this graduation application information helpful?'"
+        :form-id="'1FAIpQLSeAdnYid_OUKglzuJnOfhSeW7NaNOxVoYkyRkCliLkS9KsFsg'"
+      ></uw-feedback>
+
     </template>
 
     <template #card-disclosure>
@@ -89,11 +94,13 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
+import Feedback from '../../_templates/feedback.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
+    'uw-feedback': Feedback,
   },
   data() {
     return {

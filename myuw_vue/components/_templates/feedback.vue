@@ -8,10 +8,8 @@
         class="text-nowrap"
         data-bs-toggle="modal"
         :data-bs-target="'#' + id"
-        >Share your feedback</a
+        >[icon] Share your feedback</a
       >
-
-      <div>{{ formId }}</div>
     </div>
 
     <!-- Modal -->
@@ -36,7 +34,7 @@
             <iframe
               :src="'https://docs.google.com/forms/d/e/' + formId + '/viewform?embedded=true'"
               width="100%"
-              height="600"
+              height="750"
               frameborder="0"
               marginheight="0"
               marginwidth="0"
