@@ -14,7 +14,7 @@ class BannerMessage(models.Model):
     is_published = models.BooleanField(default=False)
 
     affiliation = models.CharField(max_length=80, null=True)
-    pce = models.NullBooleanField()
+    pce = models.BooleanField(null=True)
     campus = models.CharField(max_length=8, null=True)
     group_id = models.CharField(max_length=200, null=True)
 

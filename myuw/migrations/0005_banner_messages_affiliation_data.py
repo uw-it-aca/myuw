@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bannermessage',
             name='pce',
-            field=models.NullBooleanField(),
+            field=models.BooleanField(null=True),
         ),
         migrations.AddField(
             model_name='bannermessage',

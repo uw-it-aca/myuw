@@ -8,6 +8,8 @@
 "account_id":84378,
 "name":"MECHANICS",
 "workflow_state":"available",
+"is_public":false,
+"is_public_to_auth_users":false,
 "public_syllabus":false,
 "enrollments":[{"type":"teacher"}],
 "calendar":{

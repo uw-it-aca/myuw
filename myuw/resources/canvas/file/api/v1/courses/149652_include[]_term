@@ -8,6 +8,8 @@
 "account_id":84378,
 "name":"MECHANICS",
 "workflow_state":"available",
+"is_public":false,
+"is_public_to_auth_users":false,
 "public_syllabus":false,
 "enrollments":[{"type":"teacher"}],
 "calendar":{"ics":"https://canvas.uw.edu/feeds/calendars/course_UdeVj2RQpRVlZDSJdWYn3xFQ1EjDNojfypjM9h1h.ics"},"start_at":null,"term":{"sis_term_id":"2013-spring","start_at":"2013-06-15T07:00:00Z","id":810,"name":"Summer 2013","end_at":"2013-08-16T08:00:00Z"}
