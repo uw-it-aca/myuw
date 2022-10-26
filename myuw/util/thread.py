@@ -2,34 +2,25 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import sys
-import restclients_core.thread
-from django.conf import settings
+import threading
+from django.db import connection
 from userservice.user import UserServiceMiddleware
 
 
-class Thread(restclients_core.thread.Thread):
-    def __init__(self, *args, **kwargs):
-        # Only enable threading if forced.  Using some cache backends
-        # with sqlite doesn't work with threading.
-        self._use_thread = getattr(settings, "MYUW_PREFETCH_THREADING", True)
-        super(Thread, self).__init__(*args, **kwargs)
-
-    def start(self):
-        if self._use_thread:
-            super(Thread, self).start()
-        else:
-            self.run()
-
-    def join(self):
-        if self._use_thread:
-            return super(Thread, self).join()
-
-        return True
+class Thread(threading.Thread):
+    def close_db_connection(self):
+        if not connection.in_atomic_block:
+            connection.close()
 
 
 class PrefetchThread(Thread):
+    method = None
+    request = None
 
     def run(self):
+        if self.method is None or self.request is None:
+            return
+
         try:
             UserServiceMiddleware().process_request(self.request)
             self.method(self.request)
@@ -37,13 +28,12 @@ class PrefetchThread(Thread):
             # We need to be sure that any prefetch errors don't crash the page!
             pass
 
+        self.close_db_connection()
+
 
 class ThreadWithResponse(Thread):
-
-    def __init__(self, *args, **kwargs):
-        super(Thread, self).__init__(*args, **kwargs)
-        self.response = None
-        self.exception = None
+    response = None
+    exception = None
 
     def run(self):
         try:
@@ -56,3 +46,5 @@ class ThreadWithResponse(Thread):
                     self.response = self._target(*self._args, **self._kwargs)
         except Exception as ex:
             self.exception = ex
+
+        self.close_db_connection()
