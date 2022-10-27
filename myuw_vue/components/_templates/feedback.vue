@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <div class="small text-center border border-danger mb-3 mx-auto">
-      <span class="me-2 fst-italic text-muted">{{ prompt }}</span>
-      <a
-        href=""
-        role="button"
-        class="text-nowrap"
-        data-bs-toggle="modal"
-        :data-bs-target="'#' + id"
-        >[icon] Share your feedback</a
-      >
+
+<div>
+    <div class="small text-center mt-1 mb-4">
+      <div>
+        <hr class="mx-auto mb-2" style="width:60%">
+        <span class="me-2 fst-italic text-muted">{{ prompt }}</span>
+        <a
+          href=""
+          role="button"
+          class="text-nowrap"
+          data-bs-toggle="modal"
+          :data-bs-target="'#' + id"
+          ><font-awesome-icon :icon="faCommentDots" /> Share your feedback</a>
+      </div>
     </div>
+
 
     <!-- Modal -->
     <div
@@ -48,6 +52,8 @@
 </template>
 
 <script>
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
+
 export default {
   name: 'FeedbackModal',
   props: {
@@ -65,7 +71,9 @@ export default {
     },
   },
   data: function () {
-    return {};
+    return {
+      faCommentDots,
+    };
   },
 };
 </script>
