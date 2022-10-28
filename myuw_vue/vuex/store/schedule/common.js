@@ -63,14 +63,8 @@ function encodeForMaps(s) {
 };
 
 export const generateMeetingLocationData = (meeting) => {
-    const data = [{}];
-    if (meeting.is_remote) {
-      data[0].text = "Remote";
-      data[0].label = data[0].text;
-        } else if (meeting.building_tbd) {
-    data[0].text = "Room to be arranged";
-    data[0].label = data[0].text;
-  } else {
+  const data = [{}];
+  if (!meeting.building_tbd) {
     let i = 0;
     if (meeting.latitude && meeting.longitude) {
       data[i].text = `${meeting.building}`;
