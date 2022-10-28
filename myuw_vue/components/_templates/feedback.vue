@@ -3,7 +3,7 @@
 <div>
     <div class="small text-center mt-1 mb-4">
       <div>
-        <hr class="mx-auto mb-2" style="width:60%">
+        <hr class="mx-auto mb-2 bg-secondary" style="max-width:500px;">
         <span class="me-2 fst-italic text-muted">{{ prompt }}</span>
         <a
           href=""

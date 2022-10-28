@@ -250,7 +250,7 @@
 
       <uw-feedback
         :id="'ApprovedApplicationModal'"
-        :prompt="'Is this Graduation Preparation information helpful?'"
+        :prompt="'Is this graduation preparation information helpful?'"
         :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
       ></uw-feedback>
 
