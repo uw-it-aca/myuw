@@ -1,6 +1,6 @@
 <template>
-  <span v-if="meeting.is_remote">
-    Remote
+  <span v-if="isOnline">
+    Online
   </span>
   <span v-else-if="meeting.building_tbd"
     class="text-muted"
@@ -58,6 +58,16 @@ export default {
     };
   },
   computed: {
+    isOnline() {
+      return (
+        this.meeting.building_tbd &&
+        (this.meeting.is_asynchronous || this.meeting.is_asynchronous ||
+         this.meeting.is_hybrid &&
+         !(this.meeting.wont_meet || this.meeting.no_meeting || this.meeting.days_tbd
+         )
+        )
+      );
+    },
     locationUrl() {
       return `http://maps.google.com/maps?q=${this.meeting.latitude},${
         this.meeting.longitude

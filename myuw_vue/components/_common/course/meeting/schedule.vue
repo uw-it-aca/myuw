@@ -43,7 +43,8 @@
             :headers="`days-${meeting.id}`"
             colspan="3" class="p-0"
           >
-            <span class="text-muted">Days and times to be arranged</span>
+            <span v-if="isAsyHyb(meeting)" class="text-muted">No meeting time</span>
+            <span v-else class="text-muted">Days and times to be arranged</span>
           </td>
 
           <td v-else-if="meeting.no_meeting"
@@ -123,6 +124,9 @@ export default {
       } else {
         return `${startFormatted} - ${endFormatted}`;
       }
+    },
+    isAsyHyb(meeting) {
+      return (meeting.is_asynchronous || meeting.is_hybrid);
     },
     shortenMtgType(typeStr) {
       if (typeStr === "unknown type") {
