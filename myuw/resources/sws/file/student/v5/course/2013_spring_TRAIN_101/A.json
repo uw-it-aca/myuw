@@ -168,8 +168,8 @@
 	"CurrentEnrollment":"0",
 	"DistanceLearning": true,
 	"DistanceLearningCalendarType": {
-		"Code": "3",
-		"Description": "Asynchronous"
+		"Code": "1",
+		"Description": "Synchronous, on-calendar"
 	},
 	"DistanceLearningType": {
 		"Code": "3",
