@@ -35,6 +35,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    includeTSC: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -44,7 +48,7 @@ export default {
   computed: {
     title() {
       return (
-        this.showRowHeading ?
+        this.includeTSC ?
         "Learn About Course Mode, in case of an error please" +
         "contact your department Time Schedule coordinator." :
         "Learn About Course Mode");

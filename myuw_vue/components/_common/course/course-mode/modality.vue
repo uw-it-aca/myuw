@@ -1,6 +1,9 @@
 <template>
   <uw-card-property title="Course Mode" :sr-only-title="!showRowHeading">
-    <uw-cmode :section="section"  :hide-info-link="hideInfoLink"/>
+    <uw-cmode
+      :section="section"
+      :include-t-s-c="showRowHeading"
+      :hide-info-link="hideInfoLink"/>
   </uw-card-property>
 </template>
 
