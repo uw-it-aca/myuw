@@ -186,7 +186,8 @@ class TestRegistrationsDao(TestCase):
         schedule = get_schedule_by_term(request)
         self.assertIsNotNone(schedule)
         self.assertEqual(len(schedule.sections), 3)
-        self.assertFalse(schedule.sections[0].is_remote)
+        self.assertTrue(schedule.sections[0].is_hybrid)
+        self.assertTrue(schedule.sections[2].is_hybrid)
 
     def test_is_split_summer(self):
         self.assertTrue(_is_split_summer({'a-term': True}))
