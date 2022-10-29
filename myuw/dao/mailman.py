@@ -338,7 +338,7 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
             logger.error(
                 {**get_userids(),
                  **{'at': "get_joint_message_body",
-                    'err': thread.exception}})
+                    'err': thrd.exception}})
     if len(joint_section_labels):
         log_info(
             logger,
