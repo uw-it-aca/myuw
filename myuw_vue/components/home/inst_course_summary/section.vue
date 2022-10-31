@@ -26,11 +26,16 @@
                   {{ section.section_id }}
                 </a>
               </h3>
-              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-end'" class="text-nowrap">
-                <div class="">
-                  <uw-cmode :section="section" hide-info-link/>
-                </div>
+              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-end'" >
                 <div class="d-inline">
+                  <h4 class="visually-hidden">
+                    Course Mode:
+                  </h4>
+                  <span>
+                    <uw-cmode class="d-inline" :section="section" hide-info-link/>
+                  </span>
+                </div>
+                <div class="d-inline ms-1">
                   <h4 class="visually-hidden">
                     Section Type:
                   </h4>
