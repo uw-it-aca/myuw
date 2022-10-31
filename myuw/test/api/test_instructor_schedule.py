@@ -132,8 +132,8 @@ class TestInstructorTermSchedule(MyuwApiTest):
         data = json.loads(response.content)
         self.assertFalse(data['sections'][0]['current'])
 
-    def test_remote_sections(self):
-        # MUWM-4728, MUWM-4989
+    def test_section_modes(self):
+        # MUWM-5099
         request = get_request_with_user('billsea',
                                         get_request_with_date("2020-10-01"))
         schedule = get_current_quarter_instructor_schedule(request)
@@ -304,8 +304,8 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(data['sections'][0]['current_enrollment'], 18)
         self.assertEqual(data['sections'][1]['current_enrollment'], 3)
 
-    def test_remote_courese(self):
-        # MUWM-4728, MUWM-4989
+    def test_courese_mode(self):
+        # MUWM-5099
         request = get_request_with_user(
             'billsea', get_request_with_date('2020-10-01'))
         resp = InstScheCurQuar().get(request)

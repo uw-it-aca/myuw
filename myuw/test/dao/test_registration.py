@@ -180,14 +180,13 @@ class TestRegistrationsDao(TestCase):
                          "Seattle Faculty")
 
     def test_remote_section(self):
-        # MUWM-4728, MUWM-4989
+        # MUWM-5099
         request = get_request_with_user('eight',
                                         get_request_with_date("2020-10-01"))
         schedule = get_schedule_by_term(request)
         self.assertIsNotNone(schedule)
         self.assertEqual(len(schedule.sections), 3)
         self.assertTrue(schedule.sections[0].is_hybrid)
-        self.assertTrue(schedule.sections[2].is_hybrid)
 
     def test_is_split_summer(self):
         self.assertTrue(_is_split_summer({'a-term': True}))
