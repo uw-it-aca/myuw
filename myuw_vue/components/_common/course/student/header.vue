@@ -1,8 +1,11 @@
 <template>
   <div>
     <div>
-      <uw-course-title show-credits :section="section" />
+      <uw-course-title show-credits :section="section"/>
     </div>
+    <div class="mt-n3">
+      <uw-course-mode :section="section"/>
+    </div>  
 
     <div v-if="section.summer_term">
       <h3 class="visually-hidden">
@@ -36,10 +39,12 @@
 <script>
 import {mapActions} from 'vuex';
 import CourseTitle from '../course-title.vue';
+import Modality from '../course-mode/modality.vue';
 
 export default {
   components: {
     'uw-course-title': CourseTitle,
+    'uw-course-mode': Modality,
   },
   props: {
     section: {
