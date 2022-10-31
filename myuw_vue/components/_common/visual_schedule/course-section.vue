@@ -112,12 +112,23 @@ export default {
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
+    isOnline () {
+      return (
+        this.meetingData.meeting.building_tbd &&
+        (this.meetingData.section.is_asynchronous ||
+         this.meetingData.section.is_synchronous ||
+         this.meetingData.section.is_hybrid &&
+         !(this.meetingData.meeting.wont_meet ||
+          this.meetingData.meeting.no_meeting ||
+          this.meetingData.meeting.days_tbd)));
+    },
     meetingLocation() {
-      if (this.meetingData.section.is_remote) {
-        return 'Remote';
+      if (this.isOnline) {  // MUWM-5099
+        return 'Online';
       }
-      if (this.meetingData.meeting != null &&
-          this.meetingData.meeting.no_meeting) {
+      if (this.meetingData.meeting.meeting != null &&
+        this.meetingData.meeting.no_meeting
+      ) {
         return 'No meeting';
       }
       if (!this.isRoomTBD()) {
@@ -128,8 +139,8 @@ export default {
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      if (this.meetingData.section.is_remote) {
-        return 'Location: Remote';
+      if (this.isOnline) {  // MUWM-5099
+        return 'Online';
       }
       if (
         this.meetingData.meeting != null &&
