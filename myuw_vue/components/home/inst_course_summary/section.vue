@@ -32,7 +32,7 @@
                     Course Mode:
                   </h4>
                   <span>
-                    <uw-cmode class="d-inline" :section="section" hide-info-link/>
+                    <uw-course-mode class="d-inline" :section="section" hide-info-link/>
                   </span>
                 </div>
                 <div class="d-inline ms-1">
@@ -122,7 +122,7 @@ import {
   faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 import Collapse from '../../_templates/collapse.vue';
-import Mode from '../../_common/course/course-mode/mode.vue';
+import CourseMode from '../../_common/course/course-mode/mode.vue';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
@@ -132,7 +132,7 @@ export default {
     'uw-collapse': Collapse,
     'uw-linked-section': LinkedSection,
     'uw-meeting-info': MeetingInfo,
-    'uw-cmode': Mode,
+    'uw-course-mode': CourseMode,
     'uw-enrollment': Enrollment,
   },
   props: {
