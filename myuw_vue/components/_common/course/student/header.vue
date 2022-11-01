@@ -2,11 +2,8 @@
   <div>
     <div>
       <uw-course-title show-credits :section="section"/>
+      <uw-course-mode :section="section" class="mt-n3"/>
     </div>
-    <div class="mt-n3">
-      <uw-course-mode :section="section"/>
-    </div>  
-
     <div v-if="section.summer_term">
       <h3 class="visually-hidden">
         Term:
