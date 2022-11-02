@@ -17,11 +17,6 @@
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { Popover } from 'bootstrap';
 export default {
-  data() {
-    return {
-      faQuestionCircle,
-    };
-  },
   props: {
     selector: {
       type: String,
@@ -35,6 +30,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      faQuestionCircle,
+    };
   },
   mounted() {
     var popover = new Popover(document.querySelector(

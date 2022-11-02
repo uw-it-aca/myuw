@@ -127,9 +127,7 @@ export default {
       if (this.isOnline) {  // MUWM-5099
         return 'Online';
       }
-      if (this.meetingData.meeting &&
-        this.meetingData.meeting.no_meeting
-      ) {
+      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
         return 'No meeting';
       }
       if (!this.isRoomTBD()) {
@@ -143,10 +141,7 @@ export default {
       if (this.isOnline) {  // MUWM-5099
         return 'Online';
       }
-      if (
-        this.meetingData.meeting &&
-        this.meetingData.meeting.no_meeting
-      ) {
+      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
         return 'Location: None';
       }
       if (!this.isRoomTBD()) {
