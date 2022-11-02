@@ -321,10 +321,6 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
         if section.final_exam:
             final = section_data["final_exam"]
-            # MUWM-5099
-            final["is_asynchronous"] = section.is_asynchronous
-            final["is_synchronous"] = section.is_synchronous
-            final["is_hybrid"] = section.is_hybrid
 
             # MUWM-596
             if section.final_exam.building:
