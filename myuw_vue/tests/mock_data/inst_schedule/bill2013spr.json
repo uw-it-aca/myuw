@@ -142,7 +142,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": "47.653693",
           "longitude": "-122.304747",
           "building_name": "Mechanical Engineering Building",
@@ -155,7 +154,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -164,7 +162,6 @@
         "building": "SMI",
         "room_number": "401",
         "room": "401",
-        "is_remote": false,
         "longitude": "-122.304747",
         "latitude": "47.653693",
         "building_name": "Mechanical Engineering Building",
@@ -450,7 +447,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": "47.653693",
           "longitude": "-122.304747",
           "building_name": "Mechanical Engineering Building",
@@ -622,7 +618,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": "47.653693",
           "longitude": "-122.304747",
           "building_name": "Mechanical Engineering Building",
@@ -635,7 +630,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -644,7 +638,6 @@
         "building": "PAA",
         "room_number": "A102",
         "room": "A102",
-        "is_remote": false,
         "longitude": "-122.304747",
         "latitude": "47.653693",
         "building_name": "Mechanical Engineering Building",
@@ -1064,7 +1057,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": "47.653693",
           "longitude": "-122.304747",
           "building_name": "Mechanical Engineering Building",
@@ -1077,7 +1069,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
-      "is_remote": false,
       "index": 2,
       "color_id": "2a",
       "mini_card": false,
@@ -1288,7 +1279,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": "47.653693",
           "longitude": "-122.304747",
           "building_name": "Mechanical Engineering Building",
@@ -1301,7 +1291,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
-      "is_remote": false,
       "index": 3,
       "color_id": "2a",
       "mini_card": false,
@@ -1507,7 +1496,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "classroom_info_url": null
         }
       ],
@@ -1517,7 +1505,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -1526,7 +1513,6 @@
         "building": "*",
         "room_number": "*",
         "room": "*",
-        "is_remote": false,
         "classroom_info_url": null
       },
       "index": 4,
@@ -1834,7 +1820,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "classroom_info_url": null
         }
       ],
@@ -1844,7 +1829,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false,
@@ -1853,7 +1837,6 @@
         "building": "KNE",
         "room_number": "012",
         "room": "012",
-        "is_remote": false,
         "longitude": "-122.304747",
         "latitude": "47.653693",
         "building_name": "Mechanical Engineering Building",

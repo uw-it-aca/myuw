@@ -136,8 +136,7 @@
                                 "is_auditor": false,
                                 "grade": null,
                                 "grade_date": null,
-                                "grading_system": "standard",
-                                "is_remote": false
+                                "grading_system": "standard"
                             }
                         }
                     ]
@@ -309,7 +308,6 @@
                                 "grade": null,
                                 "grade_date": null,
                                 "grading_system": "standard",
-                                "is_remote": false,
                                 "final_exam": {
                                     "is_confirmed": true,
                                     "no_exam_or_nontraditional": false,
