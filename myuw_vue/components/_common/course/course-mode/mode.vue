@@ -3,24 +3,24 @@
     <span v-if="section.is_asynchronous">
       Asynchronous Online (A)
       <uw-pop-over v-if="!hideInfoLink"
-        :selector="`${section.id}-async-msg`" title="Asynchronous Online (A)"
+        :selector="`async-msg-${section.id}`" title="Asynchronous Online (A)"
         :content="asyncMsg"/>
     </span>
     <span v-else-if="section.is_synchronous">
       Synchronous Online (O)
       <uw-pop-over v-if="!hideInfoLink"
-        :selector="`${section.id}-sync-msg`" title="Synchronous Online (O)"
+        :selector="`sync-msg-${section.id}`" title="Synchronous Online (O)"
         :content="syncMsg"/>
     </span>
     <span v-else-if="section.is_hybrid">
       Hybrid (B)
       <uw-pop-over v-if="!hideInfoLink"
-        :selector="`${section.id}-hybrid-msg`" title="Hybrid (B)" :content="hybMsg"/>
+        :selector="`hybrid-msg-${section.id}`" title="Hybrid (B)" :content="hybMsg"/>
     </span>
     <span v-else>
       In Person
       <uw-pop-over v-if="!hideInfoLink"
-        :selector="`${section.id}-inperson-msg`" title="In Person" :content="inPersonMsg"/>
+        :selector="`inperson-msg-${section.id}`" title="In Person" :content="inPersonMsg"/>
     </span>
   </div>
 </template>
