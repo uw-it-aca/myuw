@@ -113,7 +113,7 @@ export default {
       }-${this.meetingData.section.section_id}`;
     },
     isOnline () {
-      return (
+      return (this.meetingData && this.meetingData.meeting &&
         this.meetingData.meeting.building_tbd &&
         (this.meetingData.section.is_asynchronous ||
          this.meetingData.section.is_synchronous ||
@@ -127,7 +127,7 @@ export default {
       if (this.isOnline) {  // MUWM-5099
         return 'Online';
       }
-      if (this.meetingData.meeting.meeting != null &&
+      if (this.meetingData.meeting &&
         this.meetingData.meeting.no_meeting
       ) {
         return 'No meeting';
@@ -144,7 +144,7 @@ export default {
         return 'Online';
       }
       if (
-        this.meetingData.meeting != null &&
+        this.meetingData.meeting &&
         this.meetingData.meeting.no_meeting
       ) {
         return 'Location: None';
