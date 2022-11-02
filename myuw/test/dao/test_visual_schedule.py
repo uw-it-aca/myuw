@@ -1092,13 +1092,13 @@ class TestVisualSchedule(TestCase):
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 3)
 
-        # MUWM-4728, MUWM-4989
+        # MUWM-5099
+        self.assertTrue(
+            schedule_json['periods'][2]['sections'][0]['is_hybrid'])
         self.assertFalse(
-            schedule_json['periods'][2]['sections'][0]['is_remote'])
-        self.assertFalse(
-            schedule_json['periods'][2]['sections'][1]['is_remote'])
-        self.assertFalse(
-            schedule_json['periods'][2]['sections'][2]['is_remote'])
+            schedule_json['periods'][2]['sections'][1]['is_hybrid'])
+        self.assertTrue(
+            schedule_json['periods'][2]['sections'][2]['is_hybrid'])
 
     def test_MUWM_4800(self):
         request = get_request_with_user(

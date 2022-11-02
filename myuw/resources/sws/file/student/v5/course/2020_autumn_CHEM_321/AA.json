@@ -25,6 +25,10 @@
     },
     "DeleteFlag": "active",
     "DistanceLearning": false,
+    "DistanceLearningCalendarType": {
+        "Code": "0",
+        "Description": "Not a Distance Learning section"
+    },
     "DistanceLearningType": {
         "Code": null,
         "Description": null
