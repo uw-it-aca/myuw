@@ -38,7 +38,7 @@ export default {
   },
   mounted() {
     var popover = new Popover(document.querySelector(
-      "'." + this.selector.toLowerCase() + "'"));
+      "." + this.selector.toLowerCase()));
   },
 };
 </script>
