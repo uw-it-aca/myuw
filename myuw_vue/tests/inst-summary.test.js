@@ -187,9 +187,7 @@ describe('Instructor Teaching Summary', () => {
   });
 
   it('Check MUWM-5099', async () => {
-    axios.get.mockImplementation((url) => {  
-
-
+    axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/instructor_schedule/current': mockScheduleBill5099,
       };
