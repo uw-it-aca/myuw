@@ -15,9 +15,13 @@ import UwSummerSectionList from
   '../components/home/inst_course_summary/summer-list.vue';
 import UwSectionList from
   '../components/home/inst_course_summary/section-list.vue';
+import UwCourseMode from
+  '../components/_common/course/course-mode/mode.vue';
 
 import mockBill2013Summer from
   './mock_data/inst_schedule/bill2013summer.json';
+import mockScheduleBill5099 from 
+  './mock_data/inst_schedule/muwm-5099-bill2013spring.json';
 import mockBillpce2013Summer from
   './mock_data/inst_schedule/billpce2013summer.json';
 import mockBillsea2013Spring from
@@ -180,5 +184,27 @@ describe('Instructor Teaching Summary', () => {
     expect(wrapper.findComponent(
       UwSummerSectionList).exists()).toBe(true);
     expect(wrapper.findAllComponents(UwSectionList).length).toBe(2);
+  });
+
+  it('Check MUWM-5099', async () => {
+    axios.get.mockImplementation((url) => {  
+
+
+      const urlData = {
+        '/api/v1/instructor_schedule/current': mockScheduleBill5099,
+      };
+      return Promise.resolve({ data: urlData[url], status: 200 });
+    });
+
+    const wrapper = mount(InstructorCourseSummery, { store, localVue });
+    await new Promise((r) => setTimeout(r, 30));
+    const cmodes = wrapper.findAllComponents(UwCourseMode);
+    expect(cmodes.length).toBe(4);
+    console.log(cmodes[0]);
+    expect(cmodes.at(0).vm.hideInfoLink).toBe(true);
+    expect(cmodes.at(0).vm.asyncMsg.length > 0).toBe(true);
+    expect(cmodes.at(0).vm.syncMsg.length > 0).toBe(true);
+    expect(cmodes.at(0).vm.hybMsg.length > 0).toBe(true);
+    expect(cmodes.at(0).vm.inPersonMsg.length > 0).toBe(true);
   });
 });
