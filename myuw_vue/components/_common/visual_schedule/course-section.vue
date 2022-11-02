@@ -117,10 +117,11 @@ export default {
         this.meetingData.meeting.building_tbd &&
         (this.meetingData.section.is_asynchronous ||
          this.meetingData.section.is_synchronous ||
-         this.meetingData.section.is_hybrid &&
-         !(this.meetingData.meeting.wont_meet ||
+         this.meetingData.section.is_hybrid) &&
+        !(this.meetingData.meeting.wont_meet ||
           this.meetingData.meeting.no_meeting ||
-          this.meetingData.meeting.days_tbd)));
+          this.meetingData.meeting.days_tbd)
+      );
     },
     meetingLocation() {
       if (this.isOnline) {  // MUWM-5099
