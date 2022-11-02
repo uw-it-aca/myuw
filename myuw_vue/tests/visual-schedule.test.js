@@ -8,10 +8,12 @@ import visual_schedule from '../vuex/store/schedule/visual';
 
 import ScheduleTab from '../components/_common/visual_schedule/schedule-tab.vue';
 import VisualSchedule from '../components/_common/visual_schedule/schedule.vue';
+import CourseSection from '../components/_common/visual_schedule/course-section.vue';
 import UwTabs from '../components/_templates/tabs/tabs.vue';
 import UwTab from '../components/_templates/tabs/button.vue';
 
-import mockScheduleBill from './mock_data/schedule/muwm-5071-bill2013spring.json';
+import mockScheduleBill5099 from './mock_data/schedule/muwm-5099-bill2013spring.json';
+import mockScheduleBill5071 from './mock_data/schedule/muwm-5071-bill2013spring.json';
 import mockScheduleJaverage from './mock_data/schedule/muwm-5071-javerage2013spring.json';
 import mockScheduleJaverageSummer from './mock_data/schedule/javerageSummer2013.json';
 import mockScheduleJeos from './mock_data/schedule/jeos2013.json';
@@ -141,7 +143,7 @@ describe('Vue SFC Tests', () => {
   it ('Check Overlapping classes', async () => {
     store.state.user.affiliations.student = false;
     store.state.user.affiliations.instructor = true;
-    axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
+    axios.get.mockResolvedValue({data: mockScheduleBill5071, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
@@ -166,5 +168,19 @@ describe('Vue SFC Tests', () => {
       wrapper.findAllComponents(ScheduleTab).at(1).vm
         .meetingMap["sunday"]["08:30 AM"]
     ).toHaveLength(1);
+  });
+
+  it('Check MUWM-5099', async () => {
+    store.state.user.affiliations.student = false;
+    store.state.user.affiliations.instructor = true;
+    axios.get.mockResolvedValue({ data: mockScheduleBill5099, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
+
+    await new Promise(setImmediate);
+    const sections = wrapper.findAllComponents(CourseSection);
+    expect(sections.at(0).vm.isOnline).toBe(true);
+    expect(sections.at(0).vm.meetingLocation).toBe('Online');
+    expect(sections.at(0).vm.ariaMeetingLocation).toBe('Online');
+    expect(sections.at(1).vm.isOnline).toBe(false);
   });
 });
