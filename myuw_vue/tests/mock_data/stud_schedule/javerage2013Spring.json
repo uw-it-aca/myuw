@@ -82,7 +82,6 @@
           "room": "A102",
           "room_number": "A102",
           "instructors": [],
-          "is_remote": false,
           "latitude": 47.652991135758,
           "longitude": -122.31110674603,
           "building_name": "Physics / Astronomy Auditorium (PAA)"
@@ -249,7 +248,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": 47.652991135758,
           "longitude": -122.31110674603,
           "building_name": "Physics / Astronomy Auditorium (PAA)"
@@ -261,11 +259,9 @@
       "grade": "4.0",
       "grade_date": "2013-06-12",
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": false,
-        "no_exam_or_nontraditional": false,
-        "is_remote": false
+        "no_exam_or_nontraditional": false
       },
       "color_id": 3,
       "on_standby": 0,
@@ -321,7 +317,6 @@
           "room": "B164",
           "room_number": "B164",
           "instructors": [],
-          "is_remote": false,
           "latitude": 47.653644681181,
           "longitude": -122.311302,
           "building_name": "Physics / Astronomy Building (PAB)"
@@ -333,7 +328,6 @@
       "grade": "4.0",
       "grade_date": "2013-06-11",
       "grading_system": "",
-      "is_remote": false,
       "color_id": "3a",
       "on_standby": 0,
       "canvas_url": "https://canvas.uw.edu/courses/249652",
@@ -388,7 +382,6 @@
           "room": "B108",
           "room_number": "B108",
           "instructors": [],
-          "is_remote": false,
           "latitude": 47.653644681181,
           "longitude": -122.311302,
           "building_name": "Physics / Astronomy Building (PAB)"
@@ -400,7 +393,6 @@
       "grade": "3.5",
       "grade_date": "2013-06-11",
       "grading_system": "",
-      "is_remote": false,
       "color_id": "3a",
       "on_standby": 0,
       "canvas_url": "https://canvas.uw.edu/courses/249652",
@@ -512,8 +504,7 @@
               "employee_state": "current",
               "student_state": null
             }
-          ],
-          "is_remote": false
+          ]
         }
       ],
       "for_credit": true,
@@ -522,7 +513,6 @@
       "grade": "P",
       "grade_date": "2013-06-10",
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -530,8 +520,7 @@
         "end_date": "2013-06-10 10:20",
         "building": "*",
         "room_number": "*",
-        "room": "*",
-        "is_remote": false
+        "room": "*"
       },
       "color_id": 1,
       "on_standby": 0,
@@ -729,8 +718,7 @@
               "employee_state": null,
               "student_state": null
             }
-          ],
-          "is_remote": false
+          ]
         }
       ],
       "for_credit": true,
@@ -739,7 +727,6 @@
       "grade": "X",
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false,
@@ -748,7 +735,6 @@
         "building": "KNE",
         "room_number": "012",
         "room": "012",
-        "is_remote": false,
         "longitude": -122.309198619,
         "latitude": 47.6565514399,
         "building_name": "Kane Hall (KNE)"

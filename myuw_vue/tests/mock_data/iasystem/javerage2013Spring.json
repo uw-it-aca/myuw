@@ -236,7 +236,6 @@
     "grade": "4.0",
     "grade_date": "2013-06-12",
     "grading_system": "standard",
-    "is_remote": false,
     "final_exam": {
       "is_confirmed": false,
       "no_exam_or_nontraditional": false
@@ -295,7 +294,6 @@
     "grade": "4.0",
     "grade_date": "2013-06-11",
     "grading_system": "",
-    "is_remote": false,
     "evaluation_data": null
   }, {
     "curriculum_abbr": "PHYS",
@@ -350,7 +348,6 @@
     "grade": "3.5",
     "grade_date": "2013-06-11",
     "grading_system": "",
-    "is_remote": false,
     "evaluation_data": []
   }, {
     "curriculum_abbr": "TRAIN",
@@ -445,7 +442,6 @@
     "grade": "P",
     "grade_date": "2013-06-10",
     "grading_system": "standard",
-    "is_remote": false,
     "final_exam": {
       "is_confirmed": true,
       "no_exam_or_nontraditional": false,
@@ -641,7 +637,6 @@
     "grade": "X",
     "grade_date": null,
     "grading_system": "standard",
-    "is_remote": false,
     "final_exam": {
       "is_confirmed": false,
       "no_exam_or_nontraditional": false,
