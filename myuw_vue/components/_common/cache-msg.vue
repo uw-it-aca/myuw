@@ -4,44 +4,27 @@
     :class="[$mq === 'mobile' ? 'text-center' : 'text-end']"
   >
     Most updates become available after 15 minutes.
-
-    <a
-      role="button"
-      class="cache-msg"
-      data-bs-container="body"
-      data-bs-toggle="popover"
-      title="Data Update Policy"
-      data-bs-placement="bottom"
-      data-bs-html="true"
-      :data-bs-content="message"
-    >
-      <font-awesome-icon :icon="faQuestionCircle" class="text-dark-gray" />
-    </a>
+    <uw-pop-over selector="cache-msg" title="Data Update Policy" :content="message"/>
   </div>
 </template>
 
 <script>
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { Popover } from 'bootstrap';
-
+import PopOver from './pop-over.vue';
 export default {
-  data() {
-    return {
-      faQuestionCircle,
-    };
+  components: {
+    'uw-pop-over': PopOver,
   },
   computed: {
     message() {
       return (
-        '<p>Most data updates become available in MyUW every 15 minutes, but some can take up to four hours.</p>' +
+        '<p>Most data updates become available in MyUW every 15 minutes, but some can ' +
+        'take up to four hours.</p>' +
         '<div>If you’re not seeing information you’d expect, please refresh the page at ' +
-        "a later time. If you're still having issues email <a href='mailto:help@uw.edu?subject=MyUW Question'>" +
+        "a later time. If you're still having issues email " +
+        "<a href='mailto:help@uw.edu?subject=MyUW Question'>" +
         'help@uw.edu</a>.</div>'
       );
     },
-  },
-  mounted() {
-    var popover = new Popover(document.querySelector('.cache-msg'));
   },
 };
 </script>

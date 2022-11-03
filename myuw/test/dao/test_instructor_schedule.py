@@ -66,8 +66,8 @@ class TestInstructorSchedule(TestCase):
                                         get_request_with_date("2020-10-01"))
         schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 5)
-        self.assertFalse(schedule.sections[0].is_remote)
-        self.assertFalse(schedule.sections[3].is_remote)
+        self.assertTrue(schedule.sections[0].is_hybrid)
+        self.assertTrue(schedule.sections[3].is_hybrid)
 
     def test_specific_summer_term(self):
         request = get_request_with_user(

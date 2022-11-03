@@ -112,7 +112,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -279,7 +278,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -441,7 +439,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -585,7 +582,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -655,7 +651,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -787,7 +782,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -954,7 +948,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -1116,7 +1109,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -1260,7 +1252,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -1330,7 +1321,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -1453,7 +1443,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -1620,7 +1609,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -1782,7 +1770,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": false,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false
@@ -1926,7 +1913,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false,
@@ -1996,7 +1982,6 @@
                     "grade": null,
                     "grade_date": null,
                     "grading_system": "standard",
-                    "is_remote": true,
                     "final_exam": {
                         "is_confirmed": false,
                         "no_exam_or_nontraditional": false

@@ -22,7 +22,15 @@
         "TimeScheduleLinkAbbreviation": "95com"
     },
     "DeleteFlag": "active",
-    "DistanceLearning": true,
+    "DistanceLearning": false,
+    "DistanceLearningCalendarType": {
+        "Code": "0",
+        "Description": "Not a Distance Learning section"
+    },
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
     "DuplicateEnrollmentAllowed": false,
     "EndDate": "",
     "EnrollmentRestrictions": false,
@@ -111,8 +119,8 @@
     "Metadata": "SectionSourceKey=SDB_EOS;",
     "MinimumTermCredit": "5.0",
     "OnlineLearningType": {
-        "Code": "00",
-        "Description": "No online learning component"
+        "Code": "20",
+        "Description": "Online Learning - Hybrid"
     },
     "PrimaryLMS": "CANVAS",
     "PrimarySection": {
@@ -198,7 +206,7 @@
         "TimeScheduleGeneratedComments": {
             "Lines": [
                 {
-                    "Text": "Distance Learning - Internet"
+                    "Text": "Online Learning - Hybrid"
                 }
             ]
         }
