@@ -5,6 +5,7 @@
     >
       Lecture Schedule
     </h3>
+
     <uw-meeting-info :section="section"/>
     <uw-resources :section="section"/>
 

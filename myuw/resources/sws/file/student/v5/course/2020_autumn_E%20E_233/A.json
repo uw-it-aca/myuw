@@ -25,6 +25,10 @@
     },
     "DeleteFlag": "active",
     "DistanceLearning": false,
+    "DistanceLearningCalendarType": {
+        "Code": "0",
+        "Description": "Not a Distance Learning section"
+    },
     "DistanceLearningType": {
         "Code": null,
         "Description": null
@@ -162,8 +166,8 @@
     "Metadata": "SectionSourceKey=SDB;",
     "MinimumTermCredit": "5.0",
     "OnlineLearningType": {
-        "Code": "00",
-        "Description": "No online learning component"
+        "Code": "20",
+        "Description": "Online Learning - Hybrid"
     },
     "PrimaryLMS": null,
     "PrimarySection": {
@@ -247,12 +251,18 @@
         "SectionComments": {
             "Lines": [
                 {
-                    "Text": "OFFERED VIA REMOTE LEARNING"
+                    "Text": "HYBRID"
                 }
             ]
         },
         "TimeScheduleGeneratedComments": {
             "Lines": [
+                {
+                    "Text": "Distance Learning - Hybrid"
+                },
+                {
+                    "Text": "Online Learning - Hybrid"
+                },
                 {
                     "Text": "$50 course fee - auditors exempt"
                 },

@@ -82,7 +82,6 @@
           "room": "405",
           "room_number": "405",
           "instructors": [],
-          "is_remote": false,
           "start_end_same": false
         },
         {
@@ -110,7 +109,6 @@
           "room": "",
           "room_number": "",
           "instructors": [],
-          "is_remote": false,
           "start_end_same": false
         },
         {
@@ -138,7 +136,6 @@
           "room": "",
           "room_number": "",
           "instructors": [],
-          "is_remote": false,
           "start_end_same": true
         }
       ],
@@ -148,7 +145,6 @@
       "grade": "",
       "grade_date": null,
       "grading_system": "",
-      "is_remote": false,
       "color_id": 1,
       "cc_display_dates": true,
       "is_ended": false,
@@ -203,8 +199,7 @@
           "room_tbd": false,
           "room": "405",
           "room_number": "405",
-          "instructors": [],
-          "is_remote": false
+          "instructors": []
         },
         {
           "index": "2",
@@ -230,8 +225,7 @@
           "room_tbd": false,
           "room": "",
           "room_number": "",
-          "instructors": [],
-          "is_remote": false
+          "instructors": []
         }
       ],
       "for_credit": false,
@@ -240,7 +234,6 @@
       "grade": "",
       "grade_date": null,
       "grading_system": "",
-      "is_remote": false,
       "color_id": 2,
       "cc_display_dates": true,
       "is_ended": false,

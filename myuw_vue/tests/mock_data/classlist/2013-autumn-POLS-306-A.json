@@ -115,7 +115,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": 47.654561,
           "longitude": -122.310904,
           "building_name": "Architecture Hall (ARC)",
@@ -128,7 +127,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -137,7 +135,6 @@
         "building": "ARC",
         "room_number": "147",
         "room": "147",
-        "is_remote": false,
         "longitude": -122.310904,
         "latitude": 47.654561,
         "building_name": "Architecture Hall (ARC)",
@@ -424,7 +421,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": 47.654561,
           "longitude": -122.310904,
           "building_name": "Architecture Hall (ARC)",
@@ -437,7 +433,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,

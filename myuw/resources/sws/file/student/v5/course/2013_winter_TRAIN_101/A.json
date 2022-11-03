@@ -150,5 +150,29 @@
 	],
 	"SecondaryGradingOption":false,
 	"ClassWebsiteUrl":"",
-	"CurrentEnrollment":"0"
+	"CurrentEnrollment":"0",
+	"DistanceLearning": false,
+	"DistanceLearningCalendarType": {
+		"Code": "0",
+		"Description": "Not a Distance Learning section"
+	},
+	"DistanceLearningType": {
+		"Code": null,
+		"Description": null
+	},
+	"OnlineLearningType": {
+		"Code": "20",
+		"Description": "Online Learning - Hybrid"
+	},
+	"FinancialAidEligible": true,
+	"FinancialAidEligibleDisplay": "",
+	"GeneralEducationRequirements": {
+		"Diversity": false,
+		"EnglishComposition": false,
+		"IndividualsAndSocieties": true,
+		"NaturalWorld": false,
+		"QuantitativeAndSymbolicReasoning": false,
+		"VisualLiteraryAndPerformingArts": false,
+		"Writing": false
+	}
 }
