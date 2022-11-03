@@ -17,7 +17,7 @@
         <div v-if="hasActiveApplication" class="col-12 mb-xl-0">
           <p class="myuw-text-md">
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
-          </p>          
+          </p>
         </div>
         <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3">
           <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
@@ -150,13 +150,13 @@
                 >after graduation</a>.
               </li>
               <li v-if="bothell">
-                Find out how to <a 
+                Find out how to <a
                 href="https://www.uwb.edu/registration/enrollment-verify"
                 >provide degree certification</a>
                 to other parties.
               </li>
               <li v-if="seattle && tacoma">
-                Find out how to <a 
+                Find out how to <a
                 href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
                 >provide degree certification</a>
                 to other parties.
@@ -165,7 +165,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-            <h3 class="h6 myuw-font-encode-sans"> 
+            <h3 class="h6 myuw-font-encode-sans">
               Choose to take part in commencement ceremony
             </h3>
             <ul class="list-unstyled myuw-text-md">
@@ -198,6 +198,35 @@
               </li>
             </ul>
           </div>
+
+<!-- fix/MUWM-5182 Section addition - Needs logic set up - Only for Seattle-->
+          <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
+                      <h3 class="h6 myuw-font-encode-sans">
+                        Your plans after graduation
+                      </h3>
+                      <ul class="list-unstyled myuw-text-md">
+                        <li>
+                          <uw-collapsed-item :notice="degreeCeremony">
+                            <template #notice-body>
+                              <p v-if="seattle">
+                                Each year we track, aggregate and
+                                <a href="https://careers.uw.edu/outcomes/"
+                                  >visualize UW bachelor graduate's next destination.</a>
+                              </p>
+                              <p v-if="seattle">
+                                What are <i>you</i> planning to do? Whether you&apos;re intending to work,
+                                 travel, go to grad school, or are still figuring it out,
+                                 we want to know! Please take 5 mins to
+                                  <a href="https://careers.uw.edu/resources/next-destination-survey/"
+                                  >tell us your plans</a>
+                                 so we can better coach students and inform future graduates
+                                 &ndash; we want to hear from every graduate! </p>
+                            </template>
+                          </uw-collapsed-item>
+                        </li>
+                      </ul>
+                    </div>
+
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
             <h3 class="h6 myuw-font-encode-sans">
@@ -344,7 +373,7 @@
                       'how-professional-job-different-being-student'"
               >
                 How a Professional Job is Different from Being a Student
-              </a> 
+              </a>
               <br>
               <p class="fst-italic">2 min read</p>
             </div>
@@ -398,7 +427,7 @@
             </div>
           </div>
         </div>
-          
+
       </uw-collapse>
     </template>
     <template #card-footer>
