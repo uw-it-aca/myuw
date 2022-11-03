@@ -141,7 +141,6 @@
               "student_state": null
             }
           ],
-          "is_remote": false,
           "latitude": 47.656645546715,
           "longitude": -122.30718991534,
           "building_name": "Smith Hall (SMI)",
@@ -154,7 +153,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -163,7 +161,6 @@
         "building": "SMI",
         "room_number": "401",
         "room": "401",
-        "is_remote": false,
         "longitude": -122.30718991534,
         "latitude": 47.656645546715,
         "building_name": "Smith Hall (SMI)",
@@ -421,7 +418,6 @@
           "room": "140",
           "room_number": "140",
           "instructors": [],
-          "is_remote": false,
           "latitude": 47.654588546146,
           "longitude": -122.30887827116,
           "building_name": "Johnson Hall (JHN)",
@@ -434,7 +430,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
-      "is_remote": false,
       "index": 1,
       "color_id": "1a",
       "mini_card": false,

@@ -113,7 +113,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 1,
                     "is_teaching": false
                 }
@@ -242,7 +241,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 1,
                     "is_teaching": false
                 }
@@ -362,7 +360,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 1,
                     "is_teaching": false
                 },
@@ -447,7 +444,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 2,
                     "is_teaching": false
                 }
@@ -541,7 +537,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 2,
                     "is_teaching": false
                 }
@@ -661,7 +656,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 1,
                     "is_teaching": false
                 },
@@ -746,7 +740,6 @@
                     "grade": "",
                     "grade_date": null,
                     "grading_system": "",
-                    "is_remote": false,
                     "color_id": 2,
                     "is_teaching": false
                 }

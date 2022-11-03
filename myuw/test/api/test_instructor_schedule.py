@@ -132,13 +132,14 @@ class TestInstructorTermSchedule(MyuwApiTest):
         data = json.loads(response.content)
         self.assertFalse(data['sections'][0]['current'])
 
-    def test_remote_sections(self):
-        # MUWM-4728, MUWM-4989
+    def test_section_modes(self):
+        # MUWM-5099
         request = get_request_with_user('billsea',
                                         get_request_with_date("2020-10-01"))
         schedule = get_current_quarter_instructor_schedule(request)
-        self.assertFalse(schedule.sections[0].is_remote)
-        self.assertFalse(schedule.sections[3].is_remote)
+        print(schedule.sections[0])
+        self.assertTrue(schedule.sections[0].is_hybrid)
+        self.assertFalse(schedule.sections[1].is_hybrid)
 
     def test_having_secondary_sections_case(self):
         now_request = get_request_with_user(
@@ -303,14 +304,13 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(data['sections'][0]['current_enrollment'], 18)
         self.assertEqual(data['sections'][1]['current_enrollment'], 3)
 
-    def test_remote_courese(self):
-        # MUWM-4728, MUWM-4989
+    def test_courese_mode(self):
+        # MUWM-5099
         request = get_request_with_user(
             'billsea', get_request_with_date('2020-10-01'))
         resp = InstScheCurQuar().get(request)
         data = json.loads(resp.content)
         self.assertEquals(len(data["sections"]), 5)
         ee = data["sections"][0]
-        self.assertFalse(ee["is_remote"])
-        self.assertFalse(ee["final_exam"]["is_remote"])
-        self.assertFalse(ee["meetings"][0]["is_remote"])
+        self.assertTrue(ee["is_hybrid"])
+        self.assertTrue(ee["meetings"][0]["is_hybrid"])

@@ -189,7 +189,6 @@
               "student_state": "current"
             }
           ],
-          "is_remote": false,
           "classroom_info_url": null
         }
       ],
@@ -199,7 +198,6 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
-      "is_remote": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -208,7 +206,6 @@
         "building": "MGH",
         "room_number": "012",
         "room": "012",
-        "is_remote": false,
         "longitude": "-122.304747",
         "latitude": "47.653693",
         "building_name": "Mechanical Engineering Building",

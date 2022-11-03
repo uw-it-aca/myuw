@@ -26,8 +26,16 @@
                   {{ section.section_id }}
                 </a>
               </h3>
-              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-end'" class="text-nowrap">
+              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-end'" >
                 <div class="d-inline">
+                  <h4 class="visually-hidden">
+                    Course Mode:
+                  </h4>
+                  <span>
+                    <uw-course-mode class="d-inline" :section="section" hide-info-link/>
+                  </span>
+                </div>
+                <div class="d-inline ms-1">
                   <h4 class="visually-hidden">
                     Section Type:
                   </h4>
@@ -114,6 +122,7 @@ import {
   faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 import Collapse from '../../_templates/collapse.vue';
+import CourseMode from '../../_common/course/course-mode/mode.vue';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
@@ -123,6 +132,7 @@ export default {
     'uw-collapse': Collapse,
     'uw-linked-section': LinkedSection,
     'uw-meeting-info': MeetingInfo,
+    'uw-course-mode': CourseMode,
     'uw-enrollment': Enrollment,
   },
   props: {
