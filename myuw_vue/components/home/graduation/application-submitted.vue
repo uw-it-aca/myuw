@@ -199,8 +199,8 @@
             </ul>
           </div>
 
-<!-- fix/MUWM-5182 Section addition - Needs logic set up - Only for Seattle-->
-          <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
+<!-- fix/MUWM-5182 Section addition - Needs logic set up and new notice needs to be created - Only for Seattle campus-->
+          <div>
                       <h3 class="h6 myuw-font-encode-sans">
                         Your plans after graduation
                       </h3>
@@ -208,12 +208,12 @@
                         <li>
                           <uw-collapsed-item :notice="degreeCeremony">
                             <template #notice-body>
-                              <p v-if="seattle">
+                              <p>
                                 Each year we track, aggregate and
                                 <a href="https://careers.uw.edu/outcomes/"
                                   >visualize UW bachelor graduate's next destination.</a>
                               </p>
-                              <p v-if="seattle">
+                              <p>
                                 What are <i>you</i> planning to do? Whether you&apos;re intending to work,
                                  travel, go to grad school, or are still figuring it out,
                                  we want to know! Please take 5 mins to
