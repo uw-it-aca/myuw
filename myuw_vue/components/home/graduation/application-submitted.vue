@@ -199,14 +199,14 @@
             </ul>
           </div>
 
-<!-- fix/MUWM-5182 Section addition - Needs logic set up and new notice needs to be created - Only for Seattle campus-->
-          <div>
+<!-- fix/MUWM-5182 Section addition - Needs logic set up -->
+          <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
                       <h3 class="h6 myuw-font-encode-sans">
                         Your plans after graduation
                       </h3>
                       <ul class="list-unstyled myuw-text-md">
                         <li>
-                          <uw-collapsed-item :notice="degreeCeremony">
+                          <uw-collapsed-item :notice="degreeNextDestination">
                             <template #notice-body>
                               <p>
                                 Each year we track, aggregate and
@@ -513,6 +513,11 @@ export default {
         notice.category === 'Graduation EmailForwarding'
       )[0];
     },
+    degreeNextDestination() {
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation NextDestination'
+      )[0];
+    },
     showCard() {
       return (this.graduatingSenior &&
         (this.isFetching || this.showContent || this.showError));
@@ -523,7 +528,8 @@ export default {
         this.degreeStatus && this.degreeStatus.degrees &&
         this.degreeStatus.degrees.length > 0 &&
         Boolean(this.degreeCeremony) && Boolean(this.degreeDiploma) &&
-        Boolean(this.degreeSaveWork) && Boolean(this.degreeEmailForwarding));
+        Boolean(this.degreeSaveWork) && Boolean(this.degreeEmailForwarding) &&
+        Boolean(this.degreeNextDestination));
     },
     showError() {
       // if fetching profile having any error or degree status has a non-404 error
