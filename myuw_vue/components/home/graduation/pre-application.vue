@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    v-meta="{term: term}"
+    v-meta="{term: term, tag: `grad-pre-application`}"
     :loaded="showContent"
     :errored="isErrored"
     :errored-show="false"

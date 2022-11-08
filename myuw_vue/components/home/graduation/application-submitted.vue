@@ -1,5 +1,10 @@
 <template>
-  <uw-card v-if="showCard" :loaded="showContent" :errored="showError">
+  <uw-card
+    v-if="showCard"
+    v-meta="{term: term, tag: `grad-application-submitted`}"
+    :loaded="showContent"
+    :errored="showError"
+  >
     <template #card-heading>
       <h2 v-if="hasGrantedDegree" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Congratulations, You've Graduated!
@@ -449,6 +454,8 @@ export default {
       intlStudent: (state) => state.user.affiliations.intl_stud,
       classLevel: (state) => state.user.affiliations.latest_class_level,
       notices: (state) => state.notices.value,
+      quarter: (state) => state.termData.quarter,
+      year: (state) => state.termData.year,
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
@@ -589,6 +596,9 @@ export default {
       }
       return value;
     },
+    term() {
+      return this.year + ',' + this.quarter;
+    }
   },
   created() {
     if (this.graduatingSenior) {
