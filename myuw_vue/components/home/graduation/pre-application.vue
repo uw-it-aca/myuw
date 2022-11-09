@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    v-meta="{term: term}"
+    v-meta="{term: term, tag: `grad-pre-application`}"
     :loaded="showContent"
     :errored="isErrored"
     :errored-show="false"
@@ -17,6 +17,13 @@
         <strong>To graduate, you'll need to apply.</strong> Don't worry, it's an easy
         process that you complete with your departmental adviser!
       </p>
+
+      <uw-feedback
+        :id="'PreApplicationModal'"
+        :prompt="'Is this graduation application information helpful?'"
+        :form-id="'1FAIpQLSeAdnYid_OUKglzuJnOfhSeW7NaNOxVoYkyRkCliLkS9KsFsg'"
+      ></uw-feedback>
+
     </template>
 
     <template #card-disclosure>
@@ -39,19 +46,19 @@
           <strong>Get all the details:
           <a href="https://www.washington.edu/students/graduation-checklist/">
           Follow the UW Seattle Graduation checklist</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="tacoma" class="myuw-text-md">
           <strong>Get an
           <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
             overview of the UW Tacoma graduation process</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="bothell" class="myuw-text-md">
           <strong>Get all the details on
           <a href="https://www.uwb.edu/registration/graduation">
             UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
-          </strong> 
+          </strong>
         </p>
         <p v-if="bothell && intlStudent" class="myuw-text-md">
           International students, may find
@@ -87,11 +94,13 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
+import Feedback from '../../_templates/feedback.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
+    'uw-feedback': Feedback,
   },
   data() {
     return {

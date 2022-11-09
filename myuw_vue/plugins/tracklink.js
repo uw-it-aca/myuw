@@ -22,6 +22,7 @@ function linkClickHandler(event, binding, vnode, out) {
     instance,
     label,
     out,
+    aTarget,
   );
 
   if (out) {

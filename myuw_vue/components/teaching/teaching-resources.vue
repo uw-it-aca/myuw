@@ -96,7 +96,7 @@ export default {
             title: "Change Submitted Grades" },
           { url: this.linkData.courseEval, title: "Course Evaluations" },
           { url: "https://coda.uw.edu", title: "Course Statistics Dashboard" },
-          { url: "https://gsuite.google.com/dashboard", title: "G Suite Apps" },
+          { url: "https://gsuite.google.com/dashboard", title: "Google Apps" },
           { url: "https://www.office.com/", title: "Office 365 Apps" }
         ];
       },
