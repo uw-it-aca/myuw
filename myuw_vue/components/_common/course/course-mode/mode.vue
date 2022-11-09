@@ -68,7 +68,7 @@ export default {
     syncMsg() {
       const msg = (
         "Students and instructors interact online synchronously through regularly-scheduled, " +
-        "required meetings using applications such as Zoom. Students should also expect to " +
+        "required meetings using online applications. Students should also expect to " +
         "interact with others and engage in course materials asynchronously. The time schedule" +
         " contains information about the course’s regular, required synchronous meeting time.");
       return (this.includeTSC
@@ -80,7 +80,7 @@ export default {
         "meeting in the physical classroom, students and instructors will attend class online," +
         " either through required synchronous sessions or required asynchronous activities. " +
         "The time schedule contains information about the course’s required weekly physical " +
-        "classroom and synchronous meeting time.");
+        "classroom and synchronous meeting time (e.g., MW 1-2pm in-person, F 1-2pm online).");
       return (this.includeTSC
         ? (msg + this.learnMoreMsg + this.contactTsMsg) : msg);
     },
