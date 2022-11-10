@@ -24,7 +24,7 @@ from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, check_section_instructor,
     get_section_status_by_label, get_instructor_section,
-    get_primary_section, get_active_registrations_for_section)
+    get_active_registrations_for_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.term import (
@@ -82,16 +82,6 @@ def set_classroom_info_url(meeting):
         return 'http://www.washington.edu/classroom/{}+{}'.format(
             meeting.building, meeting.room_number)
     return None
-
-
-def set_secondary_final_exam(secondary_section):
-    try:
-        primary_section = get_primary_section(secondary_section)
-        if primary_section and primary_section.final_exam:
-            return primary_section.final_exam.json_data()
-    except Exception:
-        log_exception(logger, 'set_secondary_final_exam', traceback)
-    return secondary_section.final_exam.json_data()
 
 
 def set_section_grading_status(section, person):
@@ -181,12 +171,6 @@ def set_course_resources(section_data, section, person, is_future_term):
                                args=(section.final_exam,))
         t.start()
         threads.append((t, 'classroom_info_url', section_data['final_exam']))
-
-    if not section.is_primary_section:
-        t = ThreadWithResponse(target=set_secondary_final_exam,
-                               args=(section,))
-        t.start()
-        threads.append((t, 'final_exam', section_data))
 
     for t, k, d in threads:
         t.join()
@@ -337,8 +321,6 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
         if section.final_exam:
             final = section_data["final_exam"]
-            # MUWM-4728
-            final["is_remote"] = section.is_remote
 
             # MUWM-596
             if section.final_exam.building:
@@ -354,8 +336,10 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
         for meeting in section.meetings:
             mdata = section_data["meetings"][meeting_index]
 
-            # MUWM-4728
-            mdata["is_remote"] = section.is_remote
+            # MUWM-5099
+            mdata["is_asynchronous"] = section.is_asynchronous
+            mdata["is_synchronous"] = section.is_synchronous
+            mdata["is_hybrid"] = section.is_hybrid
 
             if meeting.eos_start_date is not None:
                 if not section_data["has_eos_dates"]:

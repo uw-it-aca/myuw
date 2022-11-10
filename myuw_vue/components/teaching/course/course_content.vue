@@ -14,7 +14,8 @@
 
     <template #card-body>
       <uw-card-property-group>
-        <uw-meeting-info show-row-heading :section="section" />
+        <uw-course-mode show-row-heading :section="section"/>
+        <uw-meeting-info show-row-heading show-room-info :section="section" />
         <uw-final-exam :section="section" />
       </uw-card-property-group>
       <uw-class-list :section="section" />
@@ -63,6 +64,7 @@ import Card from '../../_templates/card.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import Collapse from '../../_templates/collapse.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
+import Modality from '../../_common/course/course-mode/modality.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import FinalExam from './final-exam.vue';
 import ClassList from './classlist.vue';
@@ -78,6 +80,7 @@ export default {
     'uw-card-property-group': CardPropertyGroup,
     'uw-collapse': Collapse,
     'uw-course-header': CourseHeader,
+    'uw-course-mode': Modality,
     'uw-meeting-info': MeetingInfo,
     'uw-final-exam': FinalExam,
     'uw-class-list': ClassList,

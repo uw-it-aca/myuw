@@ -6,11 +6,6 @@ import sys
 import os
 import logging
 
-ALLOWED_HOSTS += [
-    'myuw.washington.edu',
-    'myuw.uw.edu'
-]
-
 INSTALLED_APPS += [
     'uw_oidc',
     'compressor',
@@ -46,7 +41,6 @@ if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
                        'u_astratest_myuw_test-support-admin'],
     }
 
-# MYUW_PREFETCH_THREADING = True
 MYUW_ENABLED_FEATURES = []
 
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
@@ -230,6 +224,7 @@ DEBUG = False
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
+    # RESTCLIENTS_DAO_CACHE_CLASS = None
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
 

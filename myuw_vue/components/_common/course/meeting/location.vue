@@ -1,6 +1,6 @@
 <template>
-  <span v-if="meeting.is_remote">
-    Remote
+  <span v-if="isOnline">
+    Online
   </span>
   <span v-else-if="meeting.building_tbd"
     class="text-muted"
@@ -23,22 +23,47 @@
         :href="meeting.classroom_info_url"
         title="View classroom information"
       >{{ meeting.room }}</a>
-      <span v-else title="No classroom information available">
+
+      <span v-else>
         {{ meeting.room }}
+        <span
+          v-if="showRoomInfo && !meeting.room_tbd && meeting.room !== '*'"
+          title="No classroom information available"
+          class="text-dark-gray"
+          aria-hidden="true"
+        >
+          <font-awesome-icon :icon="faInfoCircle" />
+        </span>
       </span>
     </span>
   </span>
 </template>
 
 <script>
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
     meeting: {
       type: Object,
       required: true,
     },
+    showRoomInfo: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      faInfoCircle,
+    };
   },
   computed: {
+    isOnline() {
+      return (
+        this.meeting.building_tbd &&
+        (this.meeting.is_asynchronous || this.meeting.is_synchronous || this.meeting.is_hybrid)
+      );
+    },
     locationUrl() {
       return `http://maps.google.com/maps?q=${this.meeting.latitude},${
         this.meeting.longitude

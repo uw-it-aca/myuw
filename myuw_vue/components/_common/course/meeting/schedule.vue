@@ -43,7 +43,8 @@
             :headers="`days-${meeting.id}`"
             colspan="3" class="p-0"
           >
-            <span class="text-muted">Days and times to be arranged</span>
+            <span v-if="isAsyHyb(meeting)" class="text-muted">No meeting time</span>
+            <span v-else class="text-muted">Days and times to be arranged</span>
           </td>
 
           <td v-else-if="meeting.no_meeting"
@@ -68,7 +69,7 @@
             <td :headers="`location-${meeting.id}`"
               class="p-0 text-start text-nowrap"
             >
-              <uw-meeting-location :meeting="meeting" />
+              <uw-meeting-location :meeting="meeting" :show-room-info="showRoomInfo" />
             </td>
           </template>
 
@@ -109,6 +110,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showRoomInfo: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     formatEos(meeting) {
@@ -119,6 +124,9 @@ export default {
       } else {
         return `${startFormatted} - ${endFormatted}`;
       }
+    },
+    isAsyHyb(meeting) {
+      return (meeting.is_asynchronous || meeting.is_hybrid);
     },
     shortenMtgType(typeStr) {
       if (typeStr === "unknown type") {

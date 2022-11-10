@@ -114,8 +114,6 @@ def load_schedule(request, schedule):
 
         if section.final_exam:
             final = section_data["final_exam"]
-            # MUWM-4728
-            final["is_remote"] = section.is_remote
 
             # MUWM-596 we don't display
             # if section.final_exam.building:
@@ -131,8 +129,10 @@ def load_schedule(request, schedule):
         for meeting in section.meetings:
             mdata = section_data["meetings"][meeting_index]
 
-            # MUWM-4728
-            mdata["is_remote"] = section.is_remote
+            # MUWM-5099
+            mdata["is_asynchronous"] = section.is_asynchronous
+            mdata["is_synchronous"] = section.is_synchronous
+            mdata["is_hybrid"] = section.is_hybrid
 
             if meeting.eos_start_date is not None:
                 if not section_data["has_eos_dates"]:
