@@ -147,5 +147,20 @@
 	],
 	"SecondaryGradingOption":false,
 	"ClassWebsiteUrl":"http://localhost/page404",
-	"CurrentEnrollment":"0"
+	"CurrentEnrollment":"0",
+	"DistanceLearning": true,
+	"DistanceLearningCalendarType": {
+		"Code": "3",
+		"Description": "Asynchronous"
+	},
+	"DistanceLearningType": {
+		"Code": "3",
+		"Description": "Internet"
+	},
+	"OnlineLearningType": {
+		"Code": "10",
+		"Description": "Online Learning - Completely online"
+	},
+	"FinancialAidEligible": true,
+	"FinancialAidEligibleDisplay": ""
 }

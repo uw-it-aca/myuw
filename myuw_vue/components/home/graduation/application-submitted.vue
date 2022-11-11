@@ -1,6 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
+    v-meta="{term: term, tag: `grad-application-submitted`}"
     :loaded="showContent"
     :errored="showError"
   >
@@ -65,9 +66,7 @@
         </div>
         <div class="col-12 order-xl-1 col-xl-8">
           <div v-if="hasActiveApplication">
-            <h3 class="h6 myuw-font-encode-sans">
-              Get an overview
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Get an overview</h3>
             <ul class="list-style myuw-text-md">
               <li v-if="seattle">
                 Review the
@@ -86,46 +85,44 @@
               <li v-if="bothell">
                 Get all the details on
                 <a href="https://www.uwb.edu/registration/graduation">
-                UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
+                  UW Bothell’s Graduation, Diplomas, and Commencement page</a
+                >.
               </li>
               <li v-if="bothell && intlStudent">
                 International students, may find
-                <a href="https://www.uwb.edu/cie/alumni">
-                additional graduation guidance
-                </a> at the Center for International Education.
+                <a href="https://www.uwb.edu/cie/alumni"> additional graduation guidance </a> at the
+                Center for International Education.
               </li>
-               <li v-if="tacoma">
+              <li v-if="tacoma">
                 Review the
                 <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
-                UW Tacoma Graduation Checklist</a> for an overview of tasks.
+                  UW Tacoma Graduation Checklist</a
+                >
+                for an overview of tasks.
               </li>
             </ul>
           </div>
 
           <div v-if="hasActiveApplBeforeEarnedTerm">
-            <h3 class="h6 myuw-font-encode-sans">
-              Ensure that you stay on track
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Ensure that you stay on track</h3>
             <ul class="list-style myuw-text-md">
               <li>
-                See what courses you have left - run a <a
-                href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
+                See what courses you have left - run a
+                <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
                 Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>
                 and with your adviser.
               </li>
               <li>
-                <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm
-                your plan will lead you to graduation.
+                <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm your
+                plan will lead you to graduation.
               </li>
             </ul>
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
-            <h3 class="h6 myuw-font-encode-sans">
-              Run final degree audits
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Run final degree audits</h3>
             <ul class="list-style myuw-text-md">
               <li>
                 During and after the final quarter ends, use
@@ -133,41 +130,39 @@
                 to make sure that your final quarter course load will satisfy your degree
                 requirements and that all your grades are recorded.
               </li>
-              <li>
-                Contact your advisor if anything appears inaccurate.
-              </li>
+              <li>Contact your advisor if anything appears inaccurate.</li>
             </ul>
           </div>
 
           <div v-if="hasGrantedDegree">
-            <h3 class="h6 myuw-font-encode-sans">
-              Post-Graduation Success
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Post-Graduation Success</h3>
             <ul class="list-style myuw-text-md">
               <li>
                 Get guidance and resources for
                 <a href="https://www.washington.edu/graduation/after-graduation/"
-                >after graduation</a>.
+                  >after graduation</a
+                >.
               </li>
               <li v-if="bothell">
-                Find out how to <a
-                href="https://www.uwb.edu/registration/enrollment-verify"
-                >provide degree certification</a>
+                Find out how to
+                <a href="https://www.uwb.edu/registration/enrollment-verify"
+                  >provide degree certification</a
+                >
                 to other parties.
               </li>
               <li v-if="seattle && tacoma">
-                Find out how to <a
-                href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
-                >provide degree certification</a>
+                Find out how to
+                <a
+                  href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
+                  >provide degree certification</a
+                >
                 to other parties.
               </li>
             </ul>
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-            <h3 class="h6 myuw-font-encode-sans">
-              Choose to take part in commencement ceremony
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Choose to take part in commencement ceremony</h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
                 <uw-collapsed-item :notice="degreeCeremony">
@@ -178,9 +173,8 @@
                       >, including:
                     </p>
                     <p v-if="bothell">
-                      <a href="https://www.uwb.edu/commencement"
-                        >Learn all about commencement</a
-                      >, including:
+                      <a href="https://www.uwb.edu/commencement">Learn all about commencement</a>,
+                      including:
                     </p>
                     <p v-if="tacoma">
                       <a href="https://www.tacoma.uw.edu/commencement"
@@ -199,34 +193,32 @@
             </ul>
           </div>
 
-<!-- fix/MUWM-5182 Section addition - Needs logic set up -->
-          <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-                      <h3 class="h6 myuw-font-encode-sans">
-                        Your plans after graduation
-                      </h3>
-                      <ul class="list-unstyled myuw-text-md">
-                        <li>
-                          <uw-collapsed-item :notice="degreeNextDestination">
-                            <template #notice-body>
-                              <p>
-                                Each year we track, aggregate and
-                                <a href="https://careers.uw.edu/outcomes/"
-                                  >visualize UW bachelor graduate's next destination.</a>
-                              </p>
-                              <p>
-                                What are <i>you</i> planning to do? Whether you&apos;re intending to work,
-                                 travel, go to grad school, or are still figuring it out,
-                                 we want to know! Please take 5 mins to
-                                  <a href="https://careers.uw.edu/resources/next-destination-survey/"
-                                  >tell us your plans</a>
-                                 so we can better coach students and inform future graduates
-                                 &ndash; we want to hear from every graduate! </p>
-                            </template>
-                          </uw-collapsed-item>
-                        </li>
-                      </ul>
-                    </div>
-
+          <div v-if="hasActiveOrGrantedDegree4wksPriorLastDayInst">
+            <h3 class="h6 myuw-font-encode-sans">
+              Your plans after graduation
+            </h3>
+            <ul class="list-unstyled myuw-text-md">
+              <li>
+                <uw-collapsed-item :notice="degreeNextDestination">
+                  <template #notice-body>
+                    <p>
+                      Each year we track, aggregate and
+                      <a href="https://careers.uw.edu/outcomes/"
+                        >visualize UW bachelor graduate's next destination.</a>
+                    </p>
+                    <p>
+                      What are <i>you</i> planning to do? Whether you&apos;re intending to work,
+                        travel, go to grad school, or are still figuring it out,
+                        we want to know! Please take 5 mins to
+                        <a href="https://careers.uw.edu/resources/next-destination-survey/"
+                        >tell us your plans</a>
+                        so we can better coach students and inform future graduates
+                        &ndash; we want to hear from every graduate! </p>
+                  </template>
+                </uw-collapsed-item>
+              </li>
+            </ul>
+          </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
             <h3 class="h6 myuw-font-encode-sans">
@@ -237,19 +229,21 @@
                 <uw-collapsed-item :notice="degreeDiploma">
                   <template #notice-body>
                     <p>
-                      The Office of the University Registrar will send you an email about one
-                      month after graduation with the link to a form where you can log in and
-                      enter your diploma name and diploma mailing address.
+                      The Office of the University Registrar will send you an email about one month
+                      after graduation with the link to a form where you can log in and enter your
+                      diploma name and diploma mailing address.
                     </p>
                     <p>
-                      If you do not submit the form by the deadline given in the email,
-                      the name on your diploma will default to the name on your official
-                      student record which may vary from your preferred name.
+                      If you do not submit the form by the deadline given in the email, the name on
+                      your diploma will default to the name on your official student record which
+                      may vary from your preferred name.
                     </p>
                     <p>
                       For more information about diplomas, visit the
                       <a href="https://registrar.washington.edu/students/graduation-diplomas/"
-                      >Graduations and Diplomas</a> site.
+                        >Graduations and Diplomas</a
+                      >
+                      site.
                     </p>
                   </template>
                 </uw-collapsed-item>
@@ -258,10 +252,12 @@
                 <uw-collapsed-item :notice="degreeSaveWork">
                   <template #notice-body>
                     <p>
-                      All UW accounts will be deleted two quarters after graduation.
-                      Take steps now to
+                      All UW accounts will be deleted two quarters after graduation. Take steps now
+                      to
                       <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
-                      >save all your UW work</a> so that you don't lose it.
+                        >save all your UW work</a
+                      >
+                      so that you don't lose it.
                     </p>
                   </template>
                 </uw-collapsed-item>
@@ -272,7 +268,9 @@
                     <p>
                       Don't miss critical emails sent to your UW account.
                       <a href="https://uwnetid.washington.edu/manage/?forward"
-                      >Set up your email forwarding</a> before you permanently lose access.
+                        >Set up your email forwarding</a
+                      >
+                      before you permanently lose access.
                     </p>
                   </template>
                 </uw-collapsed-item>
@@ -281,31 +279,36 @@
           </div>
         </div>
       </div>
+
+      <uw-feedback
+        :id="'ApprovedApplicationModal'"
+        :prompt="'Is this graduation preparation information helpful?'"
+        :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
+      ></uw-feedback>
+
     </template>
     <template #card-disclosure>
       <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
-        <h3 class="h6 myuw-font-encode-sans">
-            Get Help and Support
-        </h3>
+        <h3 class="h6 myuw-font-encode-sans">Get Help and Support</h3>
         <p class="myuw-text-md mb-1">
-          Moving on from the UW can be overwhelming. If you are worried, confused, or
-          uncertain about what is next, you are not alone!
+          Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain
+          about what is next, you are not alone!
         </p>
         <ul class="myuw-text-md">
           <li v-if="seattle">
             <a
               href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
-            >Departmental advisor</a> - graduation and academic support
+              >Departmental advisor</a
+            >
+            - graduation and academic support
           </li>
           <li v-if="bothell">
-            <a
-              href="https://www.uwb.edu/advising"
-            >Departmental advisor</a> - graduation and academic support
+            <a href="https://www.uwb.edu/advising">Departmental advisor</a> - graduation and
+            academic support
           </li>
           <li v-if="tacoma">
-            <a
-              href="https://www.tacoma.uw.edu/gaa"
-            >Departmental advisor</a> - graduation and academic support
+            <a href="https://www.tacoma.uw.edu/gaa">Departmental advisor</a> - graduation and
+            academic support
           </li>
           <li v-if="seattle">
             <a href="https://careers.uw.edu/">Career and Internship Center</a>
@@ -336,7 +339,7 @@
             - If you are anxious about your future or need someone compassionate to talk to about
             your future or anything else, connect with a counselor.
           </li>
-           <li v-if="bothell">
+          <li v-if="bothell">
             <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a>
             - If you are anxious about your future or need someone compassionate to talk to about
             your future or anything else, connect with a counselor.
@@ -347,87 +350,82 @@
             your future or anything else, connect with a counselor.
           </li>
         </ul>
-        <h3 class="h6 myuw-font-encode-sans mb-3">
-          Related Husky Experience Toolkit Articles
-        </h3>
-        <div class="myuw-text-md"
-            :class="[$mq == 'desktop' ? 'd-flex justify-content-between' : '']"
+        <h3 class="h6 myuw-font-encode-sans mb-3">Related Husky Experience Toolkit Articles</h3>
+        <div
+          class="myuw-text-md"
+          :class="[$mq == 'desktop' ? 'd-flex justify-content-between' : '']"
         >
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                :href="'/husky_experience_message?article=' +
-                      'how-professional-job-different-being-student'"
+                :href="
+                  '/husky_experience_message?article=' +
+                  'how-professional-job-different-being-student'
+                "
               >
                 <img
                   class="img-fluid"
-                  :src="'/static/hx_toolkit_output/images/' +
-                        'How_Professional_Job_Different_From_Student_480.jpg'"
+                  :src="
+                    '/static/hx_toolkit_output/images/' +
+                    'How_Professional_Job_Different_From_Student_480.jpg'
+                  "
                   alt="Urban planning student documenting observations in a downtown Seattle park."
-                >
+                />
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                :href="'/husky_experience_message?article=' +
-                      'how-professional-job-different-being-student'"
+                :href="
+                  '/husky_experience_message?article=' +
+                  'how-professional-job-different-being-student'
+                "
               >
                 How a Professional Job is Different from Being a Student
               </a>
-              <br>
+              <br />
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a
-                href="/husky_experience_message?article=preparing-professional-life"
-              >
+              <a href="/husky_experience_message?article=preparing-professional-life">
                 <img
                   class="img-fluid"
                   src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg"
                   alt="Student and his mentor working together in a UW Health Sciences lab."
-                >
+                />
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a
-                href="/husky_experience_message?article=preparing-professional-life"
-              >
+              <a href="/husky_experience_message?article=preparing-professional-life">
                 Preparing for a Professional Life
               </a>
-              <br>
+              <br />
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
-          <div class="d-flex"
-            :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']"
-          >
-            <div class="border border-secondary"
-            :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a
-                href="/husky_experience_message?article=between-college-and-career"
-              >
+          <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
+            <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a href="/husky_experience_message?article=between-college-and-career">
                 <img
                   class="img-fluid"
                   src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg"
-                  :alt="'Person seated on rock ledge above a ' +
-                        'road that curves away in opposite directions.'"
-                >
+                  :alt="
+                    'Person seated on rock ledge above a ' +
+                    'road that curves away in opposite directions.'
+                  "
+                />
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a
-                href="/husky_experience_message?article=between-college-and-career"
-              >
+              <a href="/husky_experience_message?article=between-college-and-career">
                 Between College and Career
               </a>
-              <br>
+              <br />
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
         </div>
-
       </uw-collapse>
     </template>
     <template #card-footer>
@@ -451,12 +449,14 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
 import CollapsedItem from './collapsed-item.vue';
 import Collapse from '../../_templates/collapse.vue';
+import Feedback from '../../_templates/feedback.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
     'uw-collapsed-item': CollapsedItem,
+    'uw-feedback': Feedback,
   },
   data() {
     return {
@@ -481,36 +481,30 @@ export default {
       intlStudent: (state) => state.user.affiliations.intl_stud,
       classLevel: (state) => state.user.affiliations.latest_class_level,
       notices: (state) => state.notices.value,
+      quarter: (state) => state.termData.quarter,
+      year: (state) => state.termData.year,
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
     }),
     graduatingSenior() {
-      return (this.classLevel === 'SENIOR');
+      return this.classLevel === 'SENIOR';
     },
     degreeNotices() {
-      return this.notices.filter((notice) =>
-        notice.location_tags.includes('graduation')
-      );
+      return this.notices.filter((notice) => notice.location_tags.includes('graduation'));
     },
     degreeCeremony() {
-      return this.degreeNotices.filter((notice) =>
-        notice.category === 'Graduation Ceremony'
-      )[0];
+      return this.degreeNotices.filter((notice) => notice.category === 'Graduation Ceremony')[0];
     },
     degreeDiploma() {
-      return this.degreeNotices.filter((notice) =>
-        notice.category === 'Graduation Diploma'
-      )[0];
+      return this.degreeNotices.filter((notice) => notice.category === 'Graduation Diploma')[0];
     },
     degreeSaveWork() {
-      return this.degreeNotices.filter((notice) =>
-        notice.category === 'Graduation SaveWork'
-      )[0];
+      return this.degreeNotices.filter((notice) => notice.category === 'Graduation SaveWork')[0];
     },
     degreeEmailForwarding() {
-      return this.degreeNotices.filter((notice) =>
-        notice.category === 'Graduation EmailForwarding'
+      return this.degreeNotices.filter(
+        (notice) => notice.category === 'Graduation EmailForwarding'
       )[0];
     },
     degreeNextDestination() {
@@ -519,72 +513,99 @@ export default {
       )[0];
     },
     showCard() {
-      return (this.graduatingSenior &&
-        (this.isFetching || this.showContent || this.showError));
+      return this.graduatingSenior && (this.isFetching || this.showContent || this.showError);
     },
     showContent() {
       // having a non-empty degree status
       return (
-        this.degreeStatus && this.degreeStatus.degrees &&
+        this.degreeStatus &&
+        this.degreeStatus.degrees &&
         this.degreeStatus.degrees.length > 0 &&
-        Boolean(this.degreeCeremony) && Boolean(this.degreeDiploma) &&
-        Boolean(this.degreeSaveWork) && Boolean(this.degreeEmailForwarding) &&
-        Boolean(this.degreeNextDestination));
-    },
+        Boolean(this.degreeCeremony) &&
+        Boolean(this.degreeDiploma) &&
+        Boolean(this.degreeSaveWork) &&
+        Boolean(this.degreeEmailForwarding) &&
+        Boolean(this.degreeNextDestination)
+      );
+    },  
     showError() {
       // if fetching profile having any error or degree status has a non-404 error
       return (
         this.isErroredNotices ||
         this.isErrored ||
-        this.degreeStatus && this.degreeStatus.error_code &&
-        this.degreeStatus.error_code !== 404);
+        (this.degreeStatus && this.degreeStatus.error_code && this.degreeStatus.error_code !== 404)
+      );
     },
     degrees() {
       return this.degreeStatus ? this.degreeStatus.degrees : null;
     },
     hasDoubleDegrees() {
-      return this.degrees && this.degrees.length > 1
+      return this.degrees && this.degrees.length > 1;
     },
     doubleDegreeDiffStatus() {
       return (
         this.hasDoubleDegrees &&
-        (this.hasMisconduct(this.degrees[0]) && !this.hasMisconduct(this.degrees[1]) ||
-         this.isIncomplete(this.degrees[0]) && !this.isIncomplete(this.degrees[1]) ||
-         this.isActive(this.degrees[0]) && !this.isActive(this.degrees[1]) ||
-         this.isGranted(this.degrees[0]) && !this.isGranted(this.degrees[1])));
+        ((this.hasMisconduct(this.degrees[0]) && !this.hasMisconduct(this.degrees[1])) ||
+          (this.isIncomplete(this.degrees[0]) && !this.isIncomplete(this.degrees[1])) ||
+          (this.isActive(this.degrees[0]) && !this.isActive(this.degrees[1])) ||
+          (this.isGranted(this.degrees[0]) && !this.isGranted(this.degrees[1])))
+      );
     },
     doubleDegreesInDiffTerms() {
       return (
         this.hasDoubleDegrees &&
-        !(this.degrees[0].quarter == this.degrees[1].quarter &&
-          this.degrees[0].year  == this.degrees[1].year));
+        !(
+          this.degrees[0].quarter == this.degrees[1].quarter &&
+          this.degrees[0].year == this.degrees[1].year
+        )
+      );
     },
     // The properties below are true as long as one degree status satifies the condition
     hasActiveOrGrantedDegreeDuringAprilMay() {
-      let value = (
-          this.degrees && this.degrees[0].during_april_may && (
-            this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
+      let value =
+        this.degrees &&
+        this.degrees[0].during_april_may &&
+        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0]));
       if (!value && this.hasDoubleDegrees) {
-        value = (this.degrees[1].during_april_may && (
-            this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])));
+        value =
+          this.degrees[1].during_april_may &&
+          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1]));
       }
       return value;
     },
     hasActiveOrGrantedDegreeDuringEarnedTerm() {
-      let value = (
-        this.degrees && this.degrees[0].is_degree_earned_term && (
-            this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
+      let value =
+        this.degrees &&
+        this.degrees[0].is_degree_earned_term &&
+        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0]));
       if (!value && this.hasDoubleDegrees) {
-        value = (this.degrees[1].is_degree_earned_term && (
-            this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])));
+        value =
+          this.degrees[1].is_degree_earned_term &&
+          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1]));
       }
       return value;
     },
     hasActiveApplBeforeEarnedTerm() {
-      let value = (this.degrees &&
-        this.isActive(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
+      let value =
+        this.degrees && this.isActive(this.degrees[0]) && this.degrees[0].before_degree_earned_term;
       if (!value && this.hasDoubleDegrees) {
         value = this.isActive(this.degrees[1]) && this.degrees[1].before_degree_earned_term;
+      }
+      return value;
+    },
+    hasActiveOrGrantedDegree4wksPriorLastDayInst() {  // 4 weeks to LastDayOfClasses
+      let value = (
+        this.degrees &&
+        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
+        this.degrees[0].is_degree_earned_term &&
+        this.degrees[0].four_wks_prior_last_day_inst
+      );
+      if (!value && this.hasDoubleDegrees) {
+        value = (
+          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
+          this.degrees[1].is_degree_earned_term &&
+          this.degrees[1].four_wks_prior_last_day_inst
+        );
       }
       return value;
     },
@@ -624,6 +645,9 @@ export default {
       }
       return value;
     },
+    term() {
+      return this.year + ',' + this.quarter;
+    }
   },
   created() {
     if (this.graduatingSenior) {
@@ -639,24 +663,26 @@ export default {
       fetchProfile: 'fetch',
     }),
     hasMisconduct(degree) {
-      return degree.is_admin_hold;
+      return degree.is_admin_hold;  // degree status: 1
     },
     isIncomplete(degree) {
-      return degree.is_incomplete;
+      return degree.is_incomplete;  // degree status: 2
     },
     isActive(degree) {
-      return degree.has_applied;
+      return degree.has_applied;  // degree status: 3,4,5
     },
     isGranted(degree) {
-      return degree.is_granted;
+      return degree.is_granted;  // degree status: 9
     },
     degreeTerm(degree) {
       return this.titleCaseWord(degree.quarter) + ' ' + degree.year;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.badge {white-space: normal;}
+.badge {
+  white-space: normal;
+}
 </style>

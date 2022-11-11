@@ -92,11 +92,12 @@ class Logger {
     this.sink.event('search', {search_term: searchTerm});
   }
 
-  linkClick(component, label, out) {
+  linkClick(component, label, out, url) {
     const data = {
       comp_tag: component.$meta.group.$meta.tag,
       link_label: label,
       link_to_external: out,
+      link_target_url: url,
     };
     if (component.$meta.term) {
       data.term_tag = component.$meta.term;
