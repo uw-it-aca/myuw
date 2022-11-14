@@ -193,7 +193,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveOrGrantedDegree4wksPriorLastDayInst">
+          <div v-if="hasActiveOrGrantedDegreeLast4weeksInst">
             <h3 class="h6 myuw-font-encode-sans">
               Your plans after graduation
             </h3>
@@ -508,6 +508,7 @@ export default {
       )[0];
     },
     degreeNextDestination() {
+      // MUWM-5182
       return this.degreeNotices.filter((notice) =>
         notice.category === 'Graduation NextDestination'
       )[0];
@@ -593,18 +594,19 @@ export default {
       }
       return value;
     },
-    hasActiveOrGrantedDegree4wksPriorLastDayInst() {  // 4 weeks to LastDayOfClasses
+    hasActiveOrGrantedDegreeLast4weeksInst() {  // furing the last 4 weeks of classes
+      // MUWM-5182
       let value = (
         this.degrees &&
         (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
         this.degrees[0].is_degree_earned_term &&
-        this.degrees[0].four_wks_prior_last_day_inst
+        this.degrees[0].last_4w_inst
       );
       if (!value && this.hasDoubleDegrees) {
         value = (
           (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
           this.degrees[1].is_degree_earned_term &&
-          this.degrees[1].four_wks_prior_last_day_inst
+          this.degrees[1].last_4w_inst
         );
       }
       return value;
