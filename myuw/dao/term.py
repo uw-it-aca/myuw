@@ -150,7 +150,7 @@ def more_than_2terms_before(request, year, quarter):
     return comparison_term < pprev_term
 
 
-def four_wks_prior_last_day_inst(request):
+def last_4w_inst(request):
     """
     return True if it is four weeks prior last day class of the term
     """

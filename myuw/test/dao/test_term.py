@@ -9,7 +9,7 @@ from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now,
     get_default_date, get_default_datetime, get_comparison_date,
     get_current_quarter, get_next_quarter, is_cur_term_before,
-    get_previous_quarter, get_previous_number_quarters,
+    get_previous_number_quarters, last_4w_inst,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
     is_in_summer_a_term, is_in_summer_b_term, more_than_2terms_before,
@@ -99,6 +99,12 @@ class TestTerm(TestCase):
         self.assertTrue(is_cur_term_before(request, 2013, 'summer'))
         self.assertTrue(is_cur_term_same(request, 2013, 'winter'))
         self.assertFalse(during_april_may(request))
+
+    def test_last_4w_inst(self):
+        request = get_request_with_date("2013-11-08")
+        self.assertFalse(last_4w_inst(request))
+        request = get_request_with_date("2013-11-09")
+        self.assertTrue(last_4w_inst(request))
 
     def test_current_quarter(self):
         now_request = get_request()

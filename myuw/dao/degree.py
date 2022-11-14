@@ -10,8 +10,7 @@ from uw_sws.degree import get_degrees_by_regid
 from myuw.dao import is_using_file_dao, get_netid_of_current_user
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
-    four_wks_prior_last_day_inst,
-    during_april_may, is_cur_term_before, is_cur_term_same)
+    last_4w_inst, during_april_may, is_cur_term_before, is_cur_term_same)
 from myuw.dao.term import more_than_2terms_before as before_display_window
 
 
@@ -50,8 +49,7 @@ def get_degrees_json(request):
             json_data["before_degree_earned_term"] = is_cur_term_before(
                 request, degree.year, degree.quarter)
             json_data["during_april_may"] = during_april_may(request)
-            json_data["four_wks_prior_last_day_inst"] = \
-                four_wks_prior_last_day_inst(request)
+            json_data["last_4w_inst"] = last_4w_inst(request)
             degrees.append(json_data)
         response['degrees'] = degrees
     except DataFailureException as ex:

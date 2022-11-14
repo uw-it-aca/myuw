@@ -18,7 +18,7 @@ DEGREE_DATA = {
         'is_degree_earned_term': False,
         'before_degree_earned_term': True,
         'during_april_may': True,
-        "four_wks_prior_last_day_inst": False,
+        "last_4w_inst": False,
         'level': 1,
         'name_on_diploma': 'John Joseph Average',
         'quarter': 'summer',
