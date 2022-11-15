@@ -594,8 +594,8 @@ export default {
       }
       return value;
     },
-    hasActiveOrGrantedDegreeLast4weeksInst() {  // furing the last 4 weeks of classes
-      // MUWM-5182
+    hasActiveOrGrantedDegreeLast4weeksInst() {
+      // MUWM-5182  since the beginning of the last 4th week of instruction
       let value = (
         this.degrees &&
         (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
