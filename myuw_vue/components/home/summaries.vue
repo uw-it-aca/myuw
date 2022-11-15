@@ -47,10 +47,10 @@
         </span>
       </a>
     </div>
-    <div v-if="isHfsReady && isLibraryReady" class="col-md-10">
+    <div v-if="isHfsReady || isLibraryReady" class="col-md-10">
       <div class="row float-md-end" style="padding: 0 10px;">
         <a
-          v-if="hfs.student_husky_card"
+          v-if="hfs && hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
           class="d-inline-block col px-3 py-1 ms-1
           fw-light text-dark text-nowrap"
@@ -68,7 +68,7 @@
           </span>
         </a>
         <a
-          v-if="hfs.resident_dining"
+          v-if="hfs && hfs.resident_dining"
           v-inner="'MyUW Accounts page - Resident Dining'"
           class="d-inline-block col px-3 py-1 ms-1
           fw-light text-dark text-nowrap"
@@ -87,7 +87,7 @@
         </a>
 
         <a
-          v-if="hfs.employee_husky_card"
+          v-if="hfs && hfs.employee_husky_card"
           v-inner="'MyUW Accounts page - Employee Husky card'"
           class="d-inline-block col px-3 py-1 ms-1
           fw-light text-dark text-nowrap"
@@ -105,7 +105,7 @@
           </span>
         </a>
         <a
-          v-if="library.next_due"
+          v-if="library && library.next_due"
           v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ms-1
           fw-light text-dark text-nowrap"
@@ -123,7 +123,7 @@
           </span>
         </a>
         <a
-          v-else-if="library.holds_ready"
+          v-else-if="library && library.holds_ready"
           v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ms-1
           fw-light text-dark text-nowrap"
