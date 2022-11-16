@@ -112,25 +112,51 @@ export default {
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
-    isOnline () {
-      return (this.meetingData && this.meetingData.meeting &&
-        this.meetingData.meeting.building_tbd &&
-        (this.meetingData.section.is_asynchronous ||
-         this.meetingData.section.is_synchronous ||
-         this.meetingData.section.is_hybrid) &&
-        !(this.meetingData.meeting.wont_meet ||
-          this.meetingData.meeting.no_meeting ||
-          this.meetingData.meeting.days_tbd)
+    isInPerson() {  // MUWM-5099
+      return (
+        this.meetingData &&
+        !(this.meetingData.section.is_asynchronous ||
+          this.meetingData.section.is_synchronous ||
+          this.meetingData.section.is_hybrid));
+    },
+    noLocation() {
+      return (
+        Boolean(this.meetingData.meeting.no_meeting) ||
+        Boolean(this.meetingData.meeting.days_tbd) ||
+        Boolean(this.meetingData.meeting.building_tbd) ||
+        Boolean(this.meetingData.meeting.wont_meet) ||
+        !('building' in this.meetingData.meeting &&
+          this.meetingData.meeting.building != '*')
       );
     },
+    isRoomTBD() {
+      return (
+        Boolean(this.meetingData.meeting.room_tbd) ||
+        !('building' in this.meetingData.meeting &&
+          this.meetingData.meeting.building != '*' &&
+          'room' in this.meetingData.meeting &&
+          this.meetingData.meeting.room != '*')
+      );
+    },
+    noMeeting() {
+      return !Boolean(this.meetingData) || !Boolean(this.meetingData.meeting);
+    },
     meetingLocation() {
-      if (this.isOnline) {  // MUWM-5099
-        return 'Online';
+      if (!this.isFinalsCard) {
+        if (this.noMeeting) {
+          if (!this.isInPerson) {  // MUWM-5099
+            return 'Online';
+          }
+          return '';
+        }
+        if (this.noLocation) {
+          if (!this.isInPerson) {  // MUWM-5099
+            return 'Online';
+          }
+          return '';
+        }
       }
-      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
-        return 'No meeting';
-      }
-      if (!this.isRoomTBD()) {
+      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
@@ -138,13 +164,21 @@ export default {
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      if (this.isOnline) {  // MUWM-5099
-        return 'Online';
+      if (!this.isFinalsCard) {
+        if (this.noMeeting) {
+          if (!this.isInPerson) {  // MUWM-5099
+            return 'Online';
+          }
+          return 'Location: None';
+        }
+        if (this.noLocation) {
+          if (!this.isInPerson) {  // MUWM-5099
+            return 'Online';
+          }
+          return 'Location: None';
+        }
       }
-      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
-        return 'Location: None';
-      }
-      if (!this.isRoomTBD()) {
+      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
         return `Building: ${
           this.meetingData.meeting.building
         } Room: ${this.meetingData.meeting.room}`;
@@ -152,9 +186,7 @@ export default {
       return 'Location: Room TBD';
     },
     meetingLocationUrl() {
-      if (
-        !this.meetingData.section.is_remote &&
-        !this.isRoomTBD() &&
+      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD &&
         'latitude' in this.meetingData.meeting &&
         'longitude' in this.meetingData.meeting
       ) {
@@ -219,20 +251,6 @@ export default {
     // Returns minutes from midnight
     getMFM(t) {
       return (t.hour() * 60) + t.minute();
-    },
-    isRoomTBD() {
-      return (
-        this.meetingData.meeting == null ||
-        (
-          this.meetingData.meeting.room_tbd ||
-          !(
-            'building' in this.meetingData.meeting &&
-            this.meetingData.meeting.building != '*' &&
-            'room' in this.meetingData.meeting &&
-            this.meetingData.meeting.room != '*'
-          )
-        )
-      );
     },
   },
 };
