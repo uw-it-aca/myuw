@@ -119,12 +119,16 @@ export default {
           this.meetingData.section.is_synchronous ||
           this.meetingData.section.is_hybrid));
     },
+    wontMeet() {
+      return (
+        Boolean(this.meetingData.meeting.wont_meet) ||
+        Boolean(this.meetingData.meeting.no_meeting));
+    },
     noLocation() {
       return (
-        Boolean(this.meetingData.meeting.no_meeting) ||
+        this.wontMeet ||
         Boolean(this.meetingData.meeting.days_tbd) ||
         Boolean(this.meetingData.meeting.building_tbd) ||
-        Boolean(this.meetingData.meeting.wont_meet) ||
         !('building' in this.meetingData.meeting &&
           this.meetingData.meeting.building != '*')
       );
@@ -139,21 +143,18 @@ export default {
       );
     },
     noMeeting() {
-      return !Boolean(this.meetingData) || !Boolean(this.meetingData.meeting);
+      return !this.meetingData || !this.meetingData.meeting;
     },
     meetingLocation() {
       if (!this.isFinalsCard) {
-        if (this.noMeeting) {
-          if (!this.isInPerson) {  // MUWM-5099
+        if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
+          if (!this.isInPerson) {
             return 'Online';
           }
-          return '';
-        }
-        if (this.noLocation) {
-          if (!this.isInPerson) {  // MUWM-5099
-            return 'Online';
+          if (this.wontMeet) {
+            return '';
           }
-          return '';
+          return 'Room TBD';
         }
       }
       if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
@@ -165,17 +166,14 @@ export default {
     },
     ariaMeetingLocation() {
       if (!this.isFinalsCard) {
-        if (this.noMeeting) {
-          if (!this.isInPerson) {  // MUWM-5099
-            return 'Online';
+        if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
+          if (!this.isInPerson) {
+            return 'Location: Online';
           }
-          return 'Location: None';
-        }
-        if (this.noLocation) {
-          if (!this.isInPerson) {  // MUWM-5099
-            return 'Online';
+          if (this.wontMeet) {
+            return 'Location: None';
           }
-          return 'Location: None';
+          return 'Location: Room TBD';
         }
       }
       if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
