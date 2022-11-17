@@ -50,7 +50,7 @@ export default {
       type: Object,
       required: true,
     },
-    isFinalsCard: {
+    isFinalsTab: {
       type: Boolean,
       default: false,
     },
@@ -146,7 +146,7 @@ export default {
       return !this.meetingData || !this.meetingData.meeting;
     },
     meetingLocation() {
-      if (!this.isFinalsCard) {
+      if (!this.isFinalsTab) {
         if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
           if (!this.isInPerson) {
             return 'Online';
@@ -165,7 +165,7 @@ export default {
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      if (!this.isFinalsCard) {
+      if (!this.isFinalsTab) {
         if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
           if (!this.isInPerson) {
             return 'Location: Online';
@@ -199,7 +199,7 @@ export default {
     showConfirmLink() {
       return (
         this.meetingData.section.is_teaching &&
-        this.isFinalsCard &&
+        this.isFinalsTab &&
         this.meetingData.section.is_primary_section &&
         !this.meetingData.section.final_exam.no_exam_or_nontraditional &&
         !this.meetingData.section.final_exam.is_confirmed
