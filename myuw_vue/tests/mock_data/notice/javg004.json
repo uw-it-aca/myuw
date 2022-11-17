@@ -555,6 +555,18 @@
         ]
     },
     {
+        "notice_content": "<span class=\"notice-title\">What do graduates do after leaving UW?</span><span class=\"notice-body-with-title\"></span>",
+        "attributes": [],
+        "category": "Graduation NextDestination",
+        "sws_category": "Degree",
+        "is_critical": false,
+        "id_hash": "872f5b28b56e5e056d1f0ecbcf65dbc1",
+        "is_read": false,
+        "location_tags": [
+            "graduation"
+        ]
+    },
+    {
         "notice_content": "<span class=\"notice-title\">How to update your diploma name and mailing address</span><span class=\"notice-body-with-title\"></span>",
         "attributes": [],
         "category": "Graduation Diploma",
