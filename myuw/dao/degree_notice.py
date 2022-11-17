@@ -45,6 +45,15 @@ GRADUATION_NOTICES = [
             "to your UW address – set up forwarding</span>" +
             "<span class=\"notice-body-with-title\"></span>"
         )
+    },
+    {
+        "NoticeCategory": "Degree",
+        "NoticeType": "NextDestination",
+        "NoticeContent": (
+            "<span class=\"notice-title\">What do graduates do after " +
+            "leaving UW?</span>" +
+            "<span class=\"notice-body-with-title\"></span>"
+        )
     }
 ]
 

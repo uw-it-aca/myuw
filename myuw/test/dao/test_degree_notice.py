@@ -10,7 +10,7 @@ class TestDegreeNotices(TestCase):
 
     def test_get_graduation_notices(self):
         notices = get_graduation_notices()
-        self.assertEquals(len(notices), 4)
+        self.assertEquals(len(notices), 5)
         self.assertEquals(notices[0].notice_category, "Degree")
 
         final_notices = categorize_notices(notices)
