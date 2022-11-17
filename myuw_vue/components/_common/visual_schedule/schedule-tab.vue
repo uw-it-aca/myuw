@@ -200,7 +200,7 @@ export default {
       meetingMap: {},
       meetingsWithoutTime: [],
       hasMeetingsWithTime: false,
-      isFinalsTab: null,
+      isFinalsTab: false,
       mobile: {
         current: null,
         options: [],

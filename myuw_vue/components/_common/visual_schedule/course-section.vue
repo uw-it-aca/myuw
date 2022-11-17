@@ -52,7 +52,7 @@ export default {
     },
     isFinalsTab: {
       type: Boolean,
-      default: false,
+      required: true,
     },
     day: {
       type: String,
