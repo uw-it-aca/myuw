@@ -209,9 +209,9 @@
                     <p>
                       What are <i>you</i> planning to do? Whether you&apos;re intending to work,
                         travel, go to grad school, or are still figuring it out,
-                        we want to know! Please take 5 mins to
+                        we want to know!
                         <a href="https://careers.uw.edu/resources/next-destination-survey/"
-                        >tell us your plans</a>
+                        >Please take 5 mins to tell us your plans</a>
                         so we can better coach students and inform future graduates
                         &ndash; we want to hear from every graduate! </p>
                   </template>
@@ -528,7 +528,7 @@ export default {
         Boolean(this.degreeEmailForwarding) &&
         Boolean(this.degreeNextDestination)
       );
-    },  
+    },
     showError() {
       // if fetching profile having any error or degree status has a non-404 error
       return (
