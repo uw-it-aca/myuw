@@ -154,7 +154,7 @@
            class="d-inline-block w-auto me-2"
            style="min-width:110px;"
       >
-        <uw-course-section :meeting-data="meeting" :term="term" :is-finals-tab="isFinalsTab"/>
+        <uw-course-section :meeting-data="meeting" :term="term" :is-finals-tab="isFinalsTab" />
       </div>
     </div>
   </div>
@@ -254,7 +254,6 @@ export default {
   created() {
     // Set if this tab is for finals
     this.isFinalsTab = (this.period.id === 'finals');
-    alert(this.isFinalsTab);
     if (!(
       this.period.earliestMeetingTime &&
       this.period.latestMeetingTime
