@@ -151,7 +151,7 @@ export default {
           if (!this.isInPerson) {
             return 'Online';
           }
-          if (this.wontMeet) {
+          if (this.noMeeting || this.wontMeet) {
             return '';
           }
           return 'Room TBD';
@@ -170,7 +170,7 @@ export default {
           if (!this.isInPerson) {
             return 'Location: Online';
           }
-          if (this.wontMeet) {
+          if (this.noMeeting || this.wontMeet) {
             return 'Location: None';
           }
           return 'Location: Room TBD';

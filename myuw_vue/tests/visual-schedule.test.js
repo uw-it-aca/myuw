@@ -178,9 +178,17 @@ describe('Vue SFC Tests', () => {
 
     await new Promise(setImmediate);
     const sections = wrapper.findAllComponents(CourseSection);
-    expect(sections.at(0).vm.isOnline).toBe(true);
+    expect(sections.at(0).vm.isFinalsCard).toBe(false);
+    expect(sections.at(0).vm.noMeeting).toBe(false);
+    expect(sections.at(0).vm.isInPerson).toBe(false);
+    expect(sections.at(0).vm.isRoomTBD).toBe(true);
+    expect(sections.at(0).vm.noLocation).toBe(true);
     expect(sections.at(0).vm.meetingLocation).toBe('Online');
-    expect(sections.at(0).vm.ariaMeetingLocation).toBe('Online');
-    expect(sections.at(1).vm.isOnline).toBe(false);
+    expect(sections.at(0).vm.ariaMeetingLocation).toBe('Location: Online');
+    expect(sections.at(2).vm.noMeeting).toBe(false);
+    expect(sections.at(2).vm.isInPerson).toBe(false);
+    expect(sections.at(2).vm.isRoomTBD).toBe(true);
+    expect(sections.at(2).vm.noLocation).toBe(true);
+    expect(sections.at(2).vm.meetingLocation).toBe('Online');
   });
 });
