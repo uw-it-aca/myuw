@@ -65,7 +65,7 @@
                   v-for="(meetingData, j) in
                     meetingMap[day][formatToUnique(time)]"
                   :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day" :term="term"
+                  :is-finals-tab="isFinalsTab" :day="day" :term="term"
                 />
               </div>
             </div>
@@ -102,7 +102,7 @@
                 v-for="(meetingData, j) in
                   meetingMap[mobile['current']][formatToUnique(time)]"
                 :key="j" :meeting-data="meetingData" :term="term"
-                :is-finals-card="isFinalsTab" :day="mobile['current']"
+                :is-finals-tab="isFinalsTab" :day="mobile['current']"
               />
             </div>
           </div>
@@ -118,7 +118,7 @@
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
         :meeting-data="{section: eosSection}" :term="term"
-        :is-finals-card="false" class="d-inline-block w-auto me-2"
+        :is-finals-tab="false" class="d-inline-block w-auto me-2"
       >
         <ol class="m-0 px-4 text-start">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
@@ -148,14 +148,13 @@
         No meeting time specified in the selected date range:
       </p>
       <p v-else class="text-muted myuw-text-md mb-1">
-        Courses with final exam meeting times to be determined or courses with
-        no final exam:
+        Courses with final exam meeting times to be determined or courses with no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
            class="d-inline-block w-auto me-2"
            style="min-width:110px;"
       >
-        <uw-course-section :meeting-data="meeting" :term="term" />
+        <uw-course-section :meeting-data="meeting" :term="term" :is-finals-tab="isFinalsTab"/>
       </div>
     </div>
   </div>
@@ -201,7 +200,7 @@ export default {
       meetingMap: {},
       meetingsWithoutTime: [],
       hasMeetingsWithTime: false,
-      isFinalsTab: false,
+      isFinalsTab: null,
       mobile: {
         current: null,
         options: [],
@@ -254,7 +253,8 @@ export default {
   },
   created() {
     // Set if this tab is for finals
-    this.isFinalsTab = this.period.id == 'finals';
+    this.isFinalsTab = (this.period.id === 'finals');
+    alert(this.isFinalsTab);
     if (!(
       this.period.earliestMeetingTime &&
       this.period.latestMeetingTime
