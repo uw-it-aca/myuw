@@ -398,5 +398,10 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Graduation EmailForwarding",
         "location_tags": ['graduation'],
         "critical": False
+    },
+    "degree_nextdestination": {
+        "myuw_category": "Graduation NextDestination",
+        "location_tags": ['graduation'],
+        "critical": False
     }
 }

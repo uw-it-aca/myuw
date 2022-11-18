@@ -78,7 +78,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.tacoma).toBe(false);
     expect(wrapper.vm.degreeTerm(wrapper.vm.degrees[0])).toBe('Summer 2013');
     expect(wrapper.findComponent(Graduation).exists()).toBe(true);
-    expect(wrapper.vm.degreeNotices.length).toBe(4);
+    expect(wrapper.vm.degreeNotices.length).toBe(5);
     expect(wrapper.vm.degreeCeremony).toBeTruthy;
     expect(wrapper.vm.degreeDiploma).toBeTruthy;
     expect(wrapper.vm.degreeSaveWork).toBeTruthy;
@@ -100,10 +100,14 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(true);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeLast4weeksInst).toBe(true);
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplication).toBe(true);
     expect(wrapper.vm.hasGrantedDegree).toBe(false);
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(4);
+    expect(wrapper.vm.degreeNextDestination.category).toBe(
+      "Graduation NextDestination"
+    );
+    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(5);
   });
   it('Verify double degrees diff status', async () => {
     axios.get.mockImplementation((url) => {
@@ -119,6 +123,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.doubleDegreeDiffStatus).toBe(true);
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(false);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeLast4weeksInst).toBe(true);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
     expect(wrapper.vm.hasActiveApplication).toBe(false);
