@@ -36,19 +36,14 @@
             :headers="`days-${meeting.id}`"
             colspan="3" class="p-0"
           >
-            <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
-            </span>
-            <span v-else class="text-muted">Class does not meet</span>
+            <span class="text-muted">Class does not meet</span>
           </td>
 
           <td v-else-if="meeting.days_tbd"
             :headers="`days-${meeting.id}`"
             colspan="3" class="p-0"
           >
-            <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
-            </span>
+            <span v-if="isAsyHyb(meeting)" class="text-muted">No meeting time</span>
             <span v-else class="text-muted">Days and times to be arranged</span>
           </td>
 
@@ -56,10 +51,7 @@
             :headers="`days-${meeting.id}`"
             colspan="3" class="p-0"
           >
-            <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
-            </span>
-            <span v-else class="text-muted">No classroom meeting: Online learning</span>
+            <span class="text-muted">No classroom meeting: online learning</span>
           </td>
 
           <template v-else-if="meeting.start_time && meeting.end_time">
