@@ -112,7 +112,7 @@
 
     <!-- eos message display -->
     <div v-if="period.eosData.length > 0 && !isFinalsTab" class="mb-2">
-      <p class="text-muted myuw-text-md mb-1">
+      <p class="myuw-text-md mb-1">
         Meeting time notes:
       </p>
       <uw-course-section
@@ -144,10 +144,10 @@
 
     <!-- no meeting specified notes -->
     <div v-if="meetingsWithoutTime.length > 0">
-      <p v-if="!isFinalsTab" class="text-muted myuw-text-md mb-1">
+      <p v-if="!isFinalsTab" class="myuw-text-md mb-1">
         No meeting time specified in the selected date range:
       </p>
-      <p v-else class="text-muted myuw-text-md mb-1">
+      <p v-else class="myuw-text-md mb-1">
         Courses with final exam meeting times to be determined or courses with no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
