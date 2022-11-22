@@ -37,7 +37,7 @@
             colspan="3" class="p-0"
           >
             <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
+              No meeting time (coursework online)
             </span>
             <span v-else class="text-muted">Class does not meet</span>
           </td>
@@ -47,7 +47,7 @@
             colspan="3" class="p-0"
           >
             <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
+              No meeting time (coursework online)
             </span>
             <span v-else class="text-muted">Days and times to be arranged</span>
           </td>
@@ -57,7 +57,7 @@
             colspan="3" class="p-0"
           >
             <span v-if="isAsyHyb(meeting)" class="text-muted">
-              No meeting time (Online learning)
+              No meeting time (coursework online)
             </span>
             <span v-else class="text-muted">No classroom meeting: Online learning</span>
           </td>
