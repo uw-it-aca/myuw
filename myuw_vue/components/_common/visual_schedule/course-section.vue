@@ -62,6 +62,10 @@ export default {
       type: Object,
       required: true,
     },
+    meetingsWithoutTime: {
+      type: Boolean,
+      required: false,
+    },
   },
   computed: {
     quarter() {
@@ -122,16 +126,7 @@ export default {
     wontMeet() {
       return (
         !this.meetingData.meeting ||
-        this.meetingData.meeting.wont_meet ||
-        this.meetingData.meeting.no_meeting
-      );
-    },
-    noLocation() {
-      return !(
-        this.meetingData.meeting &&
-        !this.meetingData.meeting.days_tbd &&
-        !this.meetingData.meeting.building_tbd &&
-        'building' in this.meetingData.meeting && this.meetingData.meeting.building != '*'
+        this.meetingData.meeting.wont_meet
       );
     },
     hasBuildingRoom() {
@@ -141,72 +136,50 @@ export default {
         'room' in this.meetingData.meeting && this.meetingData.meeting.room != '*'
       );
     },
-    finalNoDate () {
-      return (
-        this.isFinalsTab &&
-        !(this.meetingData.section.final_exam &&
-          this.meetingData.section.final_exam.end_date &&
-          this.meetingData.section.final_exam.start_date));
-    },
     meetingLocation() {
-      // MUWM-5208
-      if (!this.isInPerson) {
-        if (!this.isFinalsTab) {
-          if (!this.meetingData.meeting || this.wontMeet || this.noLocation) {
-            return 'Online';
-          }
-        } else {
-          if (this.finalNoDate) {
-            return '';   
-            // leave it blank as the notes already tell what they are
-          }
+      if (this.meetingsWithoutTime || this.wontMeet) {
+        // MUWM-5208
+        if (this.isFinalsTab) {
+          return '';
         }
-        if (this.hasBuildingRoom) {
-          return `${
-            this.meetingData.meeting.building
-          } ${this.meetingData.meeting.room}`;
+        if (!this.isInPerson) {
+          return 'Online';
         }
-        return 'TBD';
-      }
-      // IN PERSON
-      if (!this.meetingData.meeting || this.wontMeet || this.finalNoDate) {
         return '';
-        // leave it blank as the notes already tell what they are
       }
       if (this.hasBuildingRoom) {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
       }
+      if (!this.isInPerson) {
+        // MUWM-5208
+        if (!this.isFinalsTab) {
+          return 'Online';
+        }
+        return 'TBD';
+      }
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      // MUWM-5208
-      if (!this.isInPerson) {
-        if (!this.isFinalsTab) {
-          if (!this.meetingData.meeting || this.wontMeet || this.noLocation) {
-            return 'Location: Online';
-          }
-        } else {  // on Finals tab
-          if (this.finalNoDate) {
-            return 'Location: None';
-          }
+      if (this.meetingsWithoutTime || this.wontMeet) {
+        // MUWM-5208
+        if (this.isFinalsTab) {
+          return 'Location: None';
         }
-        if (this.hasBuildingRoom) {
-          return `${
-            this.meetingData.meeting.building
-          } ${this.meetingData.meeting.room}`;
+        if (!this.isInPerson) {
+          return 'Location: Online';
         }
-        return 'Location: TBD';
-      }
-      // IN PERSON
-      if (!this.meetingData.meeting || this.wontMeet || this.finalNoDate) {
         return 'Location: None';
       }
       if (this.hasBuildingRoom) {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
+      }
+      if (!this.isInPerson && !this.isFinalsTab) {
+        // MUWM-5208
+        return 'Online';
       }
       return 'Location: TBD';
     },

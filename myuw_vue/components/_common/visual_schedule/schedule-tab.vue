@@ -154,7 +154,12 @@
            class="d-inline-block w-auto me-2"
            style="min-width:110px;"
       >
-        <uw-course-section :meeting-data="meeting" :term="term" :is-finals-tab="isFinalsTab" />
+        <uw-course-section
+          :meeting-data="meeting"
+          :term="term"
+          :is-finals-tab="isFinalsTab"
+          meetings-without-time
+        />
       </div>
     </div>
   </div>
