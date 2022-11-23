@@ -181,13 +181,10 @@ describe('Vue SFC Tests', () => {
     expect(sections.at(0).vm.isFinalsTab).toBe(false);
     expect(sections.at(0).vm.isInPerson).toBe(false);
     expect(sections.at(0).vm.hasBuildingRoom).toBe(false);
-    expect(sections.at(0).vm.noLocation).toBe(true);
     expect(sections.at(0).vm.meetingLocation).toBe('Online');
     expect(sections.at(0).vm.ariaMeetingLocation).toBe('Location: Online');
     expect(sections.at(2).vm.isInPerson).toBe(false);
     expect(sections.at(2).vm.hasBuildingRoom).toBe(false);
-    expect(sections.at(2).vm.noLocation).toBe(true);
-    expect(sections.at(2).vm.finalNoDate).toBe(false);
     expect(sections.at(2).vm.meetingLocation).toBe('Online');
   });
 });

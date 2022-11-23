@@ -179,7 +179,7 @@ export default {
       }
       if (!this.isInPerson && !this.isFinalsTab) {
         // MUWM-5208
-        return 'Online';
+        return 'Location: Online';
       }
       return 'Location: TBD';
     },
