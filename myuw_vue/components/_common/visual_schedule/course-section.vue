@@ -114,50 +114,66 @@ export default {
     },
     isInPerson() {  // MUWM-5099
       return (
-        this.meetingData &&
+        this.meetingData.section &&
         !(this.meetingData.section.is_asynchronous ||
           this.meetingData.section.is_synchronous ||
           this.meetingData.section.is_hybrid));
     },
     wontMeet() {
       return (
-        Boolean(this.meetingData.meeting.wont_meet) ||
-        Boolean(this.meetingData.meeting.no_meeting));
-    },
-    noLocation() {
-      return (
-        this.wontMeet ||
-        Boolean(this.meetingData.meeting.days_tbd) ||
-        Boolean(this.meetingData.meeting.building_tbd) ||
-        !('building' in this.meetingData.meeting &&
-          this.meetingData.meeting.building != '*')
+        !this.meetingData.meeting ||
+        this.meetingData.meeting.wont_meet ||
+        this.meetingData.meeting.no_meeting
       );
     },
-    isRoomTBD() {
+    hasLocation() {
       return (
-        Boolean(this.meetingData.meeting.room_tbd) ||
-        !('building' in this.meetingData.meeting &&
-          this.meetingData.meeting.building != '*' &&
-          'room' in this.meetingData.meeting &&
-          this.meetingData.meeting.room != '*')
+        this.meetingData.meeting &&
+        ! this.meetingData.meeting.days_tbd &&
+        ! this.meetingData.meeting.building_tbd &&
+        'building' in this.meetingData.meeting && this.meetingData.meeting.building != '*'
       );
     },
-    noMeeting() {
-      return !this.meetingData || !this.meetingData.meeting;
+    hasBuildingRoom() {
+      return (
+        this.meetingData.meeting &&
+        'building' in this.meetingData.meeting && this.meetingData.meeting.building != '*' &&
+        'room' in this.meetingData.meeting && this.meetingData.meeting.room != '*'
+      );
+    },
+    finalNoDate () {
+      return (
+        this.isFinalsTab &&
+        !(this.meetingData.section.final_exam &&
+          this.meetingData.section.final_exam.end_date &&
+          this.meetingData.section.final_exam.start_date));
     },
     meetingLocation() {
-      if (!this.isFinalsTab) {
-        if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
-          if (!this.isInPerson) {
+      // MUWM-5208
+      if (!this.isInPerson) {
+        if (!this.isFinalsTab) {
+          if (!this.meetingData.meeting || this.wontMeet || !this.hasLocation) {
             return 'Online';
           }
-          if (this.noMeeting || this.wontMeet) {
-            return '';
+        } else {
+          if (this.finalNoDate) {
+            return '';   
+            // leave it blank as the notes already tell what they are
           }
-          return 'Room TBD';
         }
+        if (this.hasBuildingRoom) {
+          return `${
+            this.meetingData.meeting.building
+          } ${this.meetingData.meeting.room}`;
+        }
+        return 'TBD';
       }
-      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
+      // IN PERSON
+      if (!this.meetingData.meeting || this.wontMeet || this.finalNoDate) {
+        return '';
+        // leave it blank as the notes already tell what they are
+      }
+      if (this.hasBuildingRoom) {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
@@ -165,28 +181,39 @@ export default {
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      if (!this.isFinalsTab) {
-        if (this.noMeeting || this.noLocation) {  // MUWM-5099, MUWM-5208
-          if (!this.isInPerson) {
+      // MUWM-5208
+      if (!this.isInPerson) {
+        if (!this.isFinalsTab) {
+          if (!this.meetingData.meeting || this.wontMeet || !this.hasLocation) {
             return 'Location: Online';
           }
-          if (this.noMeeting || this.wontMeet) {
+        } else {  // on Finals tab
+          if (this.finalNoDate) {
             return 'Location: None';
           }
-          return 'Location: Room TBD';
         }
+        if (this.hasBuildingRoom) {
+          return `${
+            this.meetingData.meeting.building
+          } ${this.meetingData.meeting.room}`;
+        }
+        return 'Location: TBD';
       }
-      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD) {
-        return `Building: ${
+      // IN PERSON
+      if (!this.meetingData.meeting || this.wontMeet || this.finalNoDate) {
+        return 'Location: None';
+      }
+      if (this.hasBuildingRoom) {
+        return `${
           this.meetingData.meeting.building
-        } Room: ${this.meetingData.meeting.room}`;
+        } ${this.meetingData.meeting.room}`;
       }
-      return 'Location: Room TBD';
+      return 'Location: TBD';
     },
     meetingLocationUrl() {
-      if (!this.noMeeting && !this.noLocation && !this.isRoomTBD &&
-        'latitude' in this.meetingData.meeting &&
-        'longitude' in this.meetingData.meeting
+      if (this.hasBuildingRoom &&
+          'latitude' in this.meetingData.meeting &&
+          'longitude' in this.meetingData.meeting
       ) {
         return `http://maps.google.com/maps?q=${
           this.meetingData.meeting.latitude
@@ -201,6 +228,7 @@ export default {
         this.meetingData.section.is_teaching &&
         this.isFinalsTab &&
         this.meetingData.section.is_primary_section &&
+        this.meetingData.section.final_exam &&
         !this.meetingData.section.final_exam.no_exam_or_nontraditional &&
         !this.meetingData.section.final_exam.is_confirmed
       );
