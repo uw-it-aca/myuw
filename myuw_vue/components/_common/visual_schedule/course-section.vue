@@ -126,11 +126,11 @@ export default {
         this.meetingData.meeting.no_meeting
       );
     },
-    hasLocation() {
-      return (
+    noLocation() {
+      return !(
         this.meetingData.meeting &&
-        ! this.meetingData.meeting.days_tbd &&
-        ! this.meetingData.meeting.building_tbd &&
+        !this.meetingData.meeting.days_tbd &&
+        !this.meetingData.meeting.building_tbd &&
         'building' in this.meetingData.meeting && this.meetingData.meeting.building != '*'
       );
     },
@@ -152,7 +152,7 @@ export default {
       // MUWM-5208
       if (!this.isInPerson) {
         if (!this.isFinalsTab) {
-          if (!this.meetingData.meeting || this.wontMeet || !this.hasLocation) {
+          if (!this.meetingData.meeting || this.wontMeet || this.noLocation) {
             return 'Online';
           }
         } else {
@@ -184,7 +184,7 @@ export default {
       // MUWM-5208
       if (!this.isInPerson) {
         if (!this.isFinalsTab) {
-          if (!this.meetingData.meeting || this.wontMeet || !this.hasLocation) {
+          if (!this.meetingData.meeting || this.wontMeet || this.noLocation) {
             return 'Location: Online';
           }
         } else {  // on Finals tab
