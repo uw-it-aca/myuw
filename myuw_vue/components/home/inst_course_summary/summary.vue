@@ -40,6 +40,7 @@
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
+        <p>Are your class resources accessible for all students?</p>
         <div class="myuw-text-md">
           <a
             v-inner="`important dates and deadlines: ${term}`"
