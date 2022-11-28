@@ -18,11 +18,9 @@
         :selector="`hybrid-msg-${section.id}`" title="Hybrid (B)" :content="hybMsg"/>
     </span>
     <span v-else>
-      <!--
       In Person
       <uw-pop-over v-if="!hideInfoLink"
         :selector="`inperson-msg-${section.id}`" title="In Person" :content="inPersonMsg"/>
-      -->
     </span>
   </div>
 </template>
