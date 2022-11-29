@@ -59,8 +59,8 @@ CATEGORIZED_NOTICES = [
         "NoticeCategory": "Teaching",
         "NoticeType": "ClassResAccessible",
         "NoticeContent": (
-            "<span class=\"notice-title\">Are your class resources accessible " +
-            "for all students?</span>" +
+            "<span class=\"notice-title\">Are your class resources " +
+            "accessible for all students?</span>" +
             "<span class=\"notice-body-with-title\"></span>"
         )
     }
