@@ -197,7 +197,7 @@ describe('Instructor Teaching Summary', () => {
     const wrapper = mount(InstructorCourseSummery, { store, localVue });
     await new Promise((r) => setTimeout(r, 30));
     const cmodes = wrapper.findAllComponents(UwCourseMode);
-    expect(cmodes.length).toBe(4);
+    expect(cmodes.length).toBe(2);
     console.log(cmodes[0]);
     expect(cmodes.at(0).vm.hideInfoLink).toBe(true);
     expect(cmodes.at(0).vm.asyncMsg.length > 0).toBe(true);
