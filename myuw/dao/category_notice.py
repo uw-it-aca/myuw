@@ -2,14 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Define graduation card content items as notices so that
+Define card content as categorized notices so that
 they can be marked "new"
 """
 
 from uw_sws.models import Notice
 
 
-GRADUATION_NOTICES = [
+CATEGORIZED_NOTICES = [
     {
         "NoticeCategory": "Degree",
         "NoticeType": "Ceremony",
@@ -54,17 +54,27 @@ GRADUATION_NOTICES = [
             "leaving UW?</span>" +
             "<span class=\"notice-body-with-title\"></span>"
         )
+    },
+    {
+        "NoticeCategory": "Teaching",
+        "NoticeType": "ClassResAccessible",
+        "NoticeContent": (
+            "<span class=\"notice-title\">Are your class resources accessible " +
+            "for all students?</span>" +
+            "<span class=\"notice-body-with-title\"></span>"
+        )
     }
 ]
 
 
-def get_graduation_notices():
+def get_category_notices(category):
     notices = []
-    for notice in GRADUATION_NOTICES:
-        notice_obj = Notice()
-        notice_obj.notice_category = notice.get("NoticeCategory")
-        notice_obj.notice_content = notice.get("NoticeContent")
-        notice_obj.notice_type = notice.get("NoticeType")
-        notice_obj.attributes = []
-        notices.append(notice_obj)
+    for notice in CATEGORIZED_NOTICES:
+        if notice.get("NoticeCategory") == category:
+            notice_obj = Notice()
+            notice_obj.notice_category = notice.get("NoticeCategory")
+            notice_obj.notice_content = notice.get("NoticeContent")
+            notice_obj.notice_type = notice.get("NoticeType")
+            notice_obj.attributes = []
+            notices.append(notice_obj)
     return notices
