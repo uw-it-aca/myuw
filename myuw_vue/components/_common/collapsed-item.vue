@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Collapse from '../../_templates/collapse.vue';
+import Collapse from '../_templates/collapse.vue';
 import {mapActions} from 'vuex';
 export default {
   components: {
@@ -61,5 +61,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../myuw/static/css/myuw/variables.scss';
+@import '../../../myuw/static/css/myuw/variables.scss';
 </style>
