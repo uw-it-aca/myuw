@@ -32,7 +32,11 @@
                     Course Mode:
                   </h4>
                   <span>
-                    <uw-course-mode class="d-inline" :section="section" hide-info-link/>
+                    <uw-course-mode
+                      v-if="notInPerson"
+                      class="d-inline"
+                      :section="section"
+                      hide-info-link/>
                   </span>
                 </div>
                 <div class="d-inline ms-1">
@@ -149,6 +153,15 @@ export default {
       faChevronDown,
       faSquareFull,
     };
+  },
+  computed: {
+    notInPerson() {
+      // MUWM-5210
+      return (
+        this.section.is_asynchronous ||
+        this.section.is_synchronous ||
+        this.section.is_hybrid);
+    }
   },
   methods: {
     getLinkedSections(pSection) {

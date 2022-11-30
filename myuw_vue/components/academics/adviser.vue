@@ -164,7 +164,7 @@ export default {
     },
     showCard() {
       return (this.isUndergrad || this.studEmployee && !this.isGrad)
-        && !this.isPCE && !this.isApplicant;
+        && !this.isPCE;
     }
   },
   created() {
