@@ -138,6 +138,14 @@
             <h3 class="h6 myuw-font-encode-sans">Post-Graduation Success</h3>
             <ul class="list-style myuw-text-md">
               <li>
+                Ensure that all information on your
+                <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/untranscript.aspx"
+                  >unofficial transcript</a
+                > is correct &#8211; any degrees, major and minor types. If anything is incorrect,
+                  contact the registrar&apos;s office and your academic advisor within 45 days of
+                  your degree being granted.
+              </li>
+              <li>
                 Get guidance and resources for
                 <a href="https://www.washington.edu/graduation/after-graduation/"
                   >after graduation</a
@@ -202,21 +210,25 @@
                 <uw-collapsed-item :notice="degreeDiploma">
                   <template #notice-body>
                     <p>
-                      The Office of the University Registrar will send you an email about one month
-                      after graduation with the link to a form where you can log in and enter your
-                      diploma name and diploma mailing address.
+                      You can use the
+                      <a href="https://registrar.washington.edu/diploma-name/">
+                      Diploma Name and Address form</a>
+                       to update your diploma name and mailing address until the registrar&apos;s
+                       office places the diploma order for your quarter of graduation &#8211;
+                       approximately one month after your degree is granted.
                     </p>
                     <p>
-                      If you do not submit the form by the deadline given in the email, the name on
-                      your diploma will default to the name on your official student record which
-                      may vary from your preferred name.
+                      We urge you to update your information now. If you do not update your diploma
+                      name and address within this timeframe, information from your student record
+                      will be used to issue and mail your diploma.
                     </p>
                     <p>
-                      For more information about diplomas, visit the
+                      For more information about diplomas, including shipping time and CeDiplomas,
+                      visit the
                       <a href="https://registrar.washington.edu/students/graduation-diplomas/"
                         >Graduations and Diplomas</a
                       >
-                      site.
+                      page.
                     </p>
                   </template>
                 </uw-collapsed-item>
