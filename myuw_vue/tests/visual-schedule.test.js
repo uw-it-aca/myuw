@@ -170,7 +170,7 @@ describe('Vue SFC Tests', () => {
     ).toHaveLength(1);
   });
 
-  it('Check MUWM-5099', async () => {
+  it('Check MUWM-5099 MUWM-5208', async () => {
     store.state.user.affiliations.student = false;
     store.state.user.affiliations.instructor = true;
     axios.get.mockResolvedValue({ data: mockScheduleBill5099, status: 200 });
@@ -178,9 +178,13 @@ describe('Vue SFC Tests', () => {
 
     await new Promise(setImmediate);
     const sections = wrapper.findAllComponents(CourseSection);
-    expect(sections.at(0).vm.isOnline).toBe(true);
+    expect(sections.at(0).vm.isFinalsTab).toBe(false);
+    expect(sections.at(0).vm.isInPerson).toBe(false);
+    expect(sections.at(0).vm.hasBuildingRoom).toBe(false);
     expect(sections.at(0).vm.meetingLocation).toBe('Online');
-    expect(sections.at(0).vm.ariaMeetingLocation).toBe('Online');
-    expect(sections.at(1).vm.isOnline).toBe(false);
+    expect(sections.at(0).vm.ariaMeetingLocation).toBe('Location: Online');
+    expect(sections.at(2).vm.isInPerson).toBe(false);
+    expect(sections.at(2).vm.hasBuildingRoom).toBe(false);
+    expect(sections.at(2).vm.meetingLocation).toBe('Online');
   });
 });

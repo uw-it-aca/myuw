@@ -48,7 +48,7 @@ setup(
         'UW-RestClients-PWS~=2.1',
         'UW-RestClients-SWS==2.3.24',
         'UW-RestClients-Sdbmyuw~=1.0',
-        'UW-RestClients-Space~=1.0',
+        'UW-RestClients-Space==1.0.1',
         'UW-RestClients-Trumba~=1.3',
         'UW-RestClients-UPass~=1.0',
         'UW-RestClients-UWNetID~=1.0',
