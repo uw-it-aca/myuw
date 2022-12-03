@@ -85,7 +85,7 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['limit_estimate_enrollment'], 15)
         self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'], '47.653693')
+            data['sections'][0]['final_exam']['latitude'], '47.6536929997')
         self.assertEqual(data['sections'][0]['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
@@ -186,7 +186,7 @@ class TestLTIInstructorSectionDetails(MyuwLTITest):
         self.assertEqual(
             data['sections'][0]['limit_estimate_enrollment'], 15)
         self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'], '47.653693')
+            data['sections'][0]['final_exam']['latitude'], '47.6536929997')
         self.assertEqual(data['sections'][0]['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
