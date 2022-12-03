@@ -10,7 +10,7 @@ class TestBuilding(MyuwApiTest):
     def test_building(self):
         fac_obj = Facilities().search_by_number("1347")
         b_obj = CampusBuilding.upd_building(fac_obj)
-        self.assertEquals(b_obj.latitude, '47.6536929997')
+        self.assertEquals(b_obj.latitude, 47.6536929997)
         self.assertEquals(b_obj.longitude, -122.304747)
         self.assertEquals(b_obj.name, "Mechanical Engineering Building")
         self.assertEquals(b_obj.code, 'MEB')
