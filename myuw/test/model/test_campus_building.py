@@ -28,10 +28,28 @@ class TestBuilding(MyuwApiTest):
         self.assertIsNotNone(str(b_obj))
 
         obj1 = CampusBuilding.get_building_by_code('MEB')
-        self.assertEquals(b_obj, obj1)
+        self.assertEquals(
+            obj1.json_data(),
+            {
+                'code': 'MEB',
+                'latitude': '47.6536929997',
+                'longitude': '-122.304747',
+                'name': 'Mechanical Engineering Building',
+                'number': '1347',
+            }
+        )
 
         obj2 = CampusBuilding.get_building_by_number('1347')
-        self.assertEquals(b_obj, obj2)
+        self.assertEquals(
+            obj2.json_data(),
+            {
+                'code': 'MEB',
+                'latitude': '47.6536929997',
+                'longitude': '-122.304747',
+                'name': 'Mechanical Engineering Building',
+                'number': '1347',
+            }
+        )
 
         self.assertTrue(CampusBuilding.exists('MEB'))
         self.assertTrue(CampusBuilding.exists_by_number('1347'))
