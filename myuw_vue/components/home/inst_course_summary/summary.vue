@@ -40,6 +40,18 @@
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
+        <uw-collapsed-item v-if="hasClassResAccNotice" :notice="ClassResAccNotice">
+          <template #notice-body>
+            <span class="myuw-text-md">It is every instructor's
+              <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html"
+              >legal and university obligation</a> to ensure that class resources are
+              accessible for all students. Get started now with the
+              <a href="https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/"
+              >course preparation checklist</a>.
+            </span>
+          </template>
+        </uw-collapsed-item>
+
         <div class="myuw-text-md">
           <a
             v-inner="`important dates and deadlines: ${term}`"
@@ -70,12 +82,14 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import SectionList from './section-list.vue';
 import SummerSectionList from './summer-list.vue';
+import CollapsedItem from '../../_common/collapsed-item.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-section-list': SectionList,
     'uw-summer-section-list': SummerSectionList,
+    'uw-collapsed-item': CollapsedItem,
   },
   props: {
     term: {
@@ -86,6 +100,7 @@ export default {
   computed: {
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
+      notices: (state) => state.notices.value,
       year: (state) => state.termData.year,
       quarter: (state) => state.termData.quarter,
       nextYear: (state) => state.nextTerm.year,
@@ -107,10 +122,22 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
+    ClassResAccNotice() {
+      // MUWM-5199
+      return this.notices.filter((notice) =>
+        notice.category === 'Teaching ClassResAccessible'
+      )[0];
+    },
+    hasClassResAccNotice() {
+      // MUWM-5199
+      return this.instSchedule.future_term && Boolean(this.ClassResAccNotice);
+    },
     showCard() {
       return this.instructor && (
-        !this.isReady || this.isErrored || this.instSchedule &&
-        (this.instSchedule.sections.length || !this.instSchedule.future_term));
+        !this.isReady || this.isErrored ||
+        this.instSchedule &&
+        (this.instSchedule.sections.length || !this.instSchedule.future_term) &&
+        (!this.instSchedule.future_term || this.hasClassResAccNotice));
     },
     getYear() {
       return this.term === 'current' ? this.year : this.nextYear;

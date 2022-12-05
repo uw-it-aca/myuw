@@ -459,7 +459,7 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
-import CollapsedItem from './collapsed-item.vue';
+import CollapsedItem from '../../_common/collapsed-item.vue';
 import Collapse from '../../_templates/collapse.vue';
 import Feedback from '../../_templates/feedback.vue';
 

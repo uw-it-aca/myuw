@@ -10,8 +10,9 @@ import logging
 from django.db import IntegrityError
 from uw_sws.notice import get_notices_by_regid
 from myuw.models import UserNotices
-from myuw.dao.degree_notice import get_graduation_notices
+from myuw.dao.category_notice import get_category_notices
 from myuw.dao.enrollment import get_latest_class_level
+from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.notice_mapping import categorize_notices
 from myuw.dao.user import get_user_model
@@ -43,13 +44,17 @@ def mark_notices_read_for_current_user(request, notice_hashes):
 
 def get_notices_for_current_user(request):
     notices = []
+    if is_instructor(request):
+        # MUWM-5199
+        notices += categorize_notices(get_category_notices("Teaching"))
+
     if is_student(request):
         notices += _get_notices_by_regid(get_regid_of_current_user(request))
 
         # MUWM-5065
         class_level = get_latest_class_level(request)
         if class_level and class_level.upper() == 'SENIOR':
-            notices += categorize_notices(get_graduation_notices())
+            notices += categorize_notices(get_category_notices("Degree"))
 
     notices += categorize_notices(get_myuw_notices_for_user(request))
     return _get_user_notices(request, notices)
