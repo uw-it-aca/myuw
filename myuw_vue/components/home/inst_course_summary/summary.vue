@@ -42,9 +42,13 @@
 
         <uw-collapsed-item v-if="hasClassResAccNotice" :notice="ClassResAccNotice">
           <template #notice-body>
-            <span class="myuw-text-md">It is every instructor's legal and <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html">university </a>
-            obligation to ensure that class resources are accessible for all students. Get started now with the
-            <a href="https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/"> course preparation checklist</a>.</span>
+            <span class="myuw-text-md">It is every instructor's legal and
+              <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html"
+              >university obligation</a> to ensure that class resources are accessible
+              for all students. Get started now with the
+              <a href="https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/"
+              >course preparation checklist</a>.
+            </span>
           </template>
         </uw-collapsed-item>
 
