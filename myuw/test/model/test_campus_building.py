@@ -10,8 +10,8 @@ class TestBuilding(MyuwApiTest):
     def test_building(self):
         fac_obj = Facilities().search_by_number("1347")
         b_obj = CampusBuilding.upd_building(fac_obj)
-        self.assertEquals(b_obj.latitude, '47.653693')
-        self.assertEquals(b_obj.longitude, '-122.304747')
+        self.assertEquals(b_obj.latitude, 47.6536929997)
+        self.assertEquals(b_obj.longitude, -122.304747)
         self.assertEquals(b_obj.name, "Mechanical Engineering Building")
         self.assertEquals(b_obj.code, 'MEB')
         self.assertEquals(b_obj.number, '1347')
@@ -19,8 +19,8 @@ class TestBuilding(MyuwApiTest):
             b_obj.json_data(),
             {
                 'code': 'MEB',
-                'latitude': '47.653693',
-                'longitude': '-122.304747',
+                'latitude': 47.6536929997,
+                'longitude': -122.304747,
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
             }
@@ -28,10 +28,28 @@ class TestBuilding(MyuwApiTest):
         self.assertIsNotNone(str(b_obj))
 
         obj1 = CampusBuilding.get_building_by_code('MEB')
-        self.assertEquals(b_obj, obj1)
+        self.assertEquals(
+            obj1.json_data(),
+            {
+                'code': 'MEB',
+                'latitude': '47.6536929997',
+                'longitude': '-122.304747',
+                'name': 'Mechanical Engineering Building',
+                'number': '1347',
+            }
+        )
 
         obj2 = CampusBuilding.get_building_by_number('1347')
-        self.assertEquals(b_obj, obj2)
+        self.assertEquals(
+            obj2.json_data(),
+            {
+                'code': 'MEB',
+                'latitude': '47.6536929997',
+                'longitude': '-122.304747',
+                'name': 'Mechanical Engineering Building',
+                'number': '1347',
+            }
+        )
 
         self.assertTrue(CampusBuilding.exists('MEB'))
         self.assertTrue(CampusBuilding.exists_by_number('1347'))
