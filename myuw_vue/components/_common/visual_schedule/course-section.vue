@@ -50,9 +50,9 @@ export default {
       type: Object,
       required: true,
     },
-    isFinalsCard: {
+    isFinalsTab: {
       type: Boolean,
-      default: false,
+      required: true,
     },
     day: {
       type: String,
@@ -61,6 +61,10 @@ export default {
     term: {
       type: Object,
       required: true,
+    },
+    meetingsWithoutTime: {
+      type: Boolean,
+      required: false,
     },
   },
   computed: {
@@ -112,51 +116,77 @@ export default {
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
-    isOnline () {
-      return (this.meetingData && this.meetingData.meeting &&
-        this.meetingData.meeting.building_tbd &&
-        (this.meetingData.section.is_asynchronous ||
-         this.meetingData.section.is_synchronous ||
-         this.meetingData.section.is_hybrid) &&
-        !(this.meetingData.meeting.wont_meet ||
-          this.meetingData.meeting.no_meeting ||
-          this.meetingData.meeting.days_tbd)
+    isInPerson() {  // MUWM-5099
+      return (
+        this.meetingData.section &&
+        !(this.meetingData.section.is_asynchronous ||
+          this.meetingData.section.is_synchronous ||
+          this.meetingData.section.is_hybrid));
+    },
+    wontMeet() {
+      return (
+        !this.meetingData.meeting ||
+        this.meetingData.meeting.wont_meet
+      );
+    },
+    hasBuildingRoom() {
+      return (
+        this.meetingData.meeting &&
+        'building' in this.meetingData.meeting && this.meetingData.meeting.building != '*' &&
+        'room' in this.meetingData.meeting && this.meetingData.meeting.room != '*'
       );
     },
     meetingLocation() {
-      if (this.isOnline) {  // MUWM-5099
-        return 'Online';
+      if (this.meetingsWithoutTime || this.wontMeet) {
+        // MUWM-5208
+        if (this.isFinalsTab) {
+          return '';
+        }
+        if (!this.isInPerson) {
+          return 'Online';
+        }
+        return '';
       }
-      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
-        return 'No meeting';
-      }
-      if (!this.isRoomTBD()) {
+      if (this.hasBuildingRoom) {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
       }
+      if (!this.isInPerson) {
+        // MUWM-5208
+        if (!this.isFinalsTab) {
+          return 'Online';
+        }
+        return 'TBD';
+      }
       return 'Room TBD';
     },
     ariaMeetingLocation() {
-      if (this.isOnline) {  // MUWM-5099
-        return 'Online';
-      }
-      if (this.meetingData.meeting && this.meetingData.meeting.no_meeting) {
+      if (this.meetingsWithoutTime || this.wontMeet) {
+        // MUWM-5208
+        if (this.isFinalsTab) {
+          return 'Location: None';
+        }
+        if (!this.isInPerson) {
+          return 'Location: Online';
+        }
         return 'Location: None';
       }
-      if (!this.isRoomTBD()) {
-        return `Building: ${
+      if (this.hasBuildingRoom) {
+        return `${
           this.meetingData.meeting.building
-        } Room: ${this.meetingData.meeting.room}`;
+        } ${this.meetingData.meeting.room}`;
       }
-      return 'Location: Room TBD';
+      if (!this.isInPerson && !this.isFinalsTab) {
+        // MUWM-5208
+        return 'Location: Online';
+      }
+      return 'Location: TBD';
     },
     meetingLocationUrl() {
-      if (
-        !this.meetingData.section.is_remote &&
-        !this.isRoomTBD() &&
-        'latitude' in this.meetingData.meeting &&
-        'longitude' in this.meetingData.meeting
+      if (this.hasBuildingRoom &&
+          'latitude' in this.meetingData.meeting &&
+          'longitude' in this.meetingData.meeting
       ) {
         return `http://maps.google.com/maps?q=${
           this.meetingData.meeting.latitude
@@ -169,8 +199,9 @@ export default {
     showConfirmLink() {
       return (
         this.meetingData.section.is_teaching &&
-        this.isFinalsCard &&
+        this.isFinalsTab &&
         this.meetingData.section.is_primary_section &&
+        this.meetingData.section.final_exam &&
         !this.meetingData.section.final_exam.no_exam_or_nontraditional &&
         !this.meetingData.section.final_exam.is_confirmed
       );
@@ -219,20 +250,6 @@ export default {
     // Returns minutes from midnight
     getMFM(t) {
       return (t.hour() * 60) + t.minute();
-    },
-    isRoomTBD() {
-      return (
-        this.meetingData.meeting == null ||
-        (
-          this.meetingData.meeting.room_tbd ||
-          !(
-            'building' in this.meetingData.meeting &&
-            this.meetingData.meeting.building != '*' &&
-            'room' in this.meetingData.meeting &&
-            this.meetingData.meeting.room != '*'
-          )
-        )
-      );
     },
   },
 };
