@@ -8,7 +8,7 @@ from myuw.dao.notice_categorization import NOTICE_CATEGORIES
 class TestNoticeCategories(TestCase):
 
     def test_categories(self):
-        self.assertEqual(len(NOTICE_CATEGORIES.keys()), 79)
+        self.assertEqual(len(NOTICE_CATEGORIES.keys()), 80)
 
         categorization = NOTICE_CATEGORIES.get("studentalr_intlstucheckin")
         self.assertIsNotNone(categorization)

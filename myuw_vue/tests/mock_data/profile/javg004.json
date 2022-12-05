@@ -53,7 +53,8 @@
         "is_incomplete": false,
         "is_degree_earned_term": true,
         "before_degree_earned_term": false,
-        "during_april_may": true
+        "during_april_may": true,
+        "last_4w_inst": true
       },
       {
         "campus": "BOTHELL",
@@ -72,7 +73,8 @@
         "is_incomplete": false,
         "is_degree_earned_term": false,
         "before_degree_earned_term": true,
-        "during_april_may": true
+        "during_april_may": true,
+        "last_4w_inst": true
       }
     ],
     "error_code": null

@@ -39,7 +39,7 @@
       </uw-tabs>
 
       <div v-else>
-        <p class="text-muted myuw-text-md mb-1">
+        <p class="myuw-text-md mb-1">
           No meeting time specified:
         </p>
         <div v-for="(meeting, i) in allMeetings" :key="i"
