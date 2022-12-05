@@ -8,7 +8,7 @@ import profile from '../vuex/store/profile';
 import notices from '../vuex/store/notices';
 
 import Graduation from '../components/home/graduation/application-submitted.vue';
-import CollapsedItem from '../components/home/graduation/collapsed-item.vue';
+import CollapsedItem from '../components/_common/collapsed-item.vue';
 import eightProfile from './mock_data/profile/eight.json';
 import javg001Profile from './mock_data/profile/javg001.json';
 import javg002Profile from './mock_data/profile/javg002.json';

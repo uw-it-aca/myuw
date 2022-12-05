@@ -403,5 +403,10 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Graduation NextDestination",
         "location_tags": ['graduation'],
         "critical": False
+    },
+    "teaching_classresaccessible": {
+        "myuw_category": "Teaching ClassResAccessible",
+        "location_tags": ['teaching_summary'],
+        "critical": False
     }
 }

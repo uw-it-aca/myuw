@@ -18,10 +18,8 @@ import UwSectionList from
 import UwCourseMode from
   '../components/_common/course/course-mode/mode.vue';
 
-import mockBill2013Summer from
-  './mock_data/inst_schedule/bill2013summer.json';
 import mockScheduleBill5099 from 
-  './mock_data/inst_schedule/muwm-5099-bill2013spring.json';
+  './mock_data/inst_schedule/bill2013spr.json';
 import mockBillpce2013Summer from
   './mock_data/inst_schedule/billpce2013summer.json';
 import mockBillsea2013Spring from

@@ -1153,15 +1153,15 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(schedule_json['periods']), 2)
         meeting = schedule_json['periods'][0]['sections'][0]['meetings'][0]
         # MUWM-3981
-        self.assertEqual(meeting['latitude'], "47.653693")
-        self.assertEqual(meeting['longitude'], "-122.304747")
+        self.assertEqual(meeting['latitude'], 47.6536929997)
+        self.assertEqual(meeting['longitude'], -122.304747)
         self.assertEqual(
             meeting['building_name'],
             "Mechanical Engineering Building")
         # MUWM_596
         final = schedule_json['periods'][1]['sections'][0]['final_exam']
-        self.assertEqual(final['latitude'], "47.653693")
-        self.assertEqual(final['longitude'], "-122.304747")
+        self.assertEqual(final['latitude'], 47.6536929997)
+        self.assertEqual(final['longitude'], -122.304747)
         self.assertEqual(
             final['building_name'],
             "Mechanical Engineering Building")
