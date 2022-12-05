@@ -136,8 +136,11 @@
               "student_state": "prior"
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/ARC+160"
         }
@@ -148,6 +151,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false
@@ -334,7 +340,11 @@
         "no_secondary_section": true,
         "has_lists": false
       },
-      "grading_status": null
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
     },
     {
       "curriculum_abbr": "LIS",
@@ -437,8 +447,11 @@
               "student_state": "prior"
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/MGH+430"
         }
@@ -449,6 +462,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "credit/no credit",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false
@@ -606,7 +622,11 @@
         "no_secondary_section": true,
         "has_lists": false
       },
-      "grading_status": null
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
     },
     {
       "curriculum_abbr": "EDIT",
@@ -709,9 +729,12 @@
               "student_state": "prior"
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "start_end_same": true,
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/SMI+115"
         },
@@ -794,6 +817,9 @@
               "student_state": "prior"
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "start_end_same": false,
           "classroom_info_url": null
         },
@@ -876,6 +902,9 @@
               "student_state": "prior"
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "start_end_same": true,
           "classroom_info_url": null
         },
@@ -958,6 +987,9 @@
               "student_state": "prior"
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "start_end_same": true,
           "classroom_info_url": null
         }
@@ -968,6 +1000,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "index": 2,
       "color_id": 3,
       "mini_card": false,
@@ -983,7 +1018,11 @@
       "grading_period_is_past": false,
       "has_eos_dates": true,
       "canvas_url": null,
-      "grading_status": null
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
     }
   ],
   "registered_summer_terms": {
@@ -1166,9 +1205,9 @@
       "first_day_quarter": "2013-04-01",
       "census_day": "2013-04-12",
       "last_day_instruction": "2013-06-07",
-      "grading_period_open": "2022-06-14T17:00:00",
-      "aterm_grading_period_open": "2022-06-14T17:00:00",
-      "grade_submission_deadline": "2022-06-16T17:00:00",
+      "grading_period_open": "2022-12-04T17:00:00",
+      "aterm_grading_period_open": "2022-12-04T17:00:00",
+      "grade_submission_deadline": "2022-12-06T17:00:00",
       "registration_periods": [
         {
           "start": "2013-02-15",
@@ -1255,9 +1294,42 @@
         "tacoma": true
       },
       "last_final_exam_date": "2013-12-14T00:00:00"
+    },
+    {
+      "quarter": "Winter",
+      "year": 2014,
+      "label": "2014,winter",
+      "last_day_add": "2014-01-26",
+      "last_day_drop": "2014-02-23",
+      "first_day_quarter": "2014-01-06",
+      "census_day": "2014-01-17",
+      "last_day_instruction": "2014-03-14",
+      "grading_period_open": "2014-02-24T08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2014-03-25T17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-11-01",
+          "end": "2013-11-24"
+        },
+        {
+          "start": "2013-11-25",
+          "end": "2014-01-05"
+        },
+        {
+          "start": "2014-01-06",
+          "end": "2014-01-12"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": false,
+        "seattle": false,
+        "tacoma": false
+      },
+      "last_final_exam_date": "2014-03-22T00:00:00"
     }
   ],
   "past_term": false,
-  "future_term": true,
+  "future_term": false,
   "has_eos_dates": true
 }
