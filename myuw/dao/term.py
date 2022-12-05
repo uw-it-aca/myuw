@@ -150,6 +150,15 @@ def more_than_2terms_before(request, year, quarter):
     return comparison_term < pprev_term
 
 
+def last_4w_inst(request):
+    """
+    return True if it is four weeks prior last day class of the term
+    """
+    comparison_dt = get_comparison_datetime(request)
+    starting_point = get_bod_days_before_last_instruction(request, 28)
+    return comparison_dt > starting_point
+
+
 def get_term_from_quarter_string(quarter_string):
     """
     Return a uw_sws.models.Term object
@@ -388,6 +397,17 @@ def get_eod_current_term_last_instruction(request, break_at_a_term=False):
             request, break_at_a_term)
 
 
+def get_bod_days_before_last_instruction(request, days):
+    """
+    @return the datetime object of the beginning of
+    the given number of days before the last instruction day for
+    current quarter and current summer-term if applicable.
+    Exclude the last instruction day.
+    """
+    return (get_eod_current_term_last_instruction(request, True) -
+            timedelta(days=days))
+
+
 def get_bod_7d_before_last_instruction(request):
     """
     @return the datetime object of the beginning of
@@ -395,8 +415,7 @@ def get_bod_7d_before_last_instruction(request):
     current quarter and current summer-term if applicable.
     Exclude the last instruction day.
     """
-    return (get_eod_current_term_last_instruction(request, True) -
-            timedelta(days=8))
+    return get_bod_days_before_last_instruction(request, 8)
 
 
 def get_eod_current_term_last_final_exam(request, break_at_a_term=False):

@@ -201,6 +201,33 @@
             </ul>
           </div>
 
+          <div v-if="hasActiveOrGrantedDegreeLast4weeksInst">
+            <h3 class="h6 myuw-font-encode-sans">
+              Your plans after graduation
+            </h3>
+            <ul class="list-unstyled myuw-text-md">
+              <li>
+                <uw-collapsed-item :notice="degreeNextDestination">
+                  <template #notice-body>
+                    <p>
+                      Each year we track, aggregate and
+                      <a href="https://careers.uw.edu/outcomes/"
+                        >visualize UW bachelor graduate's next destination.</a>
+                    </p>
+                    <p>
+                      What are <i>you</i> planning to do? Whether you&apos;re intending to work,
+                        travel, go to grad school, or are still figuring it out,
+                        we want to know!
+                        <a href="https://careers.uw.edu/resources/next-destination-survey/"
+                        >Please take 5 mins to tell us your plans</a>
+                        so we can better coach students and inform future graduates
+                        &ndash; we want to hear from every graduate! </p>
+                  </template>
+                </uw-collapsed-item>
+              </li>
+            </ul>
+          </div>
+
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
             <h3 class="h6 myuw-font-encode-sans">
               Verify that your information and data will not be lost
@@ -492,6 +519,12 @@ export default {
         (notice) => notice.category === 'Graduation EmailForwarding'
       )[0];
     },
+    degreeNextDestination() {
+      // MUWM-5182
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation NextDestination'
+      )[0];
+    },
     showCard() {
       return this.graduatingSenior && (this.isFetching || this.showContent || this.showError);
     },
@@ -504,7 +537,8 @@ export default {
         Boolean(this.degreeCeremony) &&
         Boolean(this.degreeDiploma) &&
         Boolean(this.degreeSaveWork) &&
-        Boolean(this.degreeEmailForwarding)
+        Boolean(this.degreeEmailForwarding) &&
+        Boolean(this.degreeNextDestination)
       );
     },
     showError() {
@@ -572,6 +606,23 @@ export default {
       }
       return value;
     },
+    hasActiveOrGrantedDegreeLast4weeksInst() {
+      // MUWM-5182  since the beginning of the last 4th week of instruction
+      let value = (
+        this.degrees &&
+        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
+        this.degrees[0].is_degree_earned_term &&
+        this.degrees[0].last_4w_inst
+      );
+      if (!value && this.hasDoubleDegrees) {
+        value = (
+          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
+          this.degrees[1].is_degree_earned_term &&
+          this.degrees[1].last_4w_inst
+        );
+      }
+      return value;
+    },
     hasActiveApplication() {
       let value = this.degrees && this.isActive(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
@@ -626,16 +677,16 @@ export default {
       fetchProfile: 'fetch',
     }),
     hasMisconduct(degree) {
-      return degree.is_admin_hold;
+      return degree.is_admin_hold;  // degree status: 1
     },
     isIncomplete(degree) {
-      return degree.is_incomplete;
+      return degree.is_incomplete;  // degree status: 2
     },
     isActive(degree) {
-      return degree.has_applied;
+      return degree.has_applied;  // degree status: 3,4,5
     },
     isGranted(degree) {
-      return degree.is_granted;
+      return degree.is_granted;  // degree status: 9
     },
     degreeTerm(degree) {
       return this.titleCaseWord(degree.quarter) + ' ' + degree.year;
