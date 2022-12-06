@@ -14,13 +14,13 @@ class TestBuildings(TestCase):
 
     def test_get_by_code(self):
         building = get_building_by_code('PAA')
-        self.assertEquals(building.longitude, '-122.304747')
+        self.assertEquals(building.longitude, -122.304747)
         self.assertEquals(
             building.json_data(),
             {
                 'code': 'PAA',
-                'latitude': '47.653693',
-                'longitude': '-122.304747',
+                'latitude': 47.6536929997,
+                'longitude': -122.304747,
                 'name': 'Mechanical Engineering Building',
                 'number': '1347'
             })

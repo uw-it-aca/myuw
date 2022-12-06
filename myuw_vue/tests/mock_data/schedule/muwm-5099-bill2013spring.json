@@ -113,8 +113,8 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "latitude": 47.6536929997,
+              "longitude": -122.304747,
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -281,8 +281,8 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "latitude": 47.6536929997,
+              "longitude": -122.304747,
               "building_name": "Mechanical Engineering Building"
             },
             {
@@ -451,7 +451,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
+              "latitude": "47.6536929997",
               "longitude": "-122.304747",
               "building_name": "Mechanical Engineering Building"
             }
@@ -584,8 +584,8 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "latitude": 47.6536929997,
+              "longitude": -122.304747,
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -717,7 +717,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
+              "latitude": "47.6536929997",
               "longitude": "-122.304747",
               "building_name": "Mechanical Engineering Building"
             }
@@ -1240,7 +1240,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
+              "latitude": "47.6536929997",
               "longitude": "-122.304747",
               "building_name": "Mechanical Engineering Building"
             }
@@ -1262,8 +1262,8 @@
             "building": "SMI",
             "room_number": "401",
             "room": "401",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "latitude": 47.6536929997,
+            "longitude": -122.304747,
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 1,
@@ -1411,7 +1411,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
+              "latitude": "47.6536929997",
               "longitude": "-122.304747",
               "building_name": "Mechanical Engineering Building"
             },
@@ -1581,7 +1581,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
+              "latitude": "47.6536929997",
               "longitude": "-122.304747",
               "building_name": "Mechanical Engineering Building"
             }
@@ -1603,8 +1603,8 @@
             "building": "PAA",
             "room_number": "A102",
             "room": "A102",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "latitude": 47.6536929997,
+            "longitude": -122.304747,
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 2,
@@ -1717,8 +1717,8 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "latitude": 47.6536929997,
+              "longitude": -122.304747,
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1739,7 +1739,7 @@
             "building": "PAA",
             "room_number": "A102",
             "room": "A102",
-            "latitude": "47.653693",
+            "latitude": "47.6536929997",
             "longitude": "-122.304747",
             "building_name": "Mechanical Engineering Building"
           },
@@ -1853,8 +1853,8 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "latitude": 47.6536929997,
+              "longitude": -122.304747,
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1875,8 +1875,8 @@
             "building": "PAA",
             "room_number": "A102",
             "room": "A102",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "latitude": 47.6536929997,
+            "longitude": -122.304747,
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": "2a",
@@ -2259,8 +2259,8 @@
             "building": "KNE",
             "room_number": "012",
             "room": "012",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "latitude": 47.6536929997,
+            "longitude": -122.304747,
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 4,
