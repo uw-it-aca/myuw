@@ -189,6 +189,9 @@
               "student_state": "current"
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "classroom_info_url": null
         }
       ],
@@ -198,6 +201,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -206,8 +212,8 @@
         "building": "MGH",
         "room_number": "012",
         "room": "012",
-        "longitude": "-122.304747",
-        "latitude": "47.653693",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/MGH+012"
       },
@@ -467,9 +473,9 @@
       "first_day_quarter": "2013-04-01",
       "census_day": "2013-04-12",
       "last_day_instruction": "2013-06-07",
-      "grading_period_open": "2022-06-14T17:00:00",
-      "aterm_grading_period_open": "2022-06-14T17:00:00",
-      "grade_submission_deadline": "2022-06-16T17:00:00",
+      "grading_period_open": "2022-12-04T17:00:00",
+      "aterm_grading_period_open": "2022-12-04T17:00:00",
+      "grade_submission_deadline": "2022-12-06T17:00:00",
       "registration_periods": [
         {
           "start": "2013-02-15",

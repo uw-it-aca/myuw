@@ -10,9 +10,9 @@
     "first_day_quarter": "2013-04-01",
     "census_day": "2013-04-12",
     "last_day_instruction": "2013-06-07",
-    "grading_period_open": "2022-06-14T17:00:00",
-    "aterm_grading_period_open": "2022-06-14T17:00:00",
-    "grade_submission_deadline": "2022-06-16T17:00:00",
+    "grading_period_open": "2022-12-04T17:00:00",
+    "aterm_grading_period_open": "2022-12-04T17:00:00",
+    "grade_submission_deadline": "2022-12-06T17:00:00",
     "registration_periods": [
       {
         "start": "2013-02-15",
@@ -142,8 +142,11 @@
               "student_state": null
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
         }
@@ -154,6 +157,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -162,8 +168,8 @@
         "building": "SMI",
         "room_number": "401",
         "room": "401",
-        "longitude": "-122.304747",
-        "latitude": "47.653693",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
       },
@@ -230,7 +236,7 @@
           "level": "curriculum"
         }
       ],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -447,8 +453,11 @@
               "student_state": null
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
         },
@@ -618,8 +627,11 @@
               "student_state": null
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
         }
@@ -630,6 +642,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -638,8 +653,8 @@
         "building": "PAA",
         "room_number": "A102",
         "room": "A102",
-        "longitude": "-122.304747",
-        "latitude": "47.653693",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
       },
@@ -730,7 +745,7 @@
           "level": "curriculum"
         }
       ],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -1057,8 +1072,11 @@
               "student_state": null
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B164"
         }
@@ -1069,6 +1087,22 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-14T08:30:00",
+        "end_date": "2013-06-14T10:20:00",
+        "building": "PAA",
+        "room_number": "A102",
+        "room": "A102",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
+        "building_name": "Mechanical Engineering Building",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
+      },
       "index": 2,
       "color_id": "2a",
       "mini_card": false,
@@ -1118,7 +1152,7 @@
           "level": "section"
         }
       ],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -1160,15 +1194,6 @@
       },
       "evaluation": {
         "eval_not_exist": true
-      },
-      "final_exam": {
-        "is_confirmed": true,
-        "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-14T08:30:00",
-        "end_date": "2013-06-14T10:20:00",
-        "building": "PAA",
-        "room_number": "A102",
-        "room": "A102"
       },
       "current": true
     },
@@ -1279,8 +1304,11 @@
               "student_state": null
             }
           ],
-          "latitude": "47.653693",
-          "longitude": "-122.304747",
+          "is_asynchronous": false,
+          "is_synchronous": false,
+          "is_hybrid": false,
+          "latitude": 47.6536929997,
+          "longitude": -122.304747,
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B108"
         }
@@ -1291,6 +1319,22 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "",
+      "is_asynchronous": false,
+      "is_synchronous": false,
+      "is_hybrid": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-14T08:30:00",
+        "end_date": "2013-06-14T10:20:00",
+        "building": "PAA",
+        "room_number": "A102",
+        "room": "A102",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
+        "building_name": "Mechanical Engineering Building",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
+      },
       "index": 3,
       "color_id": "2a",
       "mini_card": false,
@@ -1301,7 +1345,7 @@
       "allows_secondary_grading": false,
       "cc_display_dates": false,
       "grade_submission_delegates": [],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -1342,15 +1386,6 @@
       },
       "evaluation": {
         "eval_not_exist": true
-      },
-      "final_exam": {
-        "is_confirmed": true,
-        "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-14T08:30:00",
-        "end_date": "2013-06-14T10:20:00",
-        "building": "PAA",
-        "room_number": "A102",
-        "room": "A102"
       },
       "current": true
     },
@@ -1496,6 +1531,9 @@
               "student_state": null
             }
           ],
+          "is_asynchronous": true,
+          "is_synchronous": false,
+          "is_hybrid": false,
           "classroom_info_url": null
         }
       ],
@@ -1505,6 +1543,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": true,
+      "is_synchronous": false,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
@@ -1563,7 +1604,7 @@
           "level": "curriculum"
         }
       ],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -1611,7 +1652,7 @@
         "eval_url": "https://uw.iasysdev.org/survey/136617",
         "report_url": "https://uw.iasysdev.org/report/136617",
         "report_available_date": "2051-07-01T07:59:59+00:00",
-        "response_rate": 0,
+        "response_rate": 0.0,
         "delivery_method": "Paper",
         "is_completed": null,
         "is_closed": false,
@@ -1820,6 +1861,9 @@
               "student_state": null
             }
           ],
+          "is_asynchronous": false,
+          "is_synchronous": true,
+          "is_hybrid": false,
           "classroom_info_url": null
         }
       ],
@@ -1829,6 +1873,9 @@
       "grade": null,
       "grade_date": null,
       "grading_system": "standard",
+      "is_asynchronous": false,
+      "is_synchronous": true,
+      "is_hybrid": false,
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false,
@@ -1837,8 +1884,8 @@
         "building": "KNE",
         "room_number": "012",
         "room": "012",
-        "longitude": "-122.304747",
-        "latitude": "47.653693",
+        "longitude": -122.304747,
+        "latitude": 47.6536929997,
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/KNE+012"
       },
@@ -1890,7 +1937,7 @@
           "level": "curriculum"
         }
       ],
-      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_open_date": "2022-12-04 17:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -2100,9 +2147,9 @@
       "first_day_quarter": "2013-04-01",
       "census_day": "2013-04-12",
       "last_day_instruction": "2013-06-07",
-      "grading_period_open": "2022-06-14T17:00:00",
-      "aterm_grading_period_open": "2022-06-14T17:00:00",
-      "grade_submission_deadline": "2022-06-16T17:00:00",
+      "grading_period_open": "2022-12-04T17:00:00",
+      "aterm_grading_period_open": "2022-12-04T17:00:00",
+      "grade_submission_deadline": "2022-12-06T17:00:00",
       "registration_periods": [
         {
           "start": "2013-02-15",
