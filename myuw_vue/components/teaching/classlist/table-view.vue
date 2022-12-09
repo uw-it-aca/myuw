@@ -159,7 +159,7 @@ export default {
           netid: reg.netid,
           surName: reg.surname,
           firstName: reg.first_name,
-          // Pronouns: reg.pronouns,
+          //Pronouns: reg.pronouns,
         };
         if (this.showJointCourseStud) {
           dataItem.jointCourse = reg.isJoint ? reg.sectionLabel : this.section.label;
