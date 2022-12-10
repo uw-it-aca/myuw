@@ -169,7 +169,6 @@ export default {
     ...mapGetters('profile', {
       isReady: 'isReady',
       isErrored: 'isErrored',
-      statusCode: 'statusCode',
     }),
     ...mapState({
       student: (state) => state.user.affiliations.student,
