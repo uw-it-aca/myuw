@@ -2,8 +2,8 @@
   <uw-panel v-if="hasName" :loaded="isReady" :errored="isErrored">
     <template #panel-body>
       <h2 class="h4 mb-3">
-        <span v-if="hasPreferred">
-          {{ titleCaseName(displayName) }}
+        <span>
+            {{ titleCaseName(name) }}
           <span v-if="hasPronouns" class="myuw-text-md text-uppercase" title="Pronouns">
             ({{ titleCaseName(pronouns) }})
           </span>
@@ -37,8 +37,8 @@ export default {
     hasName() {
       return Boolean(this.displayName) || Boolean(this.fullName);
     },
-    hasPreferred() {
-      return Boolean(this.displayName) && this.displayName !== this.fullName;
+    name() {
+      return Boolean(this.displayName) ? this.displayName : this.fullName;
     },
     hasPronouns() {
       return Boolean(this.pronouns && this.pronouns.length);
