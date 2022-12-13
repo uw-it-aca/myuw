@@ -38,7 +38,7 @@ export default {
       return Boolean(this.displayName) || Boolean(this.fullName);
     },
     name() {
-      return Boolean(this.displayName) ? this.displayName : this.fullName;
+      return this.displayName ? this.displayName : this.fullName;
     },
     hasPronouns() {
       return Boolean(this.pronouns && this.pronouns.length);

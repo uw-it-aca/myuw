@@ -27,22 +27,22 @@ describe('Uname Card', () => {
     });
   });
 
-  it('Test case1', async () => {
+  it('Having diff pref name and full name specified', async () => {
     axios.get.mockResolvedValue({data: mockData});
     const wrapper = mount(Uname, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.hasName).toBe(true);
-    expect(wrapper.vm.hasPreferred).toBe(true);
+    expect(wrapper.vm.name).toBe("J. Average Student");
   });
-  it('Test case2', async () => {
+  it('Pref name is the same as full name', async () => {
     axios.get.mockResolvedValue({data: mockData1});
     const wrapper = mount(Uname, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.hasName).toBe(true);
-    expect(wrapper.vm.hasPreferred).toBe(false);
+    expect(wrapper.vm.name).toBe("JAMES AVERAGE STUDENT");
   });
 });
