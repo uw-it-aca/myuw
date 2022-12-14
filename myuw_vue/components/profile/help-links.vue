@@ -54,7 +54,7 @@ export default {
           { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
             title: "Gender Identity & Updates" } : null,
         this.employee || this.studEmployee ?
-          { url: "http://hr.uw.edu/benefits/life-events/change-your-address-name-gender-citizenship-or-birth-date/",
+          { url: "https://isc.uw.edu/using-workday/managing-your-personal-and-work-information/",
             title: "Change Your Personal Information" } : null,
         this.student ?
           { url: "https://registrar.washington.edu/students/enrollment-and-degree-verification/",
