@@ -43,9 +43,6 @@ export default {
     hasPronouns() {
       return Boolean(this.pronouns && this.pronouns.length);
     },
-    hasPronouns() {
-      return Boolean(this.pronouns && this.pronouns.length);
-    },
   },
   mounted() {
     this.fetch();
