@@ -23,7 +23,7 @@ NOTICE_CATEGORIES = {
         "critical": True
     },
     "studentalr_hsimmunblock": {
-        "myuw_category": "Holds",
+        "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
         "critical": True
     },

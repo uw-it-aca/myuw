@@ -141,7 +141,7 @@ class TestMapNotices(TestCase):
         notices = get_notices_by_regid(regid)
         self.assertEquals(len(notices), 25)
         notice = map_notice_category(notices[18])
-        self.assertEquals(notice.custom_category, 'Holds')
+        self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
 
