@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import pytz
@@ -141,7 +141,7 @@ class TestMapNotices(TestCase):
         notices = get_notices_by_regid(regid)
         self.assertEquals(len(notices), 25)
         notice = map_notice_category(notices[18])
-        self.assertEquals(notice.custom_category, 'Holds')
+        self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
 
