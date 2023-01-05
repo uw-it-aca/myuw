@@ -37,11 +37,11 @@ export default {
     hasName() {
       return Boolean(this.displayName) || Boolean(this.fullName);
     },
-    name() {
-      return this.displayName ? this.displayName : this.fullName;
-    },
     hasPronouns() {
       return Boolean(this.pronouns && this.pronouns.length);
+    },
+    name() {
+      return this.displayName ? this.displayName : this.fullName;
     },
   },
   mounted() {
