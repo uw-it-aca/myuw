@@ -8,7 +8,6 @@
         v-if="section.is_primary_section || !section.isLinkedSecondary"
         :schedule="instSchedule"
         :section="section"
-        :tab-term="term"
       />
       <uw-collapse
         v-else
