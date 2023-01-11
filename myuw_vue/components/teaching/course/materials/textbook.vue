@@ -1,5 +1,5 @@
 <template>
-  <span v-if="noDBookData || isReady && noBook">
+  <span v-if="noDBookData || noBook">
     New alert
   </span>
   <span v-else>
@@ -21,15 +21,17 @@ export default {
       type: Object,
       required: true,
     },
-    tabTerm: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
+    term() {
+      return this.section.year + "," + this.section.quarter;
+    },
+    loadData() {
+      return this.section.futureTerm;
+    },
     ...mapState('textbooks', {
       bookData(state) {
-        return state.value;
+        return state.value[this.term];
       },
     }),
     ...mapGetters('textbooks', {
@@ -38,12 +40,13 @@ export default {
       statusCodeTextbooks: 'statusCodeTagged',
     }),
     isReady() {
-      return this.isTextbookReady(this.tabTerm);
+      return this.loadData && this.isTextbookReady(this.term);
     },
     noDBookData() {
-      return this.statusCodeTextbooks(this.tabTerm) === 404;
+      return this.loadData && this.statusCodeTextbooks(this.term) === 404;
     },
     noBook() {
+      if (!this.loadData) return false;
       if (this.isReady && this.bookData) {
         const book = this.bookData[this.section.sln];
         return !(book && book.length > 0);
@@ -60,14 +63,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchTextbooks(this.tabTerm);
-  },
-  watch: {
-    // Used to handle cases when the term is changed without remouting
-    // the component
-    tabTerm(newVal, oldVal) {
-      this.fetchTextbooks(this.tabTerm);
-    },
+    if (this.loadData) this.fetchTextbooks(this.term);
   },
   methods: {
     ...mapActions('textbooks', {
