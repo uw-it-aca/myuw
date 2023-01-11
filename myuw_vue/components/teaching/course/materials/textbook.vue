@@ -44,7 +44,7 @@ export default {
       return this.statusCodeTextbooks(this.tabTerm) === 404;
     },
     noBook() {
-      if (isReady && this.bookData) {
+      if (this.isReady && this.bookData) {
         const book = this.bookData[this.section.sln];
         return !(book && book.length > 0);
       }
