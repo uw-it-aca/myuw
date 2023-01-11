@@ -1,5 +1,5 @@
 <template>
-  <span v-if="noDBookData || noBook">
+  <span v-if="displayAlert">
     New alert
   </span>
   <span v-else>
@@ -35,23 +35,33 @@ export default {
       },
     }),
     ...mapGetters('textbooks', {
-      isTextbookReady: 'isReadyTagged',
-      isTextbookErrored: 'isrroredTagged',
-      statusCodeTextbooks: 'statusCodeTagged',
+      isDataReady: 'isReadyTagged',
+      isErrored: 'isErroredTagged',
+      statusCode: 'statusCodeTagged',
     }),
     isReady() {
-      return this.loadData && this.isTextbookReady(this.term);
+      if (this.loadData) {
+        const ready = this.isDataReady(this.term);
+        return this.loadData && ready;
+      }
+      return false;
     },
-    noDBookData() {
-      return this.loadData && this.statusCodeTextbooks(this.term) === 404;
-    },
-    noBook() {
-      if (!this.loadData) return false;
+    hasBooks() {
       if (this.isReady && this.bookData) {
         const book = this.bookData[this.section.sln];
-        return !(book && book.length > 0);
+        return (book && book.length > 0);
       }
-      return true;
+      return false;
+    },
+    noBookData() {
+      if (this.loadData) {
+        const status = this.statusCode(this.term);
+        return status === 404;
+      }
+      return false;
+    },
+    displayAlert() {
+      return this.loadData && !this.hasBooks;
     },
     textbookUrl() {
       let url = "/textbooks/" + this.section.year + ',' + this.section.quarter;
@@ -63,7 +73,9 @@ export default {
     }
   },
   mounted() {
-    if (this.loadData) this.fetchTextbooks(this.term);
+    if (this.loadData) {
+      this.fetchTextbooks(this.term);
+    }
   },
   methods: {
     ...mapActions('textbooks', {
