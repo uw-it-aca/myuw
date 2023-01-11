@@ -24,7 +24,9 @@ export default {
   },
   computed: {
     term() {
-      return this.section.year + "," + this.section.quarter;
+      return (
+        this.section.year + "," + this.section.quarter + "," +
+        this.section.summer_term.toLowerCase());
     },
     loadData() {
       return this.section.futureTerm;
@@ -41,7 +43,7 @@ export default {
     }),
     isReady() {
       if (this.loadData) {
-        const ready = this.isDataReady(this.term);
+        const ready = this.isDataReady(this.term);  //why false!
         return this.loadData && ready;
       }
       return false;
