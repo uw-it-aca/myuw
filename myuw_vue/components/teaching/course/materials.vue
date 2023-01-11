@@ -8,7 +8,9 @@
         <li class="mb-1"><uw-teach-website :section="section" /></li>
         <li class="mb-1"><uw-teach-email-list :section="section" /></li>
         <li class="mb-1"><uw-teach-canvas :section="section" /></li>
-        <li class="mb-1"><uw-teach-textbook v-if="!section.mini_card" :section="section" /></li>
+        <li class="mb-1">
+          <uw-teach-textbook v-if="!section.mini_card" :section="section" :tab-term="tabTerm"/>
+        </li>
       </ul>
     </uw-card-property>
   </uw-card-property-group>
@@ -35,6 +37,10 @@ export default {
   props: {
     section: {
       type: Object,
+      required: true,
+    },
+    tabTerm: {
+      type: String,
       required: true,
     },
   },
