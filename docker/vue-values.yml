@@ -48,13 +48,15 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /certs/myuw.s.uw.edu-uwca.cert
-  keyPath: /certs/myuw.s.uw.edu-uwca.key
-  secretName: vue.my.uw.edu-uwca-certs
+  certPath: /certs/my.uw.edu-ic.cert
+  keyPath: /certs/my.uw.edu-ic.key
+  secretName: vue.my.uw.edu-ic-certs
+
 mountedSecrets:
   enabled: true
   mountPath: /ssl
   secretName: vue.my.uw.edu-openssl-conf
+
 cronjob:
   enabled: true
   jobs:
@@ -274,19 +276,13 @@ externalSecrets:
         - name: password
           property: sql_pass
 
-    - name: vue.my.uw.edu-uwca-certs
-      externalKey: my/prod/uwca-certs
-      data:
-        - name: myuw.s.uw.edu-uwca.key
-          property: key
-        - name: myuw.s.uw.edu-uwca.cert
-          property: cert
-
     - name: vue.my.uw.edu-ic-certs
-      externalKey: my/vue/ic-certs
+      externalKey: my/prod/ic-certs
       data:
-        - name: vue.my.uw.edu.cert
-          property: cert
+        - name: my.uw.edu-ic.key
+          property: my.uw.edu-ic.key
+        - name: my.uw.edu-ic.cert
+          property: my.uw.edu-ic.cert
 
     - name: vue.my.uw.edu-uw-idp-cert
       externalKey: idp-cert
@@ -360,7 +356,7 @@ environmentVariablesSecrets:
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: vue.my.uw.edu-ic-certs
-    secretKey: vue.my.uw.edu.cert
+    secretKey: my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert

@@ -70,9 +70,9 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
-  keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
-  secretName: test.my.uw.edu-uwca-certs
+  certPath: /certs/test.my.uw.edu-ic.cert
+  keyPath: /certs/test.my.uw.edu-ic.key
+  secretName: test.my.uw.edu-ic-certs
 mountedSecrets:
   enabled: true
   mountPath: /ssl
@@ -232,7 +232,7 @@ environmentVariables:
     value: EVAL
 
   - name: UPASS_ENV
-    value: PROD
+    value: EVAL
   - name: UPASS_POOL_SIZE
     value: "5"
   - name: UPASS_TIMEOUT
@@ -300,23 +300,21 @@ externalSecrets:
           property: sql_user
         - name: password
           property: sql_pass
-    - name: test.my.uw.edu-uwca-certs
-      externalKey: my/test/uwca-certs
-      data:
-        - name: myuw-dev.s.uw.edu-uwca.key
-          property: key
-        - name: myuw-dev.s.uw.edu-uwca.cert
-          property: cert
+
     - name: test.my.uw.edu-ic-certs
       externalKey: my/test/ic-certs
       data:
-        - name: test.my.uw.edu.cert
+        - name: test.my.uw.edu-ic.key
+          property: key
+        - name: test.my.uw.edu-ic.cert
           property: cert
+
     - name: test.my.uw.edu-uw-idp-cert
       externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
+
     - name: test.my.uw.edu-openssl-conf
       externalKey: openssl-conf
       data:
@@ -383,7 +381,7 @@ environmentVariablesSecrets:
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: test.my.uw.edu-ic-certs
-    secretKey: test.my.uw.edu.cert
+    secretKey: test.my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: test.my.uw.edu-uw-idp-cert
