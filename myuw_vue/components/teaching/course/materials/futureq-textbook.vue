@@ -15,7 +15,8 @@
       type="button"
       class="myuw-text-md"
     >
-      <span>Textbooks: ... How to fix this</span>
+      <span>Textbooks:
+        <font-awesome-icon :icon="faExclamationTriangle"/>... How to fix this</span>
     </span>
     <uw-collapse
       :id="`textbook-${section.anchor}-collapse-${$meta.uid}`"
@@ -23,7 +24,7 @@
       tabindex="0"
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
-        To best accommodates student
+        To best accommodates student ...
       </div>
     </uw-collapse>
   </span>
@@ -31,6 +32,9 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
+import {
+    faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import Collapse from '../../../_templates/collapse.vue';
 export default {
   components: {
