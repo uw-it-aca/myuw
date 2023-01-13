@@ -8,7 +8,7 @@
       Textbooks
     </a>
   </span>
-  <span v-else>
+  <span v-else-if="noDataError">
     <span
       v-uw-collapse="`textbook-${section.anchor}-collapse-${$meta.uid}`"
       v-no-track-collapse
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+// MUWM-5229
 import {mapGetters, mapState, mapActions} from 'vuex';
 import {
     faExclamationTriangle,
@@ -76,6 +77,10 @@ export default {
         return (book && book.length > 0);
       }
       return false;
+    },
+    noDataError() {
+      const statusCode = this.statusCode(this.term);
+      return statusCode === 200;
     },
     textbookUrl() {
       return ("/textbooks/" + this.term + '#' + 
