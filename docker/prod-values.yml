@@ -187,7 +187,7 @@ environmentVariables:
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_POOL_SIZE
-    value: "50"
+    value: "25"
   - name: BOOK_TIMEOUT
     value: "15"
 
@@ -245,7 +245,7 @@ environmentVariables:
   - name: IASYSTEM_UW_TIMEOUT
     value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
@@ -303,21 +303,21 @@ environmentVariables:
   - name: MYPLAN_TIMEOUT
     value: "10"
   - name: MYPLAN_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "25"
+    value: "20"
   - name: SDBMYUW_TIMEOUT
-    value: "10"
+    value: "15"
 
   - name: SWS_ENV
     value: PROD
