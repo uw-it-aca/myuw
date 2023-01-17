@@ -16,7 +16,9 @@
       class="myuw-text-md"
     >
       <span>Textbooks:
-        <font-awesome-icon :icon="faExclamationTriangle"/>Missing: Course textbook information in Time Schedule. How to fix this</span>
+        <font-awesome-icon :icon="faExclamationTriangle"/>Missing: Course textbook
+        information
+        in Time Schedule. How to fix this</span>
     </span>
     <uw-collapse
       :id="`textbook-${section.anchor}-collapse-${$meta.uid}`"
@@ -24,14 +26,17 @@
       tabindex="0"
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
-        To best accommodate students, it is important to provide a list of required reading materials for your course as early as 
-        possible. To do this, you should use the <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain">
+        To best accommodate students, it is important to provide a list of required reading
+        materials for your course as early as possible. To do this, you should use the
+        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain">
           UW Bookstore Course Materials Request Form </a>
-        to list ALL the required reading materials for your courses, regardless of whether you want UW Bookstore to supply the materials, 
-        or to clarify if no texts are required for your course.<br>
+        to list ALL the required reading materials for your courses, regardless of whether
+        you want UW Bookstore to supply the materials, or to clarify if no texts are required
+        for your course.<br>
 
-        <br>Please see the <a href="https://www.ubookstore.com/faculty">UW Bookstore’s Faculty Adoptions FAQ</a> for information about 
-        how to submit your requests to help clarify for students what your required reading materials are.
+        <br>Please see the <a href="https://www.ubookstore.com/faculty">UW Bookstore’s
+        Faculty Adoptions FAQ</a> for information about how to submit your requests to help
+        clarify for students what your required reading materials are.
       </div>
     </uw-collapse>
   </span>
@@ -61,11 +66,7 @@ export default {
   },
   computed: {
     term() {
-      let term = this.section.year + "," + this.section.quarter;
-      if (this.section.summer_term) {
-        term = term + ',' + this.section.summer_term.toLowerCase();
-      }
-      return term
+      return this.section.year + "," + this.section.quarter;
     },
     ...mapState('textbooks', {
       bookData(state) {
