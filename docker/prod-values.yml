@@ -187,7 +187,7 @@ environmentVariables:
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_POOL_SIZE
-    value: "20"
+    value: "50"
   - name: BOOK_TIMEOUT
     value: "15"
 
@@ -215,7 +215,7 @@ environmentVariables:
   - name: GRAD_ENV
     value: PROD
   - name: GRAD_POOL_SIZE
-    value: "10"
+    value: "15"
   - name: GRAD_TIMEOUT
     value: "10"
 
@@ -238,14 +238,14 @@ environmentVariables:
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
     value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
-    value: "15"
+    value: "30"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
@@ -285,7 +285,7 @@ environmentVariables:
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBRARIES_TIMEOUT
     value: "7"
 
@@ -303,19 +303,19 @@ environmentVariables:
   - name: MYPLAN_TIMEOUT
     value: "10"
   - name: MYPLAN_POOL_SIZE
-    value: "20"
+    value: "50"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "30"
+    value: "50"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "15"
+    value: "25"
   - name: SDBMYUW_TIMEOUT
     value: "10"
 
@@ -339,7 +339,7 @@ environmentVariables:
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: UWNETID_TIMEOUT
     value: "10"
 
