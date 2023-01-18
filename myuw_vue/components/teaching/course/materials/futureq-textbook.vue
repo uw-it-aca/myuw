@@ -1,5 +1,5 @@
 <template>
-  <span v-if="hasBooks">
+  <span v-if="hasBooks"> <!-- and does not have books -->
     <a
       v-if="section.sln"
       :href="textbookUrl"
@@ -9,16 +9,18 @@
     </a>
   </span>
   <span v-else-if="noDataError">
+    <span>
+      <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" /> Missing: Course textbook information in Time Schedule.
+    </span>
     <span
       v-uw-collapse="`textbook-${section.anchor}-collapse-${$meta.uid}`"
       v-no-track-collapse
       type="button"
       class="myuw-text-md"
     >
-      <span>Textbooks:
-        <font-awesome-icon :icon="faExclamationTriangle"/>Missing: Course textbook
-        information
-        in Time Schedule. How to fix this</span>
+      <span>
+        How to fix this
+      </span>
     </span>
     <uw-collapse
       :id="`textbook-${section.anchor}-collapse-${$meta.uid}`"
@@ -63,6 +65,11 @@ export default {
     return {
       collapseOpen: false,
     };
+  },
+  data () {
+    return {
+      faExclamationTriangle,
+    }
   },
   computed: {
     term() {
