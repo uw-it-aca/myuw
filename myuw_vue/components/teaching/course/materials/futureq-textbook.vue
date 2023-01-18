@@ -1,5 +1,5 @@
 <template>
-  <span v-if="hasBooks"> <!-- and does not have books -->
+  <span v-if="hasBooks">
     <a
       v-if="section.sln"
       :href="textbookUrl"
