@@ -2,15 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import sys
-import threading
-from django.db import connection
+from restclients_core.thread import Thread
 from userservice.user import UserServiceMiddleware
-
-
-class Thread(threading.Thread):
-    def close_db_connection(self):
-        if not connection.in_atomic_block:
-            connection.close()
 
 
 class PrefetchThread(Thread):
@@ -28,7 +21,7 @@ class PrefetchThread(Thread):
             # We need to be sure that any prefetch errors don't crash the page!
             pass
 
-        self.close_db_connection()
+        self.final()
 
 
 class ThreadWithResponse(Thread):
@@ -47,4 +40,4 @@ class ThreadWithResponse(Thread):
         except Exception as ex:
             self.exception = ex
 
-        self.close_db_connection()
+        self.final()
