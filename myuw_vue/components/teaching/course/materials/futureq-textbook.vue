@@ -10,22 +10,18 @@
   </span>
   <span v-else-if="noDataError">
     <span>
-      <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" /> Missing: Course textbook information in Time Schedule.
+      <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
+      Missing: Course textbook information in Time Schedule.
     </span>
-    <span
+    <a
       v-uw-collapse="`textbook-${section.anchor}-collapse-${$meta.uid}`"
       v-no-track-collapse
-      type="button"
-      class="myuw-text-md"
-    >
-      <span>
-        How to fix this
-      </span>
-    </span>
+      class="p-0 border-0 mb-2 bg-transparent"
+    >How to fix this</a>
     <uw-collapse
       :id="`textbook-${section.anchor}-collapse-${$meta.uid}`"
       v-model="collapseOpen"
-      tabindex="0"
+      class="myuw-fin-aid"
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
         To best accommodate students, it is important to provide a list of required reading
