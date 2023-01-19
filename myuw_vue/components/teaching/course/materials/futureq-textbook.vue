@@ -9,9 +9,10 @@
     </a>
   </span>
   <span v-else-if="noDataError">
+    Textbook: 
     <span>
       <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
-      Missing: Course textbook information in Time Schedule.
+      Missing course materials information in Time Schedule.
     </span>
     <a
       v-uw-collapse="`textbook-${section.anchor}-collapse-${$meta.uid}`"
@@ -25,7 +26,9 @@
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
         To best accommodate students, it is important to provide a list of required reading
-        materials for your course as early as possible. To do this, you should use the
+        materials for your course as early as possible.<br>
+        
+        <br>Use the
         <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain">
           UW Bookstore Course Materials Request Form </a>
         to list ALL the required reading materials for your courses, regardless of whether
