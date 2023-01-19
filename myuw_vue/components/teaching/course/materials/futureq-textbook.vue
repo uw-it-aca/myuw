@@ -60,10 +60,6 @@ export default {
   data: function() {
     return {
       collapseOpen: false,
-    };
-  },
-  data () {
-    return {
       faExclamationTriangle,
     }
   },
