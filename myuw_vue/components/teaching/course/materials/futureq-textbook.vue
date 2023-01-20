@@ -9,8 +9,8 @@
     </a>
   </span>
   <span v-else-if="dataError">
-    Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="" />
-      An error ...
+    Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="text-danger" />
+     <span class="text-danger">An error occurred and MyUW cannot load textbook information right now. Please try again later.</span>
   </span>
   <span v-else>
     Textbook: 
