@@ -8,7 +8,11 @@
       Textbooks
     </a>
   </span>
-  <span v-else-if="noDataError">
+  <span v-else-if="dataError">
+    Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="" />
+      An error ...
+  </span>
+  <span v-else>
     Textbook: 
     <span>
       <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
@@ -88,9 +92,9 @@ export default {
       }
       return false;
     },
-    noDataError() {
+    dataError() {
       const statusCode = this.statusCode(this.term);
-      return statusCode === 200;
+      return statusCode !== 200;
     },
     textbookUrl() {
       return ("/textbooks/" + this.term + '#' + 
