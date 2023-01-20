@@ -10,8 +10,8 @@
   </span>
   <span v-else-if="dataError">
     Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="text-danger" />
-     <span class="text-danger">An error occurred and MyUW cannot load textbook information right now. 
-      Please try again later.</span>
+     <span class="text-danger">An error occurred and MyUW cannot load textbook 
+      information right now. Please try again later.</span>
   </span>
   <span v-else>
     Textbook: 
@@ -30,8 +30,8 @@
       class="myuw-fin-aid"
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
-        To best accommodate students, it is important to provide a list of required reading
-        materials for your course as early as possible.<br>
+        To best accommodate students, it is important to provide a list of required 
+        reading materials for your course as early as possible.<br>
         
         <br>Use the
         <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain">
