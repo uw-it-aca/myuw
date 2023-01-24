@@ -9,7 +9,7 @@ from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now,
     get_default_date, get_default_datetime, get_comparison_date,
     get_current_quarter, get_next_quarter, is_cur_term_before,
-    get_previous_number_quarters, last_4w_inst,
+    get_previous_number_quarters, last_4w_till_2terms_after,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
     is_in_summer_a_term, is_in_summer_b_term,
@@ -95,17 +95,31 @@ class TestTerm(TestCase):
         self.assertTrue(is_cur_term_same(request, 2013, 'spring'))
         self.assertFalse(during_april_may(request))
 
+        request = get_request_with_date("2013-06-24")
+        self.assertFalse(is_cur_term_same(request, 2013, 'spring'))
+
         request = get_request_with_date("2013-01-25")
         self.assertTrue(is_cur_term_before(request, 2013, 'spring'))
         self.assertTrue(is_cur_term_before(request, 2013, 'summer'))
         self.assertTrue(is_cur_term_same(request, 2013, 'winter'))
         self.assertFalse(during_april_may(request))
 
-    def test_last_4w_inst(self):
+    def test_last_4w_till_2terms_after(self):
         request = get_request_with_date("2013-11-08")
-        self.assertFalse(last_4w_inst(request))
+        self.assertFalse(last_4w_till_2terms_after(
+            request, 2013, 'autumn'))
         request = get_request_with_date("2013-11-09")
-        self.assertTrue(last_4w_inst(request))
+        self.assertTrue(last_4w_till_2terms_after(
+            request, 2013, 'autumn'))
+        request = get_request_with_date("2014-01-09")
+        self.assertTrue(last_4w_till_2terms_after(
+            request, 2013, 'autumn'))
+        request = get_request_with_date("2014-04-09")
+        self.assertTrue(last_4w_till_2terms_after(
+            request, 2013, 'autumn'))
+        request = get_request_with_date("2014-07-09")
+        self.assertFalse(last_4w_till_2terms_after(
+            request, 2013, 'autumn'))
 
     def test_current_quarter(self):
         now_request = get_request()
