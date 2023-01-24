@@ -12,7 +12,7 @@ from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
     last_4w_till_2terms_after, during_april_may,
     is_cur_term_before, is_cur_term_same,
-    within_2terms_after_given_term )
+    within_2terms_after_given_term)
 
 
 def get_degrees(request):
