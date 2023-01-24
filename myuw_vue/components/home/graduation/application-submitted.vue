@@ -607,18 +607,16 @@ export default {
       return value;
     },
     hasActiveOrGrantedDegreeLast4weeksInst() {
-      // MUWM-5182  since the beginning of the last 4th week of instruction
+      // MUWM-5182 since the beginning of the last 4th week of instruction
       let value = (
         this.degrees &&
         (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
-        this.degrees[0].is_degree_earned_term &&
-        this.degrees[0].last_4w_inst
+        this.degrees[0].last_4w_till_2terms_after
       );
       if (!value && this.hasDoubleDegrees) {
         value = (
           (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
-          this.degrees[1].is_degree_earned_term &&
-          this.degrees[1].last_4w_inst
+          this.degrees[1].last_4w_till_2terms_after
         );
       }
       return value;
@@ -631,10 +629,15 @@ export default {
       return value;
     },
     hasGrantedDegree() {
-      // data available only within 2 terms after degree granted term
-      let value = this.degrees && this.isGranted(this.degrees[0]);
+      // MUWM-5195: it is within 2 terms after degree granted term
+      let value = (
+        this.degrees && this.isGranted(this.degrees[0]) &&
+        this.degrees[0].within_2terms_after_granted
+      );
       if (!value && this.hasDoubleDegrees) {
-        value = this.isGranted(this.degrees[1]);
+        value = (
+          this.isGranted(this.degrees[1]) &&
+          this.degrees[1].within_2terms_after_granted);
       }
       return value;
     },
