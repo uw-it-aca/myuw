@@ -11,10 +11,10 @@ from uw_sws.models import Term
 from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
-from uw_sws.term import get_term_by_date, get_specific_term, \
-    get_current_term, get_next_term, get_previous_term, \
-    get_term_before, get_term_after, get_next_autumn_term, \
-    get_next_non_summer_term
+from uw_sws.term import (
+    get_term_by_date, get_specific_term, get_current_term,
+    get_term_before, get_term_after, get_next_autumn_term,
+    get_next_non_summer_term)
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
 
@@ -139,15 +139,17 @@ def is_cur_term_same(request, year, quarter):
     return current_term == comparison_term
 
 
-def more_than_2terms_before(request, year, quarter):
+def within_2terms_after_given_term(request, year, quarter):
     """
     return True if year+quarter is more than 2 terms before current term
     """
-    comparison_term = get_specific_term(year, quarter)
     current_term = get_current_quarter(request)
-    prev_term = get_term_before(current_term)
-    pprev_term = get_term_before(prev_term)
-    return comparison_term < pprev_term
+    comparison_term = get_specific_term(year, quarter)
+    next_term = get_term_after(comparison_term)
+    nnext_term = get_term_after(next_term)
+    return (current_term == comparison_term or
+            current_term == next_term or
+            current_term == nnext_term)
 
 
 def last_4w_inst(request):

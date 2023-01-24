@@ -12,7 +12,8 @@ from myuw.dao.term import (
     get_previous_number_quarters, last_4w_inst,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
-    is_in_summer_a_term, is_in_summer_b_term, more_than_2terms_before,
+    is_in_summer_a_term, is_in_summer_b_term,
+    within_2terms_after_given_term,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
     get_eod_current_term, get_eod_current_term_last_instruction,
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
@@ -209,12 +210,22 @@ class TestTerm(TestCase):
         now_request = get_request_with_date("2014-01-01")
         self.assertTrue(is_past(quarter, now_request))
 
-    def test_more_than_2terms_before(self):
+    def test_within_2terms_after_given_term(self):
+        now_request = get_request_with_date("2013-03-21")
+        self.assertFalse(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
+        now_request = get_request_with_date("2013-05-01")
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
         now_request = get_request_with_date("2013-07-01")
-        self.assertFalse(more_than_2terms_before(now_request, 2013, "spring"))
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
         now_request = get_request_with_date("2013-10-01")
-        self.assertFalse(more_than_2terms_before(now_request, 2013, "spring"))
-        self.assertTrue(more_than_2terms_before(now_request, 2013, "winter"))
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
+        now_request = get_request_with_date("2014-01-01")
+        self.assertFalse(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
 
     def test_get_next_non_summer_quarter(self):
         now_request = get_request_with_date("2013-04-01")
