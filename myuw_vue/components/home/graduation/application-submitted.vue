@@ -293,6 +293,7 @@
       </div>
 
       <uw-feedback
+        v-if="hasActiveOrGrantedDegreeDuringEarnedTerm"
         :id="'ApprovedApplicationModal'"
         :prompt="'Is this graduation preparation information helpful?'"
         :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
@@ -534,6 +535,7 @@ export default {
         this.degreeStatus &&
         this.degreeStatus.degrees &&
         this.degreeStatus.degrees.length > 0 &&
+        (this.hasActiveApplication || this.hasGrantedDegree) &&
         Boolean(this.degreeCeremony) &&
         Boolean(this.degreeDiploma) &&
         Boolean(this.degreeSaveWork) &&
