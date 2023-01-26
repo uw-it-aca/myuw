@@ -152,20 +152,16 @@ def within_2terms_after_given_term(request, year, quarter):
             current_term == nnext_term)
 
 
-def last_4w_till_2terms_after(request, year, quarter):
+def last_4instruction_weeks(request, year, quarter):
     """
     return True if it is four weeks prior last day class of the term
     """
     current_term = get_current_quarter(request)
     comparison_term = get_specific_term(year, quarter)
-    next_term = get_term_after(comparison_term)
-    nnext_term = get_term_after(next_term)
     comparison_dt = get_comparison_datetime(request)
     starting_point = get_bod_days_before_last_instruction(request, 28)
     return (
-        current_term == comparison_term and comparison_dt > starting_point or
-        current_term == next_term or
-        current_term == nnext_term)
+        current_term == comparison_term and comparison_dt > starting_point)
 
 
 def get_term_from_quarter_string(quarter_string):

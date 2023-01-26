@@ -4,7 +4,7 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.degree import get_degrees, get_degrees_json
-from myuw.test import get_request_with_user
+from myuw.test import get_request_with_date, get_request_with_user
 
 DEGREE_DATA = {
     'degrees': [{
@@ -18,7 +18,7 @@ DEGREE_DATA = {
         'is_degree_earned_term': False,
         'before_degree_earned_term': True,
         'during_april_may': True,
-        "last_4w_till_2terms_after": False,
+        "last_4w_in_degree_term": False,
         'level': 1,
         'name_on_diploma': 'John Joseph Average',
         'quarter': 'summer',
@@ -57,7 +57,7 @@ class TestAdviserDao(TestCase):
         self.assertEquals(degree_data, DEGREE_DATA)
         self.maxDiff = None
         degree_data = get_degrees_json(
-            get_request_with_user('eight')
+            get_request_with_user('eight', get_request_with_date("2013-05-10"))
         )
         self.assertEquals(
             degree_data,
@@ -74,7 +74,6 @@ class TestAdviserDao(TestCase):
                         'is_degree_earned_term': True,
                         'is_granted': False,
                         'is_incomplete': True,
-                        'last_4w_till_2terms_after': False,
                         'level': 1,
                         'name_on_diploma': 'Eight Student',
                         'quarter': 'spring',
@@ -94,7 +93,7 @@ class TestAdviserDao(TestCase):
                         'is_degree_earned_term': True,
                         'is_granted': True,
                         'is_incomplete': False,
-                        'last_4w_till_2terms_after': False,
+                        'last_4w_in_degree_term': False,
                         'level': 1,
                         'name_on_diploma': 'Eight Student',
                         'quarter': 'spring',
@@ -107,6 +106,13 @@ class TestAdviserDao(TestCase):
                     ],
                 'error_code': None
             })
+
+        degree_data = get_degrees_json(
+            get_request_with_user(
+                'javg004', get_request_with_date("2013-05-11"))
+        )
+        self.assertTrue(degree_data['degrees'][0]['last_4w_in_degree_term'])
+        self.assertFalse(degree_data['degrees'][1]['last_4w_in_degree_term'])
 
         degree_data = get_degrees_json(
             get_request_with_user('jbothell')

@@ -10,7 +10,7 @@ from uw_sws.degree import get_degrees_by_regid
 from myuw.dao import is_using_file_dao, get_netid_of_current_user
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
-    last_4w_till_2terms_after, during_april_may,
+    last_4instruction_weeks, during_april_may,
     is_cur_term_before, is_cur_term_same,
     within_2terms_after_given_term)
 
@@ -46,9 +46,11 @@ def get_degrees_json(request):
             json_data["before_degree_earned_term"] = is_cur_term_before(
                 request, degree.year, degree.quarter)
             json_data["during_april_may"] = during_april_may(request)
-            json_data["last_4w_till_2terms_after"] = (
-                last_4w_till_2terms_after(request, degree.year, degree.quarter)
-            )  # MUWM-5195
+            if degree.has_applied() or degree.is_granted():
+                json_data["last_4w_in_degree_term"] = (
+                    last_4instruction_weeks(
+                        request, degree.year, degree.quarter)
+                )  # MUWM-5195
             if degree.is_granted():
                 json_data["within_2terms_after_granted"] = (
                     within_2terms_after_given_term(
