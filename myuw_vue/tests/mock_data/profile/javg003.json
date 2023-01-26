@@ -54,7 +54,7 @@
         "is_degree_earned_term": true,
         "before_degree_earned_term": false,
         "during_april_may": true,
-        "last_4w_inst": true
+        "last_4w_in_degree_term": true
       },
       {
         "campus": "SEATTLE",
@@ -74,7 +74,7 @@
         "is_degree_earned_term": true,
         "before_degree_earned_term": false,
         "during_april_may": true,
-        "last_4w_inst": true
+        "last_4w_in_degree_term": true
       }
     ],
     "error_code": null

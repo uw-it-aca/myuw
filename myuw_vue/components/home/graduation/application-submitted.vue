@@ -201,7 +201,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveOrGrantedDegreeLast4weeksInst">
+          <div v-if="hasActiveDegreeLast4weeksInst || hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">
               Your plans after graduation
             </h3>
@@ -608,18 +608,13 @@ export default {
       }
       return value;
     },
-    hasActiveOrGrantedDegreeLast4weeksInst() {
+    hasActiveDegreeLast4weeksInst() {
       // MUWM-5182 since the beginning of the last 4th week of instruction
       let value = (
-        this.degrees &&
-        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
-        this.degrees[0].last_4w_till_2terms_after
+        this.degrees && Boolean(this.degrees[0].last_4w_in_degree_term)
       );
       if (!value && this.hasDoubleDegrees) {
-        value = (
-          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
-          this.degrees[1].last_4w_till_2terms_after
-        );
+        value = Boolean(this.degrees[1].last_4w_in_degree_term);
       }
       return value;
     },
@@ -633,13 +628,9 @@ export default {
     hasGrantedDegree() {
       // MUWM-5195: it is within 2 terms after degree granted term
       let value = (
-        this.degrees && this.isGranted(this.degrees[0]) &&
-        this.degrees[0].within_2terms_after_granted
-      );
+        this.degrees && Boolean(this.degrees[0].within_2terms_after_granted));
       if (!value && this.hasDoubleDegrees) {
-        value = (
-          this.isGranted(this.degrees[1]) &&
-          this.degrees[1].within_2terms_after_granted);
+        value = Boolean(this.degrees[1].within_2terms_after_granted);
       }
       return value;
     },
