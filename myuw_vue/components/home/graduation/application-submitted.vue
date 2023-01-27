@@ -228,7 +228,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
+          <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm || hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">
               Verify that your information and data will not be lost
             </h3>
