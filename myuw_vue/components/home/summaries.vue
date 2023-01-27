@@ -31,7 +31,7 @@
             {{ termData.year }}
           </span>
         </span>
-        <span v-if="termData.isFinal"
+        <span v-if="termData.isFinals"
               class="text-dark d-block fw-bold"
         >Finals Week</span>
         <span

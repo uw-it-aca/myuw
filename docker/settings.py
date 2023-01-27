@@ -26,9 +26,10 @@ MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
 MIDDLEWARE += [
     'django.middleware.locale.LocaleMiddleware',
     'userservice.user.UserServiceMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
-    'rc_django.middleware.EnableServiceDegradationMiddleware'
+    'django_user_agents.middleware.UserAgentMiddleware'
 ]
+if os.getenv("ENV", "") != "prod":
+    MIDDLEWARE += ['rc_django.middleware.EnableServiceDegradationMiddleware']
 
 if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
     MOCK_SAML_ATTRIBUTES = {
