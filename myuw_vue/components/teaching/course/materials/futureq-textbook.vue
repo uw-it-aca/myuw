@@ -35,9 +35,9 @@
           UW Bookstore Course Materials Request Form </a>
           to provide a list of required reading materials for your course as early as possible.<br>
         
-          <br>To best accommodate students, list ALL the required reading materials for your courses, 
-          regardless of whether you want UW Bookstore to supply the materials, or to clarify if no 
-          texts are required for your course.
+          <br>To best accommodate students, list ALL the required reading materials for your 
+          courses, regardless of whether you want UW Bookstore to supply the materials, or to 
+          clarify if no texts are required for your course.
       </div>
     </uw-collapse>
   </span>
