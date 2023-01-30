@@ -17,7 +17,7 @@
     Textbook: 
     <span>
       <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
-      Missing course materials information in Time Schedule.
+      Clarify course materials requirements in Time Schedule.
     </span>
     <a
       v-uw-collapse="`textbook-${section.anchor}-collapse-${$meta.uid}`"
