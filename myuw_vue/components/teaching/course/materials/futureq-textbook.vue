@@ -30,19 +30,14 @@
       class="myuw-fin-aid"
     >
       <div class="p-3 mt-2 bg-light text-dark notice-body">
-        To best accommodate students, it is important to provide a list of required 
-        reading materials for your course as early as possible.<br>
-        
-        <br>Use the
-        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain">
+        Use the
+        <a href="https://www.ubookstore.com/faculty">
           UW Bookstore Course Materials Request Form </a>
-        to list ALL the required reading materials for your courses, regardless of whether
-        you want UW Bookstore to supply the materials, or to clarify if no texts are required
-        for your course.<br>
-
-        <br>Please see the <a href="https://www.ubookstore.com/faculty">UW Bookstore’s
-        Faculty Adoptions FAQ</a> for information about how to submit your requests to help
-        clarify for students what your required reading materials are.
+          to provide a list of required reading materials for your course as early as possible.<br>
+        
+          <br>To best accommodate students, list ALL the required reading materials for your courses, 
+          regardless of whether you want UW Bookstore to supply the materials, or to clarify if no 
+          texts are required for your course.
       </div>
     </uw-collapse>
   </span>
