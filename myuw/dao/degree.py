@@ -40,7 +40,6 @@ def get_degrees_json(request):
         degrees = []
         for degree in get_degrees(request):
             json_data = degree.json_data()
-            during_april_may, is_cur_term_before, is_cur_term_same
             json_data["is_degree_earned_term"] = is_cur_term_same(
                 request, degree.year, degree.quarter)
             json_data["before_degree_earned_term"] = is_cur_term_before(
