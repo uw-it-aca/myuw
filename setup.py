@@ -50,7 +50,7 @@ setup(
         'UW-RestClients-Sdbmyuw~=1.0',
         'UW-RestClients-Space~=1.1',
         'UW-RestClients-Trumba~=1.3',
-        'UW-RestClients-UPass~=1.0',
+        'UW-RestClients-UPass~=2.0',
         'UW-RestClients-UWNetID~=1.0',
         'django-userservice~=3.1',
         'UW-RestClients-Django-Utils~=2.3',
