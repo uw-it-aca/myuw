@@ -93,7 +93,6 @@ class TestAdviserDao(TestCase):
                         'is_degree_earned_term': True,
                         'is_granted': True,
                         'is_incomplete': False,
-                        'last_4w_in_degree_term': False,
                         'level': 1,
                         'name_on_diploma': 'Eight Student',
                         'quarter': 'spring',
@@ -109,10 +108,14 @@ class TestAdviserDao(TestCase):
 
         degree_data = get_degrees_json(
             get_request_with_user(
-                'javg004', get_request_with_date("2013-05-11"))
+                'javerage', get_request_with_date("2013-07-26"))
+        )
+        self.assertFalse(degree_data['degrees'][0]['last_4w_in_degree_term'])
+        degree_data = get_degrees_json(
+            get_request_with_user(
+                'javerage', get_request_with_date("2013-07-27"))
         )
         self.assertTrue(degree_data['degrees'][0]['last_4w_in_degree_term'])
-        self.assertFalse(degree_data['degrees'][1]['last_4w_in_degree_term'])
 
         degree_data = get_degrees_json(
             get_request_with_user('jbothell')
