@@ -609,7 +609,7 @@ export default {
       return value;
     },
     hasActiveDegreeLast4weeksInst() {
-      // MUWM-5182 since the beginning of the last 4th week of instruction
+      // MUWM-5182: whinin the last 4 instruction weeks of degree target term
       let value = (
         this.degrees && Boolean(this.degrees[0].last_4w_in_degree_term)
       );
@@ -626,7 +626,7 @@ export default {
       return value;
     },
     hasGrantedDegree() {
-      // MUWM-5195: it is within 2 terms after degree granted term
+      // MUWM-5195: from degree earned term till 2 terms after it
       let value = (
         this.degrees && Boolean(this.degrees[0].within_2terms_after_granted));
       if (!value && this.hasDoubleDegrees) {
