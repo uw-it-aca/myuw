@@ -46,7 +46,7 @@ def get_degrees_json(request):
                 request, degree.year, degree.quarter)
             json_data["during_april_may"] = during_april_may(request)
             if degree.has_applied():
-                json_data["last_4w_in_degree_term"] = (
+                json_data["last_4_inst_weeks_in_degree_term"] = (
                     last_4instruction_weeks(
                         request, degree.year, degree.quarter)
                 )  # MUWM-5195

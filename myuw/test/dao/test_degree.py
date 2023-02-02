@@ -18,7 +18,7 @@ DEGREE_DATA = {
         'is_degree_earned_term': False,
         'before_degree_earned_term': True,
         'during_april_may': True,
-        "last_4w_in_degree_term": False,
+        "last_4_inst_weeks_in_degree_term": False,
         'level': 1,
         'name_on_diploma': 'John Joseph Average',
         'quarter': 'summer',
@@ -110,12 +110,14 @@ class TestAdviserDao(TestCase):
             get_request_with_user(
                 'javerage', get_request_with_date("2013-07-26"))
         )
-        self.assertFalse(degree_data['degrees'][0]['last_4w_in_degree_term'])
+        self.assertFalse(
+            degree_data['degrees'][0]['last_4_inst_weeks_in_degree_term'])
         degree_data = get_degrees_json(
             get_request_with_user(
                 'javerage', get_request_with_date("2013-07-27"))
         )
-        self.assertTrue(degree_data['degrees'][0]['last_4w_in_degree_term'])
+        self.assertTrue(
+            degree_data['degrees'][0]['last_4_inst_weeks_in_degree_term'])
 
         degree_data = get_degrees_json(
             get_request_with_user('jbothell')

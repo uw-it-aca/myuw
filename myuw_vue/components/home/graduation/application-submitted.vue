@@ -611,10 +611,10 @@ export default {
     hasActiveDegreeLast4weeksInst() {
       // MUWM-5182: whinin the last 4 instruction weeks of degree target term
       let value = (
-        this.degrees && Boolean(this.degrees[0].last_4w_in_degree_term)
+        this.degrees && Boolean(this.degrees[0].last_4_inst_weeks_in_degree_term)
       );
       if (!value && this.hasDoubleDegrees) {
-        value = Boolean(this.degrees[1].last_4w_in_degree_term);
+        value = Boolean(this.degrees[1].last_4_inst_weeks_in_degree_term);
       }
       return value;
     },
