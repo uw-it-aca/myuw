@@ -9,7 +9,7 @@ const localVue = createLocalVue(Vuex);
 const mockUpass = {
   "active_employee_membership": true,
   "active_student_membership": true,
-  "in_summer": false
+  "in_summer": true
 };
 
 jest.mock('axios');
