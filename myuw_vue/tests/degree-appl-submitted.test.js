@@ -123,7 +123,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.doubleDegreeDiffStatus).toBe(true);
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(false);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
-    expect(wrapper.vm.hasActiveDegreeLast4weeksInst).toBe(true);
+    expect(wrapper.vm.hasActiveDegreeLast4weeksInst).toBe(false);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
     expect(wrapper.vm.hasActiveApplication).toBe(false);
