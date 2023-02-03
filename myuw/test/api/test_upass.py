@@ -14,17 +14,16 @@ from myuw.test.api import MyuwApiTest, require_url, fdao_upass_override,\
 class TestUpassApi(MyuwApiTest):
 
     def test_normal(self):
-        self.set_user('seagrad')
-        self.set_date("2013-04-1")
+        self.set_user('javerage')
         response = self.get_response_by_reverse('myuw_upass_api')
         self.assertEquals(response.status_code, 200)
-        self.assertIsNotNone(response.content)
-        data = json.loads(response.content)
-        self.assertIn('status_message', data)
-        self.assertTrue(data["is_current"])
-        self.assertTrue(data["is_student"])
-        self.assertTrue(data["display_activation"])
-        self.assertFalse(data["in_summer"])
+        self.assertEqual(
+            json.loads(response.content.decode('UTF-8')),
+            {
+                'active_employee_membership': True,
+                'active_student_membership': True,
+                'in_summer': False
+            })
 
     def test_error_543(self):
         self.set_user('jerror')
@@ -32,6 +31,6 @@ class TestUpassApi(MyuwApiTest):
         self.assertEquals(response.status_code, 543)
 
     def test_error_404(self):
-        self.set_user('none')
+        self.set_user('noexist')
         response = self.get_response_by_reverse('myuw_upass_api')
         self.assertEquals(response.status_code, 404)
