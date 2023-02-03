@@ -1,5 +1,5 @@
 {
   "uwId": "eight",
-  "activeEmployeeMembership": true,
-  "activeStudentMembership": true
+  "activeEmployeeMembership": false,
+  "activeStudentMembership": false
 }
