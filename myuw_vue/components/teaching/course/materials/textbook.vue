@@ -18,12 +18,10 @@ export default {
   },
   computed: {
     textbookUrl() {
-      let url = "/textbooks/" + this.section.year + ',' + this.section.quarter;
-      if (this.section.summer_term) {
-        url = url + ',' + this.section.summer_term.toLowerCase();
-      }
-      return url + '#' + this.section.curriculum_abbr +
-        this.section.course_number + this.section.section_id;
+      return (
+        "/textbooks/" + this.section.year + ',' + this.section.quarter + '#' +
+        this.section.curriculum_abbr + this.section.course_number + this.section.section_id
+      );
     }
   },
 };
