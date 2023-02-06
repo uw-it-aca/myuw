@@ -17,8 +17,9 @@
 
       <!-- Added Alert Banner [code start] Needs logic added -->
       <div class="alert alert-primary myuw-text-md text-center" role="alert">
-        Have you graduated? Don&apos;t worry, <strong>it may take several weeks to update your graduation status.</strong>
-        <br>Once your status updates, MyUW will reflect the change.
+        Have you graduated? Don&apos;t worry,
+        <strong>it may take several weeks to update your graduation status.</strong>
+        Once your status updates, MyUW will reflect the change.
       </div>
       <!-- Added Alert Banner [code end]-->
 
