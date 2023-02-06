@@ -8,7 +8,10 @@
         <li class="mb-1"><uw-teach-website :section="section" /></li>
         <li class="mb-1"><uw-teach-email-list :section="section" /></li>
         <li class="mb-1"><uw-teach-canvas :section="section" /></li>
-        <li class="mb-1"><uw-teach-textbook v-if="!section.mini_card" :section="section" /></li>
+        <li v-if="!section.mini_card" class="mb-1">
+          <uw-fut-qua-textbook v-if="section.futureTerm" :section="section" />
+          <uw-teach-textbook v-else :section="section" />
+        </li>
       </ul>
     </uw-card-property>
   </uw-card-property-group>
@@ -20,6 +23,7 @@ import Canvas from './materials/canvas.vue';
 import Website from './materials/website.vue';
 import EmailList from './materials/email-list.vue';
 import Textbook from './materials/textbook.vue';
+import FQTextbook from './materials/futureq-textbook.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CardProperty from '../../_templates/card-property.vue';
 
@@ -30,6 +34,7 @@ export default {
     'uw-teach-canvas': Canvas,
     'uw-teach-website': Website,
     'uw-teach-email-list': EmailList,
+    'uw-fut-qua-textbook': FQTextbook,
     'uw-teach-textbook': Textbook,
   },
   props: {
