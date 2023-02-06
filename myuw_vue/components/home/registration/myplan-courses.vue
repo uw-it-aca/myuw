@@ -10,15 +10,15 @@
       <ul class="list-unstyled m-0 myuw-text-sm" data-columns="3">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
           <div class="myuw-text-md m-0">
-              {{ course.curriculum_abbr }} {{ course.course_number }}
+            {{ course.curriculum_abbr }} {{ course.course_number }}
           </div>
           <div class="container">
             <div v-for="section in course.sections" :key="section.id" class="row">
               <div class="col-2 myuw-text-md">
-                  {{section.section_id}}
+                {{section.section_id}}
               </div>
               <div class="col">
-                  <uw-meeting-schedule :section="section" />
+                <uw-meeting-schedule :section="section" />
               </div>
             </div>
           </div>
@@ -104,7 +104,6 @@ export default {
     },
   },
   methods: {
-
   },
 };
 </script>
