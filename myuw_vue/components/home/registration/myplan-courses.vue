@@ -103,7 +103,5 @@ export default {
       return this.currentPlanData.courses;
     },
   },
-  methods: {
-  },
 };
 </script>
