@@ -51,10 +51,10 @@
         "is_granted": false,
         "is_admin_hold": false,
         "is_incomplete": false,
-        "is_degree_earned_term": false,
-        "before_degree_earned_term": true,
-        "during_april_may": true,
-        "last_4w_inst": true
+        "is_degree_earned_term": true,
+        "before_degree_earned_term": false,
+        "during_april_may": false,
+        "last_4_inst_weeks_in_degree_term": true
       }
     ],
     "error_code": null

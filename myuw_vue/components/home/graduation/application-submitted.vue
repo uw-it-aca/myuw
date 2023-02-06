@@ -201,7 +201,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveOrGrantedDegreeLast4weeksInst">
+          <div v-if="hasActiveDegreeLast4weeksInst || hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">
               Your plans after graduation
             </h3>
@@ -228,7 +228,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
+          <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm || hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">
               Verify that your information and data will not be lost
             </h3>
@@ -293,6 +293,7 @@
       </div>
 
       <uw-feedback
+        v-if="hasActiveOrGrantedDegreeDuringEarnedTerm"
         :id="'ApprovedApplicationModal'"
         :prompt="'Is this graduation preparation information helpful?'"
         :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
@@ -534,6 +535,7 @@ export default {
         this.degreeStatus &&
         this.degreeStatus.degrees &&
         this.degreeStatus.degrees.length > 0 &&
+        (this.hasActiveApplication || this.hasGrantedDegree) &&
         Boolean(this.degreeCeremony) &&
         Boolean(this.degreeDiploma) &&
         Boolean(this.degreeSaveWork) &&
@@ -606,20 +608,13 @@ export default {
       }
       return value;
     },
-    hasActiveOrGrantedDegreeLast4weeksInst() {
-      // MUWM-5182  since the beginning of the last 4th week of instruction
+    hasActiveDegreeLast4weeksInst() {
+      // MUWM-5182: whinin the last 4 instruction weeks of degree target term
       let value = (
-        this.degrees &&
-        (this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])) &&
-        this.degrees[0].is_degree_earned_term &&
-        this.degrees[0].last_4w_inst
+        this.degrees && Boolean(this.degrees[0].last_4_inst_weeks_in_degree_term)
       );
       if (!value && this.hasDoubleDegrees) {
-        value = (
-          (this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])) &&
-          this.degrees[1].is_degree_earned_term &&
-          this.degrees[1].last_4w_inst
-        );
+        value = Boolean(this.degrees[1].last_4_inst_weeks_in_degree_term);
       }
       return value;
     },
@@ -631,10 +626,11 @@ export default {
       return value;
     },
     hasGrantedDegree() {
-      // data available only within 2 terms after degree granted term
-      let value = this.degrees && this.isGranted(this.degrees[0]);
+      // MUWM-5195: from degree earned term till 2 terms after it
+      let value = (
+        this.degrees && Boolean(this.degrees[0].within_2terms_after_granted));
       if (!value && this.hasDoubleDegrees) {
-        value = this.isGranted(this.degrees[1]);
+        value = Boolean(this.degrees[1].within_2terms_after_granted);
       }
       return value;
     },
