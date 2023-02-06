@@ -12,11 +12,11 @@
       <uw-card-status>
         <template #status-label>Status</template>
         <template #status-value>
-          {{ isCurrent ? 'Current' : 'Not current' }}
+          {{ isActive ? 'Current' : 'Not current' }}
         </template>
       </uw-card-status>
 
-      <div v-if="isCurrent" id="upass-notices">
+      <div v-if="isActive" id="upass-notices">
         <a :href="getTroubleshootingUrl" class="myuw-text-md">
           U-PASS not working?
         </a>
@@ -100,10 +100,14 @@ export default {
       bothell: (state) => state.user.affiliations.bothell,
       seattle: (state) => state.user.affiliations.seattle,
       pce: (state) => state.user.affiliations.pce,
-      displayActivation: (state) => state.upass.value.display_activation,
-      inSummer: (state) => state.upass.value.in_summer,
-      isCurrent: (state) => state.upass.value.is_current,
+      status: (state) => state.upass.value,
     }),
+    isActive() {
+      return this.status.active_employee_membership || this.status.active_student_membership;
+    },
+    inSummer() {
+      return this.status.in_summer;
+    },
     showCard() {
       return this.employee || this.student;
     },

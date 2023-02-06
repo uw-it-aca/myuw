@@ -100,4 +100,5 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            "/restclients/view/upass/MyUWUpass/MyUWUpass.aspx%3Fid=bill")
+            "/restclients/view/upass/upassdataws/" +
+            "api/person/v1/membershipstatus/bill")
