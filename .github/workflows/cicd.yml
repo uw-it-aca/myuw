@@ -301,7 +301,7 @@ jobs:
       - name: 'Surface context from executed build step'
         id: context
         shell: bash
-        run: echo "::set-output name=context::$(< ${CONTEXT_FILENAME})"
+        run: echo "context=$(< ${CONTEXT_FILENAME})" >> $GITHUB_OUTPUT
 
   housekeeping:
     if: github.event_name == 'push' &&
