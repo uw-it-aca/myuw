@@ -20,7 +20,7 @@
       </uw-card-property-group>
       <uw-class-list :section="section" />
       <uw-stats :section="section" />
-      <uw-materials :section="section"/>
+      <uw-materials :section="section" />
       <uw-grading v-if="section.for_credit" :section="section"/>
       <uw-evaluation v-if="section.evaluation" :section="section" />
     </template>

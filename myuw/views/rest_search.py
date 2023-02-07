@@ -55,7 +55,7 @@ class MyUWRestSearchView(RestSearchView):
                 url = "student/v5/notice/{}.json".format(
                     request.POST["uwregid"])
         elif service == "upass":
-            url = "MyUWUpass/MyUWUpass.aspx?id={}".format(
+            url = "upassdataws/api/person/v1/membershipstatus/{}".format(
                 request.POST["uwnetid"])
         elif service == "uwnetid":
             if "password" == url:

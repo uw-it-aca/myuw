@@ -7,12 +7,9 @@ import UpassCard from '../components/accounts/upass.vue';
 
 const localVue = createLocalVue(Vuex);
 const mockUpass = {
-  "status_message": "b\"<p><span class='highlight'>Your U-PASS is not current.</span></p><p><a href='http://www.washington.edu/u-pass'>Learn more</a> about U-PASS program member benefits.</p>\\n\"",
-  "is_current": false,
-  "is_employee": false,
-  "is_student": true,
-  "in_summer": true,
-  "display_activation": true,
+  "active_employee_membership": true,
+  "active_student_membership": true,
+  "in_summer": true
 };
 
 jest.mock('axios');
@@ -48,12 +45,11 @@ describe('Upass Card', () => {
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
-    expect(wrapper.vm.isCurrent).toBeFalsy();
+    expect(wrapper.vm.isActive).toBeTruthy();
     expect(wrapper.vm.employee).toBeFalsy();
     expect(wrapper.vm.student).toBe(true);
     expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.inSummer).toBeTruthy();
-    expect(wrapper.vm.displayActivation).toBeTruthy();
     expect(wrapper.vm.getTroubleshootingUrl).toBe(
       "https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting");
     expect(wrapper.vm.getWhatIsUrl).toBe(

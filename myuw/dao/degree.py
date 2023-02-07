@@ -10,8 +10,9 @@ from uw_sws.degree import get_degrees_by_regid
 from myuw.dao import is_using_file_dao, get_netid_of_current_user
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
-    last_4w_inst, during_april_may, is_cur_term_before, is_cur_term_same)
-from myuw.dao.term import more_than_2terms_before as before_display_window
+    last_4instruction_weeks, during_april_may,
+    is_cur_term_before, is_cur_term_same,
+    within_2terms_after_given_term)
 
 
 def get_degrees(request):
@@ -38,18 +39,22 @@ def get_degrees_json(request):
     try:
         degrees = []
         for degree in get_degrees(request):
-            if degree.is_granted():
-                # Exclude if the degree earned term is older
-                if before_display_window(request, degree.year, degree.quarter):
-                    continue
             json_data = degree.json_data()
-            during_april_may, is_cur_term_before, is_cur_term_same
             json_data["is_degree_earned_term"] = is_cur_term_same(
                 request, degree.year, degree.quarter)
             json_data["before_degree_earned_term"] = is_cur_term_before(
                 request, degree.year, degree.quarter)
             json_data["during_april_may"] = during_april_may(request)
-            json_data["last_4w_inst"] = last_4w_inst(request)
+            if degree.has_applied():
+                json_data["last_4_inst_weeks_in_degree_term"] = (
+                    last_4instruction_weeks(
+                        request, degree.year, degree.quarter)
+                )  # MUWM-5195
+            if degree.is_granted():
+                json_data["within_2terms_after_granted"] = (
+                    within_2terms_after_given_term(
+                        request, degree.year, degree.quarter)
+                )  # MUWM-5195
             degrees.append(json_data)
         response['degrees'] = degrees
     except DataFailureException as ex:

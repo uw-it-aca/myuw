@@ -64,12 +64,12 @@
 
           <template v-else-if="meeting.start_time && meeting.end_time">
             <td :headers="`days-${meeting.id}`"
-              class="p-0 text-start text-nowrap pe-3"
+              class="p-0 text-start text-nowrap pe-3 w-25"
             >
               <uw-meeting-days :meeting="meeting" />
             </td>
             <td :headers="`time-${meeting.id}`"
-              class="p-0 text-start text-nowrap"
+              class="p-0 text-start text-nowrap w-50"
             >
               {{ meeting.start_time.format('h:mm') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
