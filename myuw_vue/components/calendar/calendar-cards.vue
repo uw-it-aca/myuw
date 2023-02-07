@@ -40,7 +40,6 @@
 <script>
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import Card from '../_templates/card.vue';
-import {mapState} from 'vuex';
 
 export default {
   components: {
@@ -58,29 +57,27 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      termData: (state) => state.termData,
-    }),
     splitByTerm() {
       let groupOrder = [];
       let eventsByGroupName = {};
 
       this.events.forEach((event) => {
+        if (!event.quarter || !event.year) {
+          return ; // MUWM-5230
+        }
         let groupName = `${event.year} ${event.quarter}`;
-        if (Boolean(event.myuw_categories.term_breaks)) {
+        if (event.myuw_categories.term_breaks) {
           groupName += ' break';
         }
 
         if (!(groupName in eventsByGroupName)) {
           eventsByGroupName[groupName] = [];
-          if (event.quarter && parseInt(event.year) >= this.termData.year) { // MUWM-5230
-            groupOrder.push({
-              name: groupName,
-              quarter: event.quarter,
-              year: event.year,
-              termBreak: Boolean(event.myuw_categories.term_breaks),
-            });
-          }
+          groupOrder.push({
+            name: groupName,
+            quarter: event.quarter,
+            year: event.year,
+            termBreak: Boolean(event.myuw_categories.term_breaks),
+          });
         }
 
         eventsByGroupName[groupName].push(event);
