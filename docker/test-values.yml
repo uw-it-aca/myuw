@@ -378,11 +378,11 @@ environmentVariablesSecrets:
     name: GOOGLE_SEARCH_KEY
     secretName: test.my.uw.edu-secrets
     secretKey: google-search-key
-  SAMLServiceProviderCert:
-    name: SP_CERT
-    secretName: test.my.uw.edu-ic-certs
-    secretKey: test.my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: test.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  SAMLServiceProviderCert:
+    name: SP_CERT
+    secretName: test.my.uw.edu-ic-certs
+    secretKey: test.my.uw.edu-ic.cert
