@@ -67,6 +67,8 @@ class AcademicEvents(ProtectedAPI):
         year, quarter = self.parse_year_quarter(event)
         # MUWM-4033 if event in current quarter use that year/qtr as backup
         if None in (year, quarter):
+            logger.error(
+                "Missing year/quarter in acad-cal event: {}".format(event))
             year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
         category = self.parse_category(event)
@@ -136,7 +138,8 @@ class AcademicEvents(ProtectedAPI):
         quarter = None
         # MUWM-5230
         custom_fields = event.get('X-TRUMBA-CUSTOMFIELD')
-        if custom_fields[0] == 'Important Dates/Deadlines':
+        if (custom_fields and len(custom_fields) >= 3 and
+                custom_fields[0] == 'Important Dates/Deadlines'):
             year = custom_fields[1]
             quarter = custom_fields[2]
         return year, quarter

@@ -28,15 +28,13 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(year, None)
         self.assertEquals(quarter, None)
 
-        event['description'] = '  Year: 2018 '
+        event['X-TRUMBA-CUSTOMFIELD'] = [
+            'Important Dates/Deadlines',
+            '2013',
+            'Spring']
         year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, None)
-
-        event['description'] = '  Year: 2018\nQuarter: Winter\nMore Content'
-        year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, 'Winter')
+        self.assertEquals(year, '2013')
+        self.assertEquals(quarter, 'Spring')
 
     def test_categorize_event(self):
         event = Event()
