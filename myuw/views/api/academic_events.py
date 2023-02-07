@@ -65,11 +65,9 @@ class AcademicEvents(ProtectedAPI):
 
     def json_for_event(self, event, request):
         year, quarter = self.parse_year_quarter(event)
-        # MUWM-4033 if event in current quarter use that year/qtr as backup
         if None in (year, quarter):
             logger.error(
                 "Missing year/quarter in acad-cal event: {}".format(event))
-            year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
         category = self.parse_category(event)
         categories = self.parse_myuw_categories(event)
