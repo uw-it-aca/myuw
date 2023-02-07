@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-for="(eventTerm, i) in splitByTerm(events)">
+    <template v-for="(eventTerm, i) in splitByTerm">
       <uw-card v-if="!eventTerm.termBreak" :key="i" loaded>
         <template #card-heading>
           <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -40,6 +40,7 @@
 <script>
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import Card from '../_templates/card.vue';
+import {mapState} from 'vuex';
 
 export default {
   components: {
@@ -56,23 +57,30 @@ export default {
       faCircle,
     };
   },
-  methods: {
-    splitByTerm(events) {
+  computed: {
+    ...mapState({
+      termData: (state) => state.termData,
+    }),
+    splitByTerm() {
       let groupOrder = [];
       let eventsByGroupName = {};
 
-      events.forEach((event) => {
+      this.events.forEach((event) => {
         let groupName = `${event.year} ${event.quarter}`;
-        if (event.myuw_categories.term_breaks) groupName += ' break';
+        if (Boolean(event.myuw_categories.term_breaks)) {
+          groupName += ' break';
+        }
 
         if (!(groupName in eventsByGroupName)) {
           eventsByGroupName[groupName] = [];
-          groupOrder.push({
-            name: groupName,
-            quarter: event.quarter,
-            year: event.year,
-            termBreak: event.myuw_categories.term_breaks,
-          });
+          if (event.quarter && parseInt(event.year) >= this.termData.year) { // MUWM-5230
+            groupOrder.push({
+              name: groupName,
+              quarter: event.quarter,
+              year: event.year,
+              termBreak: Boolean(event.myuw_categories.term_breaks),
+            });
+          }
         }
 
         eventsByGroupName[groupName].push(event);
