@@ -132,26 +132,13 @@ class AcademicEvents(ProtectedAPI):
         return self.get_end_date(event) - timedelta(days=1)
 
     def parse_year_quarter(self, event):
-        desc = event.get('description')
-
         year = None
         quarter = None
-        if not desc:
-            return year, quarter
-
-        matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
-        if matches:
-            year = matches.group(1)
-            quarter = matches.group(2)
-
-        else:
-            matches = re.match(r".*Year: (\d{4}).*", desc)
-            if matches:
-                year = matches.group(1)
-
-        override = event.get('override_quarter')
-        if override:
-            quarter = override
+        # MUWM-5230
+        custom_fields = event.get('X-TRUMBA-CUSTOMFIELD')
+        if custom_fields[0] == 'Important Dates/Deadlines':
+            year = custom_fields[1]
+            quarter = custom_fields[2]
         return year, quarter
 
     def format_datetime(self, dt):
