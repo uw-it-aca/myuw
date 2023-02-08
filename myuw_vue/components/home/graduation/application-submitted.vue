@@ -14,15 +14,12 @@
       </h2>
     </template>
     <template #card-body>
-
       <!-- Added Alert Banner [code start] Needs logic added -->
       <div class="alert alert-primary myuw-text-md text-center" role="alert">
-        Have you graduated? Don&apos;t worry,
-        <strong>it may take several weeks to update your graduation status.</strong>
-        Once your status updates, MyUW will reflect the change.
+        Did you graduate last quarter? Don&apos;t worry,
+        <strong>it may take several weeks for your degree to be officially granted.</strong>
+        Once your graduation status updates, MyUW will reflect the change.
       </div>
-      <!-- Added Alert Banner [code end]-->
-
       <div class="row gx-md-4">
         <div v-if="hasActiveApplication" class="col-12 mb-xl-0">
           <p class="myuw-text-md">
