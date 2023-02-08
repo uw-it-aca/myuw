@@ -1,7 +1,8 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import timedelta, date, datetime
+from datetime import timedelta, datetime
+import icalendar
 import re
 import json
 import logging
@@ -82,7 +83,7 @@ class AcademicEvents(ProtectedAPI):
             "end": end,
             "year": year,
             "quarter": quarter,
-            "category": category.to_ical(),
+            "category": category,
             "myuw_categories": categories,
             "event_url": event_url,
             "is_all_day": is_all_day,
@@ -109,7 +110,10 @@ class AcademicEvents(ProtectedAPI):
         return False
 
     def parse_category(self, event):
-        return event.get('categories')
+        value = event.get("categories")
+        return (value.to_ical().decode()
+                if value and type(value) == icalendar.prop.vCategory
+                else value)
 
     def parse_event_url(self, event):
         uid = event.get('uid')
@@ -161,37 +165,42 @@ class AcademicEvents(ProtectedAPI):
 
             # Breaks are clustered around winter and summer terms.
             # That's not convenient for us, so put them on the term we want!
-            if 'term_breaks' in categories:
-                summary = event.get('summary')
-                matches = re.match(r'.*?([a-zA-Z]+) break.*', summary,
-                                   flags=re.IGNORECASE)
-                quarter = matches.group(1)
-                event.add("override_quarter", quarter)
+            # if categories['term_breaks']:
+            #    summary = event.get('summary')
+            #    matches = re.match(r'.*break - ([a-zA-Z]+).*', summary,
+            #                       flags=re.IGNORECASE)
+            #    quarter = matches.group(1)
+            #    event.add("override_quarter", quarter)
 
         return events
 
     def get_event_categories(self, event):
-        categories = {'all': True}
+        categories = {
+            'breaks': False,
+            'classes': False,
+            'grade': False,
+            'registration': False,
+            'term_breaks': False
+        }
 
-        calendar_name = event.get("calendar_name")
+        cate_value = self.parse_category(event)
+        if cate_value:
+            if "Grade" in cate_value:
+                categories["grade"] = True
 
-        if "sea_acad-grade" == calendar_name:
-            categories["grade"] = True
+            if "Registration" in cate_value:
+                categories["registration"] = True
 
-        if "sea_acad-regi" == calendar_name:
-            categories["registration"] = True
-
-        if "sea_acad-holidays" == calendar_name:
-            categories["breaks"] = True
-
-        if "sea_acad-inst" == calendar_name:
-            categories["classes"] = True
-
-            summary = event.get('summary')
-            if summary and re.match(r'.*break.*', summary,
-                                    flags=re.IGNORECASE):
+            if "Holidays" in cate_value:
                 categories["breaks"] = True
-                categories["term_breaks"] = True
+
+            if "Instruction" in cate_value:
+                categories["classes"] = True
+
+                summary = event.get('summary')
+                if re.match(r'.* Break.*', summary, flags=re.IGNORECASE):
+                    categories["breaks"] = True
+                    categories["term_breaks"] = True
 
         return categories
 
