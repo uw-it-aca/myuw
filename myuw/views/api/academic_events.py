@@ -17,6 +17,7 @@ from uw_sws.term import get_term_after
 
 CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
+QUARTERS = {'Spring', 'Summer', 'Autumn', 'Winter'}
 
 
 class AcademicEvents(ProtectedAPI):
@@ -136,10 +137,14 @@ class AcademicEvents(ProtectedAPI):
         quarter = None
         # MUWM-5230
         custom_fields = event.get('X-TRUMBA-CUSTOMFIELD')
-        if (custom_fields and len(custom_fields) >= 3 and
-                custom_fields[0] == 'Important Dates/Deadlines'):
-            year = custom_fields[1]
-            quarter = custom_fields[2]
+        for value in custom_fields:
+            if value in QUARTERS:
+                quarter = value
+                break
+        for value in custom_fields:
+            if value.isnumeric():
+                year = value
+                break
         return year, quarter
 
     def format_datetime(self, dt):
