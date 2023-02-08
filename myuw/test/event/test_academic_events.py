@@ -24,6 +24,9 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(start, "2014-12-05")
         self.assertEquals(end, "2014-12-05")
 
+        event['X-TRUMBA-CUSTOMFIELD'] = [
+            'Important Dates/Deadlines',
+            'xxx xx xx']
         year, quarter = obj.parse_year_quarter(event)
         self.assertEquals(year, None)
         self.assertEquals(quarter, None)

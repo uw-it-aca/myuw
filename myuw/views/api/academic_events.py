@@ -137,14 +137,15 @@ class AcademicEvents(ProtectedAPI):
         quarter = None
         # MUWM-5230
         custom_fields = event.get('X-TRUMBA-CUSTOMFIELD')
-        for value in custom_fields:
-            if value in QUARTERS:
-                quarter = value
-                break
-        for value in custom_fields:
-            if value.isnumeric():
-                year = value
-                break
+        if custom_fields:
+            for value in custom_fields:
+                if value in QUARTERS:
+                    quarter = value
+                    break
+            for value in custom_fields:
+                if value.isnumeric():
+                    year = value
+                    break
         return year, quarter
 
     def format_datetime(self, dt):
