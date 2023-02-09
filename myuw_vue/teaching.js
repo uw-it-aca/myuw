@@ -11,10 +11,12 @@ import TeachingResources from './components/teaching/teaching-resources.vue';
 import classlist from './vuex/store/classlist';
 import emaillist from './vuex/store/emaillist';
 import instSchedule from './vuex/store/schedule/instructor';
+import textbooks from './vuex/store/textbooks';
 
 vueConf.store.registerModule('classlist', classlist);
 vueConf.store.registerModule('emaillist', emaillist);
 vueConf.store.registerModule('inst_schedule', instSchedule);
+vueConf.store.registerModule('textbooks', textbooks);
 
 vueConf.store.commit('addVarToState', {
   name: 'page',
