@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-for="(eventTerm, i) in splitByTerm(events)">
+    <template v-for="(eventTerm, i) in splitByTerm">
       <uw-card v-if="!eventTerm.termBreak" :key="i" loaded>
         <template #card-heading>
           <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -56,14 +56,19 @@ export default {
       faCircle,
     };
   },
-  methods: {
-    splitByTerm(events) {
+  computed: {
+    splitByTerm() {
       let groupOrder = [];
       let eventsByGroupName = {};
 
-      events.forEach((event) => {
+      this.events.forEach((event) => {
+        if (!event.quarter || !event.year) {
+          return;  // MUWM-5230
+        }
         let groupName = `${event.year} ${event.quarter}`;
-        if (event.myuw_categories.term_breaks) groupName += ' break';
+        if (event.myuw_categories.term_breaks) {
+          groupName += ' break';
+        }
 
         if (!(groupName in eventsByGroupName)) {
           eventsByGroupName[groupName] = [];

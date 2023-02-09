@@ -33,6 +33,14 @@ class TestCalendarAPI(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(len(data), 28)
 
+    def test_MUWM_5230(self):
+        self.set_user('javerage')
+        response = self.get_cal()
+        data = json.loads(response.content)
+        for event in data:
+            self.assertIsNotNone(event.get("quarter"))
+            self.assertIsNotNone(event.get("year"))
+
     def test_muwm_2489(self):
         self.set_user('javerage')
         self.set_date('2013-05-30')
@@ -95,4 +103,4 @@ class TestCalendarAPI(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(len(data), 1)
         self.assertEquals(data[0]["summary"],
-                          "*Autumn break")
+                          "Quarter Break - Autumn")

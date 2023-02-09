@@ -63,7 +63,7 @@ export default {
       return this.isReadyTagged(this.urlExtra);
     },
     allEvents() {
-      return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.all);
+      return this.eventsByTerms[this.urlExtra];
     },
     breakEvents() {
       return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.breaks);
