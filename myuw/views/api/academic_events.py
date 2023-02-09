@@ -18,7 +18,15 @@ from uw_sws.term import get_term_after
 
 CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
-QUARTERS = {'Spring', 'Summer', 'Autumn', 'Winter'}
+QUARTERS = ['Winter', 'Spring', 'Summer', 'Autumn']
+
+
+def get_term_before(quarter, year):
+    prev_year = year
+    prev_quarter = QUARTERS[QUARTERS.index(quarter) - 1]
+    if prev_quarter == "Autumn":
+        prev_year -= 1
+    return prev_quarter, prev_year
 
 
 class AcademicEvents(ProtectedAPI):
@@ -59,35 +67,34 @@ class AcademicEvents(ProtectedAPI):
                 raw_events = self.filter_too_future_events(request, raw_events)
 
             for event in raw_events:
-                events.append(self.json_for_event(event, request))
+                events.append(self.json_for_event(event))
             log_api_call(timer, request, "Get AcademicEvents")
             return self.json_response(events)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
-    def json_for_event(self, event, request):
+    def json_for_event(self, event):
         year, quarter = self.parse_year_quarter(event)
-        if None in (year, quarter):
-            logger.error(
-                "Missing year/quarter in acad-cal event: {}".format(event))
         start, end = self.parse_dates(event)
-        category = self.parse_category(event)
-        categories = self.parse_myuw_categories(event)
-        event_url = self.parse_event_url(event)
-
-        is_all_day = self.parse_event_is_all_day(event)
-
-        return {
+        json_data = {
             "summary": event.get('summary'),
             "start": start,
             "end": end,
-            "year": year,
+            "year": int(year),
             "quarter": quarter,
-            "category": category,
-            "myuw_categories": categories,
-            "event_url": event_url,
-            "is_all_day": is_all_day,
+            "category": self.parse_category(event),
+            "myuw_categories": self.parse_myuw_categories(event),
+            "event_url": self.parse_event_url(event),
+            "is_all_day": self.parse_event_is_all_day(event),
         }
+        if (json_data['myuw_categories']['term_breaks'] and
+                year and quarter):
+            pquarter, pyear = get_term_before(quarter, int(year))
+            json_data['quarter'] = pquarter
+            json_data['year'] = pyear
+            # so it is displayed before the quarter
+
+        return json_data
 
     def _get_year_qtr_from_cur_term(self, event, request):
         current = get_current_quarter(request)
@@ -150,6 +157,9 @@ class AcademicEvents(ProtectedAPI):
                 if value.isnumeric():
                     year = value
                     break
+        if None in (year, quarter):
+            logger.error(
+                "Missing year/quarter in acad-cal event: {}".format(event))
         return year, quarter
 
     def format_datetime(self, dt):
@@ -162,16 +172,6 @@ class AcademicEvents(ProtectedAPI):
         for event in events:
             categories = json.dumps(self.get_event_categories(event))
             event.add("myuw_categories", categories)
-
-            # Breaks are clustered around winter and summer terms.
-            # That's not convenient for us, so put them on the term we want!
-            # if categories['term_breaks']:
-            #    summary = event.get('summary')
-            #    matches = re.match(r'.*break - ([a-zA-Z]+).*', summary,
-            #                       flags=re.IGNORECASE)
-            #    quarter = matches.group(1)
-            #    event.add("override_quarter", quarter)
-
         return events
 
     def get_event_categories(self, event):
