@@ -63,7 +63,7 @@ export default {
 
       this.events.forEach((event) => {
         if (!event.quarter || !event.year) {
-          return ; // MUWM-5230
+          return;  // MUWM-5230
         }
         let groupName = `${event.year} ${event.quarter}`;
         if (event.myuw_categories.term_breaks) {
@@ -76,7 +76,7 @@ export default {
             name: groupName,
             quarter: event.quarter,
             year: event.year,
-            termBreak: Boolean(event.myuw_categories.term_breaks),
+            termBreak: event.myuw_categories.term_breaks,
           });
         }
 
