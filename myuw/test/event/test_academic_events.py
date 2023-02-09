@@ -2,17 +2,34 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.views.api.academic_events import AcademicEvents
-from icalendar import Calendar, Event
-from datetime import datetime, date
-from myuw.test import get_request_with_date
+import json
+from myuw.views.api.academic_events import AcademicEvents, get_term_before
+from icalendar import Event
+from datetime import date
+from myuw.test import get_request_with_date, get_request_with_user
 
 
 class TestAcademicEvents(TestCase):
+
+    def test_get_term_before(self):
+        quarter, year = get_term_before('Winter', 2013)
+        self.assertEquals(quarter, 'Autumn')
+        self.assertEquals(year, 2012)
+
+        quarter, year = get_term_before('Summer', 2013)
+        self.assertEquals(quarter, 'Spring')
+        self.assertEquals(year, 2013)
+
+    def test_get_events(self):
+        reps = AcademicEvents().get(
+            get_request_with_user(
+                'javerage',
+                get_request_with_date("2013-04-15")))
+        events = json.loads(reps.content)
+        self.assertEquals(len(events), 29)
+
     def test_parsers(self):
         obj = AcademicEvents()
-
-        cal = Calendar()
         event = Event()
 
         event.add('dtstart', date(2014, 12, 5))
@@ -24,103 +41,107 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(start, "2014-12-05")
         self.assertEquals(end, "2014-12-05")
 
+        event['X-TRUMBA-CUSTOMFIELD'] = [
+            'Important Dates/Deadlines',
+            'xxx xx xx']
         year, quarter = obj.parse_year_quarter(event)
         self.assertEquals(year, None)
         self.assertEquals(quarter, None)
 
-        event['description'] = '  Year: 2018 '
+        event['X-TRUMBA-CUSTOMFIELD'] = [
+            'Important Dates/Deadlines',
+            '2013',
+            'Spring']
         year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, None)
-
-        event['description'] = '  Year: 2018\nQuarter: Winter\nMore Content'
-        year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, 'Winter')
+        self.assertEquals(year, '2013')
+        self.assertEquals(quarter, 'Spring')
 
     def test_categorize_event(self):
         event = Event()
+        obj = AcademicEvents()
+        categories = obj.get_event_categories(event)
+        self.assertEquals(categories, {
+            'breaks': False,
+            'classes': False,
+            'grade': False,
+            'registration': False,
+            'term_breaks': False
+        })
 
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 1)
-        self.assertTrue(categories['all'])
+        event['categories'] = 'Holidays'
+        categories = obj.get_event_categories(event)
+        self.assertEquals(categories, {
+            'breaks': True,
+            'classes': False,
+            'grade': False,
+            'registration': False,
+            'term_breaks': False
+        })
 
-        event['calendar_name'] = 'sea_acad-holidays'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 2)
-        self.assertTrue(categories['all'])
-        self.assertTrue(categories['breaks'])
+        event['categories'] = 'Dates of Instruction'
+        event['summary'] = 'Quarter Break - Spring'
+        categories = obj.get_event_categories(event)
+        self.assertEquals(categories, {
+            'breaks': True,
+            'classes': True,
+            'grade': False,
+            'registration': False,
+            'term_breaks': True
+        })
 
-        event['calendar_name'] = 'sea_acad-inst'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 2)
-        self.assertTrue(categories['all'])
-        self.assertTrue(categories['classes'])
+        event['categories'] = 'Registration dates'
+        categories = obj.get_event_categories(event)
+        self.assertEquals(categories, {
+            'breaks': False,
+            'classes': False,
+            'grade': False,
+            'registration': True,
+            'term_breaks': False
+        })
 
-        event['calendar_name'] = 'sea_acad-regi'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 2)
-        self.assertTrue(categories['all'])
-        self.assertTrue(categories['registration'])
-
-        event['calendar_name'] = 'sea_acad-grade'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 2)
-        self.assertTrue(categories['all'])
-        self.assertTrue(categories['grade'])
-
-        event['calendar_name'] = 'sea_acad-rand'
-        event['summary'] = '* Winter break'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 1)
-        self.assertTrue(categories['all'])
-
-        event['calendar_name'] = 'sea_acad-inst'
-        categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 4)
-        self.assertTrue(categories['all'])
-        self.assertTrue(categories['classes'])
-        self.assertTrue(categories['breaks'])
-        self.assertTrue(categories['term_breaks'])
-
-        events = AcademicEvents().categorize_events([event])
-
-        categories = AcademicEvents().parse_myuw_categories(events[0])
-        self.assertEquals(len(categories.keys()), 4)
+        event['categories'] = 'Grade deadlines'
+        categories = obj.get_event_categories(event)
+        self.assertEquals(categories, {
+            'breaks': False,
+            'classes': False,
+            'grade': True,
+            'registration': False,
+            'term_breaks': False
+        })
 
     def test_filter_past(self):
         request = get_request_with_date("2011-01-01")
-
+        obj = AcademicEvents()
         past = Event()
         past.add('dtstart', date(2010, 1, 1))
         past.add('dtend', date(2010, 12, 31))
         past['summary'] = "Past Event"
 
-        events = AcademicEvents().filter_past_events(request, [past])
+        events = obj.filter_past_events(request, [past])
         self.assertEquals(len(events), 0)
 
         request = get_request_with_date("2010-12-30")
-        events = AcademicEvents().filter_past_events(request, [past])
+        events = obj.filter_past_events(request, [past])
         self.assertEquals(len(events), 1)
 
     def test_filter_future(self):
         request = get_request_with_date("2012-12-01")
-
+        obj = AcademicEvents()
         past = Event()
         past.add('dtstart', date(2014, 1, 1))
         past.add('dtend', date(2014, 12, 31))
         past['summary'] = "Future Event"
 
-        events = AcademicEvents().filter_too_future_events(request, [past])
+        events = obj.filter_too_future_events(request, [past])
         self.assertEquals(len(events), 0)
 
         request = get_request_with_date("2013-01-01")
-        events = AcademicEvents().filter_too_future_events(request, [past])
+        events = obj.filter_too_future_events(request, [past])
         self.assertEquals(len(events), 1)
 
     def test_current_filter(self):
         request = get_request_with_date("2012-12-10")
-
+        obj = AcademicEvents()
         e1 = Event()
         e1.add('dtstart', date(2012, 12, 1))
         e1.add('dtend', date(2014, 12, 31))
@@ -152,7 +173,7 @@ class TestAcademicEvents(TestCase):
         e6['summary'] = "Event 6"
 
         # Test that there are only events in the first 3 of the valid dates
-        events = AcademicEvents().filter_non_current(
+        events = obj.filter_non_current(
             request, [e1, e2, e3, e4, e5, e6])
 
         self.assertEquals(len(events), 5)
@@ -179,13 +200,13 @@ class TestAcademicEvents(TestCase):
 
         # Test that both events outside of 4 weeks,
         # but on the first day outside are included
-        events = AcademicEvents().filter_non_current(request, [e7, e8, e9])
+        events = obj.filter_non_current(request, [e7, e8, e9])
         self.assertEquals(len(events), 2)
         self.assertEquals(events[0]['summary'], 'Event 7')
         self.assertEquals(events[1]['summary'], 'Event 8')
 
         # Make sure that just one event inside of
         # the 4 week span blocks everything outside
-        events = AcademicEvents().filter_non_current(request, [e6, e7, e8, e9])
+        events = obj.filter_non_current(request, [e6, e7, e8, e9])
         self.assertEquals(len(events), 1)
         self.assertEquals(events[0]['summary'], 'Event 6')

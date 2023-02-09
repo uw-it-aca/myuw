@@ -1,7 +1,8 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import timedelta, date, datetime
+from datetime import timedelta, datetime
+import icalendar
 import re
 import json
 import logging
@@ -17,6 +18,15 @@ from uw_sws.term import get_term_after
 
 CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
+QUARTERS = ['Winter', 'Spring', 'Summer', 'Autumn']
+
+
+def get_term_before(quarter, year):
+    prev_year = year
+    prev_quarter = QUARTERS[QUARTERS.index(quarter) - 1]
+    if prev_quarter == "Autumn":
+        prev_year -= 1
+    return prev_quarter, prev_year
 
 
 class AcademicEvents(ProtectedAPI):
@@ -57,35 +67,34 @@ class AcademicEvents(ProtectedAPI):
                 raw_events = self.filter_too_future_events(request, raw_events)
 
             for event in raw_events:
-                events.append(self.json_for_event(event, request))
+                events.append(self.json_for_event(event))
             log_api_call(timer, request, "Get AcademicEvents")
             return self.json_response(events)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
-    def json_for_event(self, event, request):
+    def json_for_event(self, event):
         year, quarter = self.parse_year_quarter(event)
-        # MUWM-4033 if event in current quarter use that year/qtr as backup
-        if None in (year, quarter):
-            year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
-        category = self.parse_category(event)
-        categories = self.parse_myuw_categories(event)
-        event_url = self.parse_event_url(event)
-
-        is_all_day = self.parse_event_is_all_day(event)
-
-        return {
+        json_data = {
             "summary": event.get('summary'),
             "start": start,
             "end": end,
-            "year": year,
+            "year": int(year),
             "quarter": quarter,
-            "category": category.to_ical(),
-            "myuw_categories": categories,
-            "event_url": event_url,
-            "is_all_day": is_all_day,
+            "category": self.parse_category(event),
+            "myuw_categories": self.parse_myuw_categories(event),
+            "event_url": self.parse_event_url(event),
+            "is_all_day": self.parse_event_is_all_day(event),
         }
+        if (json_data['myuw_categories']['term_breaks'] and
+                year and quarter):
+            pquarter, pyear = get_term_before(quarter, int(year))
+            json_data['quarter'] = pquarter
+            json_data['year'] = pyear
+            # so it is displayed before the quarter
+
+        return json_data
 
     def _get_year_qtr_from_cur_term(self, event, request):
         current = get_current_quarter(request)
@@ -108,7 +117,10 @@ class AcademicEvents(ProtectedAPI):
         return False
 
     def parse_category(self, event):
-        return event.get('categories')
+        value = event.get("categories")
+        return (value.to_ical().decode()
+                if value and type(value) == icalendar.prop.vCategory
+                else value)
 
     def parse_event_url(self, event):
         uid = event.get('uid')
@@ -132,26 +144,22 @@ class AcademicEvents(ProtectedAPI):
         return self.get_end_date(event) - timedelta(days=1)
 
     def parse_year_quarter(self, event):
-        desc = event.get('description')
-
         year = None
         quarter = None
-        if not desc:
-            return year, quarter
-
-        matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
-        if matches:
-            year = matches.group(1)
-            quarter = matches.group(2)
-
-        else:
-            matches = re.match(r".*Year: (\d{4}).*", desc)
-            if matches:
-                year = matches.group(1)
-
-        override = event.get('override_quarter')
-        if override:
-            quarter = override
+        # MUWM-5230
+        custom_fields = event.get('X-TRUMBA-CUSTOMFIELD')
+        if custom_fields:
+            for value in custom_fields:
+                if value in QUARTERS:
+                    quarter = value
+                    break
+            for value in custom_fields:
+                if value.isnumeric():
+                    year = value
+                    break
+        if None in (year, quarter):
+            logger.error(
+                "Missing year/quarter in acad-cal event: {}".format(event))
         return year, quarter
 
     def format_datetime(self, dt):
@@ -164,40 +172,35 @@ class AcademicEvents(ProtectedAPI):
         for event in events:
             categories = json.dumps(self.get_event_categories(event))
             event.add("myuw_categories", categories)
-
-            # Breaks are clustered around winter and summer terms.
-            # That's not convenient for us, so put them on the term we want!
-            if 'term_breaks' in categories:
-                summary = event.get('summary')
-                matches = re.match(r'.*?([a-zA-Z]+) break.*', summary,
-                                   flags=re.IGNORECASE)
-                quarter = matches.group(1)
-                event.add("override_quarter", quarter)
-
         return events
 
     def get_event_categories(self, event):
-        categories = {'all': True}
+        categories = {
+            'breaks': False,
+            'classes': False,
+            'grade': False,
+            'registration': False,
+            'term_breaks': False
+        }
 
-        calendar_name = event.get("calendar_name")
+        cate_value = self.parse_category(event)
+        if cate_value:
+            if "Grade" in cate_value:
+                categories["grade"] = True
 
-        if "sea_acad-grade" == calendar_name:
-            categories["grade"] = True
+            if "Registration" in cate_value:
+                categories["registration"] = True
 
-        if "sea_acad-regi" == calendar_name:
-            categories["registration"] = True
-
-        if "sea_acad-holidays" == calendar_name:
-            categories["breaks"] = True
-
-        if "sea_acad-inst" == calendar_name:
-            categories["classes"] = True
-
-            summary = event.get('summary')
-            if summary and re.match(r'.*break.*', summary,
-                                    flags=re.IGNORECASE):
+            if "Holidays" in cate_value:
                 categories["breaks"] = True
-                categories["term_breaks"] = True
+
+            if "Instruction" in cate_value:
+                categories["classes"] = True
+
+                summary = event.get('summary')
+                if re.match(r'.* Break.*', summary, flags=re.IGNORECASE):
+                    categories["breaks"] = True
+                    categories["term_breaks"] = True
 
         return categories
 
