@@ -68,9 +68,9 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.hasDoubleDegrees).toBe(false);
     expect(wrapper.vm.doubleDegreeDiffStatus).toBe(false);
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(false);
-    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
-    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(false);
-    expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(true);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(false);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
+    expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
     expect(wrapper.vm.hasActiveApplication).toBe(true);
     expect(wrapper.vm.hasGrantedDegree).toBe(false);
     expect(wrapper.vm.seattle).toBeTruthy();
@@ -83,7 +83,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.degreeDiploma).toBeTruthy;
     expect(wrapper.vm.degreeSaveWork).toBeTruthy;
     expect(wrapper.vm.degreeEmailForwarding).toBeTruthy;
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(1);
+    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(4);
   });
   it('Verify double degrees diff terms', async () => {
     axios.get.mockImplementation((url) => {
@@ -100,7 +100,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(true);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
-    expect(wrapper.vm.hasActiveOrGrantedDegreeLast4weeksInst).toBe(true);
+    expect(wrapper.vm.hasActiveDegreeLast4weeksInst).toBe(true);
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplication).toBe(true);
     expect(wrapper.vm.hasGrantedDegree).toBe(false);
@@ -123,7 +123,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.doubleDegreeDiffStatus).toBe(true);
     expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(false);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
-    expect(wrapper.vm.hasActiveOrGrantedDegreeLast4weeksInst).toBe(true);
+    expect(wrapper.vm.hasActiveDegreeLast4weeksInst).toBe(false);
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
     expect(wrapper.vm.hasActiveApplication).toBe(false);
