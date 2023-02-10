@@ -248,7 +248,7 @@ jobs:
         shell: bash
         run: |
           gem install coveralls-lcov
-          python -m pip install --upgrade pip coverage coveralls==3.3.1
+          python -m pip install --upgrade pip coverage coveralls==2.2.0
           coverage combine
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
