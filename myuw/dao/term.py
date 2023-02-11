@@ -170,8 +170,6 @@ def after_last_final_exam_day(request, year, quarter):
         comparison_term.get_eod_last_final_exam() - timedelta(days=1))
     end_day = (comparison_term_last_final_day + timedelta(days=28))
     comparison_dt = get_comparison_datetime(request)
-    print("{} {} {}".format(comparison_dt,
-          comparison_term_last_final_day, end_day))
     return (
         comparison_dt >= comparison_term_last_final_day and
         comparison_dt <= end_day)
