@@ -8,6 +8,7 @@ from myuw.test import get_request_with_date, get_request_with_user
 
 DEGREE_DATA = {
     'degrees': [{
+        'after_last_final_exam_day': False,
         'campus': 'SEATTLE',
         'diploma_mail': 0,
         'diploma_mail_to_local_address': False,
@@ -54,6 +55,7 @@ class TestAdviserDao(TestCase):
         degree_data = get_degrees_json(
             get_request_with_user('javerage')
         )
+        self.maxDiff = None
         self.assertEquals(degree_data, DEGREE_DATA)
         self.maxDiff = None
         degree_data = get_degrees_json(
@@ -125,3 +127,20 @@ class TestAdviserDao(TestCase):
         self.assertEquals(
             degree_data,
             {'degrees': None, 'error_code': 404})
+
+        # MUWM-5232
+        degree_data = get_degrees_json(
+            get_request_with_user(
+                'javerage', get_request_with_date("2013-08-22")))
+        self.assertFalse(
+            degree_data['degrees'][0]['after_last_final_exam_day'])
+        degree_data=get_degrees_json(
+            get_request_with_user(
+                'javerage', get_request_with_date("2013-08-23")))
+        self.assertTrue(
+            degree_data['degrees'][0]['after_last_final_exam_day'])
+        degree_data=get_degrees_json(
+            get_request_with_user(
+                'javerage', get_request_with_date("2013-09-19")))
+        self.assertTrue(
+            degree_data['degrees'][0]['after_last_final_exam_day'])

@@ -14,6 +14,13 @@
       </h2>
     </template>
     <template #card-body>
+      <div v-if="showLastTermGradAlert"
+        class="alert alert-primary myuw-text-md text-center" role="alert"
+      >
+        Did you graduate last quarter? Don&apos;t worry,
+        <strong>it may take several weeks for your degree to be officially granted.</strong>
+        Once your graduation status updates, MyUW will reflect the change.
+      </div>
       <div class="row gx-md-4">
         <div v-if="hasActiveApplication" class="col-12 mb-xl-0">
           <p class="myuw-text-md">
@@ -622,6 +629,14 @@ export default {
       let value = this.degrees && this.isActive(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
         value = this.isActive(this.degrees[1]);
+      }
+      return value;
+    },
+    showLastTermGradAlert() {
+      // MUWM-5232: from the last final exam day until status is no longer 3-5
+      let value = this.degrees && Boolean(this.degrees[0].after_last_final_exam_day);
+      if (!value && this.hasDoubleDegrees) {
+        value = Boolean(this.degrees[1].after_last_final_exam_day);
       }
       return value;
     },

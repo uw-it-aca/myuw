@@ -164,6 +164,17 @@ def last_4instruction_weeks(request, year, quarter):
         current_term == comparison_term and comparison_dt > starting_point)
 
 
+def after_last_final_exam_day(request, year, quarter):
+    comparison_term = get_specific_term(year, quarter)
+    comparison_term_last_final_day = (
+        comparison_term.get_eod_last_final_exam() - timedelta(days=1))
+    end_day = (comparison_term_last_final_day + timedelta(days=28))
+    comparison_dt = get_comparison_datetime(request)
+    return (
+        comparison_dt >= comparison_term_last_final_day and
+        comparison_dt <= end_day)
+
+
 def get_term_from_quarter_string(quarter_string):
     """
     Return a uw_sws.models.Term object

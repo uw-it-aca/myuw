@@ -73,6 +73,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
     expect(wrapper.vm.hasActiveApplication).toBe(true);
     expect(wrapper.vm.hasGrantedDegree).toBe(false);
+    expect(wrapper.vm.showLastTermGradAlert).toBe(false);
     expect(wrapper.vm.seattle).toBeTruthy();
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
