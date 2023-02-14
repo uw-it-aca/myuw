@@ -12,7 +12,7 @@ from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
     last_4instruction_weeks, during_april_may,
     is_cur_term_before, is_cur_term_same,
-    within_2terms_after_given_term)
+    within_2terms_after_given_term, after_last_final_exam_day)
 
 
 def get_degrees(request):
@@ -50,6 +50,10 @@ def get_degrees_json(request):
                     last_4instruction_weeks(
                         request, degree.year, degree.quarter)
                 )  # MUWM-5195
+                json_data["after_last_final_exam_day"] = (
+                    after_last_final_exam_day(
+                        request, degree.year, degree.quarter)
+                )  # MUWM-5232
             if degree.is_granted():
                 json_data["within_2terms_after_granted"] = (
                     within_2terms_after_given_term(

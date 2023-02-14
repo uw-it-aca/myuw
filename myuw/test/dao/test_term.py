@@ -13,7 +13,7 @@ from myuw.dao.term import (
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
     is_in_summer_a_term, is_in_summer_b_term,
-    within_2terms_after_given_term,
+    within_2terms_after_given_term, after_last_final_exam_day,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
     get_eod_current_term, get_eod_current_term_last_instruction,
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
@@ -431,3 +431,13 @@ class TestTerm(TestCase):
         self.assertEquals(context['quarter'], 'spring')
         self.assertEquals(context['is_finals'], False)
         self.assertEquals(context['is_break'], True)
+
+    def test_after_last_final_exam_day(self):
+        request = get_request_with_date("2013-08-22")
+        self.assertFalse(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-08-23")
+        self.assertTrue(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-09-19")
+        self.assertTrue(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-09-20")
+        self.assertFalse(after_last_final_exam_day(request, 2013, 'summer'))
