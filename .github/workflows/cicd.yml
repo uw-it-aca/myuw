@@ -101,7 +101,7 @@ jobs:
         run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
 
       - name: Build App Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           target: app-container
           tags: ${{ needs.context.outputs.image_tag }}
@@ -112,7 +112,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Build Test Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           target: app-test-container
           tags: app-test-container
