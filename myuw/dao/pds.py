@@ -6,9 +6,9 @@ This module encapsulates the interactions with the uw_person_data_store
 """
 
 import logging
-from sqlalchemy import or_, and_
 from uw_person_client import UWPersonClient
-from sis_provisioner.exceptions import EmptyQueryException
+from myuw.logger.timer import Timer
+from myuw.logresp import log_msg
 
 
 logger = logging.getLogger(__name__)
@@ -19,6 +19,7 @@ class PdsClient(UWPersonClient):
     quarters_completed = {}
 
     def get_students(self):
+        timer = Timer()
         try:
             sqla_student = self.DB.session.query(self.DB.Student).filter(
                 self.DB.Student.enroll_status_code == '12'
@@ -43,8 +44,10 @@ class PdsClient(UWPersonClient):
                 }
         except Exception as err:
             logger.error(err)
+        log_msg(logger, timer, "get_students")
 
     def get_quarters_completed(self):
+        timer = Timer()
         try:
             sqla_student = self.DB.session.query(
                 self.DB.Transcript).join(self.DB.Student).join(
@@ -61,3 +64,4 @@ class PdsClient(UWPersonClient):
                 }
         except Exception as err:
             logger.error(err)
+        log_msg(logger, timer, "get_quarters_completed")
