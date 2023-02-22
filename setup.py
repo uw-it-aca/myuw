@@ -31,7 +31,7 @@ setup(
         'beautifulsoup4',
         'urllib3',
         'uw-memcached-clients~=1.0',
-        'UW-Django-SAML2~=1.5',
+        'UW-Django-SAML2~=1.7',
         'aws-message-client~=1.5',
         'UW-RestClients-Core~=1.4',
         'UW-RestClients-Bookstore~=1.1',
