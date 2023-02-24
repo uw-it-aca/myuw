@@ -11,7 +11,7 @@ import traceback
 from uw_person_client.clients.core_client import UWPersonClient
 from myuw.util.cache import MyUWMemcachedCache
 from myuw.logger.timer import Timer
-from myuw.logresp import log_msg, log_exception
+from myuw.logger.logresp import log_msg, log_exception
 
 
 logger = logging.getLogger(__name__)
