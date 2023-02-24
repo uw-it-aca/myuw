@@ -44,8 +44,26 @@ image:
 memcached:
   enabled: true
   replicaCount: 1
+  command:
+    - "memcached"
+    - "-m"
+    - "256"
+    - "-c"
+    - "16384"
+    - "-t"
+    - "8"
+    - "-o"
+    - "modern"
+    - "-v"
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/my.uw.edu-ic.cert
