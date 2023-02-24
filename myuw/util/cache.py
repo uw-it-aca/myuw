@@ -14,6 +14,9 @@ ONE_DAY = ONE_HOUR * 24
 
 class MyUWMemcachedCache(RestclientPymemcacheClient):
     def get_cache_expiration_time(self, service, url, status=None):
+        if "person_data_store" == service:
+            return ONE_DAY
+
         if "myplan_auth" == service:
             return FIFTEEN_MINS * 3
         if "myplan" == service:
