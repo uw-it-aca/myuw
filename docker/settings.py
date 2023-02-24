@@ -116,6 +116,13 @@ USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 PERSISTENT_MESSAGE_AUTH_MODULE = 'myuw.authorization.is_myuw_admin'
 
+AXDD_PERSON_CLIENT_ENV = os.getenv('AXDD_PERSON_CLIENT_ENV', 'localdev')
+UW_PERSON_DB_USERNAME = os.getenv('UW_PERSON_DB_USERNAME')
+UW_PERSON_DB_PASSWORD = os.getenv('UW_PERSON_DB_PASSWORD')
+UW_PERSON_DB_HOSTNAME = os.getenv('UW_PERSON_DB_HOSTNAME', 'localhost')
+UW_PERSON_DB_DATABASE = os.getenv('UW_PERSON_DB_DATABASE', 'uw-person')
+UW_PERSON_DB_PORT = os.getenv('UW_PERSON_DB_PORT', '5432')
+
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
 COMPRESS_OFFLINE_CONTEXT = {
