@@ -391,3 +391,7 @@ environmentVariablesSecrets:
     name: UW_PERSON_DB_USERNAME
     secretName: vue.my.uw.edu-shared-secrets
     secretKey: person-db-user
+  personDBPass:
+    name: UW_PERSON_DB_PASSWORD
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-pass
