@@ -59,7 +59,7 @@ memcached:
     type: RollingUpdate
   resources:
     limits:
-      cpu: 250m
+      cpu: 500m
       memory: 512Mi
     requests:
       cpu: 50m
@@ -314,6 +314,14 @@ externalSecrets:
         - name: openssl.cnf
           property: openssl.cnf
 
+    - name: vue.my.uw.edu-shared-secrets
+      externalKey: my/shared/secrets
+      data:
+        - name: person-db-user
+          property: person-db-user
+        - name: person-db-pass
+          property: person-db-pass
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -379,3 +387,7 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  personDBUser:
+    name: UW_PERSON_DB_USERNAME
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-user

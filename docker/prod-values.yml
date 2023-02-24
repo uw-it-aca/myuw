@@ -421,6 +421,14 @@ externalSecrets:
         - name: openssl.cnf
           property: openssl.cnf
 
+    - name: my.uw.edu-shared-secrets
+      externalKey: my/shared/secrets
+      data:
+        - name: person-db-user
+          property: person-db-user
+        - name: person-db-pass
+          property: person-db-pass
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -486,3 +494,7 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  personDBUser:
+    name: UW_PERSON_DB_USERNAME
+    secretName: my.uw.edu-shared-secrets
+    secretKey: person-db-user
