@@ -45,69 +45,67 @@ def set_cache_data(key, value, force_update=True):
         logger.error("memcached set: {}, key: {}".format(ex, key))
 
 
-class PdsClient(UWPersonClient):
+def cache_application_type_credits(students):
+    try:
+        timer = Timer()
+        for student in students:
+            set_cache_data(
+                get_cache_key(PDS_TYPE_STUD, student.system_key),
+                json.dumps(
+                    {
+                        "application_status_code":
+                            student.application_type_code,
+                        "total_deductible_credits":
+                            student.total_deductible_credits,
+                        "total_extension_credits":
+                            student.total_extension_credits,
+                        "total_grade_attempted":
+                            student.total_grade_attempted,
+                        "total_lower_div_transfer_credits":
+                            student.total_lower_div_transfer_credits,
+                        "total_upper_div_transfer_credits ":
+                            student.total_upper_div_transfer_credits,
+                        "total_non_graded_credits":
+                            student.total_non_graded_credits
+                    }
+                ))
+        log_msg(logger, timer, PDS_TYPE_STUD)
+    except Exception as err:
+        logger.error(err)
+        log_exception(logger, PDS_TYPE_STUD, traceback)
 
-    def get_application_type_credits(self):
-        try:
-            timer = Timer()
-            sqla_students = self.DB.session.query(self.DB.Student).filter(
-                self.DB.Student.enroll_status_code == '12'
-            )  # last enrolled (have registered)
 
-            for student in sqla_students.all():
-                set_cache_data(
-                    get_cache_key(PDS_TYPE_STUD, student.system_key),
-                    json.dumps(
-                        {
-                            "application_status_code":
-                                student.application_type_code,
-                            "total_deductible_credits":
-                                student.total_deductible_credits,
-                            "total_extension_credits":
-                                student.total_extension_credits,
-                            "total_grade_attempted":
-                                student.total_grade_attempted,
-                            "total_lower_div_transfer_credits":
-                                student.total_lower_div_transfer_credits,
-                            "total_upper_div_transfer_credits ":
-                                student.total_upper_div_transfer_credits,
-                            "total_non_graded_credits":
-                                student.total_non_graded_credits
-                        }
-                    ))
-            log_msg(logger, timer, PDS_TYPE_STUD)
-        except Exception as err:
-            logger.error(err)
-            log_exception(logger, PDS_TYPE_STUD, traceback)
+def cache_quarters_completed(students):
+    try:
+        timer = Timer()
+        for student in students:
+            quarters_completed = []
+            for transcript in student.transcript:
+                quarters_completed.append(
+                    json.dumps({
+                        "year": transcript.tran_term.year,
+                        "quarter": transcript.tran_term.quarter
+                    }))
+            set_cache_data(
+                get_cache_key(PDS_TYPE_QUAR, student.system_key),
+                json.dumps(quarters_completed))
 
-    def get_quarters_completed(self):
-        try:
-            timer = Timer()
-            sqla_students = self.DB.session.query(
-                self.DB.Transcript).join(self.DB.Student).join(
-                    self.DB.Term, self.DB.Transcript.tran_term).filter(
-                    self.DB.Transcript.enoll_status == '12'
-                )  # enrolled in the term
-
-            for student in sqla_students.all():
-                quarters_completed = []
-                for transcript in student.transcript:
-                    quarters_completed.append(
-                        json.dumps({
-                            "year": transcript.tran_term.year,
-                            "quarter": transcript.tran_term.quarter
-                        }))
-                set_cache_data(
-                    get_cache_key(PDS_TYPE_QUAR, student.system_key),
-                    json.dumps(quarters_completed))
-
-            log_msg(logger, timer, PDS_TYPE_QUAR)
-        except Exception as err:
-            logger.error(err)
-            log_exception(logger, PDS_TYPE_QUAR, traceback)
+        log_msg(logger, timer, PDS_TYPE_QUAR)
+    except Exception as err:
+        logger.error(err)
+        log_exception(logger, PDS_TYPE_QUAR, traceback)
 
 
 def load_cache():
-    pds_client = PdsClient()
-    pds_client.get_application_type_credits()
-    pds_client.get_quarters_completed()
+    students = UWPersonClient().get_registered_students(
+        include_employee=False,
+        include_student=True,
+        include_student_transcripts=True,
+        include_student_transfers=False,
+        include_student_sports=False,
+        include_student_advisers=False,
+        include_student_majors=False,
+        include_student_pending_majors=False
+    )
+    cache_application_type_credits(students)
+    cache_quarters_completed(students)
