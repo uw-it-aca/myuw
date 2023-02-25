@@ -60,13 +60,11 @@ class PdsClient(UWPersonClient):
     def get_application_type_credits(self):
         try:
             timer = Timer()
-            sqla_student = self.DB.session.query(self.DB.Student).filter(
+            sqla_students = self.DB.session.query(self.DB.Student).filter(
                 self.DB.Student.enroll_status_code == '12'
             )  # last enrolled (have registered)
 
-            for student in [self._map_student(
-                p, **self.application_type_credits_kwargs)
-                    for p in sqla_student.all()]:
+            for student in sqla_students.all():
                 set_cache_data(
                     get_cache_key(PDS_TYPE_STUD, student.system_key),
                     json.dumps(
@@ -95,23 +93,22 @@ class PdsClient(UWPersonClient):
     def get_quarters_completed(self):
         try:
             timer = Timer()
-            sqla_student = self.DB.session.query(
+            sqla_students = self.DB.session.query(
                 self.DB.Transcript).join(self.DB.Student).join(
                     self.DB.Term, self.DB.Transcript.tran_term).filter(
                     self.DB.Transcript.enoll_status == '12'
                 )  # enrolled in the term
 
-            for student in [self._map_student(
-                p, **self.quarters_completed_kwargs)
-                    for p in sqla_student.all()]:
-                set_cache_data(
-                    get_cache_key(PDS_TYPE_QUAR, student.system_key),
-                    json.dumps(
-                        {
-                            "year": student.year,
-                            "quarter": student.quarter
-                        }
-                    ))
+            for student in sqla_students.all():
+                for transcript in student.transcript:
+                    set_cache_data(
+                        get_cache_key(PDS_TYPE_QUAR, student.system_key),
+                        json.dumps(
+                            {
+                                "year": transcript.tran_term.year,
+                                "quarter": transcript.tran_term.quarter
+                            }
+                        ))
             log_msg(logger, timer, PDS_TYPE_QUAR)
         except Exception as err:
             logger.error(err)
