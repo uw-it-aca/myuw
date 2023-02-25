@@ -3,8 +3,7 @@
 
 import logging
 from django.core.management.base import BaseCommand, CommandError
-from myuw.dao.pds import (
-    PDS_TYPE_STUD, PDS_TYPE_QUAR, PdsClient, get_cached_data)
+from myuw.dao.pds import PdsClient
 
 logger = logging.getLogger(__name__)
 
@@ -12,13 +11,12 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            'scope', type=str, default="all",
-            help="{}|{}".format(PDS_TYPE_STUD, PDS_TYPE_QUAR))
+            'scope', type=str, help="all|credits|quarters")
 
     def handle(self, *args, **options):
         scope = options["scope"]
         pds_client = PdsClient()
-        if scope == PDS_TYPE_STUD or scope == "all":
+        if scope == "credits" or scope == "all":
             pds_client.get_application_type_credits()
-        if scope == PDS_TYPE_QUAR or scope == "all":
+        if scope == "quarters" or scope == "all":
             pds_client.get_quarters_completed()
