@@ -12,8 +12,8 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            'scope', type=str,
-            help="{}|{}|all".format(PDS_TYPE_STUD, PDS_TYPE_QUAR))
+            'scope', type=str, default="all",
+            help="{}|{}".format(PDS_TYPE_STUD, PDS_TYPE_QUAR))
 
     def handle(self, *args, **options):
         scope = options["scope"]
