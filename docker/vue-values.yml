@@ -24,10 +24,10 @@ securityPolicy:
 resources:
   limits:
     cpu: 1.0
-    memory: 3.0Gi
+    memory: 2.0Gi
   requests:
     cpu: 256m
-    memory: 1.0Gi
+    memory: 0.5Gi
 affinity:
    podsSpanNodes: true
 readiness:
@@ -67,9 +67,9 @@ memcached:
   resources:
     limits:
       cpu: 250m
-      memory: 768Mi
+      memory: 512Mi
     requests:
-      cpu: 50m
+      cpu: 30m
       memory: 256Mi
 certs:
   mounted: true
