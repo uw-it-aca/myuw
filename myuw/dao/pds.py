@@ -40,6 +40,22 @@ def set_cache_data(key, value, force_update=True):
 
 
 class PdsClient(UWPersonClient):
+    application_type_credits_kwargs = {
+        'include_student_transcripts': False,
+        'include_student_transfers': False,
+        'include_student_sports': False,
+        'include_student_advisers': False,
+        'include_student_majors': False,
+        'include_student_pending_majors': False,
+    }
+    quarters_completed_kwargs = {
+        'include_student_transcripts': True,
+        'include_student_transfers': False,
+        'include_student_sports': False,
+        'include_student_advisers': False,
+        'include_student_majors': False,
+        'include_student_pending_majors': False,
+    }
 
     def get_application_type_credits(self):
         try:
@@ -48,25 +64,27 @@ class PdsClient(UWPersonClient):
                 self.DB.Student.enroll_status_code == '12'
             )  # last enrolled (have registered)
 
-            for item in sqla_student.all():
+            for student in [self._map_student(
+                p, **self.application_type_credits_kwargs)
+                    for p in sqla_student.all()]:
                 set_cache_data(
-                    get_cache_key(PDS_TYPE_STUD, sqla_student.system_key),
+                    get_cache_key(PDS_TYPE_STUD, student.system_key),
                     json.dumps(
                         {
                             "application_status_code":
-                                sqla_student.application_type_code,
+                                student.application_type_code,
                             "total_deductible_credits":
-                                sqla_student.total_deductible_credits,
+                                student.total_deductible_credits,
                             "total_extension_credits":
-                                sqla_student.total_extension_credits,
+                                student.total_extension_credits,
                             "total_grade_attempted":
-                                sqla_student.total_grade_attempted,
+                                student.total_grade_attempted,
                             "total_lower_div_transfer_credits":
-                                sqla_student.total_lower_div_transfer_credits,
+                                student.total_lower_div_transfer_credits,
                             "total_upper_div_transfer_credits ":
-                                sqla_student.total_upper_div_transfer_credits,
+                                student.total_upper_div_transfer_credits,
                             "total_non_graded_credits":
-                                sqla_student.total_non_graded_credits
+                                student.total_non_graded_credits
                         }
                     ))
             log_msg(logger, timer, PDS_TYPE_STUD)
@@ -83,13 +101,15 @@ class PdsClient(UWPersonClient):
                     self.DB.Transcript.enoll_status == '12'
                 )  # enrolled in the term
 
-            for item in sqla_student.all():
+            for student in [self._map_student(
+                p, **self.quarters_completed_kwargs)
+                    for p in sqla_student.all()]:
                 set_cache_data(
-                    get_cache_key(PDS_TYPE_QUAR, sqla_student.system_key),
+                    get_cache_key(PDS_TYPE_QUAR, student.system_key),
                     json.dumps(
                         {
-                            "year": sqla_student.year,
-                            "quarter": sqla_student.quarter
+                            "year": student.year,
+                            "quarter": student.quarter
                         }
                     ))
             log_msg(logger, timer, PDS_TYPE_QUAR)
