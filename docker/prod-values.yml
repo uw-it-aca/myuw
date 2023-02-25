@@ -350,6 +350,15 @@ environmentVariables:
   - name: UWIDP_TIMEOUT
     value: "10"
 
+  - name: AXDD_PERSON_CLIENT_ENV
+    value: PROD
+
+  - name: UW_PERSON_DB_HOSTNAME
+    value: 172.18.1.67
+
+  - name: UW_PERSON_DB_DATABASE
+    value: uw-person-prod
+
   - name: CLUSTER_CNAME
     value: my.uw.edu
 
