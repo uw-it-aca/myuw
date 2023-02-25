@@ -14,16 +14,15 @@ class Command(BaseCommand):
         parser.add_argument(
             'systemkey', nargs='+', type=str, help="param1: systemkey")
         parser.add_argument(
-            'scope', type=str,  default="all",
-            help="param2: {}|{}".format(PDS_TYPE_STUD, PDS_TYPE_QUAR))
+            'scope', type=str, help="all|credits|quarters")
 
     def handle(self, *args, **options):
         system_key = options["systemkey"]
         scope = options["scope"]
 
-        if scope == PDS_TYPE_STUD or scope == "all":
+        if scope == "credits" or scope == "all":
             data = get_cached_data(get_cache_key(PDS_TYPE_STUD, system_key))
             logger.info("{}: {}".format(PDS_TYPE_STUD, data))
-        if scope == PDS_TYPE_QUAR or scope == "all":
+        if scope == "quarters" or scope == "all":
             data = get_cached_data(get_cache_key(PDS_TYPE_QUAR, system_key))
             logger.info("{}: {}".format(PDS_TYPE_QUAR, data))
