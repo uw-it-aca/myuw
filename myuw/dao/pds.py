@@ -27,22 +27,25 @@ def get_cache_key(data_type, sys_key):
 
 def clear_cached_data(key):
     try:
-        cache_client.delete(key)
+        return cache_client.delete(key)
     except (MemcacheError, ConnectionError) as ex:
-        logger.error("memcached delete: {}, key: {}".format(ex, key))
+        logger.error("memcached delete {}: {}".format(key, ex))
 
 
 def get_cached_data(key):
+    logger.info("memcached get {}".format(key))
     return cache_client.get(key)
 
 
 def set_cache_data(key, value, force_update=True):
     if force_update:
-        clear_cached_data(key)
+        res = clear_cached_data(key)
+        logger.info("memcached delete {}: {}".format(key, res))
     try:
         cache_client.client.set(key, value, expire=ONE_DAY)
+        logger.info("memcached set {}, {}".format(key, value))
     except (MemcacheError, ConnectionError) as ex:
-        logger.error("memcached set: {}, key: {}".format(ex, key))
+        logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
 
 class PdsClient(UWPersonClient):
