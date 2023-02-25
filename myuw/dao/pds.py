@@ -40,22 +40,6 @@ def set_cache_data(key, value, force_update=True):
 
 
 class PdsClient(UWPersonClient):
-    application_type_credits_kwargs = {
-        'include_student_transcripts': False,
-        'include_student_transfers': False,
-        'include_student_sports': False,
-        'include_student_advisers': False,
-        'include_student_majors': False,
-        'include_student_pending_majors': False,
-    }
-    quarters_completed_kwargs = {
-        'include_student_transcripts': True,
-        'include_student_transfers': False,
-        'include_student_sports': False,
-        'include_student_advisers': False,
-        'include_student_majors': False,
-        'include_student_pending_majors': False,
-    }
 
     def get_application_type_credits(self):
         try:
