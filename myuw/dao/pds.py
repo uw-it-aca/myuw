@@ -10,7 +10,7 @@ import logging
 import traceback
 from memcached_clients import MemcacheError
 from uw_person_client.clients.core_client import UWPersonClient
-from myuw.util.cache import MemcacheError, MyUWMemcachedCache, ONE_DAY
+from myuw.util.cache import MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_exception
 
@@ -90,15 +90,17 @@ class PdsClient(UWPersonClient):
                 )  # enrolled in the term
 
             for student in sqla_students.all():
+                quarters_completed = []
                 for transcript in student.transcript:
-                    set_cache_data(
-                        get_cache_key(PDS_TYPE_QUAR, student.system_key),
-                        json.dumps(
-                            {
-                                "year": transcript.tran_term.year,
-                                "quarter": transcript.tran_term.quarter
-                            }
-                        ))
+                    quarters_completed.append(
+                        json.dumps({
+                            "year": transcript.tran_term.year,
+                            "quarter": transcript.tran_term.quarter
+                        }))
+                set_cache_data(
+                    get_cache_key(PDS_TYPE_QUAR, student.system_key),
+                    json.dumps(quarters_completed))
+
             log_msg(logger, timer, PDS_TYPE_QUAR)
         except Exception as err:
             logger.error(err)
