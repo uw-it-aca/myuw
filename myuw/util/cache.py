@@ -1,7 +1,7 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from memcached_clients import RestclientPymemcacheClient, MemcacheError
+from memcached_clients import RestclientPymemcacheClient
 import re
 
 FIVE_SECONDS = 5

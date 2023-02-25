@@ -8,6 +8,7 @@ This module encapsulates the interactions with the uw_person_data_store
 import json
 import logging
 import traceback
+from memcached_clients import MemcacheError
 from uw_person_client.clients.core_client import UWPersonClient
 from myuw.util.cache import MemcacheError, MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
