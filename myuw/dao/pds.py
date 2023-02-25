@@ -9,34 +9,39 @@ import json
 import logging
 import traceback
 from uw_person_client.clients.core_client import UWPersonClient
-from myuw.util.cache import MyUWMemcachedCache
+from myuw.util.cache import MemcacheError, MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_exception
 
 
 logger = logging.getLogger(__name__)
 cache_client = MyUWMemcachedCache()
-PDS_SERVICE_NAME = 'person_data_store'
 PDS_TYPE_STUD = "application_type_credits"
 PDS_TYPE_QUAR = "quarter_completed"
 
 
 def get_cache_key(data_type, sys_key):
-    return ("{}_{}".format(data_type, sys_key))
+    return ("person_data_store-{}/{}".format(data_type, sys_key))
 
 
 def clear_cached_data(key):
-    cache_client.deleteCache(PDS_SERVICE_NAME, key)
+    try:
+        cache_client.delete(key)
+    except (MemcacheError, ConnectionError) as ex:
+        logger.error("memcached delete: {}, key: {}".format(ex, key))
 
 
 def get_cached_data(key):
-    return cache_client.getCache(PDS_SERVICE_NAME, key)
+    return cache_client.get(key)
 
 
 def set_cache_data(key, value, force_update=True):
     if force_update:
         clear_cached_data(key)
-    cache_client.updateCache(PDS_SERVICE_NAME, key, value)
+    try:
+        cache_client.client.set(key, value, expire=ONE_DAY)
+    except (MemcacheError, ConnectionError) as ex:
+        logger.error("memcached set: {}, key: {}".format(ex, key))
 
 
 class PdsClient(UWPersonClient):

@@ -1,7 +1,7 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from memcached_clients import RestclientPymemcacheClient
+from memcached_clients import RestclientPymemcacheClient, MemcacheError
 import re
 
 FIVE_SECONDS = 5
@@ -14,9 +14,6 @@ ONE_DAY = ONE_HOUR * 24
 
 class MyUWMemcachedCache(RestclientPymemcacheClient):
     def get_cache_expiration_time(self, service, url, status=None):
-        if "person_data_store" == service:
-            return ONE_DAY
-
         if "myplan_auth" == service:
             return FIFTEEN_MINS * 3
         if "myplan" == service:
