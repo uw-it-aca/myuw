@@ -17,32 +17,37 @@ from myuw.logger.logresp import log_msg, log_exception
 
 logger = logging.getLogger(__name__)
 cache_client = MyUWMemcachedCache()
-PDS_TYPE_STUD = "application_type_credits"
-PDS_TYPE_QUAR = "quarter_completed"
+DATA_TYPE = "application_type_credits_quarters_completed"
 
 
-def get_cache_key(data_type, sys_key):
-    return ("person_data_store-{}/{}".format(data_type, sys_key))
+def get_cache_key(student_number):
+    return ("person_data_store/{}/{}".format(DATA_TYPE, student_number))
 
 
-def clear_cached_data(key):
+def clear_cached_data(student_number):
+    key = get_cache_key(student_number)
     try:
-        cache_client.delete(key)
+        return cache_client.delete(key)
     except (MemcacheError, ConnectionError) as ex:
-        logger.error("memcached delete: {}, key: {}".format(ex, key))
+        logger.error("memcached delete {}: {}".format(key, ex))
 
 
-def get_cached_data(key):
+def get_cached_data(student_number):
+    key = get_cache_key(student_number)
+    logger.info("memcached get {}".format(key))
     return cache_client.get(key)
 
 
-def set_cache_data(key, value, force_update=True):
+def set_cache_data(student_number, value, force_update=True):
     if force_update:
-        clear_cached_data(key)
+        res = clear_cached_data(student_number)
+        logger.error("memcached delete {}: {}".format(student_number, res))
+    key = get_cache_key(student_number)
     try:
         cache_client.client.set(key, value, expire=ONE_DAY)
+        logger.info("memcached set {}, {}".format(key, value))
     except (MemcacheError, ConnectionError) as ex:
-        logger.error("memcached set: {}, key: {}".format(ex, key))
+        logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
 
 def cache_application_type_credits(persons):
