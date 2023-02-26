@@ -9,14 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument(
-            'scope', type=str, help="all|credits|quarters")
 
     def handle(self, *args, **options):
-        scope = options["scope"]
         pds_client = PdsClient()
-        if scope == "credits" or scope == "all":
-            pds_client.get_application_type_credits()
-        if scope == "quarters" or scope == "all":
-            pds_client.get_quarters_completed()
+        pds_client.load_cache()
