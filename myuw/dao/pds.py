@@ -45,28 +45,28 @@ def set_cache_data(key, value, force_update=True):
         logger.error("memcached set: {}, key: {}".format(ex, key))
 
 
-def cache_application_type_credits(students):
+def cache_application_type_credits(persons):
     try:
         timer = Timer()
-        for student in students:
+        for person in persons:
             set_cache_data(
-                get_cache_key(PDS_TYPE_STUD, student.system_key),
+                get_cache_key(PDS_TYPE_STUD, person.student.system_key),
                 json.dumps(
                     {
                         "application_status_code":
-                            student.application_type_code,
+                            person.student.application_type_code,
                         "total_deductible_credits":
-                            student.total_deductible_credits,
+                            person.student.total_deductible_credits,
                         "total_extension_credits":
-                            student.total_extension_credits,
+                            person.student.total_extension_credits,
                         "total_grade_attempted":
-                            student.total_grade_attempted,
+                            person.student.total_grade_attempted,
                         "total_lower_div_transfer_credits":
-                            student.total_lower_div_transfer_credits,
+                            person.student.total_lower_div_transfer_credits,
                         "total_upper_div_transfer_credits ":
-                            student.total_upper_div_transfer_credits,
+                            person.student.total_upper_div_transfer_credits,
                         "total_non_graded_credits":
-                            student.total_non_graded_credits
+                            person.student.total_non_graded_credits
                     }
                 ))
         log_msg(logger, timer, PDS_TYPE_STUD)
@@ -75,19 +75,19 @@ def cache_application_type_credits(students):
         log_exception(logger, PDS_TYPE_STUD, traceback)
 
 
-def cache_quarters_completed(students):
+def cache_quarters_completed(persons):
     try:
         timer = Timer()
-        for student in students:
+        for person in persons:
             quarters_completed = []
-            for transcript in student.transcript:
+            for transcript in person.student.transcript:
                 quarters_completed.append(
                     json.dumps({
                         "year": transcript.tran_term.year,
                         "quarter": transcript.tran_term.quarter
                     }))
             set_cache_data(
-                get_cache_key(PDS_TYPE_QUAR, student.system_key),
+                get_cache_key(PDS_TYPE_QUAR, person.student.system_key),
                 json.dumps(quarters_completed))
 
         log_msg(logger, timer, PDS_TYPE_QUAR)
@@ -97,7 +97,7 @@ def cache_quarters_completed(students):
 
 
 def load_cache():
-    students = UWPersonClient().get_registered_students(
+    persons = UWPersonClient().get_registered_students(
         include_employee=False,
         include_student=True,
         include_student_transcripts=True,
@@ -107,5 +107,5 @@ def load_cache():
         include_student_majors=False,
         include_student_pending_majors=False
     )
-    cache_application_type_credits(students)
-    cache_quarters_completed(students)
+    cache_application_type_credits(persons)
+    cache_quarters_completed(persons)
