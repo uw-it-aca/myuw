@@ -9,6 +9,7 @@ import json
 import logging
 import traceback
 from memcached_clients import MemcacheError
+from sqlalchemy import and_
 from uw_person_client.clients.core_client import UWPersonClient
 from myuw.util.cache import MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
