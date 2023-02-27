@@ -9,11 +9,9 @@ import json
 import logging
 import traceback
 from memcached_clients import MemcacheError
-from sqlalchemy import and_
 from uw_person_client.clients.core_client import UWPersonClient
 from myuw.util.cache import MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_exception
 
 
 logger = logging.getLogger(__name__)
@@ -46,7 +44,7 @@ def set_cache_data(student_number, value, force_update=True):
     key = get_cache_key(student_number)
     try:
         cache_client.client.set(key, value, expire=ONE_DAY)
-        logger.info("memcached set {}, {}".format(key, value))
+        logger.info("memcached set {}: {}".format(key, value))
     except (MemcacheError, ConnectionError) as ex:
         logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
@@ -102,6 +100,14 @@ class PdsClient(UWPersonClient):
                             "quarters_completed": quarters_completed
                         }
                     ))
-            log_msg(logger, timer, "load_cache")
+            logger.info(
+                {
+                    'action': "load_cache",
+                    'Time': "{} seconds".format(timer.get_elapsed())
+                })
         except Exception:
-            log_exception(logger, "load_cache", traceback)
+            logger.error(
+                {
+                    'action': "load_cache",
+                    'err': traceback.format_exc(chain=False)
+                })
