@@ -17,9 +17,9 @@
       </template>
       <template #card-error>
         An error occurred and MyUW cannot load your information right now.
-        In the meantime, try the
-        <a href="https://services.uwmedicine.org/passwordportal/login.htm"
-        >UW Medicine Account</a> page.
+        <!--
+        In the meantime, try the <a href="passwordChange">UW Medicine Account</a> page.
+        -->
       </template>
       <template #card-body>
         <p>
@@ -30,11 +30,12 @@
           <div class="alert alert-danger" role="alert">
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
-              <a v-out="'Change UW Medicine password'"
-                 :href="passwordChange"
-              >
-                <br>Change your password to regain access.
+              <!--
+              <br>
+              <a v-out="'Change UW Medicine password'" :href="passwordChange">
+                Change your password to regain access.
               </a>
+              -->
             </p>
           </div>
         </div>
@@ -59,9 +60,9 @@
           <p class="text-muted myuw-text-md">
             *Expiration date gets updated nightly.
           </p>
-          <a :href="passwordChange">
-            Change UW Medicine password
-          </a>
+          <!--
+          <a :href="passwordChange">Change UW Medicine password</a>
+          -->
         </div>
       </template>
     </uw-card>
@@ -80,11 +81,6 @@ export default {
     'uw-card': Card,
     'uw-card-status': CardStatus,
     'uw-formatted-date': FormattedDate,
-  },
-  data: function() {
-    return {
-      passwordChange: 'https://services.uwmedicine.org/passwordportal/login.htm',
-    };
   },
   computed: {
     ...mapState({
@@ -112,6 +108,9 @@ export default {
     expired() {
       return this.timeDeltaFrom(this.expiresMed, 'second') < 0;
     },
+    passwordChange() {
+      return 'https://services.uwmedicine.org/passwordportal/login.htm';
+    }
   },
   mounted() {
     this.fetch();
