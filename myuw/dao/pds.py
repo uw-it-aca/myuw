@@ -52,49 +52,53 @@ def set_cache_data(student_number, value, force_update=True):
 
 
 class PdsClient(UWPersonClient):
+    def get_registered_student_data(self):
+        return UWPersonClient().get_registered_students(
+            include_employee=False,
+            include_student=True,
+            include_student_transcripts=True,
+            include_student_transfers=False,
+            include_student_sports=False,
+            include_student_advisers=False,
+            include_student_majors=False,
+            include_student_pending_majors=False
+        )
 
     def load_cache(self):
         try:
             timer = Timer()
-            Transcript = self.DB.Transcript
-            Student = self.DB.Student
-            Term = self.DB.Term
-            student_query = self.DB.session.query(Student).filter(
-                Student.enroll_status_code == '12').all()
-
-            for record in student_query:
-
-                term_query = self.DB.session.query(Transcript).join(
-                    Term, Transcript.tran_term_id == Term.id).filter(
-                        and_(Transcript.student_id == record.id,
-                             Transcript.enroll_status == 12)
-                        ).all()
+            person_records = self.get_registered_student_data()
+            for person in person_records:
+                # netid = person.uwnetid
+                student_record = person.student
+                transcripts_records = student_record.transcripts
                 quarters_completed = []
-                for term_completed in term_query:
-                    quarters_completed.append(
-                        json.dumps({
-                            "year": term_completed.year,
-                            "quarter": term_completed.quarter
-                        }))
+                for trans in transcripts_records:
+                    if trans.enroll_status == 12:
+                        quarters_completed.append(
+                            json.dumps({
+                                "year": trans.tran_term.year,
+                                "quarter": trans.tran_term.quarter
+                            }))
 
                 set_cache_data(
-                    record.student_number,
+                    student_record.student_number,
                     json.dumps(
                         {
                             "application_status_code":
-                            record.application_type_code,
+                            student_record.application_type_code,
                             "total_deductible_credits":
-                            record.total_deductible_credits,
+                            student_record.total_deductible_credits,
                             "total_extension_credits":
-                            record.total_extension_credits,
+                            student_record.total_extension_credits,
                             "total_grade_attempted":
-                            record.total_grade_attempted,
+                            student_record.total_grade_attempted,
                             "total_lower_div_transfer_credits":
-                            record.total_lower_div_transfer_credits,
+                            student_record.total_lower_div_transfer_credits,
                             "total_upper_div_transfer_credits ":
-                            record.total_upper_div_transfer_credits,
+                            student_record.total_upper_div_transfer_credits,
                             "total_non_graded_credits":
-                            record.total_non_graded_credits,
+                            student_record.total_non_graded_credits,
                             "quarters_completed": quarters_completed
                         }
                     ))
