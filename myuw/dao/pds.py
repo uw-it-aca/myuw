@@ -33,18 +33,18 @@ def clear_cached_data(student_number):
 
 def get_cached_data(student_number):
     key = get_cache_key(student_number)
-    logger.info("memcached get {}".format(key))
+    logger.debug("memcached get {}".format(key))
     return cache_client.get(key)
 
 
 def set_cache_data(student_number, value, force_update=True):
     if force_update:
         res = clear_cached_data(student_number)
-        logger.error("memcached delete {}: {}".format(student_number, res))
+        logger.debug("memcached delete {}: {}".format(student_number, res))
     key = get_cache_key(student_number)
     try:
         cache_client.client.set(key, value, expire=ONE_DAY)
-        logger.info("memcached set {}: {}".format(key, value))
+        logger.debug("memcached set {}: {}".format(key, value))
     except (MemcacheError, ConnectionError) as ex:
         logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
@@ -101,7 +101,7 @@ class PdsClient(UWPersonClient):
                                 "year": student_record.academic_term.year,
                                 "quarter": student_record.academic_term.quarter
                             },
-                            "quarters_completed": quarters_completed
+                            "terms_completed": quarters_completed
                         }
                     ))
             logger.info(
