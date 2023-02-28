@@ -74,10 +74,10 @@ class PdsClient(UWPersonClient):
                 for trans in transcripts_records:
                     if trans.enroll_status == 12:
                         quarters_completed.append(
-                            json.dumps({
+                            {
                                 "year": trans.tran_term.year,
                                 "quarter": trans.tran_term.quarter
-                            }))
+                            })
 
                 set_cache_data(
                     student_record.student_number,
