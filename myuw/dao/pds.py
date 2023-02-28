@@ -93,7 +93,7 @@ class PdsClient(UWPersonClient):
                             student_record.total_grade_attempted,
                             "total_lower_div_transfer_credits":
                             student_record.total_lower_div_transfer_credits,
-                            "total_upper_div_transfer_credits ":
+                            "total_upper_div_transfer_credits":
                             student_record.total_upper_div_transfer_credits,
                             "total_non_graded_credits":
                             student_record.total_non_graded_credits,
