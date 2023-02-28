@@ -16,7 +16,7 @@ from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
 cache_client = MyUWMemcachedCache()
-DATA_TYPE = "application_type_credits_quarters_completed"
+DATA_TYPE = "application_type_credits_transcript_terms"
 
 
 def get_cache_key(student_number):
@@ -69,15 +69,15 @@ class PdsClient(UWPersonClient):
             for person in person_records:
                 # netid = person.uwnetid
                 student_record = person.student
-                transcripts_records = student_record.transcripts
-                quarters_completed = []
-                for trans in transcripts_records:
-                    if trans.enroll_status == 12:
-                        quarters_completed.append(
-                            {
-                                "year": trans.tran_term.year,
-                                "quarter": trans.tran_term.quarter
-                            })
+
+                transcript_terms = []
+                for trans in student_record.transcripts:
+                    transcript_terms.append(
+                        {
+                            "enroll_status": trans.enroll_status,
+                            "year": trans.tran_term.year,
+                            "quarter": trans.tran_term.quarter
+                        })
 
                 set_cache_data(
                     student_record.student_number,
@@ -85,6 +85,8 @@ class PdsClient(UWPersonClient):
                         {
                             "application_status_code":
                             student_record.application_type_code,
+                            "class_desc":
+                            student_record.class_desc,
                             "total_deductible_credits":
                             student_record.total_deductible_credits,
                             "total_extension_credits":
@@ -101,7 +103,7 @@ class PdsClient(UWPersonClient):
                                 "year": student_record.academic_term.year,
                                 "quarter": student_record.academic_term.quarter
                             },
-                            "terms_completed": quarters_completed
+                            "terms_completed": transcript_terms
                         }
                     ))
             logger.info(
