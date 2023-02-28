@@ -97,6 +97,10 @@ class PdsClient(UWPersonClient):
                             student_record.total_upper_div_transfer_credits,
                             "total_non_graded_credits":
                             student_record.total_non_graded_credits,
+                            "last_enrolled_term": {
+                                "year": student_record.academic_term.year,
+                                "quarter": student_record.academic_term.quarter
+                            },
                             "quarters_completed": quarters_completed
                         }
                     ))
