@@ -25,6 +25,13 @@
         </div>
       </div>
 
+      <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+        <div class="col-md-8 border">
+          <FeaturedHXTCard></FeaturedHXTCard>
+        </div>
+      </div>
+
+
       <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
         <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
           <template #card-heading>
@@ -83,6 +90,7 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import FeaturedHXTCard from '../_common/husky-experience.vue';
 
 export default {
   components: {
