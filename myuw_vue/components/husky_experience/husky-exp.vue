@@ -26,7 +26,7 @@
       </div>
 
       <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
-        <div class="col-md-8">
+        <div class="col-lg-8">
           <FeaturedHXTCard></FeaturedHXTCard>
         </div>
       </div>

@@ -2,6 +2,7 @@
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Experience Toolkit</h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Featured Article</h2>
     </template>
     <template #card-body>
       <div class="mb-2">
