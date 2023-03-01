@@ -1,10 +1,10 @@
-import {Vue, vueConf} from './base.js';
+import { Vue, vueConf } from './base.js';
 
 // layout componenets
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // components
-import HuskyExpCard from './components/husky_experience/husky-exp.vue';
+import HuskyExpPage from './components/husky_experience/husky-exp.vue';
 
 // stores
 import hx_toolkit from './vuex/store/hx_toolkit';
@@ -21,7 +21,7 @@ vueConf.store.commit('addVarToState', {
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
-Vue.component('myuw-husky-exp-card', HuskyExpCard);
+Vue.component('myuw-husky-exp-page', HuskyExpPage);
 
 new Vue({
   ...vueConf,

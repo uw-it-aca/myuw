@@ -26,11 +26,10 @@
       </div>
 
       <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
-        <div class="col-md-8 border">
+        <div class="col-md-8">
           <FeaturedHXTCard></FeaturedHXTCard>
         </div>
       </div>
-
 
       <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
         <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
@@ -95,6 +94,7 @@ import FeaturedHXTCard from '../_common/husky-experience.vue';
 export default {
   components: {
     'uw-card': Card,
+    FeaturedHXTCard
   },
   data: function() {
     const param = new URL(window.location.href).searchParams.get('article');
