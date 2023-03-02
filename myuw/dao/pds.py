@@ -40,11 +40,12 @@ def get_cached_data(student_number):
 def set_cache_data(student_number, value, force_update=True):
     if force_update:
         res = clear_cached_data(student_number)
-        logger.debug("memcached delete {}: {}".format(student_number, res))
+        if not res:
+            logger.info(
+                "memcached delete {}: {}".format(student_number, res))
     key = get_cache_key(student_number)
     try:
         cache_client.client.set(key, value, expire=ONE_DAY)
-        logger.debug("memcached set {}: {}".format(key, value))
     except (MemcacheError, ConnectionError) as ex:
         logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
@@ -67,7 +68,7 @@ class PdsClient(UWPersonClient):
             timer = Timer()
             person_records = self.get_registered_student_data()
             for person in person_records:
-                # netid = person.uwnetid
+                netid = person.uwnetid
                 student_record = person.student
 
                 transcript_terms = []
@@ -78,34 +79,34 @@ class PdsClient(UWPersonClient):
                             "year": trans.tran_term.year,
                             "quarter": trans.tran_term.quarter
                         })
-
-                set_cache_data(
-                    student_record.student_number,
-                    json.dumps(
-                        {
-                            "application_status_code":
-                            student_record.application_type_code,
-                            "class_desc":
-                            student_record.class_desc,
-                            "total_deductible_credits":
-                            student_record.total_deductible_credits,
-                            "total_extension_credits":
-                            student_record.total_extension_credits,
-                            "total_grade_attempted":
-                            student_record.total_grade_attempted,
-                            "total_lower_div_transfer_credits":
-                            student_record.total_lower_div_transfer_credits,
-                            "total_upper_div_transfer_credits":
-                            student_record.total_upper_div_transfer_credits,
-                            "total_non_graded_credits":
-                            student_record.total_non_graded_credits,
-                            "last_enrolled_term": {
-                                "year": student_record.academic_term.year,
-                                "quarter": student_record.academic_term.quarter
-                            },
-                            "terms_completed": transcript_terms
-                        }
-                    ))
+                value = json.dumps(
+                    {
+                        "application_status_code":
+                        student_record.application_type_code,
+                        "class_desc":
+                        student_record.class_desc,
+                        "total_deductible_credits":
+                        student_record.total_deductible_credits,
+                        "total_extension_credits":
+                        student_record.total_extension_credits,
+                        "total_grade_attempted":
+                        student_record.total_grade_attempted,
+                        "total_lower_div_transfer_credits":
+                        student_record.total_lower_div_transfer_credits,
+                        "total_upper_div_transfer_credits":
+                        student_record.total_upper_div_transfer_credits,
+                        "total_non_graded_credits":
+                        student_record.total_non_graded_credits,
+                        "last_enrolled_term": {
+                            "year": student_record.academic_term.year,
+                            "quarter": student_record.academic_term.quarter
+                        },
+                        "terms_completed": transcript_terms
+                    }
+                )
+                set_cache_data(student_record.student_number, value)
+                if len(transcript_terms) > 1:
+                    logger.debug("{}: {}".format(netid, value))
             logger.info(
                 {
                     'action': "load_cache",
