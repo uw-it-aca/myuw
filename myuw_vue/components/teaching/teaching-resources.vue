@@ -104,9 +104,12 @@ export default {
         return [
           { url: "https://itconnect.uw.edu/learn/tools/", title: "Teaching & Learning Tools" },
           { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
-          { url: "http://depts.washington.edu/grading/", title: "Faculty Resources on Grading" },
+          { url: "https://registrar.washington.edu/staffandfaculty/grading-resources/",
+           title: "Grading Resources" },
           { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/",
             title: "Online Grade Submission" },
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/grading-2/",
+           title: "Grading Best Practices" },
           { url: "http://teaching.pce.uw.edu/", title: "UW PCE Instructor Resources" }
         ];
       }
