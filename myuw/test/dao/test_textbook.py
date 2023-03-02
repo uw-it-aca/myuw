@@ -7,6 +7,7 @@ from uw_sws.models import Term
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.textbook import get_textbook_by_schedule,\
     get_order_url_by_schedule
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.test import get_request_with_user, get_request_with_date
 
@@ -41,3 +42,12 @@ class TestTextbooks(TestCase):
         self.assertRaises(DataFailureException,
                           get_order_url_by_schedule,
                           schedule)
+
+    def test_get_inst_textbook(self):
+        req = get_request_with_user('billpce',
+                                    get_request_with_date("2013-10-01"))
+        term = get_current_quarter(req)
+        schedule = get_instructor_schedule_by_term(req)
+
+        books = get_textbook_by_schedule(schedule)
+        self.assertEquals(len(books), 1)

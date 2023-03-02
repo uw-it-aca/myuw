@@ -9,10 +9,11 @@ from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now,
     get_default_date, get_default_datetime, get_comparison_date,
     get_current_quarter, get_next_quarter, is_cur_term_before,
-    get_previous_number_quarters, last_4w_inst,
+    get_previous_number_quarters, last_4instruction_weeks,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
-    is_in_summer_a_term, is_in_summer_b_term, more_than_2terms_before,
+    is_in_summer_a_term, is_in_summer_b_term,
+    within_2terms_after_given_term, after_last_final_exam_day,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
     get_eod_current_term, get_eod_current_term_last_instruction,
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
@@ -94,17 +95,25 @@ class TestTerm(TestCase):
         self.assertTrue(is_cur_term_same(request, 2013, 'spring'))
         self.assertFalse(during_april_may(request))
 
+        request = get_request_with_date("2013-06-24")
+        self.assertFalse(is_cur_term_same(request, 2013, 'spring'))
+
         request = get_request_with_date("2013-01-25")
         self.assertTrue(is_cur_term_before(request, 2013, 'spring'))
         self.assertTrue(is_cur_term_before(request, 2013, 'summer'))
         self.assertTrue(is_cur_term_same(request, 2013, 'winter'))
         self.assertFalse(during_april_may(request))
 
-    def test_last_4w_inst(self):
+    def test_last_4instruction_weeks(self):
         request = get_request_with_date("2013-11-08")
-        self.assertFalse(last_4w_inst(request))
+        self.assertFalse(last_4instruction_weeks(
+            request, 2013, 'autumn'))
         request = get_request_with_date("2013-11-09")
-        self.assertTrue(last_4w_inst(request))
+        self.assertTrue(last_4instruction_weeks(
+            request, 2013, 'autumn'))
+        request = get_request_with_date("2014-01-09")
+        self.assertFalse(last_4instruction_weeks(
+            request, 2013, 'autumn'))
 
     def test_current_quarter(self):
         now_request = get_request()
@@ -209,12 +218,22 @@ class TestTerm(TestCase):
         now_request = get_request_with_date("2014-01-01")
         self.assertTrue(is_past(quarter, now_request))
 
-    def test_more_than_2terms_before(self):
+    def test_within_2terms_after_given_term(self):
+        now_request = get_request_with_date("2013-03-21")
+        self.assertFalse(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
+        now_request = get_request_with_date("2013-05-01")
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
         now_request = get_request_with_date("2013-07-01")
-        self.assertFalse(more_than_2terms_before(now_request, 2013, "spring"))
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
         now_request = get_request_with_date("2013-10-01")
-        self.assertFalse(more_than_2terms_before(now_request, 2013, "spring"))
-        self.assertTrue(more_than_2terms_before(now_request, 2013, "winter"))
+        self.assertTrue(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
+        now_request = get_request_with_date("2014-01-01")
+        self.assertFalse(
+            within_2terms_after_given_term(now_request, 2013, "spring"))
 
     def test_get_next_non_summer_quarter(self):
         now_request = get_request_with_date("2013-04-01")
@@ -412,3 +431,13 @@ class TestTerm(TestCase):
         self.assertEquals(context['quarter'], 'spring')
         self.assertEquals(context['is_finals'], False)
         self.assertEquals(context['is_break'], True)
+
+    def test_after_last_final_exam_day(self):
+        request = get_request_with_date("2013-08-22")
+        self.assertFalse(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-08-23")
+        self.assertTrue(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-09-19")
+        self.assertTrue(after_last_final_exam_day(request, 2013, 'summer'))
+        request = get_request_with_date("2013-09-20")
+        self.assertFalse(after_last_final_exam_day(request, 2013, 'summer'))

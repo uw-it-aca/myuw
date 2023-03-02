@@ -175,6 +175,10 @@ export default {
 }
 
 ::v-deep h3 {
+  font-size: 1.5rem;
+}
+
+::v-deep h4 {
   font-size: 1.25rem;
 }
 

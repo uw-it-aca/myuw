@@ -11,10 +11,10 @@ from uw_sws.models import Term
 from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
-from uw_sws.term import get_term_by_date, get_specific_term, \
-    get_current_term, get_next_term, get_previous_term, \
-    get_term_before, get_term_after, get_next_autumn_term, \
-    get_next_non_summer_term
+from uw_sws.term import (
+    get_term_by_date, get_specific_term, get_current_term,
+    get_term_before, get_term_after, get_next_autumn_term,
+    get_next_non_summer_term)
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
 
@@ -139,24 +139,40 @@ def is_cur_term_same(request, year, quarter):
     return current_term == comparison_term
 
 
-def more_than_2terms_before(request, year, quarter):
+def within_2terms_after_given_term(request, year, quarter):
     """
     return True if year+quarter is more than 2 terms before current term
     """
-    comparison_term = get_specific_term(year, quarter)
     current_term = get_current_quarter(request)
-    prev_term = get_term_before(current_term)
-    pprev_term = get_term_before(prev_term)
-    return comparison_term < pprev_term
+    comparison_term = get_specific_term(year, quarter)
+    next_term = get_term_after(comparison_term)
+    nnext_term = get_term_after(next_term)
+    return (current_term == comparison_term or
+            current_term == next_term or
+            current_term == nnext_term)
 
 
-def last_4w_inst(request):
+def last_4instruction_weeks(request, year, quarter):
     """
     return True if it is four weeks prior last day class of the term
     """
+    current_term = get_current_quarter(request)
+    comparison_term = get_specific_term(year, quarter)
     comparison_dt = get_comparison_datetime(request)
     starting_point = get_bod_days_before_last_instruction(request, 28)
-    return comparison_dt > starting_point
+    return (
+        current_term == comparison_term and comparison_dt > starting_point)
+
+
+def after_last_final_exam_day(request, year, quarter):
+    comparison_term = get_specific_term(year, quarter)
+    comparison_term_last_final_day = (
+        comparison_term.get_eod_last_final_exam() - timedelta(days=1))
+    end_day = (comparison_term_last_final_day + timedelta(days=28))
+    comparison_dt = get_comparison_datetime(request)
+    return (
+        comparison_dt >= comparison_term_last_final_day and
+        comparison_dt <= end_day)
 
 
 def get_term_from_quarter_string(quarter_string):
