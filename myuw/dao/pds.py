@@ -85,9 +85,13 @@ def set_cache_data(student_number, value, force_update=True):
         logger.error("memcached set {}, {}: {}".format(key, value, ex))
 
 
+class EmptyQueryException(Exception):
+    pass
+
+
 class PdsClient(UWPersonClient):
     def get_registered_student_data(self):
-        return UWPersonClient().get_registered_students(
+        return self.get_registered_students(
             include_employee=False,
             include_student=True,
             include_student_transcripts=True,
@@ -102,6 +106,8 @@ class PdsClient(UWPersonClient):
         try:
             timer = Timer()
             person_records = self.get_registered_student_data()
+            if not len(person_records):
+                raise EmptyQueryException()
             for person in person_records:
                 netid = person.uwnetid
                 student_record = person.student
