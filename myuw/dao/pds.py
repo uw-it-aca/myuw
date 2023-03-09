@@ -21,9 +21,11 @@ DATA_TYPE = "application_type_credits_transcript_terms"
 
 
 def get_pds_data(request):
+    """
+    Return the data in json
+    """
     student_number = get_student_number_of_current_user(request)
-    data = get_cached_data(student_number)
-    j = json.loads(data)
+    j = json.loads(get_cached_data(student_number))
     application_status_code = int(j["application_status_code"])
 
     total_deductible_credits = float(j["total_deductible_credits"])
@@ -62,6 +64,9 @@ def clear_cached_data(student_number):
 
 
 def get_cached_data(student_number):
+    """
+    Return the cached string value
+    """
     key = get_cache_key(student_number)
     logger.debug("memcached get {}".format(key))
     return cache_client.get(key)
