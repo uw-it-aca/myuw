@@ -9,6 +9,7 @@ import json
 import logging
 import traceback
 from memcached_clients import MemcacheError
+from myuw.dao.pws import get_student_number_of_current_user
 from uw_person_client.clients.core_client import UWPersonClient
 from myuw.util.cache import MyUWMemcachedCache, ONE_DAY
 from myuw.logger.timer import Timer
@@ -17,6 +18,35 @@ from myuw.logger.timer import Timer
 logger = logging.getLogger(__name__)
 cache_client = MyUWMemcachedCache()
 DATA_TYPE = "application_type_credits_transcript_terms"
+
+
+def get_pds_data(request):
+    student_number = get_student_number_of_current_user(request)
+    data = get_cached_data(student_number)
+    j = json.loads(data)
+    application_status_code = int(j["application_status_code"])
+
+    total_deductible_credits = float(j["total_deductible_credits"])
+    total_extension_credits = float(j["total_extension_credits"])
+    total_grade_attempted = float(j["total_grade_attempted"])
+    total_lower_div_transfer_credits = float(
+        j["total_lower_div_transfer_credits"])
+    total_upper_div_transfer_credits = float(
+        j["total_upper_div_transfer_credits"])
+    total_non_graded_credits = float(j["total_non_graded_credits"])
+
+    return {
+        "is_transfer": (
+            application_status_code == 2 or application_status_code == 4),
+        "total_credit": (
+            total_grade_attempted +
+            total_non_graded_credits +
+            total_lower_div_transfer_credits +
+            total_upper_div_transfer_credits +
+            total_extension_credits -
+            total_deductible_credits),
+        "completed_terms": len(j["terms_completed"])
+    }
 
 
 def get_cache_key(student_number):
