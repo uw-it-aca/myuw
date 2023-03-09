@@ -5,8 +5,7 @@ from django.test import TestCase
 from unittest.mock import patch
 import json
 from myuw.dao.pds import (
-    get_pds_data, get_cache_key, clear_cached_data, get_cached_data,
-    PdsClient, EmptyQueryException)
+    get_pds_data, get_cache_key, clear_cached_data, get_cached_data)
 from myuw.test import get_request_with_user, fdao_pws_override
 
 DATA = json.dumps({
@@ -55,21 +54,3 @@ class TestPwsDao(TestCase):
                     "completed_terms": 3
                 }
             )
-
-    @patch.object(PdsClient, 'get_registered_students')
-    def test_PdsClient(self, mock):
-        mock.return_value = [{}]
-        pds_client = PdsClient()
-        pds_client.get_registered_student_data()
-        mock.assert_called_with(
-            include_employee=False,
-            include_student=True,
-            include_student_transcripts=True,
-            include_student_transfers=False,
-            include_student_sports=False,
-            include_student_advisers=False,
-            include_student_majors=False,
-            include_student_pending_majors=False)
-        mock.return_value = []
-        self.assertRaises(
-            EmptyQueryException, pds_client.get_registered_student_data)
