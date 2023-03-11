@@ -152,7 +152,7 @@ class PdsClient(UWPersonClient):
             if not len(person_records):
                 raise EmptyQueryException()
             for p_record in person_records:
-                process_record(self, p_record)
+                process_record(p_record)
             logger.info(
                 {
                     'action': "load_cache",
