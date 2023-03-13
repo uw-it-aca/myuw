@@ -25,13 +25,6 @@
           />
         </div>
       </div>
- <!--
-      <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
-        <div class="col-lg-8">
-          <FeaturedHXTCard></FeaturedHXTCard>
-        </div>
-      </div>
--->
       <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
         <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
           <template #card-heading>
