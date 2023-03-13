@@ -11,6 +11,7 @@
             to challenge yourself, explore your options, and integrate all you are
             learning - your Husky Experience is more than a major!
           </p>
+          <FeaturedHXTCard></FeaturedHXTCard>
         </div>
         <div class="col-md-4 p-4 text-center">
           <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
@@ -24,13 +25,13 @@
           />
         </div>
       </div>
-
+ <!--
       <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
         <div class="col-lg-8">
           <FeaturedHXTCard></FeaturedHXTCard>
         </div>
       </div>
-
+-->
       <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
         <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
           <template #card-heading>
