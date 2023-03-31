@@ -1,7 +1,7 @@
 <template>
   <div class="mx-n3 mb-3 p-3 myuw-covid-links">
     <div>
-      <!--<h3 class="h6">
+      <h3 v-if="student" class="h6">
         UW Coronavirus
       </h3>
       <ul class="list-unstyled myuw-text-md">
@@ -9,7 +9,7 @@
           <a href="https://www.washington.edu/coronavirus/">
             UW Coronavirus Home
           </a>
-        </li>-->
+        </li>
         <li v-if="student" class="mb-1">
           <a href="https://www.washington.edu/coronavirus/students/">
             Resources for Students
