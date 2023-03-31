@@ -10,7 +10,7 @@
         :links="webToolsLinks"
       />
       <uw-sidelink-section
-        category-title="Help Guides"
+        category-title="Teaching Strategies"
         :links="helpLinks"
       />
     </template>
@@ -99,7 +99,6 @@ export default {
       },
       helpLinks() {
         return [
-          { url: "https://itconnect.uw.edu/learn/tools/", title: "Teaching & Learning Tools" },
           { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
           { url: "https://registrar.washington.edu/staffandfaculty/grading-resources/",
            title: "Grading Resources" },
