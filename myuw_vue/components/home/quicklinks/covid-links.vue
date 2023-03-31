@@ -5,7 +5,7 @@
         UW Coronavirus
       </h3>
       <ul class="list-unstyled myuw-text-md">
-        <li class="mb-1">
+        <li v-if="student" class="mb-1">
           <a href="https://www.washington.edu/coronavirus/">
             UW Coronavirus Home
           </a>
@@ -90,7 +90,7 @@
       </ul>
     </div>
     <div v-if="instructor">
-    <p class="myuw-text-sm pt-2">
+    <p class="myuw-text-sm">
       Zoom now has a permanent spot in the Quick Links above.
       You can add other links by customizing your Quick Links,
       including adding recently visited links from below.</p>
