@@ -99,14 +99,15 @@ export default {
       },
       helpLinks() {
         return [
-          { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
-          { url: "https://registrar.washington.edu/staffandfaculty/grading-resources/",
-           title: "Grading Resources" },
-          { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/",
-            title: "Online Grade Submission" },
-          { url: "https://teaching.washington.edu/topics/preparing-to-teach/grading-2/",
-           title: "Grading Best Practices" },
-          { url: "http://teaching.pce.uw.edu/", title: "UW PCE Instructor Resources" }
+          { url: "https://teaching.washington.edu/", title: "Center for Teaching and Learning" },
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/",
+            title: "Course and Syllabus Design" },
+          { url: "https://teaching.washington.edu/topics/inclusive-teaching/inclusive-teaching-strategies/",
+            title: "Inclusive Teaching" },
+          { url: "https://teaching.washington.edu/topics/engaging-students-in-learning/",
+            title: "Engagement Strategies" },
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-and-refining-hybrid-and-online-courses/",
+            title: "Hybrid and Online Course Design" },
         ];
       }
     }),
