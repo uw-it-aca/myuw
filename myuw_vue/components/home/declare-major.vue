@@ -36,8 +36,8 @@
 // MUWM-5144 Pre-application
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import { mapGetters, mapState, mapActions } from 'vuex';
-import Card from '../../_templates/card.vue';
-import Collapse from '../../_templates/collapse.vue';
+import Card from '../_templates/card.vue';
+import Collapse from '../_templates/collapse.vue';
 
 export default {
   components: {
@@ -47,6 +47,8 @@ export default {
   data() {
     return {
       isOpen: false,
+      showCard: true,
+      showContent: true,
       faChevronUp,
       faChevronDown,
     };
