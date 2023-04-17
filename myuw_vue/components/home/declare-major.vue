@@ -5,16 +5,68 @@
     </template>
 
     <template #card-body>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto est libero quas quidem
-      exercitationem itaque natus beatae vero ut numquam, neque repudiandae eum modi dolorum animi
-      fuga facere aut dolores!
+      <p class="myuw-text-md">
+        Depending on what major you’re interested in,
+        <strong>you may need to begin planning now.</strong> Here are some ways to get started!
+      </p>
     </template>
 
     <template #card-disclosure>
       <uw-collapse id="collapseDeclareMajor" v-model="isOpen">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non ullam, vitae laboriosam
-        corrupti cumque reiciendis obcaecati praesentium neque sequi numquam maiores, corporis modi
-        eligendi. Facilis amet omnis rem eveniet quia?
+        <div class="row gx-md-4">
+          <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3">
+            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">Current Major</h3>
+            <div>
+              <p class="myuw-text-md">print major and pending major here</p>
+            </div>
+            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
+              Satisfactory Progress Status
+            </h3>
+            <div>
+              <p class="myuw-text-md">put hold info here</p>
+            </div>
+          </div>
+          <div class="col-12 order-xl-1 col-xl-8">
+            <h3 class="h6 myuw-font-encode-sans">Why plan ahead?</h3>
+            <ul class="list-style myuw-text-md">
+              <li>
+                <strong>Satisfactory Progress Policy (SPP):</strong> By the time students have
+                earned 105 credits AND completed 5 quarters at the university, students are expected
+                to declare a major or they receive a registration hold
+              </li>
+              <li>
+                <strong>Transfer Students:</strong> Transfer students who enter with 105 or more
+                credits are expected to declare a major before registering for their second quarter
+                at the UW
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div>
+          <h3 class="h6 myuw-font-encode-sans">Unsure of what major to choose?</h3>
+          <ul class="list-style myuw-text-md">
+            <li>
+              Talk to your pre-major adviser – Narrow down majors of interest, plan for alternate
+              majors, and explore co-curricular opportunities
+            </li>
+            <li>bee boop</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="h6 myuw-font-encode-sans">Interested in a particular major?</h3>
+          <ul class="list-style myuw-text-md">
+            <li>
+              Talk to your pre-major adviser – Narrow down majors of interest, plan for alternate
+              majors, and explore co-curricular opportunities
+            </li>
+            <li>bee boop</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="h6 myuw-font-encode-sans">Get Help and Support</h3>
+          <p class="list-style myuw-text-md">bee boop get help boop</p>
+        </div>
       </uw-collapse>
     </template>
 
