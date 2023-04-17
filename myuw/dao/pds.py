@@ -18,6 +18,7 @@ from myuw.logger.timer import Timer
 logger = logging.getLogger(__name__)
 cache_client = MyUWMemcachedCache()
 DATA_TYPE = "application_type_credits_transcript_terms"
+ENROLLED_STATUS = 12
 
 
 def get_pds_data(request):
@@ -90,7 +91,7 @@ def process_record(p_record):
     student_record = p_record.student
     transcript_terms = []
     for trans in student_record.transcripts:
-        if trans.enroll_status == 12:
+        if trans.enroll_status == ENROLLED_STATUS:
             transcript_terms.append(
                 {
                     "year": trans.tran_term.year,
