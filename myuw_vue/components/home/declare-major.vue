@@ -22,7 +22,7 @@
             <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
               Satisfactory Progress Status
             </h3>
-            <span class="badge bg-danger-light fw-normal myuw-text-md text-danger p-2">
+            <span class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
               Registration Hold -
               <strong
                 ><a
