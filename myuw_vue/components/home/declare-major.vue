@@ -28,7 +28,7 @@
                 ><a
                   href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
                   class="link-danger"
-                  >Review options test</a
+                  >Review options</a
                 ></strong
               >
             </span>
