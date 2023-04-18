@@ -100,7 +100,7 @@ export default {
       helpLinks() {
         return [
           { url: "https://teaching.washington.edu/", title: "Center for Teaching and Learning" },
-          { url: "https://teaching.washington.edu/topics/preparing-to-teach/",
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-your-course-and-syllabus/",
             title: "Course and Syllabus Design" },
           { url: "https://teaching.washington.edu/topics/inclusive-teaching/inclusive-teaching-strategies/",
             title: "Inclusive Teaching" },
