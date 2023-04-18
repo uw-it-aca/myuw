@@ -6,7 +6,7 @@
 
     <template #card-body>
       <p class="myuw-text-md">
-        Depending on what major you’re interested in,
+        Depending on what major you&rsquo;re interested in,
         <strong>you may need to begin planning now.</strong> Here are some ways to get started!
       </p>
     </template>
