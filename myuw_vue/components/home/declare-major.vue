@@ -14,17 +14,24 @@
     <template #card-disclosure>
       <uw-collapse id="collapseDeclareMajor" v-model="isOpen">
         <div class="row gx-md-4">
-          <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3">
+          <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3 mt-4">
             <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">Current Major</h3>
             <div>
               <p class="myuw-text-md">print major and pending major here</p>
             </div>
-            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
+            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
               Satisfactory Progress Status
             </h3>
-            <div>
-              <p class="myuw-text-md">put hold info here</p>
-            </div>
+            <span class="badge bg-danger-light fw-normal myuw-text-md text-danger p-2">
+              Registration Hold -
+              <strong
+                ><a
+                  href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
+                  class="link-danger"
+                  >Review options</a
+                ></strong
+              >
+            </span>
           </div>
           <div class="col-12 order-xl-1 col-xl-8">
             <h3 class="h6 myuw-font-encode-sans">Why plan ahead?</h3>
@@ -43,29 +50,80 @@
           </div>
         </div>
         <hr />
-        <div>
+        <div class="mt-4">
           <h3 class="h6 myuw-font-encode-sans">Unsure of what major to choose?</h3>
           <ul class="list-style myuw-text-md">
             <li>
-              Talk to your pre-major adviser – Narrow down majors of interest, plan for alternate
-              majors, and explore co-curricular opportunities
+              <a href="https://www.washington.edu/uaa/advising/appointments/"
+                >Talk to your pre-major adviser</a
+              >
+              – Narrow down majors of interest, plan for alternate majors, and explore co-curricular
+              opportunities
             </li>
-            <li>bee boop</li>
+            <li>
+              <a href="https://www.washington.edu/uaa/advising/guides/overview/"
+                >Review UW Advising's Guides</a
+              >
+              – Explore activities and questions like, “What majors are you finding yourself curious
+              about?” and “Can you articulate why you plan to choose a particular major?”
+            </li>
+            <li>
+              <a href="https://uw.pathwayu.com/">Gain insight with PathwayU</a> – Discover your
+              purpose, interests, values, and workplace preferences
+            </li>
+            <li>
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=mapping-interests-and-values-meaningful-work"
+                >Consider a wider perspective</a
+              >
+              – Take a holistic approach and reflect on what a meaningful path looks like to you
+            </li>
+            <li>
+              <a href="https://www.washington.edu/uaa/advising/degree-overview/majors/"
+                >Learn more about the major</a
+              >
+              – Pre-majors, double majors, and admission types
+            </li>
           </ul>
         </div>
         <div>
           <h3 class="h6 myuw-font-encode-sans">Interested in a particular major?</h3>
           <ul class="list-style myuw-text-md">
             <li>
-              Talk to your pre-major adviser – Narrow down majors of interest, plan for alternate
-              majors, and explore co-curricular opportunities
+              <a
+                href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
+                >Explore the major</a
+              >
+              – Learn how to declare or apply
             </li>
-            <li>bee boop</li>
+            <li>
+              <a
+                href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+                >Meet with a major adviser</a
+              >
+              – Get in depth answers to your questions
+            </li>
+            <li>
+              <a href="https://dawgpath.uw.edu/">Explore DawgPath</a> – Discover majors, average GPA
+              at declaration, and explore career outcomes
+            </li>
+            <li>
+              <a href="https://myplan.uw.edu/program/#/orgs">Find programs and check progress</a> –
+              Filter by admission type and compare degree requirements to classes you’ve taken
+            </li>
+            <li>
+              Consider multiple majors – Capacity-constrained majors can be selective, consider
+              other majors that may align with your future goals
+            </li>
           </ul>
         </div>
         <div>
           <h3 class="h6 myuw-font-encode-sans">Get Help and Support</h3>
-          <p class="list-style myuw-text-md">bee boop get help boop</p>
+          <p class="list-style myuw-text-md">
+            Navigating majors can be overwhelming, you’re not alone! If you have questions,
+            <a href="https://my.uw.edu/academics/">reach out to your adviser</a> who can give you
+            personalized guidance based on your unique situation.
+          </p>
         </div>
       </uw-collapse>
     </template>
