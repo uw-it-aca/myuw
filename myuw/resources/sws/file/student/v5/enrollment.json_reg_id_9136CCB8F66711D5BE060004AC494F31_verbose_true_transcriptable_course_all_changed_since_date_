@@ -2,6 +2,7 @@
 "Current":{ "Href": "\/student\/v5\/enrollment.json?reg_id=9136CCB8F66711D5BE060004AC494F31&verbose=true&changed_since_date=&transcriptable_course=all", "RegID":"9136CCB8F66711D5BE060004AC494F31","Verbose":true},
 "Enrollments":[
 {
+    "ClassCode": "6",
 "ClassLevel":"NON_MATRIC",
 "FullName":"Inter, Jay",
 "HonorsProgram":false,
@@ -60,6 +61,7 @@
     }
 },
 {
+   "ClassCode": "8",
    "ClassLevel": "GRADUATE",
    "CurrentRegisteredCredits": null,
    "EnrollmentStatus": null,
@@ -114,6 +116,7 @@
           }
   },
   {
+    "ClassCode": "8",
     "ClassLevel": "GRADUATE",
     "CurrentRegisteredCredits": null,
     "EnrollmentStatus": null,
