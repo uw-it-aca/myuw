@@ -10,6 +10,7 @@ import mockList from './mock_data/husky-exp/list.json';
 
 import UwCard from '../components/_templates/card.vue';
 import HuskyExp from '../components/husky_experience/husky-exp.vue';
+import HuskyExpCard from '../components/_common/husky-experience.vue';
 
 const localVue = createLocalVue(Vuex);
 jest.mock('axios');
@@ -27,6 +28,10 @@ describe('hx_toolkit page content', () => {
           affiliations: {
             hxt_viewer: true,
           }
+        },
+        page: {
+          hideTitle: false,
+          title: "Husky Experience Toolkit"
         }
       }
     });
@@ -44,6 +49,7 @@ describe('hx_toolkit page content', () => {
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.vm.staticUrl).toBe('/static/');
-    expect(wrapper.findAllComponents(UwCard).length).toBe(4);
+    expect(wrapper.findAllComponents(UwCard).length).toBe(5);
+    expect(wrapper.findAllComponents(HuskyExpCard).length).toBe(1);
   });
 });
