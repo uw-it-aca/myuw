@@ -11,7 +11,7 @@ export default function(Vue, _) {
 	Vue.directive('no-track-collapse', {
 		bind: (el, _binding, _vnode) => {
 			const elm = el.tagName === 'BUTTON' ? el :
-				el.querySelector('button:is(.collapsed,.not-collapsed):not(.no-track-collapse)');
+				el.querySelector('button:is(.collapsed,.not-collapsed), button:not(.no-track-collapse)');
 			
 			if (elm) {
 				elm.classList.add('no-track-collapse');
