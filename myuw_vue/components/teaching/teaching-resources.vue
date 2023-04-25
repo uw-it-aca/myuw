@@ -2,10 +2,6 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <uw-sidelink-section
-        category-title="Online Teaching"
-        :links="remoteTeachingLinks"
-      />
-      <uw-sidelink-section
         category-title="Course Materials"
         :links="courseMaterialLinks"
       />
@@ -14,7 +10,7 @@
         :links="webToolsLinks"
       />
       <uw-sidelink-section
-        category-title="Help Guides"
+        category-title="Teaching Strategies"
         :links="helpLinks"
       />
     </template>
@@ -97,17 +93,21 @@ export default {
           { url: this.linkData.courseEval, title: "Course Evaluations" },
           { url: "https://coda.uw.edu", title: "Course Statistics Dashboard" },
           { url: "https://gsuite.google.com/dashboard", title: "Google Apps" },
-          { url: "https://www.office.com/", title: "Office 365 Apps" }
+          { url: "https://www.office.com/", title: "Office 365 Apps" },
+          { url: "https://washington.zoom.us/", title: "Zoom" }
         ];
       },
       helpLinks() {
         return [
-          { url: "https://itconnect.uw.edu/learn/tools/", title: "Teaching & Learning Tools" },
-          { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
-          { url: "http://depts.washington.edu/grading/", title: "Faculty Resources on Grading" },
-          { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/",
-            title: "Online Grade Submission" },
-          { url: "http://teaching.pce.uw.edu/", title: "UW PCE Instructor Resources" }
+          { url: "https://teaching.washington.edu/", title: "Center for Teaching and Learning" },
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-your-course-and-syllabus/",
+            title: "Course and Syllabus Design" },
+          { url: "https://teaching.washington.edu/topics/inclusive-teaching/inclusive-teaching-strategies/",
+            title: "Inclusive Teaching" },
+          { url: "https://teaching.washington.edu/topics/engaging-students-in-learning/",
+            title: "Engagement Strategies" },
+          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-and-refining-hybrid-and-online-courses/",
+            title: "Hybrid and Online Course Design" },
         ];
       }
     }),

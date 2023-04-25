@@ -26,6 +26,10 @@ describe('Hxt Card', () => {
           affiliations: {
             hxt_viewer: false,
           }
+        },
+        page: {
+          hideTitle: true,
+          title: "Home"
         }
       }
     });
