@@ -6,6 +6,7 @@
     },
     "Enrollments": [
         {
+            "ClassCode": "8",
             "ClassLevel": "GRADUATE",
             "CurrentRegisteredCredits": 12,
             "EnrollmentStatus": "Registered",

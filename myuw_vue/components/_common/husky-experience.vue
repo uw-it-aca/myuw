@@ -1,7 +1,12 @@
 <template>
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Experience Toolkit</h2>
+      <template v-if="page.title == 'Home'">
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Experience Toolkit</h2>
+      </template>
+      <template v-else>
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Featured Article</h2>
+      </template>
     </template>
     <template #card-body>
       <div class="mb-2">
@@ -27,7 +32,7 @@
               <div class="mb-3 text-secondary">
                 <em>2 min read time</em>
               </div>
-              <div>
+              <div v-if="page.title == 'Home'">
                 <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/"
                   >Learn more about the toolkit</a
                 >
@@ -87,6 +92,7 @@ export default {
       },
 
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
+      page: (state) => state.page,
     }),
     ...mapGetters('hx_toolkit', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
     isReady() {
