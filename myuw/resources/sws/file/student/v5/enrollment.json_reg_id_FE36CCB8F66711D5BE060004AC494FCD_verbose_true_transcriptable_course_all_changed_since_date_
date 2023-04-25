@@ -2,6 +2,7 @@
   "Href":"\/student\/v5\/enrollment.json?reg_id=FE36CCB8F66711D5BE060004AC494FCD&verbose=true&changed_since_date=&transcriptable_course=all", "RegID":"FE36CCB8F66711D5BE060004AC494FCD","Verbose":true},
 "Enrollments":[
    {
+    "ClassCode": "1",
     "ClassLevel": "FRESHMAN",
     "FullName": "BOTHELL, JAMES",
     "HonorsProgram": false,
@@ -305,6 +306,7 @@
     }
 },
         {
+            "ClassCode": "2",
             "ClassLevel": "SOPHOMORE",
             "FullName": "BOTHELL, JAMES",
             "HonorsProgram": false,
