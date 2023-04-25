@@ -24,7 +24,7 @@ export default function(Vue, _) {
 			if (this.$el && this.$el.querySelectorAll) {
 				try {
 					this.$el.querySelectorAll(
-						'button:is(.collapsed,.not-collapsed):not(.no-track-collapse):not(.track-collapse)'
+						'button:is(.collapsed,.not-collapsed), button:not(.no-track-collapse), button:not(.track-collapse)'
 					).forEach((el) => {
 						// Find nearest vue component parent
 						let context = null;
