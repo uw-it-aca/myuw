@@ -134,12 +134,12 @@ class TestAdviserDao(TestCase):
                 'javerage', get_request_with_date("2013-08-22")))
         self.assertFalse(
             degree_data['degrees'][0]['after_last_final_exam_day'])
-        degree_data=get_degrees_json(
+        degree_data = get_degrees_json(
             get_request_with_user(
                 'javerage', get_request_with_date("2013-08-23")))
         self.assertTrue(
             degree_data['degrees'][0]['after_last_final_exam_day'])
-        degree_data=get_degrees_json(
+        degree_data = get_degrees_json(
             get_request_with_user(
                 'javerage', get_request_with_date("2013-09-19")))
         self.assertTrue(

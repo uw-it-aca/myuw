@@ -10,17 +10,14 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from myuw.dao import coda
-from myuw.views.error import \
-    handle_exception, not_instructor_error, data_not_found
-from restclients_core.exceptions import DataFailureException
+from myuw.views.error import (
+    handle_exception, not_instructor_error)
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.person import get_person_by_regid
-from uw_sws.section import get_joint_sections
 from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.enrollment import get_code_for_class_level
-from myuw.dao.instructor_schedule import get_instructor_section,\
-    check_section_instructor
+from myuw.dao.instructor_schedule import (
+    get_instructor_section, check_section_instructor)
 from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
@@ -28,8 +25,8 @@ from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
 from myuw.views.decorators import blti_admin_required
-from myuw.views.api.instructor_schedule import load_schedule, \
-    _set_current
+from myuw.views.api.instructor_schedule import (
+    load_schedule, _set_current)
 
 logger = logging.getLogger(__name__)
 withdrew_grade_pattern = re.compile(r'^W')
@@ -238,16 +235,10 @@ class OpenInstSectionDetails(OpenAPI):
             thread = enrollment_threads[regid]
             thread.join()
             if thread.response:
-
                 for reg in registrations[regid]:
                     reg["majors"] = thread.response["majors"]
-                    reg["class_level"] =\
-                        thread.response["class_level"]
-
-                code = get_code_for_class_level(thread.response["class_level"])
-
-                for reg in registrations[regid]:
-                    reg['class_code'] = code
+                    reg["class_level"] = thread.response["class_level"]
+                    reg['class_code'] = thread.response["class_code"]
 
             registration_list.extend(registrations[regid])
         return registration_list
@@ -271,7 +262,8 @@ class OpenInstSectionDetails(OpenAPI):
             majors.append(major.json_data())
 
         return {"majors": majors,
-                "class_level": enrollment.class_level}
+                "class_level": enrollment.class_level,
+                "class_code": enrollment.class_code}
 
 
 @method_decorator(login_required, name='dispatch')
