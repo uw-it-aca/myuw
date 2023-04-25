@@ -71,7 +71,7 @@ export default function(Vue, _) {
   Vue.mixin({
     updated() {
       if (this.$el && this.$el.querySelectorAll) {
-        this.$el.querySelectorAll('a:not(.external-link):not(.internal-link):not([role=tab])')
+        this.$el.querySelectorAll('a:not(.external-link), a:not(.internal-link), a:not([role=tab])')
           .forEach((el) => {
             // Find nearest vue component parent
             let context = null;
