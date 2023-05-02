@@ -7,7 +7,8 @@
     <template #card-body>
       <p class="myuw-text-md">
         Depending on what major you&rsquo;re interested in,
-        <strong>you may need to begin planning now.</strong> Here are some ways to get started!
+        <strong>you may need to begin planning now.</strong>
+        Here are some ways to get started!
       </p>
     </template>
 
@@ -15,30 +16,32 @@
       <uw-collapse id="collapseDeclareMajor" v-model="isOpen">
         <div class="row gx-md-4">
           <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3 mt-4">
-            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">Current Major</h3>
-            <div>
-              <p class="myuw-text-md">print major and pending major here</p>
-            </div>
+            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
+              Current Major
+            </h3>
+            <cur_majors :term-majors="termMajors"></cur_majors>
+
             <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
               Satisfactory Progress Status
             </h3>
-            <span class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
+            <span v-if="hasRegHolds"
+              class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
               Registration Hold -
-              <strong
-                ><a
+              <strong>
+                <a
                   href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
                   class="link-danger"
-                  >Review options</a
-                ></strong
-              >
+                >Review options</a>
+              </strong>
             </span>
           </div>
           <div class="col-12 order-xl-1 col-xl-8">
             <h3 class="h6 myuw-font-encode-sans">Why plan ahead?</h3>
             <ul class="list-style myuw-text-md">
               <li>
-                <strong>Satisfactory Progress Policy (SPP):</strong> By the time students have
-                earned 105 credits AND completed 5 quarters at the university, students are expected
+                <strong>Satisfactory Progress Policy (SPP):</strong> By the
+                time students have earned 105 credits AND completed 5 quarters
+                at the university, students are expected
                 to declare a major or they receive a registration hold
               </li>
               <li>
@@ -145,27 +148,76 @@
 <script>
 // MUWM-5144 Pre-application
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-// import { mapGetters, mapState, mapActions } from 'vuex';
-import Card from '../_templates/card.vue';
-import Collapse from '../_templates/collapse.vue';
+import { mapGetters, mapState, mapActions } from 'vuex';
+import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
+import CurMajors from './cur_major.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
+    'cur_majors': CurMajors,
   },
   data() {
     return {
       isOpen: false,
-      showCard: true,
-      showContent: true,
       faChevronUp,
       faChevronDown,
     };
   },
-  computed: {},
-  created() {},
-  methods: {},
+  computed: {
+    ...mapState({
+      classLevel: (state) => state.user.affiliations.class_level,
+    }),
+    ...mapState('notices', {
+      notices: (state) => state.value,
+    }),
+    ...mapState('profile', {
+      profile: (state) => state.value,
+      termMajors: (state) => state.value.term_majors,
+    }),
+    ...mapGetters('notices', {
+      isNoticeReady: 'isReady',
+      isNoticeErrored: 'isErrored',
+    }),
+    ...mapGetters('profile', {
+      isProfileReady: 'isReady',
+      isProfileErrored: 'isErrored',
+    }),
+    curJunior() {
+      return (this.classLevel === 'JUNIOR');
+    },
+    regHoldsNotices() {
+      return this.notices.filter((notice) =>
+        notice.location_tags.includes('reg_card_holds'),
+      );
+    },
+    hasRegHolds() {
+      return this.regHoldsNotices.length;
+    },
+    showCard() {
+      return (this.curJunior && (this.isFetching || this.showContent));
+    },
+    showContent() {
+      return (this.isNoticeReady && this.isProfileReady);
+    },
+    errored() {
+      return (this.isNoticesErrored || this.isProfileErrored);
+    },
+  },
+  created() {
+    this.fetchNotices();
+    this.fetchProfile();
+  },
+  methods: {
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+    ...mapActions('profile', {
+      fetchProfile: 'fetch',
+    }),
+  },
 };
 </script>
 

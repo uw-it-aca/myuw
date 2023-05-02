@@ -94,6 +94,11 @@ class TestDaoEnrollment(TestCase):
         self.assertIsNone(get_cur_class_level(req))
         self.assertIsNone(get_latest_class_level(req))
 
+        req = get_request_with_user('javg005',
+                                    get_request_with_date("2013-04-15"))
+        self.assertEqual(get_cur_class_level(req), "JUNIOR")
+        self.assertEqual(get_latest_class_level(req), "JUNIOR")
+
     def test_get_enrollments_of_terms(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))

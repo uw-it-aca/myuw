@@ -16,7 +16,7 @@ import HRPayroll from './components/_common/hr-payroll.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
-import DeclareMajor from './components/home/declare-major.vue';
+import DeclareMajor from './components/home/major-declaration/declare-major.vue';
 import Notices from './components/home/notice/notices.vue';
 import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
