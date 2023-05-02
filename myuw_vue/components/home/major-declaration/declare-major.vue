@@ -151,7 +151,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
-import CurMajors from './cur_major.vue';
+import CurMajors from '../../_common/cur_major.vue';
 
 export default {
   components: {
@@ -194,7 +194,7 @@ export default {
       );
     },
     hasRegHolds() {
-      return this.regHoldsNotices.length;
+      return this.regHoldsNotices.length > 0;
     },
     showCard() {
       return (this.curJunior && (this.isFetching || this.showContent));
