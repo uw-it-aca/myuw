@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-unstyled mb-0">
+  <ul v-if="termMajors && termMajors.length > 0" class="list-unstyled mb-0">
     <template v-for="(termMajor, index) in termMajors">
       <li v-if="index == 0" :key="index" class="mb-1">
         {{ degreeListString(termMajor.majors) }}
@@ -10,12 +10,12 @@
         <span v-if="termMajor.majors.length > 0">
           {{ degreeListString(termMajor.majors) }}
         </span>
-        <span v-else class="text-muted">
-          None
-        </span>
       </li>
     </template>
   </ul>
+  <span v-else class="text-muted">
+    None
+  </span>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
   props: {
     termMajors: {
       type: Array,
-      required: true,
+      // required: true,
     },
   },
 };
