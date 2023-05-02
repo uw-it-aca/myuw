@@ -1,5 +1,10 @@
 <template>
-  <uw-card v-if="showCard" :loaded="showContent" :errored="isErrored" :errored-show="false">
+  <uw-card
+    v-if="showCard"
+    :loaded="showContent"
+    :errored="isErrored"
+    :errored-show="false"
+  >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Deciding on a Major</h2>
     </template>
@@ -178,16 +183,15 @@ export default {
       termMajors: (state) => state.value.term_majors,
     }),
     ...mapGetters('notices', {
+      isNoticeFetching: 'isFetching',
       isNoticeReady: 'isReady',
       isNoticeErrored: 'isErrored',
     }),
     ...mapGetters('profile', {
+      isProfileFetching: 'isFetching',
       isProfileReady: 'isReady',
       isProfileErrored: 'isErrored',
     }),
-    curJunior() {
-      return (this.classLevel === 'JUNIOR');
-    },
     regHoldsNotices() {
       return this.notices.filter((notice) =>
         notice.location_tags.includes('reg_card_holds'),
@@ -196,13 +200,18 @@ export default {
     hasRegHolds() {
       return this.regHoldsNotices.length > 0;
     },
+    isJunior() {
+      return (this.classLevel === 'JUNIOR');
+    },
     showCard() {
-      return (this.curJunior && (this.isFetching || this.showContent));
+      return (this.isJunior &&
+        (this.isNoticeFetching || this.isProfileFetching ||
+         this.showContent));
     },
     showContent() {
       return (this.isNoticeReady && this.isProfileReady);
     },
-    errored() {
+    isErrored() {
       return (this.isNoticesErrored || this.isProfileErrored);
     },
   },
