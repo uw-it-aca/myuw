@@ -52,8 +52,8 @@
               </li>
               <li>
                 <strong>Transfer Students:</strong> Transfer students who enter with <em>105 or more
-                credits</em> are expected to declare a major before registering for their second quarter
-                at the UW.
+                credits</em> are expected to declare a major before registering for their second
+                quarter at the UW.
               </li>
             </ul>
           </div>
@@ -66,15 +66,15 @@
               <a href="https://www.washington.edu/uaa/advising/appointments/"
                 >Talk to your pre-major adviser</a
               >
-              – Narrow down majors of interest, plan for alternate majors, and explore co-curricular
-              opportunities.
+              – Narrow down majors of interest, plan for alternate majors, and explore
+              co-curricular opportunities.
             </li>
             <li>
               <a href="https://www.washington.edu/uaa/advising/guides/overview/"
                 >Review UW Advising's Guides</a
               >
-              – Explore activities and questions like, “What majors are you finding yourself curious
-              about?” and “Can you articulate why you plan to choose a particular major?”
+              – Explore activities and questions like, “What majors are you finding yourself
+              curious about?” and “Can you articulate why you plan to choose a particular major?”
             </li>
             <li>
               <a href="https://uw.pathwayu.com/">Gain insight with PathwayU</a> – Discover your
@@ -113,8 +113,8 @@
               – Get in depth answers to your questions.
             </li>
             <li>
-              <a href="https://dawgpath.uw.edu/">Explore DawgPath</a> – Discover majors, average GPA
-              at declaration, and explore career outcomes.
+              <a href="https://dawgpath.uw.edu/">Explore DawgPath</a> – Discover majors,
+              average GPA at declaration, and explore career outcomes.
             </li>
             <li>
               <a href="https://myplan.uw.edu/program/#/orgs">Find programs and check progress</a> –
