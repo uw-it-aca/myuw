@@ -6,7 +6,6 @@ import { createLocalVue } from './helper';
 import Vuex from 'vuex';
 import profile from '../vuex/store/profile';
 
-import UwCard from '../components/_templates/card.vue';
 import StudentProfileCard from '../components/profile/student-profile.vue';
 import javg001Profile from './mock_data/profile/javg001.json';
 
@@ -40,6 +39,7 @@ describe('Student Profile Card', () => {
 
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.profile).toBeTruthy();
+    expect(wrapper.vm.termMajors).toBeTruthy();
   });
 
   it('addressLocationString()', async () => {
