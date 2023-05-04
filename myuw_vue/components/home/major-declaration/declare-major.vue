@@ -27,19 +27,21 @@
             <div class="myuw-text-md">
               <cur_majors :term-majors="termMajors"></cur_majors>
             </div>
-            <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
-              Satisfactory Progress Status
-            </h3>
-            <span v-if="hasRegHolds"
-              class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
-              Registration Hold -
-              <strong>
-                <a
-                  href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
-                  class="link-danger"
-                >Review options</a>
-              </strong>
-            </span>
+            <div v-if="hasRegHolds">
+              <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
+                Satisfactory Progress Status
+              </h3>
+              <span
+                class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
+                Registration Hold -
+                <strong>
+                  <a
+                    href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
+                    class="link-danger"
+                  >Review options</a>
+                </strong>
+              </span>
+            </div>
           </div>
           <div class="col-12 order-xl-1 col-xl-8">
             <h3 class="h6 myuw-font-encode-sans">Why plan ahead?</h3>
