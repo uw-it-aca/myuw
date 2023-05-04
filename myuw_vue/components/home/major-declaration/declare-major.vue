@@ -24,8 +24,9 @@
             <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
               Current Major
             </h3>
-            <cur_majors :term-majors="termMajors"></cur_majors>
-
+            <div class="myuw-text-md">
+              <cur_majors :term-majors="termMajors"></cur_majors>
+            </div>
             <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
               Satisfactory Progress Status
             </h3>
@@ -45,14 +46,14 @@
             <ul class="list-style myuw-text-md">
               <li>
                 <strong>Satisfactory Progress Policy (SPP):</strong> By the
-                time students have earned 105 credits AND completed 5 quarters
+                time students have earned 105 credits <em>AND</em> completed 5 quarters
                 at the university, students are expected
-                to declare a major or they receive a registration hold
+                to declare a major or they receive a registration hold.
               </li>
               <li>
-                <strong>Transfer Students:</strong> Transfer students who enter with 105 or more
-                credits are expected to declare a major before registering for their second quarter
-                at the UW
+                <strong>Transfer Students:</strong> Transfer students who enter with <em>105 or more
+                credits</em> are expected to declare a major before registering for their second quarter
+                at the UW.
               </li>
             </ul>
           </div>
@@ -66,7 +67,7 @@
                 >Talk to your pre-major adviser</a
               >
               – Narrow down majors of interest, plan for alternate majors, and explore co-curricular
-              opportunities
+              opportunities.
             </li>
             <li>
               <a href="https://www.washington.edu/uaa/advising/guides/overview/"
@@ -77,20 +78,20 @@
             </li>
             <li>
               <a href="https://uw.pathwayu.com/">Gain insight with PathwayU</a> – Discover your
-              purpose, interests, values, and workplace preferences
+              purpose, interests, values, and workplace preferences.
             </li>
             <li>
               <a
                 href="https://my.uw.edu/husky_experience_message?article=mapping-interests-and-values-meaningful-work"
                 >Consider a wider perspective</a
               >
-              – Take a holistic approach and reflect on what a meaningful path looks like to you
+              – Take a holistic approach and reflect on what a meaningful path looks like to you.
             </li>
             <li>
               <a href="https://www.washington.edu/uaa/advising/degree-overview/majors/"
                 >Learn more about the major</a
               >
-              – Pre-majors, double majors, and admission types
+              – Pre-majors, double majors, and admission types.
             </li>
           </ul>
         </div>
@@ -102,26 +103,26 @@
                 href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
                 >Explore the major</a
               >
-              – Learn how to declare or apply
+              – Learn how to declare or apply.
             </li>
             <li>
               <a
                 href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
                 >Meet with a major adviser</a
               >
-              – Get in depth answers to your questions
+              – Get in depth answers to your questions.
             </li>
             <li>
               <a href="https://dawgpath.uw.edu/">Explore DawgPath</a> – Discover majors, average GPA
-              at declaration, and explore career outcomes
+              at declaration, and explore career outcomes.
             </li>
             <li>
               <a href="https://myplan.uw.edu/program/#/orgs">Find programs and check progress</a> –
-              Filter by admission type and compare degree requirements to classes you’ve taken
+              Filter by admission type and compare degree requirements to classes you’ve taken.
             </li>
             <li>
               Consider multiple majors – Capacity-constrained majors can be selective, consider
-              other majors that may align with your future goals
+              other majors that may align with your future goals.
             </li>
           </ul>
         </div>
