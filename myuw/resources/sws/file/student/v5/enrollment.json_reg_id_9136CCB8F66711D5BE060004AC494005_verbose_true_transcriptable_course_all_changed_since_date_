@@ -7,8 +7,8 @@
     },
     "Enrollments": [
         {
-            "ClassCode": "4",
-            "ClassLevel": "SENIOR",
+            "ClassCode": "3",
+            "ClassLevel": "JUNIOR",
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
@@ -61,8 +61,8 @@
             }
    },
    {
-            "ClassCode": "4",
-            "ClassLevel": "SENIOR",
+            "ClassCode": "3",
+            "ClassLevel": "JUNIOR",
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
