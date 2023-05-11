@@ -208,31 +208,33 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveDegreeLast4weeksInst || hasGrantedDegree">
-            <h3 class="h6 myuw-font-encode-sans">
-              Your plans after graduation
-            </h3>
-            <ul class="list-unstyled myuw-text-md">
-              <li>
-                <uw-collapsed-item :notice="degreeNextDestination">
-                  <template #notice-body>
-                    <p>
-                      Each year we track, aggregate and
-                      <a href="https://careers.uw.edu/outcomes/"
-                        >visualize UW bachelor graduate's next destination.</a>
-                    </p>
-                    <p>
-                      What are <i>you</i> planning to do? Whether you&apos;re intending to work,
-                        travel, go to grad school, or are still figuring it out,
-                        we want to know!
-                        <a href="https://careers.uw.edu/resources/next-destination-survey/"
-                        >Please take 5 mins to tell us your plans</a>
-                        so we can better coach students and inform future graduates
-                        &ndash; we want to hear from every graduate! </p>
-                  </template>
-                </uw-collapsed-item>
-              </li>
-            </ul>
+          <div v-if="seattle">
+            <div v-if="hasActiveDegreeLast4weeksInst || hasGrantedDegree">
+              <h3 class="h6 myuw-font-encode-sans">
+                Your plans after graduation
+              </h3>
+              <ul class="list-unstyled myuw-text-md">
+                <li>
+                  <uw-collapsed-item :notice="degreeNextDestination">
+                    <template #notice-body>
+                      <p>
+                        Each year we track, aggregate and
+                        <a href="https://careers.uw.edu/outcomes/"
+                          >visualize UW bachelor graduate's next destination.</a>
+                      </p>
+                      <p>
+                        What are <i>you</i> planning to do? Whether you&apos;re intending to work,
+                          travel, go to grad school, or are still figuring it out,
+                          we want to know!
+                          <a href="https://careers.uw.edu/resources/next-destination-survey/"
+                          >Please take 5 mins to tell us your plans</a>
+                          so we can better coach students and inform future graduates
+                          &ndash; we want to hear from every graduate! </p>
+                    </template>
+                  </uw-collapsed-item>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm || hasGrantedDegree">
