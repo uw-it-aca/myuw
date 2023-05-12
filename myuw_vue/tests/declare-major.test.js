@@ -10,13 +10,14 @@ import profile from '../vuex/store/profile';
 import DeclareMajorCard from '../components/home/major-declaration/declare-major.vue';
 import CurMajors from '../components/_common/cur_major.vue';
 import mockNotices from './mock_data/notice/jinter.json';
+import premajorProfile from './mock_data/profile/javgPremajor.json';
 import javg005Profile from './mock_data/profile/javg005.json';
 
 const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 
-describe('Student Profile Card', () => {
+describe('Declare Major Card', () => {
   let store;
 
   beforeEach(() => {
@@ -35,17 +36,18 @@ describe('Student Profile Card', () => {
     });
   });
 
-  it('Verify computed properties', async () => {
+  it('Verify with a junior of premajor ', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
-        '/api/v1/profile/': javg005Profile,
+        '/api/v1/profile/': premajorProfile
       };
       return Promise.resolve({ data: urlData[url] });
     });
     const wrapper = mount(DeclareMajorCard, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.isJunior).toBe(true);
+    expect(wrapper.vm.notDeclaredMajor).toBe(true);
     expect(wrapper.vm.showContent).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.hasRegHolds).toBe(true);
@@ -53,5 +55,20 @@ describe('Student Profile Card', () => {
     expect(wrapper.findAllComponents(DeclareMajorCard)).toHaveLength(1);
     expect(wrapper.findAllComponents(CurMajors)).toHaveLength(1);
     expect(wrapper.findAll('h3').length).toBe(6);
+  });
+
+  it('Verify junior with declared major', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': mockNotices,
+        '/api/v1/profile/': javg005Profile
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(DeclareMajorCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isJunior).toBe(true);
+    expect(wrapper.vm.notDeclaredMajor).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
   });
 });

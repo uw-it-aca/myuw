@@ -204,10 +204,14 @@ export default {
       return this.regHoldsNotices.length > 0;
     },
     isJunior() {
-      return (this.classLevel === 'JUNIOR');
+      return this.classLevel === 'JUNIOR';
+    },
+    notDeclaredMajor() {
+      // MUWM-5261
+      return this.noDeclaredMajor(this.termMajors);
     },
     showCard() {
-      return (this.isJunior &&
+      return (this.isJunior && this.notDeclaredMajor &&
         (this.isNoticeFetching || this.isProfileFetching ||
          this.showContent));
     },

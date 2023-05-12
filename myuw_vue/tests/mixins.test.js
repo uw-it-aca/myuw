@@ -187,6 +187,45 @@ describe('mixins', () => {
       "American Sign Language, Political Science"
     );
   });
+  it('isPreMajor', () => {
+    expect(utils.methods.isPreMajor("PRE ARTS")).toBe(true);
+    expect(utils.methods.isPreMajor("EXTND PREMAJOR (BOTHELL)")).toBe(true);
+    expect(utils.methods.isPreMajor("PREMAJOR (TACOMA)")).toBe(true);
+    expect(utils.methods.isPreMajor("EXTENDED PRE ENGINEERING")).toBe(true);
+    expect(utils.methods.isPreMajor("PRE-HLTHCARE LD (TACOMA)")).toBe(true);
+    expect(utils.methods.isPreMajor("WOMEN STUDIES")).toBe(false);
+  }),
+  it('noDeclaredMajor', () => {
+    expect(utils.methods.noDeclaredMajor(null)).toBe(true);
+    let TermMajors = [
+      {
+        "quarter": "spring",
+        "year": 2023,
+        "majors": [
+          {
+            "name": "PRE SCIENCE",
+            "full_name": "Pre Sciences",
+            "short_name": "PRE SCI"
+          }
+        ]
+      }
+    ];
+    expect(utils.methods.noDeclaredMajor(TermMajors)).toBe(true);
+    TermMajors.push(
+      {
+        "quarter": "summer",
+        "year": 2023,
+        "majors": [
+          {
+            "name": "STATISTICS",
+            "full_name": "Statistics",
+            "short_name": "STATISTICS"
+          }
+        ]
+      }
+    );
+    expect(utils.methods.noDeclaredMajor(TermMajors)).toBe(false);
+  });
   it('buildClasslistCsv', () => {
   {
     const registrations = [
