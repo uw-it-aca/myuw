@@ -208,7 +208,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveDegreeLast4weeksInst || hasGrantedDegree">
+          <div v-if="seattle && (hasActiveDegreeLast4weeksInst || hasGrantedDegree)">
             <h3 class="h6 myuw-font-encode-sans">
               Your plans after graduation
             </h3>

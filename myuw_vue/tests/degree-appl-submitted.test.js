@@ -10,6 +10,7 @@ import notices from '../vuex/store/notices';
 import Graduation from '../components/home/graduation/application-submitted.vue';
 import CollapsedItem from '../components/_common/collapsed-item.vue';
 import eightProfile from './mock_data/profile/eight.json';
+import grantedSeaProfile from './mock_data/profile/grantedDegreeSea.json';
 import javg001Profile from './mock_data/profile/javg001.json';
 import javg002Profile from './mock_data/profile/javg002.json';
 import javg003Profile from './mock_data/profile/javg003.json';
@@ -108,7 +109,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.degreeNextDestination.category).toBe(
       "Graduation NextDestination"
     );
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(5);
+    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(4);
   });
   it('Verify double degrees diff status', async () => {
     axios.get.mockImplementation((url) => {
@@ -150,6 +151,29 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
     expect(wrapper.vm.hasActiveApplication).toBe(true);
     expect(wrapper.vm.hasGrantedDegree).toBe(false);
+  });
+  it('Verify seattle granted degree', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': eightNotice,
+        '/api/v1/profile/': grantedSeaProfile,
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(Graduation, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.doubleDegreeDiffStatus).toBe(true);
+    expect(wrapper.vm.doubleDegreesInDiffTerms).toBe(false);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringAprilMay).toBe(true);
+    expect(wrapper.vm.hasActiveDegreeLast4weeksInst).toBe(false);
+    expect(wrapper.vm.hasActiveOrGrantedDegreeDuringEarnedTerm).toBe(true);
+    expect(wrapper.vm.hasActiveApplBeforeEarnedTerm).toBe(false);
+    expect(wrapper.vm.hasActiveApplication).toBe(false);
+    expect(wrapper.vm.hasGrantedDegree).toBe(true);
+    expect(wrapper.vm.seattle).toBe(true);
+    expect(wrapper.vm.bothell).toBe(false);
+    expect(wrapper.vm.tacoma).toBe(false);
+    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(5);
   });
   it('Verify hide card if degree status is 404', async () => {
     axios.get.mockImplementation((url) => {
