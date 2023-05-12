@@ -82,8 +82,8 @@
                     "DepartmentAbbreviation": "PREMAJ",
                     "DepartmentCode": "256",
                     "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
-                    "FullName": "Extnd premajor",
-                    "MajorName": "EXTND PREMAJOR",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
                     "Pathway": 0,
                     "ShortName": "PRE SCI"
                 }
@@ -136,8 +136,8 @@
                     "DepartmentAbbreviation": "PREMAJ",
                     "DepartmentCode": "256",
                     "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
-                    "FullName": "Extened Pre Major",
-                    "MajorName": "EXTENDED PRE MAJOR",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
                     "Pathway": 0,
                     "ShortName": "PRE SCI"
                 }
@@ -189,8 +189,8 @@
                     "DepartmentAbbreviation": "PREMAJ",
                     "DepartmentCode": "256",
                     "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
-                    "FullName": "Pre Urban develop",
-                    "MajorName": "PRE SUS URBAN DEVELOP",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
                     "Pathway": 0,
                     "ShortName": "PRE SCI"
                 }
