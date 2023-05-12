@@ -207,6 +207,7 @@ export default {
       return this.classLevel === 'JUNIOR';
     },
     notDeclaredMajor() {
+      // MUWM-5261
       return this.noDeclaredMajor(this.termMajors);
     },
     showCard() {
