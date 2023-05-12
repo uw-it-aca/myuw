@@ -83,11 +83,11 @@ export default {
     },
     isPreMajor(majorName) {
       return Boolean(
-        majorName.match(/^EXTENDED PRE /) ||
-        majorName.match(/^EXTND PREMAJOR/) ||
+        majorName.match(/^EXTENDED PRE/) ||
+        majorName.match(/^EXTND PRE/) ||
         majorName.match(/^PRE /) ||
         majorName.match(/^PRE-/) ||
-        majorName.match(/^PREMAJOR /)
+        majorName.match(/^PREMAJOR/)
       );
     },
     noDeclaredMajor(termMajors) {
