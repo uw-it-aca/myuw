@@ -15,17 +15,17 @@ class TestDegreeNotices(TestCase):
 
         final_notices = categorize_notices(notices)
         for notice in final_notices:
-            print(notice)
             self.assertTrue('Graduation' in notice.custom_category)
             self.assertEquals(notice.location_tags[0], 'graduation')
             self.assertFalse(notice.is_critical)
 
         notices = get_category_notices("Teaching")
-        self.assertEquals(len(notices), 1)
-
-        final_notices = categorize_notices(notices)
-        for notice in final_notices:
-            print(notice)
-            self.assertTrue('Teaching' in notice.custom_category)
-            self.assertEquals(notice.location_tags[0], 'teaching_summary')
-            self.assertFalse(notice.is_critical)
+        self.assertEquals(len(notices), 2)
+        cnotices = categorize_notices(notices)
+        self.assertEquals(cnotices[0].custom_category,
+                          "Teaching ClassResAccessible")
+        self.assertEquals(cnotices[0].location_tags[0], 'teaching_summary')
+        self.assertFalse(cnotices[0].is_critical)
+        self.assertEquals(cnotices[1].custom_category, "Teaching GradingOpen")
+        self.assertEquals(cnotices[1].location_tags[0], 'notice_banner')
+        self.assertTrue(cnotices[1].is_critical)

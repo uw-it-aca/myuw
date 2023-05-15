@@ -12,7 +12,7 @@ from myuw.dao.term import (
     get_previous_number_quarters, last_4instruction_weeks,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
-    is_in_summer_a_term, is_in_summer_b_term,
+    is_in_summer_a_term, is_in_summer_b_term, within_grading_period,
     within_2terms_after_given_term, after_last_final_exam_day,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
     get_eod_current_term, get_eod_current_term_last_instruction,
@@ -441,3 +441,16 @@ class TestTerm(TestCase):
         self.assertTrue(after_last_final_exam_day(request, 2013, 'summer'))
         request = get_request_with_date("2013-09-20")
         self.assertFalse(after_last_final_exam_day(request, 2013, 'summer'))
+
+    def test_within_grading_period(self):
+        request = get_request_with_date("2013-02-24")
+        self.assertFalse(within_grading_period(request))
+        """
+        This is not testable
+        request = get_request_with_date("2013-02-25")
+        self.assertTrue(within_grading_period(request))
+        request = get_request_with_date("2013-03-26")
+        self.assertTrue(within_grading_period(request))
+        request = get_request_with_date("2013-03-27")
+        self.assertFalse(within_grading_period(request))
+        """

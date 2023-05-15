@@ -45,7 +45,7 @@ def mark_notices_read_for_current_user(request, notice_hashes):
 def get_notices_for_current_user(request):
     notices = []
     if is_instructor(request):
-        # MUWM-5199
+        # MUWM-5199, MUWM-4072
         notices += categorize_notices(get_category_notices("Teaching"))
 
     if is_student(request):

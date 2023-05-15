@@ -408,5 +408,10 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Teaching ClassResAccessible",
         "location_tags": ['teaching_summary'],
         "critical": False
-    }
+    },
+    "teaching_gradingopen": {
+        "myuw_category": "Teaching GradingOpen",
+        "location_tags": ['notice_banner'],
+        "critical": True
+    },
 }

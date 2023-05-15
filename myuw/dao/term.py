@@ -559,3 +559,10 @@ def current_terms_prefetch(request):
         methods.append(_get_term_method(year+1, 'spring'))
 
     return methods
+
+
+def within_grading_period(request):
+    cur_term = get_current_quarter(request)
+    #logger.info("OPEN{} END{}".format(cur_term.grading_period_open,
+    #       cur_term.grade_submission_deadline))
+    return cur_term.is_grading_period_open() if cur_term else None

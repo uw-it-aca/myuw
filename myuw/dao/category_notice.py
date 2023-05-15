@@ -63,6 +63,15 @@ CATEGORIZED_NOTICES = [
             "accessible for all students?</span>" +
             "<span class=\"notice-body-with-title\"></span>"
         )
+    },
+    {
+        "NoticeCategory": "Teaching",
+        "NoticeType": "GradingOpen",
+        "NoticeContent": (
+            "<span class=\"notice-title\">Avoid common errors " +
+            "by verifying garde submission information</span>" +
+            "<span class=\"notice-body-with-title\"></span>"
+        )
     }
 ]
 
