@@ -180,7 +180,7 @@
             <h3 class="h6 myuw-font-encode-sans">Choose to take part in commencement ceremony</h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeCeremony">
+                <uw-collapsed-item :notice="degreeCeremony" :callerId="gradPrep">
                   <template #notice-body>
                     <p v-if="seattle">
                       <a href="https://www.washington.edu/graduation/how-to-participate-2/"
@@ -214,7 +214,7 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeNextDestination">
+                <uw-collapsed-item :notice="degreeNextDestination" :callerId="gradPrep">
                   <template #notice-body>
                     <p>
                       Each year we track, aggregate and
@@ -241,7 +241,7 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeDiploma">
+                <uw-collapsed-item :notice="degreeDiploma" :callerId="gradPrep">
                   <template #notice-body>
                     <p>
                       You can use the
@@ -268,7 +268,7 @@
                 </uw-collapsed-item>
               </li>
               <li>
-                <uw-collapsed-item :notice="degreeSaveWork">
+                <uw-collapsed-item :notice="degreeSaveWork" :callerId="gradPrep">
                   <template #notice-body>
                     <p>
                       All UW accounts will be deleted two quarters after graduation. Take steps now
@@ -282,7 +282,7 @@
                 </uw-collapsed-item>
               </li>
               <li>
-                <uw-collapsed-item :notice="degreeEmailForwarding">
+                <uw-collapsed-item :notice="degreeEmailForwarding" :callerId="gradPrep">
                   <template #notice-body>
                     <p>
                       Don't miss critical emails sent to your UW account.

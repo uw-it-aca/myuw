@@ -3,11 +3,13 @@
     <div class="d-flex d-inline-flex notice-container">
       <div class="flex-grow-1 pe-1">
         <button
-          v-uw-collapse="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
+          v-uw-collapse="`${callerId}-${notice.id_hash}-collapse-${$meta.uid}`"
           v-no-track-collapse
           type="button"
           class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
         >
+          <span v-if="displayCritical && notice.is_critical"
+            class="d-inline-block fw-bold text-danger me-1 notice-critical">Critical:</span>
           <span class="notice-title" v-html="notice.notice_title" />
         </button>
       </div>
@@ -18,7 +20,7 @@
     </div>
 </div>
     <uw-collapse
-      :id="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
+      :id="`${callerId}-${notice.id_hash}-collapse-${$meta.uid}`"
       v-model="collapseOpen"
       tabindex="0"
       @show="onShowNotice(notice)"
@@ -38,6 +40,14 @@ export default {
     'uw-collapse': Collapse,
   },
   props: {
+    callerId: {
+      type: String,
+      required: true,
+    },
+    displayCritical: {
+      type: Boolean,
+      default: false,
+    },
     notice: {
       type: Object,
       required: true,
