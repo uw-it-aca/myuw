@@ -7,8 +7,8 @@
     },
     "Enrollments": [
         {
-            "ClassCode": "4",
-            "ClassLevel": "SENIOR",
+            "ClassCode": "3",
+            "ClassLevel": "JUNIOR",
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
@@ -17,25 +17,25 @@
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
             "Majors": [
-                {"Abbreviation": "ACMS",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
-                 "DegreeType": 5,
-                 "FullName": "App & Comp Math Sci (Social & Behav Sci)",
-                 "MajorName": "ACMS (SOC & BEH SCI)",
-                 "Pathway": 80,
-                 "ShortName": "ACMS (SBS)"
+                {
+                    "Abbreviation": "PRESCI",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "A & S",
+                    "CollegeFullName": "COLLEGE OF ARTS AND SCIENCES",
+                    "DegreeLevel": 0,
+                    "DegreeName": null,
+                    "DegreeType": 0,
+                    "DepartmentAbbreviation": "PREMAJ",
+                    "DepartmentCode": "256",
+                    "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
+                    "Pathway": 0,
+                    "ShortName": "PRE SCI"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
             "Minors": [
-                {"Abbreviation":"ASL",
-                 "CampusName":"Seattle",
-                 "FullName":"American Sign Language",
-                 "Name":"AMERICAN SIGN LANGUAGE",
-                 "Pathway":0,
-                 "ShortName":"ASL"}
             ],
             "PendingClassChange": false,
             "PendingHonorsChange": false,
@@ -61,8 +61,8 @@
             }
    },
    {
-            "ClassCode": "4",
-            "ClassLevel": "SENIOR",
+            "ClassCode": "3",
+            "ClassLevel": "JUNIOR",
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
@@ -71,25 +71,25 @@
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
             "Majors": [
-                {"Abbreviation": "ACMS",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
-                 "DegreeType": 5,
-                 "FullName": "App & Comp Math Sci (Social & Behav Sci)",
-                 "MajorName": "ACMS (SOC & BEH SCI)",
-                 "Pathway": 80,
-                 "ShortName": "ACMS (SBS)"
+                {
+                    "Abbreviation": "PRESCI",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "A & S",
+                    "CollegeFullName": "COLLEGE OF ARTS AND SCIENCES",
+                    "DegreeLevel": 0,
+                    "DegreeName": null,
+                    "DegreeType": 0,
+                    "DepartmentAbbreviation": "PREMAJ",
+                    "DepartmentCode": "256",
+                    "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
+                    "Pathway": 0,
+                    "ShortName": "PRE SCI"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
             "Minors": [
-                {"Abbreviation":"ASL",
-                 "CampusName":"Seattle",
-                 "FullName":"American Sign Language",
-                 "Name":"AMERICAN SIGN LANGUAGE",
-                 "Pathway":0,
-                 "ShortName":"ASL"}
             ],
             "PendingClassChange": false,
             "PendingHonorsChange": false,
@@ -125,25 +125,25 @@
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
             "Majors": [
-                {"Abbreviation": "ACMS",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
-                 "DegreeType": 5,
-                 "FullName": "App & Comp Math Sci (Social & Behav Sci)",
-                 "MajorName": "ACMS (SOC & BEH SCI)",
-                 "Pathway": 80,
-                 "ShortName": "ACMS (SBS)"
+                {
+                    "Abbreviation": "PRESCI",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "A & S",
+                    "CollegeFullName": "COLLEGE OF ARTS AND SCIENCES",
+                    "DegreeLevel": 0,
+                    "DegreeName": null,
+                    "DegreeType": 0,
+                    "DepartmentAbbreviation": "PREMAJ",
+                    "DepartmentCode": "256",
+                    "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
+                    "Pathway": 0,
+                    "ShortName": "PRE SCI"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
             "Minors": [
-                {"Abbreviation":"ASL",
-                 "CampusName":"Seattle",
-                 "FullName":"American Sign Language",
-                 "Name":"AMERICAN SIGN LANGUAGE",
-                 "Pathway":0,
-                 "ShortName":"ASL"}
             ],
             "PendingClassChange": false,
             "PendingHonorsChange": false,
@@ -178,25 +178,25 @@
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
             "Majors": [
-                {"Abbreviation": "ACMS",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
-                 "DegreeType": 5,
-                 "FullName": "App & Comp Math Sci (Social & Behav Sci)",
-                 "MajorName": "ACMS (SOC & BEH SCI)",
-                 "Pathway": 80,
-                 "ShortName": "ACMS (SBS)"
+                {
+                    "Abbreviation": "PRESCI",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "A & S",
+                    "CollegeFullName": "COLLEGE OF ARTS AND SCIENCES",
+                    "DegreeLevel": 0,
+                    "DegreeName": null,
+                    "DegreeType": 0,
+                    "DepartmentAbbreviation": "PREMAJ",
+                    "DepartmentCode": "256",
+                    "DepartmentFullName": "PRE MAJOR ARTS AND SCIENCES",
+                    "FullName": "Pre Sciences",
+                    "MajorName": "PRE SCIENCE",
+                    "Pathway": 0,
+                    "ShortName": "PRE SCI"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
             "Minors": [
-                {"Abbreviation":"ASL",
-                 "CampusName":"Seattle",
-                 "FullName":"American Sign Language",
-                 "Name":"AMERICAN SIGN LANGUAGE",
-                 "Pathway":0,
-                 "ShortName":"ASL"}
             ],
             "PendingClassChange": false,
             "PendingHonorsChange": false,

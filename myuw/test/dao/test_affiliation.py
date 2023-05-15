@@ -96,6 +96,11 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertEqual(affiliations.get('class_level'), 'NON_MATRIC')
         self.assertEqual(affiliations.get('latest_class_level'), 'NON_MATRIC')
 
+        now_request = get_request_with_user('javg005')
+        affiliations = get_all_affiliations(now_request)
+        self.assertEqual(affiliations.get('class_level'), 'JUNIOR')
+        self.assertEqual(affiliations.get('latest_class_level'), 'JUNIOR')
+
     def test_jinter(self):
         now_request = get_request_with_user('jinter')
         affiliations = get_all_affiliations(now_request)
