@@ -81,6 +81,29 @@ export default {
       }
       return list;
     },
+    isPreMajor(majorName) {
+      return Boolean(
+        majorName.match(/^EXTENDED PRE/) ||
+        majorName.match(/^EXTND PRE/) ||
+        majorName.match(/^PRE /) ||
+        majorName.match(/^PRE-/) ||
+        majorName.match(/^PREMAJOR/)
+      );
+    },
+    noDeclaredMajor(termMajors) {
+      if (termMajors) {
+        for (let i = 0; i < termMajors.length; i++) {
+          const majors = termMajors[i].majors;
+          for (let j = 0; j < majors.length; j++) {
+            const majorName = majors[j].name;
+            if (!this.isPreMajor(majorName)) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    },
     titleCaseWord(w) {
       if (w && w.length) {
         return w[0].toUpperCase() + w.substr(1).toLowerCase();

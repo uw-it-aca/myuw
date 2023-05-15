@@ -16,6 +16,7 @@ import HRPayroll from './components/_common/hr-payroll.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
+import DeclareMajor from './components/home/major-declaration/declare-major.vue';
 import Notices from './components/home/notice/notices.vue';
 import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
@@ -116,6 +117,7 @@ Vue.component('myuw-pinned-resources', PinnedResourceCards);
 Vue.component('myuw-resource-explore', ResourceExplore);
 Vue.component('myuw-grad-pre-application', GraduationPreApplication);
 Vue.component('myuw-grad-application-submitted', Graduation);
+Vue.component('myuw-declare-major', DeclareMajor);
 
 new Vue({
   ...vueConf,
