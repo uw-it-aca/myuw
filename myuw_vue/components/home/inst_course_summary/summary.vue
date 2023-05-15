@@ -41,7 +41,7 @@
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <uw-collapsed-item v-if="hasClassResAccNotice"
-          :notice="ClassResAccNotice" :callerId="`instSummary${termId}`">
+          :notice="ClassResAccNotice" :caller-id="`instSummary${termId}`">
           <template #notice-body>
             <span class="myuw-text-md">It is every instructor's
               <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html"
@@ -147,7 +147,7 @@ export default {
       return this.term === 'current' ? this.quarter : this.nextQuarter;
     },
     termId() {
-      this.getYear + this.getQuarter;
+      return this.getYear + this.getQuarter;
     },
     getTeachingLinkLabel() {
       return this.titleCaseWord(this.getQuarter) + ' ' + this.getYear +
