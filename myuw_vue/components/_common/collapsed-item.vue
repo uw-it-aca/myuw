@@ -25,7 +25,7 @@
       tabindex="0"
       @show="onShowNotice(notice)"
     >
-      <div class="p-3 mt-2 bg-light text-dark notice-body">
+      <div class="p-3 mt-2 bg-light text-dark notice-body myuw-text-md">
         <slot name="notice-body" />
       </div>
     </uw-collapse>
