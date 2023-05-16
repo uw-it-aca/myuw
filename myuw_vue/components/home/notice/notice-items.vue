@@ -1,6 +1,6 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
-    <li v-for="(notice, i) in notices" :key="notice.id_hash" class="mb-1">
+    <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
       <uw-collapsed-item
         v-if="isGradingNotice(notice) && displayGradingNotice"
         :notice="notice" caller-id="noticeCard" :display-critical="true">
