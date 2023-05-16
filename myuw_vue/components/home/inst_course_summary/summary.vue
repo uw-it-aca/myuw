@@ -41,15 +41,9 @@
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <uw-collapsed-item v-if="hasClassResAccNotice"
-          :notice="ClassResAccNotice" :caller-id="`instSummary${termId}`">
+          :notice="classResAccNotice" :caller-id="`instSummary${termId}`">
           <template #notice-body>
-            <span class="myuw-text-md">It is every instructor's
-              <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html"
-              >legal and university obligation</a> to ensure that class resources are
-              accessible for all students. Get started now with the
-              <a href="https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/"
-              >course preparation checklist</a>.
-            </span>
+            <div v-html="classResAccNotice.notice_body" />
           </template>
         </uw-collapsed-item>
 
@@ -123,7 +117,7 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    ClassResAccNotice() {
+    classResAccNotice() {
       // MUWM-5199
       return this.notices.filter((notice) =>
         notice.category === 'Teaching ClassResAccessible'
@@ -131,7 +125,7 @@ export default {
     },
     hasClassResAccNotice() {
       // MUWM-5199
-      return this.instSchedule.future_term && Boolean(this.ClassResAccNotice);
+      return this.instSchedule.future_term && Boolean(this.classResAccNotice);
     },
     showCard() {
       return this.instructor && (

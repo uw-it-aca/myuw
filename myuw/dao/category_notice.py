@@ -61,7 +61,13 @@ CATEGORIZED_NOTICES = [
         "NoticeContent": (
             "<span class=\"notice-title\">Are your class resources " +
             "accessible for all students?</span>" +
-            "<span class=\"notice-body-with-title\"></span>"
+            "<span class=\"notice-body-with-title\">" +
+            "It is every instructor's <a href=\"http://www.washington.edu/" +
+            "admin/rules/policies/SGP/SPCH208.html\">legal and university " +
+            "obligation</a> to ensure that class resources are accessible " +
+            "for all students. Get started now with the <a href=\"https://" +
+            "depts.washington.edu/uwdrs/faculty/course-preparation-" +
+            "checklist/\">course preparation checklist</a>.</span>"
         )
     },
     {
@@ -75,6 +81,7 @@ CATEGORIZED_NOTICES = [
     }
 ]
 
+# Make sure the line length is less than 80 chars!!
 
 def get_category_notices(category):
     notices = []
