@@ -2,7 +2,7 @@
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
       <uw-collapsed-item
-        v-if="isGradingNotice(notice) && displayGradingNotice"
+        v-if="gradingOpen && isGradingNotice(notice)"
         :notice="notice" caller-id="noticeCard" :display-critical="true">
         <template #notice-body>
           Before grading begins, ...
@@ -40,12 +40,8 @@ export default {
   },
   computed: {
     ...mapState({
-      instructor: (state) => state.user.affiliations.instructor,
       gradingOpen: (state) => state.cardDisplayDates.within_grading_period,
     }),
-    displayGradingNotice() {
-      return this.instructor && this.gradingOpen;
-    },
   },
   methods: {
     onShowNotice(notice) {
