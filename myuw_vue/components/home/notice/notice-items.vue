@@ -2,14 +2,6 @@
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
       <uw-collapsed-item
-        v-if="gradingOpen && isGradingNotice(notice)"
-        :notice="notice" caller-id="noticeCard" :display-critical="true">
-        <template #notice-body>
-          Before grading begins, ...
-        </template>
-      </uw-collapsed-item>
-      <uw-collapsed-item
-        v-else
         :notice="notice" caller-id="noticeCard" :display-critical="true">
         <template #notice-body>
           <div v-html="notice.notice_body" />
@@ -20,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 import CollapsedItem from '../../_common/collapsed-item.vue';
 
 export default {
@@ -38,20 +30,12 @@ export default {
       noticeOpen: Array(this.notices.length).fill(false),  // MUWM-5147
     };
   },
-  computed: {
-    ...mapState({
-      gradingOpen: (state) => state.cardDisplayDates.within_grading_period,
-    }),
-  },
   methods: {
     onShowNotice(notice) {
       this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
         this.setRead(notice);
       }
-    },
-    isGradingNotice(notice) {
-      return notice.category.includes('GradingOpen');
     },
     ...mapActions('notices', ['setRead']),
   },
