@@ -74,9 +74,31 @@ CATEGORIZED_NOTICES = [
         "NoticeCategory": "GradeSubmission",
         "NoticeType": "GradingOpen",
         "NoticeContent": (
-            "<span class=\"notice-title\">Avoid common errors " +
-            "by verifying garde submission information</span>" +
-            "<span class=\"notice-body-with-title\"></span>"
+            "<span class=\"notice-title\">Review this quarter's " +
+            "course settings to avoid issues when submitting grades</span>" +
+            "<span class=\"notice-body-with-title\">" +
+            "Before grading begins, please review the following:<br>" +
+            "<br><ol>" +
+            "<li>Will the correct grading system be used?</li>" +
+            "<ul>" +
+            "<li><b>Grading System</b> – Standard or Credit/No Credit</li>" +
+            "</ul>" +
+            "<li>Can the right people submit grades?</li>"
+            "<ul>" +
+            "<li><b>Instructors of Record</b> – Only instructors of record " +
+            "can submit grades</li>" +
+            "<li><b>Primary vs. Secondary</b> – Either <em>primary</em> " +
+            "(lecture) instructors of record or <em>secondary</em> "+
+            "(section) instructors of record will submit grades. " +
+            "(E.g., TAs are commonly designated as secondary instructors " +
+            "of record.)</li>" +
+            "<li><b>Delegates</b> – In an emergency, delegates can submit " +
+            "grades if instructors of record cannot</li>" +
+            "</ul>" +
+            "</ol> <br>" +
+            "For each course this quarter, <a href="">" +
+            "verify grade submission information</a>."
+            "</span>"
         )
     }
 ]
