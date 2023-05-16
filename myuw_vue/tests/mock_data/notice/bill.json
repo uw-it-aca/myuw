@@ -1,0 +1,26 @@
+[
+  {
+    "notice_content": "<span class=\"notice-title\">Are your class resources accessible for all students?</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Teaching ClassResAccessible",
+    "sws_category": "Teaching",
+    "is_critical": false,
+    "id_hash": "38d7e565d504192bd5cf4b399c5e502f",
+    "is_read": false,
+    "location_tags": [
+      "teaching_summary"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Avoid common errors by verifying garde submission information</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "GradeSubmission GradingOpen",
+    "sws_category": "GradeSubmission",
+    "is_critical": true,
+    "id_hash": "646f72f1e93c415a2f6f81cebc1dfd25",
+    "is_read": true,
+    "location_tags": [
+      "notice_banner"
+    ]
+  }
+]
