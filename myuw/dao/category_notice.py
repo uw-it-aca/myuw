@@ -65,7 +65,7 @@ CATEGORIZED_NOTICES = [
         )
     },
     {
-        "NoticeCategory": "Teaching",
+        "NoticeCategory": "GradeSubmission",
         "NoticeType": "GradingOpen",
         "NoticeContent": (
             "<span class=\"notice-title\">Avoid common errors " +

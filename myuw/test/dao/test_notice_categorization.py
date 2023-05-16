@@ -8,7 +8,7 @@ from myuw.dao.notice_categorization import NOTICE_CATEGORIES
 class TestNoticeCategories(TestCase):
 
     def test_categories(self):
-        self.assertEqual(len(NOTICE_CATEGORIES.keys()), 81)
+        self.assertEqual(len(NOTICE_CATEGORIES.keys()), 82)
 
         categorization = NOTICE_CATEGORIES.get("studentalr_intlstucheckin")
         self.assertIsNotNone(categorization)
@@ -165,6 +165,17 @@ class TestNoticeCategories(TestCase):
             "studentfinaid_loanpromissoryshort"))
         self.assertIsNotNone(NOTICE_CATEGORIES.get(
             "studentfinaid_missingdocsshort"))
+
+
+        self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_ceremony"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_diploma"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_savework"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_nextdestination"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_emailforwarding"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get(
+            "teaching_classresaccessible"))
+        self.assertIsNotNone(NOTICE_CATEGORIES.get(
+            "gradesubmission_gradingopen"))
 
         categorization = NOTICE_CATEGORIES.get("studentfinaid_aidholdshort")
         self.assertIsNotNone(categorization)

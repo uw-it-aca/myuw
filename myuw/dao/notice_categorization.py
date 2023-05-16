@@ -409,8 +409,8 @@ NOTICE_CATEGORIES = {
         "location_tags": ['teaching_summary'],
         "critical": False
     },
-    "teaching_gradingopen": {
-        "myuw_category": "Teaching GradingOpen",
+    "gradesubmission_gradingopen": {
+        "myuw_category": "GradeSubmission GradingOpen",
         "location_tags": ['notice_banner'],
         "critical": True
     },
