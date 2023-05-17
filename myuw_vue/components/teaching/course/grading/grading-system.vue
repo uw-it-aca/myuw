@@ -1,21 +1,21 @@
 <template>
-    <uw-card-property title="Grading System">
-      <span v-if="section.grading_system">
-        {{titleCaseWord(section.grading_system)}}
-      </span>
-      <span v-else>
-        Unspecified
-      </span>
-      <div>
-        Grading systems: Standard or Credit/No-Credit
-        <uw-collapsed-item
-          :part="gradingLearnMore" caller-id="GradingSystem">
-          <template #collapsed-body>
-            To change ...
-          </template>
-        </uw-collapsed-item>
-      </div>
-    </uw-card-property>
+  <uw-card-property title="Grading System">
+    <span v-if="section.grading_system">
+      {{ titleCaseWord(section.grading_system) }}
+    </span>
+    <span v-else> Unspecified </span>
+    <div>
+      <span class="myuw-text-sm fst-italic">Grading systems: Standard or Credit/No-Credit</span>
+      <uw-collapsed-item :part="gradingLearnMore" caller-id="GradingSystem">
+        <template #collapsed-body>
+          To change your
+          <a href="https://www.washington.edu/students/gencat/front/Grading_Sys.html"
+            >grading system</a
+          >, contact your departmental time schedule coordinator.
+        </template>
+      </uw-collapsed-item>
+    </div>
+  </uw-card-property>
 </template>
 
 <script>
@@ -36,10 +36,10 @@ export default {
   computed: {
     gradingLearnMore() {
       return {
-        title: "Learn more",
-        id: "gradingLearnMore" + this.section.sln,
+        title: 'Learn more',
+        id: 'gradingLearnMore' + this.section.sln,
       };
-    }
+    },
   },
 };
 </script>
