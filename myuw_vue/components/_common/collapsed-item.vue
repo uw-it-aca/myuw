@@ -9,16 +9,17 @@
           class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
         >
           <span v-if="displayCritical && notice.is_critical"
-            class="d-inline-block fw-bold text-danger me-1 notice-critical">Critical:</span>
+            class="d-inline-block fw-bold text-danger me-1 notice-critical"
+          >Critical:</span>
           <span class="notice-title" v-html="notice.notice_title" />
         </button>
       </div>
-    <div>
-      <span v-if="!notice.is_read" class="badge bg-warning fw-normal notice-status text-dark p-1">
-      New
-      </span>
+      <div>
+        <span v-if="!notice.is_read"
+          class="badge bg-warning fw-normal notice-status text-dark p-1"
+        >New</span>
+      </div>
     </div>
-</div>
     <uw-collapse
       :id="`${callerId}-${notice.id_hash}-collapse-${$meta.uid}`"
       v-model="collapseOpen"
