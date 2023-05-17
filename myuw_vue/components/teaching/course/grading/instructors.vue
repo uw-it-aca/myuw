@@ -1,17 +1,17 @@
 <template>
     <uw-card-property title="Instructors of Record">
-      <ol>
+      <ul class="list-unstyled mb-0">
         <li
           v-for="(instructor, i) in section.instructors" :key="i" class="mb-1">
             {{ titleCaseName(instructor.display_name) }}
         </li>
-      </ol>
+      </ul>
       <div>
-        Only instructors of record can submit grades
+        <span class="myuw-text-sm fst-italic">Only instructors of record can submit grades.</span>
         <uw-collapsed-item
           :part="submitGradesLearnMore" caller-id="InstructorsOfRecord">
           <template #collapsed-body>
-            To add or remove ...
+            To add or remove an instructor of record, contact your departmental time schedule coordinator.
           </template>
         </uw-collapsed-item>
       </div>
