@@ -9,8 +9,8 @@
       <div>
         Only instructors of record can submit grades
         <uw-collapsed-item
-          :notice="submitGradesLearnMore" caller-id="InstructorsOfRecord">
-          <template #notice-body>
+          :part="submitGradesLearnMore" caller-id="InstructorsOfRecord">
+          <template #collapsed-body>
             To add or remove ...
           </template>
         </uw-collapsed-item>
@@ -20,7 +20,7 @@
 
 <script>
 import CardProperty from '../../../_templates/card-property.vue';
-import CollapsedItem from '../../../_common/collapsed-item.vue';
+import CollapsedItem from '../../../_common/collapsed-part.vue';
 
 export default {
   components: {
@@ -36,8 +36,8 @@ export default {
   computed: {
     submitGradesLearnMore() {
       return {
-        notice_title: "Learn more",
-        id_hash: "submitGradesLearnMore" + this.section.sln,
+        title: "Learn more",
+        id: "submitGradesLearnMore" + this.section.sln,
       };
     },
   },

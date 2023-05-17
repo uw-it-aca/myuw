@@ -9,8 +9,8 @@
       <div>
         Grading systems: Standard or Credit/No-Credit
         <uw-collapsed-item
-          :notice="gradingLearnMore" caller-id="GradingSystem">
-          <template #notice-body>
+          :part="gradingLearnMore" caller-id="GradingSystem">
+          <template #collapsed-body>
             To change ...
           </template>
         </uw-collapsed-item>
@@ -20,7 +20,7 @@
 
 <script>
 import CardProperty from '../../../_templates/card-property.vue';
-import CollapsedItem from '../../../_common/collapsed-item.vue';
+import CollapsedItem from '../../../_common/collapsed-part.vue';
 
 export default {
   components: {
@@ -36,8 +36,8 @@ export default {
   computed: {
     gradingLearnMore() {
       return {
-        notice_title: "Learn more",
-        id_hash: "gradingLearnMore" + this.section.sln,
+        title: "Learn more",
+        id: "gradingLearnMore" + this.section.sln,
       };
     }
   },
