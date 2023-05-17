@@ -205,7 +205,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import CardPropertyGroup from '../../../_templates/card-property-group.vue';
 import CardProperty from '../../../_templates/card-property.vue';
-import CollapsedItem from '../../../_common/collapsed-item.vue';
 import GradingSystem from './grading-system.vue';
 import InstructorsOfRecord from './instructors.vue';
 
@@ -213,7 +212,6 @@ export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
     'uw-card-property': CardProperty,
-    'uw-collapsed-item': CollapsedItem,
     'uw-graading-systme': GradingSystem,
     'uw-insts-of-record': InstructorsOfRecord
   },
