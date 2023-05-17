@@ -1,13 +1,8 @@
 <template>
   <uw-card-property-group>
-    <uw-card-property title="Grading System">
-      <span v-if="section.grading_system">
-        {{titleCaseWord(section.grading_system)}}
-      </span>
-      <span v-else>
-        Unspecified
-      </span>
-    </uw-card-property>
+    <uw-graading-systme :section="section"/>
+    <uw-insts-of-record :section="section"/>
+
     <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
       <ul
         v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
@@ -208,13 +203,19 @@ import {
   faQuestionCircle,
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
-import CardPropertyGroup from '../../_templates/card-property-group.vue';
-import CardProperty from '../../_templates/card-property.vue';
+import CardPropertyGroup from '../../../_templates/card-property-group.vue';
+import CardProperty from '../../../_templates/card-property.vue';
+import CollapsedItem from '../../../_common/collapsed-item.vue';
+import GradingSystem from './grading-system.vue';
+import InstructorsOfRecord from './instructors.vue';
 
 export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
     'uw-card-property': CardProperty,
+    'uw-collapsed-item': CollapsedItem,
+    'uw-graading-systme': GradingSystem,
+    'uw-insts-of-record': InstructorsOfRecord
   },
   props: {
     section: {
@@ -244,7 +245,7 @@ export default {
     gradeSubmittedNotAccepted() {
       return this.section.grading_status.submitted_date !== null
         && this.section.grading_status.accepted_date === null;
-    }
+    },
   },
 };
 </script>

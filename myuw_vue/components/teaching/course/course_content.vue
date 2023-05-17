@@ -70,7 +70,7 @@ import FinalExam from './final-exam.vue';
 import ClassList from './classlist.vue';
 import Stats from './stats.vue';
 import Materials from './materials.vue';
-import Grading from './grading.vue';
+import Grading from './grading/grading.vue';
 import Evaluation from './evaluation.vue';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 
