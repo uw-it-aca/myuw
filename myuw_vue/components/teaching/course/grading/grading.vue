@@ -3,33 +3,8 @@
     <uw-graading-systme :section="section"/>
     <uw-insts-of-record :section="section"/>
     <uw-submit-grade :section="section"/>
-
-    <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
-      <ul
-        v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
-        class="list-unstyled mb-1"
-      >
-        <li
-          v-for="(delegate, i) in section.grade_submission_delegates"
-          :key="i"
-          :class="{'mb-1': i === section.grade_submission_delegates.length + 1}"
-        >
-          {{titleCaseName(delegate.person.display_name)}}
-          ({{titleCaseWord(delegate.level)}})
-        </li>
-      </ul>
-      <div v-else>
-        None assigned
-      </div>
-      <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
-        <span v-if="section.gradeSubmissionSectionDelegate">
-          Update grade submission delegate
-        </span>
-        <span v-else>
-          Add grade submission delegate
-        </span>
-      </a>
-    </uw-card-property>
+    <uw-grading-delegates :section="section"/>
+    
 
     <uw-card-property title="Grade Submission">
       <template v-if="section.gradingPeriod.isOpen">
@@ -209,6 +184,7 @@ import CardProperty from '../../../_templates/card-property.vue';
 import GradingSystem from './grading-system.vue';
 import InstructorsOfRecord from './instructors.vue';
 import SecondaryGrading from './submit-grade.vue';
+import GradiungDelegates from './delegates.vue';
 
 export default {
   components: {
@@ -217,6 +193,7 @@ export default {
     'uw-graading-systme': GradingSystem,
     'uw-insts-of-record': InstructorsOfRecord,
     'uw-submit-grade': SecondaryGrading,
+    'uw-grading-delegates': GradiungDelegates,
   },
   props: {
     section: {
