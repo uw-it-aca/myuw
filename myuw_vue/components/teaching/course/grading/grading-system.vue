@@ -10,8 +10,7 @@
         <template #collapsed-body>
           To change your
           <a href="https://www.washington.edu/students/gencat/front/Grading_Sys.html"
-            >grading system</a
-          >, contact your departmental time schedule coordinator.
+          >grading system</a>, contact your departmental time schedule coordinator.
         </template>
       </uw-collapsed-item>
     </div>
