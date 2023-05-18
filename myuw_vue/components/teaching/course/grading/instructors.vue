@@ -11,7 +11,8 @@
         <uw-collapsed-item
           :part="submitGradesLearnMore" caller-id="InstructorsOfRecord">
           <template #collapsed-body>
-            To add or remove an instructor of record, contact your departmental time schedule coordinator.
+            To add or remove an instructor of record, contact your departmental time schedule
+            coordinator.
           </template>
         </uw-collapsed-item>
       </div>
