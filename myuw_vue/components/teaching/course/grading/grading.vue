@@ -2,6 +2,7 @@
   <uw-card-property-group>
     <uw-graading-systme :section="section"/>
     <uw-insts-of-record :section="section"/>
+    <uw-secondary-grading :section="section"/>
 
     <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
       <ul
@@ -207,13 +208,15 @@ import CardPropertyGroup from '../../../_templates/card-property-group.vue';
 import CardProperty from '../../../_templates/card-property.vue';
 import GradingSystem from './grading-system.vue';
 import InstructorsOfRecord from './instructors.vue';
+import SecondaryGrading from './secondary-grading.vue';
 
 export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
     'uw-card-property': CardProperty,
     'uw-graading-systme': GradingSystem,
-    'uw-insts-of-record': InstructorsOfRecord
+    'uw-insts-of-record': InstructorsOfRecord,
+    'uw-secondary-grading': SecondaryGrading,
   },
   props: {
     section: {
