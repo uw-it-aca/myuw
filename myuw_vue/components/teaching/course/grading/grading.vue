@@ -2,9 +2,8 @@
   <uw-card-property-group>
     <uw-graading-systme :section="section"/>
     <uw-insts-of-record :section="section"/>
-    <uw-submit-grade :section="section"/>
+    <who-submits-grades :section="section"/>
     <uw-grading-delegates :section="section"/>
-    
 
     <uw-card-property title="Grade Submission">
       <template v-if="section.gradingPeriod.isOpen">
@@ -183,7 +182,7 @@ import CardPropertyGroup from '../../../_templates/card-property-group.vue';
 import CardProperty from '../../../_templates/card-property.vue';
 import GradingSystem from './grading-system.vue';
 import InstructorsOfRecord from './instructors.vue';
-import SecondaryGrading from './submit-grade.vue';
+import WhoSubmitsGrades from './who-submit-grade.vue';
 import GradiungDelegates from './delegates.vue';
 
 export default {
@@ -192,7 +191,7 @@ export default {
     'uw-card-property': CardProperty,
     'uw-graading-systme': GradingSystem,
     'uw-insts-of-record': InstructorsOfRecord,
-    'uw-submit-grade': SecondaryGrading,
+    'who-submits-grades': WhoSubmitsGrades,
     'uw-grading-delegates': GradiungDelegates,
   },
   props: {
@@ -208,18 +207,6 @@ export default {
     }
   },
   computed: {
-    gradeSubmissionDelegatesCount() {
-      if (this.section.grade_submission_delegates) {
-        return this.section.grade_submission_delegates.length;
-      }
-      return 0;
-    },
-    gradeDelegateUrl() {
-      return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
-        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
-        // MUWM-5145
-    },
     gradeSubmittedNotAccepted() {
       return this.section.grading_status.submitted_date !== null
         && this.section.grading_status.accepted_date === null;

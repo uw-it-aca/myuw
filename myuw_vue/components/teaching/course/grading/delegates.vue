@@ -1,5 +1,5 @@
 <template>
-  <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
+  <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' : ''}`">
     <ul
       v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
       class="list-unstyled mb-1"
@@ -28,7 +28,7 @@
       <span class="myuw-text-sm fst-italic">
       In an emergency, delegates can submit grades if instructors of record cannot.
       </span>
-      <uw-collapsed-item :part="delegatesLearnMore" caller-id="GradingSystem">
+      <uw-collapsed-item :part="gradingDelegateLearnMore" caller-id="GradingDelegates">
         <template #collapsed-body>
           Grading delegates ...
         </template>
@@ -53,10 +53,22 @@ export default {
     },
   },
   computed: {
-    delegatesLearnMore() {
+    gradeSubmissionDelegatesCount() {
+      if (this.section.grade_submission_delegates) {
+        return this.section.grade_submission_delegates.length;
+      }
+      return 0;
+    },
+    gradeDelegateUrl() {
+      return ''.concat(
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
+        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
+        // MUWM-5145
+    },
+    gradingDelegateLearnMore() {
       return {
         title: 'Learn more',
-        id: 'delegatesLearnMore' + this.section.sln,
+        id: 'gradingDelegateLearnMore' + this.section.sln,
       };
     },
   },
