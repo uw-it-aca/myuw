@@ -5,7 +5,7 @@
       v-if="section.instructors.length > 0" :section="section"/>
     <who-submits-grades :section="section"/>
     <uw-grading-delegates
-      v-if="this.section.grade_submission_delegates.length > 0" :section="section"/>
+      v-if="section.grade_submission_delegates.length > 0" :section="section"/>
 
     <uw-card-property title="Grade Submission">
       <template v-if="section.gradingPeriod.isOpen">
