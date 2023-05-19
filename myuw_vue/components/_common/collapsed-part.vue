@@ -7,6 +7,10 @@
       class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
     >
       <span class="notice-title" v-html="part.title" />
+      <span v-if="displayOpenCloseIndicator">
+        <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
+        <font-awesome-icon v-else :icon="faChevronUp" />
+      </span>
     </button>
     <uw-collapse
       :id="`${callerId}-${part.id}-collapse-${$meta.uid}`"
@@ -20,6 +24,10 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import Collapse from '../_templates/collapse.vue';
 export default {
   components: {
@@ -34,10 +42,16 @@ export default {
       type: Object,
       required: true,
     },
+    displayOpenCloseIndicator: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: function() {
     return {
       collapseOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
 };
