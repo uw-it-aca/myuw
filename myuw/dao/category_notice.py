@@ -94,7 +94,7 @@ CATEGORIZED_NOTICES = [
             "grades if instructors of record cannot.</li>" +
             "</ul>" +
             "</ol> <br>" +
-            "For each course this quarter, <a href="">" +
+            "For each course this quarter, <a href=\"/teaching/\">" +
             "verify grade submission information</a>."
             "</span>"
         )
