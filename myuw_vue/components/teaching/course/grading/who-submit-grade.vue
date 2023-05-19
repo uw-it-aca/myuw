@@ -1,19 +1,22 @@
 <template>
-    <uw-card-property title="Primary or Secondary">
+    <uw-card-property title="Who submits grades">
       <div>
-        <span v-if="allowSecondaryGrading">Secondary</span>
-        <span v-else>Primary</span>
+        <span v-if="secondarySubmitsGrades">Linked section instructor(s)</span>
+        <span v-else>Primary section instructor</span>
       </div>
       <div>
         <span class="myuw-text-sm fst-italic">
           Only
-          <span v-if="allowSecondaryGrading">secondary</span><span v-else>primary</span>
-          (section) instructors of record can submit grades.
+          <span v-if="secondarySubmitsGrades">
+            linked section instructor(s)
+          </span><span v-else>
+            primary section instructor
+          </span> of record will be able to submit grades through GradePage.
         </span>
         <uw-collapsed-item
-          :part="secondaryGrading" caller-id="AllowSecondaryGrading">
+          :part="whoSubmitsGrades" caller-id="WhoSubmitsGrades">
           <template #collapsed-body>
-            When ...
+            Either ...
           </template>
         </uw-collapsed-item>
       </div>
@@ -36,13 +39,13 @@ export default {
     },
   },
   computed: {
-    allowSecondaryGrading() {
+    secondarySubmitsGrades() {
       return this.section.allows_secondary_grading;
     },
-    secondaryGrading () {
+    whoSubmitsGrades () {
       return {
         title: 'Learn more',
-        id: 'secondaryGradingLearnMore' + this.section.sln,
+        id: 'whoSubmitsGradesLearnMore' + this.section.sln,
       };
     },
   },

@@ -28,7 +28,7 @@
       <span class="myuw-text-sm fst-italic">
       In an emergency, delegates can submit grades if instructors of record cannot.
       </span>
-      <uw-collapsed-item :part="delegatesLearnMore" caller-id="GradingSystem">
+      <uw-collapsed-item :part="gradingDelegateLearnMore" caller-id="GradingDelegates">
         <template #collapsed-body>
           Grading delegates ...
         </template>
@@ -53,10 +53,10 @@ export default {
     },
   },
   computed: {
-    delegatesLearnMore() {
+    gradingDelegateLearnMore() {
       return {
         title: 'Learn more',
-        id: 'delegatesLearnMore' + this.section.sln,
+        id: 'gradingDelegateLearnMore' + this.section.sln,
       };
     },
   },
