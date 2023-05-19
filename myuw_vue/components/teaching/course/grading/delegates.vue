@@ -1,5 +1,5 @@
 <template>
-  <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
+  <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' : ''}`">
     <ul
       v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
       class="list-unstyled mb-1"
@@ -53,6 +53,18 @@ export default {
     },
   },
   computed: {
+    gradeSubmissionDelegatesCount() {
+      if (this.section.grade_submission_delegates) {
+        return this.section.grade_submission_delegates.length;
+      }
+      return 0;
+    },
+    gradeDelegateUrl() {
+      return ''.concat(
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
+        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
+        // MUWM-5145
+    },
     gradingDelegateLearnMore() {
       return {
         title: 'Learn more',

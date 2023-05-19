@@ -1,5 +1,5 @@
 <template>
-    <uw-card-property title="Instructors of Record">
+    <uw-card-property :title="`Instructor${instructorCount > 1 ? 's' : ''} of Record`">
       <ul class="list-unstyled mb-0">
         <li
           v-for="(instructor, i) in section.instructors" :key="i" class="mb-1">
@@ -35,6 +35,12 @@ export default {
     },
   },
   computed: {
+    instructorCount() {
+      if (this.section.instructors) {
+        return this.section.instructors.length;
+      }
+      return 0;
+    },
     submitGradesLearnMore() {
       return {
         title: "Learn more",

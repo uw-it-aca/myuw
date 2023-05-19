@@ -207,18 +207,6 @@ export default {
     }
   },
   computed: {
-    gradeSubmissionDelegatesCount() {
-      if (this.section.grade_submission_delegates) {
-        return this.section.grade_submission_delegates.length;
-      }
-      return 0;
-    },
-    gradeDelegateUrl() {
-      return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
-        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
-        // MUWM-5145
-    },
     gradeSubmittedNotAccepted() {
       return this.section.grading_status.submitted_date !== null
         && this.section.grading_status.accepted_date === null;
