@@ -1,26 +1,26 @@
 <template>
-    <uw-card-property title="Who submits grades">
-      <div>
-        <span v-if="secondarySubmitsGrades">Linked section instructor(s)</span>
-        <span v-else>Primary section instructor</span>
-      </div>
-      <div>
-        <span class="myuw-text-sm fst-italic">
-          Only
-          <span v-if="secondarySubmitsGrades">
-            linked section instructor(s)
-          </span><span v-else>
-            primary section instructor
-          </span> of record will be able to submit grades through GradePage.
-        </span>
-        <uw-collapsed-item
-          :part="whoSubmitsGrades" caller-id="WhoSubmitsGrades">
-          <template #collapsed-body>
-            Either ...
-          </template>
-        </uw-collapsed-item>
-      </div>
-    </uw-card-property>
+  <uw-card-property title="Who submits grades">
+    <div>
+      <span v-if="secondarySubmitsGrades">Linked section instructor(s)</span>
+      <span v-else>Primary section instructor</span>
+    </div>
+    <div>
+      <span class="myuw-text-sm fst-italic">
+        Only
+        <span v-if="secondarySubmitsGrades"> linked section instructor(s) </span
+        ><span v-else> primary section instructor </span> of record will be able to submit grades
+        through GradePage.
+      </span>
+      <uw-collapsed-item :part="whoSubmitsGrades" caller-id="WhoSubmitsGrades">
+        <template #collapsed-body>
+          Either primary section instructors <b>OR</b> linked section instructors (usually TAs) can
+          submit grades through GradePage.
+          <br>
+          <br>To change who can submit grades, <a href="mailto:registra@uw.edu?subject=Grade submission help">contact the registrar</a>.
+        </template>
+      </uw-collapsed-item>
+    </div>
+  </uw-card-property>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ import CollapsedItem from '../../../_common/collapsed-part.vue';
 export default {
   components: {
     'uw-card-property': CardProperty,
-    'uw-collapsed-item': CollapsedItem
+    'uw-collapsed-item': CollapsedItem,
   },
   props: {
     section: {
@@ -42,7 +42,7 @@ export default {
     secondarySubmitsGrades() {
       return this.section.allows_secondary_grading;
     },
-    whoSubmitsGrades () {
+    whoSubmitsGrades() {
       return {
         title: 'Learn more',
         id: 'whoSubmitsGradesLearnMore' + this.section.sln,
