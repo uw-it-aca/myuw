@@ -8,7 +8,7 @@
       <span class="myuw-text-sm fst-italic">
         Only
         <span v-if="secondarySubmitsGrades"> linked section instructor(s) </span
-        ><span v-else> primary section instructor </span> of record will be able to submit grades
+        ><span v-else> the primary section instructor </span> of record will be able to submit grades
         through GradePage.
       </span>
       <uw-collapsed-item :part="whoSubmitsGrades" caller-id="WhoSubmitsGrades">
