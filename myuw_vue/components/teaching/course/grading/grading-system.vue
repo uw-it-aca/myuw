@@ -1,9 +1,11 @@
 <template>
   <uw-card-property title="Grading System">
-    <span v-if="section.grading_system">
-      {{ titleCaseWord(section.grading_system) }}
-    </span>
-    <span v-else> Unspecified </span>
+    <div>
+      <span v-if="section.grading_system">
+        {{ titleCaseWord(section.grading_system) }}
+      </span>
+      <span v-else> Unspecified </span>
+    </div>
     <div>
       <span class="myuw-text-sm fst-italic">Grading systems: Standard or Credit/No-Credit</span>
       <uw-collapsed-item :part="gradingLearnMore" caller-id="GradingSystem">
