@@ -36,16 +36,17 @@
             ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
           </p>
         </div>
-        <div v-else>
-          <uw-collapsed-item v-if="hasGradingNotice"
-            :notice="gradingNotice[0]"
+        <div v-else-if="hasGradingNotices" class="my-2">
+          <uw-collapsed-item
+            :notice="gradingNotice"
             :caller-id="`instSummary${termId}`"
             display-critical
           >
             <template #notice-body>
-              <div v-html="gradingNotice[0].notice_body" />
+              <div v-html="gradingNotice.notice_body" />
             </template>
           </uw-collapsed-item>
+          <hr class="bg-secondary">
         </div>
 
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
@@ -137,14 +138,19 @@ export default {
     hasClassResAccNotice() {
       return this.instSchedule.future_term && Boolean(this.classResAccNotice);
     },
-    gradingNotice() {
+    gradingNotices() {
       // MUWM-4072
       return this.notices.filter((notice) =>
         notice.category === 'GradeSubmission GradingOpen'
       );
     },
-    hasGradingNotice() {
-      return this.gradingNotice.length > 0;
+    hasGradingNotices() {
+      return this.gradingNotices.length > 0;
+    },
+    gradingNotice() {
+      let notice = this.gradingNotices[0];
+      notice.is_critical = true;
+      return notice;
     },
     showCard() {
       return this.instructor && (

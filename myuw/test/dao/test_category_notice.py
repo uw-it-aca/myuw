@@ -32,5 +32,5 @@ class TestDegreeNotices(TestCase):
         cnotices = categorize_notices(notices)
         self.assertEquals(cnotices[0].custom_category,
                           "GradeSubmission GradingOpen")
-        self.assertEquals(cnotices[0].location_tags[0], 'notice_banner')
-        self.assertTrue(cnotices[0].is_critical)
+        self.assertEquals(cnotices[0].location_tags[0], 'teaching_summary')
+        self.assertFalse(cnotices[0].is_critical)

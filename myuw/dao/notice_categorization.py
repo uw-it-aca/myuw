@@ -411,7 +411,7 @@ NOTICE_CATEGORIES = {
     },
     "gradesubmission_gradingopen": {
         "myuw_category": "GradeSubmission GradingOpen",
-        "location_tags": ['notice_banner'],
-        "critical": True
+        "location_tags": ['teaching_summary'],
+        "critical": False    # prevent it from showing on Notice card
     },
 }
