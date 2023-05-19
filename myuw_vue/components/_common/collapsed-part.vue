@@ -4,7 +4,7 @@
       v-uw-collapse="`${callerId}-${part.id}-collapse-${$meta.uid}`"
       v-no-track-collapse
       type="button"
-      class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
+      class="btn btn-link p-0 border-0 align-top text-start myuw-text-md"
     >
       <span class="notice-title" v-html="part.title" />
       <span v-if="displayOpenCloseIndicator">
@@ -16,7 +16,7 @@
       :id="`${callerId}-${part.id}-collapse-${$meta.uid}`"
       v-model="collapseOpen"
     >
-      <div class="p-3 mt-2 bg-light text-dark notice-body myuw-text-md">
+      <div class="p-3 mt-2 bg-light text-dark myuw-text-md">
         <slot name="collapsed-body" />
       </div>
     </uw-collapse>
