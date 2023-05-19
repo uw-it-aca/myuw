@@ -7,30 +7,26 @@
       <li
         v-for="(delegate, i) in section.grade_submission_delegates"
         :key="i"
-        :class="{'mb-1': i === section.grade_submission_delegates.length + 1}"
+        :class="{ 'mb-1': i === section.grade_submission_delegates.length + 1 }"
       >
-        {{titleCaseName(delegate.person.display_name)}}
-        ({{titleCaseWord(delegate.level)}})
+        {{ titleCaseName(delegate.person.display_name) }}
+        ({{ titleCaseWord(delegate.level) }})
       </li>
     </ul>
-    <div v-else>
-      None assigned
-    </div>
-    <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
-      <span v-if="section.gradeSubmissionSectionDelegate">
-        Update grade submission delegate
-      </span>
-      <span v-else>
-        Add grade submission delegate
-      </span>
-    </a>
+    <div v-else>None assigned</div>
     <div>
       <span class="myuw-text-sm fst-italic">
-      In an emergency, delegates can submit grades if instructors of record cannot.
+        In an emergency, delegates can submit grades if instructors of record cannot.
       </span>
       <uw-collapsed-item :part="gradingDelegateLearnMore" caller-id="GradingDelegates">
         <template #collapsed-body>
-          Grading delegates ...
+          Grading delegates provide an alternative in case the official Instructor of Record (IoR)
+          is unable to submit grades for any reason. You can 
+          <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
+          <span v-if="section.gradeSubmissionSectionDelegate"> update grade submission delegates </span>
+          <span v-else> add a grade submission delegate </span>
+          </a>
+          using MyClass Resources.
         </template>
       </uw-collapsed-item>
     </div>
@@ -62,8 +58,13 @@ export default {
     gradeDelegateUrl() {
       return ''.concat(
         'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
-        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
-        // MUWM-5145
+        this.section.quarter,
+        '+',
+        this.section.year,
+        '&sln=',
+        this.section.sln
+      );
+      // MUWM-5145
     },
     gradingDelegateLearnMore() {
       return {
