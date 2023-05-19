@@ -1,7 +1,7 @@
 <template>
   <uw-card-property-group>
     <uw-graading-systme :section="section"/>
-    <uw-insts-of-record :section="section"/>
+    <uw-insts-of-record v-if="section.instructors.length > 0" :section="section"/>
     <who-submits-grades :section="section"/>
     <uw-grading-delegates :section="section"/>
 
