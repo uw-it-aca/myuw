@@ -96,7 +96,7 @@
           <uw-collapsed-item
             :part="linkedSections"
             caller-id="TeachingSummary"
-            display-open-close-indicator="true">
+            display-open-close-indicator>
             <template #collapsed-body>
               <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
                 Linked Sections

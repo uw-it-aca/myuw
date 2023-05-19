@@ -5,7 +5,7 @@
         v-if="instructorCount > 3"
         :part="instructorsORDisclosure"
         caller-id="InstructorsOfRecord"
-        display-open-close-indicator="true"
+        display-open-close-indicator
       >
         <template #collapsed-body>
           <ul class="list-unstyled mb-0">

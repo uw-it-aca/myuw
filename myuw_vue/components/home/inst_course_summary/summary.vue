@@ -36,6 +36,17 @@
             ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
           </p>
         </div>
+        <div v-else>
+          <uw-collapsed-item v-if="hasGradingNotice"
+            :notice="gradingNotice[0]"
+            :caller-id="`instSummary${termId}`"
+            display-critical
+          >
+            <template #notice-body>
+              <div v-html="gradingNotice[0].notice_body" />
+            </template>
+          </uw-collapsed-item>
+        </div>
 
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
@@ -124,8 +135,16 @@ export default {
       )[0];
     },
     hasClassResAccNotice() {
-      // MUWM-5199
       return this.instSchedule.future_term && Boolean(this.classResAccNotice);
+    },
+    gradingNotice() {
+      // MUWM-4072
+      return this.notices.filter((notice) =>
+        notice.category === 'GradeSubmission GradingOpen'
+      );
+    },
+    hasGradingNotice() {
+      return this.gradingNotice.length > 0;
     },
     showCard() {
       return this.instructor && (
