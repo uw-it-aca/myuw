@@ -1,5 +1,5 @@
 <template>
-  <uw-card-property title="Who submits grades">
+  <uw-card-property title="Who Submits Grades">
     <div>
       <span v-if="secondarySubmitsGrades">Linked section instructor(s)</span>
       <span v-else>Primary section instructor</span>
