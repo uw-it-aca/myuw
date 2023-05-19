@@ -95,7 +95,7 @@
         <div class="my-2">
           <uw-collapsed-item
             :part="linkedSections"
-            caller-id="`TeachingSummary${section.id}`"
+            caller-id="TeachingSummary"
             display-open-close-indicator="true">
             <template #collapsed-body>
               <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
@@ -158,7 +158,7 @@ export default {
       return {
         title: ("Linked Sections of " + this.section.curriculum_abbr +
                 this.section.course_number + this.section.section_id),
-        id: 'linked-sections-' + this.section.id,
+        id: 'linked-sections-' + this.section.sln,
       };
     }
   },
