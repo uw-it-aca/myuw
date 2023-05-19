@@ -21,7 +21,7 @@
       <uw-collapsed-item :part="gradingDelegateLearnMore" caller-id="GradingDelegates">
         <template #collapsed-body>
           Grading delegates provide an alternative in case the official Instructor of Record (IoR)
-          is unable to submit grades for any reason. You can 
+          is unable to submit grades for any reason. You can
           <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
             <span v-if="section.gradeSubmissionSectionDelegate">
               update grade submission delegates
