@@ -15,7 +15,11 @@
         </span>
         of record will be able to submit grades through GradePage.
       </span>
-      <uw-collapsed-item :part="whoSubmitsGrades" caller-id="WhoSubmitsGrades">
+      <uw-collapsed-item
+        v-if="!section.pastTerm"
+        :part="whoSubmitsGrades"
+        caller-id="WhoSubmitsGrades"
+      >
         <template #collapsed-body>
           Either primary section instructors <b>OR</b> linked section instructors (usually TAs)
           can submit grades through GradePage.

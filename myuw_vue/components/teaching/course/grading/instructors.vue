@@ -26,7 +26,11 @@
       <span class="myuw-text-sm fst-italic"
         >Only instructors of record have access to this course in MyUW and GradePage.
       </span>
-      <uw-collapsed-item :part="submitGradesLearnMore" caller-id="InstructorsOfRecord">
+      <uw-collapsed-item
+        v-if="!section.pastTerm"
+        :part="submitGradesLearnMore"
+        caller-id="InstructorsOfRecord"
+      >
         <template #collapsed-body>
           To add or remove an instructor of record, contact your departmental time schedule
           coordinator.

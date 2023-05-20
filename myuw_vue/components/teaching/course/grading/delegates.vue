@@ -18,7 +18,11 @@
       <span class="myuw-text-sm fst-italic">
         In an emergency, delegates can submit grades if instructors of record cannot.
       </span>
-      <uw-collapsed-item :part="gradingDelegateLearnMore" caller-id="GradingDelegates">
+      <uw-collapsed-item
+        v-if="!section.pastTerm"
+        :part="gradingDelegateLearnMore"
+        caller-id="GradingDelegates"
+      >
         <template #collapsed-body>
           Grading delegates provide an alternative in case the official Instructor of Record (IoR)
           is unable to submit grades for any reason. You can

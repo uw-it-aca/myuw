@@ -8,7 +8,11 @@
     </div>
     <div>
       <span class="myuw-text-sm fst-italic">Grading systems: Standard or Credit/No-Credit</span>
-      <uw-collapsed-item :part="gradingLearnMore" caller-id="GradingSystem">
+      <uw-collapsed-item
+        v-if="!section.pastTerm"
+        :part="gradingLearnMore"
+        caller-id="GradingSystem"
+      >
         <template #collapsed-body>
           To change your
           <a href="https://www.washington.edu/students/gencat/front/Grading_Sys.html"
