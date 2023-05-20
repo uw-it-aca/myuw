@@ -1,23 +1,23 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
-      <uw-collapsed-item
+      <uw-collapsed-notice
         :notice="notice" caller-id="noticeCard" :display-critical="true">
         <template #notice-body>
           <div v-html="notice.notice_body" />
         </template>
-      </uw-collapsed-item>
+      </uw-collapsed-notice>
     </li>
   </ul>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import CollapsedItem from '../../_common/collapsed-item.vue';
+import CollapsedNotice from '../../_common/collapsed-notice.vue';
 
 export default {
   components: {
-    'uw-collapsed-item': CollapsedItem,
+    'uw-collapsed-notice': CollapsedNotice,
   },
   props: {
     notices: {

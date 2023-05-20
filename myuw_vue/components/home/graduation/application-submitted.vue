@@ -180,7 +180,7 @@
             <h3 class="h6 myuw-font-encode-sans">Choose to take part in commencement ceremony</h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeCeremony" caller-id="gradPrep">
+                <uw-collapsed-notice :notice="degreeCeremony" caller-id="gradPrep">
                   <template #notice-body>
                     <p v-if="seattle">
                       <a href="https://www.washington.edu/graduation/how-to-participate-2/"
@@ -203,7 +203,7 @@
                       <li>Ordering cap and gown</li>
                     </ul>
                   </template>
-                </uw-collapsed-item>
+                </uw-collapsed-notice>
               </li>
             </ul>
           </div>
@@ -214,7 +214,7 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeNextDestination" caller-id="gradPrep">
+                <uw-collapsed-notice :notice="degreeNextDestination" caller-id="gradPrep">
                   <template #notice-body>
                     <p>
                       Each year we track, aggregate and
@@ -230,7 +230,7 @@
                         so we can better coach students and inform future graduates
                         &ndash; we want to hear from every graduate! </p>
                   </template>
-                </uw-collapsed-item>
+                </uw-collapsed-notice>
               </li>
             </ul>
           </div>
@@ -241,7 +241,7 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <uw-collapsed-item :notice="degreeDiploma" caller-id="gradPrep">
+                <uw-collapsed-notice :notice="degreeDiploma" caller-id="gradPrep">
                   <template #notice-body>
                     <p>
                       You can use the
@@ -265,10 +265,10 @@
                       page.
                     </p>
                   </template>
-                </uw-collapsed-item>
+                </uw-collapsed-notice>
               </li>
               <li>
-                <uw-collapsed-item :notice="degreeSaveWork" caller-id="gradPrep">
+                <uw-collapsed-notice :notice="degreeSaveWork" caller-id="gradPrep">
                   <template #notice-body>
                     <p>
                       All UW accounts will be deleted two quarters after graduation. Take steps now
@@ -279,10 +279,10 @@
                       so that you don't lose it.
                     </p>
                   </template>
-                </uw-collapsed-item>
+                </uw-collapsed-notice>
               </li>
               <li>
-                <uw-collapsed-item :notice="degreeEmailForwarding" caller-id="gradPrep">
+                <uw-collapsed-notice :notice="degreeEmailForwarding" caller-id="gradPrep">
                   <template #notice-body>
                     <p>
                       Don't miss critical emails sent to your UW account.
@@ -292,7 +292,7 @@
                       before you permanently lose access.
                     </p>
                   </template>
-                </uw-collapsed-item>
+                </uw-collapsed-notice>
               </li>
             </ul>
           </div>
@@ -467,7 +467,7 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
-import CollapsedItem from '../../_common/collapsed-item.vue';
+import CollapsedNotice from '../../_common/collapsed-notice.vue';
 import Collapse from '../../_templates/collapse.vue';
 import Feedback from '../../_templates/feedback.vue';
 
@@ -475,7 +475,7 @@ export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
-    'uw-collapsed-item': CollapsedItem,
+    'uw-collapsed-notice': CollapsedNotice,
     'uw-feedback': Feedback,
   },
   data() {

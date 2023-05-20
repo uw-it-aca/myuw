@@ -37,7 +37,7 @@
           </p>
         </div>
         <div v-else-if="hasGradingNotices" class="my-2">
-          <uw-collapsed-item
+          <uw-collapsed-notice
             :notice="gradingNotice"
             :caller-id="`instSummary${termId}`"
             display-critical
@@ -45,19 +45,19 @@
             <template #notice-body>
               <div v-html="gradingNotice.notice_body" />
             </template>
-          </uw-collapsed-item>
+          </uw-collapsed-notice>
           <hr class="bg-secondary">
         </div>
 
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
-        <uw-collapsed-item v-if="hasClassResAccNotice"
+        <uw-collapsed-notice v-if="hasClassResAccNotice"
           :notice="classResAccNotice" :caller-id="`instSummary${termId}`">
           <template #notice-body>
             <div v-html="classResAccNotice.notice_body" />
           </template>
-        </uw-collapsed-item>
+        </uw-collapsed-notice>
 
         <div class="myuw-text-md">
           <a
@@ -89,14 +89,14 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import SectionList from './section-list.vue';
 import SummerSectionList from './summer-list.vue';
-import CollapsedItem from '../../_common/collapsed-item.vue';
+import CollapsedNotice from '../../_common/collapsed-notice.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-section-list': SectionList,
     'uw-summer-section-list': SummerSectionList,
-    'uw-collapsed-item': CollapsedItem,
+    'uw-collapsed-notice': CollapsedNotice,
   },
   props: {
     term: {
@@ -148,9 +148,13 @@ export default {
       return this.gradingNotices.length > 0;
     },
     gradingNotice() {
-      let notice = this.gradingNotices[0];
-      notice.is_critical = true;
-      return notice;
+      return {
+        notice_body: this.gradingNotices[0].notice_body,
+        notice_title: this.gradingNotices[0].notice_title,
+        id_hash: this.gradingNotices[0].id_hash,
+        is_critical: true,
+        is_read: this.gradingNotices[0].is_read
+      };
     },
     showCard() {
       return this.instructor && (
