@@ -7,11 +7,10 @@ import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import NoticeCard from '../components/home/notice/notices';
 import NoticeList from '../components/home/notice/notice-items';
-import CollapsedItem from '../components/_common/collapsed-item.vue';
+import CollapsedItem from '../components/_common/collapsed-notice.vue';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
-import billNotice from './mock_data/notice/bill.json';
 
 const localVue = createLocalVue(Vuex);
 
@@ -145,10 +144,10 @@ describe('Notice Card', () => {
   });
 
   it('Check display components', async () => {
-    axios.get.mockResolvedValue({ data: billNotice, status: 200 });
+    axios.get.mockResolvedValue({ data: javgNotices, status: 200 });
     const wrapper = mount(NoticeCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.vm.notices.length).toBe(1);
+    expect(wrapper.vm.notices.length).toBe(9);
     expect(wrapper.findComponent(NoticeCard).exists()).toBe(true);
     expect(wrapper.findComponent(NoticeList).exists()).toBe(true);
     expect(wrapper.findComponent(CollapsedItem).exists()).toBe(true);
