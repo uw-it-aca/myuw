@@ -40,7 +40,7 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import {
     faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
-import CollapsedItem from '../../_common/collapsed-part.vue';
+import CollapsedItem from '../../../_common/collapsed-part.vue';
 export default {
   components: {
     'uw-collapsed-item': CollapsedItem,
