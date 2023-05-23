@@ -229,6 +229,6 @@ describe('Instructor Teaching Summary', () => {
     expect(wrapper.vm.gradingNotice).toBeTruthy();
     expect(wrapper.vm.hasClassResAccNotice).toBe(false);
     expect(wrapper.vm.gradingNotice).toBeTruthy();
-    expect(wrapper.findComponent(UwCollapsedNotice).length).toBe(1);
+    expect(wrapper.findAllComponents(UwCollapsedNotice).length).toBe(1);
   });
 });
