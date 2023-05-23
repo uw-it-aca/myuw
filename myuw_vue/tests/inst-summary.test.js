@@ -31,6 +31,7 @@ import mockNoCourse2013Summer from
   './mock_data/inst_schedule/2013summer.json';
 import mockNotices from
   './mock_data/notice/bill.json';
+
 const localVue = createLocalVue(Vuex);
 localVue.mixin(courses);
 
@@ -223,8 +224,11 @@ describe('Instructor Teaching Summary', () => {
     });
     const wrapper = mount(InstructorCourseSummery, { store, localVue });
     await new Promise(setImmediate);
-
+    expect(wrapper.vm.notices.length).toBe(2);
     expect(wrapper.vm.hasGradingNotices).toBe(true);
+    expect(wrapper.vm.gradingNotice).toBeTruthy();
+    expect(wrapper.vm.hasClassResAccNotice).toBe(false);
+    expect(wrapper.vm.gradingNotice).toBeTruthy();
     expect(wrapper.findComponent(UwCollapsedNotice).length).toBe(1);
   });
 });
