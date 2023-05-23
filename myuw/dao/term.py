@@ -562,7 +562,11 @@ def current_terms_prefetch(request):
 
 
 def within_grading_period(request):
-    cur_term = get_current_quarter(request)
-    #logger.info("OPEN{} END{}".format(cur_term.grading_period_open,
-    #       cur_term.grade_submission_deadline))
-    return cur_term.is_grading_period_open() if cur_term else None
+    cmp_dt = get_comparison_datetime(request)
+    term = get_current_quarter(request)
+    open_date = term.grading_period_open
+    if term.is_summer_quarter():
+        open_date = term.aterm_grading_period_open
+    return (open_date is not None and
+            term.grade_submission_deadline is not None and
+            open_date <= cmp_dt <= term.grade_submission_deadline)

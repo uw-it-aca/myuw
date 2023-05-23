@@ -445,12 +445,9 @@ class TestTerm(TestCase):
     def test_within_grading_period(self):
         request = get_request_with_date("2013-02-24")
         self.assertFalse(within_grading_period(request))
-        """
-        This is not testable
-        request = get_request_with_date("2013-02-25")
+        request = get_request_with_date("2013-02-26")
         self.assertTrue(within_grading_period(request))
         request = get_request_with_date("2013-03-26")
         self.assertTrue(within_grading_period(request))
         request = get_request_with_date("2013-03-27")
         self.assertFalse(within_grading_period(request))
-        """
