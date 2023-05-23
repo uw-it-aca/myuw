@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import CollapsedNotice from '../../_common/collapsed-notice.vue';
 
 export default {
@@ -24,20 +23,6 @@ export default {
       type: Array,
       required: true,
     },  // sorted by notice.sortDate
-  },
-  data() {
-    return {
-      noticeOpen: Array(this.notices.length).fill(false),  // MUWM-5147
-    };
-  },
-  methods: {
-    onShowNotice(notice) {
-      this.$logger.noticeOpen(this, notice);
-      if (!notice.is_read) {
-        this.setRead(notice);
-      }
-    },
-    ...mapActions('notices', ['setRead']),
   },
 };
 </script>
