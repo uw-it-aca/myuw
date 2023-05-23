@@ -166,7 +166,6 @@ class TestNoticeCategories(TestCase):
         self.assertIsNotNone(NOTICE_CATEGORIES.get(
             "studentfinaid_missingdocsshort"))
 
-
         self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_ceremony"))
         self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_diploma"))
         self.assertIsNotNone(NOTICE_CATEGORIES.get("degree_savework"))
