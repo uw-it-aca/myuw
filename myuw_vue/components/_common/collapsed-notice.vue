@@ -73,4 +73,7 @@ export default {
 <style lang="scss" scoped>
 @use "sass:map";
 @import '../../../myuw/static/css/myuw/variables.scss';
+::v-deep .date {
+  font-weight: bold;
+}
 </style>
