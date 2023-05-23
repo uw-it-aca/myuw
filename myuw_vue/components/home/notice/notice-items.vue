@@ -2,7 +2,7 @@
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
       <uw-collapsed-notice
-        :notice="notice" caller-id="noticeCard" :display-critical="true">
+        :notice="notice" caller-id="noticeCard">
         <template #notice-body>
           <div v-html="notice.notice_body" />
         </template>

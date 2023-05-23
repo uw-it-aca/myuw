@@ -8,7 +8,7 @@
           type="button"
           class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
         >
-          <span v-if="displayCritical && notice.is_critical"
+          <span v-if="notice.is_critical"
             class="d-inline-block fw-bold text-danger me-1 notice-critical"
           >Critical:</span>
           <span class="notice-title" v-html="notice.notice_title" />
@@ -44,10 +44,6 @@ export default {
     callerId: {
       type: String,
       required: true,
-    },
-    displayCritical: {
-      type: Boolean,
-      default: false,
     },
     notice: {
       type: Object,

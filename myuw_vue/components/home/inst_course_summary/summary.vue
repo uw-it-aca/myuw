@@ -40,7 +40,6 @@
           <uw-collapsed-notice
             :notice="gradingNotice"
             :caller-id="`instSummary${termId}`"
-            display-critical
           >
             <template #notice-body>
               <div v-html="gradingNotice.notice_body" />
