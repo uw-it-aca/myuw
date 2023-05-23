@@ -433,7 +433,7 @@ class TestDisplayValues(TestCase):
         self.assertTrue(values["is_before_last_day_of_classes"])
         self.assertFalse(
             values["is_before_end_of_registration_display_period"])
-        self.assertFalse(values["term"])
+        self.assertFalse(values["within_grading_period"])
 
     def test_js_overrides(self):
         now_request = get_request_with_date('2013-04-01')
