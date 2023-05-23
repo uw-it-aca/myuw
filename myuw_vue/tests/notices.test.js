@@ -131,14 +131,28 @@ describe('Notice Card', () => {
     });
     
     wrapper1.vm.notices.forEach((notice) => {
-      wrapper1.vm.onShowNotice(notice);
+      const wrapper2 = mount(CollapsedItem, {
+        store, localVue, propsData: {
+          notice: notice,
+          callerId: "noticeCard"
+        }
+      });
+      expect(wrapper2.vm.collapseOpen).toBe(false);
+      wrapper2.vm.onShowNotice(notice);
     });
+
     expect(axios.put).toHaveBeenCalledTimes(9);
 
     // Test that it is not called twice
     wrapper1.vm.notices.forEach((notice) => {
+      const wrapper2 = mount(CollapsedItem, {
+        store, localVue, propsData: {
+          notice: notice,
+          callerId: "noticeCard"
+        }
+      });
       notice.is_read = true;
-      wrapper1.vm.onShowNotice(notice);
+      wrapper2.vm.onShowNotice(notice);
     });
     expect(axios.put).toHaveBeenCalledTimes(9);
   });
