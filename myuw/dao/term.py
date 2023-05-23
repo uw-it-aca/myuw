@@ -569,4 +569,4 @@ def within_grading_period(request):
         open_date = term.aterm_grading_period_open
     return (open_date is not None and
             term.grade_submission_deadline is not None and
-            open_date <= cmp_dt <= term.grade_submission_deadline)
+            open_date <= cmp_dt < term.grade_submission_deadline)
