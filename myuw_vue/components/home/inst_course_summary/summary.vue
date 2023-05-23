@@ -107,7 +107,6 @@ export default {
   computed: {
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
-      notices: (state) => state.notices.value,
       year: (state) => state.termData.year,
       quarter: (state) => state.termData.quarter,
       nextYear: (state) => state.nextTerm.year,
@@ -118,13 +117,20 @@ export default {
         return state.value[this.term];
       },
     }),
+    ...mapState('notices', {
+      notices: (state) => state.value,
+    }),
     ...mapGetters('inst_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
+    ...mapGetters('notices', {
+      isNoticeReady: 'isReady',
+      isNoticeErrored: 'isErrored',
+    }),
     isReady() {
-      return this.isReadyTagged(this.term);
+      return this.isReadyTagged(this.term) && this.isNoticeReady;
     },
     isErrored() {
       return this.isErroredTagged(this.term);
@@ -183,12 +189,16 @@ export default {
   created() {
     if (this.instructor) {
       this.fetchInstSche(this.term);
+      this.fetchNotices();
     }
   },
   methods: {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
-  },
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+  }
 };
 </script>
