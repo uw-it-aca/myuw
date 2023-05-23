@@ -1,0 +1,26 @@
+[
+  {
+    "notice_content": "<span class=\"notice-title\">Review this quarter's course settings to avoid issues when submitting grades</span><span class=\"notice-body-with-title\">Before grading begins, please review the following:<br><br><ol><li>Will the correct intended grading system be used?</li><ul><li><b>Grading System</b> \u2013 Standard or Credit/No Credit</li></ul><li>Can the right people submit grades?</li><ul><li><b>Instructors of Record</b> \u2013 Only instructors of record have access to this course in MyUW and GradePage.</li><li><b>Who Submits Grades</b> \u2013 Either primary section instructors <b>OR</b> linked section instructors (usually TAs) can submit grades through GradePage. <li><b>Delegates</b> \u2013 In an emergency, delegates can submit grades if instructors of record cannot.</li></ul></ol> <br>For each course this quarter, <a href=\"/teaching/\">verify grade submission information</a>.</span>",
+    "attributes": [],
+    "category": "GradeSubmission GradingOpen",
+    "sws_category": "GradeSubmission",
+    "is_critical": false,
+    "id_hash": "9b961c4c7b5ef8498e06ad0590c07db4",
+    "is_read": false,
+    "location_tags": [
+      "teaching_summary"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Are your class resources accessible for all students?</span><span class=\"notice-body-with-title\">It is every instructor's <a href=\"http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html\">legal and university obligation</a> to ensure that class resources are accessible for all students. Get started now with the <a href=\"https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/\">course preparation checklist</a>.</span>",
+    "attributes": [],
+    "category": "Teaching ClassResAccessible",
+    "sws_category": "Teaching",
+    "is_critical": false,
+    "id_hash": "f7bb1389d0852057a555a5550e4f5f07",
+    "is_read": false,
+    "location_tags": [
+      "teaching_summary"
+    ]
+  }
+]
