@@ -94,31 +94,6 @@
           <ul class="list-unstyled myuw-text-md">
             <li>
               <button
-                v-uw-collapse.covidvaccination
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-              >Proof of COVID Vaccination is required to register for classes</button>
-              <uw-collapse id="covidvaccination">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>The University of Washington requires all students to be vaccinated against
-                    COVID-19, with certain medical or religious exemptions allowed. 
-                    <a v-if="seattle" href="https://www.washington.edu/newhuskies/must-do/send-proof-of-immunity/">
-                    If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process.</a>
-                    <a v-if="tacoma" href="https://www.tacoma.uw.edu/registrar/newly-admitted-students#permalink-16114">
-                    If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process.</a>
-                    <a v-if="bothell" href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
-                    If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process.</a>
-                    You will not be allowed to register for classes until you have completed this
-                    process.
-                  </p>
-                </div>
-              </uw-collapse>
-            </li>
-            <li>
-              <button
                 v-uw-collapse.measlesimmunization
                 type="button"
                 class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
