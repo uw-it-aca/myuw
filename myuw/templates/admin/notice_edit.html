@@ -17,7 +17,7 @@
                     <p class="bg-danger" style="padding: 8px;">Error saving notice. See error messages below.</p>
                     {% endif %}
 
-                    <h3>Display Dates</h3>
+                    <h3>Display Window</h3>
                     <div class="form-inline">
                         <div class="form-group {% if start_error %}has-error{% endif %}">
                             <label for="start_dt">Start</label>
@@ -41,13 +41,75 @@
                             </div>
                         </div>
                     </div>
-
-                    <p class="{% if start_error %}text-danger{% else %}help-block small{% endif %}" style="margin-left: 3.7rem">Required</p>
-
                     {% if date_error %}
                         <p class="text-danger" style="margin-left: 2.5em">Start date must be before end date</p>
                     {% endif %}
+                    <hr />
 
+                    <div class="form-inline">
+                        <div class="form-group {% if terms_error %}has-error{% endif %}">
+                            <label class="" for="notice_terms">Terms:</label>
+                            <div id='notice_terms'>
+                                <div class="checkbox">
+                                    <input type='checkbox' name='terms'
+                                        value='is_winter' {% if notice.is_winter %}checked="checked" {% endif %}>
+                                        Winter
+                                    </input>
+                                </div>
+                                <div class="checkbox">
+                                    <input type='checkbox' name='terms'
+                                        value='is_spring' {% if notice.is_spring %}checked="checked" {% endif %}>
+                                        Spring
+                                    </input>
+                                </div>
+                                <div class="checkbox">
+                                    <input type='checkbox' name='terms'
+                                        value='is_summer_a' {% if notice.is_summer_a %}checked="checked" {% endif %}>
+                                        Summer A
+                                    </input>
+                                </div>
+                                <div class="checkbox">
+                                    <input type='checkbox' name='terms'
+                                        value='is_summer_b' {% if notice.is_summer_b %}checked="checked" {% endif %}>
+                                        Summer B
+                                    </input>
+                                </div>
+                                <div class="checkbox">
+                                    <input type='checkbox' name='terms'
+                                        value='is_autumn' {% if notice.is_autumn %}checked="checked" {% endif %}>
+                                        Autumn
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="form-group {% if start_week_error %}has-error{% endif %}">
+                            <label class="" for="notice_start_week">Starts from:</label>
+                            <span class="text-muted"><small>(the brginning of the Nth week of the selected term)</small> </span>
+                            <select id="notice_start_week" name="start_week" class="form-control">
+                                <option value="0"></option>
+                                <option value="-2">-2</option>
+                                <option value="-1">-1</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select>
+                        </div>
+                        <br />
+                        <div class="form-group {% if duration_error %}has-error{% endif %}">
+                            <label class="" for="notice_duration">Duration in week (between 1 and 11)  </label>
+                            <input type="number" id="notice_duration" name="duration" min="1" max="11"
+                                 class="form-control" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
+                        </div>
+                    </div>
                     <br/>
 
                     <h3>Notice Content</h3>
@@ -84,7 +146,10 @@
 
                     <h3>Audience</h3>
 
-                    <p class="text-muted"><small>All users see the notice by default (when no options are selected). Selections made for campus intersect selections for affiliation.<br/> (e.g. If Seattle, is_alumni, and is_applicant are selected, only Seattle alumnis and Seattle applicants will see the notice.)</small></p>
+                    <p class="text-muted"><small>All users see the notice by default (when no options are selected).
+                        Selections made for campus intersect selections for affiliation.<br/>
+                        (e.g. If Seattle, is_alumni, and is_applicant are selected, only
+                        Seattle alumnis and Seattle applicants will see the notice.)</small></p>
                     <br/>
                     <label class="" for="notice_group">UW Group ID</label>
                     <input id="notice_group" type='text' name='target_group' class="form-control" value='{% if notice.target_group %}{{ notice.target_group }}{% endif %}'>
@@ -127,6 +192,10 @@
                             </li>
                             <li class="checkbox">
                                 <label class=""><input type='checkbox' name='affil' value='is_intl_stud' {% if notice.is_intl_stud %}checked="checked"{% endif %}> is_intl_stud</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='not_intl_stud'
+                                    {% if notice.not_intl_stud %}checked="checked" {% endif %}> NOT_intl_stud</label>
                             </li>
                             <li class="checkbox">
                                 <label class=""><input type='checkbox' name='affil' value='is_pce' {% if notice.is_pce %}checked="checked"{% endif %}> is_pce</label>

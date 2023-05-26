@@ -82,6 +82,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'campus': 'is_seattle',
                 'start_date': '2018-05-25 12:00',
                 'end_date': '2018-05-26 12:00',
+                'start_week': '0',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar',
                 'target_group': ' uw_group '
@@ -107,6 +109,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'content': "<p>Foobar</p>",
                 'start_date': "2018-05-25 12:05",
                 'end_date': "2017-05-26 12:05",
+                'start_week': '0',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -121,6 +125,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'title': 'The Title',
                 'content': "<p>Foobar</p>",
                 'end_date': "2017-05-26 12:05",
+                'start_week': '0',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -128,12 +134,33 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
 
+        # no start
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'start_date': '',
+                'end_date': '',
+                'start_week': '1',
+                'duration': '3',
+                'terms': ['is_winter', 'is_spring'],
+                'notice_category': 'MyUWNotice',
+                'notice_type': 'Banner',
+                'campus': ['is_seattle'],
+                'affil': ['is_student'],
+            })
+        context = {}
+        self.assertTrue(_save_notice(request, context))
+        self.assertEqual(context, {})
+
         # Missing Attrs
         request = self._get_request({'action': 'save', })
         context = {}
         self.assertFalse(_save_notice(request, context))
-        print(context)
-        self.assertTrue(context['start_error'])
+        self.assertTrue(context['start_week_error'])
+        self.assertTrue(context['duration_error'])
+        self.assertTrue(context['terms_error'])
         self.assertTrue(context['type_error'])
         self.assertTrue(context['category_error'])
         self.assertTrue(context['title_error'])
@@ -147,6 +174,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'content': "<p>allowed tag</p> <span>not allowed</span>",
                 'start_date': "2018-05-05 12:05",
                 'end_date': "2018-05-26 12:05",
+                'start_week': '0',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -169,6 +198,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'content': "Foo",
             'start_date': "2013-03-27 13:00",
             'end_date': "2013-05-06 23:13",
+            'start_week': '0',
+            'duration': '',
             'notice_type': 'Foo',
             'notice_category': 'Bar',
             'target_group': 'u_astratst_myuw_test-support-admin'
