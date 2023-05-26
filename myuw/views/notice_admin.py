@@ -101,8 +101,8 @@ def _save_notice(request, context, notice_id=None):
             log_info(
                 logger,
                 {'err': 'end_date is before start_date',
-                'start_date': start_date,
-                'end_date': end_date})
+                 'start_date': start_date,
+                 'end_date': end_date})
 
     else:
         if not request.POST.get('start_week'):
