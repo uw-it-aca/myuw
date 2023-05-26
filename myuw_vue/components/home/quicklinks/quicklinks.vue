@@ -20,7 +20,7 @@
         />
       </ul>
 
-      <uw-covid-links />
+      <uw-covid-links v-if="instructor" />
 
       <div v-if="recentLinks.length">
         <h3 class="h6">
@@ -155,6 +155,7 @@ export default {
   computed: {
     ...mapState({
       disableActions: (state) => state.disableActions,
+      instructor: (state) => state.user.affiliations.instructor,
     }),
     ...mapState('quicklinks', {
       recentLinks: (state) => state.value.recent_links,
