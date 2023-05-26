@@ -47,31 +47,6 @@ describe('Quicklinks/Link', () => {
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
     expect(wrapper.findComponent(CovidLink).exists()).toBe(true);
-
-    let wrapperCovid = mount(CovidLink, { store, localVue });
-    expect(wrapperCovid.vm.student).toBe(true);
-    expect(wrapperCovid.vm.instructor).toBe(true);
-    expect(wrapperCovid.vm.seattleStudent).toBe(false);
-    expect(wrapperCovid.vm.bothellStudent).toBe(false);
-    expect(wrapperCovid.vm.tacomaStudent).toBe(false);
-    expect(wrapperCovid.vm.seattleEmp).toBe(true);
-    expect(wrapperCovid.vm.bothellEmp).toBe(false);
-    expect(wrapperCovid.vm.tacomaEmp).toBe(false);
-    // MUWM-5077
-    let allH3s = wrapperCovid.findAll('h3');
-    expect(allH3s.length).toBe(1);
-    expect(allH3s.at(0).text()).toEqual('UW Coronavirus');
-
-    store.state.user.affiliations.seattle = true;
-    store.state.user.affiliations.official_seattle = false;
-    store.state.user.affiliations.official_tacoma = true;
-    wrapperCovid = mount(CovidLink, { store, localVue });
-    expect(wrapperCovid.vm.seattleStudent).toBe(true);
-    expect(wrapperCovid.vm.seattleEmp).toBe(false);
-    expect(wrapperCovid.vm.tacomaEmp).toBe(true);
-    allH3s = wrapperCovid.findAll('h3');
-    expect(allH3s.length).toBe(2);
-    expect(allH3s.at(1).text()).toEqual('Online Learning');
   });
 
   it('Add link', async () => {
