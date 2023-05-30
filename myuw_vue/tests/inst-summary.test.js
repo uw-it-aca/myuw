@@ -6,6 +6,7 @@ import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import inst_schedule from '../vuex/store/schedule/instructor';
+import notices from '../vuex/store/notices';
 import {createLocalVue} from './helper';
 
 import UwCard from '../components/_templates/card.vue';
@@ -15,6 +16,8 @@ import UwSummerSectionList from
   '../components/home/inst_course_summary/summer-list.vue';
 import UwSectionList from
   '../components/home/inst_course_summary/section-list.vue';
+import UwCollapsedNotice from
+  '../components/_common/collapsed-notice.vue';
 import UwCourseMode from
   '../components/_common/course/course-mode/mode.vue';
 
@@ -26,6 +29,8 @@ import mockBillsea2013Spring from
   './mock_data/inst_schedule/billsea2013spring.json';
 import mockNoCourse2013Summer from
   './mock_data/inst_schedule/2013summer.json';
+import mockNotices from
+  './mock_data/notice/bill.json';
 
 const localVue = createLocalVue(Vuex);
 localVue.mixin(courses);
@@ -38,7 +43,8 @@ describe('Instructor Teaching Summary', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'inst_schedule': inst_schedule,
+        inst_schedule,
+        notices
       },
       state: {
         user: {
@@ -56,7 +62,7 @@ describe('Instructor Teaching Summary', () => {
           quarter: 'summer',
         },
         cardDisplayDates: {
-          comparison_date: '2013-04-15T00:00:01',
+          comparison_date: '2013-05-27T00:00:01',
         },
       }
     });
@@ -66,6 +72,7 @@ describe('Instructor Teaching Summary', () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/instructor_schedule/current': mockBillsea2013Spring,
+        '/api/v1/notices/': mockNotices,
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
@@ -105,6 +112,7 @@ describe('Instructor Teaching Summary', () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
           '/api/v1/instructor_schedule/2013,summer': mockNoCourse2013Summer,
+          '/api/v1/notices/': mockNotices,
         };
         return Promise.resolve({data: urlData[url], status: 200});
       });
@@ -145,6 +153,7 @@ describe('Instructor Teaching Summary', () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
           '/api/v1/instructor_schedule/2013,summer': mockBillpce2013Summer,
+          '/api/v1/notices/': mockNotices,
         };
         return Promise.resolve({data: urlData[url], status: 200});
       });
@@ -188,6 +197,7 @@ describe('Instructor Teaching Summary', () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/instructor_schedule/current': mockScheduleBill5099,
+        '/api/v1/notices/': mockNotices,
       };
       return Promise.resolve({ data: urlData[url], status: 200 });
     });
@@ -202,5 +212,23 @@ describe('Instructor Teaching Summary', () => {
     expect(cmodes.at(0).vm.syncMsg.length > 0).toBe(true);
     expect(cmodes.at(0).vm.hybMsg.length > 0).toBe(true);
     expect(cmodes.at(0).vm.inPersonMsg.length > 0).toBe(true);
+  });
+
+  it('Check 4072', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/instructor_schedule/current': mockBillsea2013Spring,
+        '/api/v1/notices/': mockNotices,
+      };
+      return Promise.resolve({ data: urlData[url], status: 200 });
+    });
+    const wrapper = mount(InstructorCourseSummery, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.notices.length).toBe(2);
+    expect(wrapper.vm.hasGradingNotices).toBe(true);
+    expect(wrapper.vm.gradingNotice).toBeTruthy();
+    expect(wrapper.vm.hasClassResAccNotice).toBe(false);
+    expect(wrapper.vm.gradingNotice.is_critical).toBe(true);
+    expect(wrapper.findAllComponents(UwCollapsedNotice).length).toBe(1);
   });
 });
