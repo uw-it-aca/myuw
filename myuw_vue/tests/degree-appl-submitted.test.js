@@ -8,7 +8,7 @@ import profile from '../vuex/store/profile';
 import notices from '../vuex/store/notices';
 
 import Graduation from '../components/home/graduation/application-submitted.vue';
-import CollapsedItem from '../components/_common/collapsed-item.vue';
+import CollapsedNotice from '../components/_common/collapsed-notice.vue';
 import eightProfile from './mock_data/profile/eight.json';
 import grantedSeaProfile from './mock_data/profile/grantedDegreeSea.json';
 import javg001Profile from './mock_data/profile/javg001.json';
@@ -85,7 +85,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.degreeDiploma).toBeTruthy;
     expect(wrapper.vm.degreeSaveWork).toBeTruthy;
     expect(wrapper.vm.degreeEmailForwarding).toBeTruthy;
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(4);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(4);
   });
   it('Verify double degrees diff terms', async () => {
     axios.get.mockImplementation((url) => {
@@ -109,7 +109,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.degreeNextDestination.category).toBe(
       "Graduation NextDestination"
     );
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(4);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(4);
   });
   it('Verify double degrees diff status', async () => {
     axios.get.mockImplementation((url) => {
@@ -173,7 +173,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
-    expect(wrapper.findAllComponents(CollapsedItem).length).toBe(5);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(5);
   });
   it('Verify hide card if degree status is 404', async () => {
     axios.get.mockImplementation((url) => {
