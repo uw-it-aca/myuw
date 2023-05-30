@@ -1,50 +1,22 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
-    <li v-for="(notice, i) in notices" :key="notice.id_hash" class="mb-1">
-      <div class="d-flex d-inline-flex notice-container">
-        <div class="flex-grow-1 pe-1">
-          <span class="notice-title">
-            <button
-              v-uw-collapse="notice.id_hash"
-              v-no-track-collapse
-              class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-            >
-              <span
-                v-if="notice.is_critical"
-                class="d-inline-block fw-bold text-danger me-1 notice-critical"
-                >Critical:</span
-              ><span v-html="notice.notice_title" />
-            </button>
-          </span>
-        </div>
-        <div>
-          <span
-            v-if="!notice.is_read"
-            class="badge bg-warning fw-normal notice-status text-dark p-1"
-          >
-            New
-          </span>
-        </div>
-      </div>
-      <uw-collapse
-        :id="notice.id_hash"
-        v-model="noticeOpen[i]"
-        tabindex="0"
-        @show="onShowNotice(notice)"
-      >
-        <div class="p-3 mt-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
-      </uw-collapse>
+    <li v-for="notice in notices" :key="notice.id_hash" class="mb-1">
+      <uw-collapsed-notice
+        :notice="notice" caller-id="noticeCard">
+        <template #notice-body>
+          <div v-html="notice.notice_body" />
+        </template>
+      </uw-collapsed-notice>
     </li>
   </ul>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import Collapse from '../../_templates/collapse.vue';
+import CollapsedNotice from '../../_common/collapsed-notice.vue';
 
 export default {
   components: {
-    'uw-collapse': Collapse,
+    'uw-collapsed-notice': CollapsedNotice,
   },
   props: {
     notices: {
@@ -52,26 +24,5 @@ export default {
       required: true,
     },  // sorted by notice.sortDate
   },
-  data() {
-    return {
-      noticeOpen: Array(this.notices.length).fill(false),  // MUWM-5147
-    };
-  },
-  methods: {
-    onShowNotice(notice) {
-      this.$logger.noticeOpen(this, notice);
-      if (!notice.is_read) {
-        this.setRead(notice);
-      }
-    },
-    ...mapActions('notices', ['setRead']),
-  },
 };
 </script>
-<style lang="scss" scoped>
-@use "sass:map";
-@import '../../../../myuw/static/css/myuw/variables.scss';
-::v-deep .date {
-  font-weight: bold;
-}
-</style>

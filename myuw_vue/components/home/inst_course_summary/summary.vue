@@ -36,21 +36,27 @@
             ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
           </p>
         </div>
+        <div v-else-if="hasGradingNotices" class="my-2">
+          <uw-collapsed-notice
+            :notice="gradingNotice"
+            :caller-id="`instSummary${termId}`"
+          >
+            <template #notice-body>
+              <div v-html="gradingNotice.notice_body" />
+            </template>
+          </uw-collapsed-notice>
+          <hr class="bg-secondary">
+        </div>
 
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
-        <uw-collapsed-item v-if="hasClassResAccNotice" :notice="ClassResAccNotice">
+        <uw-collapsed-notice v-if="hasClassResAccNotice"
+          :notice="classResAccNotice" :caller-id="`instSummary${termId}`">
           <template #notice-body>
-            <span class="myuw-text-md">It is every instructor's
-              <a href="http://www.washington.edu/admin/rules/policies/SGP/SPCH208.html"
-              >legal and university obligation</a> to ensure that class resources are
-              accessible for all students. Get started now with the
-              <a href="https://depts.washington.edu/uwdrs/faculty/course-preparation-checklist/"
-              >course preparation checklist</a>.
-            </span>
+            <div v-html="classResAccNotice.notice_body" />
           </template>
-        </uw-collapsed-item>
+        </uw-collapsed-notice>
 
         <div class="myuw-text-md">
           <a
@@ -82,14 +88,14 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import SectionList from './section-list.vue';
 import SummerSectionList from './summer-list.vue';
-import CollapsedItem from '../../_common/collapsed-item.vue';
+import CollapsedNotice from '../../_common/collapsed-notice.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-section-list': SectionList,
     'uw-summer-section-list': SummerSectionList,
-    'uw-collapsed-item': CollapsedItem,
+    'uw-collapsed-notice': CollapsedNotice,
   },
   props: {
     term: {
@@ -100,7 +106,6 @@ export default {
   computed: {
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
-      notices: (state) => state.notices.value,
       year: (state) => state.termData.year,
       quarter: (state) => state.termData.quarter,
       nextYear: (state) => state.nextTerm.year,
@@ -111,26 +116,50 @@ export default {
         return state.value[this.term];
       },
     }),
+    ...mapState('notices', {
+      notices: (state) => state.value,
+    }),
     ...mapGetters('inst_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
+    ...mapGetters('notices', {
+      isNoticeReady: 'isReady',
+      isNoticeErrored: 'isErrored',
+    }),
     isReady() {
-      return this.isReadyTagged(this.term);
+      return this.isReadyTagged(this.term) && this.isNoticeReady;
     },
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    ClassResAccNotice() {
+    classResAccNotice() {
       // MUWM-5199
       return this.notices.filter((notice) =>
         notice.category === 'Teaching ClassResAccessible'
       )[0];
     },
     hasClassResAccNotice() {
-      // MUWM-5199
-      return this.instSchedule.future_term && Boolean(this.ClassResAccNotice);
+      return this.instSchedule.future_term && Boolean(this.classResAccNotice);
+    },
+    gradingNotices() {
+      // MUWM-4072
+      return this.notices.filter((notice) =>
+        notice.category === 'GradeSubmission GradingOpen'
+      );
+    },
+    hasGradingNotices() {
+      return this.gradingNotices.length > 0;
+    },
+    gradingNotice() {
+      return {
+        notice_body: this.gradingNotices[0].notice_body,
+        notice_title: this.gradingNotices[0].notice_title,
+        id_hash: this.gradingNotices[0].id_hash,
+        is_critical: true,
+        is_read: this.gradingNotices[0].is_read
+      };
     },
     showCard() {
       return this.instructor && (
@@ -145,6 +174,9 @@ export default {
     getQuarter() {
       return this.term === 'current' ? this.quarter : this.nextQuarter;
     },
+    termId() {
+      return this.getYear + this.getQuarter;
+    },
     getTeachingLinkLabel() {
       return this.titleCaseWord(this.getQuarter) + ' ' + this.getYear +
         ' Teaching details';
@@ -156,12 +188,16 @@ export default {
   created() {
     if (this.instructor) {
       this.fetchInstSche(this.term);
+      this.fetchNotices();
     }
   },
   methods: {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
-  },
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+  }
 };
 </script>
