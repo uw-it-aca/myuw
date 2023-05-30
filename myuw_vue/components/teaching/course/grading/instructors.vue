@@ -2,7 +2,7 @@
   <uw-card-property :title="`Instructor${instructorCount > 1 ? 's' : ''} of Record`">
     <div>
       <uw-collapsed-item
-        v-if="instructorCount > 3"
+        v-if="instructorCount > 5"
         :part="instructorsORDisclosure"
         caller-id="InstructorsOfRecord"
         display-open-close-indicator

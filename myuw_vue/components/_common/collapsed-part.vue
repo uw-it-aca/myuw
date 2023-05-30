@@ -6,7 +6,7 @@
       type="button"
       class="btn btn-link p-0 border-0 align-top text-start myuw-text-md"
     >
-      <span class="notice-title" v-html="part.title" />
+      <span :class="buttonStyle" v-html="part.title" />
       <span v-if="displayOpenCloseIndicator">
         <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
         <font-awesome-icon v-else :icon="faChevronUp" />
@@ -45,6 +45,10 @@ export default {
     displayOpenCloseIndicator: {
       type: Boolean,
       default: false,
+    },
+    buttonStyle: {
+      type: String,
+      default: "myuw-text-sm fst-italic",
     },
   },
   data: function() {

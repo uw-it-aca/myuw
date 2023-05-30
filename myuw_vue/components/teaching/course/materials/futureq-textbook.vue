@@ -19,7 +19,11 @@
       <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
       Clarify course materials requirements in Time Schedule.
     </span>
-    <uw-collapsed-item :part="fixTextbook" caller-id="futureTextbook">
+    <uw-collapsed-item
+      :part="fixTextbook"
+      button-style="mb-2 bg-transparent"
+      caller-id="futureTextbook"
+    >
       <template #collapsed-body>
         Use the
         <a href="https://www.ubookstore.com/faculty">

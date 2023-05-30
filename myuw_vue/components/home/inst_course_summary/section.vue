@@ -95,6 +95,7 @@
         <div class="my-2">
           <uw-collapsed-item
             :part="linkedSections"
+            button-style="text-dark myuw-text-md"
             caller-id="TeachingSummary"
             display-open-close-indicator>
             <template #collapsed-body>
