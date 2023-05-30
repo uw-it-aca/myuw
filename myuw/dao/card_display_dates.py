@@ -11,14 +11,15 @@ import logging
 import traceback
 from datetime import datetime, timedelta
 from myuw.dao import log_err
-from myuw.dao.term import get_comparison_datetime,\
-    get_current_quarter, get_next_quarter, get_previous_quarter,\
-    get_term_after, is_in_summer_quarter,\
-    is_in_summer_b_term, get_bod_current_term_class_start,\
-    get_eod_current_term_last_instruction, get_bod_7d_before_last_instruction,\
-    get_eod_7d_after_class_start, get_eod_current_term_last_final_exam
-from myuw.dao.term import get_bod_class_start_quarter_after as\
-    get_bod_quarter_after
+from myuw.dao.term import (
+    get_comparison_datetime, get_current_quarter, get_next_quarter,
+    get_previous_quarter, get_term_after, is_in_summer_quarter,
+    is_in_summer_b_term, get_bod_current_term_class_start,
+    get_eod_current_term_last_instruction, get_bod_7d_before_last_instruction,
+    get_eod_7d_after_class_start, get_eod_current_term_last_final_exam,
+    within_grading_period)
+from myuw.dao.term import (
+    get_bod_class_start_quarter_after as get_bod_quarter_after)
 from myuw.dao.iasystem import in_coursevel_fetch_window
 
 
@@ -74,6 +75,7 @@ def get_values_by_date(now, request):
         "is_summer": is_in_summer_quarter(request),
         "is_after_summer_b": is_in_summer_b_term(request),
         "in_coursevel_fetch_window": in_coursevel_fetch_window(request),
+        "within_grading_period": within_grading_period(request),
         "comparison_date": get_comparison_datetime(request)
     }
     try:

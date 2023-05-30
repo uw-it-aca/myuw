@@ -1,39 +1,11 @@
 <template>
   <uw-card-property-group>
-    <uw-card-property title="Grading System">
-      <span v-if="section.grading_system">
-        {{titleCaseWord(section.grading_system)}}
-      </span>
-      <span v-else>
-        Unspecified
-      </span>
-    </uw-card-property>
-    <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
-      <ul
-        v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
-        class="list-unstyled mb-1"
-      >
-        <li
-          v-for="(delegate, i) in section.grade_submission_delegates"
-          :key="i"
-          :class="{'mb-1': i === section.grade_submission_delegates.length + 1}"
-        >
-          {{titleCaseName(delegate.person.display_name)}}
-          ({{titleCaseWord(delegate.level)}})
-        </li>
-      </ul>
-      <div v-else>
-        None assigned
-      </div>
-      <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
-        <span v-if="section.gradeSubmissionSectionDelegate">
-          Update grade submission delegate
-        </span>
-        <span v-else>
-          Add grade submission delegate
-        </span>
-      </a>
-    </uw-card-property>
+    <uw-graading-systme :section="section"/>
+    <uw-insts-of-record
+      v-if="section.instructors.length > 0" :section="section"/>
+    <who-submits-grades :section="section"/>
+    <uw-grading-delegates
+      v-if="section.grade_submission_delegates.length > 0" :section="section"/>
 
     <uw-card-property title="Grade Submission">
       <template v-if="section.gradingPeriod.isOpen">
@@ -208,13 +180,21 @@ import {
   faQuestionCircle,
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
-import CardPropertyGroup from '../../_templates/card-property-group.vue';
-import CardProperty from '../../_templates/card-property.vue';
+import CardPropertyGroup from '../../../_templates/card-property-group.vue';
+import CardProperty from '../../../_templates/card-property.vue';
+import GradingSystem from './grading-system.vue';
+import InstructorsOfRecord from './instructors.vue';
+import WhoSubmitsGrades from './who-submit-grade.vue';
+import GradiungDelegates from './delegates.vue';
 
 export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
     'uw-card-property': CardProperty,
+    'uw-graading-systme': GradingSystem,
+    'uw-insts-of-record': InstructorsOfRecord,
+    'who-submits-grades': WhoSubmitsGrades,
+    'uw-grading-delegates': GradiungDelegates,
   },
   props: {
     section: {
@@ -229,22 +209,10 @@ export default {
     }
   },
   computed: {
-    gradeSubmissionDelegatesCount() {
-      if (this.section.grade_submission_delegates) {
-        return this.section.grade_submission_delegates.length;
-      }
-      return 0;
-    },
-    gradeDelegateUrl() {
-      return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
-        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
-        // MUWM-5145
-    },
     gradeSubmittedNotAccepted() {
       return this.section.grading_status.submitted_date !== null
         && this.section.grading_status.accepted_date === null;
-    }
+    },
   },
 };
 </script>

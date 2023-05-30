@@ -10,7 +10,7 @@
         "Description": "No online learning component",
         "Code": "00"},
     "StartDate": "",
-    "SecondaryGradingOption": false,
+    "SecondaryGradingOption": true,
     "SectionType": "lecture",
     "ServiceLearning": false,
     "ResearchCredit": false,
