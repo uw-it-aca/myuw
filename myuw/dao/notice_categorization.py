@@ -408,5 +408,10 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Teaching ClassResAccessible",
         "location_tags": ['teaching_summary'],
         "critical": False
-    }
+    },
+    "gradesubmission_gradingopen": {
+        "myuw_category": "GradeSubmission GradingOpen",
+        "location_tags": ['teaching_summary'],
+        "critical": False    # prevent it from showing on Notice card
+    },
 }
