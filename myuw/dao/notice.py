@@ -18,6 +18,7 @@ from myuw.dao.notice_mapping import categorize_notices
 from myuw.dao.user import get_user_model
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.dao.pws import is_student
+from myuw.dao.term import within_grading_period
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +48,11 @@ def get_notices_for_current_user(request):
     if is_instructor(request):
         # MUWM-5199
         notices += categorize_notices(get_category_notices("Teaching"))
+
+        # MUWM-4072
+        if within_grading_period(request):
+            notices += categorize_notices(
+                get_category_notices("GradeSubmission"))
 
     if is_student(request):
         notices += _get_notices_by_regid(get_regid_of_current_user(request))

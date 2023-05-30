@@ -92,26 +92,24 @@
 
     <template v-if="getLinkedSections(section).length > 0">
       <div :class="$mq !== 'mobile' ? 'ms-3' : ''">
-        <button v-uw-collapse="`linked-sections-${section.id}`"
-          type="button"
-          class="btn btn-link p-0 text-dark myuw-text-md my-2"
-        >
-          Linked Sections of {{ section.curriculum_abbr }}
-          {{ section.course_number }} {{ section.section_id }}
-          <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
-          <font-awesome-icon v-else :icon="faChevronUp" />
-        </button>
-
-        <uw-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
-          <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
-            Linked Sections
-          </h3>
-          <uw-linked-section
-            v-for="(sec, j) in getLinkedSections(section)"
-            :key="`secondary-${section.id}-${j}`"
-            :section="sec"
-          />
-        </uw-collapse>
+        <div class="my-2">
+          <uw-collapsed-item
+            :part="linkedSections"
+            button-style="text-dark myuw-text-md"
+            caller-id="TeachingSummary"
+            display-open-close-indicator>
+            <template #collapsed-body>
+              <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
+                Linked Sections
+              </h3>
+              <uw-linked-section
+                v-for="(sec, j) in getLinkedSections(section)"
+                :key="`secondary-${section.id}-${j}`"
+                :section="sec"
+              />
+            </template>
+          </uw-collapsed-item>
+         </div>
       </div>
     </template>
     <hr class="bg-secondary">
@@ -121,11 +119,9 @@
 <script>
 import {
   faThumbtack,
-  faChevronUp,
-  faChevronDown,
   faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
-import Collapse from '../../_templates/collapse.vue';
+import CollapsedItem from '../../_common/collapsed-part.vue';
 import CourseMode from '../../_common/course/course-mode/mode.vue';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
@@ -133,7 +129,7 @@ import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 
 export default {
   components: {
-    'uw-collapse': Collapse,
+    'uw-collapsed-item': CollapsedItem,
     'uw-linked-section': LinkedSection,
     'uw-meeting-info': MeetingInfo,
     'uw-course-mode': CourseMode,
@@ -147,10 +143,7 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
       faThumbtack,
-      faChevronUp,
-      faChevronDown,
       faSquareFull,
     };
   },
@@ -161,6 +154,13 @@ export default {
         this.section.is_asynchronous ||
         this.section.is_synchronous ||
         this.section.is_hybrid);
+    },
+    linkedSections() {
+      return {
+        title: ("Linked Sections of " + this.section.curriculum_abbr +
+                this.section.course_number + this.section.section_id),
+        id: 'linked-sections-' + this.section.sln,
+      };
     }
   },
   methods: {
