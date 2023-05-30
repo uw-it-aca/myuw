@@ -87,9 +87,9 @@ CATEGORIZED_NOTICES = [
             "<ul>" +
             "<li><b>Instructors of Record</b> – Only instructors of record " +
             "have access to this course in MyUW and GradePage.</li>" +
-            "<li><b>Who Submits Grades</b> – Either primary section " +
-            "instructors <b>OR</b> linked section instructors " +
-            "(usually TAs) can submit grades through GradePage. " +
+            "<li><b>Who Submits Grades</b> – Correctly configured courses " +
+            "allow linked section instructors " +
+            "(usually TAs) to submit grades through GradePage. " +
             "<li><b>Delegates</b> – In an emergency, delegates can submit " +
             "grades if instructors of record cannot.</li>" +
             "</ul>" +

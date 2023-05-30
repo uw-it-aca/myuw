@@ -1,17 +1,16 @@
 <template>
   <uw-card-property title="Who Submits Grades">
     <div>
-      <span v-if="secondarySubmitsGrades">Linked section instructor(s)</span>
+      <span v-if="secondarySubmitsGrades">Either linked or primary section instructor(s)</span>
       <span v-else>Primary section instructor</span>
     </div>
     <div>
       <span class="myuw-text-sm fst-italic">
-        Only
         <span v-if="secondarySubmitsGrades">
-          linked section instructor(s)
+          Both linked section and primary section instructors
         </span>
         <span v-else>
-          the primary section instructor
+          Only primary section instructor
         </span>
         of record will be able to submit grades through GradePage.
       </span>
@@ -21,11 +20,11 @@
         caller-id="WhoSubmitsGrades"
       >
         <template #collapsed-body>
-          Either primary section instructors <b>OR</b> linked section instructors (usually TAs)
-          can submit grades through GradePage.
+          Correctly configured courses allow linked section instructors (usually TAs) to submit
+          grades through GradePage. Otherwise, only primary section instructors can submit grades.
           <br>
-          <br>To change who can submit grades,
-          <a href="mailto:registra@uw.edu?subject=Grade submission help">contact the registrar</a>.
+          <br>To change who can submit grades, contact the registrar at
+          <a href="mailto:registra@uw.edu?subject=Grade submission help">registra@uw.edu</a>.
         </template>
       </uw-collapsed-item>
     </div>
