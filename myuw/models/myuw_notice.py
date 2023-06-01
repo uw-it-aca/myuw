@@ -5,6 +5,10 @@ import json
 from django.db import models
 
 
+start_week_range = range(-2, 11)
+duration_range = range(1, 11)
+
+
 class MyuwNotice(models.Model):
     title = models.TextField(null=True)
     content = models.TextField(null=True)

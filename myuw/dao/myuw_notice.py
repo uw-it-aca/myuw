@@ -4,10 +4,12 @@
 import logging
 import traceback
 from datetime import timedelta
+from django.db.models import Q
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.models.myuw_notice import MyuwNotice
+from myuw.models.myuw_notice import (
+    MyuwNotice, start_week_range, duration_range)
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import (
     get_current_quarter, get_comparison_date,
@@ -126,17 +128,31 @@ def get_notices_by_date(request):
 def get_notices_by_term(request):
     selected_notices = []
     cur_term = get_current_quarter(request)
-    start_sunday = get_last_sunday(cur_term.first_day_quarter)
     cmp_date = get_comparison_date(request)
 
-    fltr = {"is_{}".format(cur_term.quarter.lower()): True}
-    fetched_term_notices = MyuwNotice.objects.filter(**fltr)
+    if cur_term.is_summer_quarter:
+        fetched_term_notices = MyuwNotice.objects.filter(
+            Q(is_summer_a=True) | Q(is_summer_b=True))
+    else:
+        fltr = {"is_{}".format(cur_term.quarter.lower()): True}
+        fetched_term_notices = MyuwNotice.objects.filter(**fltr)
+
     for notice in fetched_term_notices:
-        start_date = get_start_date(start_sunday, notice.start_week)
-        end_date = start_date + timedelta(weeks=notice.duration)
-        if start_date <= cmp_date <= end_date:
-            selected_notices.append(notice)
+        if (notice.start_week in start_week_range and
+                notice.duration in duration_range):
+            start_sunday = get_last_sunday(
+                get_first_day_quarter(cur_term, notice))
+            start_date = get_start_date(start_sunday, notice.start_week)
+            end_date = start_date + timedelta(weeks=notice.duration)
+            if start_date <= cmp_date <= end_date:
+                selected_notices.append(notice)
     return selected_notices
+
+
+def get_first_day_quarter(cur_term, notice):
+    if notice.is_summer_b:
+        return cur_term.bterm_first_date
+    return cur_term.first_day_quarter
 
 
 def get_last_sunday(first_day_quarter):
