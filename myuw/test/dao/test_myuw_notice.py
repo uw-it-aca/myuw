@@ -7,7 +7,7 @@ from datetime import datetime, date
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.myuw_notice import (
-    get_myuw_notices_for_user, get_last_sunday, get_start_date, 
+    get_myuw_notices_for_user, get_last_sunday, get_start_date,
     get_current_quarter, campus_neutral, is_stud_campus_matched,
     is_employee_campus_matched, get_first_day_quarter,
     get_notices_by_date, get_notices_by_term)
@@ -107,7 +107,7 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Test3")
-    
+
     def test_get_notices_by_date(self):
         notice = MyuwNotice(title="Foo",
                             content="Notice Content",
@@ -287,7 +287,7 @@ class TestMyuwNotice(TransactionTestCase):
         request = get_request_with_date("2013-06-09")
         get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
-        #self.assertEqual(len(notices), 2)
+        self.assertEqual(len(notices), 2)
         self.assertEqual(notices[0].title, "For all users")
         self.assertEqual(notices[1].title, "For all student")
 
