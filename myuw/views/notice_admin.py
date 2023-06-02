@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
 from uw_sws import SWS_TIMEZONE
-from myuw.models.myuw_notice import MyuwNotice
+from myuw.models.myuw_notice import (
+    MyuwNotice, start_week_range, duration_range)
 from myuw.logger.logresp import log_info, log_exception
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
@@ -24,8 +25,6 @@ ALLOWED_ATTS = {
     'a': ['href', 'rel', 'title'],
     'img': ['alt']
 }
-start_week_range = range(-2, 11)
-duration_range = range(1, 11)
 
 
 @login_required
@@ -108,13 +107,13 @@ def _save_notice(request, context, notice_id=None):
 
     else:
         start_week = _get_integer(request.POST.get('start_week'))
-        if start_week == 0 or start_week not in start_week_range:
+        if start_week not in start_week_range:
             has_error = True
             context['start_week_error'] = True
             log_info(logger, {'err': 'Invalid start_week'})
 
         duration = _get_integer(request.POST.get('duration'))
-        if duration == 0 or duration not in duration_range:
+        if duration not in duration_range:
             has_error = True
             context['duration_error'] = True
             log_info(logger, {'err': 'Invalid duration'})
@@ -178,7 +177,9 @@ def _save_notice(request, context, notice_id=None):
                             is_critical=is_critical,
                             target_group=target_group)
 
-        if start_week != 0 and duration > 0 and terms and len(terms) > 0:
+        if (start_week in start_week_range and
+                duration in duration_range and
+                terms and len(terms) > 0):
             notice.start_week = start_week
             notice.duration = duration
             for term in terms:
@@ -207,14 +208,22 @@ def _save_notice(request, context, notice_id=None):
         notice.content = content
         notice.notice_type = notice_type
         notice.notice_category = notice_category
-        if start_date and end_date:
+
+        if start_date and start_date != notice.start:
             notice.start = start_date
+
+        if end_date and end_date != notice.end:
             notice.end = end_date
-        if start_week != 0 and duration > 0 and terms and len(terms) > 0:
+
+        if start_week != notice.start_week:
             notice.start_week = start_week
+
+        if duration != notice.duration:
             notice.duration = duration
-            for term in terms:
-                setattr(notice, term, True)
+
+        for term in terms:
+            setattr(notice, term, True)
+
         notice.target_group = target_group
 
         # reset filters
@@ -264,7 +273,7 @@ def _get_integer(str):
             log_info(
                 logger,
                 {'err': ex, 'msg': "_get_integer({})".format(str)})
-    return 0
+    return 100
 
 
 def _get_html(value):

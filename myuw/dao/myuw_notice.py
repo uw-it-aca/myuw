@@ -79,31 +79,29 @@ def for_all_affi(notice):
     no affiliation is selected
     """
     return not (notice.is_alumni or notice.is_applicant or
-                notice.is_grad or notice.is_grad_c2 or
-                notice.is_pce or notice.is_student or
+                notice.is_grad or notice.is_grad_c2 or notice.is_pce or
+                notice.is_intl_stud or notice.not_intl_stud or
+                notice.is_past_student or notice.is_student or
                 notice.is_undergrad or notice.is_undergrad_c2 or
-                notice.is_fyp or notice.is_past_student or
                 notice.is_clinician or notice.is_employee or
                 notice.is_faculty or notice.is_instructor or
                 notice.is_past_employee or notice.is_retiree or
-                notice.is_staff_employee or notice.is_stud_employee or
-                notice.is_intl_stud or notice.not_intl_stud)
+                notice.is_staff_employee or notice.is_stud_employee)
 
 
 def student_affiliation_matched(notice, affiliations):
     return (
-        (notice.is_applicant and affiliations["applicant"] or
+        notice.is_alumni and affiliations["alumni"] or
+        notice.is_applicant and affiliations["applicant"] or
         notice.is_grad and affiliations["grad"] or
         notice.is_grad_c2 and affiliations["grad_c2"] or
         notice.is_intl_stud and affiliations["intl_stud"] or
+        notice.not_intl_stud and not affiliations["intl_stud"] or
+        notice.is_past_student and affiliations["past_stud"] or
         notice.is_pce and affiliations["pce"] or
         notice.is_student and affiliations["student"] or
         notice.is_undergrad and affiliations["undergrad"] or
-        notice.is_undergrad_c2 and affiliations["undergrad_c2"] or
-        notice.is_past_student and affiliations["past_stud"] or
-        notice.is_fyp and affiliations["fyp"] or
-        notice.is_alumni and affiliations["alumni"]) and
-        (not notice.not_intl_stud or not affiliations["intl_stud"]))
+        notice.is_undergrad_c2 and affiliations["undergrad_c2"])
 
 
 def employee_affiliation_matched(notice, affiliations):
@@ -129,8 +127,7 @@ def get_notices_by_term(request):
     selected_notices = []
     cur_term = get_current_quarter(request)
     cmp_date = get_comparison_date(request)
-
-    if cur_term.is_summer_quarter:
+    if cur_term.is_summer_quarter():
         fetched_term_notices = MyuwNotice.objects.filter(
             Q(is_summer_a=True) | Q(is_summer_b=True))
     else:

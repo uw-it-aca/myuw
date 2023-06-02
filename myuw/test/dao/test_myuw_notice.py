@@ -29,14 +29,18 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertEqual(str(start_sun), "2012-12-30")
         start_sun = get_last_sunday(date(2013, 1, 6))
         self.assertEqual(str(start_sun), "2013-01-06")
+        start_sun = get_last_sunday(date(2013, 9, 25))
+        self.assertEqual(str(start_sun), "2013-09-22")
 
     def test_get_start_date(self):
-        dt = get_start_date(date(2013, 1, 6), 1)
-        self.assertEqual(str(dt), "2013-01-13")
-        dt = get_start_date(date(2013, 1, 6), 2)
-        self.assertEqual(str(dt), "2013-01-20")
         dt = get_start_date(date(2013, 1, 6), -1)
         self.assertEqual(str(dt), "2012-12-30")
+        dt = get_start_date(date(2013, 1, 6), 0)
+        self.assertEqual(str(dt), "2013-01-06")
+        dt = get_start_date(date(2013, 1, 6), 1)
+        self.assertEqual(str(dt), "2013-01-13")
+        dt = get_start_date(date(2013, 9, 22), -2)
+        self.assertEqual(str(dt), "2013-09-08")
 
     def test_get_first_day_quarter(self):
         notice = MyuwNotice(title="Test",
@@ -45,8 +49,7 @@ class TestMyuwNotice(TransactionTestCase):
                             notice_category="MyUWNotice",
                             start_week=-2,
                             duration=1,
-                            is_summer_b=True,
-                            is_student=True)
+                            is_summer_b=True)
         request = get_request_with_date("2013-07-11")
         cur_term = get_current_quarter(request)
         self.assertEqual(cur_term.quarter, "summer")
@@ -59,8 +62,7 @@ class TestMyuwNotice(TransactionTestCase):
                             notice_category="MyUWNotice",
                             start_week=-2,
                             duration=1,
-                            is_autumn=True,
-                            is_student=True)
+                            is_autumn=True)
         request = get_request_with_date("2013-09-01")
         cur_term = get_current_quarter(request)
         self.assertEqual(cur_term.quarter, "autumn")
@@ -74,23 +76,37 @@ class TestMyuwNotice(TransactionTestCase):
                             notice_category="MyUWNotice",
                             start_week=2,
                             duration=1,
-                            is_summer_a=True,
-                            is_student=True)
+                            is_summer_a=True)
         notice.save()
         notice = MyuwNotice(title="Test2",
                             content="Notice Content Five",
                             notice_type="Banner",
                             start_week=-2,
                             duration=1,
-                            is_summer_b=True,
-                            is_student=True)
+                            is_summer_b=True)
         notice.save()
-        self.assertEqual(len(MyuwNotice.objects.all()), 2)
+        notice = MyuwNotice(title="Test3",
+                            content="Notice Content Five",
+                            notice_type="Banner",
+                            notice_category="MyUWNotice",
+                            start_week=-2,
+                            duration=11,
+                            is_autumn=True)
+        notice.save()
         request = get_request_with_date("2013-07-08")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 2)
         self.assertEqual(notices[0].title, "Test1")
         self.assertEqual(notices[1].title, "Test2")
+
+        request = get_request_with_date("2013-08-25")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 0)
+
+        request = get_request_with_date("2013-09-08")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 1)
+        self.assertEqual(notices[0].title, "Test3")
     
     def test_get_notices_by_date(self):
         notice = MyuwNotice(title="Foo",

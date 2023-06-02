@@ -5,8 +5,8 @@ import json
 from django.db import models
 
 
-start_week_range = range(-2, 11)
-duration_range = range(1, 11)
+start_week_range = range(-2, 12)
+duration_range = range(1, 12)
 
 
 class MyuwNotice(models.Model):
