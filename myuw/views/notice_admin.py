@@ -209,21 +209,17 @@ def _save_notice(request, context, notice_id=None):
         notice.notice_type = notice_type
         notice.notice_category = notice_category
 
-        if start_date and end_date:
-            if start_date != notice.start:
-                notice.start = start_date
-            if end_date != notice.end:
-                notice.end = end_date
+        if start_date and start_date != notice.start:
+            notice.start = start_date
 
-        if (start_week in start_week_range and
-                duration in duration_range and
-                terms and len(terms) > 0):
-            if start_week != notice.start_week:
-                notice.start_week = start_week
-            if duration != notice.duration:
-                notice.duration = duration
-            for term in terms:
-                setattr(notice, term, True)
+        if end_date and end_date != notice.end:
+            notice.end = end_date
+
+        if start_week in start_week_range and start_week != notice.start_week:
+            notice.start_week = start_week
+
+        if duration in duration_range and duration != notice.duration:
+            notice.duration = duration
 
         notice.target_group = target_group
 
@@ -232,6 +228,10 @@ def _save_notice(request, context, notice_id=None):
         for field in fields:
             if "is_" in field.name:
                 setattr(notice, field.name, False)
+
+        if terms and len(terms) > 0:
+            for att in terms:
+                setattr(notice, att, True)
 
         for campus in campus_list:
             setattr(notice, campus, True)
