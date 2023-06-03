@@ -17,100 +17,101 @@
                     <p class="bg-danger" style="padding: 8px;">Error saving notice. See error messages below.</p>
                     {% endif %}
 
-                    <h3>Display Window</h3>
-                    <div class="form-inline">
-                        <div class="form-group {% if start_error %}has-error{% endif %}">
-                            <label for="start_dt">Start</label>
-                            <div class="input-group date" id='start_dt'>
-                                <div id='start_value' class="hidden">{{ notice.start | date:"r" }}</div>
-                                <input type='text' name="start_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                    <fieldset>
+                        <legend>Date based display window:</legend>
+                        <div class="form-inline">
+                            <div class="form-group {% if start_error %}has-error{% endif %}">
+                                <label for="start_dt">Start</label>
+                                <div class="input-group date" id='start_dt'>
+                                    <div id='start_value' class="hidden">{{ notice.start | date:"r" }}</div>
+                                    <input type='text' name="start_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="end_dt">End</label>
-                            <div class='input-group date' id='end_dt'>
-                                <div id='end_value' class="hidden">{{ notice.end | date:"r" }}</div>
-                                <input type='text' name="end_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                            <div class="form-group">
+                                <label for="end_dt">End</label>
+                                <div class='input-group date' id='end_dt'>
+                                    <div id='end_value' class="hidden">{{ notice.end | date:"r" }}</div>
+                                    <input type='text' name="end_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
+                            {% if date_error %}
+                                <p class="text-danger" style="margin-left: 2.5em">Start date must be before end date</p>
+                            {% endif %}
                         </div>
-                    </div>
-                    {% if date_error %}
-                        <p class="text-danger" style="margin-left: 2.5em">Start date must be before end date</p>
-                    {% endif %}
-                    <hr />
-
-                    <div class="form-inline">
-                        <div class="form-group {% if terms_error %}has-error{% endif %}">
-                            <label class="" for="notice_terms">Terms:</label>
-                            <div id='notice_terms'>
+                    </fieldset>
+                    <br /><br />
+                    <fieldset>
+                        <legend>Term based occurring display window:</legend>
+                        <div class="form-inline">
+                            <div class="form-group {% if terms_error %}has-error{% endif %}">
                                 <div class="checkbox">
-                                    <input type='checkbox' name='terms'
-                                        value='is_winter' {% if notice.is_winter %}checked="checked" {% endif %}>
+                                    <label class=""><input type='checkbox' name='terms'
+                                        value='is_winter' {% if notice.is_winter %}checked="checked"{% endif %}>
                                         Winter
-                                    </input>
+                                    </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type='checkbox' name='terms'
-                                        value='is_spring' {% if notice.is_spring %}checked="checked" {% endif %}>
+                                    <label class=""><input type='checkbox' name='terms'
+                                        value='is_spring' {% if notice.is_spring %}checked="checked"{% endif %}>
                                         Spring
-                                    </input>
+                                    </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type='checkbox' name='terms'
-                                        value='is_summer_a' {% if notice.is_summer_a %}checked="checked" {% endif %}>
+                                    <label class=""><input type='checkbox' name='terms'
+                                        value='is_summer_a' {% if notice.is_summer_a %}checked="checked"{% endif %}>
                                         Summer A
-                                    </input>
+                                    </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type='checkbox' name='terms'
-                                        value='is_summer_b' {% if notice.is_summer_b %}checked="checked" {% endif %}>
+                                    <label class=""><input type='checkbox' name='terms'
+                                        value='is_summer_b' {% if notice.is_summer_b %}checked="checked"{% endif %}>
                                         Summer B
-                                    </input>
+                                    </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type='checkbox' name='terms'
-                                        value='is_autumn' {% if notice.is_autumn %}checked="checked" {% endif %}>
+                                    <label class=""><input type='checkbox' name='terms'
+                                        value='is_autumn' {% if notice.is_autumn %}checked="checked"{% endif %}>
                                         Autumn
-                                    </input>
+                                    </label>
                                 </div>
                             </div>
+
+                            <br /><br />
+                            <div class="form-group {% if start_week_error %}has-error{% endif %}">
+                                <label class="" for="notice_start_week">Starts from:</label>
+                                <span class="text-muted"><small>(the Sunday of the Nth week of the term selected above)</small> </span>
+                                <select id="notice_start_week" name="start_week" class="form-control">
+                                    <option value=""></option>
+                                    <option value="-2" {% if notice.start_week == -2 %}selected="selected" {% endif %}>2 weeks before quarter start week</option>
+                                    <option value="-1" {% if notice.start_week == -1 %}selected="selected" {% endif %}>1 week before quarter start week</option>
+                                    <option value="0" {% if notice.start_week == 0 %}selected="selected" {% endif %}>1st week</option>
+                                    <option value="1" {% if notice.start_week == 1 %}selected="selected" {% endif %}>2nd week</option>
+                                    <option value="2" {% if notice.start_week == 2 %}selected="selected" {% endif %}>3th week</option>
+                                    <option value="3" {% if notice.start_week == 3 %}selected="selected" {% endif %}>4th week</option>
+                                    <option value="4" {% if notice.start_week == 4 %}selected="selected" {% endif %}>5th week</option>
+                                    <option value="5" {% if notice.start_week == 5 %}selected="selected" {% endif %}>6th week</option>
+                                    <option value="6" {% if notice.start_week == 6 %}selected="selected" {% endif %}>7th week</option>
+                                    <option value="7" {% if notice.start_week == 7 %}selected="selected" {% endif %}>8th week</option>
+                                    <option value="8" {% if notice.start_week == 8 %}selected="selected" {% endif %}>9th week</option>
+                                    <option value="9" {% if notice.start_week == 9 %}selected="selected" {% endif %}>10th week</option>
+                                    <option value="10" {% if notice.start_week == 10 %}selected="selected" {% endif %}>11th week</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="form-group {% if duration_error %}has-error{% endif %}">
+                                <label class="" for="notice_duration">Duration in week (between 1 and 11)  </label>
+                                <input type="number" id="notice_duration" name="duration" min="1" max="11"
+                                    class="form-control" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
+                            </div>
                         </div>
-                        <br /><br />
-                        <div class="form-group {% if start_week_error %}has-error{% endif %}">
-                            <label class="" for="notice_start_week">Starts from:</label>
-                            <span class="text-muted"><small>(the Sunday of the Nth week of the term selected above)</small> </span>
-                            <select id="notice_start_week" name="start_week" class="form-control">
-                                <option value=""></option>
-                                <option value="-2">2 weeks before quarter start week</option>
-                                <option value="-1">1 week before quarter start week</option>
-                                <option value="0">1st week of quarter start</option>
-                                <option value="1">2nd week</option>
-                                <option value="2">3th week</option>
-                                <option value="3">4th week</option>
-                                <option value="4">5th week</option>
-                                <option value="5">6th week</option>
-                                <option value="6">7th week</option>
-                                <option value="7">8th week</option>
-                                <option value="8">9th week</option>
-                                <option value="9">10th week</option>
-                                <option value="10">11th week</option>
-                            </select>
-                        </div>
-                        <br />
-                        <div class="form-group {% if duration_error %}has-error{% endif %}">
-                            <label class="" for="notice_duration">Duration in week (between 1 and 11)  </label>
-                            <input type="number" id="notice_duration" name="duration" min="1" max="11"
-                                 class="form-control" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
-                        </div>
-                    </div>
-                    <br/>
+                    </fieldset>
 
                     <h3>Notice Content</h3>
                     <div class="form-group {% if title_error %}has-error{% endif %}">
@@ -208,9 +209,6 @@
                             </li>
                             <li class="checkbox">
                                 <label class=""><input type='checkbox' name='affil' value='is_undergrad_c2' {% if notice.is_undergrad_c2 %}checked="checked"{% endif %}> is_undergrad_c2</label>
-                            </li>
-                            <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_fyp' {% if notice.is_fyp %}checked="checked"{% endif %}> is_fyp</label>
                             </li>
                             <li class="checkbox">
                                 <label class=""><input type='checkbox' name='affil' value='is_past_student' {% if notice.is_past_student %}checked="checked"{% endif %}> is_past_student</label>
