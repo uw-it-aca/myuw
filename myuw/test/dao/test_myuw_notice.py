@@ -324,7 +324,6 @@ class TestMyuwNotice(TransactionTestCase):
         affiliations = get_all_affiliations(request)
         self.assertFalse(student_affiliation_matched(notice, affiliations))
 
-
     def test_myuwnotice_mapping(self):
         notice = MyuwNotice(title="Test",
                             content="Notice Content Five",
