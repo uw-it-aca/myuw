@@ -280,3 +280,47 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertEqual(notices[0].content, 'Bar')
         self.assertEqual(notices[0].target_group,
                          'u_astratst_myuw_test-support-admin')
+
+    def test_affiliations(self):
+        notice_context = {
+            'action': 'save',
+            'title': 'Test',
+            'content': "Foo",
+            'start_date': "",
+            'end_date': "",
+            'terms': ['is_winter'],
+            'start_week': '0',
+            'duration': '10',
+            'notice_type': 'Foo',
+            'notice_category': 'Bar',
+            'affil': ['not_intl_stud', 'is_student']
+        }
+        request = self._get_request(notice_context)
+        self.assertTrue(_save_notice(request, {}))
+        request = get_request_with_date("2013-03-01")
+        request = get_request_with_user('jinter', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 0)
+
+        entries = MyuwNotice.objects.all()
+        notice_context = {
+            'action': 'edit',
+            'title': 'Test Edit',
+            'content': "Foo",
+            'start_date': "",
+            'end_date': "",
+            'terms': ['is_spring'],
+            'start_week': '0',
+            'duration': '10',
+            'notice_type': 'Foo',
+            'notice_category': 'Bar',
+            'affil': ['intl_stud']
+        }
+        request = self._get_request(notice_context)
+        self.assertTrue(_save_notice(
+            request, {}, notice_id=entries[0].id))
+
+        request = get_request_with_date("2013-04-01")
+        request = get_request_with_user('jinter', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 1)

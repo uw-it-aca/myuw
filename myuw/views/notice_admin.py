@@ -219,6 +219,8 @@ def _save_notice(request, context, notice_id=None):
         for field in fields:
             if "is_" in field.name:
                 setattr(notice, field.name, False)
+            elif "not_" in field.name:
+                setattr(notice, field.name, False)
 
         if terms and len(terms) > 0:
             for att in terms:
