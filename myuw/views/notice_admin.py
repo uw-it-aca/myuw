@@ -208,19 +208,10 @@ def _save_notice(request, context, notice_id=None):
         notice.content = content
         notice.notice_type = notice_type
         notice.notice_category = notice_category
-
-        if start_date and start_date != notice.start:
-            notice.start = start_date
-
-        if end_date and end_date != notice.end:
-            notice.end = end_date
-
-        if start_week in start_week_range and start_week != notice.start_week:
-            notice.start_week = start_week
-
-        if duration in duration_range and duration != notice.duration:
-            notice.duration = duration
-
+        notice.start = start_date
+        notice.end = end_date
+        notice.start_week = start_week
+        notice.duration = duration
         notice.target_group = target_group
 
         # reset filters

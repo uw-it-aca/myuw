@@ -134,6 +134,23 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
 
+        # no end
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'start_date': "2017-05-26 12:05",
+                'end_date': "",
+                'start_week': '',
+                'duration': '',
+                'notice_type': 'Foo',
+                'notice_category': 'Bar'
+            })
+        context = {}
+        self.assertFalse(_save_notice(request, context))
+        self.assertTrue(context['end_error'])
+
         # Missing Attrs
         request = self._get_request({'action': 'save', })
         context = {}
