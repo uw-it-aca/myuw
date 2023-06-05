@@ -6,11 +6,12 @@ from unittest.mock import patch
 from datetime import datetime, date
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
+from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.myuw_notice import (
     get_myuw_notices_for_user, get_last_sunday, get_start_date,
     get_current_quarter, campus_neutral, is_stud_campus_matched,
     is_employee_campus_matched, get_first_day_quarter,
-    get_notices_by_date, get_notices_by_term)
+    get_notices_by_date, get_notices_by_term, student_affiliation_matched)
 from myuw.dao.notice_mapping import categorize_notices
 from myuw.test import get_request_with_user, get_request_with_date
 from myuw.models.myuw_notice import MyuwNotice
@@ -130,24 +131,6 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_notices_by_date(request)
         self.assertEqual(len(notices), 2)
 
-    def test_by_date(self):
-        notice = MyuwNotice(title="Foo",
-                            content="Notice Content",
-                            notice_type="Banner",
-                            notice_category="Student",
-                            start=get_datetime_with_tz(2018, 5, 8, 10),
-                            end=get_datetime_with_tz(2018, 5, 10, 10),
-                            is_seattle=True)
-        notice.save()
-        self.assertIsNotNone(str(notice))
-        notice = MyuwNotice(title="Bar",
-                            content="Notice Content Two",
-                            notice_type="Banner",
-                            notice_category="Student",
-                            start=get_datetime_with_tz(2018, 5, 12, 10),
-                            end=get_datetime_with_tz(2018, 5, 20, 10),
-                            is_seattle=True)
-        notice.save()
         request = get_request_with_date("2018-05-09")
         get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
@@ -229,7 +212,7 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertFalse(is_employee_campus_matched(notice, affiliation5))
         self.assertTrue(is_employee_campus_matched(notice, affiliation6))
 
-    def test_affiliations(self):
+    def test_is_affiliations(self):
         notice = MyuwNotice(title="For all users",
                             content="For all users",
                             notice_type="Banner",
@@ -318,6 +301,29 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "For all users")
+
+    def test_not_affiliations(self):
+        notice = MyuwNotice(
+            title="For seattle students except intl students",
+            content="test case",
+            notice_type="Banner",
+            notice_category="MyUWNotice",
+            is_critical=False,
+            start=None,
+            end=None,
+            start_week=0,
+            duration=10,
+            is_winter=True,
+            is_spring=True,
+            is_seattle=True,
+            is_student=True,
+            not_intl_stud=True)
+        notice.save()
+        request = get_request_with_date("2013-04-01")
+        request = get_request_with_user('jinter', request)
+        affiliations = get_all_affiliations(request)
+        self.assertFalse(student_affiliation_matched(notice, affiliations))
+
 
     def test_myuwnotice_mapping(self):
         notice = MyuwNotice(title="Test",

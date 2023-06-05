@@ -95,12 +95,12 @@ def student_affiliation_matched(notice, affiliations):
             notice.is_grad and affiliations["grad"] or
             notice.is_grad_c2 and affiliations["grad_c2"] or
             notice.is_intl_stud and affiliations["intl_stud"] or
-            notice.not_intl_stud and not affiliations["intl_stud"] or
             notice.is_past_student and affiliations["past_stud"] or
             notice.is_pce and affiliations["pce"] or
             notice.is_student and affiliations["student"] or
             notice.is_undergrad and affiliations["undergrad"] or
-            notice.is_undergrad_c2 and affiliations["undergrad_c2"])
+            notice.is_undergrad_c2 and affiliations["undergrad_c2"]) and (
+            not (notice.not_intl_stud and affiliations["intl_stud"]))
 
 
 def employee_affiliation_matched(notice, affiliations):
