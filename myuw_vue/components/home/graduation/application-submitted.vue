@@ -527,6 +527,7 @@ export default {
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation Ceremony')[0];
     },
     degreeReviewTranscript() {
+      // MUWM-5263
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation ReviewTranscript')[0];
     },
     degreeDiploma() {
