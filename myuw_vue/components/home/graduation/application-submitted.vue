@@ -174,6 +174,43 @@
                 to other parties.
               </li>
             </ul>
+            <h3 class="h6 myuw-font-encode-sans">Final steps after graduation</h3>
+            <ul class="list-unstyled myuw-text-md">
+              <li>
+                <uw-collapsed-notice :notice="degreeReviewTranscript" caller-id="gradPrep">
+                  <template #notice-body>
+                    <p>blah blah</p>
+                  </template>
+                </uw-collapsed-notice>
+              </li>
+              <li>
+                <uw-collapsed-notice :notice="degreeDiploma" caller-id="gradPrep">
+                  <template #notice-body>
+                    <p>
+                      You can use the
+                      <a href="https://registrar.washington.edu/diploma-name/">
+                      Diploma Name and Address form</a>
+                       to update your diploma name and mailing address until the registrar&apos;s
+                       office places the diploma order for your quarter of graduation &#8211;
+                       approximately one month after your degree is granted.
+                    </p>
+                    <p>
+                      We urge you to update your information now. If you do not update your diploma
+                      name and address within this timeframe, information from your student record
+                      will be used to issue and mail your diploma.
+                    </p>
+                    <p>
+                      For more information about diplomas, including shipping time and CeDiplomas,
+                      visit the
+                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
+                        >Graduations and Diplomas</a
+                      >
+                      page.
+                    </p>
+                  </template>
+                </uw-collapsed-notice>
+              </li>
+            </ul>
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
@@ -240,33 +277,6 @@
               Verify that your information and data will not be lost
             </h3>
             <ul class="list-unstyled myuw-text-md">
-              <li>
-                <uw-collapsed-notice :notice="degreeDiploma" caller-id="gradPrep">
-                  <template #notice-body>
-                    <p>
-                      You can use the
-                      <a href="https://registrar.washington.edu/diploma-name/">
-                      Diploma Name and Address form</a>
-                       to update your diploma name and mailing address until the registrar&apos;s
-                       office places the diploma order for your quarter of graduation &#8211;
-                       approximately one month after your degree is granted.
-                    </p>
-                    <p>
-                      We urge you to update your information now. If you do not update your diploma
-                      name and address within this timeframe, information from your student record
-                      will be used to issue and mail your diploma.
-                    </p>
-                    <p>
-                      For more information about diplomas, including shipping time and CeDiplomas,
-                      visit the
-                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
-                        >Graduations and Diplomas</a
-                      >
-                      page.
-                    </p>
-                  </template>
-                </uw-collapsed-notice>
-              </li>
               <li>
                 <uw-collapsed-notice :notice="degreeSaveWork" caller-id="gradPrep">
                   <template #notice-body>
@@ -515,6 +525,9 @@ export default {
     },
     degreeCeremony() {
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation Ceremony')[0];
+    },
+    degreeReviewTranscript() {
+      return this.degreeNotices.filter((notice) => notice.category === 'Graduation ReviewTranscript')[0];
     },
     degreeDiploma() {
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation Diploma')[0];
