@@ -90,8 +90,8 @@ class TestMyuwNotice(TransactionTestCase):
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start_week=-2,
-                            duration=11,
+                            start_week=3,
+                            duration=2,
                             is_autumn=True)
         notice.save()
         request = get_request_with_date("2013-07-08")
@@ -104,10 +104,22 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 0)
 
-        request = get_request_with_date("2013-09-08")
+        request = get_request_with_date("2013-10-12")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 0)
+
+        request = get_request_with_date("2013-10-13")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Test3")
+
+        request = get_request_with_date("2013-10-26")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 1)
+
+        request = get_request_with_date("2013-10-27")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 0)
 
     def test_get_notices_by_date(self):
         notice = MyuwNotice(title="Foo",

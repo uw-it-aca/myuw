@@ -123,6 +123,7 @@ def get_notices_by_date(request):
 
 
 def get_notices_by_term(request):
+    # MUWM-5265
     selected_notices = []
     cur_term = get_current_quarter(request)
     cmp_date = get_comparison_date(request)
@@ -140,7 +141,7 @@ def get_notices_by_term(request):
                 get_first_day_quarter(cur_term, notice))
             start_date = get_start_date(start_sunday, notice.start_week)
             end_date = start_date + timedelta(weeks=notice.duration)
-            if start_date <= cmp_date <= end_date:
+            if start_date <= cmp_date < end_date:
                 selected_notices.append(notice)
     return selected_notices
 
