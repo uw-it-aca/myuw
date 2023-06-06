@@ -28,9 +28,8 @@
           is unable to submit grades for any reason. You can
           <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
             <span v-if="section.gradeSubmissionSectionDelegate">
-              update grade submission delegates
-            </span>
-            <span v-else> add a grade submission delegate </span>
+              update grade submission delegates</span>
+            <span v-else>add a grade submission delegate</span>
           </a>
           using MyClass Resources.
         </template>
