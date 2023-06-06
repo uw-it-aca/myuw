@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
 from uw_sws import SWS_TIMEZONE
-from myuw.models.myuw_notice import MyuwNotice
+from myuw.models.myuw_notice import (
+    MyuwNotice, start_week_range, duration_range)
 from myuw.logger.logresp import log_info, log_exception
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
@@ -76,33 +77,52 @@ def _save_notice(request, context, notice_id=None):
         return False
 
     has_error = False
+    start_week = 0
+    duration = 0
+    terms = None
 
-    try:
-        start_date = _get_datetime(request.POST.get('start_date'))
-    except Exception as ex:
-        start_date = None
-        log_info(logger, {'err': ex, 'msg': 'Invalid start_date'})
-    if start_date is None:
-        has_error = True
-        context['start_error'] = True
+    start_date = _get_datetime(request.POST.get('start_date'))
+    end_date = _get_datetime(request.POST.get('end_date'))
+    if start_date or end_date:
+        if start_date is None:
+            has_error = True
+            context['start_error'] = True
+            log_info(
+                logger, {'err': 'Invalid start_date'})
 
-    try:
-        end_date = _get_datetime(request.POST.get('end_date'))
-    except Exception as ex:
-        end_date = None
-        log_info(logger, {'err': ex, 'msg': 'Invalid end_date'})
-    if end_date is None:
-        has_error = True
-        context['end_error'] = True
+        if end_date is None:
+            has_error = True
+            context['end_error'] = True
+            log_info(
+                logger, {'err': 'Invalid end_date'})
 
-    if start_date and end_date and end_date < start_date:
-        has_error = True
-        context['date_error'] = True
-        log_info(
-            logger,
-            {'err': 'end_date is before start_date',
-             'start_date': start_date,
-             'end_date': end_date})
+        if start_date and end_date and end_date < start_date:
+            has_error = True
+            context['date_error'] = True
+            log_info(
+                logger,
+                {'err': 'end_date is before start_date',
+                 'start_date': start_date,
+                 'end_date': end_date})
+
+    else:
+        start_week = _get_integer(request.POST.get('start_week'))
+        if start_week not in start_week_range:
+            has_error = True
+            context['start_week_error'] = True
+            log_info(logger, {'err': 'Invalid start_week'})
+
+        duration = _get_integer(request.POST.get('duration'))
+        if duration not in duration_range:
+            has_error = True
+            context['duration_error'] = True
+            log_info(logger, {'err': 'Invalid duration'})
+
+        terms = request.POST.getlist('terms')
+        if not terms or len(terms) == 0:
+            has_error = True
+            context['terms_error'] = True
+            log_info(logger, {'err': 'Invalid terms'})
 
     notice_type = request.POST.get('notice_type')
     if notice_type is None:
@@ -155,9 +175,20 @@ def _save_notice(request, context, notice_id=None):
                             notice_type=notice_type,
                             notice_category=notice_category,
                             is_critical=is_critical,
-                            start=start_date,
-                            end=end_date,
                             target_group=target_group)
+
+        if (start_week in start_week_range and
+                duration in duration_range and
+                terms and len(terms) > 0):
+            notice.start_week = start_week
+            notice.duration = duration
+            for term in terms:
+                setattr(notice, term, True)
+
+        if start_date and end_date:
+            notice.start = start_date
+            notice.end = end_date
+
         for campus in campus_list:
             setattr(notice, campus, True)
 
@@ -179,6 +210,8 @@ def _save_notice(request, context, notice_id=None):
         notice.notice_category = notice_category
         notice.start = start_date
         notice.end = end_date
+        notice.start_week = start_week
+        notice.duration = duration
         notice.target_group = target_group
 
         # reset filters
@@ -186,6 +219,12 @@ def _save_notice(request, context, notice_id=None):
         for field in fields:
             if "is_" in field.name:
                 setattr(notice, field.name, False)
+            elif "not_" in field.name:
+                setattr(notice, field.name, False)
+
+        if terms and len(terms) > 0:
+            for att in terms:
+                setattr(notice, att, True)
 
         for campus in campus_list:
             setattr(notice, campus, True)
@@ -206,15 +245,29 @@ def _save_notice(request, context, notice_id=None):
 
 
 def _get_datetime(dt_string):
-    try:
-        dt = parse(dt_string)
-        if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-            return SWS_TIMEZONE.localize(dt)
-        return dt
-    except (TypeError, ParserError) as ex:
-        log_info(
-            logger, {'err': ex, 'msg': "_get_datetime({})".format(dt_string)})
-        return None
+    if dt_string and len(dt_string):
+        try:
+            dt = parse(dt_string)
+            if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+                return SWS_TIMEZONE.localize(dt)
+            return dt
+        except Exception as ex:
+            log_info(
+                logger,
+                {'err': ex, 'msg': "_get_datetime({})".format(dt_string)})
+    return None
+
+
+def _get_integer(str):
+    if str and len(str):
+        try:
+            value = int(str)
+            return value
+        except Exception as ex:
+            log_info(
+                logger,
+                {'err': ex, 'msg': "_get_integer({})".format(str)})
+    return 100
 
 
 def _get_html(value):
