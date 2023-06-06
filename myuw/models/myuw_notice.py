@@ -5,6 +5,10 @@ import json
 from django.db import models
 
 
+start_week_range = range(-2, 12)
+duration_range = range(1, 12)
+
+
 class MyuwNotice(models.Model):
     title = models.TextField(null=True)
     content = models.TextField(null=True)
@@ -12,8 +16,19 @@ class MyuwNotice(models.Model):
     notice_category = models.TextField(max_length=128)
     is_critical = models.BooleanField(default=False)
 
-    start = models.DateTimeField()
-    end = models.DateTimeField(null=True)
+    # display window defined with start-end dates
+    start = models.DateTimeField(null=True, default=None)
+    end = models.DateTimeField(null=True, default=None)
+
+    # display window related to terms
+    start_week = models.SmallIntegerField(default=0)
+    duration = models.PositiveSmallIntegerField(default=0)
+    is_winter = models.BooleanField(default=False)
+    is_spring = models.BooleanField(default=False)
+    is_autumn = models.BooleanField(default=False)
+    is_summer_a = models.BooleanField(default=False)
+    is_summer_b = models.BooleanField(default=False)
+
     last_edit_by = models.CharField(max_length=128)
     last_edit_date = models.DateTimeField(auto_now=True)
 
@@ -29,6 +44,7 @@ class MyuwNotice(models.Model):
     is_grad = models.BooleanField(default=False)
     is_grad_c2 = models.BooleanField(default=False)
     is_intl_stud = models.BooleanField(default=False)
+    not_intl_stud = models.BooleanField(default=False)
     is_pce = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_undergrad = models.BooleanField(default=False)
@@ -69,8 +85,15 @@ class MyuwNotice(models.Model):
                 "notice_type": self.notice_type,
                 "notice_category": self.notice_category,
                 "is_critical": self.is_critical,
-                "start": self.start.isoformat(),
-                "end": self.end.isoformat(),
+                "start": self.start.isoformat() if self.start else None,
+                "end": self.end.isoformat() if self.start else None,
+                'start_week': self.start_week,
+                'duration': self.duration,
+                'is_winter': self.is_winter,
+                'is_spring': self.is_spring,
+                'is_autumn': self.is_autumn,
+                'is_summer_a': self.is_summer_a,
+                'is_summer_b': self.is_summer_b,
                 "last_edit_by": self.last_edit_by,
                 "last_edit_date": self.last_edit_date.isoformat(),
                 "target_group": self.target_group,
@@ -82,10 +105,11 @@ class MyuwNotice(models.Model):
                 "is_grad": self.is_grad,
                 "is_grad_c2": self.is_grad_c2,
                 "is_intl_stud": self.is_intl_stud,
+                "not_intl_stud": self.not_intl_stud,
                 "is_pce": self.is_pce,
                 "is_student": self.is_student,
                 "is_undergrad": self.is_undergrad,
-                "is_undergrad_c": self.is_undergrad_c2,
+                "is_undergrad_c2": self.is_undergrad_c2,
                 "is_fyp": self.is_fyp,
                 "is_past_student": self.is_past_student,
                 "is_clinician": self.is_clinician,
