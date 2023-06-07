@@ -143,6 +143,11 @@
 
           <div v-if="hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">Final steps after graduation</h3>
+            <p class="myuw-text-md mb-1">
+              Carefully review an email from the University Registrar titled “University of 
+              Washington Notification of Degree Posting: Next Steps,” which includes 
+              the following steps:
+            </p>
             <ul class="list-unstyled myuw-text-md">
               <li>
                 <uw-collapsed-notice :notice="degreeReviewTranscript" caller-id="gradPrep">
@@ -168,8 +173,7 @@
                       and the registrar’s office at
                       <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a>
                       <a v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a>
-                      <a v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>
-                    .
+                      <a v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>.
                     </p>
                   </template>
                 </uw-collapsed-notice>
@@ -191,7 +195,7 @@
                       name and address within this timeframe, information from your student record
                       will be used to issue and mail your diploma.
                     </p>
-                    <p>
+                    <p class="mb-0">
                       For more information about diplomas, including shipping time and CeDiplomas,
                       visit the
                       <a href="https://registrar.washington.edu/students/graduation-diplomas/"
