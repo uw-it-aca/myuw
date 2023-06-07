@@ -559,6 +559,7 @@ export default {
         (this.hasActiveApplication || this.hasGrantedDegree) &&
         Boolean(this.degreeCeremony) &&
         Boolean(this.degreeDiploma) &&
+        Boolean(this.degreeReviewTranscript) &&
         Boolean(this.degreeSaveWork) &&
         Boolean(this.degreeEmailForwarding) &&
         Boolean(this.degreeNextDestination)
