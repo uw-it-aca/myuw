@@ -164,7 +164,8 @@
                         <li>Minor(s)</li>
                       </ul>
                     </p>
-                    <p class="mb-0">If something is incorrect, contact your academic advisor and the registrar’s office at
+                    <p class="mb-0">If something is incorrect, contact your academic advisor 
+                      and the registrar’s office at
                       <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a>
                       <a v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a>
                       <a v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>
@@ -203,13 +204,12 @@
               </li>
             </ul>
             <h3 class="h6 myuw-font-encode-sans">Post-Graduation success</h3>
+            <p class="myuw-text-md">Get guidance and resources for
+              <a href="https://www.washington.edu/graduation/after-graduation/"
+                >after graduation</a
+              >.
+            </p>
             <ul class="list-style myuw-text-md">
-              <li>
-                Get guidance and resources for
-                <a href="https://www.washington.edu/graduation/after-graduation/"
-                  >after graduation</a
-                >.
-              </li>
               <li v-if="bothell">
                 Find out how to
                 <a href="https://www.uwb.edu/registration/enrollment-verify"
