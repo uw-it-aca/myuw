@@ -205,15 +205,6 @@
             <h3 class="h6 myuw-font-encode-sans">Post-Graduation success</h3>
             <ul class="list-style myuw-text-md">
               <li>
-                Ensure that all information on your
-                <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/untranscript.aspx"
-                  >unofficial transcript</a
-                >
-                is correct &#8211; any degrees, major and minor types. If anything is incorrect,
-                contact the registrar&apos;s office and your academic advisor within 45 days of your
-                degree being granted.
-              </li>
-              <li>
                 Get guidance and resources for
                 <a href="https://www.washington.edu/graduation/after-graduation/"
                   >after graduation</a
