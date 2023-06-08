@@ -82,6 +82,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'campus': 'is_seattle',
                 'start_date': '2018-05-25 12:00',
                 'end_date': '2018-05-26 12:00',
+                'start_week': '',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar',
                 'target_group': ' uw_group '
@@ -107,6 +109,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'content': "<p>Foobar</p>",
                 'start_date': "2018-05-25 12:05",
                 'end_date': "2017-05-26 12:05",
+                'start_week': '',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -121,6 +125,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'title': 'The Title',
                 'content': "<p>Foobar</p>",
                 'end_date': "2017-05-26 12:05",
+                'start_week': '',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -128,16 +134,92 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
 
+        # no end
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'start_date': "2017-05-26 12:05",
+                'end_date': "",
+                'start_week': '',
+                'duration': '',
+                'notice_type': 'Foo',
+                'notice_category': 'Bar'
+            })
+        context = {}
+        self.assertFalse(_save_notice(request, context))
+        self.assertTrue(context['end_error'])
+
         # Missing Attrs
         request = self._get_request({'action': 'save', })
         context = {}
         self.assertFalse(_save_notice(request, context))
-        print(context)
-        self.assertTrue(context['start_error'])
+        self.assertTrue(context['start_week_error'])
+        self.assertTrue(context['duration_error'])
+        self.assertTrue(context['terms_error'])
         self.assertTrue(context['type_error'])
         self.assertTrue(context['category_error'])
         self.assertTrue(context['title_error'])
         self.assertTrue(context['content_error'])
+
+    def test_save_term_notice(self):
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'start_date': '',
+                'end_date': '',
+                'start_week': '0',
+                'duration': '3',
+                'terms': ['is_winter', 'is_spring'],
+                'notice_category': 'MyUWNotice',
+                'notice_type': 'Banner',
+                'campus': ['is_seattle'],
+                'affil': ['is_student'],
+            })
+        context = {}
+        self.assertTrue(_save_notice(request, context))
+        self.assertEqual(context, {})
+        notices = MyuwNotice.objects.all()
+        self.assertEqual(len(notices), 1)
+        self.assertEqual(notices[0].start_week, 0)
+        self.assertEqual(notices[0].duration, 3)
+        self.assertTrue(notices[0].is_winter)
+        self.assertTrue(notices[0].is_spring)
+        self.assertFalse(notices[0].is_autumn)
+        self.assertFalse(notices[0].is_summer_a)
+        self.assertFalse(notices[0].is_summer_b)
+
+        # edit notice
+        request = self._get_request(
+            {
+                'action': 'edit',
+                'title': 'Edit Title',
+                'content': "<p>Foobar</p>",
+                'start_date': '',
+                'end_date': '',
+                'start_week': '0',
+                'duration': '5',
+                'terms': ['is_winter', 'is_spring', 'is_autumn'],
+                'notice_category': 'MyUWNotice',
+                'notice_type': 'Banner',
+                'campus': ['is_seattle'],
+                'affil': ['is_student'],
+            })
+        context = {}
+        self.assertTrue(_save_notice(
+            request, context, notice_id=notices[0].id))
+        self.assertEqual(context, {})
+        notices = MyuwNotice.objects.all()
+        self.assertEqual(notices[0].start_week, 0)
+        self.assertEqual(notices[0].duration, 5)
+        self.assertTrue(notices[0].is_winter)
+        self.assertTrue(notices[0].is_spring)
+        self.assertTrue(notices[0].is_autumn)
+        self.assertFalse(notices[0].is_summer_a)
+        self.assertFalse(notices[0].is_summer_b)
 
     def test_content_allowed_tags(self):
         request = self._get_request(
@@ -147,6 +229,8 @@ class TestNoticeAdmin(MyuwApiTest):
                 'content': "<p>allowed tag</p> <span>not allowed</span>",
                 'start_date': "2018-05-05 12:05",
                 'end_date': "2018-05-26 12:05",
+                'start_week': '',
+                'duration': '',
                 'notice_type': 'Foo',
                 'notice_category': 'Bar'
             })
@@ -169,6 +253,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'content': "Foo",
             'start_date': "2013-03-27 13:00",
             'end_date': "2013-05-06 23:13",
+            'start_week': '',
+            'duration': '',
             'notice_type': 'Foo',
             'notice_category': 'Bar',
             'target_group': 'u_astratst_myuw_test-support-admin'
@@ -194,3 +280,47 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertEqual(notices[0].content, 'Bar')
         self.assertEqual(notices[0].target_group,
                          'u_astratst_myuw_test-support-admin')
+
+    def test_affiliations(self):
+        notice_context = {
+            'action': 'save',
+            'title': 'Test',
+            'content': "Foo",
+            'start_date': "",
+            'end_date': "",
+            'terms': ['is_winter'],
+            'start_week': '0',
+            'duration': '10',
+            'notice_type': 'Foo',
+            'notice_category': 'Bar',
+            'affil': ['not_intl_stud', 'is_student']
+        }
+        request = self._get_request(notice_context)
+        self.assertTrue(_save_notice(request, {}))
+        request = get_request_with_date("2013-03-01")
+        request = get_request_with_user('jinter', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 0)
+
+        entries = MyuwNotice.objects.all()
+        notice_context = {
+            'action': 'edit',
+            'title': 'Test Edit',
+            'content': "Foo",
+            'start_date': "",
+            'end_date': "",
+            'terms': ['is_spring'],
+            'start_week': '0',
+            'duration': '10',
+            'notice_type': 'Foo',
+            'notice_category': 'Bar',
+            'affil': ['intl_stud']
+        }
+        request = self._get_request(notice_context)
+        self.assertTrue(_save_notice(
+            request, {}, notice_id=entries[0].id))
+
+        request = get_request_with_date("2013-04-01")
+        request = get_request_with_user('jinter', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 1)
