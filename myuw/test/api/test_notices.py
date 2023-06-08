@@ -23,7 +23,7 @@ class TestNotices(MyuwApiTest):
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 29)
+        self.assertEquals(len(data), 30)
         self.assertFalse(data[0]["is_read"])
 
         hash_value = data[0]["id_hash"]
