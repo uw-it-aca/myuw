@@ -144,8 +144,8 @@
           <div v-if="hasGrantedDegree">
             <h3 class="h6 myuw-font-encode-sans">Final steps after graduation</h3>
             <p class="myuw-text-md mb-1">
-              Carefully review an email from the University Registrar titled “University of 
-              Washington Notification of Degree Posting: Next Steps,” which includes 
+              Carefully review an email from the University Registrar titled <i>University of
+              Washington Notification of Degree Posting: Next Steps</i>, which includes
               the following steps:
             </p>
             <ul class="list-unstyled myuw-text-md">
@@ -153,7 +153,7 @@
                 <uw-collapsed-notice :notice="degreeReviewTranscript" caller-id="gradPrep">
                   <template #notice-body>
                     <strong
-                      >Student records will be sealed after 45 days after the conferral of 
+                      >Student records will be sealed after 45 days after the conferral of
                       your degree and academic records cannot be altered.</strong
                     > <br>
                     <br>
@@ -169,7 +169,7 @@
                         <li>Minor(s)</li>
                       </ul>
                     </p>
-                    <p class="mb-0">If something is incorrect, contact your academic advisor 
+                    <p class="mb-0">If something is incorrect, contact your academic advisor
                       and the registrar’s office at
                       <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a>
                       <a v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a>
