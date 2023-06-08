@@ -171,9 +171,9 @@
                     </p>
                     <p class="mb-0">If something is incorrect, contact your academic advisor
                       and the registrar’s office at
-                      <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a>
-                      <a v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a>
-                      <a v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>.
+                      <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a><a
+                      v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a><a
+                      v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>.
                     </p>
                   </template>
                 </uw-collapsed-notice>
