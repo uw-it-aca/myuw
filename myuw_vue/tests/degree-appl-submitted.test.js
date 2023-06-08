@@ -80,12 +80,12 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.tacoma).toBe(false);
     expect(wrapper.vm.degreeTerm(wrapper.vm.degrees[0])).toBe('Summer 2013');
     expect(wrapper.findComponent(Graduation).exists()).toBe(true);
-    expect(wrapper.vm.degreeNotices.length).toBe(5);
+    expect(wrapper.vm.degreeNotices.length).toBe(6);
     expect(wrapper.vm.degreeCeremony).toBeTruthy;
     expect(wrapper.vm.degreeDiploma).toBeTruthy;
     expect(wrapper.vm.degreeSaveWork).toBeTruthy;
     expect(wrapper.vm.degreeEmailForwarding).toBeTruthy;
-    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(4);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(3);
   });
   it('Verify double degrees diff terms', async () => {
     axios.get.mockImplementation((url) => {
@@ -109,7 +109,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.degreeNextDestination.category).toBe(
       "Graduation NextDestination"
     );
-    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(4);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(3);
   });
   it('Verify double degrees diff status', async () => {
     axios.get.mockImplementation((url) => {
@@ -173,7 +173,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
-    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(5);
+    expect(wrapper.findAllComponents(CollapsedNotice).length).toBe(6);
   });
   it('Verify hide card if degree status is 404', async () => {
     axios.get.mockImplementation((url) => {

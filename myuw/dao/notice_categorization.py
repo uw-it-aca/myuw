@@ -389,6 +389,11 @@ NOTICE_CATEGORIES = {
         "location_tags": ['graduation'],
         "critical": False
     },
+    "degree_reviewtranscript": {
+        "myuw_category": "Graduation ReviewTranscript",
+        "location_tags": ['graduation'],
+        "critical": False
+    },
     "degree_savework": {
         "myuw_category": "Graduation SaveWork",
         "location_tags": ['graduation'],

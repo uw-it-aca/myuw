@@ -8,7 +8,12 @@
         {% if notices %}
             <ol class="notices-custom-list">
             {% for notice in notices %}
-                <li><a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }}</a> <span class="text-muted">{{ notice.start }} - {{ notice.end }}</span></li>
+                <li>
+                    <a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }}</a>
+                    {% if notices.start %}
+                    <span class="text-muted">{{ notice.start }} - {{ notice.end }}</span>
+                    {% endif %}
+                </li>
             {% endfor %}
             </ol>
         {% else %}
