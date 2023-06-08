@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    v-meta="{term: term, tag: `grad-application-submitted`}"
+    v-meta="{ term: term, tag: `grad-application-submitted` }"
     :loaded="showContent"
     :errored="showError"
   >
@@ -9,13 +9,13 @@
       <h2 v-if="hasGrantedDegree" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Congratulations, You've Graduated!
       </h2>
-      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation Preparation
-      </h2>
+      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
     </template>
     <template #card-body>
-      <div v-if="showLastTermGradAlert"
-        class="alert alert-primary myuw-text-md text-center" role="alert"
+      <div
+        v-if="showLastTermGradAlert"
+        class="alert alert-primary myuw-text-md text-center"
+        role="alert"
       >
         Did you graduate last quarter? Don&apos;t worry,
         <strong>it may take several weeks for your degree to be officially granted.</strong>
@@ -142,22 +142,78 @@
           </div>
 
           <div v-if="hasGrantedDegree">
-            <h3 class="h6 myuw-font-encode-sans">Post-Graduation Success</h3>
+            <h3 class="h6 myuw-font-encode-sans">Final steps after graduation</h3>
+            <p class="myuw-text-md mb-1">
+              Carefully review an email from the University Registrar titled <i>University of
+              Washington Notification of Degree Posting: Next Steps</i>, which includes
+              the following steps:
+            </p>
+            <ul class="list-unstyled myuw-text-md">
+              <li>
+                <uw-collapsed-notice :notice="degreeReviewTranscript" caller-id="gradPrep">
+                  <template #notice-body>
+                    <strong
+                      >Student records will be sealed after 45 days after the conferral of
+                      your degree and academic records cannot be altered.</strong
+                    > <br>
+                    <br>
+                    <p>
+                      Ensure your
+                      <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/untranscript.aspx"
+                        >unofficial transcript</a
+                      >
+                      has the correct graduation degree information, including:
+                      <ul class="list-style myuw-text-md">
+                        <li>Degree(s)</li>
+                        <li>Major(s)</li>
+                        <li>Minor(s)</li>
+                      </ul>
+                    </p>
+                    <p class="mb-0">If something is incorrect, contact your academic advisor
+                      and the registrar’s office at
+                      <a v-if="seattle" href="mailto:ugradoff@uw.edu">ugradoff@uw.edu</a><a
+                      v-if="tacoma" href="mailto:uwtgrad@uw.edu">uwtgrad@uw.edu</a><a
+                      v-if="bothell" href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a>.
+                    </p>
+                  </template>
+                </uw-collapsed-notice>
+              </li>
+              <li>
+                <uw-collapsed-notice :notice="degreeDiploma" caller-id="gradPrep">
+                  <template #notice-body>
+                    <p>
+                      You can use the
+                      <a href="https://registrar.washington.edu/diploma-name/">
+                        Diploma Name and Address form</a
+                      >
+                      to update your diploma name and mailing address until the registrar&apos;s
+                      office places the diploma order for your quarter of graduation &#8211;
+                      approximately one month after your degree is granted.
+                    </p>
+                    <p>
+                      We urge you to update your information now. If you do not update your diploma
+                      name and address within this timeframe, information from your student record
+                      will be used to issue and mail your diploma.
+                    </p>
+                    <p class="mb-0">
+                      For more information about diplomas, including shipping time and CeDiplomas,
+                      visit the
+                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
+                        >Graduations and Diplomas</a
+                      >
+                      page.
+                    </p>
+                  </template>
+                </uw-collapsed-notice>
+              </li>
+            </ul>
+            <h3 class="h6 myuw-font-encode-sans">Post-Graduation success</h3>
+            <p class="myuw-text-md">Get guidance and resources for
+              <a href="https://www.washington.edu/graduation/after-graduation/"
+                >after graduation</a
+              >.
+            </p>
             <ul class="list-style myuw-text-md">
-              <li>
-                Ensure that all information on your
-                <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/untranscript.aspx"
-                  >unofficial transcript</a
-                > is correct &#8211; any degrees, major and minor types. If anything is incorrect,
-                  contact the registrar&apos;s office and your academic advisor within 45 days of
-                  your degree being granted.
-              </li>
-              <li>
-                Get guidance and resources for
-                <a href="https://www.washington.edu/graduation/after-graduation/"
-                  >after graduation</a
-                >.
-              </li>
               <li v-if="bothell">
                 Find out how to
                 <a href="https://www.uwb.edu/registration/enrollment-verify"
@@ -209,9 +265,7 @@
           </div>
 
           <div v-if="seattle && (hasActiveDegreeLast4weeksInst || hasGrantedDegree)">
-            <h3 class="h6 myuw-font-encode-sans">
-              Your plans after graduation
-            </h3>
+            <h3 class="h6 myuw-font-encode-sans">Your plans after graduation</h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
                 <uw-collapsed-notice :notice="degreeNextDestination" caller-id="gradPrep">
@@ -219,16 +273,18 @@
                     <p>
                       Each year we track, aggregate and
                       <a href="https://careers.uw.edu/outcomes/"
-                        >visualize UW bachelor graduate's next destination.</a>
+                        >visualize UW bachelor graduate's next destination.</a
+                      >
                     </p>
                     <p>
                       What are <i>you</i> planning to do? Whether you&apos;re intending to work,
-                        travel, go to grad school, or are still figuring it out,
-                        we want to know!
-                        <a href="https://careers.uw.edu/resources/next-destination-survey/"
-                        >Please take 5 mins to tell us your plans</a>
-                        so we can better coach students and inform future graduates
-                        &ndash; we want to hear from every graduate! </p>
+                      travel, go to grad school, or are still figuring it out, we want to know!
+                      <a href="https://careers.uw.edu/resources/next-destination-survey/"
+                        >Please take 5 mins to tell us your plans</a
+                      >
+                      so we can better coach students and inform future graduates &ndash; we want to
+                      hear from every graduate!
+                    </p>
                   </template>
                 </uw-collapsed-notice>
               </li>
@@ -240,33 +296,6 @@
               Verify that your information and data will not be lost
             </h3>
             <ul class="list-unstyled myuw-text-md">
-              <li>
-                <uw-collapsed-notice :notice="degreeDiploma" caller-id="gradPrep">
-                  <template #notice-body>
-                    <p>
-                      You can use the
-                      <a href="https://registrar.washington.edu/diploma-name/">
-                      Diploma Name and Address form</a>
-                       to update your diploma name and mailing address until the registrar&apos;s
-                       office places the diploma order for your quarter of graduation &#8211;
-                       approximately one month after your degree is granted.
-                    </p>
-                    <p>
-                      We urge you to update your information now. If you do not update your diploma
-                      name and address within this timeframe, information from your student record
-                      will be used to issue and mail your diploma.
-                    </p>
-                    <p>
-                      For more information about diplomas, including shipping time and CeDiplomas,
-                      visit the
-                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
-                        >Graduations and Diplomas</a
-                      >
-                      page.
-                    </p>
-                  </template>
-                </uw-collapsed-notice>
-              </li>
               <li>
                 <uw-collapsed-notice :notice="degreeSaveWork" caller-id="gradPrep">
                   <template #notice-body>
@@ -305,7 +334,6 @@
         :prompt="'Is this graduation preparation information helpful?'"
         :form-id="'1FAIpQLSdkeEbdzk2ySMqgbv3RQwPErLn6Z-1P75GW--jjetfy7CoyIg'"
       ></uw-feedback>
-
     </template>
     <template #card-disclosure>
       <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
@@ -516,6 +544,12 @@ export default {
     degreeCeremony() {
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation Ceremony')[0];
     },
+    degreeReviewTranscript() {
+      // MUWM-5263
+      return this.degreeNotices.filter(
+        (notice) => notice.category === 'Graduation ReviewTranscript'
+      )[0];
+    },
     degreeDiploma() {
       return this.degreeNotices.filter((notice) => notice.category === 'Graduation Diploma')[0];
     },
@@ -529,8 +563,8 @@ export default {
     },
     degreeNextDestination() {
       // MUWM-5182
-      return this.degreeNotices.filter((notice) =>
-        notice.category === 'Graduation NextDestination'
+      return this.degreeNotices.filter(
+        (notice) => notice.category === 'Graduation NextDestination'
       )[0];
     },
     showCard() {
@@ -545,6 +579,7 @@ export default {
         (this.hasActiveApplication || this.hasGrantedDegree) &&
         Boolean(this.degreeCeremony) &&
         Boolean(this.degreeDiploma) &&
+        Boolean(this.degreeReviewTranscript) &&
         Boolean(this.degreeSaveWork) &&
         Boolean(this.degreeEmailForwarding) &&
         Boolean(this.degreeNextDestination)
@@ -617,9 +652,7 @@ export default {
     },
     hasActiveDegreeLast4weeksInst() {
       // MUWM-5182: whinin the last 4 instruction weeks of degree target term
-      let value = (
-        this.degrees && Boolean(this.degrees[0].last_4_inst_weeks_in_degree_term)
-      );
+      let value = this.degrees && Boolean(this.degrees[0].last_4_inst_weeks_in_degree_term);
       if (!value && this.hasDoubleDegrees) {
         value = Boolean(this.degrees[1].last_4_inst_weeks_in_degree_term);
       }
@@ -642,8 +675,7 @@ export default {
     },
     hasGrantedDegree() {
       // MUWM-5195: from degree earned term till 2 terms after it
-      let value = (
-        this.degrees && Boolean(this.degrees[0].within_2terms_after_granted));
+      let value = this.degrees && Boolean(this.degrees[0].within_2terms_after_granted);
       if (!value && this.hasDoubleDegrees) {
         value = Boolean(this.degrees[1].within_2terms_after_granted);
       }
@@ -672,7 +704,7 @@ export default {
     },
     term() {
       return this.year + ',' + this.quarter;
-    }
+    },
   },
   created() {
     if (this.graduatingSenior) {
@@ -688,16 +720,16 @@ export default {
       fetchProfile: 'fetch',
     }),
     hasMisconduct(degree) {
-      return degree.is_admin_hold;  // degree status: 1
+      return degree.is_admin_hold; // degree status: 1
     },
     isIncomplete(degree) {
-      return degree.is_incomplete;  // degree status: 2
+      return degree.is_incomplete; // degree status: 2
     },
     isActive(degree) {
-      return degree.has_applied;  // degree status: 3,4,5
+      return degree.has_applied; // degree status: 3,4,5
     },
     isGranted(degree) {
-      return degree.is_granted;  // degree status: 9
+      return degree.is_granted; // degree status: 9
     },
     degreeTerm(degree) {
       return this.titleCaseWord(degree.quarter) + ' ' + degree.year;

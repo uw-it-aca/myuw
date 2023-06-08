@@ -56,6 +56,15 @@ CATEGORIZED_NOTICES = [
         )
     },
     {
+        "NoticeCategory": "Degree",
+        "NoticeType": "ReviewTranscript",
+        "NoticeContent": (
+            "<span class=\"notice-title\">Review your final " +
+            "unofficial transcript for accuracy</span>" +
+            "<span class=\"notice-body-with-title\"></span>"
+        )
+    },
+    {
         "NoticeCategory": "Teaching",
         "NoticeType": "ClassResAccessible",
         "NoticeContent": (

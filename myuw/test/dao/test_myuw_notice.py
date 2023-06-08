@@ -8,7 +8,7 @@ from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.myuw_notice import (
-    get_myuw_notices_for_user, get_last_sunday, get_start_date,
+    get_myuw_notices_for_user, get_prev_sunday, get_start_date,
     get_current_quarter, campus_neutral, is_stud_campus_matched,
     is_employee_campus_matched, get_first_day_quarter,
     get_notices_by_date, get_notices_by_term, student_affiliation_matched)
@@ -23,14 +23,14 @@ def get_datetime_with_tz(year, month, day, hour):
 
 class TestMyuwNotice(TransactionTestCase):
 
-    def test_get_last_sunday(self):
-        start_sun = get_last_sunday(date(2013, 1, 2))
+    def test_get_prev_sunday(self):
+        start_sun = get_prev_sunday(date(2013, 1, 2))
         self.assertEqual(str(start_sun), "2012-12-30")
-        start_sun = get_last_sunday(date(2013, 1, 5))
+        start_sun = get_prev_sunday(date(2013, 1, 5))
         self.assertEqual(str(start_sun), "2012-12-30")
-        start_sun = get_last_sunday(date(2013, 1, 6))
+        start_sun = get_prev_sunday(date(2013, 1, 6))
         self.assertEqual(str(start_sun), "2013-01-06")
-        start_sun = get_last_sunday(date(2013, 9, 25))
+        start_sun = get_prev_sunday(date(2013, 9, 25))
         self.assertEqual(str(start_sun), "2013-09-22")
 
     def test_get_start_date(self):
