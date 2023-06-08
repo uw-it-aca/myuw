@@ -37,7 +37,7 @@ class TestNotices(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 29)
+        self.assertEquals(len(data), 30)
 
         match = False
         for el in data:
