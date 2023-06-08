@@ -488,6 +488,18 @@
     ]
   },
   {
+    "notice_content": "<span class=\"notice-title\">Review your final unofficial transcript for accuracy</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Graduation ReviewTranscript",
+    "sws_category": "Degree",
+    "is_critical": false,
+    "id_hash": "6acaba7eade8d4d57e1e93a3c9ad101b",
+    "is_read": false,
+    "location_tags": [
+      "graduation"
+    ]
+  },
+  {
     "notice_content": "<span class=\"notice-title\">Financial Aid Hold</span>&nbsp;<span class=\"notice-body-with-title\">You have a <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">hold</a> on your financial aid.</span>",
     "attributes": [],
     "short_content": "You have a hold on your aid",
