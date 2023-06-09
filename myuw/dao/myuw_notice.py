@@ -150,7 +150,7 @@ def get_first_day_quarter(request, notice):
     if cur_term.is_summer_quarter() and notice.is_summer_b:
         if not notice.is_summer_a:
             return cur_term.bterm_first_date
-        # is_summer_a is True
+        # is_summer_a and is_summer_b both True, check further
         cmp_date = get_comparison_date(request)
         start_date = get_start_date(
             cur_term.bterm_first_date, notice.start_week)

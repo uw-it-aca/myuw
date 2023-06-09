@@ -42,6 +42,7 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertEqual(str(dt), "2013-01-13")
 
     def test_get_first_day_quarter(self):
+        # MUWM-5273
         notice = MyuwNotice(title="Test",
                             content="Notice Content Five",
                             notice_type="Banner",
@@ -50,17 +51,12 @@ class TestMyuwNotice(TransactionTestCase):
                             duration=2,
                             is_spring=True,
                             is_summer_b=True)
-        # spring term
         request = get_request_with_date("2013-04-11")
-        cur_term = get_current_quarter(request)
-        self.assertEqual(cur_term.quarter, "spring")
-        dt = get_first_day_quarter(cur_term, notice)
+        dt = get_first_day_quarter(request, notice)
         self.assertEqual(str(dt), "2013-04-01")
-        # summer term
+        # notice.is_summer_a is False
         request = get_request_with_date("2013-07-11")
-        cur_term = get_current_quarter(request)
-        self.assertEqual(cur_term.quarter, "summer")
-        dt = get_first_day_quarter(cur_term, notice)
+        dt = get_first_day_quarter(request, notice)
         self.assertEqual(str(dt), "2013-07-25")
 
         notice = MyuwNotice(title="Test",
@@ -72,22 +68,17 @@ class TestMyuwNotice(TransactionTestCase):
                             is_summer_a=True,
                             is_summer_b=True,
                             is_autumn=True)
+        # summer A-term
         request = get_request_with_date("2013-07-11")
-        cur_term = get_current_quarter(request)
-        self.assertEqual(cur_term.quarter, "summer")
-        dt = get_first_day_quarter(cur_term, notice)
+        dt = get_first_day_quarter(request, notice)
         self.assertEqual(str(dt), "2013-06-24")
-
-        request = get_request_with_date("2013-07-20")
-        cur_term = get_current_quarter(request)
-        self.assertEqual(cur_term.quarter, "summer")
-        dt = get_first_day_quarter(cur_term, notice)
+        # summer B-term
+        request = get_request_with_date("2013-07-14")
+        dt = get_first_day_quarter(request, notice)
         self.assertEqual(str(dt), "2013-07-25")
 
-        request = get_request_with_date("2013-09-01")
-        cur_term = get_current_quarter(request)
-        self.assertEqual(cur_term.quarter, "autumn")
-        dt = get_first_day_quarter(cur_term, notice)
+        request = get_request_with_date("2013-08-28")
+        dt = get_first_day_quarter(request, notice)
         self.assertEqual(str(dt), "2013-09-25")
 
     def test_get_notices_by_term(self):
