@@ -137,26 +137,33 @@ def get_notices_by_term(request):
     for notice in fetched_term_notices:
         if (notice.start_week in start_week_range and
                 notice.duration in duration_range):
-            start_sunday = get_prev_sunday(
-                get_first_day_quarter(cur_term, notice))
-            start_date = get_start_date(start_sunday, notice.start_week)
+            first_day_quarter = get_first_day_quarter(request, notice)
+            start_date = get_start_date(first_day_quarter, notice.start_week)
             end_date = start_date + timedelta(weeks=notice.duration)
             if start_date <= cmp_date < end_date:
                 selected_notices.append(notice)
     return selected_notices
 
 
-def get_first_day_quarter(cur_term, notice):
-    if notice.is_summer_b:
-        return cur_term.bterm_first_date
+def get_first_day_quarter(request, notice):
+    cur_term = get_current_quarter(request)
+    if cur_term.is_summer_quarter() and notice.is_summer_b:
+        if not notice.is_summer_a:
+            return cur_term.bterm_first_date
+        # is_summer_a is True
+        cmp_date = get_comparison_date(request)
+        start_date = get_start_date(
+            cur_term.bterm_first_date, notice.start_week)
+        if start_date <= cmp_date:
+            return cur_term.bterm_first_date
     return cur_term.first_day_quarter
+
+
+def get_start_date(first_day_qtr, notice_start_week):
+    return get_prev_sunday(first_day_qtr) + timedelta(weeks=notice_start_week)
 
 
 def get_prev_sunday(first_day_quarter):
     week_day_idx = (first_day_quarter.weekday() + 1) % 7
     # Sunday is 0 and Saturday is 6
     return first_day_quarter - timedelta(days=week_day_idx)
-
-
-def get_start_date(start_sunday, notice_start_week):
-    return start_sunday + timedelta(weeks=notice_start_week)

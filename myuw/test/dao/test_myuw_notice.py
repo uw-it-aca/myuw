@@ -34,23 +34,29 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertEqual(str(start_sun), "2013-09-22")
 
     def test_get_start_date(self):
-        dt = get_start_date(date(2013, 1, 6), -1)
+        dt = get_start_date(date(2013, 1, 7), -1)
         self.assertEqual(str(dt), "2012-12-30")
-        dt = get_start_date(date(2013, 1, 6), 0)
+        dt = get_start_date(date(2013, 1, 7), 0)
         self.assertEqual(str(dt), "2013-01-06")
-        dt = get_start_date(date(2013, 1, 6), 1)
+        dt = get_start_date(date(2013, 1, 7), 1)
         self.assertEqual(str(dt), "2013-01-13")
-        dt = get_start_date(date(2013, 9, 22), -2)
-        self.assertEqual(str(dt), "2013-09-08")
 
     def test_get_first_day_quarter(self):
         notice = MyuwNotice(title="Test",
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start_week=-2,
-                            duration=1,
+                            start_week=0,
+                            duration=2,
+                            is_spring=True,
                             is_summer_b=True)
+        # spring term
+        request = get_request_with_date("2013-04-11")
+        cur_term = get_current_quarter(request)
+        self.assertEqual(cur_term.quarter, "spring")
+        dt = get_first_day_quarter(cur_term, notice)
+        self.assertEqual(str(dt), "2013-04-01")
+        # summer term
         request = get_request_with_date("2013-07-11")
         cur_term = get_current_quarter(request)
         self.assertEqual(cur_term.quarter, "summer")
@@ -61,9 +67,23 @@ class TestMyuwNotice(TransactionTestCase):
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start_week=-2,
+                            start_week=-1,
                             duration=1,
+                            is_summer_a=True,
+                            is_summer_b=True,
                             is_autumn=True)
+        request = get_request_with_date("2013-07-11")
+        cur_term = get_current_quarter(request)
+        self.assertEqual(cur_term.quarter, "summer")
+        dt = get_first_day_quarter(cur_term, notice)
+        self.assertEqual(str(dt), "2013-06-24")
+
+        request = get_request_with_date("2013-07-20")
+        cur_term = get_current_quarter(request)
+        self.assertEqual(cur_term.quarter, "summer")
+        dt = get_first_day_quarter(cur_term, notice)
+        self.assertEqual(str(dt), "2013-07-25")
+
         request = get_request_with_date("2013-09-01")
         cur_term = get_current_quarter(request)
         self.assertEqual(cur_term.quarter, "autumn")
