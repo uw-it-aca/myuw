@@ -12,8 +12,8 @@ from myuw.models.myuw_notice import (
     MyuwNotice, start_week_range, duration_range)
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import (
-    get_current_quarter, get_comparison_date,
-    get_comparison_datetime_with_tz)
+    get_comparison_date, get_comparison_datetime_with_tz,
+    get_current_and_next_quarters)
 
 logger = logging.getLogger(__name__)
 
@@ -125,13 +125,13 @@ def get_notices_by_date(request):
 def get_notices_by_term(request):
     # MUWM-5265
     selected_notices = []
-    cur_term = get_current_quarter(request)
-    cmp_date = get_comparison_date(request)
-    if cur_term.is_summer_quarter():
+    term, cmp_date = get_notice_term(request)
+
+    if term.is_summer_quarter():
         fetched_term_notices = MyuwNotice.objects.filter(
             Q(is_summer_a=True) | Q(is_summer_b=True))
     else:
-        fltr = {"is_{}".format(cur_term.quarter.lower()): True}
+        fltr = {"is_{}".format(term.quarter.lower()): True}
         fetched_term_notices = MyuwNotice.objects.filter(**fltr)
 
     for notice in fetched_term_notices:
@@ -146,17 +146,16 @@ def get_notices_by_term(request):
 
 
 def get_first_day_quarter(request, notice):
-    cur_term = get_current_quarter(request)
-    if cur_term.is_summer_quarter() and notice.is_summer_b:
+    term, cmp_date = get_notice_term(request)
+    if term.is_summer_quarter() and notice.is_summer_b:
         if not notice.is_summer_a:
-            return cur_term.bterm_first_date
+            return term.bterm_first_date
         # is_summer_a and is_summer_b both True, check further
-        cmp_date = get_comparison_date(request)
         start_date = get_start_date(
-            cur_term.bterm_first_date, notice.start_week)
+            term.bterm_first_date, notice.start_week)
         if start_date <= cmp_date:
-            return cur_term.bterm_first_date
-    return cur_term.first_day_quarter
+            return term.bterm_first_date
+    return term.first_day_quarter
 
 
 def get_start_date(first_day_qtr, notice_start_week):
@@ -167,3 +166,18 @@ def get_prev_sunday(first_day_quarter):
     week_day_idx = (first_day_quarter.weekday() + 1) % 7
     # Sunday is 0 and Saturday is 6
     return first_day_quarter - timedelta(days=week_day_idx)
+
+
+def get_notice_term(request):
+    # Notice term needs to end earlier than grade submission deadline
+    cmp_date = get_comparison_date(request)
+    terms = get_current_and_next_quarters(request, 1)
+    cur_term = terms[0]
+    next_term = terms[1]
+    cut_off_date = (
+        cur_term.last_final_exam_date
+        if cur_term.quarter.lower() == 'autumn' else
+        cur_term.last_day_instruction)
+    if cmp_date > cut_off_date:
+        return next_term, cmp_date
+    return cur_term, cmp_date

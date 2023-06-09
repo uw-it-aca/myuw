@@ -9,7 +9,7 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.myuw_notice import (
     get_myuw_notices_for_user, get_prev_sunday, get_start_date,
-    get_current_quarter, campus_neutral, is_stud_campus_matched,
+    get_notice_term, campus_neutral, is_stud_campus_matched,
     is_employee_campus_matched, get_first_day_quarter,
     get_notices_by_date, get_notices_by_term, student_affiliation_matched)
 from myuw.dao.notice_mapping import categorize_notices
@@ -22,6 +22,20 @@ def get_datetime_with_tz(year, month, day, hour):
 
 
 class TestMyuwNotice(TransactionTestCase):
+
+    def test_get_notice_term(self):
+        request = get_request_with_date("2013-03-24")
+        term, cmp_date = get_notice_term(request)
+        self.assertEqual(term.quarter, "spring")
+        request = get_request_with_date("2013-06-09")
+        term, cmp_date = get_notice_term(request)
+        self.assertEqual(term.quarter, "summer")
+        request = get_request_with_date("2013-08-25")
+        term, cmp_date = get_notice_term(request)
+        self.assertEqual(term.quarter, "autumn")
+        request = get_request_with_date("2013-12-15")
+        term, cmp_date = get_notice_term(request)
+        self.assertEqual(term.quarter, "winter")
 
     def test_get_prev_sunday(self):
         start_sun = get_prev_sunday(date(2013, 1, 2))
@@ -86,49 +100,49 @@ class TestMyuwNotice(TransactionTestCase):
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start_week=2,
-                            duration=1,
+                            start_week=-2,
+                            duration=4,
                             is_summer_a=True)
         notice.save()
         notice = MyuwNotice(title="Test2",
                             content="Notice Content Five",
                             notice_type="Banner",
                             start_week=-2,
-                            duration=1,
+                            duration=4,
                             is_summer_b=True)
         notice.save()
         notice = MyuwNotice(title="Test3",
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start_week=3,
-                            duration=2,
+                            start_week=-2,
+                            duration=4,
                             is_autumn=True)
         notice.save()
-        request = get_request_with_date("2013-07-08")
+        request = get_request_with_date("2013-06-09")
         notices = get_notices_by_term(request)
-        self.assertEqual(len(notices), 2)
+        self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Test1")
-        self.assertEqual(notices[1].title, "Test2")
 
-        request = get_request_with_date("2013-08-25")
+        request = get_request_with_date("2013-07-07")
+        notices = get_notices_by_term(request)
+        self.assertEqual(len(notices), 1)
+        self.assertEqual(notices[0].title, "Test2")
+
+        request = get_request_with_date("2013-08-11")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 0)
 
-        request = get_request_with_date("2013-10-12")
+        request = get_request_with_date("2013-09-07")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 0)
 
-        request = get_request_with_date("2013-10-13")
+        request = get_request_with_date("2013-09-08")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Test3")
 
-        request = get_request_with_date("2013-10-26")
-        notices = get_notices_by_term(request)
-        self.assertEqual(len(notices), 1)
-
-        request = get_request_with_date("2013-10-27")
+        request = get_request_with_date("2013-10-06")
         notices = get_notices_by_term(request)
         self.assertEqual(len(notices), 0)
 
