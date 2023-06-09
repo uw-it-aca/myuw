@@ -111,7 +111,7 @@
                             <br />
                             <div class="form-group {% if duration_error %}has-error{% endif %}">
                                 <label class="" for="notice_duration">Duration in weeks (1-11 weeks)  </label>
-                                <input type="number" id="notice_duration" name="duration" min="1" max="11"
+                                <input type="number" id="notice_duration" name="duration" min="1" max="12"
                                     class="form-control" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
                             </div>
                         </div>
