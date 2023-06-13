@@ -12,7 +12,7 @@ from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import (
-    get_term_by_date, get_specific_term, get_current_term,
+    get_term_by_date, get_specific_term,
     get_term_before, get_term_after, get_next_autumn_term,
     get_next_non_summer_term)
 from restclients_core.exceptions import DataFailureException
@@ -36,13 +36,7 @@ def get_default_datetime():
     right in the middle of the "current" term.
     """
     if is_using_file_dao():
-        term = get_current_term()
-        first_day = term.first_day_quarter
-        default_date = first_day + timedelta(days=14)
-        return datetime(default_date.year,
-                        default_date.month,
-                        default_date.day,
-                        0, 0, 1)
+        return datetime(2013, 4, 15, 0, 0, 1)
     return sws_now()
 
 
@@ -538,8 +532,6 @@ def add_term_data_to_context(request, context):
 
 
 def current_terms_prefetch(request):
-    # This triggers a call to get_current_term when using the file dao.
-    # That request won't happen on test/production
     compare = get_comparison_date(request)
     year = compare.year
     month = compare.year
