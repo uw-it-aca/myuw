@@ -534,7 +534,7 @@ def add_term_data_to_context(request, context):
 def current_terms_prefetch(request):
     compare = get_comparison_date(request)
     year = compare.year
-    month = compare.year
+    month = compare.month
 
     methods = []
 
