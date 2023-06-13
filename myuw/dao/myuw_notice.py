@@ -174,10 +174,6 @@ def get_notice_term(request):
     terms = get_current_and_next_quarters(request, 1)
     cur_term = terms[0]
     next_term = terms[1]
-    cut_off_date = (
-        cur_term.last_final_exam_date
-        if cur_term.quarter.lower() == 'autumn' else
-        cur_term.last_day_instruction)
-    if cmp_date > cut_off_date:
+    if cmp_date > cur_term.last_day_instruction:
         return next_term, cmp_date
     return cur_term, cmp_date
