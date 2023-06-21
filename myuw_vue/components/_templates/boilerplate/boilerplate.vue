@@ -7,9 +7,9 @@
         class="bg-gold myuw-override myuw-text-md"
       >
         <div class="container-xl py-2 text-center">
-          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
-          no actions will be saved.
-          <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
+          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only
+          and no actions will be saved.
+          <a v-inner="'MyUW Support tool'" href="/support">Back to MyUW Support tool</a>
         </div>
       </div>
 
@@ -119,95 +119,73 @@
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
-                    href="/"
-                    :class="{ active: page.title == 'Home' }"
-                    ><font-awesome-icon :icon="faHome" class="me-2" fixed-width />Home</a
-                  >
+                    href="/" :class="{ active: page.title == 'Home' }"
+                    ><font-awesome-icon :icon="faHome" class="me-2" fixed-width />Home</a>
                 </li>
                 <li v-if="student || applicant" class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/academics/"
                     :class="{ active: page.title == 'Academics' }"
-                    ><font-awesome-icon :icon="faGraduationCap" class="me-2" fixed-width />Academics
-                  </a>
+                    ><font-awesome-icon :icon="faGraduationCap" class="me-2" fixed-width
+                      />Academics</a>
                 </li>
                 <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/husky_experience/"
                     :class="{ active: page.title == 'Husky Experience Toolkit' }"
-                  >
-                    <font-awesome-icon :icon="faPaw" class="me-2" fixed-width />Husky Experience</a
-                  >
+                  ><font-awesome-icon :icon="faPaw" class="me-2" fixed-width />Husky Experience</a>
                 </li>
                 <li v-if="instructor" class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/teaching/"
                     :class="{ active: page.title == 'Teaching' }"
-                  >
-                    <font-awesome-icon :icon="faEdit" class="me-2" fixed-width />Teaching</a
-                  >
+                  ><font-awesome-icon :icon="faEdit" class="me-2" fixed-width />Teaching</a>
                 </li>
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/accounts/"
                     :class="{ active: page.title == 'Accounts' }"
-                  >
-                    <font-awesome-icon :icon="faCreditCard" class="me-2" fixed-width />Accounts</a
-                  >
+                  ><font-awesome-icon :icon="faCreditCard" class="me-2" fixed-width />Accounts</a>
                 </li>
                 <li v-if="student" class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/notices/"
                     :class="{ active: page.title == 'Notices' }"
-                  >
-                    <font-awesome-icon
-                      :icon="faExclamationTriangle"
-                      class="me-2"
-                      fixed-width
-                    />Notices</a
-                  >
+                  ><font-awesome-icon
+                      :icon="faExclamationTriangle" class="me-2" fixed-width />Notices</a>
                 </li>
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/profile/"
                     :class="{ active: page.title == 'Profile' }"
-                  >
-                    <font-awesome-icon :icon="faUser" class="me-2" fixed-width />Profile</a
-                  >
+                  ><font-awesome-icon :icon="faUser" class="me-2" fixed-width />Profile</a>
                 </li>
                 <li class="nav-item mb-2" aria-hidden="true">
-                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#">
-                    <hr class="m-0 bg-secondary" />
-                    <span class="visually-hidden"> Navigation separator</span></a
-                  >
+                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#"
+                  ><hr class="m-0 bg-secondary" /><span class="visually-hidden"
+                    >Navigation separator</span></a>
                 </li>
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/academic_calendar/"
                     :class="{ active: page.title == 'Academic Calendar' }"
-                  >
-                    <font-awesome-icon
-                      :icon="faCalendarCheck"
-                      class="me-2"
-                      fixed-width
-                    />Calendar</a
-                  >
+                  ><font-awesome-icon :icon="faCalendarCheck" class="me-2" fixed-width
+                    />Calendar</a>
                 </li>
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/resources/"
                     :class="{ active: page.title == 'UW Resources' }"
-                  >
-                    <font-awesome-icon :icon="faBookmark" class="me-2" fixed-width />UW Resources</a
-                  >
+                  ><font-awesome-icon :icon="faBookmark" class="me-2" fixed-width
+                    />UW Resources</a>
                 </li>
               </div>
             </uw-collapse>
@@ -246,29 +224,21 @@
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
             <a :href="mailToUrl + netid" class="text-white me-2">
-              <font-awesome-icon :icon="faEnvelope" class="me-1" />Contact
-            </a>
+              <font-awesome-icon :icon="faEnvelope" class="me-1" />Contact</a>
           </li>
           <li class="list-inline-item">
-            <a
-              href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
-              class="text-white me-2"
-            >
-              MyUW Help
-            </a>
+            <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
+            class="text-white me-2">MyUW Help</a>
           </li>
           <li class="list-inline-item me-0 d-lg-none">
-            <a href="/logout/" class="text-white"> Sign Out </a>
+            <a href="/logout/" class="text-white">Sign Out</a>
           </li>
           <li class="list-inline-item">
-            <a href="https://www.washington.edu/online/terms/" class="text-white me-2">
-              Terms
-            </a>
+            <a href="https://www.washington.edu/online/terms/" class="text-white me-2">Terms</a>
           </li>
           <li class="list-inline-item">
-            <a href="https://www.washington.edu/online/privacy/" class="text-white me-2">
-              Privacy
-            </a>
+            <a href="https://www.washington.edu/online/privacy/" class="text-white me-2"
+            >Privacy</a>
           </li>
         </ul>
 
