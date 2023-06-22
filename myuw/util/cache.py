@@ -21,7 +21,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return FIVE_SECONDS
 
         if "sws" == service:
-            if status != 200:
+            if status and status != 200:
                 if status >= 500:
                     return FIFTEEN_MINS
                 return SEVEN_MINS
@@ -48,21 +48,21 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
         if "gws" == service:
-            if status != 200:
+            if status and status != 200:
                 if status >= 500:
                     return FIFTEEN_MINS
                 return SEVEN_MINS
             return HALF_HOUR
 
         if "pws" == service:
-            if status != 200:
+            if status and status != 200:
                 if status >= 500:
                     return FIFTEEN_MINS
                 return SEVEN_MINS
             return ONE_HOUR
 
         if "uwnetid" == service:
-            if status != 200:
+            if status and status != 200:
                 if status >= 500:
                     return FIFTEEN_MINS
                 return SEVEN_MINS
