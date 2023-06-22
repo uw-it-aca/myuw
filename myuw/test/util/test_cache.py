@@ -34,44 +34,44 @@ class TestCustomCachePolicy(TestCase):
         self.assertEquals(cache.get_cache_expiration_time(
             "myplan_auth", "/oauth2/token"), 60 * 45)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/term/2013,spring.json", status=200), ONE_DAY)
+            "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/term/current.json", status=200), ONE_DAY)
+            "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/course/.../status.json", status=200), FOUR_HOURS)
+            "sws", "/student/v5/course/.../status.json"), FOUR_HOURS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/course/", status=200), FIFTEEN_MINS)
+            "sws", "/student/v5/course/"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/person/", status=200), ONE_HOUR)
+            "sws", "/student/v5/person/"), ONE_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/enrollment", status=200), FIFTEEN_MINS)
+            "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/notice", status=200), FIFTEEN_MINS)
+            "sws", "/student/v5/notice"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/registration", status=200), FIFTEEN_MINS)
+            "sws", "/student/v5/registration"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "sws", "/student/v5/section", status=200), FIFTEEN_MINS)
+            "sws", "/student/v5/section"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/section", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/section", status=503), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "gws", "/group_sws/v3", status=200), HALF_HOUR)
+            "gws", "/group_sws/v3"), HALF_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3", status=500), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "pws", "/identity/v2/person", status=200), ONE_HOUR)
+            "pws", "/identity/v2/person"), ONE_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person", status=503), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid", status=200), FOUR_HOURS)
+            "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
         self.assertEquals(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
