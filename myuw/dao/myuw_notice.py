@@ -12,8 +12,8 @@ from myuw.models.myuw_notice import (
     MyuwNotice, start_week_range, duration_range)
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import (
-    get_current_quarter, get_comparison_date,
-    get_comparison_datetime_with_tz)
+    get_comparison_date, get_comparison_datetime_with_tz,
+    get_current_and_next_quarters)
 
 logger = logging.getLogger(__name__)
 
@@ -125,31 +125,41 @@ def get_notices_by_date(request):
 def get_notices_by_term(request):
     # MUWM-5265
     selected_notices = []
-    cur_term = get_current_quarter(request)
-    cmp_date = get_comparison_date(request)
-    if cur_term.is_summer_quarter():
+    term, cmp_date = get_notice_term(request)
+
+    if term.is_summer_quarter():
         fetched_term_notices = MyuwNotice.objects.filter(
             Q(is_summer_a=True) | Q(is_summer_b=True))
     else:
-        fltr = {"is_{}".format(cur_term.quarter.lower()): True}
+        fltr = {"is_{}".format(term.quarter.lower()): True}
         fetched_term_notices = MyuwNotice.objects.filter(**fltr)
 
     for notice in fetched_term_notices:
         if (notice.start_week in start_week_range and
                 notice.duration in duration_range):
-            start_sunday = get_prev_sunday(
-                get_first_day_quarter(cur_term, notice))
-            start_date = get_start_date(start_sunday, notice.start_week)
+            first_day_quarter = get_first_day_quarter(request, notice)
+            start_date = get_start_date(first_day_quarter, notice.start_week)
             end_date = start_date + timedelta(weeks=notice.duration)
             if start_date <= cmp_date < end_date:
                 selected_notices.append(notice)
     return selected_notices
 
 
-def get_first_day_quarter(cur_term, notice):
-    if notice.is_summer_b:
-        return cur_term.bterm_first_date
-    return cur_term.first_day_quarter
+def get_first_day_quarter(request, notice):
+    term, cmp_date = get_notice_term(request)
+    if term.is_summer_quarter() and notice.is_summer_b:
+        if not notice.is_summer_a:
+            return term.bterm_first_date
+        # MUWM-5273: is_summer_a and is_summer_b both True, check start_date
+        start_date = get_start_date(
+            term.bterm_first_date, notice.start_week)
+        if start_date <= cmp_date:
+            return term.bterm_first_date
+    return term.first_day_quarter
+
+
+def get_start_date(first_day_qtr, notice_start_week):
+    return get_prev_sunday(first_day_qtr) + timedelta(weeks=notice_start_week)
 
 
 def get_prev_sunday(first_day_quarter):
@@ -158,5 +168,12 @@ def get_prev_sunday(first_day_quarter):
     return first_day_quarter - timedelta(days=week_day_idx)
 
 
-def get_start_date(start_sunday, notice_start_week):
-    return start_sunday + timedelta(weeks=notice_start_week)
+def get_notice_term(request):
+    # MUWM-5273 myuw notice display term switches after the last inst week
+    cmp_date = get_comparison_date(request)
+    terms = get_current_and_next_quarters(request, 1)
+    cur_term = terms[0]
+    next_term = terms[1]
+    if cmp_date > (cur_term.last_day_instruction + timedelta(days=1)):
+        return next_term, cmp_date
+    return cur_term, cmp_date

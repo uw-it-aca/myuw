@@ -110,9 +110,11 @@
                             </div>
                             <br />
                             <div class="form-group {% if duration_error %}has-error{% endif %}">
-                                <label class="" for="notice_duration">Duration in weeks (1-11 weeks)  </label>
+                                <label class="" for="notice_duration">Duration in weeks (1-11 weeks): </label>
                                 <input type="number" id="notice_duration" name="duration" min="1" max="11"
-                                    class="form-control" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
+                                    class="form-control" aria-describedby="duration_explanation" value='{% if notice.duration %}{{ notice.duration }}{% endif %}'>
+                                <span class="help-block small" id="duration_explanation"><strong>DURATION NOTE:</strong> Regardless of duration, notice
+                                  will not display after the Saturday following the last day of instruction (e.g. last week of classes) for the selected quarter.</span>
                             </div>
                         </div>
                     </fieldset>
