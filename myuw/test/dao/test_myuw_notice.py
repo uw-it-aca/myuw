@@ -24,7 +24,10 @@ def get_datetime_with_tz(year, month, day, hour):
 class TestMyuwNotice(TransactionTestCase):
 
     def test_get_notice_term(self):
-        request = get_request_with_date("2013-03-24")
+        request = get_request_with_date("2013-03-16")
+        term, cmp_date = get_notice_term(request)
+        self.assertEqual(term.quarter, "winter")
+        request = get_request_with_date("2013-03-17")
         term, cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "spring")
         request = get_request_with_date("2013-06-09")
@@ -33,7 +36,7 @@ class TestMyuwNotice(TransactionTestCase):
         request = get_request_with_date("2013-08-25")
         term, cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "autumn")
-        request = get_request_with_date("2013-12-15")
+        request = get_request_with_date("2013-12-08")
         term, cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "winter")
 

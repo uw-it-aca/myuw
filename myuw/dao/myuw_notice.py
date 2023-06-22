@@ -169,11 +169,11 @@ def get_prev_sunday(first_day_quarter):
 
 
 def get_notice_term(request):
-    # MUWM-5273 Notice display term ends earlier than grade submission deadline
+    # MUWM-5273 myuw notice display term switches after the last inst week
     cmp_date = get_comparison_date(request)
     terms = get_current_and_next_quarters(request, 1)
     cur_term = terms[0]
     next_term = terms[1]
-    if cmp_date > cur_term.last_day_instruction:
+    if cmp_date > (cur_term.last_day_instruction + timedelta(days=1)):
         return next_term, cmp_date
     return cur_term, cmp_date
