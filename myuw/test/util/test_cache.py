@@ -51,25 +51,33 @@ class TestCustomCachePolicy(TestCase):
             "sws", "/student/v5/registration"), FIFTEEN_MINS)
         self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/section"), FIFTEEN_MINS)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "sws", "/student/v5/section", status=404), 60 * 7)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "sws", "/student/v5/section", status=503), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "gws", "/group_sws/v3", status=200), HALF_HOUR)
+            "gws", "/group_sws/v3"), HALF_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
-            "gws", "/group_sws/v3", status=404), 60 * 10)
+            "gws", "/group_sws/v3", status=404), 60 * 7)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "gws", "/group_sws/v3", status=500), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person"), ONE_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
-            "pws", "/identity/v2/person", status=404), 60 * 5)
+            "pws", "/identity/v2/person", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person", status=503), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
         self.assertEquals(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 5)
+            "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 7)
         self.assertEquals(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid", status=409), 60 * 5)
+            "uwnetid", "/nws/v1/uwnetid", status=409), 60 * 7)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "uwnetid", "/nws/v1/uwnetid", status=500), 60 * 15)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "grad", "/services/students"), FOUR_HOURS)
