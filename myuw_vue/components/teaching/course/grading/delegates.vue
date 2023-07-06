@@ -9,7 +9,7 @@
         :key="i"
         :class="{ 'mb-1': i === section.grade_submission_delegates.length + 1 }"
       >
-        {{ titleCaseName(delegate.person.display_name) }}
+        {{ delegateDisplayName(delegate) }}
         ({{ titleCaseWord(delegate.level) }})
       </li>
     </ul>
@@ -76,6 +76,14 @@ export default {
         title: 'Learn more',
         id: 'gradingDelegateLearnMore' + this.section.sln,
       };
+    },
+  },
+  methods: {
+    delegateDisplayName(delegate) {
+      if (delegate.display_name) {
+        return delegate.display_name;
+      }
+      return delegate.full_name;
     },
   },
 };
