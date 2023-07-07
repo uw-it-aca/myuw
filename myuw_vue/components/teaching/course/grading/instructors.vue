@@ -80,7 +80,7 @@ export default {
       if (instructor.display_name) {
         return instructor.display_name;
       }
-      return instructors.full_name;
+      return instructor.full_name;
     },
   },
 };
