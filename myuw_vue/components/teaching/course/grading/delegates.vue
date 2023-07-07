@@ -9,7 +9,7 @@
         :key="i"
         :class="{ 'mb-1': i === section.grade_submission_delegates.length + 1 }"
       >
-        {{ delegateDisplayName(delegate) }}
+        {{ delegateDisplayName(delegate.person) }}
         ({{ titleCaseWord(delegate.level) }})
       </li>
     </ul>
@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     delegateDisplayName(delegate) {
+      // MUWM-5277
       if (delegate.display_name) {
         return delegate.display_name;
       }

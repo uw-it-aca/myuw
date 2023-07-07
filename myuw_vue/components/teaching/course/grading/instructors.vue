@@ -77,6 +77,7 @@ export default {
   },
   methods: {
     instructorDisplayName(instructor) {
+      // MUWM-5277
       if (instructor.display_name) {
         return instructor.display_name;
       }
