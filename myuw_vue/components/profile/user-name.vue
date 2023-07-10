@@ -41,7 +41,7 @@ export default {
       return Boolean(this.pronouns && this.pronouns.length);
     },
     name() {
-      return this.displayName ? this.displayName : this.fullName;   // MUWM-5277
+      return this.displayName ? this.displayName : this.fullName;   // MUWM-5134
     },
   },
   mounted() {
