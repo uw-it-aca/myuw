@@ -3,7 +3,7 @@
     <template #panel-body>
       <h2 class="h4 mb-3">
         <span>
-            {{ titleCaseName(name) }}
+            {{ name }}
           <span v-if="hasPronouns" class="myuw-text-md text-uppercase" title="Pronouns">
             ({{ titleCaseName(pronouns) }})
           </span>
@@ -41,7 +41,7 @@ export default {
       return Boolean(this.pronouns && this.pronouns.length);
     },
     name() {
-      return this.displayName ? this.displayName : this.fullName;
+      return this.displayName ? this.displayName : this.fullName;   // MUWM-5134
     },
   },
   mounted() {
