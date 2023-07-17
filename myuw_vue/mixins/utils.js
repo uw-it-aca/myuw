@@ -92,13 +92,11 @@ export default {
     },
     noDeclaredMajor(termMajors) {
       if (termMajors) {
-        for (let i = 0; i < termMajors.length; i++) {
-          const majors = termMajors[i].majors;
-          for (let j = 0; j < majors.length; j++) {
-            const majorName = majors[j].name;
-            if (!this.isPreMajor(majorName)) {
-              return false;
-            }
+        const majors = termMajors[termMajors.length - 1].majors;
+        for (let j = 0; j < majors.length; j++) {
+          const majorName = majors[j].name;
+          if (!this.isPreMajor(majorName)) {
+            return false;
           }
         }
       }
