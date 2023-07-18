@@ -8,6 +8,7 @@ import profile from '../vuex/store/profile';
 
 import GraduationPreApplication from '../components/home/graduation/pre-application.vue';
 import javg001Profile from './mock_data/profile/javg001.json';
+import noMajorProfile from './mock_data/profile/javg001-nomajor.json';
 import javerageProfile from './mock_data/profile/javerage.json';
 import jbothllProfile from './mock_data/profile/jbothell.json';
 
@@ -41,6 +42,17 @@ describe('Graduation PreApplication Card', () => {
     });
   });
 
+  it('Verify hide card when not declared major', async () => {
+    // MUWM-5278
+    axios.get.mockResolvedValue({ data: noMajorProfile, status: 200 });
+    const wrapper = shallowMount(GraduationPreApplication, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.curSenior).toBeTruthy();
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.declaredMajor).toBe(false);
+    expect(wrapper.vm.showContent).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
+  });
   it('Verify show card', async () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(GraduationPreApplication, {store, localVue});
