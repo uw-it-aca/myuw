@@ -70,10 +70,6 @@
           <a href="https://wd5.myworkday.com/uw/d/home.htmld"
           >Workday</a>
         </li>
-        <li v-if="isEmployee && !isAcademicsPage" class="mb-1">
-          <a href="http://ucs.admin.uw.edu/myfd/"
-          >MyFinancial.desktop</a>
-        </li>
       </ul>
     </template>
   </uw-card>
