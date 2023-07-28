@@ -5,6 +5,7 @@ from memcached_clients import RestclientPymemcacheClient
 import re
 
 FIVE_SECONDS = 5
+SEVEN_MINS = 60 * 7
 FIFTEEN_MINS = 60 * 15
 HALF_HOUR = 60 * 30
 ONE_HOUR = 60 * 60
@@ -20,6 +21,11 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return FIVE_SECONDS
 
         if "sws" == service:
+            if status and status != 200:
+                if status >= 500:
+                    return FIFTEEN_MINS
+                return SEVEN_MINS
+
             if re.match(r'^/student/v5/term/', url):
                 return ONE_DAY
 
@@ -29,7 +35,6 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             if re.match(r'^/student/v5/course/', url):
                 if re.match(r'^/student/v5/course/.*/status.json$', url):
                     return FOUR_HOURS
-                return FIFTEEN_MINS
 
             return FIFTEEN_MINS
 
@@ -43,20 +48,24 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
         if "gws" == service:
-            if status != 200:
-                return 60 * 10
+            if status and status != 200:
+                if status >= 500:
+                    return FIFTEEN_MINS
+                return SEVEN_MINS
             return HALF_HOUR
 
         if "pws" == service:
-            if status == 404:
-                return 60 * 5
-            if status == 503:
-                return FIFTEEN_MINS
+            if status and status != 200:
+                if status >= 500:
+                    return FIFTEEN_MINS
+                return SEVEN_MINS
             return ONE_HOUR
 
         if "uwnetid" == service:
-            if status == 404 or status == 409:
-                return 60 * 5
+            if status and status != 200:
+                if status >= 500:
+                    return FIFTEEN_MINS
+                return SEVEN_MINS
             return FOUR_HOURS
 
         return FOUR_HOURS

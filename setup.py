@@ -56,7 +56,7 @@ setup(
         'UW-RestClients-Django-Utils~=2.3',
         'Uw-Django-Oidc<1.0',
         'Django-SupportTools~=3.6',
-        'Django-Persistent-Message==1.1.1a0',
+        'Django-Persistent-Message~=1.2',
         'Django-Safe-EmailBackend~=1.2',
         'axdd-person-client~=1.1',
         'django_client_logger<3.0',

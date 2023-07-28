@@ -199,13 +199,24 @@ describe('mixins', () => {
     expect(utils.methods.noDeclaredMajor(null)).toBe(true);
     let TermMajors = [
       {
-        "quarter": "spring",
+        "quarter": "summer",
         "year": 2023,
         "majors": [
           {
-            "name": "PRE SCIENCE",
-            "full_name": "Pre Sciences",
-            "short_name": "PRE SCI"
+            "name": "BIOLOGY",
+            "full_name": "Biology",
+            "short_name": "BIOL"
+          }
+        ]
+      },
+      {
+        "quarter": "autumn",
+        "year": 2023,
+        "majors": [
+          {
+            "name": "EXTENDED PRE MAJOR",
+            "full_name": "Extended Pre Major",
+            "short_name": "EXT PRE MAJ"
           }
         ]
       }

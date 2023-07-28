@@ -127,15 +127,21 @@ export default {
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
+      termMajors: (state) => state.value.term_majors,
     }),
     curSenior() {
       return (this.classLevel === 'SENIOR');
+    },
+    declaredMajor() {
+      // MUWM-5278
+      return !this.noDeclaredMajor(this.termMajors);
     },
     showCard() {
       return (this.curSenior && (this.isFetching || this.showContent));
     },
     showContent() {
-      return (this.isReady && this.degreeStatus && this.degreeStatus.error_code === 404);
+      return (this.isReady && this.declaredMajor &&
+        this.degreeStatus && this.degreeStatus.error_code === 404);
     },
     term() {
       return this.year + ',' + this.quarter;
