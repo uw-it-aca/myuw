@@ -36,7 +36,7 @@
               :key="`${section.id}-eval-inst-${index}`"
               class="mb-2"
             >
-              <strong>{{ titleCaseName(instructor.instructor_name) }}</strong>
+              <strong>{{ instructor.instructor_name }}</strong>
               <div v-if="hasTitle(instructor)" class="fst-italic text-muted">
                 {{ instructor.instructor_title }}
               </div>
@@ -52,7 +52,7 @@
               <a
                 v-out="'Evaluate instructor'"
                 :href="evalObj.url">
-                {{ titleCaseName(instructor.instructor_name) }}
+                {{ instructor.instructor_name }}
               </a>
               <div v-if="hasTitle(instructor)"
                    class="fst-italic text-muted mb-2"

@@ -10,7 +10,7 @@
         <template #collapsed-body>
           <ul class="list-unstyled mb-0">
             <li v-for="(instructor, i) in section.instructors" :key="i" class="mb-1">
-              {{ titleCaseName(instructor.display_name) }}
+              {{ instructorDisplayName(instructor) }}
             </li>
           </ul>
         </template>
@@ -18,7 +18,7 @@
 
       <ul v-else class="list-unstyled mb-0">
         <li v-for="(instructor, i) in section.instructors" :key="i" class="mb-1">
-          {{ titleCaseName(instructor.display_name) }}
+          {{ instructorDisplayName(instructor) }}
         </li>
       </ul>
     </div>
@@ -73,6 +73,15 @@ export default {
         title: 'Learn more',
         id: 'submitGradesLearnMore' + this.section.sln,
       };
+    },
+  },
+  methods: {
+    instructorDisplayName(instructor) {
+      // MUWM-5277
+      if (instructor.display_name) {
+        return instructor.display_name;
+      }
+      return instructor.full_name;
     },
   },
 };

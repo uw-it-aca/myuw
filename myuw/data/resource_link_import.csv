@@ -51,8 +51,10 @@ Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://isc.uw.edu
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,,,https://hr.uw.edu/benefits/,Benefits,https://www.uwb.edu/hr/benefits,Benefits,https://hr.uw.edu/benefits/,Benefits,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://isc.uw.edu/admin-corner,ISC Administrators' Corner,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
-Services for Faculty and Staff,Procurement,all,https://finance.uw.edu/ps/how-to-buy/ariba,ARIBA,,,,,,,no
-Services for Faculty and Staff,Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/finance/purchasing,Purchasing,https://www.tacoma.uw.edu/fa/finance/procurement,Procurement Services,no
+Services for Faculty and Staff,Finance and Procurement,all,"https://biportal.uw.edu	",Financial Reports (BI Portal),,,,,,,no
+Services for Faculty and Staff,Finance and Procurement,all,"https://uw.service-now.com/finance	","UW Connect Finance	",,,,,,,no
+Services for Faculty and Staff,Finance and Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/finance/purchasing,Purchasing,https://www.tacoma.uw.edu/fa/finance/procurement,Procurement Services,no
+Services for Faculty and Staff,Finance and Procurement,all,"http://wd5.myworkday.com/uw/login.htmld	",Workday,,,,,,,no
 Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://itconnect.uw.edu/,IT Connect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
 Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Software and Hardware,,,,,,,
