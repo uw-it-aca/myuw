@@ -13,7 +13,7 @@ from myuw.management.commands.load_buildings import Facilities
 
 class TestDeleteSessions(TransactionTestCase):
 
-    def test_run(self):
+    def test_init_load(self):
         records = CampusBuilding.objects.all()
         self.assertEquals(len(records), 0)
         call_command('load_buildings', '-l')
@@ -21,8 +21,28 @@ class TestDeleteSessions(TransactionTestCase):
         self.assertEquals(len(records), 1)
         self.assertEquals(records[0].code, 'MEB')
 
-        with patch.object(Facilities, 'search_by_number', spec=True) as mock:
-            mock.return_value = Facility(
+    def test_update(self):
+        obj = CampusBuilding.objects.create(
+            code='NMEB',
+            number='1347',
+            latitude='47.653693',
+            longitude='',
+            name='Mechanical Engineering Building',
+        )
+        obj.save()
+        obj = CampusBuilding.objects.create(
+            code='NMEB',
+            number='1347',
+            latitude='',
+            longitude='-122.304747',
+            name='Mechanical Engineering Building',
+        )
+        obj.save()
+        records = CampusBuilding.objects.all()
+        self.assertEquals(len(records), 2)
+
+        with patch.object(Facilities, 'search_by_code', spec=True) as mock:
+            mock.return_value = [Facility(
                 code='NMEB',
                 last_updated=datetime.now(),
                 latitude='47.653693',
@@ -30,13 +50,14 @@ class TestDeleteSessions(TransactionTestCase):
                 name='Mechanical Engineering Building',
                 number='1347',
                 site='Seattle Main Campus',
-                type='Building')
+                status='A',
+                type='Building')]
             call_command('load_buildings')
             records = CampusBuilding.objects.all()
             self.assertEquals(len(records), 1)
             self.assertEquals(records[0].code, 'NMEB')
 
-    @patch.object(Facilities, 'search_by_number', spec=True)
+    @patch.object(Facilities, 'search_by_code', spec=True)
     def test_error(self, mock):
         fac_obj = Facility(
             code='MEB',
@@ -49,7 +70,7 @@ class TestDeleteSessions(TransactionTestCase):
             type='Building')
         CampusBuilding.upd_building(fac_obj)
         mock.side_effect = DataFailureException(
-            'facility/1347.json', 404, '')
+            'facility.json?facility_code=MEB', 404, '')
         call_command('load_buildings')
         records = CampusBuilding.objects.all()
         self.assertEquals(len(records), 1)
