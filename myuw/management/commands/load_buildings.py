@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+import traceback
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
 from uw_space import Facilities
@@ -333,15 +334,20 @@ class Command(BaseCommand):
             builds_in_db = CampusBuilding.objects.all()
             for bdg in builds_in_db:
                 try:
-                    fac = space.search_by_number(bdg.number)
-                    if not bdg.no_change(fac):
-                        updated_bdg = CampusBuilding.upd_building(fac)
-                        logger.info("Updated {}".format(updated_bdg))
-                        count += 1
+                    fac_objs = space.search_by_code(bdg.code)
+                    if fac_objs and len(fac_objs):
+                        updated_bdg = CampusBuilding.upd_building(fac_objs[0])
+                        if not bdg.no_change(updated_bdg):
+                            logger.info("Updated {}".format(updated_bdg))
+                            count += 1
                 except Exception as ex:
-                    msg = {"Load building": bdg, "err": ex}
+                    msg = {"Update building": bdg,
+                           "err": traceback.format_exc(chain=False)}
                     logger.error(msg)
                     messages.append("\n{}".format(msg))
+            logger.info(
+                "Updated {}/{} buildings".format(
+                    count, len(builds_in_db)))
 
         if len(messages):
             send_mail(
