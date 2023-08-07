@@ -107,4 +107,4 @@ class CampusBuilding(models.Model):
 
     class Meta:
         app_label = 'myuw'
-        db_table = "myuw_campusbuilding"
+        db_table = "campusbuilding"
