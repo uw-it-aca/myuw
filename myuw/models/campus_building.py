@@ -107,4 +107,5 @@ class CampusBuilding(models.Model):
 
     class Meta:
         app_label = 'myuw'
-        db_table = "campusbuilding"
+        # db_table = "myuw_campusbuilding"
+        # would cause a rename of table
