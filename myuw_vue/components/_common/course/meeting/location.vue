@@ -1,6 +1,7 @@
 <template>
   <span v-if="isOnline">
     Online
+    <span v-if="meeting.is_hybrid">(hybrid)</span>
   </span>
   <span v-else-if="meeting.building_tbd"
     class="text-muted"
