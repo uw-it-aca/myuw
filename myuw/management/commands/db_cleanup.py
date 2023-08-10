@@ -6,9 +6,10 @@ Clean up the entries no longer useful
 """
 
 import logging
+import time
 from datetime import timedelta
 from django.core.mail import send_mail
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 from uw_sws import sws_now
@@ -52,78 +53,74 @@ class Command(BaseCommand):
                       "{}@uw.edu".format(get_cronjob_sender()),
                       ["{}@uw.edu".format(get_cronjob_recipient())])
 
-    def ex_delete(self, batch, msg_format):
-        timer = Timer()
-        batch.delete()
-        self.count += 1
-        # time.sleep(1)
-        logger.info(msg_format, self.count, timer.get_elapsed())
-
     def course_display(self):
+        timer = Timer()
         for y in range(2000, 2022):
             for q in quarters:
                 for c in range(1, 9):
                     entries_to_delete = UserCourseDisplay.objects.filter(
                         year__lt=y, quarter=q, color_id=c)
-                    self.count = 0
                     while entries_to_delete.exists():
                         try:
                             batch = entries_to_delete[:batch_size]
-                            self.ex_delete(
-                                batch,
-                                "UserCourseDisplay Delete Batch {} {}\n")
+                            batch.delete()
+                            time.sleep(1)
                             entries_to_delete = entries_to_delete[batch_size:]
                         except Exception as ex:
-                            msg = "{} Delete Batch {} - {}\n".format(
-                                "UserCourseDisplay", self.count, ex)
-                            logger.error(msg)
-                            self.errors.append(msg)
+                            logger.error(
+                                "{} Delete Batch {}:{}:{} {}\n".format(
+                                    "UserCourseDisplay", y, q, c, ex))
+                            raise CommandError(ex)
+                logger.info("UserCourseDisplay delete {} {} Time: {}\n",
+                            y, q, timer.get_elapsed())
 
     def notice_read(self):
+        timer = Timer()
         now = sws_now()
         cut_off_dt = now - timedelta(days=180)
         entries_to_delete = UserNotices.objects.filter(
             first_viewed__lt=cut_off_dt)
-        self.count = 0
         while entries_to_delete.exists():
             try:
                 batch = entries_to_delete[:batch_size]
-                self.ex_delete(batch, "UserNotices Delete Batch {} {}\n")
+                batch.delete()
+                time.sleep(1)
                 entries_to_delete = entries_to_delete[batch_size:]
             except Exception as ex:
-                msg = "UserNotices Delete Batch {} - {}\n".format(
-                    self.count, ex)
-                logger.error(msg)
-                self.errors.append(msg)
+                logger.error("UserNotices delete {}\n".format(ex))
+                raise CommandError(ex)
+        logger.info("UserNotices Delete viewed before {} Time: {}\n",
+                    cut_off_dt, timer.get_elapsed())
 
     def registration_seen(self):
+        timer = Timer()
         entries_to_delete = SeenRegistration.objects.all()
-        self.count = 0
         while entries_to_delete.exists():
             try:
                 batch = entries_to_delete[:batch_size]
-                self.ex_delete(
-                    batch, "SeenRegistration Delete Batch {} {}\n")
+                batch.delete()
+                time.sleep(1)
                 entries_to_delete = entries_to_delete[batch_size:]
             except Exception as ex:
-                msg = "SeenRegistration Delete Batch {} - {}\n".format(
-                    self.count, ex)
-                logger.error(msg)
-                self.errors.append(msg)
+                logger.error("SeenRegistration delete {}\n".format(ex))
+                raise CommandError(ex)
+        logger.info("SeenRegistration Delete Time: {}\n",
+                    timer.get_elapsed())
 
     def link_visited(self):
+        timer = Timer()
         now = sws_now()
         cut_off_dt = now - timedelta(days=duration)
         entries_to_delete = VisitedLinkNew.objects.filter(
             visit_date__lt=cut_off_dt)
-        self.count = 0
         while entries_to_delete.exists():
             try:
                 batch = entries_to_delete[:batch_size]
-                self.ex_delete(batch, "VisitedLinkNew Delete Batch {} {}\n")
+                batch.delete()
+                time.sleep(1)
                 entries_to_delete = entries_to_delete[batch_size:]
             except Exception as ex:
-                msg = "VisitedLinkNew Delete Batch {} - {}\n".format(
-                    self.count, ex)
-                logger.error(msg)
-                self.errors.append(msg)
+                logger.error("VisitedLinkNew delelte {}\n".format(ex))
+                raise CommandError(ex)
+        logger.info("VisitedLinkNew Delete viewed before {} Time: {}\n",
+                    cut_off_dt, timer.get_elapsed())
