@@ -3,8 +3,8 @@
 
 from myuw.models import UserCourseDisplay
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
-from myuw.views.api.instructor_section_display import \
-    CloseMinicard, PinMinicard
+from myuw.views.api.instructor_section_display import (
+    CloseMinicard, PinMinicard)
 from myuw.test import get_request_with_user
 
 

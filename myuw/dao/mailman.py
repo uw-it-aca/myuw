@@ -8,14 +8,15 @@ Instructor class mailing list requests
 import logging
 import re
 from django.core.mail import send_mail
-from uw_sws.section import get_section_by_label,\
-    is_valid_section_label
+from uw_sws.section import (
+    get_section_by_label, is_valid_section_label)
 from uw_mailman.basic_list import get_admin_url
-from uw_mailman.course_list import get_course_list_name,\
-    exists_course_list, get_section_secondary_combined_list_name,\
-    exists_section_secondary_combined_list, get_section_list_name
-from uw_mailman.instructor_term_list import\
-    get_instructor_term_list_name, exists_instructor_term_list
+from uw_mailman.course_list import (
+    exists_course_list, get_course_list_name,
+    get_section_secondary_combined_list_name,
+    exists_section_secondary_combined_list, get_section_list_name)
+from uw_mailman.instructor_term_list import (
+    get_instructor_term_list_name, exists_instructor_term_list)
 from myuw.util.thread import ThreadWithResponse
 from myuw.util.settings import get_mailman_courserequest_recipient
 from myuw.logger.logresp import log_info
