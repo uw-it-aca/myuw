@@ -65,7 +65,7 @@ class Command(BaseCommand):
                         str(id) for id in batch_ids)
                     cursor.execute(
                         queryf.format(placeholders))
-                time.sleep(1)
+                time.sleep(2)
                 ids_to_delete = ids_to_delete[batch_size:]
         except Exception as ex:
             logger.error("{} {}\n".format(queryf, ex))
@@ -82,7 +82,7 @@ class Command(BaseCommand):
                         year=y, quarter=q, color_id=c)
                     if qset.exists():
                         ids_to_delete = qset.values_list('id', flat=True)
-                    self.deletion(ids_to_delete, queryf)
+                        self.deletion(ids_to_delete, queryf)
                 logger.info(
                     "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
                         y, q, timer.get_elapsed()
