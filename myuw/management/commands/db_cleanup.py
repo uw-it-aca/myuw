@@ -76,8 +76,10 @@ class Command(BaseCommand):
                                 "{} Delete Batch {}:{}:{} {}\n".format(
                                     "UserCourseDisplay", y, q, c, ex))
                             raise CommandError(ex)
-                logger.info("UserCourseDisplay delete {} {} Time: {}\n",
-                            y, q, timer.get_elapsed())
+                logger.info(
+                    "UserCourseDisplay delete {} {} Time: {} seconds\n".format(
+                        y, q, timer.get_elapsed()
+                    ))
 
     def notice_read(self):
         # clean up after 180 days
@@ -94,8 +96,8 @@ class Command(BaseCommand):
             except Exception as ex:
                 logger.error("UserNotices delete {}\n".format(ex))
                 raise CommandError(ex)
-        logger.info("UserNotices Delete viewed before {} Time: {}\n",
-                    cut_off_dt, timer.get_elapsed())
+        logger.info("UserNotices Delete viewed before {} Time: {}\n".format(
+                    cut_off_dt, timer.get_elapsed()))
 
     def registration_seen(self):
         # clean up after the quarter ends
@@ -115,8 +117,8 @@ class Command(BaseCommand):
                     except Exception as ex:
                         logger.error("SeenRegistration delete {}\n".format(ex))
                         raise CommandError(ex)
-                logger.info("SeenRegistration Delete {} {} Time: {}\n",
-                            y, q, timer.get_elapsed())
+                logger.info("SeenRegistration Delete {} {} Time: {}\n".format(
+                            y, q, timer.get_elapsed()))
 
     def link_visited(self):
         # clean up after one year
@@ -133,5 +135,6 @@ class Command(BaseCommand):
             except Exception as ex:
                 logger.error("VisitedLinkNew delelte {}\n".format(ex))
                 raise CommandError(ex)
-        logger.info("VisitedLinkNew Delete viewed before {} Time: {}\n",
-                    cut_off_dt, timer.get_elapsed())
+        logger.info(
+            "VisitedLinkNew Delete viewed before {} Time: {}\n".format(
+                cut_off_dt, timer.get_elapsed()))
