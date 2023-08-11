@@ -9,14 +9,15 @@ import logging
 import time
 from datetime import timedelta
 from django.core.mail import send_mail
+from django.db import models
+from django.db import connection
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
-from django.utils import timezone
 from uw_sws import sws_now
 from myuw.models import (
     VisitedLinkNew, SeenRegistration,
     UserNotices, UserCourseDisplay)
-from myuw.dao.term import get_term_by_date, get_term_before
+from myuw.dao.term import get_term_by_date
 from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 from myuw.logger.timer import Timer
 
@@ -55,86 +56,74 @@ class Command(BaseCommand):
         now = sws_now().date()
         return now - timedelta(days=days_delta)
 
+    def deletion(self, ids_to_delete, queryf):
+        try:
+            while ids_to_delete and len(ids_to_delete) > 0:
+                batch_ids = ids_to_delete[:batch_size]
+                with connection.cursor() as cursor:
+                    placeholders = ','.join(
+                        str(id) for id in batch_ids)
+                    cursor.execute(
+                        queryf.format(placeholders))
+                time.sleep(1)
+                ids_to_delete = ids_to_delete[batch_size:]
+        except Exception as ex:
+            logger.error("{} {}\n".format(queryf, ex))
+            raise CommandError(ex)
+
     def course_display(self):
         # clean up after one year
         timer = Timer()
+        queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
         for y in range(2000, 2022):
             for q in ["winter", "spring", "summer", "autumn"]:
                 for c in range(1, 9):
-                    entries_to_delete = UserCourseDisplay.objects.filter(
+                    qset = UserCourseDisplay.objects.filter(
                         year=y, quarter=q, color_id=c)
-                    if not entries_to_delete.exists():
-                        continue
-                    while entries_to_delete.exists():
-                        try:
-                            batch = entries_to_delete[:batch_size]
-                            batch.delete()
-                            time.sleep(1)
-                            entries_to_delete = entries_to_delete[batch_size:]
-                        except Exception as ex:
-                            logger.error(
-                                "{} Delete Batch {}:{}:{} {}\n".format(
-                                    "UserCourseDisplay", y, q, c, ex))
-                            raise CommandError(ex)
+                    if qset.exists():
+                        ids_to_delete = qset.values_list('id', flat=True)
+                    self.deletion(ids_to_delete, queryf)
                 logger.info(
-                    "UserCourseDisplay delete {} {} Time: {} seconds\n".format(
+                    "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
                         y, q, timer.get_elapsed()
                     ))
 
     def notice_read(self):
         # clean up after 180 days
         timer = Timer()
+        queryf = "DELETE FROM myuw_mobile_usernotices WHERE id IN ({})"
         cut_off_dt = self.get_cut_off_date(180)
-        entries_to_delete = UserNotices.objects.filter(
-            first_viewed__lt=cut_off_dt)
-        while entries_to_delete.exists():
-            try:
-                batch = entries_to_delete[:batch_size]
-                batch.delete()
-                time.sleep(1)
-                entries_to_delete = entries_to_delete[batch_size:]
-            except Exception as ex:
-                logger.error("UserNotices delete {}\n".format(ex))
-                raise CommandError(ex)
-        logger.info("UserNotices Delete viewed before {} Time: {}\n".format(
+        qset = UserNotices.objects.filter(first_viewed__lt=cut_off_dt)
+        if qset.exists():
+            ids_to_delete = qset.values_list('id', flat=True)
+            self.deletion(ids_to_delete, queryf)
+            logger.info(
+                "Delete UserNotices viewed before {} Time: {} sec\n".format(
                     cut_off_dt, timer.get_elapsed()))
 
     def registration_seen(self):
         # clean up after the quarter ends
         timer = Timer()
+        queryf = "DELETE FROM myuw_mobile_seenregistration WHERE id IN ({})"
         for y in range(2013, 2023):
             for q in ["winter", "spring", "summer", "autumn"]:
-                entries_to_delete = SeenRegistration.objects.filter(
-                    year=y, quarter=q)
-                if not entries_to_delete.exists():
-                    continue
-                while entries_to_delete.exists():
-                    try:
-                        batch = entries_to_delete[:batch_size]
-                        batch.delete()
-                        time.sleep(1)
-                        entries_to_delete = entries_to_delete[batch_size:]
-                    except Exception as ex:
-                        logger.error("SeenRegistration delete {}\n".format(ex))
-                        raise CommandError(ex)
-                logger.info("SeenRegistration Delete {} {} Time: {}\n".format(
+                qset = SeenRegistration.objects.filter(year=y, quarter=q)
+                if qset.exists():
+                    ids_to_delete = qset.values_list('id', flat=True)
+                    self.deletion(ids_to_delete, queryf)
+                    logger.info(
+                        "Delete SeenRegistration {} {} Time: {}\n".format(
                             y, q, timer.get_elapsed()))
 
     def link_visited(self):
         # clean up after one year
         timer = Timer()
+        queryf = "DELETE FROM myuw_visitedlinknew WHERE id IN ({})"
         cut_off_dt = self.get_cut_off_date()
-        entries_to_delete = VisitedLinkNew.objects.filter(
-            visit_date__lt=cut_off_dt)
-        while entries_to_delete.exists():
-            try:
-                batch = entries_to_delete[:batch_size]
-                batch.delete()
-                time.sleep(1)
-                entries_to_delete = entries_to_delete[batch_size:]
-            except Exception as ex:
-                logger.error("VisitedLinkNew delelte {}\n".format(ex))
-                raise CommandError(ex)
-        logger.info(
-            "VisitedLinkNew Delete viewed before {} Time: {}\n".format(
-                cut_off_dt, timer.get_elapsed()))
+        qset = VisitedLinkNew.objects.filter(visit_date__lt=cut_off_dt)
+        if qset.exists():
+            ids_to_delete = qset.values_list('id', flat=True)
+            self.deletion(ids_to_delete, queryf)
+            logger.info(
+                "Delete VisitedLinkNew viewed before {} Time: {}\n".format(
+                    cut_off_dt, timer.get_elapsed()))
