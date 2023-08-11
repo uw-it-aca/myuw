@@ -21,9 +21,6 @@ from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
-log_format = "Deleted {} entries, Time={} seconds"
-duration = 52 * 7   # days
-quarters = ["winter", "spring", "summer", "autumn"]
 batch_size = 1000
 
 
@@ -53,13 +50,21 @@ class Command(BaseCommand):
                       "{}@uw.edu".format(get_cronjob_sender()),
                       ["{}@uw.edu".format(get_cronjob_recipient())])
 
+    def get_cut_off_date(self, days_delta=364):
+        # default is 52 weeks (364 days)
+        now = sws_now().date()
+        return now - timedelta(days=days_delta)
+
     def course_display(self):
+        # clean up after one year
         timer = Timer()
         for y in range(2000, 2022):
-            for q in quarters:
+            for q in ["winter", "spring", "summer", "autumn"]:
                 for c in range(1, 9):
                     entries_to_delete = UserCourseDisplay.objects.filter(
-                        year__lt=y, quarter=q, color_id=c)
+                        year=y, quarter=q, color_id=c)
+                    if not entries_to_delete.exists():
+                        continue
                     while entries_to_delete.exists():
                         try:
                             batch = entries_to_delete[:batch_size]
@@ -75,9 +80,9 @@ class Command(BaseCommand):
                             y, q, timer.get_elapsed())
 
     def notice_read(self):
+        # clean up after 180 days
         timer = Timer()
-        now = sws_now()
-        cut_off_dt = now - timedelta(days=180)
+        cut_off_dt = self.get_cut_off_date(180)
         entries_to_delete = UserNotices.objects.filter(
             first_viewed__lt=cut_off_dt)
         while entries_to_delete.exists():
@@ -93,24 +98,30 @@ class Command(BaseCommand):
                     cut_off_dt, timer.get_elapsed())
 
     def registration_seen(self):
+        # clean up after the quarter ends
         timer = Timer()
-        entries_to_delete = SeenRegistration.objects.all()
-        while entries_to_delete.exists():
-            try:
-                batch = entries_to_delete[:batch_size]
-                batch.delete()
-                time.sleep(1)
-                entries_to_delete = entries_to_delete[batch_size:]
-            except Exception as ex:
-                logger.error("SeenRegistration delete {}\n".format(ex))
-                raise CommandError(ex)
-        logger.info("SeenRegistration Delete Time: {}\n",
-                    timer.get_elapsed())
+        for y in range(2013, 2023):
+            for q in ["winter", "spring", "summer", "autumn"]:
+                entries_to_delete = SeenRegistration.objects.filter(
+                    year=y, quarter=q)
+                if not entries_to_delete.exists():
+                    continue
+                while entries_to_delete.exists():
+                    try:
+                        batch = entries_to_delete[:batch_size]
+                        batch.delete()
+                        time.sleep(1)
+                        entries_to_delete = entries_to_delete[batch_size:]
+                    except Exception as ex:
+                        logger.error("SeenRegistration delete {}\n".format(ex))
+                        raise CommandError(ex)
+                logger.info("SeenRegistration Delete {} {} Time: {}\n",
+                            y, q, timer.get_elapsed())
 
     def link_visited(self):
+        # clean up after one year
         timer = Timer()
-        now = sws_now()
-        cut_off_dt = now - timedelta(days=duration)
+        cut_off_dt = self.get_cut_off_date()
         entries_to_delete = VisitedLinkNew.objects.filter(
             visit_date__lt=cut_off_dt)
         while entries_to_delete.exists():
