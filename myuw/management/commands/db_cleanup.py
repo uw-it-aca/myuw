@@ -28,20 +28,20 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('name', choices=[
-            'course', 'notice', 'registration', 'link_visited'],
+            'course', 'notice', 'seenreg', 'linkvisit'],
             help="The table to check ")
 
     def handle(self, *args, **options):
         self.errors = []
-        name = options['name']
+        self.action = options['name']
 
         if self.action == 'course':
             self.course_display()
         if self.action == 'notice':
             self.notice_read()
-        if self.action == 'registration':
+        if self.action == 'seenreg':
             self.registration_seen()
-        if self.action == 'link_visited':
+        if self.action == 'linkvisit':
             self.link_visited()
 
         if len(self.errors):
