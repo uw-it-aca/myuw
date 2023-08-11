@@ -45,6 +45,13 @@ affinity:
    podsSpanNodes: true
 readiness:
   enabled: true
+resources:
+  limits:
+    cpu: 3.0
+    memory: 3.0Gi
+  requests:
+    cpu: 512m
+    memory: 1.0Gi
 securityPolicy:
   enabled: true
 externalService:
