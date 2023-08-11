@@ -120,7 +120,7 @@ class AcademicEvents(ProtectedAPI):
         value = event.get("categories")
         return (
             value.to_ical().decode()
-            if value and value.isinstance(icalendar.prop.vCategory)
+            if value and isinstance(value, icalendar.prop.vCategory)
             else value)
 
     def parse_event_url(self, event):
