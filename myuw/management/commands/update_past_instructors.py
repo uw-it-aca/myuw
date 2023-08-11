@@ -4,8 +4,8 @@
 from django.core.management.base import BaseCommand
 from uw_sws.section import get_changed_sections_by_term, get_section_by_url
 from uw_sws.term import get_current_term
-from myuw.dao.instructor import add_seen_instructor,\
-    remove_seen_instructors_for_prior_terms
+from myuw.dao.instructor import (
+    add_seen_instructor, remove_seen_instructors_for_prior_terms)
 from myuw.dao.instructor_schedule import get_prior_instructed_terms
 
 
