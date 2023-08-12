@@ -25,6 +25,13 @@ affinity:
    podsSpanNodes: true
 readiness:
   enabled: true
+resources:
+  limits:
+    cpu: 1.0
+    memory: 1.0Gi
+  requests:
+    cpu: 512m
+    memory: 512Gi
 externalService:
   enabled: true
   name: vue-my-uw-db
