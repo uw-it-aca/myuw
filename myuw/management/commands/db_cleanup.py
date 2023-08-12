@@ -13,7 +13,7 @@ from django.db import models
 from django.db import connection
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
-from uw_sws import sws_now
+from uw_sws import sws_now, SWS_TIMEZONE
 from myuw.models import (
     VisitedLinkNew, SeenRegistration,
     UserNotices, UserCourseDisplay)
@@ -53,7 +53,7 @@ class Command(BaseCommand):
 
     def get_cut_off_date(self, days_delta=364):
         # default is 52 weeks (364 days)
-        now = sws_now().date()
+        now = SWS_TIMEZONE.localize(sws_now())
         return now - timedelta(days=days_delta)
 
     def deletion(self, ids_to_delete, queryf):
@@ -75,7 +75,7 @@ class Command(BaseCommand):
         # clean up after one year
         timer = Timer()
         queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
-        for y in range(2000, 2022):
+        for y in range(2000, 2023):
             for q in ["winter", "spring", "summer", "autumn"]:
                 for c in range(1, 9):
                     qset = UserCourseDisplay.objects.filter(
