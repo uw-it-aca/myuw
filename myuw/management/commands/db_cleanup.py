@@ -8,17 +8,11 @@ Clean up the entries no longer useful
 import logging
 import time
 from datetime import timedelta
-from django.core.mail import send_mail
-from django.db import models
 from django.db import connection
 from django.core.management.base import BaseCommand, CommandError
-from django.contrib.sessions.models import Session
 from uw_sws import sws_now, SWS_TIMEZONE
 from myuw.models import (
-    VisitedLinkNew, SeenRegistration,
-    UserNotices, UserCourseDisplay)
-from myuw.dao.term import get_term_by_date
-from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
+    VisitedLinkNew, SeenRegistration, UserNotices, UserCourseDisplay)
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
@@ -33,7 +27,6 @@ class Command(BaseCommand):
             help="The table to check ")
 
     def handle(self, *args, **options):
-        self.errors = []
         self.action = options['name']
 
         if self.action == 'course':
@@ -44,12 +37,6 @@ class Command(BaseCommand):
             self.registration_seen()
         if self.action == 'linkvisit':
             self.link_visited()
-
-        if len(self.errors):
-            send_mail("Clear Expired Django Session Weekly Cron",
-                      "\n".join(self.errors),
-                      "{}@uw.edu".format(get_cronjob_sender()),
-                      ["{}@uw.edu".format(get_cronjob_recipient())])
 
     def get_cut_off_date(self, days_delta=364):
         # default is 52 weeks (364 days)
@@ -85,8 +72,7 @@ class Command(BaseCommand):
                         self.deletion(ids_to_delete, queryf)
                 logger.info(
                     "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
-                        y, q, timer.get_elapsed()
-                    ))
+                        y, q, timer.get_elapsed()))
 
     def notice_read(self):
         # clean up after 180 days
