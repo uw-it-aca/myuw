@@ -64,6 +64,8 @@ class Command(BaseCommand):
         queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
         for y in range(2000, 2023):
             for q in ["winter", "spring", "summer", "autumn"]:
+                if y == 2022 and q == "autumn":
+                    break
                 for c in range(1, 9):
                     qset = UserCourseDisplay.objects.filter(
                         year=y, quarter=q, color_id=c)
@@ -91,8 +93,10 @@ class Command(BaseCommand):
         # clean up after the quarter ends
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_seenregistration WHERE id IN ({})"
-        for y in range(2013, 2023):
+        for y in range(2013, 2024):
             for q in ["winter", "spring", "summer", "autumn"]:
+                if y == 2023 and q == "autumn":
+                    break
                 qset = SeenRegistration.objects.filter(year=y, quarter=q)
                 if qset.exists():
                     ids_to_delete = qset.values_list('id', flat=True)
