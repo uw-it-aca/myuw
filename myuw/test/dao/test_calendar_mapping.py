@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.dao.calendar_mapping import \
-    get_calendars_for_minors, get_calendars_for_majors, \
-    get_calendars_for_gradmajors, _get_calendars,\
-    _get_calendar_ids_from_text, _get_major_minors
+from myuw.dao.calendar_mapping import (
+    get_calendars_for_minors, get_calendars_for_majors,
+    get_calendars_for_gradmajors, _get_calendars,
+    _get_calendar_ids_from_text, _get_major_minors)
 from myuw.test import get_request_with_user, get_request_with_date
 
 

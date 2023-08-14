@@ -5,14 +5,16 @@ from django.test import TestCase
 from django.core import mail
 from restclients_core.exceptions import DataFailureException
 from uw_sws.section import get_section_by_label
-from myuw.dao.mailman import get_list_json,\
-    get_instructor_term_list, get_section_secondary_combined_list,\
-    get_single_course_list, get_single_section_list, get_section_id,\
-    get_all_secondary_section_lists, get_section_email_lists,\
-    get_section_label, get_course_email_lists, request_mailman_lists,\
-    get_single_message_body, _get_single_line, _get_quarter_code
-from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
-    get_request_with_user, email_backend_override
+from myuw.dao.mailman import (
+    get_list_json,
+    get_instructor_term_list, get_section_secondary_combined_list,
+    get_single_course_list, get_single_section_list, get_section_id,
+    get_all_secondary_section_lists, get_section_email_lists,
+    get_section_label, get_course_email_lists, request_mailman_lists,
+    get_single_message_body, _get_single_line, _get_quarter_code)
+from myuw.test import (
+    fdao_sws_override, fdao_mailman_override, get_request,
+    get_request_with_user, email_backend_override)
 
 
 @fdao_mailman_override

@@ -3,8 +3,9 @@
 
 from django.test import TransactionTestCase
 from myuw.dao.affiliation import get_all_affiliations, get_is_hxt_viewer
-from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request, get_request_with_user
+from myuw.test import (
+    fdao_sws_override, fdao_pws_override,
+    get_request, get_request_with_user)
 
 
 @fdao_pws_override
