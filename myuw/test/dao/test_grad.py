@@ -5,11 +5,11 @@ from datetime import date, datetime, timedelta
 from django.test import TestCase
 from django.conf import settings
 from django.test.utils import override_settings
-from myuw.dao.grad import get_grad_degree_for_current_user,\
-    get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
-    get_grad_petition_for_current_user, leave_to_json, petition_to_json,\
-    is_before_eof_2weeks_since_decision_date, degree_to_json,\
-    committee_to_json
+from myuw.dao.grad import (
+    get_grad_degree_for_current_user, committee_to_json,
+    get_grad_committee_for_current_user, get_grad_leave_for_current_user,
+    get_grad_petition_for_current_user, leave_to_json, petition_to_json,
+    is_before_eof_2weeks_since_decision_date, degree_to_json)
 from myuw.test import get_request_with_date, get_request_with_user
 from uw_grad.util import fdao_grad_override
 

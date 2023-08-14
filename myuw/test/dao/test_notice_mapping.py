@@ -7,12 +7,14 @@ from datetime import datetime
 from django.utils import timezone
 from django.conf import settings
 from uw_sws.notice import get_notices_by_regid
-from myuw.dao.notice_mapping import map_notice_category,\
-    get_open_date, get_close_date, is_after_eof_days_after_open,\
-    is_before_bof_days_before_close, apply_showhide, categorize_notices
+from myuw.dao.notice_mapping import (
+    map_notice_category, apply_showhide, categorize_notices,
+    get_open_date, get_close_date, is_after_eof_days_after_open,
+    is_before_bof_days_before_close)
 from myuw.models.myuw_notice import MyuwNotice
-from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request
+from myuw.test import (
+    fdao_sws_override, fdao_pws_override,
+    get_request_with_date, get_request)
 
 
 @fdao_sws_override

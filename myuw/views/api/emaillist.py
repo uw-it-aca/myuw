@@ -19,8 +19,8 @@ from myuw.dao.mailman import (
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
-from myuw.views.exceptions import DisabledAction, NotInstructorError,\
-    InvalidInputFormData
+from myuw.views.exceptions import (
+    DisabledAction, NotInstructorError, InvalidInputFormData)
 from myuw.views.error import handle_exception
 from myuw.views.api import unescape_curriculum_abbr
 

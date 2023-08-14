@@ -6,8 +6,9 @@ from django.test.utils import override_settings
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Registration
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
-from myuw.views.api.instructor_section import InstSectionDetails,\
-    LTIInstSectionDetails, is_registration_to_exclude
+from myuw.views.api.instructor_section import (
+    InstSectionDetails,
+    LTIInstSectionDetails, is_registration_to_exclude)
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 

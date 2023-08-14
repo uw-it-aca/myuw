@@ -4,8 +4,9 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.upass import get_upass, in_summer_display_window
-from myuw.test import fdao_upass_override, get_request_with_user,\
-    get_request_with_date, fdao_sws_override, fdao_gws_override
+from myuw.test import (
+    fdao_upass_override, get_request_with_user,
+    get_request_with_date, fdao_sws_override, fdao_gws_override)
 
 
 @fdao_upass_override

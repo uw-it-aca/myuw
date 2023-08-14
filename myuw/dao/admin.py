@@ -3,8 +3,9 @@
 
 import logging
 import traceback
-from myuw.util.settings import get_myuw_astra_group_stem,\
-    get_myuw_admin_group, get_myuw_override_group
+from myuw.util.settings import (
+    get_myuw_astra_group_stem,
+    get_myuw_admin_group, get_myuw_override_group)
 from myuw.dao import get_netid_of_original_user, log_err
 from myuw.dao.gws import gws
 
