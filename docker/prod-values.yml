@@ -178,9 +178,9 @@ cronjob:
           cpu: 25m
           memory: 64Mi
     - name: course-cleanup
-      schedule: "1 2 * * 2"
+      schedule: "1 2 * * 3"
       command: ["/scripts/management_command.sh"]
-      args: ["db-cleanup", "course"]
+      args: ["db_cleanup", "course"]
       resources:
         limits:
           cpu: 150m
@@ -189,9 +189,9 @@ cronjob:
           cpu: 50m
           memory: 1280Mi
     - name: seenreg-cleanup
-      schedule: "1 2 * * 3"
+      schedule: "1 2 * * 4"
       command: ["/scripts/management_command.sh"]
-      args: ["db-cleanup", "seenreg"]
+      args: ["db_cleanup", "seenreg"]
       resources:
         limits:
           cpu: 150m
@@ -200,9 +200,9 @@ cronjob:
           cpu: 50m
           memory: 1280Mi
     - name: notice-cleanup
-      schedule: "1 2 * * 4"
+      schedule: "1 2 * * 5"
       command: ["/scripts/management_command.sh"]
-      args: ["db-cleanup", "notice"]
+      args: ["db_cleanup", "notice"]
       resources:
         limits:
           cpu: 150m
@@ -211,9 +211,9 @@ cronjob:
           cpu: 50m
           memory: 1280Mi
     - name: linkvisit-cleanup
-      schedule: "1 2 * * 5"
+      schedule: "1 2 * * 6"
       command: ["/scripts/management_command.sh"]
-      args: ["db-cleanup", "linkvisit"]
+      args: ["db_cleanup", "linkvisit"]
       resources:
         limits:
           cpu: 150m
