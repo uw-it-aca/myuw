@@ -9,13 +9,15 @@ from django.test.utils import override_settings
 from uw_sws.models import Section
 from uw_iasystem.evaluation import get_evaluation_by_id
 from uw_sws.section import get_section_by_label
-from myuw.dao.iasystem import json_for_evaluation, _get_evaluations_domain,\
-    _get_evaluations_by_section_and_student, summer_term_overlaped,\
-    get_evaluation_by_section_and_instructor
+from myuw.dao.iasystem import (
+    json_for_evaluation, _get_evaluations_domain,
+    _get_evaluations_by_section_and_student, summer_term_overlaped,
+    get_evaluation_by_section_and_instructor)
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
-from myuw.test import fdao_pws_override, fdao_sws_override, fdao_ias_override,\
-    get_request_with_date, get_request_with_user, get_request
+from myuw.test import (
+    fdao_pws_override, fdao_sws_override, fdao_ias_override,
+    get_request_with_date, get_request_with_user, get_request)
 
 
 @fdao_ias_override

@@ -7,8 +7,9 @@ from myuw.models import Instructor
 from uw_sws.section import get_last_section_by_instructor_and_terms
 from myuw.dao import is_using_file_dao, log_err
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.term import get_term_before, get_previous_quarter,\
-    get_current_quarter, get_specific_term
+from myuw.dao.term import (
+    get_term_before, get_previous_quarter,
+    get_current_quarter, get_specific_term)
 from myuw.dao.user import get_user_model
 
 logger = logging.getLogger(__name__)

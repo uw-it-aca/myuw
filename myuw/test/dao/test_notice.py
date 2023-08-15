@@ -3,8 +3,9 @@
 
 from django.test import TestCase
 from myuw.dao.notice import _get_notices_by_regid
-from myuw.test import get_request_with_date, get_request,\
-    fdao_sws_override, fdao_pws_override
+from myuw.test import (
+    get_request_with_date, get_request,
+    fdao_sws_override, fdao_pws_override)
 
 
 @fdao_sws_override

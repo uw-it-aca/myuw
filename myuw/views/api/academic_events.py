@@ -118,9 +118,10 @@ class AcademicEvents(ProtectedAPI):
 
     def parse_category(self, event):
         value = event.get("categories")
-        return (value.to_ical().decode()
-                if value and type(value) == icalendar.prop.vCategory
-                else value)
+        return (
+            value.to_ical().decode()
+            if value and isinstance(value, icalendar.prop.vCategory)
+            else value)
 
     def parse_event_url(self, event):
         uid = event.get('uid')

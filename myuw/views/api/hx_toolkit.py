@@ -6,8 +6,9 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
-from myuw.dao.hx_toolkit_dao import get_rendered_article_by_id,\
-    get_article_of_week_by_request, get_article_links
+from myuw.dao.hx_toolkit_dao import (
+    get_rendered_article_by_id, get_article_of_week_by_request,
+    get_article_links)
 
 
 class HxToolkitMessage(ProtectedAPI):

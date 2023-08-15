@@ -10,8 +10,9 @@ from myuw.dao.thrive import (
     _get_offset, _make_urls, _is_displayed, _make_thrive_payload,
     get_current_message, get_previous_messages, get_target_group)
 from uw_sws.models import Term
-from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request_with_user, get_request
+from myuw.test import (
+    fdao_sws_override, fdao_pws_override,
+    get_request_with_date, get_request_with_user, get_request)
 
 
 @fdao_pws_override

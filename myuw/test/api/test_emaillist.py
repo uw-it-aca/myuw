@@ -8,10 +8,12 @@ from django.test.utils import override_settings
 from userservice.user import UserService
 from myuw.views.api.emaillist import (
     section_id_matched, is_emaillist_authorized)
-from myuw.test import get_request, get_request_with_user, get_user,\
-    email_backend_override, set_override_user
-from myuw.test.api import MyuwApiTest, require_url,\
-    fdao_sws_override, fdao_mailman_override, VALIDATE, OVERRIDE
+from myuw.test import (
+    get_request, get_request_with_user, get_user,
+    email_backend_override, set_override_user)
+from myuw.test.api import (
+    MyuwApiTest, require_url,
+    fdao_sws_override, fdao_mailman_override, VALIDATE, OVERRIDE)
 
 
 @email_backend_override

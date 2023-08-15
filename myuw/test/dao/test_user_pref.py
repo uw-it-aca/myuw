@@ -3,8 +3,9 @@
 
 from django.test import TransactionTestCase
 from django.conf import settings
-from myuw.dao.user_pref import set_no_onboard_message, turn_off_pop_up,\
-    get_migration_preference
+from myuw.dao.user_pref import (
+    set_no_onboard_message, turn_off_pop_up,
+    get_migration_preference)
 from myuw.test import get_request_with_user
 
 

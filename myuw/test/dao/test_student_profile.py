@@ -5,8 +5,9 @@ from django.test import TestCase
 from myuw.dao.student_profile import (
     _get_degrees_for_terms, get_degree_status,
     get_cur_future_enrollments, get_student_profile)
-from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request_with_user
+from myuw.test import (
+    fdao_sws_override, fdao_pws_override,
+    get_request_with_date, get_request_with_user)
 from myuw.test.dao.test_degree import DEGREE_DATA
 
 
