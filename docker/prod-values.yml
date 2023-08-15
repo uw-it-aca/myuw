@@ -167,7 +167,7 @@ cronjob:
           cpu: 25m
           memory: 64Mi
     - name: update-buildings
-      schedule: "1 11 1 * *"
+      schedule: "1 11 15 * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_buildings"]
       resources:
@@ -178,49 +178,49 @@ cronjob:
           cpu: 25m
           memory: 64Mi
     - name: course-cleanup
-      schedule: "1 2 * * 2"
+      schedule: "1 2 1 1,4,7,9 *"
       command: ["/scripts/management_command.sh"]
       args: ["db-cleanup", "course"]
       resources:
         limits:
-          cpu: 150m
-          memory: 2048Mi
+          cpu: 100m
+          memory: 1280Mi
         requests:
           cpu: 50m
-          memory: 1280Mi
+          memory: 128Mi
     - name: seenreg-cleanup
-      schedule: "1 2 * * 3"
+      schedule: "1 2 2 1,4,7,9 *"
       command: ["/scripts/management_command.sh"]
       args: ["db-cleanup", "seenreg"]
       resources:
         limits:
-          cpu: 150m
-          memory: 2048Mi
+          cpu: 100m
+          memory: 1280Mi
         requests:
           cpu: 50m
-          memory: 1280Mi
+          memory: 128Mi
     - name: notice-cleanup
       schedule: "1 2 * * 4"
       command: ["/scripts/management_command.sh"]
       args: ["db-cleanup", "notice"]
       resources:
         limits:
-          cpu: 150m
-          memory: 4096Mi
+          cpu: 100m
+          memory: 1024Mi
         requests:
           cpu: 50m
-          memory: 1280Mi
+          memory: 128Mi
     - name: linkvisit-cleanup
       schedule: "1 2 * * 5"
       command: ["/scripts/management_command.sh"]
       args: ["db-cleanup", "linkvisit"]
       resources:
         limits:
-          cpu: 150m
-          memory: 4096Mi
+          cpu: 100m
+          memory: 1024Mi
         requests:
           cpu: 50m
-          memory: 1280Mi
+          memory: 128Mi
 environmentVariables:
   - name: AUTH
     value: SAML
