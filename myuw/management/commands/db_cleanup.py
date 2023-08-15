@@ -31,7 +31,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.action = options['name']
-        self.error = ""
+
         if self.action == 'noop':
             return
         if self.action == 'course':
@@ -42,11 +42,6 @@ class Command(BaseCommand):
             self.registration_seen()
         if self.action == 'linkvisit':
             self.link_visited()
-
-        if len(self.error):
-            send_mail(self.error,
-                      "{}@uw.edu".format(get_cronjob_sender()),
-                      ["{}@uw.edu".format(get_cronjob_recipient())])
 
     def get_cut_off_date(self, days_delta=364):
         # default is 52 weeks (364 days)
@@ -65,9 +60,12 @@ class Command(BaseCommand):
                 time.sleep(2)
                 ids_to_delete = ids_to_delete[batch_size:]
         except Exception as ex:
-            self.error = "{} {}\n".format(queryf, ex)
-            logger.error(self.error)
-            raise CommandError(self.error)
+            msg = "{} {}\n".format(queryf, ex)
+            logger.error(msg)
+            send_mail(msg,
+                      "{}@uw.edu".format(get_cronjob_sender()),
+                      ["{}@uw.edu".format(get_cronjob_recipient())])
+            raise CommandError(msg)
 
     def course_display(self):
         # clean up after one year
