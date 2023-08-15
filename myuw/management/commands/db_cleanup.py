@@ -8,11 +8,14 @@ Clean up the entries no longer useful
 import logging
 import time
 from datetime import timedelta
+from django.core.mail import send_mail
 from django.db import connection
 from django.core.management.base import BaseCommand, CommandError
 from uw_sws import sws_now, SWS_TIMEZONE
 from myuw.models import (
     VisitedLinkNew, SeenRegistration, UserNotices, UserCourseDisplay)
+from myuw.dao.term import get_term_by_date, get_term_before
+from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
@@ -28,7 +31,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.action = options['name']
-
+        self.error = ""
         if self.action == 'course':
             self.course_display()
         if self.action == 'notice':
@@ -37,6 +40,11 @@ class Command(BaseCommand):
             self.registration_seen()
         if self.action == 'linkvisit':
             self.link_visited()
+
+        if len(self.error):
+            send_mail(self.error,
+                      "{}@uw.edu".format(get_cronjob_sender()),
+                      ["{}@uw.edu".format(get_cronjob_recipient())])
 
     def get_cut_off_date(self, days_delta=364):
         # default is 52 weeks (364 days)
@@ -55,26 +63,24 @@ class Command(BaseCommand):
                 time.sleep(2)
                 ids_to_delete = ids_to_delete[batch_size:]
         except Exception as ex:
-            logger.error("{} {}\n".format(queryf, ex))
-            raise CommandError(ex)
+            self.error = "{} {}\n".format(queryf, ex)
+            logger.error(self.error)
+            raise CommandError(self.error)
 
     def course_display(self):
         # clean up after one year
         timer = Timer()
         queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
-        for y in range(2000, 2023):
-            for q in ["winter", "spring", "summer", "autumn"]:
-                if y == 2022 and q == "autumn":
-                    break
-                for c in range(1, 9):
-                    qset = UserCourseDisplay.objects.filter(
-                        year=y, quarter=q, color_id=c)
-                    if qset.exists():
-                        ids_to_delete = qset.values_list('id', flat=True)
-                        self.deletion(ids_to_delete, queryf)
-                logger.info(
-                    "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
-                        y, q, timer.get_elapsed()))
+        term = get_term_by_date(sws_now())
+        y = term.year - 1
+        q = term.quarter
+        qset = UserCourseDisplay.objects.filter(year=y, quarter=q)
+        if qset.exists():
+            ids_to_delete = qset.values_list('id', flat=True)
+            self.deletion(ids_to_delete, queryf)
+            logger.info(
+                "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
+                    y, q, timer.get_elapsed()))
 
     def notice_read(self):
         # clean up after 180 days
@@ -90,20 +96,18 @@ class Command(BaseCommand):
                     cut_off_dt, timer.get_elapsed()))
 
     def registration_seen(self):
-        # clean up after the quarter ends
+        # clean up previous quarters'
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_seenregistration WHERE id IN ({})"
-        for y in range(2013, 2024):
-            for q in ["winter", "spring", "summer", "autumn"]:
-                if y == 2023 and q == "autumn":
-                    break
-                qset = SeenRegistration.objects.filter(year=y, quarter=q)
-                if qset.exists():
-                    ids_to_delete = qset.values_list('id', flat=True)
-                    self.deletion(ids_to_delete, queryf)
-                    logger.info(
-                        "Delete SeenRegistration {} {} Time: {}\n".format(
-                            y, q, timer.get_elapsed()))
+        term = get_term_before(get_term_by_date(sws_now()))
+        qset = SeenRegistration.objects.filter(
+            year=term.year, quarter=term.quarter)
+        if qset.exists():
+            ids_to_delete = qset.values_list('id', flat=True)
+            self.deletion(ids_to_delete, queryf)
+            logger.info(
+                "Delete SeenRegistration {} {} Time: {}\n".format(
+                    term.year, term.quarter, timer.get_elapsed()))
 
     def link_visited(self):
         # clean up after one year
