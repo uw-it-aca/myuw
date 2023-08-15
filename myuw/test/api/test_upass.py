@@ -3,8 +3,9 @@
 
 from datetime import datetime
 import json
-from myuw.test.api import MyuwApiTest, require_url, fdao_upass_override,\
-    fdao_sws_override, fdao_gws_override
+from myuw.test.api import (
+    MyuwApiTest, require_url, fdao_upass_override,
+    fdao_sws_override, fdao_gws_override)
 
 
 @fdao_upass_override

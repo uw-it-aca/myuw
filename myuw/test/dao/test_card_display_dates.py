@@ -6,13 +6,13 @@ from django.conf import settings
 from django.test.utils import override_settings
 from userservice.user import UserServiceMiddleware
 from datetime import datetime
-from myuw.dao.term import get_default_date, get_comparison_datetime,\
-    get_specific_term
-from myuw.dao.card_display_dates import get_card_visibilty_date_values,\
-    in_show_grades_period, is_before_bof_term,\
-    is_before_eof_7d_after_class_start,\
-    is_after_7d_before_last_instruction, is_before_last_day_of_classes,\
-    is_before_eof_finals_week, during_myplan_peak_load
+from myuw.dao.term import (
+    get_default_date, get_comparison_datetime, get_specific_term)
+from myuw.dao.card_display_dates import (
+    get_card_visibilty_date_values, is_before_bof_term,
+    is_before_eof_7d_after_class_start, in_show_grades_period,
+    is_after_7d_before_last_instruction, is_before_last_day_of_classes,
+    is_before_eof_finals_week, during_myplan_peak_load)
 from myuw.test import fdao_sws_override, get_request_with_date, get_request
 
 
