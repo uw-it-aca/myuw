@@ -26,12 +26,14 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('name', choices=[
-            'course', 'notice', 'seenreg', 'linkvisit'],
+            'course', 'notice', 'seenreg', 'linkvisit', 'noop'],
             help="The table to check ")
 
     def handle(self, *args, **options):
         self.action = options['name']
         self.error = ""
+        if self.action == 'noop':
+            return
         if self.action == 'course':
             self.course_display()
         if self.action == 'notice':
