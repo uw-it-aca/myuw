@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
-from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request_with_user
+from myuw.test import (
+    fdao_sws_override, fdao_pws_override,
+    get_request_with_date, get_request_with_user)
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, get_section_by_label,
     _set_section_from_url, get_active_registrations_for_section,

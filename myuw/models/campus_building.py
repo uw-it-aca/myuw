@@ -29,43 +29,61 @@ class CampusBuilding(models.Model):
     def __hash__(self):
         return super().__hash__()
 
-    @classmethod
-    def exists(cls, code):
+    @staticmethod
+    def exists(code):
         return CampusBuilding.objects.filter(code=code).exists()
 
-    @classmethod
-    def exists_by_number(cls, number):
+    @staticmethod
+    def exists_by_number(number):
         return CampusBuilding.objects.filter(number=number).exists()
 
-    @classmethod
-    def get_building_by_code(cls, code):
+    @staticmethod
+    def get_building_by_code(code):
         return CampusBuilding.objects.get(code=code)
 
-    @classmethod
-    def get_building_by_number(cls, number):
+    @staticmethod
+    def get_building_by_number(number):
         return CampusBuilding.objects.get(number=number)
 
     @staticmethod
     @transaction.atomic
     def upd_building(fac_obj):
-        if CampusBuilding.exists_by_number(fac_obj.number):
-            b_entry = CampusBuilding.objects.select_for_update().get(
-                number=fac_obj.number)
-            if not b_entry.no_change(fac_obj):
-                b_entry.code = fac_obj.code
-                b_entry.latitude = fac_obj.latitude
-                b_entry.longitude = fac_obj.longitude
-                b_entry.name = fac_obj.name
-                b_entry.save()
-            return b_entry
+        qset = CampusBuilding.objects.filter(code=fac_obj.code)
+        if qset:
+            if len(qset.values()) > 1:
+                qset.delete()
+            elif len(qset.values()) == 1:
+                b_entry = CampusBuilding.objects.select_for_update().get(
+                    code=fac_obj.code)
+                if not b_entry.no_change(fac_obj):
+                    b_entry.number = fac_obj.number
+                    b_entry.latitude = fac_obj.latitude
+                    b_entry.longitude = fac_obj.longitude
+                    b_entry.name = fac_obj.name
+                    b_entry.save()
+                return b_entry
+
+        qset = CampusBuilding.objects.filter(number=fac_obj.number)
+        if qset:
+            if len(qset.values()) > 1:
+                qset.delete()
+            elif len(qset.values()) == 1:
+                b_entry = CampusBuilding.objects.select_for_update().get(
+                    number=fac_obj.number)
+                if not b_entry.no_change(fac_obj):
+                    b_entry.code = fac_obj.code
+                    b_entry.latitude = fac_obj.latitude
+                    b_entry.longitude = fac_obj.longitude
+                    b_entry.name = fac_obj.name
+                    b_entry.save()
+                return b_entry
 
         return CampusBuilding.objects.create(
             code=fac_obj.code,
             number=fac_obj.number,
             latitude=fac_obj.latitude,
             longitude=fac_obj.longitude,
-            name=fac_obj.name
-            )
+            name=fac_obj.name)
 
     def no_change(self, fac_obj):
         return (
@@ -86,3 +104,8 @@ class CampusBuilding(models.Model):
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
+
+    class Meta:
+        app_label = 'myuw'
+        # db_table = "myuw_campusbuilding"
+        # would cause a rename of table

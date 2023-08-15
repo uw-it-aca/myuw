@@ -11,8 +11,8 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.dao.user import get_user_model
-from myuw.dao.user_course_display import set_course_display_pref,\
-    _get_next_color, _update_color
+from myuw.dao.user_course_display import (
+    set_course_display_pref, _get_next_color, _update_color)
 from myuw.test import get_request_with_user, get_request_with_date
 
 

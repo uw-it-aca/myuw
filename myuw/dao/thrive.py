@@ -6,8 +6,9 @@ import datetime
 import logging
 import os
 from myuw.dao.gws import in_fyp_group, in_au_xfer_group, in_wi_xfer_group
-from myuw.dao.term import get_comparison_date, get_current_quarter,\
-    get_bod_current_term_class_start
+from myuw.dao.term import (
+    get_comparison_date, get_current_quarter,
+    get_bod_current_term_class_start)
 
 logger = logging.getLogger(__name__)
 TARGET_FYP = "fyp"
