@@ -128,19 +128,19 @@ cronjob:
       args: ["load_section_status_changes"]
       resources:
         limits:
-          cpu: 100m
-          memory: 256Mi
+          cpu: 75m
+          memory: 128Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
     - name: clear-expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
       resources:
         limits:
-          cpu: 100m
-          memory: 256Mi
+          cpu: 50m
+          memory: 196Mi
         requests:
           cpu: 25m
           memory: 64Mi
@@ -150,8 +150,8 @@ cronjob:
       args: ["cleanup_instructors"]
       resources:
         limits:
-          cpu: 100m
-          memory: 256Mi
+          cpu: 75m
+          memory: 125Mi
         requests:
           cpu: 25m
           memory: 64Mi
@@ -161,32 +161,32 @@ cronjob:
       args: ["check_reslinks"]
       resources:
         limits:
-          cpu: 100m
-          memory: 256Mi
+          cpu: 50m
+          memory: 125Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
     - name: update-buildings
       schedule: "1 11 15 * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_buildings"]
       resources:
         limits:
-          cpu: 100m
-          memory: 128Mi
+          cpu: 50m
+          memory: 64Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
     - name: course-cleanup
       schedule: "1 2 1 1,4,7,9 *"
       command: ["/scripts/management_command.sh"]
       args: ["db_cleanup", "course"]
       resources:
         limits:
-          cpu: 100m
-          memory: 1280Mi
+          cpu: 75m
+          memory: 512Mi
         requests:
-          cpu: 50m
+          cpu: 25m
           memory: 128Mi
     - name: seenreg-cleanup
       schedule: "1 2 2 1,4,7,9 *"
@@ -194,10 +194,10 @@ cronjob:
       args: ["db_cleanup", "seenreg"]
       resources:
         limits:
-          cpu: 100m
-          memory: 1280Mi
+          cpu: 75m
+          memory: 512Mi
         requests:
-          cpu: 50m
+          cpu: 25m
           memory: 128Mi
     - name: notice-cleanup
       schedule: "1 2 * * 4"
@@ -205,10 +205,10 @@ cronjob:
       args: ["db_cleanup", "notice"]
       resources:
         limits:
-          cpu: 100m
-          memory: 1024Mi
+          cpu: 75m
+          memory: 512Mi
         requests:
-          cpu: 50m
+          cpu: 25m
           memory: 128Mi
     - name: linkvisit-cleanup
       schedule: "1 2 * * 5"
@@ -216,10 +216,10 @@ cronjob:
       args: ["db_cleanup", "linkvisit"]
       resources:
         limits:
-          cpu: 100m
-          memory: 1024Mi
+          cpu: 75m
+          memory: 512Mi
         requests:
-          cpu: 50m
+          cpu: 25m
           memory: 128Mi
 environmentVariables:
   - name: AUTH
