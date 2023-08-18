@@ -109,7 +109,7 @@ cronjob:
       resources:
         limits:
           cpu: 75m
-          memory: 128Mi
+          memory: 64Mi
         requests:
           cpu: 25m
           memory: 32Mi
