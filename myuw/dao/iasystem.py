@@ -9,8 +9,9 @@ to iasystem web service.
 import logging
 import traceback
 from uw_iasystem.evaluation import search_evaluations
-from myuw.dao.pws import get_student_number_of_current_user,\
-    get_person_by_employee_id
+from myuw.dao.pws import (
+    get_student_number_of_current_user,
+    get_person_by_employee_id)
 from myuw.dao import log_err
 from myuw.dao.term import (
     get_comparison_datetime, get_comparison_datetime_with_tz,

@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override,\
-    fdao_pws_override
+from myuw.test.api import (
+    MyuwApiTest, require_url, fdao_sws_override, fdao_pws_override)
 
 
 url_name = "myuw_prev_unfinished_schedule"

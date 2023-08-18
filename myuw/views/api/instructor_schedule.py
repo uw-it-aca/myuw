@@ -35,8 +35,8 @@ from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
-from myuw.views.api.base_schedule import irregular_start_end,\
-    sort_pce_section_meetings
+from myuw.views.api.base_schedule import (
+    irregular_start_end, sort_pce_section_meetings)
 from uw_sws.section import get_joint_sections
 from myuw.dao.pws import get_person_of_current_user
 

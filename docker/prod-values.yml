@@ -122,7 +122,7 @@ mountedSecrets:
 cronjob:
   enabled: true
   jobs:
-    - name: load-section-status-changes
+    - name: load-section-status
       schedule: "*/1 * * * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_section_status_changes"]
@@ -177,6 +177,50 @@ cronjob:
         requests:
           cpu: 25m
           memory: 64Mi
+    - name: course-cleanup
+      schedule: "1 2 * * 3"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "course"]
+      resources:
+        limits:
+          cpu: 150m
+          memory: 2048Mi
+        requests:
+          cpu: 50m
+          memory: 1280Mi
+    - name: seenreg-cleanup
+      schedule: "1 2 * * 4"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "seenreg"]
+      resources:
+        limits:
+          cpu: 150m
+          memory: 2048Mi
+        requests:
+          cpu: 50m
+          memory: 1280Mi
+    - name: notice-cleanup
+      schedule: "1 2 * * 5"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "notice"]
+      resources:
+        limits:
+          cpu: 150m
+          memory: 4096Mi
+        requests:
+          cpu: 50m
+          memory: 1280Mi
+    - name: linkvisit-cleanup
+      schedule: "1 2 * * 6"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "linkvisit"]
+      resources:
+        limits:
+          cpu: 150m
+          memory: 4096Mi
+        requests:
+          cpu: 50m
+          memory: 1280Mi
 environmentVariables:
   - name: AUTH
     value: SAML

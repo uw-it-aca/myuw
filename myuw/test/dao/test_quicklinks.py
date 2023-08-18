@@ -6,10 +6,11 @@ from myuw.models import VisitedLinkNew, CustomLink, PopularLink, User
 from myuw.test import get_request_with_user
 from myuw.dao.user import get_user_model
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
-    add_custom_link, delete_custom_link, edit_custom_link,\
-    add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
-    get_recent_link_by_id
+from myuw.dao.quicklinks import (
+    get_quicklink_data, get_link_label,
+    add_custom_link, delete_custom_link, edit_custom_link,
+    add_hidden_link, delete_hidden_link, get_popular_link_by_id,
+    get_recent_link_by_id)
 
 from myuw.test import get_request_with_user
 

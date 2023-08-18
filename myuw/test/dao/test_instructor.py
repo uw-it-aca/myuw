@@ -4,11 +4,13 @@
 from django.test import TransactionTestCase
 from uw_sws.models import SectionReference
 from myuw.models import Instructor
-from myuw.dao.instructor import is_instructor, set_instructor,\
-    get_most_recent_sectionref_by_instructor, get_search_param
+from myuw.dao.instructor import (
+    is_instructor, set_instructor,
+    get_most_recent_sectionref_by_instructor, get_search_param)
 from myuw.dao.user import get_user_model
-from myuw.test import get_request_with_user, get_request_with_date,\
-    fdao_pws_override, fdao_sws_override
+from myuw.test import (
+    get_request_with_user, get_request_with_date,
+    fdao_pws_override, fdao_sws_override)
 
 
 @fdao_pws_override

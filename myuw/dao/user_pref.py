@@ -24,9 +24,7 @@ def get_migration_preference(request):
         pref = MigrationPreference.objects.get(user=user)
     except MigrationPreference.DoesNotExist:
         pref = MigrationPreference(user=user,
-                                   use_legacy_site=False,
                                    display_onboard_message=True)
-
     request.migration_preference = pref
     return pref
 
