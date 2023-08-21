@@ -60,39 +60,83 @@ mountedSecrets:
 cronjob:
   enabled: true
   jobs:
-    - name: clear-expired-sessions
+    - name: expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
       resources:
         limits:
-          cpu: 100m
+          cpu: 75m
           memory: 128Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
     - name: cleanup-instructors
-      schedule: "1 12 4 7 *"
+      schedule: "1 12 11 11 *"
       command: ["/scripts/management_command.sh"]
       args: ["cleanup_instructors"]
       resources:
         limits:
-          cpu: 100m
-          memory: 256Mi
+          cpu: 75m
+          memory: 128Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
     - name: update-buildings
       schedule: "1 11 1 * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_buildings"]
       resources:
         limits:
-          cpu: 100m
+          cpu: 75m
+          memory: 64Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi
+    - name: course-cleanup
+      schedule: "1 3 * 1,4,7,9 1"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "course"]
+      resources:
+        limits:
+          cpu: 75m
           memory: 128Mi
         requests:
           cpu: 25m
-          memory: 64Mi
+          memory: 32Mi
+    - name: seenreg-cleanup
+      schedule: "1 3 * 1,4,7,9 2"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "seenreg"]
+      resources:
+        limits:
+          cpu: 75m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi
+    - name: notice-cleanup
+      schedule: "1 3 * * 3"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "notice"]
+      resources:
+        limits:
+          cpu: 75m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi
+    - name: linkvisit-cleanup
+      schedule: "1 3 * * 4"
+      command: ["/scripts/management_command.sh"]
+      args: ["db_cleanup", "linkvisit"]
+      resources:
+        limits:
+          cpu: 75m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi
 environmentVariables:
   - name: AUTH
     value: SAML
