@@ -71,7 +71,7 @@ class Command(BaseCommand):
         # clean up after one year
         timer = Timer()
         queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
-        term = get_term_by_date(sws_now())
+        term = get_term_by_date(sws_now().date())
         y = term.year - 1
         q = term.quarter
         qset = UserCourseDisplay.objects.filter(year=y, quarter=q)
@@ -103,7 +103,7 @@ class Command(BaseCommand):
         # clean up previous quarters'
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_seenregistration WHERE id IN ({})"
-        term = get_term_before(get_term_by_date(sws_now()))
+        term = get_term_before(get_term_by_date(sws_now().date()))
         qset = SeenRegistration.objects.filter(
             year=term.year, quarter=term.quarter)
         if qset.exists():
