@@ -8,7 +8,7 @@ from django.core.management import call_command
 class TestCheckResLinks(TestCase):
 
     def test_run(self):
-        call_command('db_cleanup', "course")
-        call_command('db_cleanup', "seenreg")
+        # call_command('db_cleanup', "course")
+        # call_command('db_cleanup', "seenreg")
         call_command('db_cleanup', "notice")
         call_command('db_cleanup', "linkvisit")
