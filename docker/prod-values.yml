@@ -184,7 +184,7 @@ cronjob:
       resources:
         limits:
           cpu: 75m
-          memory: 512Mi
+          memory: 768Mi
         requests:
           cpu: 25m
           memory: 128Mi
@@ -195,7 +195,7 @@ cronjob:
       resources:
         limits:
           cpu: 75m
-          memory: 512Mi
+          memory: 768Mi
         requests:
           cpu: 25m
           memory: 128Mi
@@ -205,8 +205,8 @@ cronjob:
       args: ["db_cleanup", "notice"]
       resources:
         limits:
-          cpu: 75m
-          memory: 512Mi
+          cpu: 100m
+          memory: 768Mi
         requests:
           cpu: 25m
           memory: 128Mi
@@ -216,11 +216,11 @@ cronjob:
       args: ["db_cleanup", "linkvisit"]
       resources:
         limits:
-          cpu: 75m
-          memory: 512Mi
+          cpu: 100m
+          memory: 2048Mi
         requests:
           cpu: 25m
-          memory: 128Mi
+          memory: 1024Mi
 environmentVariables:
   - name: AUTH
     value: SAML
