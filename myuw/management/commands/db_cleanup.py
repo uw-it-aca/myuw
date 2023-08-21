@@ -43,8 +43,8 @@ class Command(BaseCommand):
         if self.action == 'linkvisit':
             self.link_visited()
 
-    def get_cut_off_date(self, days_delta=364):
-        # default is 52 weeks (364 days)
+    def get_cut_off_date(self, days_delta=180):
+        # default is 180 days
         now = SWS_TIMEZONE.localize(sws_now())
         return now - timedelta(days=days_delta)
 
@@ -88,7 +88,7 @@ class Command(BaseCommand):
         # clean up after 180 days
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_usernotices WHERE id IN ({})"
-        cut_off_dt = self.get_cut_off_date(180)
+        cut_off_dt = self.get_cut_off_date()
         qset = UserNotices.objects.filter(first_viewed__lt=cut_off_dt)
         if qset.exists():
             ids_to_delete = qset.values_list('id', flat=True)
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                 len(SeenRegistration.objects.all())))
 
     def link_visited(self):
-        # clean up after one year
+        # clean up after 180 days
         timer = Timer()
         queryf = "DELETE FROM myuw_visitedlinknew WHERE id IN ({})"
         cut_off_dt = self.get_cut_off_date()
