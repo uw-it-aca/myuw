@@ -68,6 +68,7 @@ setup(
         'django-user-agents',
         'django-webpack-loader==1.4.0',
         'django-compressor',
+        'django-extensions',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),

@@ -19,6 +19,7 @@ INSTALLED_APPS += [
     'blti',
     'myuw.apps.MyUWConfig',
     'webpack_loader',
+    'django-extensions',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -246,5 +247,25 @@ else:
     WEBPACK_LOADER = {
         'DEFAULT': {
             'STATS_FILE': '/static/webpack-stats.json',
+        }
+    }
+
+if os.getenv('DB', 'sqlite3') == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '172.18.0.19',
+            'PORT': '3306',
+            'NAME': os.getenv('DATABASE_DB_NAME', 'db'),
+            'USER': os.getenv('DATABASE_USERNAME', None),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD', None),
+                },
+        'postgres': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': '',
+            'PORT': '5432',
+            'NAME': os.getenv('DATABASE_DB_NAME', 'db'),
+            'USER': os.getenv('DATABASE_USERNAME', None),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD', None),
         }
     }
