@@ -400,7 +400,6 @@ class MigrationPreference(models.Model):
     user = models.OneToOneField('User', on_delete=models.CASCADE)
     display_onboard_message = models.BooleanField(default=True)
     display_pop_up = models.BooleanField(default=True)
-    use_legacy_site = models.BooleanField(default=False)
 
     def __init__(self, *args, **kwargs):
         super(MigrationPreference, self).__init__(*args, **kwargs)
@@ -430,21 +429,11 @@ class MigrationPreference(models.Model):
             obj.save()
         return obj
 
-    @classmethod
-    @transaction.atomic
-    def set_use_legacy(cls, user, use_legacy_site):
-        obj = MigrationPreference._get_for_update(user)
-        if obj.use_legacy_site != use_legacy_site:
-            obj.use_legacy_site = use_legacy_site
-            obj.save()
-        return obj
-
     def json_data(self):
         return {
             "user": self.user.json_data(),
             "display_pop_up": self.display_pop_up,
             "display_onboard_message": self.display_onboard_message,
-            "use_legacy_site": self.use_legacy_site
         }
 
     def __str__(self):
