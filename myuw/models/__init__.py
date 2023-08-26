@@ -89,15 +89,6 @@ class User(models.Model):
         db_table = "myuw_mobile_user"
 
 
-class TuitionDate(models.Model):
-    user = models.OneToOneField('User', on_delete=models.PROTECT)
-    date_stored = models.DateTimeField(auto_now=True)
-    date = models.DateField()
-
-    class Meta:
-        db_table = "myuw_mobile_tuitiondate"
-
-
 class UserNotices(models.Model):
     notice_hash = models.CharField(max_length=32)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
