@@ -81,8 +81,10 @@ class Command(BaseCommand):
             logger.info(
                 "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
                     y, q, timer.get_elapsed()))
-            logger.info("UserCourseDisplay has {} entries".format(
-                len(UserCourseDisplay.objects.all())))
+        else:
+            logger.info("Found no entry to delete")
+        logger.info("UserCourseDisplay has {} entries".format(
+            UserCourseDisplay.objects.all().count()))
 
     def notice_read(self):
         # clean up after 180 days
@@ -96,8 +98,10 @@ class Command(BaseCommand):
             logger.info(
                 "Delete UserNotices viewed before {} Time: {} sec\n".format(
                     cut_off_dt, timer.get_elapsed()))
-            logger.info("UserNotices has {} entries".format(
-                len(UserNotices.objects.all())))
+        else:
+            logger.info("Found no entry to delete")
+        logger.info("UserNotices has {} entries".format(
+            UserNotices.objects.all().count()))
 
     def registration_seen(self):
         # clean up previous quarters'
@@ -112,8 +116,10 @@ class Command(BaseCommand):
             logger.info(
                 "Delete SeenRegistration {} {} Time: {}\n".format(
                     term.year, term.quarter, timer.get_elapsed()))
-            logger.info("SeenRegistration has {} entries".format(
-                len(SeenRegistration.objects.all())))
+        else:
+            logger.info("Found no entry to delete")
+        logger.info("SeenRegistration has {} entries".format(
+            SeenRegistration.objects.all().count()))
 
     def link_visited(self):
         # clean up after 180 days
@@ -127,5 +133,7 @@ class Command(BaseCommand):
             logger.info(
                 "Delete VisitedLinkNew viewed before {} Time: {}\n".format(
                     cut_off_dt, timer.get_elapsed()))
-            logger.info("VisitedLinkNew has {} entries".format(
-                len(VisitedLinkNew.objects.all())))
+        else:
+            logger.info("Found no entry to delete")
+        logger.info("VisitedLinkNew has {} entries".format(
+            VisitedLinkNew.objects.all().count()))
