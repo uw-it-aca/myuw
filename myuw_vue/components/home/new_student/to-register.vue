@@ -97,18 +97,14 @@
                 v-uw-collapse.measlesimmunization
                 type="button"
                 class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-              >Measles, mumps immunization is required by the first day of classes</button>
+              >Required immunizations are required by the 3rd week of your first quarter</button>
               <uw-collapse id="measlesimmunization">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
                   <p>All students under 22 must submit evidence of measles, mumps immunity and a
                     conjugate meningitis ACWY vaccination given at age 16 or older. Students age
                     22 and older must submit evidence of measles and mumps immunity, either through
                     vaccinations (two MMR vaccinations) or lab evidence of positive titer.
-                    <a v-if="seattle" href="https://www.washington.edu/newhuskies/must-do/send-proof-of-immunity/">
-                    Get detailed instructions here.</a>
-                    <a v-if="tacoma" href="https://www.tacoma.uw.edu/registrar/newly-admitted-students#permalink-16114">
-                    Get detailed instructions here.</a>
-                    <a v-if="bothell" href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
+                    <a href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
                     Get detailed instructions here.</a>
                   </p>
                 </div>
