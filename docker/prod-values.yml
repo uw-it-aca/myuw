@@ -205,11 +205,11 @@ cronjob:
       args: ["db_cleanup", "notice"]
       resources:
         limits:
-          cpu: 100m
-          memory: 768Mi
+          cpu: 75m
+          memory: 1024Mi
         requests:
           cpu: 25m
-          memory: 128Mi
+          memory: 512Mi
     - name: linkvisit-cleanup
       schedule: "1 3 * * 4"
       command: ["/scripts/management_command.sh"]
@@ -217,10 +217,10 @@ cronjob:
       resources:
         limits:
           cpu: 100m
-          memory: 2048Mi
+          memory: 1280Mi
         requests:
           cpu: 25m
-          memory: 1024Mi
+          memory: 512Mi
 environmentVariables:
   - name: AUTH
     value: SAML
