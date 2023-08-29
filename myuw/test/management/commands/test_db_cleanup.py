@@ -3,12 +3,16 @@
 
 from django.test import TestCase
 from django.core.management import call_command
+from unittest.mock import patch
+from uw_sws.term import get_specific_term
 
 
 class TestCheckResLinks(TestCase):
 
-    def test_run(self):
-        # call_command('db_cleanup', "course")
-        # call_command('db_cleanup', "seenreg")
+    @patch('myuw.dao.term.get_term_by_date', spec=True)
+    def test_run(self, mock):
+        mock.return_value = get_specific_term(2014, 'spring')
+        call_command('db_cleanup', "course")
+        call_command('db_cleanup', "seenreg")
         call_command('db_cleanup', "notice")
         call_command('db_cleanup', "linkvisit")
