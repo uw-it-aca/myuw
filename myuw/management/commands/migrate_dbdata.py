@@ -14,22 +14,22 @@ logger = logging.getLogger(__name__)
 model_list = [
     'myuw.BannerMessage',
     'myuw.CampusBuilding',
-    'myuw.PopularLink',
     'myuw.MyuwNotice',
+    'myuw.PopularLink',
     'myuw.ResCategoryLink',
-    'PersistentMessageMessage',
-    'PersistentMessageTaggroup',
-    'PersistentMessageTag',
-    'PersistentMessageMessageTags',
-    'myuw.MigrationPreference',
     'myuw.CustomLink',
     'myuw.HiddenLink',
     'myuw.Instructor',
+    'myuw.MigrationPreference',
     'myuw.ResourceCategoryPin',
-    'myuw.UserCourseDisplay',
     'myuw.SeenRegistration',
+    'myuw.UserCourseDisplay',
     'myuw.UserNotices',
-    'myuw.VisitedLinkNew'
+    'myuw.VisitedLinkNew',
+    'PersistentMessageMessage',
+    'PersistentMessageTaggroup',
+    'PersistentMessageTag',
+    'PersistentMessageMessageTags'
 ]
 user_model = 'myuw.User'
 
