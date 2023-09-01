@@ -20,6 +20,13 @@
       </template>
 
       <template #card-body>
+        <div class="alert alert-light border myuw-text-md">
+          Support students by reviewing the
+          <a href="https://wellbeing.uw.edu/resources/pronoun-usage-expectations">Expectations and
+            Guidance on Student Pronouns</a>.
+          Pronouns are shared here in confidence for the purpose of supporting a respectful
+          class environment.
+        </div>
         <uw-classlist-content
           :section="sectionData.sections[0]"
           :is-joint-section-data-ready="isJointSectionDataReady" />
