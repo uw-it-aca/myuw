@@ -11,6 +11,27 @@ from sis_provisioner.util.log import log_resp_time, Timer
 
 
 logger = logging.getLogger(__name__)
+model_list = [
+    'myuw.BannerMessage',
+    'myuw.CampusBuilding',
+    'myuw.PopularLink',
+    'myuw.MyuwNotice',
+    'myuw.ResCategoryLink',
+    'PersistentMessageMessage',
+    'PersistentMessageTaggroup',
+    'PersistentMessageTag',
+    'PersistentMessageMessageTags',
+    'myuw.MigrationPreference',
+    'myuw.CustomLink',
+    'myuw.HiddenLink',
+    'myuw.Instructor',
+    'myuw.ResourceCategoryPin',
+    'myuw.UserCourseDisplay',
+    'myuw.SeenRegistration',
+    'myuw.UserNotices',
+    'myuw.VisitedLinkNew'
+]
+user_model = 'myuw.User'
 
 
 class Command(BaseCommand):
@@ -18,65 +39,79 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             'action', choices=[
-                'all', 'prep', 'dump', 'load', 'inspect', 'tidy'
+                'dump', 'load', 'tidy'
             ]
         )
 
     def handle(self, *args, **options):
-        self.fixture_file = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-            'mysql_data_fixture.json')
-
-        self.action = options['action']
-
-        if self.action == 'prep':
-            self.prep()
         if self.action == 'dump':
             self.dump_mysql_data()
         if self.action == 'load':
             self.load_postgresdb()
-        if self.action == 'inspect':
-            self.inspect_postgresqldb()
         if self.action == 'tidy':
             self.cleanup()
 
-        if self.action == 'all':
-            self.prep()
-            self.dump_mysql_data()
-            self.load_postgresdb()
-            self.inspect_postgresqldb()
-            self.cleanup()
-
-    def prep(self):
-        logger.info("{} UwAccounts in mysql DB".format(
-            len(UwAccount.objects.using('mysql').all())))
-        # with connections['mysql'].cursor() as cursor:
-        # cursor.execute("DELETE FROM django_session")
-
     def dump_mysql_data(self):
-        timer = Timer()
-        try:
-            model_list = ['sis_provisioner.UwAccount']
-            call_command(
-                'dumpdata', *model_list, '--database=mysql',
-                output=self.fixture_file)
-        except CommandError as e:
-            logger.error("Dump table from the MySQL DB: {}".format(e))
-        log_resp_time(logger, "dump_mysql_data", timer)
+        self.fixture_files = []
+        for model_name in model_list.append(user_model):
+            self.prep(model_name)
+            fixture_file = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                "mysql_{}_data_fixture.json".format(model_name.lower()))
+            logger.info("Start dumping {} to {}".format(
+                model_name, fixture_file))
+            self.dump_amodel(model_name, fixture_file)
 
     def load_postgresdb(self):
+        for model_name in [user_model] + model_list:
+            fixture_file = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                "mysql_{}_data_fixture.json".format(model_name.lower()))
+            logger.info("Start loading {} from {}".format(
+                model_name, fixture_file))
+            self.load_amodel(model_name, fixture_file)
+            self.inspect_postgresqldb(model_name)
+
+    def prep(self, model_name):
+        logger.info("{} {} in mysql DB".format(
+            model_name,
+            model_name.objects.using('mysql').all().count()))
+
+    def dump_amodel(self, model_name, fixture_file):
         timer = Timer()
         try:
-            call_command('loaddata', self.fixture_file)
+            model_list = [model_name]
+            call_command(
+                'dumpdata', *model_list, '--database=mysql',
+                output=fixture_file)
         except CommandError as e:
-            logger.error("Load data into Postgres DB: {}".format(e))
-        log_resp_time(logger, "load_postgresdb", timer)
+            logger.error(
+                "Dump {} from the MySQL DB: {}".format(
+                    model_name, e))
+        log_resp_time(logger, "dump_mysql_data {}".format(
+            model_name), timer)
 
-    def inspect_postgresqldb(self):
+    def load_amodel(self, model_name, fixture_file):
+        timer = Timer()
+        try:
+            call_command('loaddata', fixture_file)
+        except CommandError as e:
+            logger.error(
+                "Load data into Postgres DB: {}".format(
+                    model_name, e))
+        log_resp_time(logger, "load_postgresdb{}".format(
+            model_name), timer)
+
+    def inspect_postgresqldb(self, model_name):
         logger.info("{} UwAccount loaded into Postgres DB".format(
-            len(UwAccount.objects.all())))
+            model_name.objects.all().count()))
 
     def cleanup(self):
         # Cleanup: Delete the local fixture file
-        if os.path.exists(self.fixture_file):
-            os.remove(self.fixture_file)
+        for model_name in [user_model] + model_list:
+            fixture_file = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                "mysql_{}_data_fixture.json".format(model_name.lower()))
+            if os.path.exists(fixture_file):
+                logger.info("Delete {}".format(fixture_file))
+                os.remove(fixture_file)
