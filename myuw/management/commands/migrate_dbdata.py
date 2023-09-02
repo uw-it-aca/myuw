@@ -26,10 +26,9 @@ model_list = [
     'myuw.UserCourseDisplay',
     'myuw.UserNotices',
     'myuw.VisitedLinkNew',
-    'PersistentMessageMessage',
-    'PersistentMessageTaggroup',
-    'PersistentMessageTag',
-    'PersistentMessageMessageTags'
+    'persistent_message.Message',
+    'persistent_message.Taggroup',
+    'persistent_message.Tag'
 ]
 user_model = 'myuw.User'
 
