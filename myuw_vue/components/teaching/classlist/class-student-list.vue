@@ -22,8 +22,8 @@
       <template #card-body>
         <div class="alert alert-light border myuw-text-md">
           Support students by reviewing the
-          <a href="https://wellbeing.uw.edu/resources/pronoun-usage-expectations">Expectations and
-            Guidance on Student Pronouns</a>.
+          <a href="https://wellbeing.uw.edu/resources/pronoun-usage-expectations">Proper Pronoun
+           Usage & Expectations</a>.
           Pronouns are shared here in confidence for the purpose of supporting a respectful
           class environment.
         </div>
