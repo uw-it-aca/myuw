@@ -39,15 +39,15 @@
             </template>
           </ul>
         </uw-card-property>
-        <!-- commenting out residency for MUWM-5290
+        <!-- commenting out residency for MUWM-5290 -->
           <uw-card-property v-if="showResidency" title="Residency">
               {{residentDisplayString}}
-            <br><a v-out="'About residency statuses'"
+              <br><i>Pending change in residency status</i>
+              <br><a v-out="'About residency statuses'"
              href="https://registrar.washington.edu/students/residency/"
              title="About residency statuses"
           >About residency statuses</a>
         </uw-card-property> 
-      -->
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Local Address">
