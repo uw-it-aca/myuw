@@ -94,7 +94,7 @@ describe('Show Classlist Content', () => {
         propsData: {'section': section, 'showJointCourseStud': true}
       });
     await new Promise(setImmediate);
-    expect(wrapper.vm.fields.length).toBe(10);
+    expect(wrapper.vm.fields.length).toBe(11);
     expect(wrapper.vm.items.length).toBe(7);
     expect(wrapper.findComponent(UwTable).exists()).toBe(true);
     // MUWM-4385
