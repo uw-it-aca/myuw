@@ -60,7 +60,7 @@ setup(
         'Django-Safe-EmailBackend~=1.2',
         'axdd-person-client~=1.1',
         'django_client_logger<3.0',
-        'UW-HX-Toolkit~=2.7',
+        'UW-HX-Toolkit~=2.7.8',
         'django-blti~=2.2',
         'bleach',
         'pyyaml',
