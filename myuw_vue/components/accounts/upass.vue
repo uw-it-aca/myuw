@@ -123,21 +123,21 @@ export default {
     },
     getPurchaseUrl() {
       return this.bothell
-        ? 'https://www.uwb.edu/facilities/commuter-services/transportation/upass#Purchase/Cancel%20%20U-Pass'
+        ? 'https://www.uwb.edu/commuter-services/transportation/upass'
         : 'https://www.pce.uw.edu/help/registration-costs/costs-and-fees';
     },
     getWhatIsUrl() {
       return this.tacoma
         ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/u-pass-benefits'
         : this.bothell
-          ? 'https://www.uwb.edu/facility/commuter-services/transportation/upass#What%20the%20U-PASS%20covers'
+          ? 'https://www.uwb.edu/commuter-services/transportation/upass'
           : 'https://transportation.uw.edu/getting-here/transit/u-pass';
     },
     getSummerPurchaseUrl() {
       return this.tacoma
         ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/universal-u-pass'
         : this.bothell
-          ? 'https://www.uwb.edu/facilities/commuter-services/transportation/upass#Purchase/Cancel%20%20U-Pass'
+          ? 'https://www.uwb.edu/commuter-services/transportation/upass'
           : 'https://transportation.uw.edu/getting-here/transit/u-pass#u-pass-students';
     },
     getEmployeePurchaseUrl(){
