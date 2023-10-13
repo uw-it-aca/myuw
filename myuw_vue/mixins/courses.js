@@ -35,7 +35,7 @@ export default {
         const hasLinkedSections = section.has_linked_sections;
         const lines = [];
         const header = ["StudentNo","UWNetID","LastName","FirstName","Pronouns"];
-      if (showJointCourse) {  // MUWM-4348
+        if (showJointCourse) {  // MUWM-4348
           header.push("Joint Course");
         }
         if (hasLinkedSections) {
