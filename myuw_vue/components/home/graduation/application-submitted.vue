@@ -91,14 +91,15 @@
               </li>
               <li v-if="bothell">
                 Get all the details on
-                <a href="https://www.uwb.edu/registration/graduation">
+                <a href="https://www.uwb.edu/registrar/graduation">
                   UW Bothell’s Graduation, Diplomas, and Commencement page</a
                 >.
               </li>
               <li v-if="bothell && intlStudent">
-                International students, may find
-                <a href="https://www.uwb.edu/cie/alumni"> additional graduation guidance </a> at the
-                Center for International Education.
+                International students, may find additional graduation guidance about
+                <a href=
+                "https://www.uwb.edu/international-student-services/optional-practical-training-opt">
+                 Optional Practical Training (OPT)</a>.
               </li>
               <li v-if="tacoma">
                 Review the
