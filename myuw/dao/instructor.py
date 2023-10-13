@@ -29,10 +29,7 @@ def is_instructor(request):
         return request.myuw_is_instructor
 
     user = get_user_model(request)
-    if is_using_file_dao() and (
-            user.uwnetid == 'jerror' or
-            user.uwnetid.startswith('bill')
-        ):
+    if is_using_file_dao() and user.uwnetid == 'jerror':
         return True
 
     request.myuw_is_instructor = Instructor.is_seen_instructor(user)
