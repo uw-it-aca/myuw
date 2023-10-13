@@ -388,7 +388,7 @@
             your future or anything else, connect with a counselor.
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a>
+            <a href="https://www.uwb.edu/student-affairs/counseling">Counseling Center</a>
             - If you are anxious about your future or need someone compassionate to talk to about
             your future or anything else, connect with a counselor.
           </li>

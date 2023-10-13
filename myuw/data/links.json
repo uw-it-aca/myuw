@@ -172,7 +172,7 @@
     {
 	"id":101,
         "title":"Time Schedule - Bothell",
-        "url":"http://www.uwb.edu/registration/time",
+        "url":"https://www.uwb.edu/registrar/time",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,

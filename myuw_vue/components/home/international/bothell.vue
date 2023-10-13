@@ -41,7 +41,7 @@
         >
       </li>
       <li class="mb-1">
-        <a href="http://www.uwb.edu/wacc">Writing and Communication Center (WaCC)</a>
+        <a href="https://www.uwb.edu/academic-support-programs/wacc">Writing and Communication Center (WaCC)</a>
       </li>
       <li>
         <a href="https://www.uwb.edu/qsc">Quantitative Skills Center (QSC)</a>
