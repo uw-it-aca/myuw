@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import bleach
+import nh3
 import traceback
 import unicodedata
 from django.shortcuts import render, redirect
@@ -17,13 +17,13 @@ from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
-ALLOWED_TAGS = [
+ALLOWED_TAGS = {
     'b', 'br', 'em', 'p', 'span', 'a', 'img', 'i', 'li', 'ol', 'strong', 'ul'
-]
+}
 ALLOWED_ATTS = {
-    '*': ['class'],
-    'a': ['href', 'rel', 'title'],
-    'img': ['alt']
+    '*': {'class', 'style', 'title'},
+    'a': {'href', 'rel'},
+    'img': {'alt'}
 }
 
 
@@ -272,8 +272,9 @@ def _get_integer(str):
 
 def _get_html(value):
     try:
-        content = bleach.clean(
-            value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
+        content = nh3.clean(
+            value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS,
+            link_rel=None)
         return unicodedata.normalize("NFKD", content).strip()
         # MUWM-5092
     except TypeError as ex:
