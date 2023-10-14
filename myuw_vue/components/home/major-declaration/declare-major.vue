@@ -177,6 +177,7 @@ export default {
   computed: {
     ...mapState({
       classLevel: (state) => state.user.affiliations.class_level,
+      seattle: (state) => state.user.affiliations.seattle,    // MUWM - 5288
     }),
     ...mapState('notices', {
       notices: (state) => state.value,
@@ -211,7 +212,7 @@ export default {
       return this.noDeclaredMajor(this.termMajors);
     },
     showCard() {
-      return (this.isJunior && this.notDeclaredMajor &&
+      return (this.isJunior && this.notDeclaredMajor && this.seattle &&
         (this.isNoticeFetching || this.isProfileFetching ||
          this.showContent));
     },
