@@ -13,18 +13,18 @@
 
     <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
-        <a href="http://www.uwb.edu/cie/current-students/travel">Travel and Visas</a>
+        <a href="https://www.uwb.edu/international-student-services/alumni/travel">Travel and Visas</a>
       </li>
       <li class="mb-1">
-        <a href="https://www.uwb.edu/cie/current-students/immigration-documents"
+        <a href="https://www.uwb.edu/international-student-services/next-steps/arrival"
           >Immigration Document for F-1 Students</a
         >
       </li>
       <li class="mb-1">
-        <a href="https://www.uwb.edu/cie/current-students/vacation-quarter">Vacation Quarter</a>
+        <a href="https://www.uwb.edu/international-student-services/current-students/vacation-quarter">Vacation Quarter</a>
       </li>
       <li class="mb-1">
-        <a href="http://www.uwb.edu/cie/employment">Employment and Internships</a>
+        <a href="https://www.uwb.edu/international-student-services/current-students/employment">Employment</a>
       </li>
       <li class="mb-1">
         <a href="https://www.uwb.edu/cie/events"
@@ -36,8 +36,8 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">Academic Support</h3>
     <ul class="list-unstyled myuw-text-md mb-2">
       <li class="mb-1">
-        <a href="http://www.uwb.edu/cie/current-students/writing-support"
-          >Writing Support and Resources</a
+        <a href="https://www.uwb.edu/international-student-services/current-students/writing-support"
+          >Writing Support</a
         >
       </li>
       <li class="mb-1">
