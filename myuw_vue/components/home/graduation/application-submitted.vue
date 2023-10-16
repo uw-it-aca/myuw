@@ -217,7 +217,7 @@
             <ul class="list-style myuw-text-md">
               <li v-if="bothell">
                 Find out how to
-                <a href="https://www.uwb.edu/registration/enrollment-verify"
+                <a href="https://www.uwb.edu/registrar/enrollment-verify#degree-certification"
                   >provide degree certification</a
                 >
                 to other parties.
@@ -364,7 +364,7 @@
             - career consulting
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/careers">Career and Internship Center</a>
+            <a href="https://www.uwb.edu/career-services/">Career Services</a>
             - career consulting
           </li>
           <li v-if="tacoma">
