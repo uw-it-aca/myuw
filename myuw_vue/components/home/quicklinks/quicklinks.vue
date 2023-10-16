@@ -20,8 +20,6 @@
         />
       </ul>
 
-      <uw-covid-links v-if="instructor" />
-
       <div v-if="recentLinks.length">
         <h3 class="h6">
           Recently Visited
@@ -138,14 +136,12 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
 import Link from './link.vue';
-import CovidLinks from './covid-links.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
     'uw-link': Link,
-    'uw-covid-links': CovidLinks,
   },
   data: function() {
     return {
@@ -155,7 +151,6 @@ export default {
   computed: {
     ...mapState({
       disableActions: (state) => state.disableActions,
-      instructor: (state) => state.user.affiliations.instructor,
     }),
     ...mapState('quicklinks', {
       recentLinks: (state) => state.value.recent_links,
