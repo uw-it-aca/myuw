@@ -3,7 +3,7 @@ Academics,Advising & Tutoring,all,,,http://careers.uw.edu/,Career & Internship C
 Academics,Advising & Tutoring,all,https://careers.uw.edu/graduate-students/,Career & Internship Center - Graduate Student Resources,,,,,,,no
 Academics,Advising & Tutoring,all,,,https://webster.uaa.washington.edu/asp/website/,Center for Learning and Undergraduate Enrichment (CLUE),https://webster.uaa.washington.edu/asp/website/,Center for Learning and Undergraduate Enrichment (CLUE),http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
 Academics,Advising & Tutoring,all,,,http://iss.washington.edu/,International Student Services (ISS),https://www.uwb.edu/international-student-services/,International Student Services (ISS),https://www.tacoma.uw.edu/oga/isss,International Student Services (ISS),no
-Academics,Advising & Tutoring,all,,,http://depts.washington.edu/owrc,Odegaard Writing & Research Center,http://www.uwb.edu/wacc,Writing and Communication Center (WaCC),https://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources,Writing Center,no
+Academics,Advising & Tutoring,all,,,http://depts.washington.edu/owrc,Odegaard Writing & Research Center,https://www.uwb.edu/academic-support-programs/wacc,Writing and Communication Center (WaCC),https://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources,Writing Center,no
 Academics,Advising & Tutoring,all,,,,,,,http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0,Academic Writing Resources,no
 Academics,Advising & Tutoring,all,,,http://www.washington.edu/uaa/advising/,Undergraduate Academic Advising (Pre-major),https://www.uwb.edu/premajor/academic-advising,Undergraduate Academic Advising (Pre-major),https://www.tacoma.uw.edu/advising,Undergraduate Academic Advising (Pre-major),no
 Academics,Advising & Tutoring,all,,,http://studyabroad.washington.edu/,Study Abroad,https://www.uwb.edu/connected-learning/global/abroad,Study Abroad,https://www.tacoma.uw.edu/oga/sa,Study Abroad,no
@@ -22,7 +22,7 @@ Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Registration,all,http://dawgpath.uw.edu,DawgPath,,,,,,,no
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,no
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,no
-Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
+Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
 Academics,Registration,all,https://www.degreereg.uw.edu/user-guide,How to Register for PCE Courses,,,,,,,no
 Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
@@ -66,11 +66,11 @@ Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,
 Campus Life,Campus Safety,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
 Campus Life,Campus Safety,all,https://cspc.admin.uw.edu/mychem,MyChem,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,https://www.tacoma.uw.edu/fa/safety/emergency-preparedness,UW Tacoma Emergency Response,no
-Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/wp-content/uploads/2023/04/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
+Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/wp-content/uploads/2023/09/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/park-directions,Getting to Seattle Campus,http://www.uwb.edu/visitors/directions,Getting to UW Bothell Campus,https://www.tacoma.uw.edu/fa/facilities/transportation/parking-and-transportation-resources#permalink-19448,Getting to UW Tacoma Campus,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/student-u-pass,U-PASS for Students,https://www.uwb.edu/commuter-services/transportation/upass,U-PASS,https://www.tacoma.uw.edu/uwt/fa/facilities/transportation/u-pass,U-PASS,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/employee-u-pass,U-PASS for Employees,,,,,no
-Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/,Transportation Services,https://www.uwb.edu/administration-planning/facilities/transportation,Commuter Services,https://www.tacoma.uw.edu/fa/facilities/transportation,Transportation Services,no
+Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/,Transportation Services,https://www.uwb.edu/commuter-services/,Commuter Services,https://www.tacoma.uw.edu/fa/facilities/transportation,Transportation Services,no
 Campus Life,Getting Around Campus,all,,,http://uwshuttles.com/,UW Shuttles,,,,,no
 Campus Life,Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
 Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
