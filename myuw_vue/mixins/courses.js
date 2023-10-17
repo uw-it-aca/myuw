@@ -30,9 +30,14 @@ export default {
       }
       return rmajors.length > 1 ? rmajors.join(', ') : rmajors[0];
     },
-    buildClasslistCsv(registrations, hasLinkedSections) {
+    buildClasslistCsv(section, showJointCourse) {
+        const registrations = section.registrations;
+        const hasLinkedSections = section.has_linked_sections;
         const lines = [];
         const header = ["StudentNo","UWNetID","LastName","FirstName","Pronouns"];
+        if (showJointCourse) {  // MUWM-4348
+          header.push("Joint Course");
+        }
         if (hasLinkedSections) {
             header.push("LinkedSection");
             }
@@ -41,7 +46,7 @@ export default {
 
         for (let i = 0; i < registrations.length; i++) {
             const reg = registrations[i];
-            if (reg.isJoint) {  //MUWM-4371
+            if (reg.isJoint && !showJointCourse) {  //MUWM-4371, // MUWM-4348
                 continue;
             }
             const fields = [
@@ -50,7 +55,9 @@ export default {
               reg.surname,
               reg.first_name,
               reg.pronouns];
-
+            if (showJointCourse) {  // MUWM-4348
+              fields.push(reg.isJoint ? reg.sectionLabel : section.label);
+            }
             if (hasLinkedSections) {
               fields.push(reg.linked_sections);
             }
@@ -62,18 +69,20 @@ export default {
         }
         return lines.join("\n");
     },
-    classlistFileName(section) {
-      const fn = section.section_label + '_students.csv';
+    classlistFileName(section, showJointCourse) {
+      let fn = section.section_label;
+      if (showJointCourse) {
+        fn += "_joint";
+      } 
+      fn += '_students.csv';
       return fn.replace(/[^a-z0-9._]/ig, '_');
     },
-    downloadClassList(classlist) {
+    downloadClassList(section, showJointCourse) {
       const hiddenElement = document.createElement('a');
-      const csvData = this.buildClasslistCsv(
-          classlist.registrations, classlist.has_linked_sections);
-
+      const csvData = this.buildClasslistCsv(section, showJointCourse);
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData); // MUWM-5004
       hiddenElement.target = '_blank';
-      hiddenElement.download = this.classlistFileName(classlist);
+      hiddenElement.download = this.classlistFileName(section, showJointCourse);
       hiddenElement.click();
     },
     getQuarterAbbr(quarter_str) {
