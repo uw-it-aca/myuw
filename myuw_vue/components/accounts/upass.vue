@@ -144,7 +144,7 @@ export default {
       return this.tacoma
         ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/employee-u-pass-order-form'
         : this.bothell
-          ? 'https://www.uwb.edu/facility/commuter-services/transportation/upass'
+          ? 'https://www.uwb.edu/commuter-services/transportation/upass'
           : 'https://transportation.uw.edu/getting-here/transit/u-pass';
     }
   },
