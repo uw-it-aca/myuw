@@ -4,7 +4,6 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
 import Link from '../components/home/quicklinks/link.vue';
-import CovidLink from '../components/home/quicklinks/covid-links.vue';
 import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
@@ -26,7 +25,6 @@ describe('Quicklinks/Link', () => {
         user: {
           affiliations: {
             student: true,
-            instructor: true,
             seattle: false,
             bothell: false,
             tacoma: false,
@@ -46,7 +44,6 @@ describe('Quicklinks/Link', () => {
     await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
-    expect(wrapper.findComponent(CovidLink).exists()).toBe(true);
   });
 
   it('Add link', async () => {

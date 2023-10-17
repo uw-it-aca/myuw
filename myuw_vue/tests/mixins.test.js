@@ -239,109 +239,112 @@ describe('mixins', () => {
   });
   it('buildClasslistCsv', () => {
   {
-    const registrations = [
-      {
-        "netid": "w1",
-        "student_number": "0000001",
-        "credits": "5.0",
-        "is_auditor": false,
-        "class_level": "SENIOR",
-        "email": "w1@uw.edu",
-        "first_name": "Ma El",
-        "surname": "We",
-        "pronouns": null,
-        "majors": [
-          {
-            "name": "SOCIOLOGY",
-            "full_name": "Sociology",
-          }
-        ],
-        "linked_sections": "AA"
-      },
-      {
-        "netid": "f1",
-        "student_number": "0000002",
-        "credits": "5.0",
-        "is_auditor": false,
-        "class_level": "SENIOR",
-        "email": "f1@uw.edu",
-        "first_name": "Fa",
-        "surname": "Or",
-        "pronouns": null,
-        "majors": [
-          {
-            "name": "BIOENGINEERING",
-          },
-          {
-            "full_name": "Sociology",
-          }
-        ],
-        "linked_sections": "AB"
-      },
-      {
-        "netid": "a1",
-        "student_number": "0000003",
-        "credits": "5.0",
-        "is_auditor": false,
-        "class_level": "SENIOR",
-        "email": "a1@uw.edu",
-        "first_name": "Al",
-        "surname": "Di",
-        "pronouns": "her",
-        "majors": [
-          {
-            "full_name": "Sociology",
-          }
-        ],
-        "linked_sections": "AA"
-      },
-      {
-        "netid": "h1",
-        "student_number": "0000004",
-        "credits": "5.0",
-        "is_auditor": false,
-        "class_level": "SENIOR",
-        "email": "h1@uw.edu",
-        "first_name": "Ha Pe",
-        "surname": "Ru",
-        "pronouns": "his",
-        "majors": [
-      {
-      "name": "POLITICAL SCIENCE",
-      "full_name": "Political, Science",
-      },
-          {
-            "name": "SOCIOLOGY"
-          }
-        ],
-        "linked_sections": "AC"
-      },
-      {
-        "netid": "q1",
-        "student_number": "0000005",
-        "credits": "5.0",
-        "is_auditor": false,
-        "class_level": "SENIOR",
-        "email": "q1@uw.edu",
-        "first_name": "Ha Pe",
-        "surname": "Ru",
-        "pronouns": "his",
-        "majors": [
-          {"degree_abbr": null,
-           "college_abbr": "BOTHL",
-           "college_full_name": "BOTHL",
-           "degree_level": 1,
-           "degree_name": null,
-           "campus": "Bothell",
-           "name": null,
-           "full_name": null,
-           "short_name": null
-          }],
-        "class_code": 4,
-        "linked_sections": ""
-      }
-    ];
-    const csvD = courses.methods.buildClasslistCsv(registrations, true);
+    const section = {
+      "has_linked_sections": true,
+      "registrations": [
+        {
+          "netid": "w1",
+          "student_number": "0000001",
+          "credits": "5.0",
+          "is_auditor": false,
+          "class_level": "SENIOR",
+          "email": "w1@uw.edu",
+          "first_name": "Ma El",
+          "surname": "We",
+          "pronouns": null,
+          "majors": [
+            {
+              "name": "SOCIOLOGY",
+              "full_name": "Sociology",
+            }
+          ],
+          "linked_sections": "AA"
+        },
+        {
+          "netid": "f1",
+          "student_number": "0000002",
+          "credits": "5.0",
+          "is_auditor": false,
+          "class_level": "SENIOR",
+          "email": "f1@uw.edu",
+          "first_name": "Fa",
+          "surname": "Or",
+          "pronouns": null,
+          "majors": [
+            {
+              "name": "BIOENGINEERING",
+            },
+            {
+              "full_name": "Sociology",
+            }
+          ],
+          "linked_sections": "AB"
+        },
+        {
+          "netid": "a1",
+          "student_number": "0000003",
+          "credits": "5.0",
+          "is_auditor": false,
+          "class_level": "SENIOR",
+          "email": "a1@uw.edu",
+          "first_name": "Al",
+          "surname": "Di",
+          "pronouns": "her",
+          "majors": [
+            {
+              "full_name": "Sociology",
+            }
+          ],
+          "linked_sections": "AA"
+        },
+        {
+          "netid": "h1",
+          "student_number": "0000004",
+          "credits": "5.0",
+          "is_auditor": false,
+          "class_level": "SENIOR",
+          "email": "h1@uw.edu",
+          "first_name": "Ha Pe",
+          "surname": "Ru",
+          "pronouns": "his",
+          "majors": [
+        {
+        "name": "POLITICAL SCIENCE",
+        "full_name": "Political, Science",
+        },
+            {
+              "name": "SOCIOLOGY"
+            }
+          ],
+          "linked_sections": "AC"
+        },
+        {
+          "netid": "q1",
+          "student_number": "0000005",
+          "credits": "5.0",
+          "is_auditor": false,
+          "class_level": "SENIOR",
+          "email": "q1@uw.edu",
+          "first_name": "Ha Pe",
+          "surname": "Ru",
+          "pronouns": "his",
+          "majors": [
+            {"degree_abbr": null,
+            "college_abbr": "BOTHL",
+            "college_full_name": "BOTHL",
+            "degree_level": 1,
+            "degree_name": null,
+            "campus": "Bothell",
+            "name": null,
+            "full_name": null,
+            "short_name": null
+            }],
+          "class_code": 4,
+          "linked_sections": ""
+        }
+      ]
+    };
+    const csvD = courses.methods.buildClasslistCsv(section, false);
     expect(csvD).toEqual(
       "StudentNo,UWNetID,LastName,FirstName,Pronouns,LinkedSection,Credits,Class,Major,Email\n" +
       "\"\t0000001\",\"w1\",\"We\",\"Ma El\",\"\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"w1@uw.edu\"\n" +
