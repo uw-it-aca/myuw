@@ -45,7 +45,7 @@
           <a href="https://myplan.uw.edu"> MyPlan </a>
         </li>
         <li v-if="bothell" class="mb-1">
-          <a href="http://www.uwb.edu/registration/time">
+          <a href="https://www.uwb.edu/registrar/time">
             Bothell Time Schedule
           </a>
         </li>
