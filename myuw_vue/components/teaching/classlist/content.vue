@@ -109,7 +109,7 @@ export default {
         : 'To show students from joint courses';
     },
     downloadCL() {
-      this.downloadClassList(this.section);
+      this.downloadClassList(this.section, this.showJointCourse);
     },
     printCL() {
       window.print();

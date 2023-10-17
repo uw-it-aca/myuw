@@ -30,13 +30,14 @@ describe('Declare Major Card', () => {
         user: {
           affiliations: { 
             class_level: 'JUNIOR',
+            seattle: true,
           }
         }
       },
     });
   });
 
-  it('Verify with a junior of premajor ', async () => {
+  it('Verify with a seattle junior of premajor', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
@@ -47,6 +48,7 @@ describe('Declare Major Card', () => {
     const wrapper = mount(DeclareMajorCard, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.isJunior).toBe(true);
+    expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.notDeclaredMajor).toBe(true);
     expect(wrapper.vm.showContent).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
@@ -57,7 +59,7 @@ describe('Declare Major Card', () => {
     expect(wrapper.findAll('h3').length).toBe(6);
   });
 
-  it('Verify junior with declared major', async () => {
+  it('Verify junior with declared major, hide card', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
@@ -69,6 +71,21 @@ describe('Declare Major Card', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.isJunior).toBe(true);
     expect(wrapper.vm.notDeclaredMajor).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
+  });
+  it('Verify with a non-seattle, hide the card', async () => {
+    // MUWM - 5288
+    store.state.user.affiliations.seattle = false;
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': mockNotices,
+        '/api/v1/profile/': javg005Profile
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(DeclareMajorCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.seattle).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
   });
 });
