@@ -33,13 +33,13 @@ export default {
     linkList() {
       return [
         this.isBothellStud ?
-          { url: "https://www.uwb.edu/facility/mail-services",
-            title: "Mailing Services" } : null,
+          { url: "https://www.uwb.edu/facilities/mail-services",
+            title: "Mail Services" } : null,
         this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-10969",
             title: "Change Your Legal Name" } : null,
         this.isBothellStud ?
-          { url: "https://www.uwb.edu/registration/policies/name-change",
+          { url: "https://www.uwb.edu/registrar/policies/name-change",
             title: "Name Change Policy" } : null,
         this.nonBotTacStudent ?
           { url: "https://registrar.washington.edu/students/personal-data/names/",

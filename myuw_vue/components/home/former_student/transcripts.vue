@@ -38,8 +38,8 @@
            >Contact the UW Registrar</a>
         </li>
         <li class="mb-1">
-          <a v-out="'UW Bothell Registrar'" href="https://www.uwb.edu/registration"
-           >Contact th UW Bothell Registrar</a>
+          <a v-out="'UW Bothell Registrar'" href="https://www.uwb.edu/registrar/"
+           >Contact the UW Bothell Registrar</a>
         </li>
         <li>
           <a v-out="'UW Tacoma Registrar'"

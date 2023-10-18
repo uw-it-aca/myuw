@@ -150,7 +150,7 @@ describe('International Student Components - bothell.vue', () => {
     const wrapper = shallowMount(BothellComp, { store, localVue });
     expect(
       wrapper.findAll('a').at(0).attributes().href
-    ).toBe('http://www.uwb.edu/cie/current-students/travel');
+    ).toBe('https://www.uwb.edu/international-student-services/alumni/travel');
   });
 });
 

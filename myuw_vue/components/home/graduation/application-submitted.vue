@@ -91,14 +91,15 @@
               </li>
               <li v-if="bothell">
                 Get all the details on
-                <a href="https://www.uwb.edu/registration/graduation">
+                <a href="https://www.uwb.edu/registrar/graduation">
                   UW Bothell’s Graduation, Diplomas, and Commencement page</a
                 >.
               </li>
               <li v-if="bothell && intlStudent">
-                International students, may find
-                <a href="https://www.uwb.edu/cie/alumni"> additional graduation guidance </a> at the
-                Center for International Education.
+                International students, may find additional graduation guidance about
+                <a href=
+                "https://www.uwb.edu/international-student-services/optional-practical-training-opt">
+                 Optional Practical Training (OPT)</a>.
               </li>
               <li v-if="tacoma">
                 Review the
@@ -216,7 +217,7 @@
             <ul class="list-style myuw-text-md">
               <li v-if="bothell">
                 Find out how to
-                <a href="https://www.uwb.edu/registration/enrollment-verify"
+                <a href="https://www.uwb.edu/registrar/enrollment-verify#degree-certification"
                   >provide degree certification</a
                 >
                 to other parties.
@@ -363,7 +364,7 @@
             - career consulting
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/careers">Career and Internship Center</a>
+            <a href="https://www.uwb.edu/career-services/">Career Services</a>
             - career consulting
           </li>
           <li v-if="tacoma">
@@ -388,7 +389,7 @@
             your future or anything else, connect with a counselor.
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a>
+            <a href="https://www.uwb.edu/student-affairs/counseling">Counseling Center</a>
             - If you are anxious about your future or need someone compassionate to talk to about
             your future or anything else, connect with a counselor.
           </li>
