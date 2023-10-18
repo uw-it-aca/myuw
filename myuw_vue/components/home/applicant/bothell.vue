@@ -39,7 +39,7 @@
         <li>
           You will then register beginning with Registration Period II for your returning quarter.
           Check dates on the
-          <a href="http://www.uwb.edu/calendars">Academic Calendar</a>.
+          <a href="https://www.uwb.edu/academic-calendar/">Academic Calendar</a>.
         </li>
       </ul>
 
@@ -53,7 +53,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a v-out="'UW Bothell Student Resources'" href="http://www.uwb.edu/studentaffairs">
+          <a v-out="'UW Bothell Student Resources'" href="https://www.uwb.edu/student-affairs/">
             Check out the student resources for student life, career services, and more
           </a>
         </li>
