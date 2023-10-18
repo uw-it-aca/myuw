@@ -180,10 +180,11 @@ export default {
     },
     residentDisplayString(){
       const resValues = ["1", "2"],
-        nonresValues = ["3", "4", "5", "6"];
+        nonresValues = ["3", "4", "6"];
       if(resValues.includes(this.residentCode)){
         return "Resident";
       }
+      if(this.residentCode === "5") return "Non-resident student visa";
       if(nonresValues.includes(this.residentCode)){
         return "Non-resident";
       }
