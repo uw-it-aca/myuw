@@ -42,6 +42,13 @@ describe('Textbook cards', () => {
         inst_schedule,
         textbooks,
       },
+      state: {
+        user: {
+          affiliations: {
+            seattle: true,
+          }
+        }
+      }
     });
   });
 
