@@ -15,12 +15,12 @@
         <font-awesome-icon :icon="faExclamationTriangle" />
         <b>Textbook information on MyUW is currently incorrect due to a change in
           bookstore vendor.
-        </b></br>
-        <b></b>Links to textbooks for each course section can be found on the
-          <a href="https://www.washington.edu/students/timeschd/T/">UWT Time Schedule</a> or the
-          <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials">
-            bookstore website</a>.
-        </b>
+        </b><br>
+        Links to textbooks for each course section can be found on the
+          <a href="https://www.tacoma.uw.edu/ts-quicksearch/application-core/secure/"
+          >UWT Time Schedule Quicksearch</a> or the
+          <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials"
+          >bookstore website</a>.
          We are working to update UWT bookstore information to display correct textbooks.
       </div>
       <ul class="list-unstyled mb-2 myuw-text-md">

@@ -4,14 +4,13 @@
       <div v-if="tacoma" class="alert alert-danger myuw-text-md" role="alert">
         <font-awesome-icon :icon="faExclamationTriangle" />
         <b>Textbook information on MyUW is currently incorrect due to a change in
-          bookstore vendor.
-        </b></br>
-        <b></b>Links to textbooks for each course section can be found on the
-          <a href="https://www.washington.edu/students/timeschd/T/">UWT Time Schedule</a> or the
-          <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials">
-            bookstore website</a>.
-        </b>
-         We are working to update UWT bookstore information to display correct textbooks.
+        bookstore vendor</b>.<br>
+        Links to textbooks for each course section can be found on the
+        <a href="https://www.tacoma.uw.edu/ts-quicksearch/application-core/secure/"
+        >UWT Time Schedule Quicksearch</a> or the
+        <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials"
+        >bookstore website</a>.
+        We are working to update UWT bookstore information to display correct textbooks.
       </div>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
