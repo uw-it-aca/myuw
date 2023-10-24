@@ -94,6 +94,17 @@ def get_academic_info(request, response):
             response['class_level'] = enrollment.class_level
             break
 
+    for term in terms:
+        if term in enrollments:
+            enrollment = enrollments[term]
+            if enrollment.has_pending_resident_change:
+                response['has_pending_residency_change'] = True
+                response['pending_residency_change_term'] = {
+                    'year': term.year,
+                    'quarter': term.quarter
+                }
+                break
+
     response['term_majors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "majors")
     response['has_pending_major'] = False
