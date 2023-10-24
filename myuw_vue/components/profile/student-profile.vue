@@ -39,15 +39,19 @@
             </template>
           </ul>
         </uw-card-property>
-        <!-- commenting out residency for MUWM-5290
-          <uw-card-property v-if="showResidency" title="Residency">
-              {{residentDisplayString}}
-            <br><a v-out="'About residency statuses'"
-             href="https://registrar.washington.edu/students/residency/"
-             title="About residency statuses"
+        <uw-card-property v-if="showResidency" title="Residency">
+          {{residentDisplayString}}
+          <span v-if="hasPendingResidencyChange"><br>
+            Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
+            {{ pendingResidencyChangeTerm.year }}:
+            Pending change in residency status
+          </span>
+          <br>
+          <a v-out="'About residency statuses'"
+            href="https://registrar.washington.edu/students/residency/"
+            title="About residency statuses"
           >About residency statuses</a>
         </uw-card-property> 
-      -->
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Local Address">
@@ -153,6 +157,8 @@ export default {
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
       residentCode: (state) => state.value.resident_code,
+      hasPendingResidencyChange: (state) => state.value.has_pending_residency_change,
+      pendingResidencyChangeTerm: (state) => state.value.pending_residency_change_term,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -180,10 +186,11 @@ export default {
     },
     residentDisplayString(){
       const resValues = ["1", "2"],
-        nonresValues = ["3", "4", "5", "6"];
+        nonresValues = ["3", "4", "6"];
       if(resValues.includes(this.residentCode)){
         return "Resident";
       }
+      if(this.residentCode === "5") return "Non-resident student visa";
       if(nonresValues.includes(this.residentCode)){
         return "Non-resident";
       }
