@@ -44,7 +44,7 @@
           <span v-if="hasPendingResidencyChange"><br>
             Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
             {{ pendingResidencyChangeTerm.year }}:
-            <i>Pending change in residency status</i>
+            Pending change in residency status
           </span>
           <br>
           <a v-out="'About residency statuses'"
