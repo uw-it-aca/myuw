@@ -41,7 +41,11 @@
         </uw-card-property>
         <uw-card-property v-if="showResidency" title="Residency">
           {{residentDisplayString}}
-          <br><i>Pending change in residency status</i>
+          <span v-if="hasPendingResidencyChange"><br>
+            Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
+            {{ pendingResidencyChangeTerm.year }}:
+            <i>Pending change in residency status</i>
+          </span>
           <br>
           <a v-out="'About residency statuses'"
             href="https://registrar.washington.edu/students/residency/"
@@ -153,6 +157,8 @@ export default {
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
       residentCode: (state) => state.value.resident_code,
+      hasPendingResidencyChange: (state) => state.value.has_pending_residency_change,
+      pendingResidencyChangeTerm: (state) => state.value.pending_residency_change_term,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
