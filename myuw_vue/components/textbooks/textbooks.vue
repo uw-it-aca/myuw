@@ -3,9 +3,11 @@
     <template #panel-body>
       <div v-if="tacoma" class="alert alert-danger myuw-text-md" role="alert">
         <font-awesome-icon :icon="faExclamationTriangle" />
-        <b>Textbook information on MyUW is currently not correct due to a change in 
-          bookstore vendor. Links to textbooks for each course section can be found on the
-          <a href="https://www.washington.edu/students/timeschd/T/">UWT Time Schedule</a> or 
+        <b>Textbook information on MyUW is currently incorrect due to a change in
+          bookstore vendor.
+        </b></br>
+        <b></b>Links to textbooks for each course section can be found on the
+          <a href="https://www.washington.edu/students/timeschd/T/">UWT Time Schedule</a> or the
           <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials">
             bookstore website</a>.
         </b>
