@@ -8,6 +8,7 @@ import profile from '../vuex/store/profile';
 
 import StudentProfileCard from '../components/profile/student-profile.vue';
 import javg001Profile from './mock_data/profile/javg001.json';
+import javg002Profile from './mock_data/profile/javg002.json';
 
 const localVue = createLocalVue(Vuex);
 
@@ -33,13 +34,20 @@ describe('Student Profile Card', () => {
   });
 
   it('Verify computed properties', async () => {
-    axios.get.mockResolvedValue({data: javg001Profile, status: 200});
+    axios.get.mockResolvedValue({data: javg002Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
     await new Promise(setImmediate);
 
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.profile).toBeTruthy();
+    expect(wrapper.vm.showResidency).toBeTruthy();
+    expect(wrapper.vm.residentDisplayString).toBe("Non-resident student visa");
+    expect(wrapper.vm.hasPendingResidencyChange).toBeTruthy();
+    expect(wrapper.vm.pendingResidencyChangeTerm).toBeTruthy();
     expect(wrapper.vm.termMajors).toBeTruthy();
+    expect(wrapper.vm.hasMinors).toBeTruthy();
+    expect(wrapper.vm.termMinors).toBeTruthy();
+    expect(wrapper.vm.localAddress).toBeTruthy();
+    expect(wrapper.vm.permanentAddress).toBeTruthy();
   });
 
   it('addressLocationString()', async () => {
