@@ -1,5 +1,9 @@
 import {fetchBuilder, extractData, buildWith} from './model_builder';
-
+import {
+  bothellCampus,
+  tacomaCampus,
+  termId,
+} from './common';
 const customActions = {
   fetch: fetchBuilder('/api/v1/book/', extractData, 'json'),
 };
@@ -34,8 +38,9 @@ const customGetters = {
         hasBooks: hasBookData,
         books: hasBookData ? bookData[section.sln] : [],
         isInstructor: isInstructor,
-        bothellCampus: section.course_campus.toLowerCase() === 'bothell',
-        tacomaCampus: section.course_campus.toLowerCase() === 'tacoma'
+        bothellCampus: bothellCampus(section),
+        tacomaCampus: tacomaCampus(section),
+        term: section.year + termId(section.quarter),
       }
     }
 
@@ -49,7 +54,7 @@ const customGetters = {
 
     if (instructedCourseData) {
       instructedCourseData.sections.forEach((section, i) => {
-        const sectionBook = makeSectionData(i, section, false);
+        const sectionBook = makeSectionData(i, section, true);
         processedData.teachingSections.push(sectionBook);
         processedData.sections.push(sectionBook);
       })

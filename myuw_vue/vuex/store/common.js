@@ -51,3 +51,18 @@ export const parseDate = (dateStr) => {
 
   return dayjs(parsableDate);
 }
+
+export const bothellCampus = (section) => {
+  return section.course_campus.toLowerCase() === 'bothell';
+}
+
+export const tacomaCampus = (section) => {
+  return section.course_campus.toLowerCase() === 'tacoma';
+}
+
+export const termId = (quarter) => {
+  if (quarter.toLowerCase() === "winter") return 1;
+  if (quarter.toLowerCase() === "spring") return 2;
+  if (quarter.toLowerCase() === "summer") return 3;
+  return 4;
+}

@@ -14,7 +14,7 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="collapsable && !isOpen" class="mb-3">
+      <div v-if="!section.tacomaCampus && collapsable && !isOpen" class="mb-3">
         {{ section.books.length }}
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
@@ -36,15 +36,34 @@
       v-model="isOpen"
       class="myuw-text-md mb-3"
     >
-      <slot name="no-books">
-        No textbooks have been ordered for this course.
-        <a :href="teachingOrderBookUrl">
-          Order textbooks
-        </a>.
-      </slot>
+      <template v-if="section.tacomaCampus>
+        <template v-if="section.isInstructor"
+          <a :href="orderUWTBookUrl">
+            Order textbooks
+          </a>
+        </template>
+        <template v-else>
+          <a :href="viewUWTBookUrl">
+            View Textbooks
+          </a>
+        </template>
+      </template>
+      <template v-else>
+        <span v-if="!section.isInstructor">
+          No textbook requirement has been received for this course.
+          Please check with your instructor.
+        </span>
+        <span v-else>
+          No textbooks have been ordered for this course.
+          <a :href="orderBookUrl">
+            Order textbooks
+          </a>
+        </span>
+      </template>
     </uw-collapse>
-
-    <hr v-if="!collapsable" class="bg-secondary">
+    <div v-if="!collapsable">
+      <hr class="bg-secondary">
+    </div>
   </div>
 </template>
 
@@ -77,17 +96,27 @@ export default {
     };
   },
   computed: {
-    teachingOrderBookUrl() {
+    orderBookUrl() {
       let baseUrl = 'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
       if (this.section.bothellCampus) {
         baseUrl += 'uwbothell';
-      } else if (this.section.tacomaCampus) {
-        baseUrl += 'uwtacoma';
       } else {
         baseUrl += 'uwmain';
       }
       return baseUrl;
     },
+    orderUWTBookUrl() {
+      return "https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials";
+    },
+    viewUWTBookUrl() {
+      return (
+        "https://www.bkstr.com/uwtacomastore/course-materials-results?shopBy=course&divisionDisplayName=" +
+        "&departmentDisplayName=" + encodeURIComponent(this.section.curriculum) +
+        "&courseDisplayName=" + this.section.courseNumber + 
+        "&sectionDisplayName=" + this.section.sectionId +
+        "&programId=5229&termId=" + this.section.term
+        );
+    }
   },
 };
 </script>

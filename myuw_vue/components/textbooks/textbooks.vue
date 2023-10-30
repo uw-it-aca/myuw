@@ -35,12 +35,7 @@
         :key="i"
         :section="section"
         :collapsable="bookData.collapseSections"
-      >
-        <template #no-books>
-          No textbook requirement has been received for this course.
-          Please check with your instructor.
-        </template>
-      </uw-section>
+      />
 
       <div class="my-4 text-center">
         <uw-link-button :href="orderUrl">
