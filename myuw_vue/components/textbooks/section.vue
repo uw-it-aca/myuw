@@ -36,8 +36,8 @@
       v-model="isOpen"
       class="myuw-text-md mb-3"
     >
-      <template v-if="section.tacomaCampus>
-        <template v-if="section.isInstructor"
+      <template v-if="section.tacomaCampus">
+        <template v-if="section.isInstructor">
           <a :href="orderUWTBookUrl">
             Order textbooks
           </a>
