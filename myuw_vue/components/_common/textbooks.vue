@@ -11,18 +11,6 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="tacoma" class="alert alert-danger myuw-text-md" role="alert">
-        <font-awesome-icon :icon="faExclamationTriangle" />
-        <b>Textbook information on MyUW is currently incorrect due to a change in
-          bookstore vendor.
-        </b><br>
-        Links to textbooks for each course section can be found on the
-          <a href="https://www.tacoma.uw.edu/ts-quicksearch/application-core/secure/"
-          >UWT Time Schedule Quicksearch</a> or the
-          <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials"
-          >bookstore website</a>.
-         We are working to update UWT bookstore information to display correct textbooks.
-      </div>
       <ul class="list-unstyled mb-2 myuw-text-md">
         <li v-for="(section, i) in bookData.sections" :key="i"
           class="d-flex mb-2">
@@ -37,17 +25,24 @@
             </span>
           </div>
           <div class="w-50">
-            <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
-              No books
-            </span>
-            <span v-else class="h6 myuw-font-encode-sans">
-              {{ section.totalBooks }}
-              {{ section.totalBooks > 1 ? 'books' : 'book' }}
-            </span>
-            <span class="fw-normal fst-italic">
-                ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
-                required)
-            </span>
+            <template v-if="section.viewUWTBookUrl">
+              <a :href="section.viewUWTBookUrl">
+                View Textbooks
+              </a>
+            </template>
+            <template v-else>
+              <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
+                No books
+              </span>
+              <span v-else class="h6 myuw-font-encode-sans">
+                {{ section.totalBooks }}
+                {{ section.totalBooks > 1 ? 'books' : 'book' }}
+              </span>
+              <span class="fw-normal fst-italic">
+                  ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
+                  required)
+              </span>
+            </template>
           </div>
         </li>
       </ul>
@@ -94,7 +89,6 @@ export default {
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
-      tacoma: (state) => state.user.affiliations.tacoma,
       isBeforeEndOfFirstWeek: (state) =>
         state.cardDisplayDates.is_before_eof_7days_of_term,
     }),
@@ -159,7 +153,10 @@ export default {
             requiredBooks: required,
             totalBooks: required + optional,
             noCourseBooks: (required + optional) ? false :true,
+            viewUWTBookUrl: section.tacomaCampus ? this.viewUWTBookUrl(section) : ""
+            // MUWM-5311
           };
+
           sectionBookData.push(sectionData);
         });
 

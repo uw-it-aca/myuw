@@ -37,19 +37,17 @@
       class="myuw-text-md mb-3"
     >
       <template v-if="section.tacomaCampus">
-        <template v-if="section.isInstructor">
-          <a :href="orderUWTBookUrl">
-            Order textbooks
-          </a>
+        <template v-if="instructor">
+            Information about textbook ordering will be emailed to you.
         </template>
         <template v-else>
-          <a :href="viewUWTBookUrl">
+          <a :href="viewUWTBookUrl(section)">
             View Textbooks
           </a>
         </template>
       </template>
       <template v-else>
-        <span v-if="!section.isInstructor">
+        <span v-if="!instructor">
           No textbook requirement has been received for this course.
           Please check with your instructor.
         </span>
@@ -61,9 +59,8 @@
         </span>
       </template>
     </uw-collapse>
-    <div v-if="!collapsable">
-      <hr class="bg-secondary">
-    </div>
+
+    <hr v-if="!collapsable" class="bg-secondary">
   </div>
 </template>
 
@@ -88,6 +85,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    instructor: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -105,18 +106,6 @@ export default {
       }
       return baseUrl;
     },
-    orderUWTBookUrl() {
-      return "https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials";
-    },
-    viewUWTBookUrl() {
-      return (
-        "https://www.bkstr.com/uwtacomastore/course-materials-results?shopBy=course&divisionDisplayName=" +
-        "&departmentDisplayName=" + encodeURIComponent(this.section.curriculum) +
-        "&courseDisplayName=" + this.section.courseNumber + 
-        "&sectionDisplayName=" + this.section.sectionId +
-        "&programId=5229&termId=" + this.section.term
-        );
-    }
   },
 };
 </script>
