@@ -1,4 +1,4 @@
-ARG DJANGO_CONTAINER_VERSION=1.4.1
+ARG DJANGO_CONTAINER_VERSION=1.4.2
 FROM gcr.io/uwit-mci-axdd/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
 
 USER root
