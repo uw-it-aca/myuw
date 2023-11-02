@@ -38,7 +38,7 @@
     >
       <template v-if="section.tacomaCampus">
         <template v-if="instructor">
-            Information about textbook ordering will be emailed to you.
+          Please send your course materials to UWTCourseMaterials@uw.edu ??
         </template>
         <template v-else>
           <a :href="viewUWTBookUrl(section)">
