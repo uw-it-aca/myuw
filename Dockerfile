@@ -1,5 +1,5 @@
-ARG DJANGO_CONTAINER_VERSION=1.4.1
-FROM gcr.io/uwit-mci-axdd/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
+ARG DJANGO_CONTAINER_VERSION=1.4.2
+FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -31,7 +31,7 @@ FROM app-prewebpack-container as app-container
 COPY --chown=acait:acait --from=node-bundler /app/myuw/static /app/myuw/static
 RUN /app/bin/python manage.py collectstatic --noinput
 
-FROM gcr.io/uwit-mci-axdd/django-test-container:${DJANGO_CONTAINER_VERSION} as app-test-container
+FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-test-container:${DJANGO_CONTAINER_VERSION} as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/
