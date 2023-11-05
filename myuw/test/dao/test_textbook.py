@@ -46,8 +46,15 @@ class TestTextbooks(TestCase):
     def test_get_inst_textbook(self):
         req = get_request_with_user('billpce',
                                     get_request_with_date("2013-10-01"))
-        term = get_current_quarter(req)
         schedule = get_instructor_schedule_by_term(req)
 
         books = get_textbook_by_schedule(schedule)
         self.assertEquals(len(books), 1)
+
+    def test_get_uwt_inst_textbook(self):
+        req = get_request_with_user('billtac',
+                                    get_request_with_date("2013-04-01"))
+        schedule = get_instructor_schedule_by_term(req)
+        self.assertEqual(len(schedule.sections), 3)
+        books = get_textbook_by_schedule(schedule)
+        self.assertEquals(len(books), 0)
