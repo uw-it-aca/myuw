@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import TextbookPanel from '../textbook.vue';
+import TextbookLink from '../textbook.vue';
 export default {
   components: {
-    'uw-textbook': TextbookPanel,
+    'uw-textbook': TextbookLink,
   },
   props: {
     section: {

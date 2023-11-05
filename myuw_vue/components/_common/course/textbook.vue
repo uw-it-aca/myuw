@@ -1,13 +1,8 @@
 <template>
-  <div>
-    <a
-      :href="uwtCourse ? uwtTextbookUrl : textbookPageUrl"
-      :title="`Textbooks of ${section.label}`"
-    >Textbooks</a>
-    <div v-if="instructor" class="myuw-text-sm fst-italic">
-      If you have not submitted course materials, ...
-    </div>
-  </div>
+  <a
+    :href="uwtCourse ? uwtTextbookUrl : textbookPageUrl"
+    :title="`Textbooks of ${section.label}`"
+  >Textbooks</a>
 </template>
 
 <script>
@@ -16,10 +11,6 @@ export default {
     section: {
       type: Object,
       required: true,
-    },
-    instructor: {
-      type: Boolean,
-      default: false,
     },
   },
   computed: {
@@ -48,9 +39,9 @@ export default {
       if (this.section.requestSummerTerm) {
         url += `,${this.section.requestSummerTerm.toLowerCase()}`;
       }
-      url += `/${this.section.curriculum_abbr}${
-        this.section.course_number
-      }${this.section.section_id}`;
+      url += (
+        '#' + this.section.curriculum_abbr +
+        this.section.course_number + this.section.section_id);
 
       return url;
     },

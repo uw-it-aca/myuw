@@ -1,12 +1,12 @@
 <template>
-  <span v-if="hasBooks">
-    <a
-      v-if="section.sln"
-      :href="textbookUrl"
-      :title="`Textbooks of ${section.label}`"
-    >
-      Textbooks
-    </a>
+  <span v-if="uwtCourse">
+    <uw-textbook :section="section" />
+    <span class="myuw-text-sm fst-italic">
+      If you have not submitted course materials, ...
+    </span>
+  </span>
+  <span v-else-if="hasBooks">
+    <uw-textbook :section="section" />
   </span>
   <span v-else-if="dataError">
     Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="text-danger" />
@@ -45,9 +45,11 @@ import {
     faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import CollapsedItem from '../../../_common/collapsed-part.vue';
+import TextbookLink from '../../../_common/course/textbook.vue';
 export default {
   components: {
     'uw-collapsed-item': CollapsedItem,
+    'uw-textbook': TextbookLink,
   },
   props: {
     section: {
@@ -87,10 +89,8 @@ export default {
       const statusCode = this.statusCode(this.term);
       return statusCode !== 200;
     },
-    textbookUrl() {
-      return ("/textbooks/" + this.term + '#' + 
-        this.section.curriculum_abbr +
-        this.section.course_number + this.section.section_id);
+    uwtCourse() {
+      return this.section.course_campus.toLowerCase() === 'tacoma';
     },
     fixTextbook() {
       return {
