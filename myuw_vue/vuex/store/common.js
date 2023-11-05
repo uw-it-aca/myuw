@@ -61,8 +61,8 @@ export const tacomaCampus = (section) => {
 }
 
 export const termId = (quarter) => {
-  if (quarter.toLowerCase() === "winter") return 1;
-  if (quarter.toLowerCase() === "spring") return 2;
-  if (quarter.toLowerCase() === "summer") return 3;
-  return 4;
+  if (quarter.toLowerCase() === "winter") return '1';
+  if (quarter.toLowerCase() === "spring") return '2';
+  if (quarter.toLowerCase() === "summer") return '3';
+  return '4';
 }

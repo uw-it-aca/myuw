@@ -40,7 +40,7 @@ const customGetters = {
         isInstructor: isInstructor,
         bothellCampus: bothellCampus(section),
         tacomaCampus: tacomaCampus(section),
-        term: String(section.year) + String(termId(section.quarter)),
+        term: String(section.year) + termId(section.quarter),
       }
     }
 

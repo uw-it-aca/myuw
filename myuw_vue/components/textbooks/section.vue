@@ -37,14 +37,9 @@
       class="myuw-text-md mb-3"
     >
       <template v-if="section.tacomaCampus">
-        <template v-if="instructor">
-          Please send your course materials to UWTCourseMaterials@uw.edu ??
-        </template>
-        <template v-else>
-          <a :href="viewUWTBookUrl(section)">
-            View Textbooks
-          </a>
-        </template>
+        <a :href="viewUWTBookUrl(section)">
+          Check textbooks
+        </a>
       </template>
       <template v-else>
         <span v-if="!instructor">
