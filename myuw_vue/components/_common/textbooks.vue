@@ -27,7 +27,7 @@
           <div class="w-50">
             <template v-if="section.viewUWTBookUrl">
               <a :href="section.viewUWTBookUrl">
-                View Textbooks
+                Check textbooks
               </a>
             </template>
             <template v-else>
