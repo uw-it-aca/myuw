@@ -24,7 +24,7 @@ export default {
       // MUWM-5311
       return (
         "https://www.bkstr.com/webApp/discoverView?" +
-        "bookstore_id-1=2335&div-1=&termid-1=" + 
+        "bookstore_id-1=2335&div-1=&term_id-1=" +
          String(this.section.year) + this.termId +
         "&dept-1=" + encodeURIComponent(this.section.curriculum_abbr) +
         "&course-1=" + this.section.course_number +
