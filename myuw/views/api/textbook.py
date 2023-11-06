@@ -60,7 +60,7 @@ class Textbook(ProtectedAPI):
                 if ex.status != 404:
                     raise
 
-            # MUWM-5311
+            # MUWM-5311: uwt no longer has books
             # if len(by_sln) == 0:
             #    log_data_not_found_response(logger, timer)
             #    return data_not_found()

@@ -21,6 +21,7 @@ class TestInstructorTextbookCur(MyuwApiTest):
         self.assertEqual(data, {'21838': []})
 
     def test_get_uwt_inst_textbook(self):
+        # MUWM-5311: uwt no longer has books
         req = get_request_with_user('billtac',
                                     get_request_with_date("2013-04-01"))
         schedule = get_instructor_schedule_by_term(req)
