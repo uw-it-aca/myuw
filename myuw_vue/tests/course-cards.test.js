@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
@@ -8,10 +8,13 @@ import CourseCard from '../components/_common/course/student/course.vue';
 import MeetingInfo from '../components/_common/course/meeting/schedule.vue';
 import Instructors from '../components/_common/course/student/instructors.vue';
 import Resources from '../components/_common/course/student/resources.vue';
-import Textbooks from '../components/_common/textbooks.vue';
+import Textbook from '../components/_common/course/textbook.vue';
 
 import stud_schedule from '../vuex/store/schedule/student';
+
+import courses from '../mixins/courses';
 import iasystem from '../vuex/store/iasystem';
+import textbooks from '../vuex/store/textbooks';
 
 import mockStudCourses from
   './mock_data/stud_schedule/javerage2013Spring.json';
@@ -19,7 +22,7 @@ import mockCourseEval from
   './mock_data/iasystem/javerage2013Spring.json';
 
 const localVue = createLocalVue(Vuex);
-
+localVue.mixin(courses);
 jest.mock('axios');
 
 describe('Student Course cards', () => {
@@ -30,6 +33,7 @@ describe('Student Course cards', () => {
       modules: {
         stud_schedule,
         iasystem,
+        textbooks,
       },
       state: {
         user: {
@@ -38,8 +42,12 @@ describe('Student Course cards', () => {
           }
         },
         termData: {
+          year: 2013,
           quarter: "spring",
         },
+        cardDisplayDates: {
+          is_before_eof_7days_of_term: true,
+        }
       }
     });
   });
@@ -53,7 +61,7 @@ describe('Student Course cards', () => {
       return Promise.resolve({data: urlData[url]});
     });
 
-    const wrapper = mount(CourseCards, {store, localVue,
+    let wrapper = mount(CourseCards, {store, localVue,
       propsData: {'term': 'current'}});
     await new Promise(setImmediate);
     expect(wrapper.vm.isCurrentTerm).toBe(true);
@@ -66,7 +74,7 @@ describe('Student Course cards', () => {
     expect(wrapper.findAllComponents(Instructors).length).toBe(3);
     expect(wrapper.findAllComponents(Resources).length).toBe(5);
     const section = wrapper.vm.course.sections[0];
-    wrapper = mount(Textbooks, {
+    wrapper = mount(Textbook, {
       store, localVue,
       propsData: { 'term': 'current', 'section': section}
     });
