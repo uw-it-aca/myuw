@@ -1,9 +1,9 @@
 <template>
   <span v-if="uwtCourse">
     <uw-textbook :section="section" />
-    <span class="myuw-text-sm fst-italic">
+    <div class="myuw-text-sm fst-italic">
       If you have not submitted course materials, ...
-    </span>
+    </div>
   </span>
   <span v-else-if="hasBooks">
     <uw-textbook :section="section" />
