@@ -2,7 +2,8 @@
   <span v-if="uwtCourse">
     <uw-textbook :section="section" />
     <div class="myuw-text-sm fst-italic">
-      If you have not submitted course materials, ...
+      If you have not submitted course materials, please
+      <a href="mailto:UWTCourseMaterials@uw.edu">email them toUWTCourseMaterials@uw.edu</a>.
     </div>
   </span>
   <span v-else-if="hasBooks">
