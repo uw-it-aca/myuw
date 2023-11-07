@@ -56,10 +56,11 @@ Services for Faculty and Staff,Finance and Procurement,all,,,https://finance.uw.
 Services for Faculty and Staff,Finance and Procurement,all,"http://wd5.myworkday.com/uw/login.htmld	",Workday,,,,,,,no
 Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://itconnect.uw.edu/,IT Connect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
-Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Software and Hardware,,,,,,,
+Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Software and Hardware,,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facilities/,Facilities and Campus Operations,https://www.tacoma.uw.edu/fa/facilities,Facilities Services,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
+Services for Faculty and Staff,Others,all,https://astra.admin.uw.edu/astra/,ASTRA,,,,,,,no
 Campus Life,Campus Retail,all,,,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwseattle,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwbothell,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwtacoma,University Book Store,no
 Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/uwt/fa/safety/,Campus Safety & Security,no
 Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,,,,,,no
