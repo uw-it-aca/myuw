@@ -111,22 +111,22 @@ describe('Textbook cards', () => {
     wrapper = mount(Section, {store, localVue,
       propsData: {'section': seaSection}});
     await new Promise(setImmediate);
-    expect(wrapper.vm.teachingOrderBookUrl).toBe(
+    expect(wrapper.vm.orderBookUrl).toBe(
       "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
     );
 
     wrapper = mount(Section, {store, localVue,
       propsData: {'section': BotSection}});
     await new Promise(setImmediate);
-    expect(wrapper.vm.teachingOrderBookUrl).toBe(
+    expect(wrapper.vm.orderBookUrl).toBe(
       "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwbothell"
     );
 
     wrapper = mount(Section, {store, localVue,
       propsData: {'section': TacSection}});
     await new Promise(setImmediate);
-    expect(wrapper.vm.teachingOrderBookUrl).toBe(
-      "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwtacoma"
+    expect(wrapper.vm.orderBookUrl).toBe(
+      "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
     );
   });
 
