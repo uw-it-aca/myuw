@@ -42,7 +42,7 @@ class Textbook(ProtectedAPI):
             try:
                 schedule = get_schedule_by_term(
                     request, term=term, summer_term=summer_term)
-                by_sln.update(self._get_schedule_textbooks(schedule))
+                by_sln.update(_get_schedule_textbooks(schedule))
 
                 order_url = get_order_url_by_schedule(schedule)
                 if order_url:
@@ -55,14 +55,15 @@ class Textbook(ProtectedAPI):
             try:
                 schedule = get_instructor_schedule_by_term(
                     request, term=term, summer_term="full-term")
-                by_sln.update(self._get_schedule_textbooks(schedule))
+                by_sln.update(_get_schedule_textbooks(schedule))
             except DataFailureException as ex:
                 if ex.status != 404:
                     raise
 
-            if len(by_sln) == 0:
-                log_data_not_found_response(logger, timer)
-                return data_not_found()
+            # MUWM-5311: uwt no longer has books
+            # if len(by_sln) == 0:
+            #    log_data_not_found_response(logger, timer)
+            #    return data_not_found()
 
             log_api_call(timer, request, "Get Textbook for {}.{}".format(
                 term.year, term.quarter))
@@ -71,12 +72,13 @@ class Textbook(ProtectedAPI):
         except Exception:
             return handle_exception(logger, timer, traceback)
 
-    def _get_schedule_textbooks(self, schedule):
-        by_sln = {}
-        if schedule and len(schedule.sections):
-            book_data = get_textbook_by_schedule(schedule)
-            by_sln.update(index_by_sln(book_data))
-        return by_sln
+
+def _get_schedule_textbooks(schedule):
+    by_sln = {}
+    if schedule and len(schedule.sections):
+        book_data = get_textbook_by_schedule(schedule)
+        by_sln.update(index_by_sln(book_data))
+    return by_sln
 
 
 def index_by_sln(book_data):
