@@ -37,7 +37,7 @@ class TestStudentProfile(TestCase):
         self.assertEquals(len(minors[0]['minors']), 1)
         self.assertEquals(len(minors[1]['minors']), 2)
 
-    def test_no_change(self):
+    def test_major_no_change(self):
         req = get_request_with_user('javg005',
                                     get_request_with_date("2013-04-01"))
         terms, enrollments = get_cur_future_enrollments(req)
@@ -104,3 +104,12 @@ class TestStudentProfile(TestCase):
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
         self.assertIsNone(data['degree_status'])
+
+    def test_residency_status_change(self):
+        req = get_request_with_user('javg002',
+                                    get_request_with_date("2013-04-01"))
+        data = get_student_profile(req)
+        self.assertTrue(data['has_pending_residency_change'])
+        self.assertEqual(
+            data['pending_residency_change_term'],
+            {"year": 2013, "quarter": "autumn"})

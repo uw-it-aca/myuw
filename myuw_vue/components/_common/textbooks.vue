@@ -25,17 +25,24 @@
             </span>
           </div>
           <div class="w-50">
-            <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
-              No books
-            </span>
-            <span v-else class="h6 myuw-font-encode-sans">
-              {{ section.totalBooks }}
-              {{ section.totalBooks > 1 ? 'books' : 'book' }}
-            </span>
-            <span class="fw-normal fst-italic">
-                ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
-                required)
-            </span>
+            <template v-if="section.viewUWTBookUrl">
+              <a :href="section.viewUWTBookUrl">
+                Check textbooks
+              </a>
+            </template>
+            <template v-else>
+              <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
+                No books
+              </span>
+              <span v-else class="h6 myuw-font-encode-sans">
+                {{ section.totalBooks }}
+                {{ section.totalBooks > 1 ? 'books' : 'book' }}
+              </span>
+              <span class="fw-normal fst-italic">
+                  ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
+                  required)
+              </span>
+            </template>
           </div>
         </li>
       </ul>
@@ -146,7 +153,10 @@ export default {
             requiredBooks: required,
             totalBooks: required + optional,
             noCourseBooks: (required + optional) ? false :true,
+            viewUWTBookUrl: section.tacomaCampus ? this.viewUWTBookUrl(section) : ""
+            // MUWM-5311
           };
+
           sectionBookData.push(sectionData);
         });
 
