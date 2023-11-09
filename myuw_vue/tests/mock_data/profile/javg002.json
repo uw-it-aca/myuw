@@ -32,6 +32,7 @@
   "permanent_phone": "4255556789",
   "visa_type": "F1",
   "veteran_code": "0",
+  "resident_code": "5",
   "is_student": true,
   "is_grad_student": false,
   "degree_status": {
@@ -40,6 +41,11 @@
   },
   "campus": "Seattle",
   "class_level": "SENIOR",
+  "has_pending_residency_change": true,
+  "pending_residency_change_term": {
+    "year": 2013,
+    "quarter": "autumn"
+  },
   "term_majors": [
     {
       "quarter": "spring",

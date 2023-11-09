@@ -46,20 +46,6 @@ MYUW_ENABLED_FEATURES = []
 
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = 587
-EMAIL_TIMEOUT = 15
-EMAIL_USE_TLS=True
-EMAIL_SSL_CERTFILE = os.getenv('CERT_PATH', '')
-EMAIL_SSL_KEYFILE = os.getenv('KEY_PATH', '')
-
-MAILMAN_COURSEREQUEST_RECIPIENT = os.getenv("MAILMAN_REQUEST_RECIPIENT")
-if os.getenv("ENV", "") == "prod":
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-else:
-    EMAIL_BACKEND = "saferecipient.EmailBackend"
-    SAFE_EMAIL_RECIPIENT = os.getenv("SAFE_EMAIL_RECIPIENT")
-
 # uw_oidc settings
 if os.getenv("ENV", "") == "dev":
     UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
