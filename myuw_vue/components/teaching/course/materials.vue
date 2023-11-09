@@ -10,7 +10,7 @@
         <li class="mb-1"><uw-teach-canvas :section="section" /></li>
         <li v-if="!section.mini_card" class="mb-1">
           <uw-fut-qua-textbook v-if="section.futureTerm" :section="section" />
-          <uw-teach-textbook v-else :section="section" />
+          <uw-textbook v-else :section="section" />
         </li>
       </ul>
     </uw-card-property>
@@ -22,8 +22,8 @@ import { mapState } from 'vuex';
 import Canvas from './materials/canvas.vue';
 import Website from './materials/website.vue';
 import EmailList from './materials/email-list.vue';
-import Textbook from './materials/textbook.vue';
 import FQTextbook from './materials/futureq-textbook.vue';
+import TextbookLink from '../../_common/course/textbook.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CardProperty from '../../_templates/card-property.vue';
 
@@ -35,7 +35,7 @@ export default {
     'uw-teach-website': Website,
     'uw-teach-email-list': EmailList,
     'uw-fut-qua-textbook': FQTextbook,
-    'uw-teach-textbook': Textbook,
+    'uw-textbook': TextbookLink,
   },
   props: {
     section: {

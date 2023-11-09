@@ -14,7 +14,7 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="collapsable && !isOpen" class="mb-3">
+      <div v-if="!section.tacomaCampus && collapsable && !isOpen" class="mb-3">
         {{ section.books.length }}
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
@@ -36,12 +36,23 @@
       v-model="isOpen"
       class="myuw-text-md mb-3"
     >
-      <slot name="no-books">
-        No textbooks have been ordered for this course.
-        <a :href="teachingOrderBookUrl">
-          Order textbooks
-        </a>.
-      </slot>
+      <template v-if="section.tacomaCampus">
+        <a :href="viewUWTBookUrl(section)">
+          Check textbooks
+        </a>
+      </template>
+      <template v-else>
+        <span v-if="!instructor">
+          No textbook requirement has been received for this course.
+          Please check with your instructor.
+        </span>
+        <span v-else>
+          No textbooks have been ordered for this course.
+          <a :href="orderBookUrl">
+            Order textbooks
+          </a>
+        </span>
+      </template>
     </uw-collapse>
 
     <hr v-if="!collapsable" class="bg-secondary">
@@ -69,6 +80,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    instructor: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -77,12 +92,10 @@ export default {
     };
   },
   computed: {
-    teachingOrderBookUrl() {
+    orderBookUrl() {
       let baseUrl = 'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
       if (this.section.bothellCampus) {
         baseUrl += 'uwbothell';
-      } else if (this.section.tacomaCampus) {
-        baseUrl += 'uwtacoma';
       } else {
         baseUrl += 'uwmain';
       }

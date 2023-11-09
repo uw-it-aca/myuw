@@ -30,12 +30,7 @@
           </li>
         </template>
         <li v-if="section.sln" class="mb-1">
-          <a
-            :href="textbookHref"
-            :title="`Textbooks of ${section.label}`"
-          >
-            Textbooks
-          </a>
+          <uw-textbook :section="section" />
         </li>
       </ul>
     </div>
@@ -43,7 +38,11 @@
 </template>
 
 <script>
+import TextbookLink from '../textbook.vue';
 export default {
+  components: {
+    'uw-textbook': TextbookLink,
+  },
   props: {
     section: {
       type: Object,
@@ -51,18 +50,6 @@ export default {
     },
   },
   computed: {
-    textbookHref() {
-      let url = `/textbooks/${this.section.year},${this.section.quarter}`;
-
-      if (this.section.requestSummerTerm) {
-        url += `,${this.section.requestSummerTerm.toLowerCase()}`;
-      }
-      url += `/${this.section.curriculum_abbr}${
-        this.section.course_number
-      }${this.section.section_id}`;
-
-      return url;
-    },
     hasResources() {
       return (
         this.section.class_website_url ||
