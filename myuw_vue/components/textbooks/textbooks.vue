@@ -1,17 +1,6 @@
 <template>
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
-      <div v-if="tacoma" class="alert alert-danger myuw-text-md" role="alert">
-        <font-awesome-icon :icon="faExclamationTriangle" />
-        <b>Textbook information on MyUW is currently incorrect due to a change in
-        bookstore vendor</b>.<br>
-        Links to textbooks for each course section can be found on the
-        <a href="https://www.tacoma.uw.edu/ts-quicksearch/application-core/secure/"
-        >UWT Time Schedule Quicksearch</a> or the
-        <a href="https://www.bkstr.com/uwtacomastore/shop/textbooks-and-course-materials"
-        >bookstore website</a>.
-        We are working to update UWT bookstore information to display correct textbooks.
-      </div>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
         <hr class="bg-secondary">
@@ -20,6 +9,7 @@
           :key="i"
           :section="section"
           :collapsable="bookData.collapseSections"
+          instructor
         />
         <hr v-if="bookData.collapseSections" class="bg-secondary">
         <div v-if="bookData.enrolledSections.length > 0">
@@ -35,14 +25,9 @@
         :key="i"
         :section="section"
         :collapsable="bookData.collapseSections"
-      >
-        <template #no-books>
-          No textbook requirement has been received for this course.
-          Please check with your instructor.
-        </template>
-      </uw-section>
+      />
 
-      <div class="my-4 text-center">
+      <div v-if="useBookstore" class="my-4 text-center">
         <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
@@ -102,9 +87,6 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      tacoma: (state) => state.user.affiliations.tacoma,
-    }),
     ...mapState('stud_schedule', {
       studSchedule(state) {
         return state.value[this.term];
@@ -159,6 +141,17 @@ export default {
       }
       return 'http://www.ubookstore.com/adoption-search';
     },
+    useBookstore() {
+      // MUWM-5311
+      let ret = false;
+      this.bookData.sections.forEach((section) => {
+        if (section.hasBooks) {
+          ret = true;
+          return;
+        }
+      });
+      return ret;
+    }
   },
   created() {
     this.fetchStudSchedule(this.term);
