@@ -47,7 +47,7 @@ MYUW_ENABLED_FEATURES = []
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
 # uw_oidc settings
-if os.getenv("ENV", "") == "qa":
+if os.getenv("ENV", "") == "dev":
     UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
     UW_TOKEN_SESSION_AGE = 600
 else:
