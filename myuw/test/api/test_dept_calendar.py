@@ -39,8 +39,8 @@ class TestDeptCalAPI(MyuwApiTest):
             '21160%26view%3Devent'
         )
         self.assertTrue(event_two['is_all_day'])
-        self.assertEqual(event_two['start'], '2013-04-18T00:00:00-07:53')
-        self.assertEqual(event_two['end'], '2013-04-18T00:00:00-07:53')
+        self.assertEqual(event_two['start'], '2013-04-18T00:00:00-07:00')
+        self.assertEqual(event_two['end'], '2013-04-18T00:00:00-07:00')
 
     def test_javerage_cal_feb15(self):
         '''Test javerage's deptcal on date with no events'''
