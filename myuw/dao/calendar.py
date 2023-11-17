@@ -2,14 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import re
-import pytz
 from datetime import timedelta, datetime, time
 from urllib.parse import quote_plus, urlencode
-from django.utils import timezone
+from uw_sws import SWS_TIMEZONE
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
-from myuw.util.settings import get_calendar_time_zone
-from myuw.dao.term import get_comparison_date
+from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao.calendar_mapping import get_calendars_for_current_user
 
 
@@ -20,9 +18,7 @@ FUTURE_CUTOFF_DAYS = 30
 
 
 def api_request(request):
-    current_date = get_comparison_date(request)
-    current_date = datetime.combine(current_date, timezone.now().time())
-    current_date = pytz.utc.localize(current_date)
+    current_date = get_comparison_datetime_with_tz(request)
     calendar_ids = get_calendars_for_current_user(request)
     return get_events(calendar_ids, current_date)
 
@@ -199,6 +195,5 @@ def parse_event_location(event):
 def _get_date(date):
     if hasattr(date, 'hour'):
         return date
-    midnight = time(hour=0, minute=0,
-                    tzinfo=pytz.timezone(get_calendar_time_zone()))
-    return datetime.combine(date, midnight)
+    datetime_naive = datetime.combine(date, time(hour=0, minute=0))
+    return SWS_TIMEZONE.localize(datetime_naive)  # MUWM-5318

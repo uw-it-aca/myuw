@@ -2,7 +2,7 @@
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="(event, i) in events" :key="i" class="mb-2">
       <strong>
-        {{ acalDateFormat(event.start_date, event.end_date) }}
+        {{ formatDateRange(event.start_date, event.end_date) }}
       </strong>
       <a
         v-out="'View event details'"
@@ -48,19 +48,12 @@ export default {
     };
   },
   methods: {
-    acalDateFormat(d1, d2) {
-      let formattedDate = d1.format('MMMM D');
-      if (d1.format('D') !== d2.format('D')) {
-        formattedDate += d2.format(' - D');
-      }
-      return formattedDate;
-    },
     generateLabel(event) {
       let label = '';
 
       if (event.start_date && event.end_date) {
         label += `${
-          this.acalDateFormat(event.start_date, event.end_date)
+          this.formatDateRange(event.start_date, event.end_date)
         }. ${event.start_date.format('h:mm A')}. `;
       }
 
