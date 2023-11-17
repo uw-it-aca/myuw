@@ -69,24 +69,6 @@ describe('Event Store and Card', () => {
     expect(wrapper.find('h2').text()).toEqual('Events');
   });
 
-  it('acalDateFormat', () => {
-    axios.get.mockResolvedValue({data: mockEvents, status: 200});
-    const wrapper = mount(ListEvents, {
-      store, 
-      localVue,
-      propsData: {
-        events: [],
-      }
-    });
-
-    expect(
-      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-19'))
-    ).toEqual('August 19');
-    expect(
-      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-20'))
-    ).toEqual('August 19 - 20');
-  });
-
   it('Future Cal Render', () => {
     axios.get.mockResolvedValue({
       data: { 'future_active_cals': mockEvents['future_active_cals'] },

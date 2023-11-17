@@ -119,4 +119,53 @@ CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107241160
 END:VEVENT
 
+BEGIN:VEVENT
+SUMMARY:Thanksgiving Day
+DTSTART;VALUE=DATE:20131128
+DTEND;VALUE=DATE:20131129
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/1314cal.html#Q3
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:Sin
+ gle day event
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event Types";ID=30073;TYPE=CustomAsset:Academ
+ ics
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=Custom
+ Asset:Holidays
+DTSTAMP:20130110T124546Z
+DESCRIPTION:Event interval: Single day event<br>Year: 2013<br>Quarter: A
+ utumn<br>Event Types: Academics<br>Link: https://www.washington.edu/stud
+ ents/reg/2324cal.html#Q3<br><br>No classes. Most University offices and 
+ buildings are closed. Check with specific offices to confirm.
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/164159383
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Native American Heritage Day
+DTSTART;VALUE=DATE:20131129
+DTEND;VALUE=DATE:20131130
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/1314cal.html#Q3
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:Sin
+ gle day event
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event Types";ID=30073;TYPE=CustomAsset:Academ
+ ics
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=Custom
+ Asset:Holidays
+DTSTAMP:20130110T124509Z
+DESCRIPTION:Event interval: Single day event<br>Year: 2013<br>Quarter: A
+ utumn<br>Event Types: Academics<br>Link: https://www.washington.edu/stud
+ ents/reg/2324cal.html#Q3<br><br>No classes. Most University offices and 
+ buildings are closed. Check with specific offices to confirm.
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/164159384
+END:VEVENT
 END:VCALENDAR
