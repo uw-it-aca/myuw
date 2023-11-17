@@ -74,6 +74,7 @@ class TestCalendar(TestCase):
                          "Department of Five Events")
 
     def test_pst_pdt(self):
+        # MUWM-5318
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertFalse(event_response['events'][0]['is_all_day'])
@@ -96,4 +97,3 @@ class TestCalendar(TestCase):
         self.assertTrue(event_response['events'][3]['is_all_day'])
         self.assertFalse(event_response['events'][2]['is_all_day'])
         self.assertIn('2013-04-18', event_response['events'][3]['end'])
-

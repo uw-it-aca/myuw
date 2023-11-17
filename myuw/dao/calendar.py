@@ -196,4 +196,4 @@ def _get_date(date):
     if hasattr(date, 'hour'):
         return date
     datetime_naive = datetime.combine(date, time(hour=0, minute=0))
-    return SWS_TIMEZONE.localize(datetime_naive)
+    return SWS_TIMEZONE.localize(datetime_naive)  # MUWM-5318
