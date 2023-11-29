@@ -1,0 +1,52 @@
+[
+  {
+    "Year": 2013,
+    "Quarter": "spring",
+    "IACourses": [
+      {
+        "SLN": 13833,
+        "BookstoreCourseID": 1000111,
+        "DigitalItems": [
+          {
+            "ISBN": "9781256396362",
+            "ItemInternalID": 500555,
+            "OptsOutStatus": false,
+            "Paid": true,
+            "Price": 99.00
+          }
+        ]
+      },
+      {
+        "SLN": 18532,
+        "BookstoreCourseID": 1000133,
+        "DigitalItems": [
+          {
+            "ISBN": "9780878935970",
+            "ItemInternalID": 3000366,
+            "OptsOutStatus": true,
+            "Paid": false,
+            "Price": 96.59
+          }
+        ]
+      },
+      {
+        "SLN": 13830,
+        "BookstoreCourseID": 1000157,
+        "DigitalItems": [
+          {
+            "ISBN": "9781256396362",
+            "ItemInternalID": 2000268,
+            "OptsOutStatus": false,
+            "Paid": false,
+            "Price": 24.26
+          }
+        ]
+      }
+    ],
+    "BalanceToPay": 219.85,
+    "PaymentDeadline": "2013-04-19",
+    "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=500555,3000366,2000268",
+    "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=500555,1;3000366,1;2000268,1;",
+    "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
+  }
+]
