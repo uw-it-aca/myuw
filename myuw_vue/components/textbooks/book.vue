@@ -94,7 +94,7 @@ export default {
   computed: {
     ...mapState('iac', {
       iacData(state) {
-        return state.value[this.term];
+        return state.value;
       },
     }),
     ...mapGetters('iac', {
@@ -125,7 +125,7 @@ export default {
       return false;
     },
     isIacReady() {
-      return this.isReady(this.term) && this.iacData;
+      return this.isReady(this.term) && Boolean(this.iacData);
     },
     formattedCoverImageUrl() {
       if (this.book.cover_image_url) {
