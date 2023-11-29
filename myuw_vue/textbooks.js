@@ -9,10 +9,12 @@ import Textbooks from './components/textbooks/textbooks.vue';
 import instSchedule from './vuex/store/schedule/instructor';
 import studSchedule from './vuex/store/schedule/student';
 import textbooks from './vuex/store/textbooks';
+import iac from './vuex/store/iacourse-digital-material';
 
 vueConf.store.registerModule('inst_schedule', instSchedule);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('textbooks', textbooks);
+vueConf.store.registerModule('iac', iac);
 
 vueConf.store.commit('addVarToState', {
   name: 'page',

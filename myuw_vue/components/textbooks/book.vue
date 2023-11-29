@@ -24,6 +24,14 @@
       </div>
       <div class="flex-fill myuw-text-md">
         <dl>
+          <dt v-if="isIacReady">
+            DIGITAL MATERIAL
+          </dt>
+          <dd v-if="isIacReady">
+            <span v-if="digitalItemPaid">Paid</span>
+            <span v-else-if="digitalItemOptedOut">Opted out</span>
+            <span v-else>Payment due</span>
+          </dd>
           <dt>
             {{ book.authors > 1 ? "Authors" : "Author" }}
           </dt>
@@ -67,14 +75,58 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex';
 export default {
   props: {
     book: {
       type: Object,
       required: true,
     },
+    sln: {
+      type: Number,
+      required: true,
+    },
+    term: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
+    ...mapState('iac', {
+      iacData(state) {
+        return state.value[this.term];
+      },
+    }),
+    ...mapGetters('iac', {
+      isReady: 'isReadyTagged',
+      isErrored: 'isErroredTagged',
+      statusCode: 'statusCodeTagged',
+    }),
+    digitalItem() {
+      const iacs = this.iacData.ia_course;
+      if (iacs && this.sln in iacs) {
+        const dItems = iacs[this.sln].digital_items;
+        if (this.book.isbn in dItems) {
+          return dItems[this.book.isbn];
+        }
+      }
+      return null;
+    },
+    digitalItemOptedOut() {
+      if (this.digitalItem) {
+        return this.digitalItem.opt_out_status;
+      }
+      return false;
+    },
+    digitalItemPaid() {
+      if (this.digitalItem) {
+        return this.digitalItem.paid;
+      }
+      return false;
+    },
+    isIacReady() {
+      return this.isReady(this.term) && this.iacData;
+    },
     formattedCoverImageUrl() {
       if (this.book.cover_image_url) {
         return `${window.location.protocol}//${this.book.cover_image_url}`;

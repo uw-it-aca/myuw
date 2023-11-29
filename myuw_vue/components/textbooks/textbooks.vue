@@ -1,6 +1,12 @@
 <template>
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
+      <div
+        v-if="student && !tacoma"
+        class="alert myuw-text-md" role="alert"
+      >
+        UW Day One Access Program
+      </div>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
         <hr class="bg-secondary">
@@ -24,6 +30,7 @@
         v-for="(section, i) in bookData.enrolledSections"
         :key="i"
         :section="section"
+        :term="term"
         :collapsable="bookData.collapseSections"
       />
 
@@ -87,6 +94,10 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      student: (state) => state.user.affiliations.student,
+      tacoma: (state) => state.user.affiliations.tacoma,
+    }),
     ...mapState('stud_schedule', {
       studSchedule(state) {
         return state.value[this.term];
@@ -157,6 +168,7 @@ export default {
     this.fetchStudSchedule(this.term);
     this.fetchInstSchedule(this.term);
     this.fetchTextbooks(this.term);
+    this.fetchIac(this.term);
   },
   methods: {
     ...mapActions('stud_schedule', {
@@ -167,6 +179,9 @@ export default {
     }),
     ...mapActions('textbooks', {
       fetchTextbooks: 'fetch',
+    }),
+    ...mapActions('iac', {
+      fetchIac: 'fetch',
     }),
   },
 };

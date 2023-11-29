@@ -8,13 +8,13 @@ from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_specific_term, get_current_quarter
 from myuw.dao.textbook import (
-    get_textbook_by_schedule, get_order_url_by_schedule)
+    get_textbook_by_schedule, get_order_url_by_schedule,
+    get_iacourse_status)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_api_call, log_msg, log_data_not_found_response)
+from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, data_not_found
+from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
 
@@ -104,3 +104,45 @@ class TextbookCur(Textbook):
                 timer, request, get_current_quarter(request), None)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+class IACDigitalItems(ProtectedAPI):
+    def get(self, request, *args, **kwargs):
+        """
+        myuw_iacourse_digital_material_api
+        GET returns 200 with textbooks for the given quarter
+        """
+        timer = Timer()
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        try:
+            ret_obj = get_iacourse_status(
+                request, get_specific_term(year, quarter))
+            if ret_obj:
+                return self.json_response(ret_obj.json_data())
+            return {}
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+        finally:
+            log_api_call(
+                timer, request, "IACourse_Status {}.{}".format(
+                    year, quarter))
+
+
+class CurIACDigitalItems(ProtectedAPI):
+    def get(self, request, *args, **kwargs):
+        """
+        myuw_iacourse_digital_material
+        GET returns 200 with textbooks for the given quarter
+        """
+        timer = Timer()
+        try:
+            ret_obj = get_iacourse_status(
+                request, get_current_quarter(request))
+            if ret_obj:
+                return self.json_response(ret_obj.json_data())
+            return {}
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+        finally:
+            log_api_call(timer, request, "CurIACDigitalItems")

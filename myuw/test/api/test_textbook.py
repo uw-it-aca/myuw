@@ -53,3 +53,15 @@ class TestApiBooks(MyuwApiTest):
                     'quarter': 'spring',
                     'summer_term': ''})
         self.assertEquals(response.status_code, 200)
+
+    @require_url('myuw_home')
+    def test_javerage_digital_material(self):
+        self.set_user('javerage')
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'spring'})
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["quarter"], "spring")
+        self.assertEquals(data["year"], 2013)

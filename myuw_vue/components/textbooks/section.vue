@@ -28,6 +28,8 @@
         v-for="book in section.books"
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
+        :sln="section.sln"
+        :term="term"
       />
     </uw-collapse>
     <uw-collapse
@@ -74,6 +76,10 @@ export default {
   props: {
     section: {
       type: Object,
+      required: true,
+    },
+    term: {
+      type: String,
       required: true,
     },
     collapsable: {

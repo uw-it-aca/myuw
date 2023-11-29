@@ -22,6 +22,7 @@ import profile from './vuex/store/profile';
 import upass from './vuex/store/upass';
 import tuition from './vuex/store/tuition';
 import notices from './vuex/store/notices';
+import iac from './vuex/store/iacourse-digital-material';
 
 vueConf.store.registerModule('hfs', hfs);
 vueConf.store.registerModule('library', library);
@@ -29,6 +30,7 @@ vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('upass', upass);
 vueConf.store.registerModule('tuition', tuition);
 vueConf.store.registerModule('notices', notices);
+vueConf.store.registerModule('iac', iac);
 
 vueConf.store.commit('addVarToState', {
   name: 'page',

@@ -36,13 +36,13 @@ from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect)
-from myuw.views.api.instructor_section_display import \
-    CloseMinicard, PinMinicard
+from myuw.views.api.instructor_section_display import (
+    CloseMinicard, PinMinicard)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
-from myuw.views.api.prev_unfinished_schedule import \
-    StudUnfinishedPrevQuarClasSche
+from myuw.views.api.prev_unfinished_schedule import (
+    StudUnfinishedPrevQuarClasSche)
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
@@ -50,7 +50,8 @@ from myuw.views.api.emaillist import Emaillist
 from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
 from myuw.views.api.other_quarters import RegisteredFutureQuarters
-from myuw.views.api.textbook import Textbook, TextbookCur
+from myuw.views.api.textbook import (
+  Textbook, TextbookCur, CurIACDigitalItems, IACDigitalItems)
 from myuw.views.api.notices import Notices
 from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
@@ -62,8 +63,8 @@ from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
-from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
-    HxToolkitMessageList
+from myuw.views.api.hx_toolkit import (
+  HxToolkitMessage, HxToolkitWeekMessage, HxToolkitMessageList)
 from myuw.views.api.resources import (ResourcesList,
                                       ResourcesPin,
                                       PinnedResources)
@@ -146,6 +147,12 @@ urlpatterns += [
             r'(?P<summer_term>[-,fulabterm]*)$',
             Textbook.as_view(),
             name="myuw_book_api"),
+    re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)$',
+            IACDigitalItems.as_view(),
+            name="myuw_iacourse_digital_material_api"),
+    re_path(r'^api/v1/iacourse/current/?$',
+            CurIACDigitalItems.as_view(),
+            name="myuw_iacourse_digital_material"),
     re_path(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
             CategoryLinks.as_view(),
             name="myuw_links_api"),
