@@ -24,10 +24,10 @@
       </div>
       <div class="flex-fill myuw-text-md">
         <dl>
-          <dt v-if="isIacReady">
+          <dt v-if="digitalItem">
             DIGITAL MATERIAL
           </dt>
-          <dd v-if="isIacReady">
+          <dd v-if="digitalItem">
             <span v-if="digitalItemPaid">Paid</span>
             <span v-else-if="digitalItemOptedOut">Opted out</span>
             <span v-else>Payment due</span>
@@ -92,6 +92,7 @@ export default {
     },
   },
   computed: {
+    // MUWM-5272
     ...mapState('iac', {
       iacData(state) {
         return state.value;
@@ -103,11 +104,13 @@ export default {
       statusCode: 'statusCodeTagged',
     }),
     digitalItem() {
-      const iacs = this.iacData.ia_course;
-      if (iacs && this.sln in iacs) {
-        const dItems = iacs[this.sln].digital_items;
-        if (this.book.isbn in dItems) {
-          return dItems[this.book.isbn];
+      if (this.isIacReady) {
+        const iacs = this.iacData.ia_courses;
+        if (iacs && this.sln in iacs) {
+          const dItems = iacs[this.sln].digital_items;
+          if (this.book.isbn in dItems) {
+            return dItems[this.book.isbn];
+          }
         }
       }
       return null;
@@ -125,7 +128,7 @@ export default {
       return false;
     },
     isIacReady() {
-      return this.isReady(this.term) && Boolean(this.iacData);
+      return this.isReady && Boolean(this.iacData);
     },
     formattedCoverImageUrl() {
       if (this.book.cover_image_url) {
