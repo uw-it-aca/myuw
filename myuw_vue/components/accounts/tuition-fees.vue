@@ -130,6 +130,45 @@
             </template>
           </uw-card-status>
         </li>
+
+        <li v-if="hasIacData">
+          <h3>UW Day One Access Fees</h3>
+          <div>
+            One of ...
+          </div>
+          <uw-card-status>
+            <template #status-label>Amount Due</template>
+            <template v-if="iacData.balance > 0" #status-value>
+              <span class="text-danger">${{ iacData.balance.toFixed(2) }}</span>
+            </template>
+            <template v-else #status-value>$ 0</template>
+
+            <template #status-content>
+              <div class="d-flex mb-2 myuw-text-md">
+                <div class="flex-fill w-50">UW Bookstore</div>
+                <div class="flex-fill w-50 text-end">
+                  <uw-link-button href="iacData.bookstore_checkout_url">
+                    View Fees &amp; make payment
+                  </uw-link-button>
+                </div>
+              </div>
+            </template>
+          </uw-card-status>
+        </li>
+
+        <li v-if="hasIacData && Boolean(iacData.payment_due_day)">
+          <uw-card-status>
+            <template #status-label>Payment Due</template>
+            <template #status-value>
+              <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>
+            </template>
+            <template #status-content>
+              <div class="myuw-text-md text-body text-end">
+                {{ dayOneAccessDueDateFromNow }}
+              </div>
+            </template>
+          </uw-card-status>
+        </li>
       </ul>
 
       <div class="myuw-text-md">
@@ -239,6 +278,9 @@ export default {
           notice.location_tags.includes('tuition_due_date')
         )[0];
       },
+      iacData(state) {
+        return state.iac.value;
+      },
     }),
     ...mapGetters('tuition', {
       isReadyTuition: 'isReady',
@@ -249,6 +291,17 @@ export default {
       isReadyNotices: 'isReady',
       isErroredNotices: 'isErrored',
       statusCodeNotices: 'statusCode',
+    }),
+    ...mapGetters('textbooks', {
+      isTextbookReady: 'isReadyTagged',
+      isTextbookErrored: 'isErroredTagged',
+      statusCodeTextbooks: 'statusCodeTagged',
+      getProcessedData: 'getProcessedData',
+    }),
+    ...mapGetters('iac', {
+      isIacReady: 'isReadyTagged',
+      isIacErrored: 'isErroredTagged',
+      statusCodeIac: 'statusCodeTagged',
     }),
     showError() {
       return (
@@ -291,11 +344,18 @@ export default {
     pceBalance() {
       return this.tuition.pce_accbalance;
     },
+    hasIacData() {
+      return this.isIacReady && Boolean(this.iacData);
+    },
+    dayOneAccessDueDateFromNow() {
+      return this.toFromNowDate(this.iacData.payment_due_day);
+    },
   },
   created() {
     if (this.isStudent) {
       this.fetchNotices();
       this.fetchTuition();
+      this.fetchIACs("current");
     }
   },
   methods: {
@@ -304,6 +364,9 @@ export default {
     }),
     ...mapActions('tuition', {
       fetchTuition: 'fetch',
+    }),
+    ...mapActions('iac', {
+      fetchIACs: 'fetch',
     }),
   },
 };
