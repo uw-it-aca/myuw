@@ -48,5 +48,40 @@
     "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=500555,3000366,2000268",
     "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=500555,1;3000366,1;2000268,1;",
     "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
+  },
+  {
+    "Year": 2013,
+    "Quarter": "summer",
+    "IACourses": [
+      {
+        "SLN": 13833,
+        "BookstoreCourseID": 1000111,
+        "DigitalItems": [
+          {
+            "ISBN": "9781256396062",
+            "ItemInternalID": 500555,
+            "OptsOutStatus": false,
+            "Paid": true,
+            "Price": 99.00
+          }
+        ]
+      }
+    ],
+    "BalanceToPay": 99.00,
+    "PaymentDeadline": "2013-07-12",
+    "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=500555",
+    "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=500555,1;",
+    "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
+  },
+  {
+    "Year": 2013,
+    "Quarter": "autumn",
+    "IACourses": [
+    ],
+    "BalanceToPay": 0,
+    "PaymentDeadline": "2013-10-11",
+    "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=",
+    "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=",
+    "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
   }
 ]

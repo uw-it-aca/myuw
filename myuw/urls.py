@@ -147,7 +147,8 @@ urlpatterns += [
             r'(?P<summer_term>[-,fulabterm]*)$',
             Textbook.as_view(),
             name="myuw_book_api"),
-    re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)$',
+    re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
+            r'(?P<summer_term>[-,fulabterm]*)$',
             IACDigitalItems.as_view(),
             name="myuw_iacourse_digital_material_api"),
     re_path(r'^api/v1/iacourse/current/?$',

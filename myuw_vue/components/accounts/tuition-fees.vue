@@ -144,10 +144,12 @@
             <template v-else #status-value>$ 0</template>
 
             <template #status-content>
-              <div class="d-flex mb-2 myuw-text-md">
+              <div v-if="iacData.balance > 0" class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">UW Bookstore</div>
                 <div class="flex-fill w-50 text-end">
-                  <uw-link-button href="iacData.bookstore_checkout_url">
+                  <uw-link-button
+                    v-out="'Make bookstore payment'"
+                    :href="iacData.bookstore_checkout_url">
                     View Fees &amp; make payment
                   </uw-link-button>
                 </div>
@@ -156,7 +158,7 @@
           </uw-card-status>
         </li>
 
-        <li v-if="hasIacData && Boolean(iacData.payment_due_day)">
+        <li v-if="hasIacData && iacData.balance > 0 && Boolean(iacData.payment_due_day)">
           <uw-card-status>
             <template #status-label>Payment Due</template>
             <template #status-value>
