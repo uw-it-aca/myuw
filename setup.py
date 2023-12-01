@@ -34,7 +34,7 @@ setup(
         'UW-Django-SAML2~=1.7',
         'aws-message-client~=1.5',
         'UW-RestClients-Core~=1.4',
-        'UW-RestClients-Bookstore==1.2.1.1a0',
+        'UW-RestClients-Bookstore~=1.3',
         'UW-RestClients-Canvas~=1.2',
         'UW-RestClients-CoDa~=1.0',
         'UW-RestClients-Grad~=1.1',
