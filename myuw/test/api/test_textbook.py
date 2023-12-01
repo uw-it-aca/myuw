@@ -58,6 +58,14 @@ class TestApiBooks(MyuwApiTest):
     def test_javerage_digital_material(self):
         self.set_user('javerage')
         response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["quarter"], "spring")
+        self.assertEquals(data["year"], 2013)
+        self.assertEquals(data["balance"], 219.85)
+
+        response = self.get_response_by_reverse(
             'myuw_iacourse_digital_material_api',
             kwargs={'year': 2013,
                     'quarter': 'spring'})
@@ -65,3 +73,14 @@ class TestApiBooks(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(data["quarter"], "spring")
         self.assertEquals(data["year"], 2013)
+        self.assertEquals(data["balance"], 219.85)
+
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'autumn'})
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["quarter"], "autumn")
+        self.assertEquals(data["year"], 2013)
+        self.assertEquals(data["balance"], 0)
