@@ -86,10 +86,6 @@ export default {
       type: Number,
       required: true,
     },
-    term: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
     // MUWM-5272

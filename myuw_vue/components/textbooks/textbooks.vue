@@ -30,7 +30,6 @@
         v-for="(section, i) in bookData.enrolledSections"
         :key="i"
         :section="section"
-        :term="term"
         :collapsable="bookData.collapseSections"
       />
 

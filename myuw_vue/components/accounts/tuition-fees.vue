@@ -143,16 +143,24 @@
             </template>
             <template v-else #status-value>$ 0</template>
 
-            <template #status-content>
-              <div v-if="iacData.balance > 0" class="d-flex mb-2 myuw-text-md">
+            <template v-if="iacData.balance > 0" #status-content>
+              <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">UW Bookstore</div>
                 <div class="flex-fill w-50 text-end">
-                  <uw-link-button
-                    v-out="'Make bookstore payment'"
-                    :href="iacData.bookstore_checkout_url">
-                    View Fees &amp; make payment
-                  </uw-link-button>
+                  <a
+                    :href="iacData.bookstore_digital_material_url"
+                  >
+                    View Digital Material Fees
+                  </a>
                 </div>
+              </div>
+              <div class="text-end">
+                <uw-link-button
+                  v-out="'Make bookstore payment'"
+                  :href="iacData.bookstore_checkout_url"
+                >
+                  Make payment
+                </uw-link-button>
               </div>
             </template>
           </uw-card-status>
