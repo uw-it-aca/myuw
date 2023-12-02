@@ -120,6 +120,9 @@ describe('Tuition store', () => {
 
   it('Evaluate the computed properties of jpce', async () => {
     axios.get.mockImplementation((url) => {
+      if (url === '/api/v1/iacourse/current') {
+        return Promise.reject({ response: { status: 404 } });
+      }
       const urlData = {
         '/api/v1/notices/': gc2Notices,
         '/api/v1/finance/': gc2Tuition,
