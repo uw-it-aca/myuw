@@ -42,7 +42,7 @@
                 <div class="flex-fill w-50 text-end">
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
                     Tuition Statement
-                    </a>
+                  </a>
                 </div>
               </div>
               <div v-if="tuiBalance != 0" class="text-end">
@@ -60,17 +60,15 @@
         <li v-else-if="tuiBalance < 0">
           <uw-card-status>
             <template #status-label>Account Credit</template>
-            <template #status-value>
-              +${{ Math.abs(tuiBalance).toFixed(2) }} CR
-            </template>
+            <template #status-value> +${{ Math.abs(tuiBalance).toFixed(2) }} CR </template>
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">Student Fiscal Services</div>
                 <div class="flex-fill w-50 text-end">
-                  No payment needed<br>
+                  No payment needed<br />
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
                     Tuition Statement
-                    </a>
+                  </a>
                 </div>
               </div>
             </template>
@@ -107,10 +105,12 @@
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">PCE-Continuum College</div>
                 <div class="flex-fill w-50 text-end">
-                  <a v-out="'Continuum College Account Statement'"
+                  <a
+                    v-out="'Continuum College Account Statement'"
                     href="http://portal.continuum.uw.edu"
                     class="myuw-text-md"
-                  >Account Statement</a>
+                    >Account Statement</a
+                  >
                 </div>
               </div>
             </template>
@@ -134,11 +134,18 @@
         <li v-if="hasIacData">
           <h3 class="h6 text-dark-beige myuw-font-encode-sans">UW Day One Access Fees</h3>
           <div class="alert alert-warning myuw-text-md" role="alert">
-            <p>One or more of your enrolled courses provides you access to <a href="/textbooks">required
-              digital materials</a>, in Canvas, on or before the first day of class.</p>
-            <p class="mb-0"><strong>To maintain access to these materials at Day One Access pricing, you must pay for these materials</strong>.
-<!--              by <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date> -->
-            <a href="">About the Day One Access Program.</a>
+            <p>
+              One or more of your enrolled courses provides you access to
+              <a href="/textbooks">required digital materials</a>, in Canvas, on or before the first
+              day of class.
+            </p>
+            <p class="mb-0">
+              <strong
+                >To maintain access to these materials at Day One Access pricing, you must pay for
+                these materials</strong
+              >.
+              <!--              by <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date> -->
+              <a href="">About the Day One Access Program.</a>
             </p>
           </div>
           <uw-card-status>
@@ -152,11 +159,7 @@
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">UW Bookstore</div>
                 <div class="flex-fill w-50 text-end">
-                  <a
-                    :href="iacData.bookstore_digital_material_url"
-                  >
-                    View Digital Material Fees
-                  </a>
+                  <a :href="iacData.bookstore_digital_material_url"> View Digital Material Fees </a>
                 </div>
               </div>
               <div class="text-end">
@@ -188,9 +191,10 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a v-out="'Give Tuition Account Access'"
+          <a
+            v-out="'Give Tuition Account Access'"
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
-          >Give access to your tuition account and financial aid information
+            >Give access to your tuition account and financial aid information
           </a>
           to parents or other third parties.
         </p>
@@ -206,7 +210,8 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 class="myuw-text-md"
-              >Financial Aid Status</a>
+                >Financial Aid Status</a
+              >
             </li>
           </ul>
         </template>
@@ -217,14 +222,18 @@
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <span v-if="!isPCE">
-        <a v-out="'Tuition Statement'"
+        <a
+          v-out="'Tuition Statement'"
           href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-        >Tuition Statement</a> page.
+          >Tuition Statement</a
+        >
+        page.
       </span>
       <span v-else>
-        <a v-out="'Continuum College Tuition portal'"
-          href="https://portal.continuum.uw.edu"
-        >PCE Tuition</a> portal.
+        <a v-out="'Continuum College Tuition portal'" href="https://portal.continuum.uw.edu"
+          >PCE Tuition</a
+        >
+        portal.
       </span>
     </template>
     <template #card-error-extra>
@@ -234,9 +243,7 @@
 </template>
 
 <script>
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapActions, mapState } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
@@ -320,13 +327,11 @@ export default {
     }),
     showError() {
       return (
-        this.isErroredNotices &&
-        this.statusCodeNotices != 404 ||
-        this.isErroredTuition &&
-        this.statusCodeTuition != 404
+        (this.isErroredNotices && this.statusCodeNotices != 404) ||
+        (this.isErroredTuition && this.statusCodeTuition != 404)
       );
     },
-    finAidNotices () {
+    finAidNotices() {
       const notices = [];
       for (let i = 0; i < this.finAidTags.length; i++) {
         const notice = this.notices.filter((notice) => {
@@ -339,7 +344,7 @@ export default {
       return notices;
     },
     hasTuitionDate() {
-        return Boolean(this.tuitionDueNotice) && Boolean(this.tuitionDueNotice.dateStr);
+      return Boolean(this.tuitionDueNotice) && Boolean(this.tuitionDueNotice.dateStr);
     },
     tuitionDate() {
       // To change due date on localdev, uncomment the line below:
@@ -370,7 +375,7 @@ export default {
     if (this.isStudent) {
       this.fetchNotices();
       this.fetchTuition();
-      this.fetchIACs("current");
+      this.fetchIACs('current');
     }
   },
   methods: {
@@ -387,5 +392,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

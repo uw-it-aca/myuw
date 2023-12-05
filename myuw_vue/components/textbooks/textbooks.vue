@@ -1,34 +1,44 @@
 <template>
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
-      <div
-        v-if="student && !tacoma"
-        class="alert alert-warning myuw-text-md mb-5" role="alert"
-      >
-      <div>
-        <h2 class="myuw-text-lg">UW Day One Access Program</h2>
-        <p>At least one of your enrolled courses provides you access to required digital materials in Canvas,
-           on or before the first day of class.<br>
-          <strong>To maintain access to required digital materials, you must
-            <a
-              :href="iacData.bookstore_checkout_url"
-              v-out="'Make bookstore payment'"
+      <div v-if="student && !tacoma" class="alert alert-warning myuw-text-md mb-5" role="alert">
+        <div>
+          <h2 class="myuw-text-lg">UW Day One Access Program</h2>
+          <p>
+            At least one of your enrolled courses provides you access to required digital materials
+            in Canvas, on or before the first day of class.<br />
+            <strong
+              >To maintain access to required digital materials, you must
+              <a :href="iacData.bookstore_checkout_url" v-out="'Make bookstore payment'">
+                pay for these materials</a
               >
-              pay for these materials</a>
-            by <span class="d-inline-block"><uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date></span>.
-          </strong>
-          <a href="">About the Day One Access Program.</a>
-        </p>
-        <ul>
-          <li><strong>Opting out:</strong> You can choose to opt-out of any item until the deadline. Opt out on your course Canvas <em>Digital Materials</em> page.</li>
-          <li><strong>Payment status:</strong> This page indicates your payment and opt in/out status for each digital material. Note: opt in/out changes may take 24 hours to be reflected here.</li>
-          <li><strong>Purchasing after the payment deadline:</strong> If you have opted-out but want to purchase the course materials, please contact dayoneaccess@ubookstore.com.</li>
-        </ul>
-      </div>
+              by
+              <span class="d-inline-block"
+                ><uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date></span
+              >.
+            </strong>
+            <a href="">About the Day One Access Program.</a>
+          </p>
+          <ul>
+            <li>
+              <strong>Opting out:</strong> You can choose to opt-out of any item until the deadline.
+              Opt out on your course Canvas <em>Digital Materials</em> page.
+            </li>
+            <li>
+              <strong>Payment status:</strong> This page indicates your payment and opt in/out
+              status for each digital material. Note: opt in/out changes may take 24 hours to be
+              reflected here.
+            </li>
+            <li>
+              <strong>Purchasing after the payment deadline:</strong> If you have opted-out but want
+              to purchase the course materials, please contact dayoneaccess@ubookstore.com.
+            </li>
+          </ul>
+        </div>
       </div>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
-        <hr class="bg-secondary">
+        <hr class="bg-secondary" />
         <uw-section
           v-for="(section, i) in bookData.teachingSections"
           :key="i"
@@ -36,12 +46,10 @@
           :collapsable="bookData.collapseSections"
           instructor
         />
-        <hr v-if="bookData.collapseSections" class="bg-secondary">
+        <hr v-if="bookData.collapseSections" class="bg-secondary" />
         <div v-if="bookData.enrolledSections.length > 0">
-          <h2 class="h5">
-            Enrolled
-          </h2>
-          <hr class="bg-secondary">
+          <h2 class="h5">Enrolled</h2>
+          <hr class="bg-secondary" />
         </div>
       </div>
 
@@ -53,18 +61,13 @@
       />
 
       <div v-if="useBookstore" class="my-4 text-center">
-        <uw-link-button :href="orderUrl">
-          Start textbook shopping
-        </uw-link-button>
+        <uw-link-button :href="orderUrl"> Start textbook shopping </uw-link-button>
       </div>
 
       <div>
         <p class="text-muted myuw-text-md">
-          Information on course textbooks is collected by and provided
-          courtesy of
-          <a href="http://www.bookstore.washington.edu">
-            University Book Store
-          </a>
+          Information on course textbooks is collected by and provided courtesy of
+          <a href="http://www.bookstore.washington.edu"> University Book Store </a>
           and is subject to change regularly and without notice.
         </p>
       </div>
@@ -76,8 +79,7 @@
             <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
-            An error has occurred and we can't load this content right now.
-            Please try again later.
+            An error has occurred and we can't load this content right now. Please try again later.
           </div>
         </div>
       </div>
@@ -86,10 +88,8 @@
 </template>
 
 <script>
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Panel from '../_templates/panel.vue';
 import LinkButton from '../_templates/link-button.vue';
 import Section from './section.vue';
@@ -152,14 +152,8 @@ export default {
     isReady() {
       return (
         this.isTextbookReady(this.term) &&
-        (
-          this.isStudScheduleReady(this.term) ||
-          this.isStudScheduleErrored(this.term)
-        ) &&
-        (
-          this.isInstScheduleReady(this.term) ||
-          this.isInstScheduleErrored(this.term)
-        )
+        (this.isStudScheduleReady(this.term) || this.isStudScheduleErrored(this.term)) &&
+        (this.isInstScheduleReady(this.term) || this.isInstScheduleErrored(this.term))
       );
     },
     isErrored() {
@@ -187,7 +181,7 @@ export default {
         }
       });
       return ret;
-    }
+    },
   },
   created() {
     this.fetchStudSchedule(this.term);
