@@ -15,9 +15,9 @@
               v-out="'Make bookstore payment'"
               >
               pay for these materials</a>
-            by <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>.
+            by <span class="d-inline-block"><uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date></span>.
           </strong>
-          <a href="">Learn more about the Day One Access Program.</a>
+          <a href="">About the Day One Access Program.</a>
         </p>
         <ul>
           <li><strong>Opting out:</strong> You can choose to opt-out of any item until the deadline. Opt out on your course Canvas <em>Digital Materials</em> page.</li>
