@@ -3,9 +3,28 @@
     <template #panel-body>
       <div
         v-if="student && !tacoma"
-        class="alert myuw-text-md" role="alert"
+        class="alert alert-warning myuw-text-md mb-5" role="alert"
       >
-        UW Day One Access Program
+      <div>
+        <h2 class="myuw-text-lg">UW Day One Access Program</h2>
+        <p>At least one of your enrolled courses provides you access to required digital materials in Canvas,
+           on or before the first day of class.<br>
+          <strong>To maintain access to required digital materials, you must
+            <a
+              :href="iacData.bookstore_checkout_url"
+              v-out="'Make bookstore payment'"
+              >
+              pay for these materials</a>
+            by <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>.
+          </strong>
+          <a href="">Learn more about the Day One Access Program.</a>
+        </p>
+        <ul>
+          <li><strong>Opting out:</strong> You can choose to opt-out of any item until the deadline. Opt out on your course Canvas <em>Digital Materials</em> page.</li>
+          <li><strong>Payment status:</strong> This page indicates your payment and opt in/out status for each digital material. Note: opt in/out changes may take 24 hours to be reflected here.</li>
+          <li><strong>Purchasing after the payment deadline:</strong> If you have opted-out but want to purchase the course materials, please contact dayoneaccess@ubookstore.com.</li>
+        </ul>
+      </div>
       </div>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
@@ -74,12 +93,14 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
 import LinkButton from '../_templates/link-button.vue';
 import Section from './section.vue';
+import FormattedDate from '../_common/formatted-date.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
     'uw-section': Section,
     'uw-link-button': LinkButton,
+    'uw-formatted-date': FormattedDate,
   },
   props: {
     term: {
@@ -96,6 +117,11 @@ export default {
     ...mapState({
       student: (state) => state.user.affiliations.student,
       tacoma: (state) => state.user.affiliations.tacoma,
+    }),
+    ...mapState({
+      iacData(state) {
+        return state.iac.value;
+      },
     }),
     ...mapState('stud_schedule', {
       studSchedule(state) {
