@@ -4,11 +4,6 @@
 from django.conf import settings
 
 
-def get_calendar_time_zone():
-    return getattr(settings, 'TRUMBA_CALENDAR_TIMEZONE',
-                   'America/Los_Angeles')
-
-
 def get_mailman_courserequest_recipient():
     return getattr(settings, 'MAILMAN_COURSEREQUEST_RECIPIENT', None)
 
