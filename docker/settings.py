@@ -237,23 +237,3 @@ else:
             'STATS_FILE': '/static/webpack-stats.json',
         }
     }
-
-if os.getenv('DB', 'sqlite3') != 'sqlite3':
-    DATABASES = {
-        'mysql': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '172.18.0.19',
-            'PORT': '3306',
-            'NAME': os.getenv('DATABASE_DB_NAME', 'db'),
-            'USER': os.getenv('DATABASE_USERNAME', None),
-            'PASSWORD': os.getenv('DATABASE_PASSWORD', None),
-                },
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'HOST': '',
-            'PORT': '5432',
-            'NAME': os.getenv('DATABASE_DB_NAME', 'db'),
-            'USER': os.getenv('DATABASE_USERNAME', None),
-            'PASSWORD': os.getenv('DATABASE_PASSWORD', None),
-        }
-    }
