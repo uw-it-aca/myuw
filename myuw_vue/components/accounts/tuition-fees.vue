@@ -136,16 +136,17 @@
           <div class="alert alert-warning myuw-text-md" role="alert">
             <p>
               One or more of your enrolled courses provides you access to
-              <a href="/textbooks">required digital materials</a>, in Canvas, on or before the first
-              day of class.
+              <a href="/textbooks">required digital materials</a>, in Canvas, on or before the
+              first day of class.
             </p>
             <p class="mb-0">
-              <strong
-                >To maintain access to these materials at Day One Access pricing, you must pay for
-                these materials</strong
-              >.
-              <!--              by <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date> -->
-              <a href="">About the Day One Access Program.</a>
+              <strong>
+                To maintain access to these materials at Day One Access pricing, you must pay
+                for these materials
+              </strong>.
+              <a href="https://www.ubookstore.com/digital">
+                Learn about the Day One Access Program.
+              </a>
             </p>
           </div>
           <uw-card-status>

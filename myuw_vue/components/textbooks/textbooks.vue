@@ -5,33 +5,35 @@
         <div>
           <h2 class="myuw-text-lg">UW Day One Access Program</h2>
           <p>
-            At least one of your enrolled courses provides you access to required digital materials
-            in Canvas, on or before the first day of class.<br />
-            <strong
-              >To maintain access to required digital materials, you must
-              <a :href="iacData.bookstore_checkout_url" v-out="'Make bookstore payment'">
-                pay for these materials</a
-              >
+            At least one of your enrolled courses provides you access to required digital
+            materials in Canvas, on or before the first day of class.<br />
+            <strong>
+              To maintain access to required digital materials, you must
+              <a v-out="Make bookstore payment" :href="iacData.bookstore_checkout_url">
+                pay for these materials
+              </a>
               by
-              <span class="d-inline-block"
-                ><uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date></span
-              >.
+              <span class="d-inline-block">
+                <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>
+              </span>.
             </strong>
-            <a href="">About the Day One Access Program.</a>
+            <a href="">Learn about the Day One Access Program.</a>
           </p>
           <ul>
             <li>
-              <strong>Opting out:</strong> You can choose to opt-out of any item until the deadline.
+              <strong>Opting out:</strong>
+              You can choose to opt-out of any item until the deadline.
               Opt out on your course Canvas <em>Digital Materials</em> page.
             </li>
             <li>
-              <strong>Payment status:</strong> This page indicates your payment and opt in/out
-              status for each digital material. Note: opt in/out changes may take 24 hours to be
-              reflected here.
+              <strong>Payment status:</strong>
+              This page indicates your payment and opt in/out status for each digital material.
+              Note: opt in/out changes may take 24 hours to be reflected here.
             </li>
             <li>
-              <strong>Purchasing after the payment deadline:</strong> If you have opted-out but want
-              to purchase the course materials, please contact dayoneaccess@ubookstore.com.
+              <strong>Purchasing after the payment deadline:</strong>
+              If you have opted-out but want to purchase the course materials, please contact
+              <a href="mailto:dayoneaccess@ubookstore.com">dayoneaccess@ubookstore.com</a>.
             </li>
           </ul>
         </div>
