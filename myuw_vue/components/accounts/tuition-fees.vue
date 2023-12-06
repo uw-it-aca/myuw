@@ -40,18 +40,15 @@
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">Student Fiscal Services</div>
                 <div class="flex-fill w-50 text-end">
-                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
-                    Tuition Statement
-                  </a>
+                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                  >Tuition Statement</a>
                 </div>
               </div>
               <div v-if="tuiBalance != 0" class="text-end">
                 <uw-link-button
                   v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
-                >
-                  Make payment
-                </uw-link-button>
+                >Make payment</uw-link-button>
               </div>
             </template>
           </uw-card-status>
@@ -66,9 +63,8 @@
                 <div class="flex-fill w-50">Student Fiscal Services</div>
                 <div class="flex-fill w-50 text-end">
                   No payment needed<br />
-                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
-                    Tuition Statement
-                  </a>
+                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                  >Tuition Statement</a>
                 </div>
               </div>
             </template>
@@ -88,9 +84,7 @@
                   <uw-link-button
                     v-out="'Make Continuum College tuition payment'"
                     href="http://portal.continuum.uw.edu"
-                  >
-                    Make payment
-                  </uw-link-button>
+                  >Make payment</uw-link-button>
                 </div>
               </div>
             </template>
@@ -109,8 +103,7 @@
                     v-out="'Continuum College Account Statement'"
                     href="http://portal.continuum.uw.edu"
                     class="myuw-text-md"
-                    >Account Statement</a
-                  >
+                  >Account Statement</a>
                 </div>
               </div>
             </template>
@@ -136,17 +129,14 @@
           <div class="alert alert-warning myuw-text-md" role="alert">
             <p>
               One or more of your enrolled courses provides you access to
-              <a href="/textbooks">required digital materials</a>, in Canvas, on or before the
-              first day of class.
+              <a href="/textbooks">required digital materials</a>,
+              in Canvas, on or before the first day of class.
             </p>
             <p class="mb-0">
-              <strong>
-                To maintain access to these materials at Day One Access pricing, you must pay
-                for these materials
-              </strong>.
-              <a href="https://www.ubookstore.com/digital">
-                Learn about the Day One Access Program.
-              </a>
+              <strong>To maintain access to these materials at Day One Access pricing,
+              you must pay for these materials</strong>.
+              <a href="https://www.ubookstore.com/digital"
+              >Learn about the Day One Access Program</a>.
             </p>
           </div>
           <uw-card-status>
