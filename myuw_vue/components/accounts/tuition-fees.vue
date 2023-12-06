@@ -160,16 +160,14 @@
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">UW Bookstore</div>
                 <div class="flex-fill w-50 text-end">
-                  <a :href="iacData.bookstore_digital_material_url"> View Digital Material Fees </a>
+                  <a :href="iacData.bookstore_digital_material_url">View Digital Material Fees</a>
                 </div>
               </div>
               <div class="text-end">
                 <uw-link-button
                   v-out="'Make bookstore payment'"
                   :href="iacData.bookstore_checkout_url"
-                >
-                  Make payment
-                </uw-link-button>
+                >Make payment</uw-link-button>
               </div>
             </template>
           </uw-card-status>
@@ -179,7 +177,7 @@
           <uw-card-status>
             <template #status-label>Payment Due</template>
             <template #status-value>
-              <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>
+              <uw-formatted-date :due-date="iacData.payment_due_day" />
             </template>
             <template #status-content>
               <div class="myuw-text-md text-body text-end">
@@ -195,8 +193,7 @@
           <a
             v-out="'Give Tuition Account Access'"
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
-            >Give access to your tuition account and financial aid information
-          </a>
+          >Give access to your tuition account and financial aid information</a>
           to parents or other third parties.
         </p>
         <p v-for="(msg, i) in pceTuitionDup" :key="i">
@@ -211,8 +208,7 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 class="myuw-text-md"
-                >Financial Aid Status</a
-              >
+              >Financial Aid Status</a>
             </li>
           </ul>
         </template>
@@ -226,15 +222,11 @@
         <a
           v-out="'Tuition Statement'"
           href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-          >Tuition Statement</a
-        >
-        page.
+        >Tuition Statement</a> page.
       </span>
       <span v-else>
         <a v-out="'Continuum College Tuition portal'" href="https://portal.continuum.uw.edu"
-          >PCE Tuition</a
-        >
-        portal.
+        >PCE Tuition</a> portal.
       </span>
     </template>
     <template #card-error-extra>

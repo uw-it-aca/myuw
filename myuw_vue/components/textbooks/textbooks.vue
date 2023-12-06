@@ -9,12 +9,11 @@
             materials in Canvas, on or before the first day of class.<br />
             <strong>
               To maintain access to required digital materials, you must
-              <a v-out="Make bookstore payment" :href="iacData.bookstore_checkout_url">
-                pay for these materials
-              </a>
+              <a v-out="'Make bookstore payment'" :href="iacData.bookstore_checkout_url"
+              >pay for these materials</a>
               by
               <span class="d-inline-block">
-                <uw-formatted-date :due-date="iacData.payment_due_day"></uw-formatted-date>
+                <uw-formatted-date :due-date="iacData.payment_due_day" />
               </span>.
             </strong>
             <a href="">Learn about the Day One Access Program.</a>
