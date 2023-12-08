@@ -135,8 +135,8 @@
             <p class="mb-0">
               <strong>To maintain access to these materials at Day One Access pricing,
               you must pay for these materials</strong>.
-              <a href="https://www.ubookstore.com/digital"
-              >Learn about the Day One Access Program</a>.
+              <a href="https://www.ubookstore.com/day-one-access-faq"
+              >About the Day One Access Program</a>.
             </p>
           </div>
           <uw-card-status>
@@ -148,16 +148,13 @@
 
             <template v-if="iacData.balance > 0" #status-content>
               <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">UW Bookstore</div>
+                <div class="flex-fill w-50">University Book Store</div>
                 <div class="flex-fill w-50 text-end">
-                  <a :href="iacData.bookstore_digital_material_url">View Digital Material Fees</a>
+                  <uw-link-button
+                    v-out="'Make bookstore payment'"
+                    :href="iacData.bookstore_checkout_url"
+                  >Make payment</uw-link-button>
                 </div>
-              </div>
-              <div class="text-end">
-                <uw-link-button
-                  v-out="'Make bookstore payment'"
-                  :href="iacData.bookstore_checkout_url"
-                >Make payment</uw-link-button>
               </div>
             </template>
           </uw-card-status>
