@@ -20,10 +20,7 @@ INSTALLED_APPS += [
     'myuw.apps.MyUWConfig',
     'webpack_loader',
 ]
-if os.getenv("ENV", "") != "localdev":
-    INSTALLED_APPS += [
-        'django-extensions',
-    ]
+
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
 
 MIDDLEWARE += [
