@@ -109,6 +109,8 @@ class TextbookCur(Textbook):
 
 
 class IACDigitalItems(ProtectedAPI):
+    # MUWM-5272
+
     def get(self, request, *args, **kwargs):
         """
         myuw_iacourse_digital_material_api
@@ -132,6 +134,8 @@ class IACDigitalItems(ProtectedAPI):
 
 
 class IACDigitalItemsCur(ProtectedAPI):
+    # MUWM-5272
+
     def get(self, request, *args, **kwargs):
         """
         myuw_iacourse_digital_material
@@ -152,7 +156,8 @@ class IACDigitalItemsCur(ProtectedAPI):
 
 def get_payment_quarter(request):
     term = get_current_quarter(request)
+    term_after = get_term_after(term)
     comparison_date = get_comparison_date(request)
-    if comparison_date > term.first_day_quarter + timedelta(days=20):
-        return get_term_after(term)
+    if comparison_date > term_after.first_day_quarter - timedelta(days=5):
+        return term_after
     return term

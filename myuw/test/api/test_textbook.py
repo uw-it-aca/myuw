@@ -100,10 +100,10 @@ class TestApiBooks(MyuwApiTest):
         q = get_payment_quarter(request)
         self.assertEquals(q.quarter, "spring")
 
-        request = get_request_with_date('2013-04-22')
+        request = get_request_with_date('2013-06-20')
         q = get_payment_quarter(request)
         self.assertEquals(q.quarter, "summer")
 
-        request = get_request_with_date('2013-07-15')
+        request = get_request_with_date('2013-09-20')
         q = get_payment_quarter(request)
         self.assertEquals(q.quarter, "autumn")
