@@ -145,9 +145,7 @@ class IACDigitalItemsCur(ProtectedAPI):
         try:
             ret_obj = get_iacourse_status(
                 request, get_payment_quarter(request))
-            if ret_obj:
-                return self.json_response(ret_obj.json_data())
-            return {}
+            return self.json_response(ret_obj.json_data())
         except Exception:
             return handle_exception(logger, timer, traceback)
         finally:

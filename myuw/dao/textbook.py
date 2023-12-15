@@ -27,11 +27,13 @@ def get_order_url_by_schedule(schedule):
 
 def get_iacourse_status(request, term):
     """
-    returns a TermIACourse object
+    MUWM-5272
+    returns a TermIACourse object if has data, otherwith return None
     """
     terms_iacourses = bookstore.get_iacourse_status(
         get_regid_of_current_user(request)
     )
     key = "{}{}".format(term.quarter, term.year)
-    if terms_iacourses:
+    if key in terms_iacourses:
         return terms_iacourses.get(key)
+    return None

@@ -72,3 +72,9 @@ class TestTextbooks(TestCase):
         term = get_current_quarter(req)
         data = get_iacourse_status(req, term)
         self.assertIsNotNone(data.json_data())
+
+        req = get_request_with_user(
+            'javerage', get_request_with_date("2013-12-31"))
+        term = get_current_quarter(req)
+        data = get_iacourse_status(req, term)
+        self.assertIsNone(data.json_data())
