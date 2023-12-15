@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+from myuw.views.api.textbook import get_payment_quarter
+from myuw.test import get_request_with_date
 from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
-from myuw.test import get_request_with_user, get_request_with_date
-
 
 VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
 IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
@@ -14,7 +14,7 @@ IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
 class TestApiBooks(MyuwApiTest):
     '''Tests textbooks api'''
 
-    @require_url('myuw_home')
+    @require_url('myuw_book_api')
     def test_javerage_books(self):
         self.set_user('javerage')
         response = self.get_response_by_reverse(
@@ -54,8 +54,8 @@ class TestApiBooks(MyuwApiTest):
                     'summer_term': ''})
         self.assertEquals(response.status_code, 200)
 
-    @require_url('myuw_home')
-    def test_javerage_digital_material(self):
+    @require_url('myuw_iacourse_digital_material_api')
+    def test_digital_material_api(self):
         self.set_user('javerage')
         response = self.get_response_by_reverse(
             'myuw_iacourse_digital_material')
@@ -94,3 +94,16 @@ class TestApiBooks(MyuwApiTest):
         response = self.get_response_by_reverse(
             'myuw_iacourse_digital_material')
         self.assertEquals(response.status_code, 404)
+
+    def test_get_payment_quarter(self):
+        request = get_request_with_date('2013-04-19')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "spring")
+
+        request = get_request_with_date('2013-04-22')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "summer")
+
+        request = get_request_with_date('2013-07-15')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "autumn")

@@ -51,7 +51,7 @@ from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
 from myuw.views.api.other_quarters import RegisteredFutureQuarters
 from myuw.views.api.textbook import (
-  Textbook, TextbookCur, CurIACDigitalItems, IACDigitalItems)
+  Textbook, TextbookCur, IACDigitalItemsCur, IACDigitalItems)
 from myuw.views.api.notices import Notices
 from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
@@ -140,7 +140,7 @@ urlpatterns += [
     re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
-    re_path(r'^api/v1/book/current$',
+    re_path(r'^api/v1/book/current/?$',
             TextbookCur.as_view(),
             name="myuw_current_book"),
     re_path(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
@@ -150,8 +150,8 @@ urlpatterns += [
     re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
             IACDigitalItems.as_view(),
             name="myuw_iacourse_digital_material_api"),
-    re_path(r'^api/v1/iacourse/current$',
-            CurIACDigitalItems.as_view(),
+    re_path(r'^api/v1/iacourse/current/?$',
+            IACDigitalItemsCur.as_view(),
             name="myuw_iacourse_digital_material"),
     re_path(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
             CategoryLinks.as_view(),

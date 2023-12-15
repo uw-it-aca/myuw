@@ -1,12 +1,14 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from datetime import timedelta
 import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import get_specific_term, get_current_quarter
+from myuw.dao.term import (
+  get_specific_term, get_comparison_date, get_current_quarter, get_term_after)
 from myuw.dao.textbook import (
     get_textbook_by_schedule, get_order_url_by_schedule,
     get_iacourse_status)
@@ -129,7 +131,7 @@ class IACDigitalItems(ProtectedAPI):
                     year, quarter))
 
 
-class CurIACDigitalItems(ProtectedAPI):
+class IACDigitalItemsCur(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         """
         myuw_iacourse_digital_material
@@ -138,11 +140,19 @@ class CurIACDigitalItems(ProtectedAPI):
         timer = Timer()
         try:
             ret_obj = get_iacourse_status(
-                request, get_current_quarter(request))
+                request, get_payment_quarter(request))
             if ret_obj:
                 return self.json_response(ret_obj.json_data())
             return {}
         except Exception:
             return handle_exception(logger, timer, traceback)
         finally:
-            log_api_call(timer, request, "CurIACDigitalItems")
+            log_api_call(timer, request, "IACDigitalItemsCur")
+
+
+def get_payment_quarter(request):
+    term = get_current_quarter(request)
+    comparison_date = get_comparison_date(request)
+    if comparison_date > term.first_day_quarter + timedelta(days=20):
+        return get_term_after(term)
+    return term
