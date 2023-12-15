@@ -140,7 +140,7 @@ urlpatterns += [
     re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
-    re_path(r'^api/v1/book/current/?$',
+    re_path(r'^api/v1/book/current$',
             TextbookCur.as_view(),
             name="myuw_current_book"),
     re_path(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
@@ -150,7 +150,7 @@ urlpatterns += [
     re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
             IACDigitalItems.as_view(),
             name="myuw_iacourse_digital_material_api"),
-    re_path(r'^api/v1/iacourse/current/?$',
+    re_path(r'^api/v1/iacourse/current$',
             CurIACDigitalItems.as_view(),
             name="myuw_iacourse_digital_material"),
     re_path(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
