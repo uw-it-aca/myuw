@@ -129,7 +129,7 @@
           <div class="alert alert-warning myuw-text-md" role="alert">
             <p>
               One or more of your enrolled courses provides you access to
-              <a href="/textbooks">required digital materials</a>,
+              <a :href="textbooksUrl">required digital materials</a>,
               in Canvas, on or before the first day of class.
             </p>
             <p class="mb-0">
@@ -350,6 +350,9 @@ export default {
     dayOneAccessDueDateFromNow() {
       return this.toFromNowDate(this.iacData.payment_due_day);
     },
+    textbooksUrl() {
+      return "/textbooks/" + this.iacData.year + ',' +  this.iacData.quarter;
+    }
   },
   created() {
     if (this.isStudent) {
