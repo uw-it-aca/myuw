@@ -34,6 +34,4 @@ def get_iacourse_status(request, term):
         get_regid_of_current_user(request)
     )
     key = "{}{}".format(term.quarter, term.year)
-    if key in terms_iacourses:
-        return terms_iacourses.get(key)
-    return None
+    return terms_iacourses.get(key)
