@@ -345,12 +345,15 @@ export default {
       return this.tuition.pce_accbalance;
     },
     hasIacData() {
-      return this.isIacReady && this.iacData;
+      // MUWM-5272
+      return this.statusCodeIac === 200;
     },
     dayOneAccessDueDateFromNow() {
+      // MUWM-5272
       return this.toFromNowDate(this.iacData.payment_due_day);
     },
     textbooksUrl() {
+      // MUWM-5272
       return "/textbooks/" + this.iacData.year + ',' +  this.iacData.quarter;
     }
   },
