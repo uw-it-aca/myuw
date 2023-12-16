@@ -122,9 +122,9 @@ class IACDigitalItems(ProtectedAPI):
         try:
             ret_obj = get_iacourse_status(
                 request, get_specific_term(year, quarter))
-            if ret_obj:
-                return self.json_response(ret_obj.json_data())
-            return {}
+            if ret_obj is None:
+                return data_not_found()
+            return self.json_response(ret_obj.json_data())
         except Exception:
             return handle_exception(logger, timer, traceback)
         finally:

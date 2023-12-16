@@ -99,6 +99,9 @@ export default {
       isErrored: 'isErroredTagged',
       statusCode: 'statusCodeTagged',
     }),
+    isIacReady() {
+      return this.isReady && Boolean(this.iacData);
+    },
     digitalItem() {
       if (this.isIacReady) {
         const iacs = this.iacData.ia_courses;
@@ -122,9 +125,6 @@ export default {
         return this.digitalItem.paid;
       }
       return false;
-    },
-    isIacReady() {
-      return this.isReady && Boolean(this.iacData);
     },
     formattedCoverImageUrl() {
       if (this.book.cover_image_url) {
