@@ -89,9 +89,7 @@ class TestApiBooks(MyuwApiTest):
             'myuw_iacourse_digital_material_api',
             kwargs={'year': 2013,
                     'quarter': 'winter'})
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertIsNone(data)
+        self.assertEquals(response.status_code, 404)
 
         self.set_user('jbothell')
         response = self.get_response_by_reverse(
@@ -115,3 +113,7 @@ class TestApiBooks(MyuwApiTest):
         request = get_request_with_date('2013-09-19')
         q = get_payment_quarter(request)
         self.assertEquals(q.quarter, "autumn")
+
+        request = get_request_with_date('2013-12-27')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "winter")

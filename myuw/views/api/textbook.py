@@ -16,7 +16,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception
+from myuw.views.error import handle_exception, data_not_found
 
 logger = logging.getLogger(__name__)
 
@@ -145,6 +145,8 @@ class IACDigitalItemsCur(ProtectedAPI):
         try:
             ret_obj = get_iacourse_status(
                 request, get_payment_quarter(request))
+            if ret_obj is None:
+                return data_not_found()
             return self.json_response(ret_obj.json_data())
         except Exception:
             return handle_exception(logger, timer, traceback)
