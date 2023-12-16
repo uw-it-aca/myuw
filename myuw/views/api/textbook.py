@@ -157,6 +157,6 @@ def get_payment_quarter(request):
     term = get_current_quarter(request)
     term_after = get_term_after(term)
     comparison_date = get_comparison_date(request)
-    if comparison_date > term_after.first_day_quarter - timedelta(days=5):
+    if comparison_date > term_after.first_day_quarter - timedelta(days=6):
         return term_after
     return term
