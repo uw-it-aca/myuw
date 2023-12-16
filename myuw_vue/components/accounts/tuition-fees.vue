@@ -294,12 +294,6 @@ export default {
       isErroredNotices: 'isErrored',
       statusCodeNotices: 'statusCode',
     }),
-    ...mapGetters('textbooks', {
-      isTextbookReady: 'isReadyTagged',
-      isTextbookErrored: 'isErroredTagged',
-      statusCodeTextbooks: 'statusCodeTagged',
-      getProcessedData: 'getProcessedData',
-    }),
     ...mapGetters('iac', {
       isIacReady: 'isReadyTagged',
       isIacErrored: 'isErroredTagged',
@@ -346,7 +340,7 @@ export default {
     },
     hasIacData() {
       // MUWM-5272
-      return this.statusCodeIac === 200;
+      return this.statusCodeIac('current') == 200;
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
