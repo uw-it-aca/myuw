@@ -77,4 +77,4 @@ class TestTextbooks(TestCase):
             'javerage', get_request_with_date("2013-12-31"))
         term = get_current_quarter(req)
         data = get_iacourse_status(req, term)
-        self.assertIsNone(data)
+        self.assertEqual(data, {})

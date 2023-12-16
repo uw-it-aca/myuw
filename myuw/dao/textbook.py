@@ -36,4 +36,4 @@ def get_iacourse_status(request, term):
     key = "{}{}".format(term.quarter, term.year)
     if key in terms_iacourses:
         return terms_iacourses.get(key)
-    return None
+    return {}

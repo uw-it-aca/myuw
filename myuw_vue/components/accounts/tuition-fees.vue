@@ -345,7 +345,9 @@ export default {
       return this.tuition.pce_accbalance;
     },
     hasIacData() {
-      return this.isIacReady && Boolean(this.iacData);
+      return (
+        this.isIacReady && this.iacData && 
+        this.iacData.ia_courses && this.iacData.ia_courses);
     },
     dayOneAccessDueDateFromNow() {
       return this.toFromNowDate(this.iacData.payment_due_day);
