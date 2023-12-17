@@ -207,9 +207,11 @@ LOGGING = {
     }
 }
 
-DEBUG = False
+DEBUG = True
+if os.getenv("ENV", '') == "prod":
+    DEBUG = False
+
 if os.getenv("ENV", '') == "localdev":
-    DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
     # RESTCLIENTS_DAO_CACHE_CLASS = None
 else:
