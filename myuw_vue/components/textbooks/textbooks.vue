@@ -1,7 +1,9 @@
 <template>
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
-      <div v-if="student && !tacoma" class="alert alert-warning myuw-text-md mb-5" role="alert">
+      <div v-if="displayDayOneAccessProgramPanel"
+        class="alert alert-warning myuw-text-md mb-5" role="alert"
+      >
         <div>
           <h2 class="myuw-text-lg">UW Day One Access Program</h2>
           <p>
@@ -120,11 +122,6 @@ export default {
       student: (state) => state.user.affiliations.student,
       tacoma: (state) => state.user.affiliations.tacoma,
     }),
-    ...mapState({
-      iacData(state) {
-        return state.iac.value;
-      },
-    }),
     ...mapState('stud_schedule', {
       studSchedule(state) {
         return state.value[this.term];
@@ -133,6 +130,11 @@ export default {
     ...mapState('inst_schedule', {
       instSchedule(state) {
         return state.value[this.term];
+      },
+    }),
+    ...mapState('iac', {
+      iacData(state) {
+        return state.value;
       },
     }),
     ...mapGetters('stud_schedule', {
@@ -150,6 +152,11 @@ export default {
       isTextbookErrored: 'isErroredTagged',
       statusCodeTextbooks: 'statusCodeTagged',
       getProcessedData: 'getProcessedData',
+    }),
+    ...mapGetters('iac', {
+      isIacReady: 'isReadyTagged',
+      isIacErrored: 'isErroredTagged',
+      statusCodeIac: 'statusCodeTagged',
     }),
     isReady() {
       return (
@@ -184,12 +191,19 @@ export default {
       });
       return ret;
     },
+    displayDayOneAccessProgramPanel() {
+      // MUWM-5272
+      return (
+        this.statusCodeIac(this.term) == 200 && this.iacData &&
+        this.iacData.ia_courses.length > 0
+      );
+    },
   },
   created() {
     this.fetchStudSchedule(this.term);
     this.fetchInstSchedule(this.term);
     this.fetchTextbooks(this.term);
-    this.fetchIac(this.term);
+    if (this.student && !this.tacoma) this.fetchIac(this.term);
   },
   methods: {
     ...mapActions('stud_schedule', {
