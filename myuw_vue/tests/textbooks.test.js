@@ -50,7 +50,7 @@ describe('Textbook cards', () => {
           affiliations: {
             seattle: true,
             student: true,
-            tacoma: false,
+            bothell: true,
           }
         }
       }
