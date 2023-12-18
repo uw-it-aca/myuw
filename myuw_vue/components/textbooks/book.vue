@@ -30,7 +30,7 @@
           <dd v-if="digitalItem">
             <span v-if="digitalItemPaid">Paid</span>
             <span v-else-if="digitalItemOptedOut">Opted out</span>
-            <span v-else>Payment due (${{ digitalItem.price.toFixed(2) }})</span>
+            <span v-else>Payment due</span>
           </dd>
           <dt>
             {{ book.authors > 1 ? "Authors" : "Author" }}
@@ -43,7 +43,8 @@
           </dd>
           <dt>Price </dt>
           <dd>
-            <div v-if="book.lowest_price && book.highest_price">
+            <div v-if="digitalItem">${{ digitalItem.price.toFixed(2) }}</div>
+            <div v-else-if="book.lowest_price && book.highest_price">
               ${{ book.lowest_price.toFixed(2) }}
               to
               ${{ book.highest_price.toFixed(2) }}
