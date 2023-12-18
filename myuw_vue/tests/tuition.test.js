@@ -45,6 +45,8 @@ describe('Tuition store', () => {
             pce: false,
             grad_c2: false,
             undergrad_c2: false,
+            bothell: true,
+            seattle: true,
           }
         }
       }
@@ -65,7 +67,9 @@ describe('Tuition store', () => {
 
     expect(wrapper.vm.isStudent).toBe(true);
     expect(wrapper.vm.isC2Grad).toBe(false);
-    //expect(wrapper.vm.hasIacData).toBe(true);
+    expect(wrapper.vm.seaStud).toBe(true);
+    expect(wrapper.vm.botStud).toBe(true);
+    // expect(wrapper.vm.hasIacData).toBe(true);
     expect(wrapper.vm.isC2).toBe(false);
     expect(wrapper.vm.isPCE).toBe(false);
     expect(wrapper.vm.notices.length).toBe(14);
@@ -112,9 +116,8 @@ describe('Tuition store', () => {
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(FinAid).exists()).toBe(true);
     expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
-    //expect(wrapper.findAllComponents(CardStatus).length).toBe(5);
-
-    //expect(wrapper.vm.hasIacData).toBe(true);
+    // expect(wrapper.findAllComponents(CardStatus).length).toBe(5);
+    // expect(wrapper.vm.hasIacData).toBe(true);
     expect(wrapper.vm.dayOneAccessDueDateFromNow).toBeTruthy;
   });
 

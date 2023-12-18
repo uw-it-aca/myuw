@@ -268,6 +268,8 @@ export default {
         return state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2;
       },
       isPCE: (state) => state.user.affiliations.pce,
+      seaStud: (state) => state.user.affiliations.seattle,
+      botStud: (state) => state.user.affiliations.bothell,
       tuition: (state) => state.tuition.value,
       notices: (state) => state.notices.value,
       pceTuitionDup: (state) => {
@@ -340,7 +342,7 @@ export default {
     },
     hasIacData() {
       // MUWM-5272
-      return this.statusCodeIac('current') == 200;
+      return (this.seaStud || this.botStud) && this.statusCodeIac('current') == 200;
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
@@ -355,7 +357,7 @@ export default {
     if (this.isStudent) {
       this.fetchNotices();
       this.fetchTuition();
-      this.fetchIACs('current');
+      if (this.seaStud || this.botStud) this.fetchIACs('current');
     }
   },
   methods: {
