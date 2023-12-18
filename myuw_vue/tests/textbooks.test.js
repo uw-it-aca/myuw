@@ -49,6 +49,8 @@ describe('Textbook cards', () => {
         user: {
           affiliations: {
             seattle: true,
+            student: true,
+            tacoma: false,
           }
         }
       }
