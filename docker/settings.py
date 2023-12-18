@@ -208,7 +208,6 @@ LOGGING = {
 }
 
 DEBUG = False
-
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
