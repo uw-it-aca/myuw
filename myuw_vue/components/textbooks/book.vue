@@ -11,7 +11,7 @@
         <img
           v-if="formattedCoverImageUrl"
           :src="formattedCoverImageUrl"
-          :alt="`${book.title} book cover`"
+          :alt="``"
           width="80px"
           class=""
         >
