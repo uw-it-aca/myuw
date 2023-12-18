@@ -137,6 +137,6 @@ describe('Tuition store', () => {
     expect(wrapper.vm.hasTuitionDate).toBe(true);
     expect(wrapper.vm.pceBalance).toBe(2897.00);
     expect(wrapper.vm.tuiBalance).toBe(-10.00);
-    expect(wrapper.vm.hasIacData).toBe(false);
+    expect(wrapper.vm.hasIacData).toBe(undefined);
   });
 });

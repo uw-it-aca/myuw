@@ -1,4 +1,5 @@
-import {fetchBuilder, extractData, buildWith} from './model_builder';
+import { fetchBuilder, extractData, buildWith } from './model_builder';
+
 
 const customActions = {
   fetch: fetchBuilder('/api/v1/iacourse/', extractData, 'json'),

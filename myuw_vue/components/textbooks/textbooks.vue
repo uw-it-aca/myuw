@@ -119,8 +119,8 @@ export default {
   },
   computed: {
     ...mapState({
-      student: (state) => state.user.affiliations.student,
-      tacoma: (state) => state.user.affiliations.tacoma,
+      seaStud: (state) => state.user.affiliations.seattle,
+      botStud: (state) => state.user.affiliations.bothell,
     }),
     ...mapState('stud_schedule', {
       studSchedule(state) {
@@ -193,17 +193,14 @@ export default {
     },
     displayDayOneAccessProgramPanel() {
       // MUWM-5272
-      return (
-        this.statusCodeIac(this.term) == 200 && this.iacData &&
-        this.iacData.ia_courses.length > 0
-      );
+      return (this.seaStud || this.botStud) && this.iacData && this.iacData.ia_courses;
     },
   },
   created() {
     this.fetchStudSchedule(this.term);
     this.fetchInstSchedule(this.term);
     this.fetchTextbooks(this.term);
-    if (this.student && !this.tacoma) this.fetchIac(this.term);
+    if (this.seaStud || this.botStud) this.fetchIac(this.term);
   },
   methods: {
     ...mapActions('stud_schedule', {

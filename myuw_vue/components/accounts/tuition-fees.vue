@@ -282,8 +282,10 @@ export default {
           notice.location_tags.includes('tuition_due_date')
         )[0];
       },
+    }),
+    ...mapState('iac', {
       iacData(state) {
-        return state.iac.value;
+        return state.value;
       },
     }),
     ...mapGetters('tuition', {
@@ -342,7 +344,9 @@ export default {
     },
     hasIacData() {
       // MUWM-5272
-      return (this.seaStud || this.botStud) && this.statusCodeIac('current') == 200;
+      return (
+        (this.seaStud || this.botStud) && this.iacData &&
+         this.iacData.bookstore_checkout_url);
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272

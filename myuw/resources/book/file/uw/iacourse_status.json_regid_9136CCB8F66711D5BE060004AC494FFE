@@ -72,16 +72,5 @@
     "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=500555",
     "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=500555,1;",
     "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
-  },
-  {
-    "Year": 2013,
-    "Quarter": "autumn",
-    "IACourses": [
-    ],
-    "BalanceToPay": 0,
-    "PaymentDeadline": "2013-10-11",
-    "BookstoreDigitalMaterialLink": "https://www.ubookstore.com/materials?idset=",
-    "BookstoreCheckOutLink": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=",
-    "LastUpdated": "2013-2-09T00:51:09.769370-08:00"
   }
 ]
