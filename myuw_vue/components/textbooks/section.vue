@@ -28,6 +28,7 @@
         v-for="book in section.books"
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
+        :sln="section.sln"
       />
     </uw-collapse>
     <uw-collapse
