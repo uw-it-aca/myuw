@@ -65,13 +65,15 @@
       />
 
       <div v-if="useBookstore" class="my-4 text-center">
-        <uw-link-button :href="orderUrl"> Start textbook shopping </uw-link-button>
+        <uw-link-button :href="orderUrl">
+          Start textbook shopping
+        </uw-link-button>
       </div>
 
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided courtesy of
-          <a href="http://www.bookstore.washington.edu"> University Book Store </a>
+          <a href="http://www.bookstore.washington.edu">University Book Store</a>
           and is subject to change regularly and without notice.
         </p>
       </div>
@@ -83,7 +85,8 @@
             <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
-            An error has occurred and we can't load this content right now. Please try again later.
+            An error has occurred and we can't load this content right now.
+            Please try again later.
           </div>
         </div>
       </div>
@@ -161,8 +164,10 @@ export default {
     isReady() {
       return (
         this.isTextbookReady(this.term) &&
-        (this.isStudScheduleReady(this.term) || this.isStudScheduleErrored(this.term)) &&
-        (this.isInstScheduleReady(this.term) || this.isInstScheduleErrored(this.term))
+        (this.isStudScheduleReady(this.term) ||
+         this.isStudScheduleErrored(this.term)) &&
+        (this.isInstScheduleReady(this.term) ||
+         this.isInstScheduleErrored(this.term))
       );
     },
     isErrored() {
