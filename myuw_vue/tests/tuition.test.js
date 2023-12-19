@@ -6,12 +6,15 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import tuition from '../vuex/store/tuition';
 import notices from '../vuex/store/notices';
+import iac from '../vuex/store/iacourse-digital-material';
+
 import TuitionFees from '../components/accounts/tuition-fees.vue';
 import TuitionRes from '../components/accounts/tuition-resources.vue';
 import CardStatus from '../components/_templates/card-status.vue';
 import LinkButton from '../components/_templates/link-button.vue';
 import FinAid from '../components/_common/finaid.vue';
 
+import javgBook from './mock_data//textbooks/javerage-iac-2013-spr.json';
 import jbotTuition from './mock_data/tuition/jbothell.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 import javgTuition from './mock_data/tuition/javerage.json';
@@ -29,6 +32,7 @@ describe('Tuition store', () => {
       modules: {
         tuition,
         notices,
+        iac,
       },
       state: {
         cardDisplayDates: {
@@ -40,6 +44,8 @@ describe('Tuition store', () => {
             pce: false,
             grad_c2: false,
             undergrad_c2: false,
+            bothell: true,
+            seattle: true,
           }
         }
       }
@@ -48,6 +54,9 @@ describe('Tuition store', () => {
 
   it('Evaluate the computed properties of jbothell', async () => {
     axios.get.mockImplementation((url) => {
+      if (url === '/api/v1/iacourse/current') {
+        return Promise.reject({ response: { status: 404 } });
+      }
       const urlData = {
         '/api/v1/notices/': jbotNotices,
         '/api/v1/finance/': jbotTuition,
@@ -59,6 +68,9 @@ describe('Tuition store', () => {
 
     expect(wrapper.vm.isStudent).toBe(true);
     expect(wrapper.vm.isC2Grad).toBe(false);
+    expect(wrapper.vm.seaStud).toBe(true);
+    expect(wrapper.vm.botStud).toBe(true);
+    expect(wrapper.vm.hasIacData).toBe(undefined);
     expect(wrapper.vm.isC2).toBe(false);
     expect(wrapper.vm.isPCE).toBe(false);
     expect(wrapper.vm.notices.length).toBe(14);
@@ -84,6 +96,7 @@ describe('Tuition store', () => {
       const urlData = {
         '/api/v1/notices/': javgNotices,
         '/api/v1/finance/': javgTuition,
+        '/api/v1/iacourse/current': javgBook,
       };
       return Promise.resolve({data: urlData[url]});
     });
@@ -104,11 +117,16 @@ describe('Tuition store', () => {
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(FinAid).exists()).toBe(true);
     expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
-    expect(wrapper.findAllComponents(CardStatus).length).toBe(3);
+    expect(wrapper.findAllComponents(CardStatus).length).toBe(5);
+    expect(wrapper.vm.hasIacData).toBeTruthy;
+    expect(wrapper.vm.dayOneAccessDueDateFromNow).toBeTruthy;
   });
 
   it('Evaluate the computed properties of jpce', async () => {
     axios.get.mockImplementation((url) => {
+      if (url === '/api/v1/iacourse/current') {
+        return Promise.reject({ response: { status: 404 } });
+      }
       const urlData = {
         '/api/v1/notices/': gc2Notices,
         '/api/v1/finance/': gc2Tuition,
@@ -120,5 +138,6 @@ describe('Tuition store', () => {
     expect(wrapper.vm.hasTuitionDate).toBe(true);
     expect(wrapper.vm.pceBalance).toBe(2897.00);
     expect(wrapper.vm.tuiBalance).toBe(-10.00);
+    expect(wrapper.vm.hasIacData).toBe(undefined);
   });
 });
