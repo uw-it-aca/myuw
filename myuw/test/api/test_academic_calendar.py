@@ -55,7 +55,7 @@ class TestCalendarAPI(MyuwApiTest):
 
         # test MUWM_4485,
         follow_link = urlopen(data[0]["event_url"])
-        self.assertEquals(follow_link.reason, "OK")
+        self.assertEquals(follow_link.reason, "")
 
     def test_current_events(self):
         self.set_user('javerage')

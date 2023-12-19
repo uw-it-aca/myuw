@@ -1,17 +1,19 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from datetime import timedelta
 import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import get_specific_term, get_current_quarter
+from myuw.dao.term import (
+  get_specific_term, get_comparison_date, get_current_quarter, get_term_after)
 from myuw.dao.textbook import (
-    get_textbook_by_schedule, get_order_url_by_schedule)
+    get_textbook_by_schedule, get_order_url_by_schedule,
+    get_iacourse_status)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_api_call, log_msg, log_data_not_found_response)
+from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, data_not_found
@@ -104,3 +106,58 @@ class TextbookCur(Textbook):
                 timer, request, get_current_quarter(request), None)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+class IACDigitalItems(ProtectedAPI):
+    # MUWM-5272
+
+    def get(self, request, *args, **kwargs):
+        """
+        myuw_iacourse_digital_material_api
+        GET returns 200 with textbooks for the given quarter
+        """
+        timer = Timer()
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        try:
+            ret_obj = get_iacourse_status(
+                request, get_specific_term(year, quarter))
+            if ret_obj is None:
+                return data_not_found()
+            return self.json_response(ret_obj.json_data())
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+        finally:
+            log_api_call(
+                timer, request, "IACourse_Status {}.{}".format(
+                    year, quarter))
+
+
+class IACDigitalItemsCur(ProtectedAPI):
+    # MUWM-5272
+
+    def get(self, request, *args, **kwargs):
+        """
+        myuw_iacourse_digital_material
+        GET returns 200 with textbooks for the given quarter
+        """
+        timer = Timer()
+        try:
+            ret_obj = get_iacourse_status(
+                request, get_payment_quarter(request))
+            if ret_obj is None:
+                return data_not_found()
+            return self.json_response(ret_obj.json_data())
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+        finally:
+            log_api_call(timer, request, "IACDigitalItemsCur")
+
+
+def get_payment_quarter(request):
+    term = get_current_quarter(request)
+    term_after = get_term_after(term)
+    comparison_date = get_comparison_date(request)
+    if comparison_date > term_after.first_day_quarter - timedelta(days=6):
+        return term_after
+    return term

@@ -11,9 +11,7 @@
         <img
           v-if="formattedCoverImageUrl"
           :src="formattedCoverImageUrl"
-          :alt="`${book.title} book cover`"
           width="80px"
-          class=""
         >
         <div v-else title="No cover image available"
              class="py-5 bg-white border text-center text-muted text-uppercase
@@ -24,6 +22,14 @@
       </div>
       <div class="flex-fill myuw-text-md">
         <dl>
+          <dt v-if="digitalItem">
+            DIGITAL MATERIAL
+          </dt>
+          <dd v-if="digitalItem">
+            <span v-if="digitalItemPaid">Paid</span>
+            <span v-else-if="digitalItemOptedOut">Opted out</span>
+            <span v-else>Payment due</span>
+          </dd>
           <dt>
             {{ book.authors > 1 ? "Authors" : "Author" }}
           </dt>
@@ -36,10 +42,16 @@
           <dt>Price </dt>
           <dd>
             <div v-if="book.lowest_price && book.highest_price">
-              ${{ book.lowest_price.toFixed(2) }}
-              to
-              ${{ book.highest_price.toFixed(2) }}
+              <span v-if="book.lowest_price!=book.highest_price">
+                ${{ book.lowest_price.toFixed(2) }}
+                to
+                ${{ book.highest_price.toFixed(2) }}
+              </span>
+              <span v-else>
+                ${{ book.lowest_price.toFixed(2) }}
+              </span>
             </div>
+            <div v-if="digitalItem">Digital: ${{ digitalItem.price.toFixed(2) }}</div>
             <div>
               Visit
               <a :href="orderUrl">
@@ -67,14 +79,57 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex';
 export default {
   props: {
     book: {
       type: Object,
       required: true,
     },
+    sln: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
+    // MUWM-5272
+    ...mapState('iac', {
+      iacData(state) {
+        return state.value;
+      },
+    }),
+    ...mapGetters('iac', {
+      isReady: 'isReadyTagged',
+      isErrored: 'isErroredTagged',
+      statusCode: 'statusCodeTagged',
+    }),
+    isIacReady() {
+      return this.isReady && Boolean(this.iacData);
+    },
+    digitalItem() {
+      if (this.isIacReady) {
+        const iacs = this.iacData.ia_courses;
+        if (iacs && this.sln in iacs) {
+          const dItems = iacs[this.sln].digital_items;
+          if (this.book.isbn in dItems) {
+            return dItems[this.book.isbn];
+          }
+        }
+      }
+      return null;
+    },
+    digitalItemOptedOut() {
+      if (this.digitalItem) {
+        return this.digitalItem.opt_out_status;
+      }
+      return false;
+    },
+    digitalItemPaid() {
+      if (this.digitalItem) {
+        return this.digitalItem.paid;
+      }
+      return false;
+    },
     formattedCoverImageUrl() {
       if (this.book.cover_image_url) {
         return `${window.location.protocol}//${this.book.cover_image_url}`;

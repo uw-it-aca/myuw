@@ -141,6 +141,13 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
+        {% if iacourse_url %}
+        <li>
+            <a href="{{ iacourse_url }}">IA Courses</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
         {% if upass_url %}
             <li>

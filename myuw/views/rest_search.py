@@ -23,11 +23,15 @@ class MyUWRestSearchView(RestSearchView):
                 service, url, request.POST))
 
         if service == "book":
-            url = "uw/json_utf8_202007.ubs"
-            url = "{}?quarter={}&sln1={}&returnlink=t".format(
-                "uw/json_utf8_202007.ubs",
-                request.POST["quarter"],
-                request.POST["sln1"])
+            if "iacourse" == url:
+                url = "uw/iacourse_status.json?regid={}".format(
+                    request.POST["uwregid"])
+            else:
+                url = "uw/json_utf8_202007.ubs"
+                url = "{}?quarter={}&sln1={}&returnlink=t".format(
+                    "uw/json_utf8_202007.ubs",
+                    request.POST["quarter"],
+                    request.POST["sln1"])
         elif service == "grad":
             params = self.format_params(request)
         elif service == "hfs":
