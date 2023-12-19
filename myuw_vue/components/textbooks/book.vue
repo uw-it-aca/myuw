@@ -41,12 +41,12 @@
           </dd>
           <dt>Price </dt>
           <dd>
-            <div v-if="digitalItem">${{ digitalItem.price.toFixed(2) }}</div>
-            <div v-else-if="book.lowest_price && book.highest_price">
+            <div v-if="book.lowest_price && book.highest_price">
               ${{ book.lowest_price.toFixed(2) }}
               to
               ${{ book.highest_price.toFixed(2) }}
             </div>
+            <div v-if="digitalItem">Digital: ${{ digitalItem.price.toFixed(2) }}</div>
             <div>
               Visit
               <a :href="orderUrl">
