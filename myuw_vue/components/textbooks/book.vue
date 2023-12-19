@@ -11,9 +11,7 @@
         <img
           v-if="formattedCoverImageUrl"
           :src="formattedCoverImageUrl"
-          :alt="``"
           width="80px"
-          class=""
         >
         <div v-else title="No cover image available"
              class="py-5 bg-white border text-center text-muted text-uppercase
