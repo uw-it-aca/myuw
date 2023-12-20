@@ -61,10 +61,10 @@ externalService:
   enabled: true
   name: my-uw-db
   type: ClusterIP
-  serviceAddress: 172.18.0.19
-  servicePort: 3306
+  serviceAddress: 172.18.1.210
+  servicePort: 5432
 database:
-  engine: mysql
+  engine: postgres
   name: myuw
   hostname: my-uw-db
   secretName: my.uw.edu-sql-secrets
