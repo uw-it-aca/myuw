@@ -194,8 +194,8 @@ cronjob:
       args: ["db_cleanup", "seenreg"]
       resources:
         limits:
-          cpu: 75m
-          memory: 768Mi
+          cpu: 50m
+          memory: 512Mi
         requests:
           cpu: 25m
           memory: 128Mi
