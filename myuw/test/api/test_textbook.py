@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+from myuw.views.api.textbook import get_payment_quarter
+from myuw.test import get_request_with_date
 from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
-from myuw.test import get_request_with_user, get_request_with_date
-
 
 VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
 IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
@@ -14,7 +14,7 @@ IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
 class TestApiBooks(MyuwApiTest):
     '''Tests textbooks api'''
 
-    @require_url('myuw_home')
+    @require_url('myuw_book_api')
     def test_javerage_books(self):
         self.set_user('javerage')
         response = self.get_response_by_reverse(
@@ -53,3 +53,64 @@ class TestApiBooks(MyuwApiTest):
                     'quarter': 'spring',
                     'summer_term': ''})
         self.assertEquals(response.status_code, 200)
+
+    @require_url('myuw_iacourse_digital_material_api')
+    def test_digital_material_api(self):
+        self.set_user('javerage')
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["quarter"], "spring")
+        self.assertEquals(data["year"], 2013)
+        self.assertEquals(data["balance"], 219.85)
+
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'spring'})
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["quarter"], "spring")
+        self.assertEquals(data["year"], 2013)
+        self.assertEquals(data["balance"], 219.85)
+
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'autumn'})
+        self.assertEquals(response.status_code, 404)
+
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'winter'})
+        self.assertEquals(response.status_code, 404)
+
+        self.set_user('jbothell')
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material_api',
+            kwargs={'year': 2013,
+                    'quarter': 'spring'})
+        self.assertEquals(response.status_code, 404)
+
+        response = self.get_response_by_reverse(
+            'myuw_iacourse_digital_material')
+        self.assertEquals(response.status_code, 404)
+
+    def test_get_payment_quarter(self):
+        request = get_request_with_date('2013-06-18')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "spring")
+
+        request = get_request_with_date('2013-06-19')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "summer")
+
+        request = get_request_with_date('2013-09-19')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "autumn")
+
+        request = get_request_with_date('2013-12-27')
+        q = get_payment_quarter(request)
+        self.assertEquals(q.quarter, "winter")

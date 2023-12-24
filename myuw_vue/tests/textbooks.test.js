@@ -12,7 +12,9 @@ import LinkButton from '../components/_templates/link-button.vue';
 import stud_schedule from '../vuex/store/schedule/student';
 import inst_schedule from '../vuex/store/schedule/instructor';
 import textbooks from '../vuex/store/textbooks';
+import iac from '../vuex/store/iacourse-digital-material';
 
+import javgBook from './mock_data//textbooks/javerage-iac-2013-spr.json';
 import mockStudCourses from
   './mock_data/stud_schedule/javerage2013Spring.json';
 import mockStudTextbook from './mock_data/textbooks/javerage-2013-spr.json';
@@ -41,11 +43,14 @@ describe('Textbook cards', () => {
         stud_schedule,
         inst_schedule,
         textbooks,
+        iac,
       },
       state: {
         user: {
           affiliations: {
             seattle: true,
+            student: true,
+            bothell: true,
           }
         }
       }
@@ -58,11 +63,12 @@ describe('Textbook cards', () => {
         '/api/v1/book/2013,spring': mockStudTextbook,
         '/api/v1/schedule/2013,spring': mockStudCourses,
         '/api/v1/instructor_schedule/2013,spring': mockInstSche,
+        '/api/v1/iacourse/2013,spring': javgBook,
       };
       return Promise.resolve({data: urlData[url]});
     });
 
-    const wrapper = mount(Textbooks, {store, localVue,
+    let wrapper = mount(Textbooks, {store, localVue,
       propsData: {'term': '2013,spring'}});
     await new Promise(setImmediate);
     expect(wrapper.vm.term).toEqual('2013,spring');
@@ -81,6 +87,13 @@ describe('Textbook cards', () => {
     expect(bookData.enrolledSections.length).toBe(5);
     expect(bookData.sections.length).toBe(11);
     expect(bookData.hasTeachingSections).toBe(true);
+
+    const section5 = wrapper.vm.bookData.enrolledSections[4];
+    wrapper = mount(Book, {
+      store, localVue,
+      propsData: { 'book': section5.books[0], 'sln': section5.sln }
+    });
+    expect(wrapper.vm.digitalItem).toBeTruthy();
   });
 
   it('Verify other campus courses', async () => {
@@ -91,6 +104,7 @@ describe('Textbook cards', () => {
       const urlData = {
         '/api/v1/book/2013,spring': mockTextbook,
         '/api/v1/schedule/2013,spring': mockStudCourses,
+        '/api/v1/iacourse/2013,spring': javgBook,
       };
       return Promise.resolve({data: urlData[url]});
     });
