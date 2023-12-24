@@ -23,8 +23,8 @@ securityPolicy:
   enabled: false
 resources:
   limits:
-    cpu: 1.0
-    memory: 2Gi
+    cpu: 1.5
+    memory: 3Gi
   requests:
     cpu: 512m
     memory: 1Gi
