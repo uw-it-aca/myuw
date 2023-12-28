@@ -2,7 +2,7 @@ ARG DJANGO_CONTAINER_VERSION=1.4.2
 FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
 
 USER root
-RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
+RUN apt-get update && apt-get install -y postgresql-client libpq-dev
 USER acait
 
 ADD --chown=acait:acait . /app/
@@ -11,7 +11,7 @@ ADD --chown=acait:acait docker/app_start.sh /scripts
 RUN chmod u+x /scripts/app_start.sh
 
 RUN /app/bin/pip install -r requirements.txt
-RUN /app/bin/pip install mysqlclient
+RUN /app/bin/pip install psycopg2
 
 FROM node:16.3-stretch AS node-bundler
 

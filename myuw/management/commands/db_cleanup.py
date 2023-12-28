@@ -96,7 +96,7 @@ class Command(BaseCommand):
         # clean up after 180 days
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_usernotices WHERE id IN ({})"
-        cut_off_dt = self.get_cut_off_date(90)
+        cut_off_dt = self.get_cut_off_date()
         qset = UserNotices.objects.filter(first_viewed__lt=cut_off_dt)
         if qset.exists():
             ids_to_delete = qset.values_list('id', flat=True)
@@ -131,7 +131,7 @@ class Command(BaseCommand):
         # clean up after 180 days
         timer = Timer()
         queryf = "DELETE FROM myuw_visitedlinknew WHERE id IN ({})"
-        cut_off_dt = self.get_cut_off_date(90)
+        cut_off_dt = self.get_cut_off_date()
         qset = VisitedLinkNew.objects.filter(visit_date__lt=cut_off_dt)
         if qset.exists():
             ids_to_delete = qset.values_list('id', flat=True)
