@@ -14,7 +14,7 @@ from django.core.management.base import BaseCommand, CommandError
 from uw_sws import sws_now, SWS_TIMEZONE
 from myuw.models import (
     VisitedLinkNew, SeenRegistration, UserNotices, UserCourseDisplay)
-from myuw.dao.term import get_term_by_date, get_term_before
+from myuw.dao.term import get_term_by_date, get_term_before, get_term_after
 from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 from myuw.logger.timer import Timer
 
@@ -65,11 +65,19 @@ class Command(BaseCommand):
                       ["{}@uw.edu".format(get_cronjob_recipient())])
             raise CommandError(msg)
 
+    def get_cur_term(self):
+        comparison_date = sws_now().date()
+        term = get_term_by_date(comparison_date)
+        # Match MyUW quarter switchS
+        if comparison_date > term.grade_submission_deadline.date():
+            return get_term_after(term)
+        return term
+
     def course_display(self):
         # clean up after one year
         timer = Timer()
         queryf = "DELETE FROM user_course_display_pref WHERE id IN ({})"
-        term = get_term_by_date(sws_now().date())
+        term = self.get_cur_term()
         y = term.year - 1
         q = term.quarter
         qset = UserCourseDisplay.objects.filter(year=y, quarter=q)
@@ -105,7 +113,7 @@ class Command(BaseCommand):
         # clean up previous quarters'
         timer = Timer()
         queryf = "DELETE FROM myuw_mobile_seenregistration WHERE id IN ({})"
-        term = get_term_before(get_term_by_date(sws_now().date()))
+        term = get_term_before(self.get_cur_term())
         qset = SeenRegistration.objects.filter(
             year=term.year, quarter=term.quarter)
         if qset.exists():

@@ -51,10 +51,10 @@ externalService:
   enabled: true
   name: test-my-uw-db
   type: ClusterIP
-  serviceAddress: 172.18.0.19
-  servicePort: 3306
+  serviceAddress: 172.18.1.210
+  servicePort: 5432
 database:
-  engine: mysql
+  engine: postgres
   name: myuw_test
   hostname: test-my-uw-db
   secretName: test.my.uw.edu-sql-secrets
@@ -114,49 +114,49 @@ cronjob:
           cpu: 25m
           memory: 32Mi
     - name: course-cleanup
-      schedule: "1 3 * 1,4,7,9 1"
+      schedule: "1 3 21,26,30 3,6,8,12 *"
       command: ["/scripts/management_command.sh"]
       args: ["db_cleanup", "course"]
       resources:
         limits:
-          cpu: 75m
-          memory: 128Mi
+          cpu: 50m
+          memory: 512Mi
         requests:
           cpu: 25m
-          memory: 32Mi
+          memory: 128Mi
     - name: seenreg-cleanup
-      schedule: "1 3 * 1,4,7,9 2"
+      schedule: "1 4 21,26,30 3,6,8,12 *"
       command: ["/scripts/management_command.sh"]
       args: ["db_cleanup", "seenreg"]
       resources:
         limits:
-          cpu: 75m
-          memory: 128Mi
+          cpu: 50m
+          memory: 512Mi
         requests:
           cpu: 25m
-          memory: 32Mi
+          memory: 128Mi
     - name: notice-cleanup
-      schedule: "1 3 * * 3"
+      schedule: "1 5 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["db_cleanup", "notice"]
       resources:
         limits:
-          cpu: 75m
-          memory: 128Mi
+          cpu: 50m
+          memory: 512Mi
         requests:
           cpu: 25m
-          memory: 32Mi
+          memory: 256Mi
     - name: linkvisit-cleanup
-      schedule: "1 3 * * 4"
+      schedule: "1 6 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["db_cleanup", "linkvisit"]
       resources:
         limits:
-          cpu: 75m
-          memory: 128Mi
+          cpu: 50m
+          memory: 512Mi
         requests:
           cpu: 25m
-          memory: 32Mi
+          memory: 256Mi
 environmentVariables:
   - name: AUTH
     value: SAML
