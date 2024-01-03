@@ -12,7 +12,6 @@
 
 <script>
 import CardPropertyGroup from '../../../_templates/card-property-group.vue';
-import CardProperty from '../../../_templates/card-property.vue';
 import GradingSystem from './grading-system.vue';
 import InstructorsOfRecord from './instructors.vue';
 import WhoSubmitsGrades from './who-submit-grade.vue';
@@ -22,7 +21,6 @@ import GradeSubmission from './submission.vue';
 export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
-    'uw-card-property': CardProperty,
     'uw-graading-systme': GradingSystem,
     'uw-insts-of-record': InstructorsOfRecord,
     'who-submits-grades': WhoSubmitsGrades,
