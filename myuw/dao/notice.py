@@ -78,10 +78,8 @@ def _get_user_notices(request, notices):
         notice_dict[notice_hash] = notice
 
     # Set read status for notices already in db
-    keys = notice_dict.keys()
-    user_notices = UserNotices.objects.filter(user=user,
-                                              notice_hash__in=keys)
-    for user_notice in user_notices:
+    for user_notice in UserNotices.objects.filter(
+            user=user, notice_hash__in=notice_dict.keys()):
         matched_notice = notice_dict[user_notice.notice_hash]
         matched_notice.is_read = user_notice.is_read
         notices_with_read_status.append(matched_notice)
@@ -91,8 +89,8 @@ def _get_user_notices(request, notices):
     for notice in notice_dict.values():
         user_notice, _ = UserNotices.objects.get_or_create(
             notice_hash=notice.id_hash, user=user, defaults={
-                'notice_cattype': notice.notice_category + notice.notice_type,
-        })
-        notices_with_read_status.append(user_notice)
+                'notice_cattype': notice.notice_category + notice.notice_type})
+        notice.is_read = user_notice.is_read
+        notices_with_read_status.append(notice)
 
     return notices_with_read_status
