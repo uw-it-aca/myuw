@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -78,34 +78,19 @@ def _get_user_notices(request, notices):
         notice_dict[notice_hash] = notice
 
     # Set read status for notices already in db
-    keys = notice_dict.keys()
-    user_notices = UserNotices.objects.filter(user=user,
-                                              notice_hash__in=keys)
-    for user_notice in user_notices:
+    for user_notice in UserNotices.objects.filter(
+            user=user, notice_hash__in=notice_dict.keys()):
         matched_notice = notice_dict[user_notice.notice_hash]
         matched_notice.is_read = user_notice.is_read
         notices_with_read_status.append(matched_notice)
         del notice_dict[user_notice.notice_hash]
 
     # Create UserNotices for new notices
-    user_notices_to_create = []
     for notice in notice_dict.values():
-        user_notice = UserNotices()
-        user_notice.notice_hash = notice.id_hash
-        user_notice.user = user
-        cattype = notice.notice_category + notice.notice_type
-        user_notice.notice_cattype = cattype
+        user_notice, _ = UserNotices.objects.get_or_create(
+            notice_hash=notice.id_hash, user=user, defaults={
+                'notice_cattype': notice.notice_category + notice.notice_type})
+        notice.is_read = user_notice.is_read
+        notices_with_read_status.append(notice)
 
-        user_notices_to_create.append(user_notice)
-
-    try:
-        UserNotices.objects.bulk_create(user_notices_to_create)
-    except IntegrityError:
-        # MUWM-2016.  This should be rare - 2 processes running at just about
-        # exactly the same time.  In that case especially, the bulk create list
-        # should be the same.  And if it isn't, big deal?
-        pass
-
-    # Add newly created UserNotices into returned list
-    notices_with_read_status.extend(list(notice_dict.values()))
     return notices_with_read_status
