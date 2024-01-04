@@ -135,15 +135,13 @@
             <!-- grades were not submitted via GradePage -->
             <span class="capitalize">
               {{section.grading_status.grading_status}}
-              <!-- section.grading_status.no_grades_submitted -->
+              <!-- No submission information available -->
+              <!-- Secondary grading is enabled for this course. -->
               <span v-if="section.grading_status.unsubmitted_count">
                 {{section.grading_status.unsubmitted_count}}
                 grade{{section.grading_status.unsubmitted_count > 1 ? 's': ''}}
+                submitted through GradePage
               </span>
-              <span v-else>
-                No grades
-              </span>
-              submitted through GradePage
             </span>
           </div>
           <span class="myuw-text-sm fst-italic">
