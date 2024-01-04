@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -111,7 +111,8 @@ class UserNotices(models.Model):
     @staticmethod
     def mark_notices_read(notice_hashes, user):
         notices = UserNotices.objects.filter(notice_hash__in=notice_hashes,
-                                             user=user)
+                                             user=user,
+                                             is_read=False)
         for notice in notices:
             notice.is_read = True
             # notice.marked_read = datetime.now()
