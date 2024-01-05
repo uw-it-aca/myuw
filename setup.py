@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import os
@@ -62,6 +62,7 @@ setup(
         'django_client_logger<3.0',
         'UW-HX-Toolkit~=2.7',
         'django-blti~=2.2',
+        'lxml==4.9.4',
         'nh3',
         'pyyaml',
         'ua-parser',

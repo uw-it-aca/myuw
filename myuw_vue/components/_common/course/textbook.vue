@@ -21,12 +21,12 @@ export default {
       return "4";
     },
     uwtTextbookUrl() {
-      // MUWM-5311
+      // MUWM-5311, MUWM-5326
       return (
         "https://www.bkstr.com/webApp/discoverView?" +
         "bookstore_id-1=2335&div-1=&term_id-1=" +
          String(this.section.year) + this.termId +
-        "&dept-1=" + encodeURIComponent(this.section.curriculum_abbr) +
+        "&dept-1=" + encodeURIComponent(this.section.curriculum_abbr.replace(" ", "-")) +
         "&course-1=" + this.section.course_number +
         "&section-1=" + this.section.section_id);
     },
