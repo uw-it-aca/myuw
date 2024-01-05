@@ -21,6 +21,13 @@ lifecycle:
     enabled: true
 securityPolicy:
   enabled: false
+resources:
+  limits:
+    cpu: 1.0
+    memory: 2.0Gi
+  requests:
+    cpu: 256m
+    memory: 0.5Gi
 affinity:
    podsSpanNodes: true
 readiness:
@@ -44,8 +51,26 @@ image:
 memcached:
   enabled: true
   replicaCount: 1
+  command:
+    - "memcached"
+    - "-m"
+    - "256"
+    - "-c"
+    - "16384"
+    - "-t"
+    - "8"
+    - "-o"
+    - "modern"
+    - "-v"
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 30m
+      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/my.uw.edu-ic.cert
@@ -190,6 +215,15 @@ environmentVariables:
   - name: UWIDP_TIMEOUT
     value: "10"
 
+  - name: AXDD_PERSON_CLIENT_ENV
+    value: PROD
+
+  - name: UW_PERSON_DB_HOSTNAME
+    value: 172.18.1.67
+
+  - name: UW_PERSON_DB_DATABASE
+    value: uw-person-prod
+
   - name: CLUSTER_CNAME
     value: vue.my.uw.edu
 
@@ -262,6 +296,14 @@ externalSecrets:
         - name: openssl.cnf
           property: openssl.cnf
 
+    - name: vue.my.uw.edu-shared-secrets
+      externalKey: my/shared/secrets
+      data:
+        - name: person-db-user
+          property: person-db-user
+        - name: person-db-pass
+          property: person-db-pass
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -327,3 +369,11 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  personDBUser:
+    name: UW_PERSON_DB_USERNAME
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-user
+  personDBPass:
+    name: UW_PERSON_DB_PASSWORD
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-pass
