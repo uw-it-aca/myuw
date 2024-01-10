@@ -102,10 +102,8 @@ export default {
       if (el && !el.classList.contains('scrolled')) {
         // MUWM-5320
         // console.log('Scrolling into view:', el);
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' });
-          el.classList.add('scrolled'); // mark it as scrolled
-        }, 100);
+        el.scrollIntoView({ behavior: 'smooth' });
+        el.classList.add('scrolled'); // mark it as scrolled
       }
     },
     viewUWTBookUrl(bookSection) {
