@@ -1,7 +1,5 @@
 import utils from './utils';
 
-let firstSelfAnchored = true;
-
 export default {
   methods: {
     quoteField(x) {
@@ -100,12 +98,12 @@ export default {
     },
     selfAnchoredOnce(section) {
       // anchor on the section uw-card where div id is section.anchor
-      if (firstSelfAnchored) {
-        const el = document.getElementById(section.anchor);
-        if (el) {
-          el.scrollIntoView({behavior: 'smooth'});
-        }
-        firstSelfAnchored = false;
+      const el = document.getElementById(section.anchor);
+      if (el && !el.classList.contains('scrolled')) {
+        // MUWM-5320
+        // console.log('Scrolling into view:', el);
+        el.scrollIntoView({ behavior: 'smooth' });
+        el.classList.add('scrolled'); // mark it as scrolled
       }
     },
     viewUWTBookUrl(bookSection) {
