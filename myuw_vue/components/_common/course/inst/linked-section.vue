@@ -151,7 +151,7 @@ export default {
             setTimeout(() => {
               document.getElementById(this.section.anchor)
                 .scrollIntoView({behavior: 'smooth'});
-            }, 1000);
+            }, 3000);
           });
         } else {
           // from home page, navigate to the teaching page
