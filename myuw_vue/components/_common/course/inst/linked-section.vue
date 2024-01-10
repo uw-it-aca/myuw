@@ -151,10 +151,11 @@ export default {
             setTimeout(() => {
               document.getElementById(this.section.anchor)
                 .scrollIntoView({behavior: 'smooth'});
-            }, 100);
+            }, 1000);
           });
         } else {
-          // from home page, go to the card on teaching page
+          // from home page, navigate to the teaching page
+          // and scroll to the section
           window.location.href = `/teaching/${this.section.href}`;
         }
       } else {
