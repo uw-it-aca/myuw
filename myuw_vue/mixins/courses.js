@@ -99,11 +99,13 @@ export default {
     selfAnchoredOnce(section) {
       // anchor on the section uw-card where div id is section.anchor
       const el = document.getElementById(section.anchor);
+      // console.log('Scrolling into view:', el);
       if (el && !el.classList.contains('scrolled')) {
         // MUWM-5320
-        // console.log('Scrolling into view:', el);
-        el.scrollIntoView({ behavior: 'smooth' });
-        el.classList.add('scrolled'); // mark it as scrolled
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+          el.classList.add('scrolled'); // mark it as scrolled
+        });
       }
     },
     viewUWTBookUrl(bookSection) {

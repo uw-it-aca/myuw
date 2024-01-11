@@ -158,11 +158,8 @@ export default {
             }
           });
         } else {
-          // from home page, navigate to the teaching page
-          // and scroll to the section
-          setTimeout(() => {
-            window.location.href = `/teaching/${this.section.href}`;
-          }, 100);
+          // from home page, navigate to the teaching page, anchor onto the section
+          window.location.href = `/teaching/${this.section.href}`;
         }
       } else {
         // on Teaching page, go to the card
