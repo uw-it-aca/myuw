@@ -145,18 +145,24 @@ export default {
       }
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
+        const targetId = this.section.anchor;
         if (window.location.pathname.startsWith('/teaching/')) {
+          const targetUrl = `/teaching/${this.section.href}`;
+          window.history.replaceState({}, null, targetUrl);
           this.$nextTick(() => {
-            window.history.replaceState({}, null, `/teaching/${this.section.href}`);
-            setTimeout(() => {
-              document.getElementById(this.section.anchor)
-                .scrollIntoView({behavior: 'smooth'});
-            }, 3000);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              setTimeout(() => {
+                targetElement.scrollIntoView({behavior: 'smooth'});
+              }, 100);
+            }
           });
         } else {
           // from home page, navigate to the teaching page
           // and scroll to the section
-          window.location.href = `/teaching/${this.section.href}`;
+          setTimeout(() => {
+            window.location.href = `/teaching/${this.section.href}`;
+          }, 100);
         }
       } else {
         // on Teaching page, go to the card
