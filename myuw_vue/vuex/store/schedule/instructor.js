@@ -201,18 +201,18 @@ const customActions = {
     postProcess,
     'json'
   ),
-  toggleMini: ({commit}, section) => {
-    if (section.mini_card) {
-      axios.get(`/api/v1/inst_section_display/${section.apiTag}/close_mini`)
-        .then((resp) => {
-          commit('updateMiniPinned', {section, pin: false});
-        });
-    } else {
-      axios.get(`/api/v1/inst_section_display/${section.apiTag}/pin_mini`)
-        .then((resp) => {
-          commit('updateMiniPinned', {section, pin: true});
-        });
-    }
+  toggleMini: ({ commit }, section) => {
+      const toggleEndpoint = section.mini_card
+        ? `/api/v1/inst_section_display/${section.apiTag}/close_mini`
+        : `/api/v1/inst_section_display/${section.apiTag}/pin_mini`;
+
+    return axios.get(toggleEndpoint)
+      .then((resp) => {
+        commit('updateMiniPinned', { section, pin: !section.mini_card });
+      })
+      .catch((error) => {
+        console.error('Error toggling mini card:', error);
+      });
   },
 };
 
