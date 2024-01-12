@@ -138,12 +138,12 @@ export default {
       return str.length > 4 ? str.substring(0, 3) : str;
     },
     miniCard() {
+      this.toggleMini(this.section);
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);
       } else {
         this.$logger.cardUnPin(this, this.section.apiTag);
       }
-      this.toggleMini(this.section);
       if (!this.section.mini_card) {
         const targetId = this.section.anchor;
         if (window.location.pathname.startsWith('/teaching/')) {
@@ -158,11 +158,13 @@ export default {
             }
           });
         } else {
-          // from home page, navigate to the teaching page, anchor onto the section
-          window.location.href = `/teaching/${this.section.href}`;
+          // wait a bit before navigating away from the home page
+          setTimeout(() => {
+            window.location.href = `/teaching/${this.section.href}`;
+          }, 100);
         }
       } else {
-        // on Teaching page, go to the card
+        // on Teaching page, anchor to the card
         window.history.replaceState({}, null, window.location.pathname);
       }
     }
