@@ -97,11 +97,10 @@ export default {
       return 'Time Schedule for SLN ' + section.sln;
     },
     selfAnchoredOnce(section) {
-      // anchor on the section uw-card where div id is section.anchor
+      // anchor on the section's uw-card div id (section.anchor)
       const el = document.getElementById(section.anchor);
-      // console.log('Scrolling into view:', el);
       if (el && !el.classList.contains('scrolled')) {
-        // MUWM-5320
+        // MUWM-5320: smoother scrolling behavior
         requestAnimationFrame(() => {
           el.scrollIntoView({ behavior: 'smooth' });
           el.classList.add('scrolled'); // mark it as scrolled
