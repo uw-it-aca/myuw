@@ -138,7 +138,7 @@ export default {
       return str.length > 4 ? str.substring(0, 3) : str;
     },
     miniCard() {
-      // MUWM-5320
+      // MUWM-5320: start toggleMini first, otherwise request aborted on Firefox
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);
