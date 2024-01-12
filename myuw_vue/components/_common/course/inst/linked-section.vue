@@ -138,6 +138,7 @@ export default {
       return str.length > 4 ? str.substring(0, 3) : str;
     },
     miniCard() {
+      // MUWM-5320
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);
@@ -152,13 +153,14 @@ export default {
           this.$nextTick(() => {
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
+              // wait for 100ms before anchoring on the mini card
               setTimeout(() => {
                 targetElement.scrollIntoView({behavior: 'smooth'});
               }, 100);
             }
           });
         } else {
-          // wait a bit before navigating away from the home page
+          // wait for 100ms before navigating away from the home page
           setTimeout(() => {
             window.location.href = `/teaching/${this.section.href}`;
           }, 100);

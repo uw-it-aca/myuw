@@ -202,6 +202,7 @@ const customActions = {
     'json'
   ),
   toggleMini: ({ commit }, section) => {
+    // MUWM-5320
     const toggleEndpoint = section.mini_card
       ? `/api/v1/inst_section_display/${section.apiTag}/close_mini`
       : `/api/v1/inst_section_display/${section.apiTag}/pin_mini`;
