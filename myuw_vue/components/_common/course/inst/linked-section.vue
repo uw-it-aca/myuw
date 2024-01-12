@@ -160,7 +160,7 @@ export default {
             }
           });
         } else {
-          // wait for 100ms before navigating away from the home page
+          // MUWM-5320: wait for 100ms before navigating away from the home page
           setTimeout(() => {
             window.location.href = `/teaching/${this.section.href}`;
           }, 100);
