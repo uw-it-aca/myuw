@@ -1,7 +1,5 @@
 import utils from './utils';
 
-let firstSelfAnchored = true;
-
 export default {
   methods: {
     quoteField(x) {
@@ -99,13 +97,14 @@ export default {
       return 'Time Schedule for SLN ' + section.sln;
     },
     selfAnchoredOnce(section) {
-      // anchor on the section uw-card where div id is section.anchor
-      if (firstSelfAnchored) {
-        const el = document.getElementById(section.anchor);
-        if (el) {
-          el.scrollIntoView({behavior: 'smooth'});
-        }
-        firstSelfAnchored = false;
+      // anchor on the section's uw-card div id (section.anchor)
+      const el = document.getElementById(section.anchor);
+      if (el && !el.classList.contains('scrolled')) {
+        // MUWM-5320: smoother scrolling behavior
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+          el.classList.add('scrolled'); // mark it as scrolled
+        });
       }
     },
     viewUWTBookUrl(bookSection) {

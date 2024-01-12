@@ -138,27 +138,35 @@ export default {
       return str.length > 4 ? str.substring(0, 3) : str;
     },
     miniCard() {
+      // MUWM-5320: start toggleMini first, otherwise request aborted on Firefox
+      this.toggleMini(this.section);
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);
       } else {
         this.$logger.cardUnPin(this, this.section.apiTag);
       }
-      this.toggleMini(this.section);
       if (!this.section.mini_card) {
+        const targetId = this.section.anchor;
         if (window.location.pathname.startsWith('/teaching/')) {
+          const targetUrl = `/teaching/${this.section.href}`;
+          window.history.replaceState({}, null, targetUrl);
           this.$nextTick(() => {
-            window.history.replaceState({}, null, `/teaching/${this.section.href}`);
-            setTimeout(() => {
-              document.getElementById(this.section.anchor)
-                .scrollIntoView({behavior: 'smooth'});
-            }, 100);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              // wait for 100ms before anchoring on the mini card
+              setTimeout(() => {
+                targetElement.scrollIntoView({behavior: 'smooth'});
+              }, 100);
+            }
           });
         } else {
-          // from home page, go to the card on teaching page
-          window.location.href = `/teaching/${this.section.href}`;
+          // MUWM-5320: wait for 100ms before navigating away from the home page
+          setTimeout(() => {
+            window.location.href = `/teaching/${this.section.href}`;
+          }, 100);
         }
       } else {
-        // on Teaching page, go to the card
+        // on Teaching page, anchor to the card
         window.history.replaceState({}, null, window.location.pathname);
       }
     }
