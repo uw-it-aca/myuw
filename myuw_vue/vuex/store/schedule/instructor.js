@@ -205,7 +205,7 @@ const customActions = {
     const toggleEndpoint = section.mini_card
       ? `/api/v1/inst_section_display/${section.apiTag}/close_mini`
       : `/api/v1/inst_section_display/${section.apiTag}/pin_mini`;
-    console.trace();
+    // console.trace();
     return axios.get(toggleEndpoint)
       .then((resp) => {
         commit('updateMiniPinned', { section, pin: !section.mini_card });
