@@ -117,6 +117,7 @@ COMPRESS_ROOT = "../static"
 STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
 )
+CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('CLUSTER_CNAME')]
 
 TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
