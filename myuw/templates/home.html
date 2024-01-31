@@ -4,7 +4,9 @@
 {% load set_context %}
 {% load vite %}
 
+{% block vite_styles_block %}
 {% vite_styles 'myuw_vue/home.js' %}
+{% endblock vite_styles_block %}
 
 {% block django_json_data %}
    <script>
@@ -108,4 +110,6 @@
 </myuw-boilerplate>
 {% endblock body_content %}
 
+{% block vite_scripts_block %}
 {% vite_scripts 'myuw_vue/home.js' %}
+{% endblock vite_scripts_block %}
