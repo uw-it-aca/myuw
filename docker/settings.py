@@ -18,7 +18,6 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'webpack_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -221,18 +220,13 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
-# Location of stats file that can be accessed during local development and 
+# Location of stats file that can be accessed during local development and
 # collected from during production build process
 
 if os.getenv("ENV") == "localdev":
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
-        }
-    }
+    DEBUG = True
+    VITE_MANIFEST_PATH = os.path.join(
+        BASE_DIR, "myuw", "static", "manifest.json"
+    )
 else:
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'STATS_FILE': '/static/webpack-stats.json',
-        }
-    }
+    VITE_MANIFEST_PATH = os.path.join(os.sep, "static", "manifest.json")

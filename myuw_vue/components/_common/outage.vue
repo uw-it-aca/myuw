@@ -190,7 +190,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 
 .myuw-outage {
   // override card background color using new warning theme background

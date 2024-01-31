@@ -414,10 +414,7 @@
               >
                 <img
                   class="img-fluid"
-                  :src="
-                    '/static/hx_toolkit_output/images/' +
-                    'How_Professional_Job_Different_From_Student_480.jpg'
-                  "
+
                   alt="Urban planning student documenting observations in a downtown Seattle park."
                 />
               </a>
@@ -440,7 +437,7 @@
               <a href="/husky_experience_message?article=preparing-professional-life">
                 <img
                   class="img-fluid"
-                  src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg"
+
                   alt="Student and his mentor working together in a UW Health Sciences lab."
                 />
               </a>
@@ -458,7 +455,7 @@
               <a href="/husky_experience_message?article=between-college-and-career">
                 <img
                   class="img-fluid"
-                  src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg"
+
                   :alt="
                     'Person seated on rock ledge above a ' +
                     'road that curves away in opposite directions.'

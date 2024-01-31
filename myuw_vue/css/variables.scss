@@ -27,7 +27,7 @@ $custom-colors: (
    'teal': #4c7286, // uw teal
    'light-gray': #e8e8e8, // uw light gray
    'dark-gray': #595959, // uw dark gray
- 
+
    // myuw course colors
    'c1': #2E6884,
    'c1a': #36799A,
@@ -59,9 +59,9 @@ $link-hover-decoration: underline;
 $ribbon-width: 0.4rem;
 
 @use "sass:map";
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
 
 // bt.$theme-colors + myuw custom colors
 $theme-colors: map.merge($theme-colors, $custom-colors);

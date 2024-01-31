@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 @use 'sass:map';
-@import '../../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 .message {
   ::v-deep .date {
     font-weight: bold;

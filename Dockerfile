@@ -13,7 +13,7 @@ RUN chmod u+x /scripts/app_start.sh
 RUN /app/bin/pip install -r requirements.txt
 RUN /app/bin/pip install psycopg2
 
-FROM node:16.3-stretch AS node-bundler
+FROM node:lts-bullseye AS node-bundler
 
 ADD ./package.json /app/
 WORKDIR /app/
@@ -24,7 +24,7 @@ ADD . /app/
 
 ARG VUE_DEVTOOLS
 ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
-RUN npx webpack --mode=production
+RUN npm run build
 
 FROM app-prewebpack-container as app-container
 

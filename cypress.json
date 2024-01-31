@@ -1,7 +1,0 @@
-{
-  "componentFolder": "myuw_vue",
-  "testFiles": "**/*.spec.js",
-  "video": true,
-  "defaultCommandTimeout": 60000,
-  "requestTimeout": 14000
-}

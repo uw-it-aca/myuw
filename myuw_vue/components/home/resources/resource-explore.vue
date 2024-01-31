@@ -7,7 +7,7 @@
     </template>
     <template #card-body>
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
-      
+
       <ul class="list-unstyled myuw-text-lg myuw-resource-links">
         <div class="container">
           <div class="row">
@@ -91,7 +91,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 
 .myuw-resource-links {
   a {
