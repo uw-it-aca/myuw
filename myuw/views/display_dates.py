@@ -4,13 +4,13 @@
 from datetime import datetime
 from dateutil import tz
 import logging
-import pytz
 import traceback
 from django.shortcuts import render
 from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.test.client import RequestFactory
+from django.utils.timezone import get_default_timezone
 from uw_sws.term import get_term_by_date
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
@@ -138,15 +138,12 @@ def add_seen_registration_context(request, context):
     seen_registrations = SeenRegistration.objects.filter(user=user)
     seen = []
 
-    from_zone = tz.tzutc()
-    to_zone = tz.tzlocal()
-    to_zone = pytz.timezone("America/Los_Angeles")
+    local_tz = get_default_timezone()
 
     for reg in seen_registrations:
 
         seen_date = reg.first_seen_date
-        utc = seen_date.replace(tzinfo=from_zone)
-        local = utc.astimezone(to_zone)
+        local = seen_date.replace(tzinfo=datetime.UTC).astimezone(local_tz)
 
         seen.append({
             'year': reg.year,

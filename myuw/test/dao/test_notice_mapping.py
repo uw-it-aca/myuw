@@ -1,10 +1,9 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import pytz
-from django.test import TestCase
-from datetime import datetime
-from django.utils import timezone
+from django.test import TestCase, override_settings
+from datetime import datetime, timezone
+from django.utils.timezone import get_default_timezone
 from django.conf import settings
 from uw_sws.notice import get_notices_by_regid
 from myuw.dao.notice_mapping import (
@@ -80,28 +79,29 @@ class TestMapNotices(TestCase):
         close_date = get_close_date(notice)
         self.assertEquals(str(close_date), "2013-02-28 08:00:00+00:00")
 
+    @override_settings(TIME_ZONE='America/Los_Angeles')
     def test_is_after_eof_days_after_open(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = categorize_notices(get_notices_by_regid(regid))
         notice = notices[10]
-        now = timezone.get_current_timezone().localize(
-            datetime(2013, 1, 15, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertFalse(is_after_eof_days_after_open(now, notice, 14))
+        tz = get_default_timezone()
+        d1 = datetime(2013, 1, 15, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        self.assertFalse(is_after_eof_days_after_open(d1, notice, 14))
 
-        now = timezone.get_current_timezone().localize(
-            datetime(2013, 1, 16, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertTrue(is_after_eof_days_after_open(now, notice, 14))
+        d2 = datetime(2013, 1, 16, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        self.assertTrue(is_after_eof_days_after_open(d2, notice, 14))
 
+    @override_settings(TIME_ZONE='America/Los_Angeles')
     def test_is_before_bof_days_before_close(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = categorize_notices(get_notices_by_regid(regid))
         notice = notices[10]
-        now = timezone.get_current_timezone().localize(
-            datetime(2013, 2, 14, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertFalse(is_before_bof_days_before_close(now, notice, 14))
-        now = timezone.get_current_timezone().localize(
-            datetime(2013, 2, 13, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertTrue(is_before_bof_days_before_close(now, notice, 14))
+        tz = get_default_timezone()
+        d1 = datetime(2013, 2, 14, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        self.assertFalse(is_before_bof_days_before_close(d1, notice, 14))
+
+        d2 = datetime(2013, 2, 13, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        self.assertTrue(is_before_bof_days_before_close(d2, notice, 14))
 
     def test_apply_showhide(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
