@@ -1,7 +1,7 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import datetime
+from datetime import datetime, timezone
 from dateutil import tz
 import logging
 import traceback
@@ -143,7 +143,7 @@ def add_seen_registration_context(request, context):
     for reg in seen_registrations:
 
         seen_date = reg.first_seen_date
-        local = seen_date.replace(tzinfo=datetime.UTC).astimezone(local_tz)
+        local = seen_date.replace(tzinfo=timezone.utc).astimezone(local_tz)
 
         seen.append({
             'year': reg.year,
