@@ -124,21 +124,20 @@ class TestPageMethods(MyuwApiTest):
             response = self.client.get(url)
             self.assertEquals(response.status_code, 200)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_no_user_in_session(self):
         # MUWM-4366
         url = reverse("myuw_home")
+        login_url = reverse("saml_login")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.url, "/saml/login?next=/")
+        self.assertEquals(response.url, f"{login_url}?next={url}")
 
-    @skipIf(missing_url("myuw_logout"), "myuw_logout not configured")
     def test_logout(self):
         self.set_user('javerage')
         url = reverse("myuw_logout")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.url, "/saml/logout")
+        self.assertEquals(response.url, reverse("saml_logout"))
 
         self.set_user('javerage')
         response = self.client.get(

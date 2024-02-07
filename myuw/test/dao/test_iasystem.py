@@ -1,8 +1,7 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import datetime
-import pytz
+from datetime import datetime, timezone
 from django.test import TestCase
 from django.conf import settings
 from django.test.utils import override_settings
@@ -77,13 +76,9 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(evals)
         self.assertEqual(evals[0].section_sln, 13833)
         self.assertEqual(evals[0].eval_open_date,
-                         datetime.datetime(2013, 7, 2,
-                                           14, 0,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 7, 2, 14, 0, tzinfo=timezone.utc))
         self.assertEqual(evals[0].eval_close_date,
-                         datetime.datetime(2013, 7, 23,
-                                           6, 59, 59,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 7, 23, 6, 59, 59, tzinfo=timezone.utc))
         self.assertFalse(evals[0].is_completed)
 
         now_request = get_request()
@@ -152,13 +147,9 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(evals), 1)
         self.assertEqual(evals[0].section_sln, 13833)
         self.assertEqual(evals[0].eval_open_date,
-                         datetime.datetime(2013, 8, 23,
-                                           14, 0, 0,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 8, 23, 14, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(evals[0].eval_close_date,
-                         datetime.datetime(2013, 8, 29,
-                                           6, 59, 59,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 8, 29, 6, 59, 59, tzinfo=timezone.utc))
         self.assertTrue(evals[0].is_seattle)
         self.assertEqual(len(evals[0].instructor_ids), 3)
         self.assertEqual(evals[0].instructor_ids[0], 123456781)
@@ -182,31 +173,19 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(evals), 3)
         self.assertEqual(evals[0].section_sln, 17169)
         self.assertEqual(evals[0].eval_open_date,
-                         datetime.datetime(2013, 5, 30,
-                                           15, 0, 0,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 5, 30, 15, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(evals[0].eval_close_date,
-                         datetime.datetime(2013, 7, 1,
-                                           7, 59, 59,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 7, 1, 7, 59, 59, tzinfo=timezone.utc))
         self.assertFalse(evals[0].is_completed)
         self.assertEqual(evals[1].eval_open_date,
-                         datetime.datetime(2013, 6, 5,
-                                           7, 0, 0,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 6, 5, 7, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(evals[1].eval_close_date,
-                         datetime.datetime(2013, 6, 17,
-                                           6, 59, 59,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 6, 17, 6, 59, 59, tzinfo=timezone.utc))
         self.assertFalse(evals[1].is_completed)
         self.assertEqual(evals[2].eval_open_date,
-                         datetime.datetime(2013, 6, 10,
-                                           7, 0, 0,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 6, 10, 7, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(evals[2].eval_close_date,
-                         datetime.datetime(2013, 6, 19,
-                                           6, 59, 59,
-                                           tzinfo=pytz.utc))
+                         datetime(2013, 6, 19, 6, 59, 59, tzinfo=timezone.utc))
         self.assertFalse(evals[2].is_completed)
         now_request = get_request_with_date("2013-05-30")
         json_data = json_for_evaluation(now_request, evals, None)
