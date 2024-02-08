@@ -93,6 +93,9 @@ else:
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
         MYUW_SKIP_ACCESS_CHECK = False
 
+    RESTCLIENTS_BOOK_HOST = 'https://api.ubookstore.com'
+    CSRF_TRUSTED_ORIGINS = ["https://" + os.getenv('CLUSTER_CNAME')]
+
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
