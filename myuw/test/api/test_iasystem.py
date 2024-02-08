@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import datetime
-import pytz
 import json
 from myuw.test.api import MyuwApiTest, require_url, fdao_ias_override
 
