@@ -30,7 +30,7 @@
     "url-loader": "4.1.1",
     "vue": "2.7.16",
     "vue-gtag": "1.16.1",
-    "vue-loader": "15.9.5",
+    "vue-loader": "15.11.1",
     "vue-mq": "1.0.1",
     "vue-observe-visibility": "1.0.0",
     "vue-template-compiler": "2.6.14",
