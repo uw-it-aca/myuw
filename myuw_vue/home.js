@@ -1,4 +1,4 @@
-import {Vue, vueConf} from '@/base.js';
+import { Vue, vueConf } from '@/base.js';
 
 // layout componenets
 import Boilerplate from '@/components/_templates/boilerplate/boilerplate.vue';
@@ -21,8 +21,7 @@ import Notices from '@/components/home/notice/notices.vue';
 import Applicant from '@/components/home/applicant/applicant.vue';
 import Events from '@/components/home/events/events.vue';
 import InterStudent from '@/components/home/international/student.vue';
-import InstructorCourseSummery from
-  '@/components/home/inst_course_summary/summary.vue';
+import InstructorCourseSummery from '@/components/home/inst_course_summary/summary.vue';
 import NewInterStudent from '@/components/home/international/new-student.vue';
 import Quicklinks from '@/components/home/quicklinks/quicklinks.vue';
 import ToRegister from '@/components/home/new_student/to-register.vue';
@@ -41,23 +40,23 @@ import GraduationPreApplication from '@/components/home/graduation/pre-applicati
 import Graduation from '@/components/home/graduation/application-submitted.vue';
 
 // stores
-import notices from './vuex/store/notices';
-import quicklinks from './vuex/store/quicklinks';
-import hfs from './vuex/store/hfs';
-import library from './vuex/store/library';
-import applicant from './vuex/store/applicant';
-import directory from './vuex/store/directory';
-import events from './vuex/store/events';
-import inst_schedule from './vuex/store/schedule/instructor';
-import visual_schedule from './vuex/store/schedule/visual';
-import hx_toolkit from './vuex/store/hx_toolkit';
-import oquarter from './vuex/store/oquarter';
-import profile from './vuex/store/profile';
-import myplan from './vuex/store/myplan';
-import textbooks from './vuex/store/textbooks';
-import studSchedule from './vuex/store/schedule/student';
-import academicEvents from './vuex/store/academic_events';
-import resources from './vuex/store/resources';
+import notices from '@/vuex/store/notices';
+import quicklinks from '@/vuex/store/quicklinks';
+import hfs from '@/vuex/store/hfs';
+import library from '@/vuex/store/library';
+import applicant from '@/vuex/store/applicant';
+import directory from '@/vuex/store/directory';
+import events from '@/vuex/store/events';
+import inst_schedule from '@/vuex/store/schedule/instructor';
+import visual_schedule from '@/vuex/store/schedule/visual';
+import hx_toolkit from '@/vuex/store/hx_toolkit';
+import oquarter from '@/vuex/store/oquarter';
+import profile from '@/vuex/store/profile';
+import myplan from '@/vuex/store/myplan';
+import textbooks from '@/vuex/store/textbooks';
+import studSchedule from '@/vuex/store/schedule/student';
+import academicEvents from '@/vuex/store/academic_events';
+import resources from '@/vuex/store/resources';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
