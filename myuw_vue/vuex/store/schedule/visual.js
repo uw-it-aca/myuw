@@ -7,8 +7,8 @@ import {
   generateMeetingLocationData,
 } from './common';
 import {dayjs, diffIgnoreDate} from '../common';
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
-var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
 // Helper functions

@@ -11,11 +11,11 @@
   </span>
   <span v-else-if="dataError">
     Textbooks: <font-awesome-icon :icon="faExclamationTriangle" class="text-danger" />
-     <span class="text-danger">An error occurred and MyUW cannot load textbook 
+     <span class="text-danger">An error occurred and MyUW cannot load textbook
       information right now. Please try again later.</span>
   </span>
   <span v-else>
-    Textbook: 
+    Textbook:
     <span>
       <font-awesome-icon :icon="faExclamationTriangle" class="text-secondary" />
       Clarify course materials requirements in Time Schedule.
@@ -30,9 +30,9 @@
         <a href="https://www.ubookstore.com/faculty">
           UW Bookstore Course Materials Request Form </a>
           to provide a list of required reading materials for your course as early as possible.<br>
-        
-          <br>To best accommodate students, list ALL the required reading materials for your 
-          courses, regardless of whether you want UW Bookstore to supply the materials, or to 
+
+          <br>To best accommodate students, list ALL the required reading materials for your
+          courses, regardless of whether you want UW Bookstore to supply the materials, or to
           clarify if no texts are required for your course.
       </template>
     </uw-collapsed-item>
@@ -112,5 +112,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 </style>

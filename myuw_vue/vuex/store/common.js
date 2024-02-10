@@ -1,12 +1,20 @@
 import dayjsCommon from 'dayjs';
 
-dayjsCommon.extend(require('dayjs/plugin/advancedFormat'))
-dayjsCommon.extend(require('dayjs/plugin/calendar'))
-dayjsCommon.extend(require('dayjs/plugin/relativeTime'))
-dayjsCommon.extend(require('dayjs/plugin/utc'))
-dayjsCommon.extend(require('dayjs/plugin/timezone'))
-dayjsCommon.extend(require('dayjs/plugin/localizedFormat'))
-dayjsCommon.extend(require('dayjs/plugin/customParseFormat'))
+import calendar from "dayjs/plugin/calendar";
+import relativeTime from "dayjs/plugin/relativeTime";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjsCommon.extend(advancedFormat)
+dayjsCommon.extend(calendar)
+dayjsCommon.extend(relativeTime)
+dayjsCommon.extend(utc)
+dayjsCommon.extend(timezone)
+dayjsCommon.extend(localizedFormat)
+dayjsCommon.extend(customParseFormat)
 
 dayjsCommon.tz.setDefault("America/Los_Angeles");
 // default tz of dates in SDB

@@ -87,6 +87,10 @@ bundles/
 webpack_bundles/
 webpack-stats.json
 
+# vite bundle
+assets/
+manifest.json
+
 # Cypress
 cypress/videos
 cypress/screenshots

@@ -151,7 +151,7 @@ export default {
 
 <style lang="scss" scoped>
 @use 'sass:map';
-@use '../../../myuw/static/css/myuw/variables.scss' as b-vars;
+@use '@/css/variables.scss' as b-vars;
 
 ::v-deep .myuw-article-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);

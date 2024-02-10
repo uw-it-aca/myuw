@@ -1,6 +1,8 @@
 {% load hashing_tag %}
 {% load static %}
 {% load settings_value %}
+{% load vite %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,8 +92,9 @@
     {% block django_json_data %}
     {% endblock django_json_data %}
 
-    {% block vue_script %}
-    {% endblock vue_script %}
+    {% block vue_styles %}
+    {% endblock vue_styles %}
+
 </head>
 
 <body data-gtag="{{ google_analytics_key }}"
@@ -106,6 +109,9 @@
         {% block body_content %}
         {% endblock body_content %}
     </div>
+
+    {% block vue_script %}
+    {% endblock vue_script %}
 
 </body>
 

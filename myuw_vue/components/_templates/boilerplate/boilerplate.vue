@@ -421,7 +421,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 
 // boilerplate
 

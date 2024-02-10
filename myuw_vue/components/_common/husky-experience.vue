@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 
 .myuw-huskyexp {
   a {

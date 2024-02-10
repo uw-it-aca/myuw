@@ -2,7 +2,7 @@
   <div>
     <div style="text-align: center">
       <div v-if="hasOverlappingMeetings" role="alert" class="alert alert-warning">
-        <font-awesome-icon :icon="faExclamationTriangle" /> 
+        <font-awesome-icon :icon="faExclamationTriangle" />
         Class meetings times overlap – click on or hover over course to see exact
         start and end times.
       </div>
@@ -167,7 +167,7 @@
 
 <script>
 import CourseSection from './course-section.vue';
-import { faExclamationTriangle, 
+import { faExclamationTriangle,
 }
 from '@fortawesome/free-solid-svg-icons';
 
@@ -514,7 +514,7 @@ export default {
 
 <style lang="scss" scoped>
 @use 'sass:math';
-@import '../../../../myuw/static/css/myuw/variables.scss';
+@import '@/css/variables.scss';
 
 $heading-height: 45px;
 $cell-height: 35px;

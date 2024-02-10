@@ -1,16 +1,27 @@
 import dayjs from 'dayjs';
+import calendar from "dayjs/plugin/calendar";
+import duration from "dayjs/plugin/duration";
+import relativeTime from "dayjs/plugin/relativeTime";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import isToday from "dayjs/plugin/isToday";
+import weekOfYear from "dayjs/plugin/weekOfYear";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
 import {mapState} from 'vuex';
 
-dayjs.extend(require('dayjs/plugin/calendar'))
-dayjs.extend(require('dayjs/plugin/duration'))
-dayjs.extend(require('dayjs/plugin/relativeTime'))
-dayjs.extend(require('dayjs/plugin/timezone'))
-dayjs.extend(require('dayjs/plugin/utc'))
-dayjs.extend(require('dayjs/plugin/isToday'));
-dayjs.extend(require('dayjs/plugin/weekOfYear'));
-dayjs.extend(require('dayjs/plugin/advancedFormat'))
-dayjs.extend(require('dayjs/plugin/localizedFormat'))
-dayjs.extend(require('dayjs/plugin/customParseFormat'))
+dayjs.extend(calendar)
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
+dayjs.extend(timezone)
+dayjs.extend(utc)
+dayjs.extend(isToday)
+dayjs.extend(weekOfYear)
+dayjs.extend(advancedFormat)
+dayjs.extend(localizedFormat)
+dayjs.extend(customParseFormat)
 
 // default tz of dates in SDB
 dayjs.tz.setDefault("America/Los_Angeles");

@@ -8,7 +8,6 @@ import logging
 
 INSTALLED_APPS += [
     'uw_oidc',
-    'compressor',
     'django_client_logger',
     'django_user_agents',
     'hx_toolkit',
@@ -18,7 +17,6 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'webpack_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -105,19 +103,19 @@ USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 PERSISTENT_MESSAGE_AUTH_MODULE = 'myuw.authorization.is_myuw_admin'
 
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
-COMPRESS_OFFLINE_CONTEXT = {
-    'wrapper_template': 'persistent_message/manage_wrapper.html',
-}
+#COMPRESS_ENABLED = True
+#COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
+#COMPRESS_OFFLINE_CONTEXT = {
+#    'wrapper_template': 'persistent_message/manage_wrapper.html',
+#}
 
-if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
-    COMPRESS_ENABLED = False
+#if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
+#    COMPRESS_ENABLED = False
 
-COMPRESS_ROOT = "../static"
-STATICFILES_FINDERS += (
-    'compressor.finders.CompressorFinder',
-)
+#COMPRESS_ROOT = "../static"
+#STATICFILES_FINDERS += (
+#    'compressor.finders.CompressorFinder',
+#)
 
 TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
@@ -222,18 +220,15 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
-# Location of stats file that can be accessed during local development and 
+# Location of stats file that can be accessed during local development and
 # collected from during production build process
 
 if os.getenv("ENV") == "localdev":
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
-        }
-    }
+    DEBUG = True
+
+if os.getenv("ENV") == "localdev":
+    VITE_MANIFEST_PATH = os.path.join(
+        BASE_DIR, "myuw", "static", "manifest.json"
+    )
 else:
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'STATS_FILE': '/static/webpack-stats.json',
-        }
-    }
+    VITE_MANIFEST_PATH = os.path.join(os.sep, "static", "manifest.json")

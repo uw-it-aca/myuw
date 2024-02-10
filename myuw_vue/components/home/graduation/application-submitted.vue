@@ -414,10 +414,6 @@
               >
                 <img
                   class="img-fluid"
-                  :src="
-                    '/static/hx_toolkit_output/images/' +
-                    'How_Professional_Job_Different_From_Student_480.jpg'
-                  "
                   alt="Urban planning student documenting observations in a downtown Seattle park."
                 />
               </a>
@@ -438,11 +434,7 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a href="/husky_experience_message?article=preparing-professional-life">
-                <img
-                  class="img-fluid"
-                  src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg"
-                  alt="Student and his mentor working together in a UW Health Sciences lab."
-                />
+                asdfaf
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
@@ -456,14 +448,7 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a href="/husky_experience_message?article=between-college-and-career">
-                <img
-                  class="img-fluid"
-                  src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg"
-                  :alt="
-                    'Person seated on rock ledge above a ' +
-                    'road that curves away in opposite directions.'
-                  "
-                />
+                asdfas
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
