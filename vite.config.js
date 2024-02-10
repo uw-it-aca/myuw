@@ -1,6 +1,6 @@
-import { fileURLToPath, URL } from "url";
-import { defineConfig } from "vite";
-import vue from '@vitejs/plugin-vue2'
+import { fileURLToPath, URL } from 'url';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import vue from '@vitejs/plugin-vue2';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,20 +15,31 @@ export default defineConfig({
     rollupOptions: {
       input: [
         // list all entry points
-        "./myuw_vue/home.js",
+        './myuw_vue/home.js',
+        //'./myuw_vue/academics.js',
+        //'./myuw_vue/teaching.js',
+        //'./myuw_vue/accounts.js',
+        //'./myuw_vue/future_quarters.js',
+        //'./myuw_vue/profile.js',
+        //'./myuw_vue/textbooks.js',
+        //'./myuw_vue/husky_experience.js',
+        //'./myuw_vue/notices.js',
+        //'./myuw_vue/teaching_classlist.js',
+        //'./myuw_vue/resources.js',
+        //'./myuw_vue/calendar.js',
       ],
     },
-    outDir: "./myuw/static/", // relative path to django's static directory
-    assetsDir: "myuw/assets", // default ('assets')... this is the namespaced subdirectory of outDir that vite uses
+    outDir: './myuw/static/', // relative path to django's static directory
+    assetsDir: 'myuw/assets', // default ('assets')... this is the namespaced subdirectory of outDir that vite uses
     emptyOutDir: false, // set to false to ensure favicon is not overwritten
   },
-  base: "/static/", // allows for proper css url path creation during the build process
+  base: '/static/', // allows for proper css url path creation during the build process
 
   // MARK: standard vite/vue plugin and resolver config
-  plugins: [vue()],
+  plugins: [vue(), splitVendorChunkPlugin()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./myuw_vue", import.meta.url)),
+      '@': fileURLToPath(new URL('./myuw_vue', import.meta.url)),
       vue: 'vue/dist/vue.esm.js',
     },
   },

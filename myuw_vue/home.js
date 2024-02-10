@@ -1,44 +1,44 @@
-import {Vue, vueConf} from './base.js';
+import {Vue, vueConf} from '@/base.js';
 
 // layout componenets
-import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
+import Boilerplate from '@/components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import CacheMsg from './components/_common/cache-msg.vue';
-import Grades from './components/_common/grades/grades.vue';
-import HuskyExperience from './components/_common/husky-experience.vue';
-import Outage from './components/_common/outage.vue';
-import FutureQuarterCards from './components/_common/future-quarter.vue';
-import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
-import Textbooks from './components/_common/textbooks.vue';
-import UWNetID from './components/_common/uw-netid.vue';
-import HRPayroll from './components/_common/hr-payroll.vue';
+import CacheMsg from '@/components/_common/cache-msg.vue';
+import Grades from '@/components/_common/grades/grades.vue';
+import HuskyExperience from '@/components/_common/husky-experience.vue';
+import Outage from '@/components/_common/outage.vue';
+import FutureQuarterCards from '@/components/_common/future-quarter.vue';
+import VisualSchedule from '@/components/_common/visual_schedule/schedule.vue';
+import Textbooks from '@/components/_common/textbooks.vue';
+import UWNetID from '@/components/_common/uw-netid.vue';
+import HRPayroll from '@/components/_common/hr-payroll.vue';
 
 // home components
-import Summaries from './components/home/summaries.vue';
-import DeclareMajor from './components/home/major-declaration/declare-major.vue';
-import Notices from './components/home/notice/notices.vue';
-import Applicant from './components/home/applicant/applicant.vue';
-import Events from './components/home/events/events.vue';
-import InterStudent from './components/home/international/student.vue';
+import Summaries from '@/components/home/summaries.vue';
+import DeclareMajor from '@/components/home/major-declaration/declare-major.vue';
+import Notices from '@/components/home/notice/notices.vue';
+import Applicant from '@/components/home/applicant/applicant.vue';
+import Events from '@/components/home/events/events.vue';
+import InterStudent from '@/components/home/international/student.vue';
 import InstructorCourseSummery from
-  './components/home/inst_course_summary/summary.vue';
-import NewInterStudent from './components/home/international/new-student.vue';
-import Quicklinks from './components/home/quicklinks/quicklinks.vue';
-import ToRegister from './components/home/new_student/to-register.vue';
-import ThankYou from './components/home/new_student/thank-you.vue';
-import SummerEfs from './components/home/new_student/summer-efs.vue';
-import CriticalInfo from './components/home/new_student/critical-info.vue';
-import RegStatus from './components/home/registration/status.vue';
-import Transcripts from './components/home/former_student/transcripts.vue';
-import ContinuingEducation from './components/home/former_student/continuing-education.vue';
-import Alumni from './components/home/alumni.vue';
-import Retiree from './components/home/former_employee/retiree.vue';
-import AcadCalSnippet from './components/home/calendar/acad-cal-snippet.vue';
-import PinnedResourceCards from './components/home/resources/pinned-resource-cards.vue';
-import ResourceExplore from './components/home/resources/resource-explore.vue';
-import GraduationPreApplication from './components/home/graduation/pre-application.vue';
-import Graduation from './components/home/graduation/application-submitted.vue';
+  '@/components/home/inst_course_summary/summary.vue';
+import NewInterStudent from '@/components/home/international/new-student.vue';
+import Quicklinks from '@/components/home/quicklinks/quicklinks.vue';
+import ToRegister from '@/components/home/new_student/to-register.vue';
+import ThankYou from '@/components/home/new_student/thank-you.vue';
+import SummerEfs from '@/components/home/new_student/summer-efs.vue';
+import CriticalInfo from '@/components/home/new_student/critical-info.vue';
+import RegStatus from '@/components/home/registration/status.vue';
+import Transcripts from '@/components/home/former_student/transcripts.vue';
+import ContinuingEducation from '@/components/home/former_student/continuing-education.vue';
+import Alumni from '@/components/home/alumni.vue';
+import Retiree from '@/components/home/former_employee/retiree.vue';
+import AcadCalSnippet from '@/components/home/calendar/acad-cal-snippet.vue';
+import PinnedResourceCards from '@/components/home/resources/pinned-resource-cards.vue';
+import ResourceExplore from '@/components/home/resources/resource-explore.vue';
+import GraduationPreApplication from '@/components/home/graduation/pre-application.vue';
+import Graduation from '@/components/home/graduation/application-submitted.vue';
 
 // stores
 import notices from './vuex/store/notices';
