@@ -2,9 +2,15 @@
 
 {% load settings_value %}
 {% load set_context %}
+{% load vite %}
 
 {% block django_json_data %}
 {% endblock django_json_data %}
+
+{% block vue_styles %}
+<!-- vite css bundle -->
+{% vite_styles 'myuw_vue/profile.js' %}
+{% endblock vue_styles %}
 
 {% block body_content %}
 <myuw-boilerplate logout-url="{% settings_value 'LOGOUT_URL' %}" is-hybrid="{{ user.isHybrid }}">
@@ -16,7 +22,7 @@
       <myuw-student-profile></myuw-student-profile>
       <myuw-applicant-profile></myuw-applicant-profile>
       <myuw-profile-sidelinks></myuw-profile-sidelinks>
-    </div>      
+    </div>
   </template>
   <template #desktop>
     <div class="col-md-12">
@@ -36,7 +42,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'profile' 'js' attrs='defer' %}
-{% render_bundle 'profile' 'css' %}
+<!-- vite js bundle -->
+{% vite_scripts 'myuw_vue/profile.js' %}
 {% endblock vue_script %}
