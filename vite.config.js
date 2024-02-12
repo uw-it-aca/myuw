@@ -16,7 +16,7 @@ export default defineConfig({
       input: [
         // list all entry points
         './myuw_vue/home.js',
-        //'./myuw_vue/academics.js',
+        './myuw_vue/academics.js',
         //'./myuw_vue/teaching.js',
         './myuw_vue/accounts.js',
         //'./myuw_vue/future_quarters.js',
@@ -25,8 +25,8 @@ export default defineConfig({
         //'./myuw_vue/husky_experience.js',
         //'./myuw_vue/notices.js',
         //'./myuw_vue/teaching_classlist.js',
-        //'./myuw_vue/resources.js',
-        //'./myuw_vue/calendar.js',
+        './myuw_vue/resources.js',
+        './myuw_vue/calendar.js',
       ],
     },
     outDir: './myuw/static/', // relative path to django's static directory
