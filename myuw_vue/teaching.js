@@ -1,17 +1,17 @@
-import {Vue, vueConf} from './base.js';
+import {Vue, vueConf} from '@/base.js';
 
 // layout components
-import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
+import Boilerplate from '@/components/_templates/boilerplate/boilerplate.vue';
 
 // teaching componenets
-import CourseTabs from './components/teaching/course/chooser_tabs.vue';
-import TeachingResources from './components/teaching/teaching-resources.vue';
+import CourseTabs from '@/components/teaching/course/chooser_tabs.vue';
+import TeachingResources from '@/components/teaching/teaching-resources.vue';
 
 // store
-import classlist from './vuex/store/classlist';
-import emaillist from './vuex/store/emaillist';
-import instSchedule from './vuex/store/schedule/instructor';
-import textbooks from './vuex/store/textbooks';
+import classlist from '@/vuex/store/classlist';
+import emaillist from '@/vuex/store/emaillist';
+import instSchedule from '@/vuex/store/schedule/instructor';
+import textbooks from '@/vuex/store/textbooks';
 
 vueConf.store.registerModule('classlist', classlist);
 vueConf.store.registerModule('emaillist', emaillist);

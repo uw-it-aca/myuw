@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+
 {% load settings_value %}
 {% load set_context %}
+{% load vite %}
 
 {% block django_json_data %}
   <script>
@@ -8,6 +10,11 @@
     window.section = "{{ section }}";
   </script>
 {% endblock django_json_data %}
+
+{% block vue_styles %}
+<!-- vite css bundle -->
+{% vite_styles 'myuw_vue/teaching_classlist.js' %}
+{% endblock vue_styles %}
 
 {% block body_content %}
 <myuw-boilerplate id="myuw-printable-page" is-hybrid="{{ user.isHybrid }}" force-hybrid>
@@ -23,7 +30,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'teaching_classlist' 'js' attrs='defer' %}
-{% render_bundle 'teaching_classlist' 'css' %}
+<!-- vite js bundle -->
+{% vite_scripts 'myuw_vue/teaching_classlist.js' %}
 {% endblock vue_script %}

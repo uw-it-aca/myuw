@@ -1,13 +1,13 @@
-import { Vue, vueConf } from './base.js';
+import { Vue, vueConf } from '@/base.js';
 
 // layout componenets
-import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
+import Boilerplate from '@/components/_templates/boilerplate/boilerplate.vue';
 
 // components
-import HuskyExpPage from './components/husky_experience/husky-exp.vue';
+import HuskyExpPage from '@/components/husky_experience/husky-exp.vue';
 
 // stores
-import hx_toolkit from './vuex/store/hx_toolkit';
+import hx_toolkit from '@/vuex/store/hx_toolkit';
 
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 
