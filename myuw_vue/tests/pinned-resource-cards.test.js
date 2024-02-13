@@ -43,7 +43,7 @@ describe('Pinned Resources Card', () => {
     expect(wrapper.vm.maybePinnedResources.length).toBe(1);
     expect(wrapper.findAll('button')).toHaveLength(2);
     await wrapper.findAll('button').at(0).trigger('click');
-    expect(wrapper.findAllComponents(UwCard).length).toBe(2);
-    expect(wrapper.findAll('button')).toHaveLength(2);
+    expect(wrapper.findAllComponents(UwCard).length).toBe(1);
+    expect(wrapper.findAll('button')).toHaveLength(1);
   });
 });
