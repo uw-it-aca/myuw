@@ -25,7 +25,6 @@
     "@cypress/vue": "^2.2.3",
     "@cypress/webpack-dev-server": "1.4.0",
 
-    "@rushstack/eslint-patch": "^1.6.1",
     "@vitejs/plugin-vue2": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "1.2.1",
