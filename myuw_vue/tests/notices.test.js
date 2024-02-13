@@ -4,13 +4,13 @@ dayjs.extend(require('dayjs/plugin/timezone'))
 import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import notices from '@/vuex/store/notices';
-import NoticeCard from '@/components/home/notice/notices.vue';
-import NoticeList from '@/components/home/notice/notice-items.vue';
-import CollapsedItem from '@/components/_common/collapsed-notice.vue';
+import notices from '../vuex/store/notices';
+import NoticeCard from '../components/home/notice/notices.vue';
+import NoticeList from '../components/home/notice/notice-items.vue';
+import CollapsedItem from '../components/_common/collapsed-notice.vue';
 
-import javgNotices from '@/tests/mock_data/notice/javerage.json';
-import jnewNotices from '@/tests/mock_data/notice/jnew.json';
+import javgNotices from './mock_data/notice/javerage.json';
+import jnewNotices from './mock_data/notice/jnew.json';
 
 const localVue = createLocalVue(Vuex);
 
