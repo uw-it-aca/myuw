@@ -28,7 +28,7 @@ describe('Declare Major Card', () => {
       },
       state: {
         user: {
-          affiliations: { 
+          affiliations: {
             class_level: 'JUNIOR',
             seattle: true,
           }

@@ -24,7 +24,7 @@ describe('Student Profile Card', () => {
       },
       state: {
         user: {
-          affiliations: { 
+          affiliations: {
             employee: true,
             stud_employee: true,
           }
@@ -75,4 +75,3 @@ describe('Student Profile Card', () => {
     ).toEqual('');
   });
 });
- 

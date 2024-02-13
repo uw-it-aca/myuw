@@ -23,7 +23,7 @@ describe('Employee Profile Card', () => {
       },
       state: {
         user: {
-          affiliations: { 
+          affiliations: {
             all_employee: false,
             stud_employee: false,
             tacoma: false,
@@ -52,4 +52,3 @@ describe('Employee Profile Card', () => {
     expect(wrapper.vm.noFormsOfContact).toBe(false);
   });
 });
- 

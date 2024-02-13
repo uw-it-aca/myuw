@@ -54,7 +54,7 @@ describe('Academic Calendar Page Content', () => {
     expect(wrapper.vm.allEvents[0].start).toEqual(dayjs("2021-06-21"));
     expect(wrapper.vm.allEvents[0].end).toEqual(dayjs("2021-09-28"));
     const breakEvents = wrapper.vm.breakEvents;
-  
+
     wrapper = shallowMount(AcadCalCards, {store, localVue,
       propsData: {'events': allEvents}});
     await new Promise(setImmediate);

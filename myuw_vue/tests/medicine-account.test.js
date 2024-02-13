@@ -46,7 +46,7 @@ describe('Husky Card', () => {
     mockJinterProfile.password.expires_med = '2013-04-14 10:57:06-08:00';
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise(setImmediate); 
+    await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.hasActiveMedPw).toBe(true);

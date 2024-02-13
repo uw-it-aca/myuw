@@ -66,7 +66,7 @@ describe('Grad Status Card', () => {
     const wrapper = mount(GradStatusCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
-    
+
     expect(wrapper.vm.showError).toBeTruthy();
     expect(wrapper.findAll('a')).toHaveLength(1);
   });

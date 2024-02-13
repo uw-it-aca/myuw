@@ -1,8 +1,7 @@
 {
   "extends": [
     "stylelint-config-standard-scss",
-    "stylelint-config-recommended-vue/scss",
-    "stylelint-config-prettier"
+    "stylelint-config-recommended-vue/scss"
   ],
   "rules": {
     "scss/no-global-function-names": null,

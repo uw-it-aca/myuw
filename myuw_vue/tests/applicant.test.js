@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';

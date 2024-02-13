@@ -1,4 +1,4 @@
 {
-  "python.linting.pycodestyleEnabled": true,
-  "python.linting.enabled": true
+  "black-formatter.args": ["--line-length=79"],
+  "stylelint.validate": ["vue", "scss"]
 }

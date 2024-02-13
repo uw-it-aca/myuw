@@ -48,7 +48,7 @@ describe('Alumni Card', () => {
     expect(link3.attributes().href
     ).toBe('https://www.washington.edu/cms/alumni/membership/');
   });
-  
+
   it('Hide card is user is not alumni', () => {
     const wrapper = shallowMount(AlumniCard, { store, localVue });
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);

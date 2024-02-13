@@ -1,9 +1,10 @@
 import axios from 'axios';
-import utils from '../mixins/utils'
-import courses from '../mixins/courses';
-import sortc from '../mixins/sort-compare';
+import utils from '@/mixins/utils.js'
+import courses from '@/mixins/courses';
+import sortc from '@/mixins/sort-compare';
 
-import mockNotices from './mock_data/notice/javerage.json';
+import mockNotices from '@/tests/mock_data/notice/javerage.json';
+
 
 jest.mock('axios');
 

@@ -88,7 +88,7 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.allMeetings).toHaveLength(4);
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
     expect(wrapper.findAllComponents(UwTab)).toHaveLength(2);
-  }); 
+  });
 
   it ('Check Mount - jeos', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});

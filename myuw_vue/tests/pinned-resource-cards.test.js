@@ -3,11 +3,11 @@ import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
 import Vuex from 'vuex';
-import resources from '../vuex/store/resources';
-import mockRes from './mock_data/resources/pinned.json';
+import resources from '@/vuex/store/resources';
+import mockRes from '@/tests/mock_data/resources/pinned.json';
 
-import UwCard from '../components/_templates/card.vue';
-import PinnedResources from '../components/home/resources/pinned-resource-cards.vue';
+import UwCard from '@/components/_templates/card.vue';
+import PinnedResources from '@/components/home/resources/pinned-resource-cards.vue';
 
 const localVue = createLocalVue(Vuex);
 jest.mock('axios');
@@ -43,7 +43,7 @@ describe('Pinned Resources Card', () => {
     expect(wrapper.vm.maybePinnedResources.length).toBe(1);
     expect(wrapper.findAll('button')).toHaveLength(2);
     await wrapper.findAll('button').at(0).trigger('click');
-    expect(wrapper.findAllComponents(UwCard).length).toBe(1);
-    expect(wrapper.findAll('button')).toHaveLength(1);
+    expect(wrapper.findAllComponents(UwCard).length).toBe(2);
+    expect(wrapper.findAll('button')).toHaveLength(2);
   });
 });

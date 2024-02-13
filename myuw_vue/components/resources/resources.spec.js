@@ -54,7 +54,7 @@ describe('<Resources Page />', () => {
         cy.wait(800);
         cy.get('button').last().click();
         cy.window().its('scrollY').should('equal', 0);
-        
+
         // Test pinning and unpinning
         // The 'Advising & Tutoring' card is unpinned by default and is the first card
         cy.get('.card').its(0).find('button').contains('Pin to Home');

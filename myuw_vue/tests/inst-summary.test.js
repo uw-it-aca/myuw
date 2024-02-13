@@ -21,7 +21,7 @@ import UwCollapsedNotice from
 import UwCourseMode from
   '../components/_common/course/course-mode/mode.vue';
 
-import mockScheduleBill5099 from 
+import mockScheduleBill5099 from
   './mock_data/inst_schedule/bill2013spr.json';
 import mockBillpce2013Summer from
   './mock_data/inst_schedule/billpce2013summer.json';
