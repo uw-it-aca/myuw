@@ -74,12 +74,6 @@ Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/employee-u-pass,U-PASS for Employees,,,,,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/,Transportation Services,https://www.uwb.edu/commuter-services/,Commuter Services,https://www.tacoma.uw.edu/fa/facilities/transportation,Transportation Services,no
 Campus Life,Getting Around Campus,all,,,http://uwshuttles.com/,UW Shuttles,,,,,no
-Campus Life,Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
-Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
-Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
-Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
-Campus Life,Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
-Campus Life,Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,http://apps.tacoma.uw.edu/dawgdollars/,Tacoma Dawg Dollars Account,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,https://www.tacoma.uw.edu/uwt/fa/facilities/food-services,Campus Dining,no
 Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,no
@@ -170,3 +164,9 @@ Research,Technical Support,all,https://itconnect.uw.edu/help/,UW-IT Technical Su
 Research,Technical Support,all,https://uw.service-now.com/sp?id=sc_audience&sys_id=bd183bc1db07bb8c37ae9ec6db9619d9&sysparm_category=bd183bc1db07bb8c37ae9ec6db9619d9,UW-IT Services for Researchers,,,,,,,no
 Research,Technical Support,all,https://itconnect.uw.edu/research/,UW-IT Research Computing Resources,,,,,,,no
 Research,Technical Support,all,https://www.lib.washington.edu/dataservices/tools/storage-options,Data Storage Options,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
+"Health, Wellness, & Support",Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
