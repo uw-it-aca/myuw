@@ -15,4 +15,4 @@ class TestAcademicsMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)

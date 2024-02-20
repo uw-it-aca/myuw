@@ -22,8 +22,8 @@ class TestTextbooks(TestCase):
         schedule = get_schedule_by_term(req, term)
 
         books = get_textbook_by_schedule(schedule)
-        self.assertEquals(len(books), 1)
-        self.assertEquals(books[13833][0].title,
+        self.assertEqual(len(books), 1)
+        self.assertEqual(books[13833][0].title,
                           "2 P/S Tutorials In Introductory Physics")
 
     def test_get_order_url_by_schedule(self):
@@ -34,7 +34,7 @@ class TestTextbooks(TestCase):
 
         expected_link = ('http://www.ubookstore.com/adoption-search-results?' +
                          'ccid=9335,1132,5320,2230,4405')
-        self.assertEquals(returned_link, expected_link)
+        self.assertEqual(returned_link, expected_link)
 
         req = get_request_with_user('javerage',
                                     get_request_with_date("2014-02-01"))
@@ -50,7 +50,7 @@ class TestTextbooks(TestCase):
         schedule = get_instructor_schedule_by_term(req)
 
         books = get_textbook_by_schedule(schedule)
-        self.assertEquals(len(books), 1)
+        self.assertEqual(len(books), 1)
 
     def test_get_uwt_inst_textbook(self):
         req = get_request_with_user('billtac',
@@ -58,7 +58,7 @@ class TestTextbooks(TestCase):
         schedule = get_instructor_schedule_by_term(req)
         self.assertEqual(len(schedule.sections), 3)
         books = get_textbook_by_schedule(schedule)
-        self.assertEquals(len(books), 0)
+        self.assertEqual(len(books), 0)
 
     def test_get_iacourse_status(self):
         req = get_request_with_user(

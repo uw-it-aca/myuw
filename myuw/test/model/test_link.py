@@ -20,10 +20,10 @@ class TestLink(MyuwApiTest):
                                           url=url)
 
         recent = VisitedLinkNew.recent_for_user(user)
-        self.assertEquals(len(recent), 3)
-        self.assertEquals(recent[0].url, TEST_URLS[2])
-        self.assertEquals(recent[1].url, TEST_URLS[1])
-        self.assertEquals(recent[2].url, TEST_URLS[0])
+        self.assertEqual(len(recent), 3)
+        self.assertEqual(recent[0].url, TEST_URLS[2])
+        self.assertEqual(recent[1].url, TEST_URLS[1])
+        self.assertEqual(recent[2].url, TEST_URLS[0])
 
     def test_user_recent_multi_visit(self):
         req = get_request_with_user('none')
@@ -34,10 +34,10 @@ class TestLink(MyuwApiTest):
                                               url=url)
 
         recent = VisitedLinkNew.recent_for_user(user)
-        self.assertEquals(len(recent), 3)
-        self.assertEquals(recent[0].url, TEST_URLS[2])
-        self.assertEquals(recent[1].url, TEST_URLS[1])
-        self.assertEquals(recent[2].url, TEST_URLS[0])
+        self.assertEqual(len(recent), 3)
+        self.assertEqual(recent[0].url, TEST_URLS[2])
+        self.assertEqual(recent[1].url, TEST_URLS[1])
+        self.assertEqual(recent[2].url, TEST_URLS[0])
 
     def test_max_old_links(self):
         req = get_request_with_user('none')
@@ -48,9 +48,9 @@ class TestLink(MyuwApiTest):
         VisitedLinkNew.objects.create(user=user, url=TEST_URLS[2])
 
         recent = VisitedLinkNew.recent_for_user(user)
-        self.assertEquals(len(recent), 2)
-        self.assertEquals(recent[0].url, TEST_URLS[2])
-        self.assertEquals(recent[1].url, TEST_URLS[1])
+        self.assertEqual(len(recent), 2)
+        self.assertEqual(recent[0].url, TEST_URLS[2])
+        self.assertEqual(recent[1].url, TEST_URLS[1])
 
     def test_max_by_date(self):
         req = get_request_with_user('none')
@@ -65,14 +65,14 @@ class TestLink(MyuwApiTest):
 
         VisitedLinkNew.objects.create(user=user, url=TEST_URLS[1])
         recent = VisitedLinkNew.recent_for_user(user)
-        self.assertEquals(len(recent), 1)
-        self.assertEquals(recent[0].url, TEST_URLS[1])
+        self.assertEqual(len(recent), 1)
+        self.assertEqual(recent[0].url, TEST_URLS[1])
 
     def test_none(self):
         req = get_request_with_user('none')
         user = get_user_model(req)
         recent = VisitedLinkNew.recent_for_user(user)
-        self.assertEquals(recent, [])
+        self.assertEqual(recent, [])
 
     def test_popular(self):
         req1 = get_request_with_user('none')
@@ -92,27 +92,27 @@ class TestLink(MyuwApiTest):
 
         popular_links = VisitedLinkNew.get_popular()
 
-        self.assertEquals(len(popular_links), 3)
-        self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 4)
+        self.assertEqual(len(popular_links), 3)
+        self.assertEqual(popular_links[0]['url'], TEST_URLS[0])
+        self.assertEqual(popular_links[0]['popularity'], 4)
 
-        self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
-        self.assertEquals(popular_links[1]['popularity'], 1)
+        self.assertEqual(popular_links[1]['url'], TEST_URLS[2])
+        self.assertEqual(popular_links[1]['popularity'], 1)
 
-        self.assertEquals(popular_links[2]['url'], TEST_URLS[1])
-        self.assertEquals(popular_links[2]['popularity'], 1)
+        self.assertEqual(popular_links[2]['url'], TEST_URLS[1])
+        self.assertEqual(popular_links[2]['popularity'], 1)
 
         popular_links = VisitedLinkNew.get_popular(is_student=True)
-        self.assertEquals(len(popular_links), 1)
-        self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 1)
+        self.assertEqual(len(popular_links), 1)
+        self.assertEqual(popular_links[0]['url'], TEST_URLS[0])
+        self.assertEqual(popular_links[0]['popularity'], 1)
 
         popular_links = VisitedLinkNew.get_popular(is_seattle=True)
-        self.assertEquals(len(popular_links), 2)
-        self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 4)
-        self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
-        self.assertEquals(popular_links[1]['popularity'], 1)
+        self.assertEqual(len(popular_links), 2)
+        self.assertEqual(popular_links[0]['url'], TEST_URLS[0])
+        self.assertEqual(popular_links[0]['popularity'], 4)
+        self.assertEqual(popular_links[1]['url'], TEST_URLS[2])
+        self.assertEqual(popular_links[1]['popularity'], 1)
 
     def test_popular_multi_labels(self):
         req1 = get_request_with_user('none')
@@ -139,11 +139,11 @@ class TestLink(MyuwApiTest):
                                       is_seattle=True)
 
         popular_links = VisitedLinkNew.get_popular()
-        self.assertEquals(len(popular_links), 2)
-        self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 16)
-        self.assertEquals(popular_links[0]['labels'], ['', 'x'])
+        self.assertEqual(len(popular_links), 2)
+        self.assertEqual(popular_links[0]['url'], TEST_URLS[0])
+        self.assertEqual(popular_links[0]['popularity'], 16)
+        self.assertEqual(popular_links[0]['labels'], ['', 'x'])
 
-        self.assertEquals(popular_links[1]['url'], TEST_URLS[1])
-        self.assertEquals(popular_links[1]['popularity'], 9)
-        self.assertEquals(popular_links[1]['labels'], ['', 'x', 'y'])
+        self.assertEqual(popular_links[1]['url'], TEST_URLS[1])
+        self.assertEqual(popular_links[1]['popularity'], 9)
+        self.assertEqual(popular_links[1]['labels'], ['', 'x', 'y'])

@@ -21,7 +21,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
                       kwargs={'page': 1})
         self.set_user('javerage')
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_popular_links"),
             "myuw_popular_links urls not configured")
@@ -30,8 +30,8 @@ class TestViewsLinkAdmin(MyuwApiTest):
         url = reverse("myuw_popular_links",
                       kwargs={'page': 1})
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"],
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"],
                           '/saml/login?next=/admin/links')
 
     @skipIf(missing_url("myuw_popular_links"),
@@ -41,4 +41,4 @@ class TestViewsLinkAdmin(MyuwApiTest):
         url = reverse("myuw_popular_links",
                       kwargs={'page': 1})
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)

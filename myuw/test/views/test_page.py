@@ -25,7 +25,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('jnone')
         response = self.client.get(url,
                                    HTTP_USER_AGENT='Fake Android Mobile')
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):
@@ -34,13 +34,13 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user('faculty')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_undergrad_access(self):
@@ -49,7 +49,7 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_access(self):
@@ -59,11 +59,11 @@ class TestPageMethods(MyuwApiTest):
             url = reverse("myuw_home")
             self.set_user('jbothell')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 403)
+            self.assertEqual(response.status_code, 403)
 
             self.set_user('bill')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 200)
+            self.assertEqual(response.status_code, 200)
         with self.settings(
                 MYUW_SKIP_ACCESS_CHECK=True,
                 MYUW_TEST_ACCESS_GROUP='u_astratst_myuw_test-support-admin'):
@@ -71,14 +71,14 @@ class TestPageMethods(MyuwApiTest):
             url = reverse("myuw_home")
             self.set_user('jbothell')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 200)
+            self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_support_links(self):
         url = reverse("myuw_date_override")
         self.set_user('jbothell')
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_non_student_mobile(self):
@@ -87,7 +87,7 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT='Fake iPhone Agent')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_instructor_access(self):
@@ -103,47 +103,47 @@ class TestPageMethods(MyuwApiTest):
             url = reverse("myuw_home")
             self.set_user('bill')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 200)
-            self.assertEquals(response.context["display_onboard_message"],
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.context["display_onboard_message"],
                               True)
-            self.assertEquals(response.context["display_pop_up"], True)
-            self.assertEquals(response.context["disable_actions"], False)
+            self.assertEqual(response.context["display_pop_up"], True)
+            self.assertEqual(response.context["disable_actions"], False)
             self.assertIsNotNone(response.context["card_display_dates"])
             self.assertIsNotNone(response.context["user"]["affiliations"])
             self.assertIsNotNone(response.context["banner_messages"])
-            self.assertEquals(response.context["user"]['email_forward_url'],
+            self.assertEqual(response.context["user"]['email_forward_url'],
                               'http://alpine.washington.edu')
             self.assertIsNone(response.context['google_search_key'])
             self.assertIsNotNone(response.context['enabled_features'])
 
             self.set_user('billpce')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 200)
+            self.assertEqual(response.status_code, 200)
 
             self.set_user('billseata')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 200)
+            self.assertEqual(response.status_code, 200)
 
     def test_no_user_in_session(self):
         # MUWM-4366
         url = reverse("myuw_home")
         login_url = reverse("saml_login")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.url, f"{login_url}?next={url}")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, f"{login_url}?next={url}")
 
     def test_logout(self):
         self.set_user('javerage')
         url = reverse("myuw_logout")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.url, reverse("saml_logout"))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("saml_logout"))
 
         self.set_user('javerage')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/5.0 MyUW_Hybrid/1.0")
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @patch('myuw.views.page.get_updated_user', spec=True)
     def test_pws_err(self, mock):
@@ -151,7 +151,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "pws err")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 500)
+        self.assertEqual(response.status_code, 500)
 
     @patch('myuw.views.page.get_card_visibilty_date_values', spec=True)
     def test_sws_err(self, mock):
@@ -159,7 +159,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "sws err")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @patch('myuw.views.page.can_access_myuw', spec=True)
     def test_gws_err_can_access_myuw(self, mock):
@@ -167,7 +167,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "GWS err")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 500)
+        self.assertEqual(response.status_code, 500)
 
     @patch('myuw.views.page.get_all_affiliations', spec=True)
     def test_gws_err_get_all_affiliations(self, mock):
@@ -175,7 +175,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "affi GWS err")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 500)
+        self.assertEqual(response.status_code, 500)
 
     @patch('myuw.views.page.get_service_url_for_address', spec=True)
     def test_email_forward_err(self, mock):
@@ -183,7 +183,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = EmailServiceUrlException
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @patch('myuw.views.page.prefetch_resources', spec=True)
     def test_prefetch_err(self, mock):
@@ -191,7 +191,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "prefetch GWS err")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_blocked_netid(self):
@@ -199,4 +199,4 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('nobody')
         response = self.client.get(url,
                                    HTTP_USER_AGENT="Mozilla/5.0")
-        self.assertEquals(response.status_code, 400)
+        self.assertEqual(response.status_code, 400)

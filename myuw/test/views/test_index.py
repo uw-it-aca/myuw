@@ -14,7 +14,7 @@ class TestViewsIndex(MyuwApiTest):
         url = reverse("myuw_home")
         self.set_user('javerage')
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         # self.assertEqual(len(response.context['popular_links']), 0)
         # self.assertEqual(len(response.context['recent_links']), 0)
         # self.assertEqual(response.context['default_links'][0],

@@ -19,57 +19,57 @@ class TestNotices(MyuwApiTest):
     def test_javerage_notices(self):
         self.set_user('javerage')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 30)
+        self.assertEqual(len(data), 30)
         self.assertFalse(data[0]["is_read"])
 
         hash_value = data[0]["id_hash"]
 
         response = self.put_notice('{"notice_hashes":["%s"]}' % hash_value)
 
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), '')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content), '')
 
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 30)
+        self.assertEqual(len(data), 30)
 
         match = False
         for el in data:
             if el["id_hash"] == hash_value:
                 match = True
-                self.assertEquals(el["is_read"], True)
+                self.assertEqual(el["is_read"], True)
 
-        self.assertEquals(match, True)
+        self.assertEqual(match, True)
 
         response = self.put_notice('{"notice_hashes":["fake-fake-fake"]}')
 
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), '')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content), '')
 
     def test_error_cases(self):
         self.set_user('jerror')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 543)
+        self.assertEqual(response.status_code, 543)
 
         self.set_user('staff')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), [])
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content), [])
 
     def test_est_reg_date(self):
         self.set_user('jinter')
         self.set_date('2013-05-09 23:59:59')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 35)
+        self.assertEqual(len(data), 35)
         for el in data:
             if el["category"] == "Registration" and\
                     'est_reg_date' in el["location_tags"]:
@@ -78,10 +78,10 @@ class TestNotices(MyuwApiTest):
 
         self.set_date('2013-05-10 00:00:01')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 35)
+        self.assertEqual(len(data), 35)
         for el in data:
             if el["category"] == "Registration" and\
                     'est_reg_date' in el["location_tags"]:
@@ -91,10 +91,10 @@ class TestNotices(MyuwApiTest):
         self.set_user('jbothell')
         self.set_date('2014-02-14 00:00:01')
         response = self.get_notices_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 14)
+        self.assertEqual(len(data), 14)
         for el in data:
             if el["category"] == "Registration" and\
                     'est_reg_date' in el["location_tags"]:

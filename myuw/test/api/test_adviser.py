@@ -15,24 +15,24 @@ class TestAdvisersApi(MyuwApiTest):
     def test_javerage(self):
         self.set_user('javerage')
         response = self.get_advisers_api_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(
+        self.assertEqual(
             data[0]["email_address"], "javg001@uw.edu")
-        self.assertEquals(
+        self.assertEqual(
             data[1]["email_address"], "javg004@uw.edu")
-        self.assertEquals(
+        self.assertEqual(
             data[2]["email_address"], "javg003@uw.edu")
-        self.assertEquals(
+        self.assertEqual(
             data[3]["email_address"], "javg002@uw.edu")
-        self.assertEquals(
+        self.assertEqual(
             data[4]["email_address"], "uwhonors@uw.edu")
 
     def test_errors(self):
         self.set_user('jinter')
         response = self.get_advisers_api_response()
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         self.set_user('javg002')
         response = self.get_advisers_api_response()
-        self.assertEquals(response.status_code, 543)
+        self.assertEqual(response.status_code, 543)

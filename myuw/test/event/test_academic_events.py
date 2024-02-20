@@ -13,12 +13,12 @@ class TestAcademicEvents(TestCase):
 
     def test_get_term_before(self):
         quarter, year = get_term_before('Winter', 2013)
-        self.assertEquals(quarter, 'Autumn')
-        self.assertEquals(year, 2012)
+        self.assertEqual(quarter, 'Autumn')
+        self.assertEqual(year, 2012)
 
         quarter, year = get_term_before('Summer', 2013)
-        self.assertEquals(quarter, 'Spring')
-        self.assertEquals(year, 2013)
+        self.assertEqual(quarter, 'Spring')
+        self.assertEqual(year, 2013)
 
     def test_get_events(self):
         reps = AcademicEvents().get(
@@ -26,7 +26,7 @@ class TestAcademicEvents(TestCase):
                 'javerage',
                 get_request_with_date("2013-04-15")))
         events = json.loads(reps.content)
-        self.assertEquals(len(events), 29)
+        self.assertEqual(len(events), 29)
 
     def test_parsers(self):
         obj = AcademicEvents()
@@ -38,29 +38,29 @@ class TestAcademicEvents(TestCase):
 
         start, end = obj.parse_dates(event)
 
-        self.assertEquals(start, "2014-12-05")
-        self.assertEquals(end, "2014-12-05")
+        self.assertEqual(start, "2014-12-05")
+        self.assertEqual(end, "2014-12-05")
 
         event['X-TRUMBA-CUSTOMFIELD'] = [
             'Important Dates/Deadlines',
             'xxx xx xx']
         year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, None)
-        self.assertEquals(quarter, None)
+        self.assertEqual(year, None)
+        self.assertEqual(quarter, None)
 
         event['X-TRUMBA-CUSTOMFIELD'] = [
             'Important Dates/Deadlines',
             '2013',
             'Spring']
         year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2013')
-        self.assertEquals(quarter, 'Spring')
+        self.assertEqual(year, '2013')
+        self.assertEqual(quarter, 'Spring')
 
     def test_categorize_event(self):
         event = Event()
         obj = AcademicEvents()
         categories = obj.get_event_categories(event)
-        self.assertEquals(categories, {
+        self.assertEqual(categories, {
             'breaks': False,
             'classes': False,
             'grade': False,
@@ -70,7 +70,7 @@ class TestAcademicEvents(TestCase):
 
         event['categories'] = 'Holidays'
         categories = obj.get_event_categories(event)
-        self.assertEquals(categories, {
+        self.assertEqual(categories, {
             'breaks': True,
             'classes': False,
             'grade': False,
@@ -81,7 +81,7 @@ class TestAcademicEvents(TestCase):
         event['categories'] = 'Dates of Instruction'
         event['summary'] = 'Quarter Break - Spring'
         categories = obj.get_event_categories(event)
-        self.assertEquals(categories, {
+        self.assertEqual(categories, {
             'breaks': True,
             'classes': True,
             'grade': False,
@@ -91,7 +91,7 @@ class TestAcademicEvents(TestCase):
 
         event['categories'] = 'Registration dates'
         categories = obj.get_event_categories(event)
-        self.assertEquals(categories, {
+        self.assertEqual(categories, {
             'breaks': False,
             'classes': False,
             'grade': False,
@@ -101,7 +101,7 @@ class TestAcademicEvents(TestCase):
 
         event['categories'] = 'Grade deadlines'
         categories = obj.get_event_categories(event)
-        self.assertEquals(categories, {
+        self.assertEqual(categories, {
             'breaks': False,
             'classes': False,
             'grade': True,
@@ -118,11 +118,11 @@ class TestAcademicEvents(TestCase):
         past['summary'] = "Past Event"
 
         events = obj.filter_past_events(request, [past])
-        self.assertEquals(len(events), 0)
+        self.assertEqual(len(events), 0)
 
         request = get_request_with_date("2010-12-30")
         events = obj.filter_past_events(request, [past])
-        self.assertEquals(len(events), 1)
+        self.assertEqual(len(events), 1)
 
     def test_filter_future(self):
         request = get_request_with_date("2012-12-01")
@@ -133,11 +133,11 @@ class TestAcademicEvents(TestCase):
         past['summary'] = "Future Event"
 
         events = obj.filter_too_future_events(request, [past])
-        self.assertEquals(len(events), 0)
+        self.assertEqual(len(events), 0)
 
         request = get_request_with_date("2013-01-01")
         events = obj.filter_too_future_events(request, [past])
-        self.assertEquals(len(events), 1)
+        self.assertEqual(len(events), 1)
 
     def test_current_filter(self):
         request = get_request_with_date("2012-12-10")
@@ -176,12 +176,12 @@ class TestAcademicEvents(TestCase):
         events = obj.filter_non_current(
             request, [e1, e2, e3, e4, e5, e6])
 
-        self.assertEquals(len(events), 5)
-        self.assertEquals(events[0]['summary'], 'Event 1')
-        self.assertEquals(events[1]['summary'], 'Event 2')
-        self.assertEquals(events[2]['summary'], 'Event 3')
-        self.assertEquals(events[3]['summary'], 'Event 4')
-        self.assertEquals(events[4]['summary'], 'Event 5')
+        self.assertEqual(len(events), 5)
+        self.assertEqual(events[0]['summary'], 'Event 1')
+        self.assertEqual(events[1]['summary'], 'Event 2')
+        self.assertEqual(events[2]['summary'], 'Event 3')
+        self.assertEqual(events[3]['summary'], 'Event 4')
+        self.assertEqual(events[4]['summary'], 'Event 5')
 
         e7 = Event()
         e7.add('dtstart', date(2013, 2, 13))
@@ -201,12 +201,12 @@ class TestAcademicEvents(TestCase):
         # Test that both events outside of 4 weeks,
         # but on the first day outside are included
         events = obj.filter_non_current(request, [e7, e8, e9])
-        self.assertEquals(len(events), 2)
-        self.assertEquals(events[0]['summary'], 'Event 7')
-        self.assertEquals(events[1]['summary'], 'Event 8')
+        self.assertEqual(len(events), 2)
+        self.assertEqual(events[0]['summary'], 'Event 7')
+        self.assertEqual(events[1]['summary'], 'Event 8')
 
         # Make sure that just one event inside of
         # the 4 week span blocks everything outside
         events = obj.filter_non_current(request, [e6, e7, e8, e9])
-        self.assertEquals(len(events), 1)
-        self.assertEquals(events[0]['summary'], 'Event 6')
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]['summary'], 'Event 6')
