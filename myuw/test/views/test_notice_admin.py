@@ -66,7 +66,7 @@ class TestNoticeAdmin(MyuwApiTest):
         context = {}
         mock.side_effect = Exception('Error!')
         self.assertFalse(_save_notice(request, context))
-        self.assertTrue(context['sql_error'])
+        self.assertTrue(context.get('sql_error'))
 
     def test_save_new_notice(self):
         request = self._get_request({})

@@ -245,11 +245,11 @@ def _save_notice(request, context, notice_id=None):
 
 
 def _get_datetime(dt_string):
-    if dt_string and len(dt_string):
+    if dt_string and len(dt_string) > 0:
         try:
             dt = parse(dt_string)
             if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-                return SWS_TIMEZONE.localize(dt)
+                return dt.replace(tzinfo=SWS_TIMEZONE)
             return dt
         except Exception as ex:
             log_info(
