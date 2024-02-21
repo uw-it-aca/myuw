@@ -29,14 +29,16 @@ class TestNotices(TestCase):
         self.assertEqual(len(notices), 24)
 
         self.assertEqual(notices[0].custom_category, "Holds")
-        self.assertEqual(notices[0].location_tags, ['notices_holds',
-                                                     'reg_card_holds'])
+        self.assertEqual(
+            notices[0].location_tags,
+            ['notices_holds', 'reg_card_holds'])
         self.assertTrue(notices[0].is_critical)
 
-        self.assertEqual(notices[13].custom_category,
-                          "Fees & Finances")
-        self.assertEqual(notices[13].location_tags,
-                          ['tuition_aid_reminder_title'])
+        self.assertEqual(
+            notices[13].custom_category, "Fees & Finances")
+        self.assertEqual(
+            notices[13].location_tags,
+            ['tuition_aid_reminder_title'])
         self.assertFalse(notices[12].is_critical)
 
         regid = "9136CCB8F66711D5BE060004AC494F31"
@@ -44,7 +46,7 @@ class TestNotices(TestCase):
         self.assertIsNotNone(notices)
         self.assertEqual(len(notices), 35)
         self.assertEqual(notices[12].custom_category,
-                          "Fees & Finances")
+                         "Fees & Finances")
         self.assertFalse(notices[12].is_critical)
 
         regid = "12345678901234567890123456789012"
@@ -54,12 +56,12 @@ class TestNotices(TestCase):
         for notice in notices:
             if notice.notice_type == "DirectDeposit":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_direct_deposit'])
+                                 ['tuition_direct_deposit'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "DirectDepositShort":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_direct_deposit_title'])
+                                 ['tuition_direct_deposit_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "AidPriorityDate":
@@ -70,17 +72,17 @@ class TestNotices(TestCase):
 
             if notice.notice_type == "AidPriorityDateShort":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_aid_prioritydate_title'])
+                                 ['tuition_aid_prioritydate_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "AidReminder":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_aid_reminder'])
+                                 ['tuition_aid_reminder'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "AidReminderShort":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_aid_reminder_title'])
+                                 ['tuition_aid_reminder_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "SummerAidDate":
@@ -91,7 +93,7 @@ class TestNotices(TestCase):
 
             if notice.notice_type == "SummerAidDateShort":
                 self.assertEqual(notice.location_tags,
-                                  ['tuition_summeraid_date_title'])
+                                 ['tuition_summeraid_date_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "SummerAidAvail":
@@ -108,13 +110,13 @@ class TestNotices(TestCase):
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "AcceptRejectAward":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_acceptreject'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_acceptreject'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "AcceptRejectAwardShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_acceptreject_title'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_acceptreject_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "DisburseDateA":
@@ -124,8 +126,9 @@ class TestNotices(TestCase):
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "DisburseDateAShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_disbursedateA_title'])
+                self.assertEqual(
+                    notice.location_tags,
+                    ['tuition_disbursedateA_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "DisburseDateB":
@@ -135,48 +138,51 @@ class TestNotices(TestCase):
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "DisburseDateBShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_disbursedateB_title'])
+                self.assertEqual(
+                    notice.location_tags,
+                    ['tuition_disbursedateB_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "LoanCounseling":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_loancounseling'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_loancounseling'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "LoanCounselingShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_loancounseling_title'])
+                self.assertEqual(
+                    notice.location_tags,
+                    ['tuition_loancounseling_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "LoanPromissory":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_loanpromissory'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_loanpromissory'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "LoanPromissoryShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_loanpromissory_title'])
+                self.assertEqual(
+                    notice.location_tags,
+                    ['tuition_loanpromissory_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "MissingDocs":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_missingdocs'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_missingdocs'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "MissingDocsShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_missingdocs_title'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_missingdocs_title'])
                 self.assertFalse(notice.is_critical)
 
             if notice.notice_type == "AidHold":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_aidhold'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_aidhold'])
                 self.assertTrue(notice.is_critical)
 
             if notice.notice_type == "AidHoldShort":
-                self.assertEqual(notice.location_tags,
-                                  ['tuition_aidhold_title'])
+                self.assertEqual(
+                    notice.location_tags, ['tuition_aidhold_title'])
                 self.assertFalse(notice.is_critical)
 
         # test MUWM-4535

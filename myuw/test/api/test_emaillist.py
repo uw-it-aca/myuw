@@ -50,9 +50,9 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertTrue(data["has_multiple_sections"])
         self.assertTrue(data["is_primary"])
         self.assertEqual(data["section_list"]["list_address"],
-                          "phys121a_sp13")
+                         "phys121a_sp13")
         self.assertEqual(data["secondary_combined_list"]["list_address"],
-                          "multi_phys121a_sp13")
+                         "multi_phys121a_sp13")
         self.assertEqual(len(data["secondary_section_lists"]), 21)
         self.assertEqual(data["course_number"], "121")
         self.assertEqual(data["course_abbr"], "PHYS")

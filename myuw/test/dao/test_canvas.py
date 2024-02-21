@@ -31,25 +31,25 @@ class TestCanvas(TestCase):
                                        schedule, req)
         section1 = schedule.sections[0]
         self.assertEqual(section1.section_label(),
-                          "2013,spring,PHYS,121/A")
+                         "2013,spring,PHYS,121/A")
         self.assertEqual(section1.canvas_course_url,
-                          'https://test.edu/courses/249652')
+                         'https://test.edu/courses/249652')
 
         section2 = schedule.sections[1]
         self.assertEqual(section2.section_label(),
-                          "2013,spring,PHYS,121/AC")
+                         "2013,spring,PHYS,121/AC")
         self.assertEqual(section2.canvas_course_url,
-                          'https://test.edu/courses/249652')
+                         'https://test.edu/courses/249652')
 
         section3 = schedule.sections[2]
         self.assertEqual(section3.section_label(),
-                          "2013,spring,PHYS,121/AQ")
+                         "2013,spring,PHYS,121/AQ")
         self.assertEqual(section3.canvas_course_url,
-                          'https://test.edu/courses/249652')
+                         'https://test.edu/courses/249652')
 
         section8 = schedule.sections[7]
         self.assertEqual(section8.section_label(),
-                          "2013,spring,ARCTIC,200/A")
+                         "2013,spring,ARCTIC,200/A")
         self.assertIsNone(section8.canvas_course_url)
 
         section = schedule.sections[3]
@@ -77,7 +77,7 @@ class TestCanvas(TestCase):
         sws_section = get_section_by_label('2013,spring,TRAIN,101/A')
         self.assertIsNotNone(get_canvas_course_from_section(sws_section))
         self.assertEqual(get_canvas_course_url(sws_section, person),
-                          'https://canvas.uw.edu/courses/149651')
+                         'https://canvas.uw.edu/courses/149651')
 
     def test_sws_section_label(self):
         self.assertEqual(sws_section_label(None), (None, None))

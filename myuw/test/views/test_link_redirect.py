@@ -19,29 +19,36 @@ class TestRedirect(MyuwApiTest):
 
         response = self.client.get(url, {'u': 'example.com'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], "/saml/login?next=/"
-                                                "out%3Fu%3Dexample.com")
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3Dexample.com")
 
         response = self.client.get(url,
                                    {'u': 'javascript:alert("OK");'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "javascript%253Aalert%2528%25"
-                                                "22OK%2522%2529%253B")
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "javascript%253Aalert%2528%25"
+            "22OK%2522%2529%253B")
 
         response = self.client.get(url, {'u': 'data:,Hello%2C%20World!'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "data%253A%252CHello%25252C%25"
-                                                "2520World%2521")
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "data%253A%252CHello%25252C%25"
+            "2520World%2521")
 
         w_http = 'javascript:alert("http://example.com")'
         response = self.client.get(url, {'u': w_http})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "javascript%253Aalert%2528%252"
-                                                "2http%253A%252F%252Fexample."
-                                                "com%2522%2529")
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "javascript%253Aalert%2528%252"
+            "2http%253A%252F%252Fexample."
+            "com%2522%2529")
 
         all = VisitedLinkNew.objects.all()
         self.assertEqual(len(all), 0)

@@ -113,9 +113,9 @@ class TestSchedule(MyuwApiTest):
 
         efs_ok = self.get_section(data, 'EFS_OK', '101', 'AQ')
         self.assertEqual(efs_ok['start_date'],
-                          '2013-08-24')
+                         '2013-08-24')
         self.assertEqual(efs_ok['end_date'],
-                          '2013-09-18')
+                         '2013-09-18')
         self.assertFalse(efs_ok["is_ended"])
 
     def test_javerage_efs_section_ended(self):
@@ -125,9 +125,9 @@ class TestSchedule(MyuwApiTest):
         data = json.loads(response.content)
         efs_ok = self.get_section(data, 'EFS_OK', '101', 'AQ')
         self.assertEqual(efs_ok['start_date'],
-                          '2013-08-24')
+                         '2013-08-24')
         self.assertEqual(efs_ok['end_date'],
-                          '2013-09-18')
+                         '2013-09-18')
         self.assertTrue(efs_ok["cc_display_dates"])
         self.assertTrue(efs_ok["is_ended"])
 

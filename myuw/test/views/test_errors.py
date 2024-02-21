@@ -18,7 +18,7 @@ class TestViewsError(MyuwApiTest):
     def test_not_instructor_error(self):
         response = not_instructor_error()
         self.assertEqual(response.content,
-                          b'Access Forbidden to Non Instructor')
+                         b'Access Forbidden to Non Instructor')
         self.assertEqual(response.status_code, 403)
 
     def test_unknown_uwnetid(self):
@@ -33,7 +33,7 @@ class TestViewsError(MyuwApiTest):
     def test_disabled_action_error(self):
         response = disabled_action_error()
         self.assertEqual(response.content,
-                          b'Action Disabled while overriding users')
+                         b'Action Disabled while overriding users')
         self.assertEqual(response.status_code, 403)
 
     def test_no_access(self):
@@ -49,7 +49,7 @@ class TestViewsError(MyuwApiTest):
     def test_not_instructor_error(self):
         response = not_instructor_error()
         self.assertEqual(response.content,
-                          b'Access Forbidden to Non Instructor')
+                         b'Access Forbidden to Non Instructor')
         self.assertEqual(response.status_code, 403)
 
     def test_invalid_input_data(self):
@@ -65,11 +65,11 @@ class TestViewsError(MyuwApiTest):
     def test_invalid_future_term(self):
         response = invalid_future_term("2013,spring")
         self.assertEqual(response.content,
-                          b'Invalid requested future term 2013,spring')
+                         b'Invalid requested future term 2013,spring')
         self.assertEqual(response.status_code, 410)
 
     def test_data_error(self):
         response = data_error()
         self.assertEqual(response.content,
-                          b'Data not available due to an error')
+                         b'Data not available due to an error')
         self.assertEqual(response.status_code, 543)

@@ -91,10 +91,10 @@ class TestCalendarAPI(MyuwApiTest):
         self.assertEqual(len(data), 4)
         self.assertTrue(data[0]["myuw_categories"]["registration"])
         self.assertEqual(data[0]["summary"],
-                          'Registration Period 2 Autumn Quarter')
+                         'Registration Period 2 Autumn Quarter')
         self.assertEqual(data[3]["summary"],
-                          'First day grades posted to transcript' +
-                          ' and GPA available on MyUW, Summer')
+                         'First day grades posted to transcript' +
+                         ' and GPA available on MyUW, Summer')
 
         self.set_user('javerage')
         self.set_date('2013-08-27')
@@ -103,4 +103,4 @@ class TestCalendarAPI(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(len(data), 1)
         self.assertEqual(data[0]["summary"],
-                          "Quarter Break - Autumn")
+                         "Quarter Break - Autumn")

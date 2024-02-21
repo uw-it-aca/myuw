@@ -29,7 +29,7 @@ class TestApiBooks(MyuwApiTest):
         self.assertEqual(
             data["order_url"],
             ('http://www.ubookstore.com/adoption-search' +
-            '-results?ccid=9335,1132,5320,2230,4405'))
+             '-results?ccid=9335,1132,5320,2230,4405'))
 
         self.assertGreaterEqual(len(data['18532']), 1)
         book = data['18532'][0]

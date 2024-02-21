@@ -32,7 +32,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"],
-                          '/saml/login?next=/admin/links')
+                         '/saml/login?next=/admin/links')
 
     @skipIf(missing_url("myuw_popular_links"),
             "myuw_popular_links urls not configured")

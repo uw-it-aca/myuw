@@ -30,8 +30,9 @@ class TestMapNotices(TestCase):
 
         notice = map_notice_category(notices[0])
         self.assertEqual(notice.custom_category, "Holds")
-        self.assertEqual(notice.location_tags, ['notices_holds',
-                                                 'reg_card_holds'])
+        self.assertEqual(
+            notice.location_tags,
+            ['notices_holds', 'reg_card_holds'])
         self.assertTrue(notice.is_critical)
 
         notice = map_notice_category(notices[4])
@@ -51,14 +52,16 @@ class TestMapNotices(TestCase):
 
         notice = map_notice_category(notices[14])
         self.assertEqual(notice.custom_category, "Fees & Finances")
-        self.assertEqual(notice.location_tags,
-                          ['tuition_aid_prioritydate_title'])
+        self.assertEqual(
+            notice.location_tags,
+            ['tuition_aid_prioritydate_title'])
         self.assertFalse(notice.is_critical)
 
         notice = map_notice_category(notices[20])
-        self.assertEqual(notice.location_tags,
-                          ['tuition_summeraid_avail_title',
-                           'reg_summeraid_avail_title'])
+        self.assertEqual(
+            notice.location_tags,
+            ['tuition_summeraid_avail_title',
+             'reg_summeraid_avail_title'])
         self.assertFalse(notice.is_critical)
 
     def test_categorize_notices(self):
@@ -66,8 +69,9 @@ class TestMapNotices(TestCase):
         notices = categorize_notices(get_notices_by_regid(regid))
         notice = notices[10]
         self.assertEqual(notice.custom_category, "Fees & Finances")
-        self.assertEqual(notice.location_tags,
-                          ["tuition_aid_prioritydate", "notices_date_sort"])
+        self.assertEqual(
+            notice.location_tags,
+            ["tuition_aid_prioritydate", "notices_date_sort"])
         self.assertTrue(notice.is_critical)
 
     def test_get_date(self):
@@ -145,22 +149,22 @@ class TestMapNotices(TestCase):
         notice = map_notice_category(notices[18])
         self.assertEqual(notice.custom_category, 'Registration')
         self.assertEqual(notice.location_tags,
-                          ['notices_date_sort'])
+                         ['notices_date_sort'])
 
         notice = map_notice_category(notices[19])
         self.assertEqual(notice.custom_category, 'Admission')
         self.assertEqual(notice.location_tags,
-                          ['checklist_no_orient'])
+                         ['checklist_no_orient'])
 
         notice = map_notice_category(notices[20])
         self.assertEqual(notice.custom_category, 'Registration')
         self.assertEqual(notice.location_tags,
-                          ['notices_date_sort'])
+                         ['notices_date_sort'])
 
         notice = map_notice_category(notices[21])
         self.assertEqual(notice.custom_category, 'Registration')
         self.assertEqual(notice.location_tags,
-                          ['notices_date_sort'])
+                         ['notices_date_sort'])
 
         # test MUWM-4676
         notice21 = MyuwNotice(title="Test",

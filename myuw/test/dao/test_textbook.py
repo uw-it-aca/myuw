@@ -23,8 +23,9 @@ class TestTextbooks(TestCase):
 
         books = get_textbook_by_schedule(schedule)
         self.assertEqual(len(books), 1)
-        self.assertEqual(books[13833][0].title,
-                          "2 P/S Tutorials In Introductory Physics")
+        self.assertEqual(
+            books[13833][0].title,
+            "2 P/S Tutorials In Introductory Physics")
 
     def test_get_order_url_by_schedule(self):
         req = get_request_with_user('javerage')

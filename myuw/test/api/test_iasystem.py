@@ -86,7 +86,7 @@ class TestIasystemApi(MyuwApiTest):
         eval_data = data["sections"][0]["evaluation_data"]
         self.assertEqual(len(eval_data), 1)
         self.assertEqual(eval_data[0]['close_date'],
-                          "2013-07-29T06:59:59+00:00")
+                         "2013-07-29T06:59:59+00:00")
 
         eval_data = data["sections"][1]["evaluation_data"]
         self.assertEqual(len(eval_data), 0)

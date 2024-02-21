@@ -23,7 +23,7 @@ class TestDegreeNotices(TestCase):
         self.assertEqual(len(notices), 1)
         cnotices = categorize_notices(notices)
         self.assertEqual(cnotices[0].custom_category,
-                          "Teaching ClassResAccessible")
+                         "Teaching ClassResAccessible")
         self.assertEqual(cnotices[0].location_tags[0], 'teaching_summary')
         self.assertFalse(cnotices[0].is_critical)
 
@@ -31,6 +31,6 @@ class TestDegreeNotices(TestCase):
         self.assertEqual(len(notices), 1)
         cnotices = categorize_notices(notices)
         self.assertEqual(cnotices[0].custom_category,
-                          "GradeSubmission GradingOpen")
+                         "GradeSubmission GradingOpen")
         self.assertEqual(cnotices[0].location_tags[0], 'teaching_summary')
         self.assertFalse(cnotices[0].is_critical)
