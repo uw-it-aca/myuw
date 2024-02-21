@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
-from uw_sws import SWS_TIMEZONE
+from myuw.dao.term import SWS_TIMEZONE
 from myuw.models.myuw_notice import (
     MyuwNotice, start_week_range, duration_range)
 from myuw.logger.logresp import log_info, log_exception
