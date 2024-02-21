@@ -107,6 +107,27 @@ Events and Activities,Stay Connected,all,,,https://www.instagram.com/uofwa/,UW I
 Events and Activities,Stay Connected,all,,,https://twitter.com/UW,UW Twitter,https://twitter.com/UWBothell,UW Bothell Twitter,https://twitter.com/uwtacoma,UW Tacoma Twitter,no
 Events and Activities,Stay Connected,all,,,https://www.linkedin.com/company/university-of-washington,UW LinkedIn,https://www.linkedin.com/groups/University-Washington-Bothell-92858?home=&gid=92858,UW Bothell LinkedIn,https://www.linkedin.com/school/university-of-washington-tacoma/,UW Tacoma LinkedIn,no
 Events and Activities,Student Clubs and Organizations,all,,,https://hub.washington.edu/sao/rso-directory/,Registered Student Organizations (RSO) Directory,https://uwb.presence.io/organizations,Club Directory,https://dawgden.tacoma.uw.edu/Organizations,UW Tacoma Clubs and Organizations,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/sexualassault/,Sexual Assault Resources,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://depts.washington.edu/slsuw/,Student Legal Services,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/cr-investigations/,Civil Rights Investigation Office,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/titleix/report/,Make a Title IX report,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
+"Health, Wellness, & Support",Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://www.washington.edu/circle/,Center for International Relations & Cultural Leadership Exchange (CIRCLE),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,http://www.fiuts.org/,Foundation for International Understanding Through Students (FIUTS),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/admin/dso/uw-resources.html,Disability Resources,https://www.uwb.edu/student-affairs/drs,Disability Resources for Students (DRS),http://www.tacoma.uw.edu/drsuwt,Disability Resources for Students,no
+"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/omad/,Diversity Resources,http://www.uwb.edu/diversity,Diversity Resources,http://www.tacoma.uw.edu/diversity,Diversity Resources,no
+"Health, Wellness, & Support",Resource Centers,all,http://grad.uw.edu/diversity/go-map/,Graduate Opportunities and Minority Achievement Program (GO-MAP),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://sites.uw.edu/qcenter/,Q Center,,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,http://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
 Libraries,Library Resources,all,,,http://lib.washington.edu/,UW Libraries,http://library.uwb.edu/,UW Bothell Library,http://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Libraries,Library Resources,all,http://search.lib.uw.edu/account,Your Library Account,,,,,,,no
 Libraries,Library Resources,all,http://guides.lib.uw.edu/az.php,Articles and Research Databases,,,,,,,no
@@ -157,24 +178,3 @@ Research,Technical Support,all,https://itconnect.uw.edu/help/,UW-IT Technical Su
 Research,Technical Support,all,https://uw.service-now.com/sp?id=sc_audience&sys_id=bd183bc1db07bb8c37ae9ec6db9619d9&sysparm_category=bd183bc1db07bb8c37ae9ec6db9619d9,UW-IT Services for Researchers,,,,,,,no
 Research,Technical Support,all,https://itconnect.uw.edu/research/,UW-IT Research Computing Resources,,,,,,,no
 Research,Technical Support,all,https://www.lib.washington.edu/dataservices/tools/storage-options,Data Storage Options,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/sexualassault/,Sexual Assault Resources,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,http://depts.washington.edu/slsuw/,Student Legal Services,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/cr-investigations/,Civil Rights Investigation Office,,,,,,,no
-"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/titleix/report/,Make a Title IX report,,,,,,,no
-"Health, Wellness, & Support",Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
-"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
-"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
-"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
-"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
-"Health, Wellness, & Support",Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,https://www.washington.edu/circle/,Center for International Relations & Cultural Leadership Exchange (CIRCLE),,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,http://www.fiuts.org/,Foundation for International Understanding Through Students (FIUTS),,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/admin/dso/uw-resources.html,Disability Resources,https://www.uwb.edu/student-affairs/drs,Disability Resources for Students (DRS),http://www.tacoma.uw.edu/drsuwt,Disability Resources for Students,no
-"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/omad/,Diversity Resources,http://www.uwb.edu/diversity,Diversity Resources,http://www.tacoma.uw.edu/diversity,Diversity Resources,no
-"Health, Wellness, & Support",Resource Centers,all,http://grad.uw.edu/diversity/go-map/,Graduate Opportunities and Minority Achievement Program (GO-MAP),,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,https://sites.uw.edu/qcenter/,Q Center,,,,,,,no
-"Health, Wellness, & Support",Resource Centers,all,http://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
