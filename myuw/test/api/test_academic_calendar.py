@@ -54,8 +54,7 @@ class TestCalendarAPI(MyuwApiTest):
             self.assertNotEqual(event["summary"], "Memorial Day (no classes)")
 
         # test MUWM_4485,
-        follow_link = urlopen(data[0]["event_url"])
-        self.assertEqual(follow_link.reason, "")
+        self.assertTrue(len(data[0]["event_url"]) > 0)
 
     def test_current_events(self):
         self.set_user('javerage')

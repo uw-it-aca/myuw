@@ -83,8 +83,8 @@ class TestNotices(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(len(data), 35)
         for el in data:
-            if el["category"] == "Registration" and\
-                    'est_reg_date' in el["location_tags"]:
+            if (el["category"] == "Registration" and
+                    'est_reg_date' in el["location_tags"]):
                 self.assertTrue(el["is_my_1st_reg_day"])
                 self.assertTrue(el["my_reg_has_opened"])
 

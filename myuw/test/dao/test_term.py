@@ -6,7 +6,7 @@ from django.test import TestCase
 from commonconf import override_settings
 from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now, current_terms_prefetch,
-    get_default_date, get_default_datetime, get_comparison_date,
+    get_default_date, get_default_datetime, get_comparison_date, sws_now,
     get_current_quarter, get_next_quarter, is_cur_term_before,
     get_previous_number_quarters, last_4instruction_weeks,
     get_future_number_quarters, during_april_may, is_cur_term_same,
@@ -31,6 +31,11 @@ ldao_sws_override = override_settings(RESTCLIENTS_SWS_DAO_CLASS='Live')
 class TestTerm(TestCase):
     def setUp(self):
         get_request()
+
+    def test_sws_now(self):
+        now = sws_now()
+        self.assertTrue(len(str(now)))
+        #print(f"{now}")
 
     def test_current_terms_prefetch(self):
         request = get_request_with_date("2013-12-21")
