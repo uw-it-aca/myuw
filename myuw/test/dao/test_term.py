@@ -35,7 +35,7 @@ class TestTerm(TestCase):
     def test_sws_now(self):
         now = sws_now()
         self.assertTrue(len(str(now)))
-        #print(f"{now}")
+        # print(f"{now}")
 
     def test_current_terms_prefetch(self):
         request = get_request_with_date("2013-12-21")
