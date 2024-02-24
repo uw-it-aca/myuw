@@ -244,7 +244,7 @@ jobs:
           python-version: '3.10'
 
       - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
 
