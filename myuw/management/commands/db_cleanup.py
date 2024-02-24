@@ -14,7 +14,8 @@ from django.core.management.base import BaseCommand, CommandError
 from myuw.models import (
     VisitedLinkNew, SeenRegistration, UserNotices, UserCourseDisplay)
 from myuw.dao.term import (
-  sws_now, SWS_TIMEZONE, get_term_by_date, get_term_before, get_term_after)
+  tz_aware_now, tz_naive_now, get_term_by_date,
+  get_term_before, get_term_after)
 from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 from myuw.logger.timer import Timer
 
@@ -43,7 +44,7 @@ class Command(BaseCommand):
 
     def get_cut_off_date(self, days_delta=180):
         # default is 180 days
-        return sws_now() - timedelta(days=days_delta)
+        return tz_aware_now() - timedelta(days=days_delta)
 
     def deletion(self, ids_to_delete, queryf):
         try:
@@ -65,7 +66,7 @@ class Command(BaseCommand):
             raise CommandError(msg)
 
     def get_cur_term(self):
-        comparison_date = sws_now().date()
+        comparison_date = tz_naive_now().date()
         term = get_term_by_date(comparison_date)
         # Match MyUW quarter switchS
         if comparison_date > term.grade_submission_deadline.date():

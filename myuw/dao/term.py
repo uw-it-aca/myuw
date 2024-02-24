@@ -20,25 +20,22 @@ from myuw.dao import is_using_file_dao
 
 
 logger = logging.getLogger(__name__)
-SWS_TIMEZONE = ZoneInfo("America/Los_Angeles")
+DEFAULT_TZ = ZoneInfo("America/Los_Angeles")
 
 
-def sws_now():
+def tz_aware_now():
     """
-    Return a naive datetime corresponding to SWS timezone.
+    Return an tz-aware datetime object  representing the current time
+    in the 'America/Los_Angeles' timezone.
     """
-    utc_now = datetime.now(timezone.utc)
-    sws_offset = SWS_TIMEZONE.utcoffset(utc_now).total_seconds()
-    sws_datetime = utc_now + timedelta(seconds=sws_offset)
-    return sws_datetime
+    return datetime.now(DEFAULT_TZ)
 
-
-def get_default_date():
+def tz_naive_now():
     """
-    A hook to help with mock data testing - put the default date
-    right in the middle of the "current" term.
+    Return an tz-naive datetime object representing the current time
+    in the 'America/Los_Angeles' timezone.
     """
-    return get_default_datetime().date()
+    return tz_aware_now().replace(tzinfo=None)
 
 
 def get_default_datetime():
@@ -48,7 +45,7 @@ def get_default_datetime():
     """
     if is_using_file_dao():
         return datetime(2013, 4, 15, 0, 0, 1)
-    return sws_now()
+    return tz_naive_now()
 
 
 def get_comparison_datetime(request):
@@ -95,7 +92,7 @@ def get_comparison_datetime_with_tz(request):
     """
     @return the timezone aware datetime object
     """
-    return get_comparison_datetime(request).replace(tzinfo=SWS_TIMEZONE)
+    return get_comparison_datetime(request).replace(tzinfo=DEFAULT_TZ)
 
 
 def get_current_quarter(request):

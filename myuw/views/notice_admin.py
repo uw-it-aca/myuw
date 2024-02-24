@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
-from myuw.dao.term import SWS_TIMEZONE
+from myuw.dao.term import DEFAULT_TZ
 from myuw.models.myuw_notice import (
     MyuwNotice, start_week_range, duration_range)
 from myuw.logger.logresp import log_info, log_exception
@@ -249,7 +249,7 @@ def _get_datetime(dt_string):
         try:
             dt = parse(dt_string)
             if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-                return dt.replace(tzinfo=SWS_TIMEZONE)
+                return dt.replace(tzinfo=DEFAULT_TZ)
             return dt
         except Exception as ex:
             log_info(
