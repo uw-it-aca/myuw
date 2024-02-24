@@ -4,8 +4,7 @@
 from unittest import skipIf
 from datetime import datetime
 from django.test import TestCase
-from uw_sws import DEFAULT_TZ
-from myuw.dao.calendar import get_events
+from myuw.dao.calendar import DEFAULT_TZ, get_events
 
 
 TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
