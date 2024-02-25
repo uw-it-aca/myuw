@@ -78,11 +78,11 @@ class TestTerm(TestCase):
     @ldao_sws_override
     def test_live_default_date(self):
         now = tz_aware_now()
-        date = get_default_datetime()
-        self.assertEqual(date.year, now.year)
-        self.assertEqual(date.month, now.month)
-        self.assertEqual(date.day, now.day)
-        self.assertEqual(date.hour, now.hour)
+        tz_naive_now = get_default_datetime()
+        self.assertEqual(tz_naive_now.year, now.year)
+        self.assertEqual(tz_naive_now.month, now.month)
+        self.assertEqual(tz_naive_now.day, now.day)
+        self.assertEqual(tz_naive_now.hour, now.hour)
 
     def test_comparison_date(self):
         now_request = get_request()
