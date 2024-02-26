@@ -96,6 +96,8 @@ else:
     RESTCLIENTS_BOOK_HOST = 'https://api.ubookstore.com'
     CSRF_TRUSTED_ORIGINS = ["https://" + os.getenv('CLUSTER_CNAME')]
 
+    RESTCLIENTS_SDBMYUW_IS_WEAK_KEY = True
+
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
