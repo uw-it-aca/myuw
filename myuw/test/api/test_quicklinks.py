@@ -17,15 +17,15 @@ class TestQuickLinksAPI(MyuwApiTest):
                 'url': 'www.washington.edu/'
                 }
         url, label = get_link_data(data, get_id=False)
-        self.assertEquals(url, 'http://www.washington.edu/')
-        self.assertEquals(label, 'http://www.washington.edu/')
+        self.assertEqual(url, 'http://www.washington.edu/')
+        self.assertEqual(label, 'http://www.washington.edu/')
 
         data = {'type': 'custom',
                 'url': 'www.washington.edu/',
                 'label': 'UW Homepage'
                 }
         url, label = get_link_data(data, get_id=False)
-        self.assertEquals(label, 'UW Homepage')
+        self.assertEqual(label, 'UW Homepage')
 
         data = {'type': 'custom',
                 'url': 'www.washington.edu/',
@@ -33,7 +33,7 @@ class TestQuickLinksAPI(MyuwApiTest):
                 'id': 1
                 }
         link_id, url, label = get_link_data(data)
-        self.assertEquals(link_id, 1)
+        self.assertEqual(link_id, 1)
 
     def test_add_popular_link(self):
         PopularLink.objects.all().delete()
@@ -48,27 +48,27 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         data = json.dumps({'type': 'popular', 'id': l1.pk})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
-        self.assertEquals(all[0].url, 'http://example.com')
-        self.assertEquals(all[0].label, 'Label')
+        self.assertEqual(len(all), 1)
+        self.assertEqual(all[0].url, 'http://example.com')
+        self.assertEqual(all[0].label, 'Label')
 
         data = json.dumps({'type': 'popular', 'id': l1.pk+1})
         response = self.client.post(url, data, content_type='application_json')
 
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
+        self.assertEqual(len(all), 1)
 
         # Test a double post...
         data = json.dumps({'type': 'popular', 'id': l1.pk})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
+        self.assertEqual(len(all), 1)
 
     def test_add_recent(self):
         req = get_request_with_user('none')
@@ -91,32 +91,32 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         data = json.dumps({'type': 'recent', 'id': l1.pk})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 0)
+        self.assertEqual(len(all), 0)
 
         data = json.dumps({'type': 'recent', 'id': l2.pk+1})
         response = self.client.post(url, data, content_type='application_json')
 
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 0)
+        self.assertEqual(len(all), 0)
 
         data = json.dumps({'type': 'recent', 'id': l2.pk})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
-        self.assertEquals(all[0].url, 'http://uw.edu')
-        self.assertEquals(all[0].label, 'L2')
+        self.assertEqual(len(all), 1)
+        self.assertEqual(all[0].url, 'http://uw.edu')
+        self.assertEqual(all[0].label, 'L2')
 
         # Test a double post...
         data = json.dumps({'type': 'recent', 'id': l2.pk})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
+        self.assertEqual(len(all), 1)
 
     def test_bad_syntax(self):
         self.set_user('javerage')
@@ -125,19 +125,19 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         data = json.dumps({'type': 'xrecent', 'id': 1})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         data = json.dumps({'type': 'xrecent'})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         data = json.dumps({})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         data = "{"
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_add_pure_custom(self):
         CustomLink.objects.all().delete()
@@ -220,10 +220,10 @@ class TestQuickLinksAPI(MyuwApiTest):
         response = self.client.post(url, data, content_type='application_json')
         self.assertEqual(response.status_code, 200)
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
+        self.assertEqual(len(all), 1)
         link = all[0]
-        self.assertEquals(link.url, 'http://example.com')
-        self.assertEquals(link.label, 'Just example')
+        self.assertEqual(link.url, 'http://example.com')
+        self.assertEqual(link.label, 'Just example')
 
         # Make sure links actually have a label...
         data = json.dumps({'type': 'custom-edit',
@@ -236,12 +236,14 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
+        self.assertEqual(len(all), 1)
         link = all[0]
-        self.assertEquals(link.url, 'http://www.washington.edu/'
-                                    'classroom/SMI+401')
-        self.assertEquals(link.label, 'http://www.washington.edu/'
-                                      'classroom/SMI+401')
+        self.assertEqual(
+            link.url,
+            'http://www.washington.edu/classroom/SMI+401')
+        self.assertEqual(
+            link.label,
+            'http://www.washington.edu/classroom/SMI+401')
 
     def test_remove_link(self):
         CustomLink.objects.all().delete()
@@ -291,20 +293,20 @@ class TestQuickLinksAPI(MyuwApiTest):
         data = json.dumps({'type': 'hide',
                            'id': 'http://example.com'})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         all = HiddenLink.objects.all()
         self.assertEqual(len(all), 1)
         self.assertEqual(all[0].url, 'http://example.com')
         # same link second time
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         all = HiddenLink.objects.all()
         self.assertEqual(len(all), 1)
         # Hide a non-default
         data = json.dumps({'type': 'hide',
                            'url': 'http://uw.edu'})
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
         all = HiddenLink.objects.all()
         self.assertEqual(len(all), 1)
 

@@ -18,61 +18,68 @@ class TestRedirect(MyuwApiTest):
         url = reverse('myuw_outbound_link')
 
         response = self.client.get(url, {'u': 'example.com'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "/saml/login?next=/"
-                                                "out%3Fu%3Dexample.com")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3Dexample.com")
 
         response = self.client.get(url,
                                    {'u': 'javascript:alert("OK");'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "javascript%253Aalert%2528%25"
-                                                "22OK%2522%2529%253B")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "javascript%253Aalert%2528%25"
+            "22OK%2522%2529%253B")
 
         response = self.client.get(url, {'u': 'data:,Hello%2C%20World!'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "data%253A%252CHello%25252C%25"
-                                                "2520World%2521")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "data%253A%252CHello%25252C%25"
+            "2520World%2521")
 
         w_http = 'javascript:alert("http://example.com")'
         response = self.client.get(url, {'u': w_http})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "/saml/login?next=/out%3Fu%3D"
-                                                "javascript%253Aalert%2528%252"
-                                                "2http%253A%252F%252Fexample."
-                                                "com%2522%2529")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response["Location"],
+            "/saml/login?next=/out%3Fu%3D"
+            "javascript%253Aalert%2528%252"
+            "2http%253A%252F%252Fexample."
+            "com%2522%2529")
 
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 0)
+        self.assertEqual(len(all), 0)
 
     def test_valid_urls(self):
         self.set_user('javerage')
         url = reverse('myuw_outbound_link')
         response = self.client.get(url, {'u': 'https://example.com',
                                          'l': 'example'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "https://example.com")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "https://example.com")
 
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(all[0].label, 'example')
+        self.assertEqual(all[0].label, 'example')
 
         response = self.client.get(url, {'u': 'http://example.com'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "http://example.com")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "http://example.com")
 
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 2)
+        self.assertEqual(len(all), 2)
 
         self.set_user('jbothell')
         response = self.client.get(url, {'u': 'http://example.com'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "http://example.com")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "http://example.com")
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 3)
+        self.assertEqual(len(all), 3)
 
         pce = VisitedLinkNew.objects.filter(is_seattle=True)
-        self.assertEquals(len(pce), 2)
+        self.assertEqual(len(pce), 2)
 
     def test_anonymous_user(self):
         self.client.logout()
@@ -81,13 +88,13 @@ class TestRedirect(MyuwApiTest):
                                          'l': 'example'})
 
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 0)
+        self.assertEqual(len(all), 0)
 
     def test_ignore_link(self):
         url = reverse('myuw_outbound_link')
         self.set_user('jbothell')
         response = self.client.get(url, {'u': 'http://gmail.uw.edu'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response["Location"], "http://gmail.uw.edu")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "http://gmail.uw.edu")
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 0)
+        self.assertEqual(len(all), 0)

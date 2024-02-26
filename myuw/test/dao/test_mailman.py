@@ -196,7 +196,7 @@ class TestMailmanDao(TestCase):
     def test_request_mailman_lists(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
             req = get_request_with_user('billsea')
-            self.assertEquals(len(mail.outbox), 0)
+            self.assertEqual(len(mail.outbox), 0)
             resp = request_mailman_lists(req,
                                          ['2013,spring,PHYS,122/A',
                                           '2013,spring,PHYS,122/AA',
@@ -213,7 +213,7 @@ class TestMailmanDao(TestCase):
     def test_request_joint_mailman_lists(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
             req = get_request_with_user('billjoint')
-            self.assertEquals(len(mail.outbox), 0)
+            self.assertEqual(len(mail.outbox), 0)
             resp = request_mailman_lists(req, [], ['2013,autumn,POL S,306/A'])
             self.assertEqual(resp, {"request_sent": True,
                                     'total_lists_requested': 1})

@@ -5,10 +5,10 @@
 This module direct interfaces with restclient for the term data
 """
 
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 import logging
 from uw_sws.models import Term
-from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import (
@@ -20,14 +20,22 @@ from myuw.dao import is_using_file_dao
 
 
 logger = logging.getLogger(__name__)
+DEFAULT_TZ = ZoneInfo("America/Los_Angeles")
 
 
-def get_default_date():
+def tz_aware_now():
     """
-    A hook to help with mock data testing - put the default date
-    right in the middle of the "current" term.
+    Return an tz-aware datetime object  representing the current time
+    in the 'America/Los_Angeles' timezone.
     """
-    return get_default_datetime().date()
+    return datetime.now(DEFAULT_TZ)
+
+def tz_naive_now():
+    """
+    Return an tz-naive datetime object representing the current time
+    in the 'America/Los_Angeles' timezone.
+    """
+    return tz_aware_now().replace(tzinfo=None)
 
 
 def get_default_datetime():
@@ -37,7 +45,7 @@ def get_default_datetime():
     """
     if is_using_file_dao():
         return datetime(2013, 4, 15, 0, 0, 1)
-    return sws_now()
+    return tz_naive_now()
 
 
 def get_comparison_datetime(request):
@@ -59,8 +67,9 @@ def get_comparison_datetime(request):
                 # so date logic works
                 try:
                     date_format = "%Y-%m-%d"
-                    override_date = datetime.strptime(val, date_format) + \
-                        timedelta(seconds=1)
+                    override_date = (
+                        datetime.strptime(val, date_format) +
+                        timedelta(seconds=1))
                 except Exception:
                     raise
             except Exception as ex:
@@ -83,7 +92,7 @@ def get_comparison_datetime_with_tz(request):
     """
     @return the timezone aware datetime object
     """
-    return SWS_TIMEZONE.localize(get_comparison_datetime(request))
+    return get_comparison_datetime(request).replace(tzinfo=DEFAULT_TZ)
 
 
 def get_current_quarter(request):

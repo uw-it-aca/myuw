@@ -13,12 +13,12 @@ class TestApiGrad(MyuwApiTest):
     def test_javerage(self):
         self.set_user('seagrad')
         response = self.get_response_by_reverse('myuw_grad_api')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.content)
         data = json.loads(response.content)
 
         self.assertIn('degrees', data)
-        self.assertEquals(len(data["degrees"]), 8)
+        self.assertEqual(len(data["degrees"]), 8)
         degree = data["degrees"][0]
         self.assertEqual(degree["req_type"], "Masters Request")
         self.assertEqual(degree["submit_date"], "2013-03-11T20:53:32")
@@ -35,7 +35,7 @@ class TestApiGrad(MyuwApiTest):
         self.assertEqual(degree["target_award_quarter"], "Spring")
         # committees
         self.assertIsNotNone(data.get("committees"))
-        self.assertEquals(len(data["committees"]), 3)
+        self.assertEqual(len(data["committees"]), 3)
         committee = data["committees"][0]
         self.assertEqual(committee['committee_type'], "Advisor")
         self.assertEqual(committee['status'], "active")
@@ -49,7 +49,7 @@ class TestApiGrad(MyuwApiTest):
         self.assertEqual(len(committee['members']), 1)
         # leaves
         self.assertIsNotNone(data.get("leaves"))
-        self.assertEquals(len(data["leaves"]), 3)
+        self.assertEqual(len(data["leaves"]), 3)
         leave = data["leaves"][0]
         self.assertEqual(leave['reason'],
                          "Dissertation/Thesis research/writing")
@@ -63,7 +63,7 @@ class TestApiGrad(MyuwApiTest):
         self.assertEqual(leave['terms'][1]['year'], 2013)
         # petitions
         self.assertIsNotNone(data.get("petitions"))
-        self.assertEquals(len(data["petitions"]), 7)
+        self.assertEqual(len(data["petitions"]), 7)
         petition = data["petitions"][6]
         self.assertEqual(petition['description'],
                          "Doctoral degree - Extend ten year limit")
@@ -77,9 +77,9 @@ class TestApiGrad(MyuwApiTest):
     def test_error(self):
         self.set_user('none')
         response = self.get_response_by_reverse('myuw_grad_api')
-        self.assertEquals(response.status_code, 404)
-        self.assertEquals(response.content, b'Data not found')
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.content, b'Data not found')
 
         self.set_user('jerror')
         response = self.get_response_by_reverse('myuw_grad_api')
-        self.assertEquals(response.status_code, 543)
+        self.assertEqual(response.status_code, 543)

@@ -4,8 +4,7 @@
 from unittest import skipIf
 from datetime import datetime
 from django.test import TestCase
-from uw_sws import SWS_TIMEZONE
-from myuw.dao.calendar import get_events
+from myuw.dao.calendar import DEFAULT_TZ, get_events
 
 
 TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
@@ -13,7 +12,7 @@ TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
 
 class TestCalendar(TestCase):
     def setUp(self):
-        self.now = datetime(2013, 4, 15, 0, 0, 0, tzinfo=SWS_TIMEZONE)
+        self.now = datetime(2013, 4, 15, 0, 0, 0, tzinfo=DEFAULT_TZ)
 
     def test_far_future(self):
         cal = {'far_future': None}
@@ -80,7 +79,7 @@ class TestCalendar(TestCase):
         self.assertFalse(event_response['events'][0]['is_all_day'])
         self.assertEqual(event_response['events'][0]['start'],
                          '2013-04-16T16:00:00-07:00')
-        self.now = datetime(2013, 11, 15, 0, 0, 0, tzinfo=SWS_TIMEZONE)
+        self.now = datetime(2013, 11, 15, 0, 0, 0, tzinfo=DEFAULT_TZ)
         event_response = get_events(cal, self.now)
         self.assertTrue(event_response['events'][0]['is_all_day'])
         self.assertEqual(event_response['events'][0]['start'],
