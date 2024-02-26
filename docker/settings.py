@@ -70,6 +70,7 @@ if os.getenv('SPACE_ENV') in ['PROD', 'EVAL']:
     else:
         RESTCLIENTS_SPACE_HOST = 'https://wseval.s.uw.edu:443'
 
+if os.getenv('SDBMYUW_ENV') in ['PROD', 'EVAL']:
     sdb_ssl_context = ssl.SSLContext()
     sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
     RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
