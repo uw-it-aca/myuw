@@ -23,7 +23,7 @@ class TestResources(MyuwApiTest):
         self.assertEqual(data[2]["category_id"],
                          "servicesforfacultyandstaff")
         self.assertEqual(data[9]["category_id"],
-                         "research")
+                         "teaching")
 
     def test_pin_resource(self):
         self.set_user('bill')
