@@ -3,6 +3,7 @@
 
 from .base_settings import *
 import sys
+import ssl
 import os
 import logging
 
@@ -68,6 +69,10 @@ if os.getenv('SPACE_ENV') in ['PROD', 'EVAL']:
         RESTCLIENTS_SPACE_HOST = 'https://ws.admin.washington.edu:443'
     else:
         RESTCLIENTS_SPACE_HOST = 'https://wseval.s.uw.edu:443'
+
+    sdb_ssl_context = ssl.SSLContext()
+    sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
+    RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
 
 # Thrive required settings
 MEDIA_ROOT = "../statics/hx_images"
