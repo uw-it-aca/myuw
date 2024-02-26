@@ -164,6 +164,8 @@ environmentVariables:
     value: PROD
   - name: SDBMYUW_TIMEOUT
     value: "10"
+  - name: IS_WEAK_KEY
+    value: True
 
   - name: SWS_ENV
     value: PROD
