@@ -13,16 +13,16 @@ from myuw.test import get_request_with_user, auth_override
 class TestValidation(TestCase):
 
     def test_validation(self):
-        self.assertEquals(validate_netid("javerage"), None)
-        self.assertEquals(validate_netid(""), NO_USER)
-        self.assertEquals(validate_netid("jaVeRaGe"), None)
-        self.assertEquals(validate_netid("a_canvas"), None)
-        self.assertEquals(
+        self.assertEqual(validate_netid("javerage"), None)
+        self.assertEqual(validate_netid(""), NO_USER)
+        self.assertEqual(validate_netid("jaVeRaGe"), None)
+        self.assertEqual(validate_netid("a_canvas"), None)
+        self.assertEqual(
             validate_netid(
                 "alongnetid" +
                 "012345678901234567890123456789012345678901234567890123456"),
             INVALID_STRING)
-        self.assertEquals(validate_netid("99invalid"), INVALID_STRING)
+        self.assertEqual(validate_netid("99invalid"), INVALID_STRING)
 
     def test_can_override_user(self):
         req = get_request_with_user("faculty")

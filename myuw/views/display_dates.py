@@ -16,7 +16,7 @@ from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao import is_using_file_dao
 from myuw.dao.term import (
-    get_default_date, get_comparison_datetime, get_default_datetime)
+    get_comparison_datetime, get_default_datetime)
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
 from myuw.logger.logresp import log_exception
@@ -124,11 +124,7 @@ def add_session_context(request, context):
     now_request.session = {}
     context["values_used"] = get_card_visibilty_date_values(request)
 
-    now = datetime.now()
-    default = get_default_date()
-
-    used_date = datetime(default.year, default.month, default.day, now.hour,
-                         now.minute, now.second)
+    used_date = get_default_datetime()
     context["values_now"] = get_values_by_date(used_date, now_request)
 
 

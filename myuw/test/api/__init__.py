@@ -104,5 +104,5 @@ class MyuwApiTest(TransactionTestCase):
 
             resp = self.client.post(reverse("userservice_override"),
                                     {"override_as": username})
-            self.assertEquals(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 200)
             self.process_request()

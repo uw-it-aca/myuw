@@ -17,7 +17,7 @@ class TestUpassApi(MyuwApiTest):
     def test_normal(self):
         self.set_user('javerage')
         response = self.get_response_by_reverse('myuw_upass_api')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(
             json.loads(response.content.decode('UTF-8')),
             {
@@ -29,9 +29,9 @@ class TestUpassApi(MyuwApiTest):
     def test_error_543(self):
         self.set_user('jerror')
         response = self.get_response_by_reverse('myuw_upass_api')
-        self.assertEquals(response.status_code, 543)
+        self.assertEqual(response.status_code, 543)
 
     def test_error_404(self):
         self.set_user('noexist')
         response = self.get_response_by_reverse('myuw_upass_api')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)

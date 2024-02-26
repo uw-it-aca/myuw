@@ -38,7 +38,7 @@ class TestEmailServiceUrl(TestCase):
             req = get_request_with_user(netid[0])
             fwd = get_email_forwarding_for_current_user(req)
             url = get_service_url_for_address(fwd.fwd)
-            self.assertEquals(url, netid[1])
+            self.assertEqual(url, netid[1])
 
         with self.assertRaises(EmailServiceUrlException):
             get_service_url_for_address("user@unknowndomain.com")

@@ -30,29 +30,29 @@ class TestLogins(MyuwApiTest):
     def test_mobile_login(self):
         self.set_user('jnew')
         response = self.get_home_mobile()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user('japplicant')
         response = self.get_home_mobile()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user('curgrad')
         response = self.get_home_mobile()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_desktop_login(self):
         self.set_user('none')
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user("jbothell")
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user("faculty")
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         self.set_user('staff')
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)

@@ -14,8 +14,8 @@ class TestBuildings(TestCase):
 
     def test_get_by_code(self):
         building = get_building_by_code('PAA')
-        self.assertEquals(building.longitude, -122.304747)
-        self.assertEquals(
+        self.assertEqual(building.longitude, -122.304747)
+        self.assertEqual(
             building.json_data(),
             {
                 'code': 'PAA',
@@ -38,4 +38,4 @@ class TestBuildings(TestCase):
         schedule = get_schedule_by_term(req, term)
 
         buildings = get_buildings_by_schedule(schedule)
-        self.assertEquals(len(buildings), 2)
+        self.assertEqual(len(buildings), 2)

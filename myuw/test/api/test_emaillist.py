@@ -31,7 +31,7 @@ class TestEmaillistApi(MyuwApiTest):
                     'curriculum_abbr': 'PHYS',
                     'course_number': '121',
                     'section_id': 'A'})
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     def test_get(self):
         self.set_user('bill')
@@ -42,21 +42,21 @@ class TestEmaillistApi(MyuwApiTest):
                     'curriculum_abbr': 'PHYS',
                     'course_number': '121',
                     'section_id': 'A'})
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
 
-        self.assertEquals(data['year'], 2013)
-        self.assertEquals(data['quarter'], 'spring')
+        self.assertEqual(data['year'], 2013)
+        self.assertEqual(data['quarter'], 'spring')
         self.assertTrue(data["has_multiple_sections"])
         self.assertTrue(data["is_primary"])
-        self.assertEquals(data["section_list"]["list_address"],
-                          "phys121a_sp13")
-        self.assertEquals(data["secondary_combined_list"]["list_address"],
-                          "multi_phys121a_sp13")
-        self.assertEquals(len(data["secondary_section_lists"]), 21)
-        self.assertEquals(data["course_number"], "121")
-        self.assertEquals(data["course_abbr"], "PHYS")
-        self.assertEquals(data["section_id"], "A")
+        self.assertEqual(data["section_list"]["list_address"],
+                         "phys121a_sp13")
+        self.assertEqual(data["secondary_combined_list"]["list_address"],
+                         "multi_phys121a_sp13")
+        self.assertEqual(len(data["secondary_section_lists"]), 21)
+        self.assertEqual(data["course_number"], "121")
+        self.assertEqual(data["course_abbr"], "PHYS")
+        self.assertEqual(data["section_id"], "A")
         self.assertTrue(data["has_lists"])
 
     def test_get_bot(self):
@@ -68,7 +68,7 @@ class TestEmaillistApi(MyuwApiTest):
                     'curriculum_abbr': 'B%20BIO',
                     'course_number': '180',
                     'section_id': 'A'})
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertTrue(data["is_primary"])
 
@@ -106,21 +106,21 @@ class TestEmaillistApi(MyuwApiTest):
             #     url,
             #     {u'section_single_A': u'2013,spring,PHYS,122/A',
             #      })
-            # self.assertEquals(resp.status_code, 200)
-            # self.assertEquals(json.loads(resp.content),
+            # self.assertEqual(resp.status_code, 200)
+            # self.assertEqual(json.loads(resp.content),
             #                   {'request_sent': True,
             #                    'total_lists_requested': 1})
             #
             # resp = self.client.post(
             #     url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
-            # self.assertEquals(resp.status_code, 200)
-            # self.assertEquals(json.loads(resp.content),
+            # self.assertEqual(resp.status_code, 200)
+            # self.assertEqual(json.loads(resp.content),
             #                   {'none_selected': True})
             resp = self.client.post(
                 url,
                 {u'section_single_A': u'2013,spring,PHYS,122,A',
                  u'section_single': u'2013,spring,PHYS,122/A'})
-            self.assertEquals(resp.status_code, 400)
+            self.assertEqual(resp.status_code, 400)
 
     def test_missing_section_post(self):
         self.set_user('billsea')
@@ -128,9 +128,9 @@ class TestEmaillistApi(MyuwApiTest):
         resp = self.client.post(
             url,
             {u'section_single_ZC': u'2013,spring,PHYS,122/ZC'})
-        self.assertEquals(resp.status_code, 403)
+        self.assertEqual(resp.status_code, 403)
 
-        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
+        self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_not_instructor_post(self):
         self.set_user('billsea')
@@ -138,9 +138,9 @@ class TestEmaillistApi(MyuwApiTest):
         resp = self.client.post(
             url,
             {u'section_single_A': u'2013,spring,ESS,102/A'})
-        self.assertEquals(resp.status_code, 403)
+        self.assertEqual(resp.status_code, 403)
 
-        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
+        self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_not_instructor_secondary_post(self):
         self.set_user('billsea')
@@ -148,9 +148,9 @@ class TestEmaillistApi(MyuwApiTest):
         resp = self.client.post(
             url,
             {u'section_single_AB': u'2013,spring,ESS,102/AB'})
-        self.assertEquals(resp.status_code, 403)
+        self.assertEqual(resp.status_code, 403)
 
-        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
+        self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_primary_instructor_secondary_post(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT=""):
@@ -159,7 +159,7 @@ class TestEmaillistApi(MyuwApiTest):
             resp = self.client.post(
                 url,
                 {u'section_single_AB': u'2013,spring,ESS,102/AB'})
-            self.assertEquals(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 200)
 
     def test_override_primary_instructor_secondary_post(self):
         with self.settings(DEBUG=False,
@@ -169,13 +169,13 @@ class TestEmaillistApi(MyuwApiTest):
                            USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE):
             self.set_user('javerage')
             self.set_userservice_override("bill")
-            self.assertEquals(UserService().get_override_user(), "bill")
+            self.assertEqual(UserService().get_override_user(), "bill")
 
             url = reverse("myuw_emaillist_api")
             resp = self.client.post(
                 url,
                 {u'section_single_AB': u'2013,spring,ESS,102/AB'})
-            self.assertEquals(resp.status_code, 403)
+            self.assertEqual(resp.status_code, 403)
 
     def test_is_emaillist_authorized(self):
         req = get_request_with_user('billbot')
@@ -190,5 +190,5 @@ class TestEmaillistApi(MyuwApiTest):
         resp = self.client.post(
             url,
             {u'section_single_A': u'2013,spring,ESS,102/A'})
-        self.assertEquals(resp.status_code, 403)
-        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
+        self.assertEqual(resp.status_code, 403)
+        self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
