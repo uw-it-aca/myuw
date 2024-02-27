@@ -22,41 +22,41 @@ class TestFutureSchedule(MyuwApiTest):
     def test_javerage_future(self):
         self.set_user('javerage')
         response = self.get_schedule(year=2013, quarter='autumn')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data["sections"]), 2)
+        self.assertEqual(len(data["sections"]), 2)
 
         response = self.get_schedule(year=2015, quarter='autumn')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
         response = self.get_schedule_summer(
             year=2013, quarter='summer', summer_term='a-term')
         data = json.loads(response.content)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(len(data["sections"]), 2)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(data["sections"]), 2)
 
         response = self.get_schedule_summer(
             year=2013, quarter='summer', summer_term='b-term')
         data = json.loads(response.content)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(len(data["sections"]), 2)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(data["sections"]), 2)
 
         response = self.get_schedule(year=2013, quarter='summer')
         data = json.loads(response.content)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(len(data["sections"]), 3)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(data["sections"]), 3)
 
     def test_error(self):
         self.set_user('jerror')
         response = self.get_schedule(year=2013, quarter='summer')
-        self.assertEquals(response.status_code, 543)
+        self.assertEqual(response.status_code, 543)
 
         response = self.get_schedule(year=2013, quarter='autumn')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_past_quarter(self):
         self.set_user('javerage')
         self.set_date("2013-04-01")
         response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 410)
+        self.assertEqual(response.status_code, 410)

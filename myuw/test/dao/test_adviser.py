@@ -13,7 +13,7 @@ class TestAdviserDao(TestCase):
         advisers = get_academic_advisers(
             get_request_with_user('javerage')
         )
-        self.assertEquals(len(advisers), 5)
+        self.assertEqual(len(advisers), 5)
 
     def test_get_error_case(self):
         self.assertRaises(DataFailureException,

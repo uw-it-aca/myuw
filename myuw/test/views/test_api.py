@@ -19,25 +19,25 @@ class TestDispatchErrorCases(MyuwApiTest):
                               'summer_term': ''})
         self.set_user('javerage')
         response = self.client.put(url)
-        self.assertEquals(response.status_code, 405)
+        self.assertEqual(response.status_code, 405)
 
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 405)
+        self.assertEqual(response.status_code, 405)
 
         response = self.client.delete(url)
-        self.assertEquals(response.status_code, 405)
+        self.assertEqual(response.status_code, 405)
 
 
 class TestJSONResponse(MyuwApiTest):
     def test_json_response(self):
         response = OpenAPI().json_response(None)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), None)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content), None)
 
         response = OpenAPI().json_response('', status=403)
-        self.assertEquals(response.status_code, 403)
-        self.assertEquals(json.loads(response.content), '')
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(json.loads(response.content), '')
 
         response = OpenAPI().json_response(datetime(2013, 1, 1, 0, 0, 0))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), '2013-01-01 00:00:00')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content), '2013-01-01 00:00:00')
