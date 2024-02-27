@@ -64,7 +64,8 @@
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
         <div class="mb-1"><span class="myuw-font-encode-sans">Required Immunizations</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect completion status)</span>
+          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
+            completion status)</span>
           <button
             v-uw-collapse.measlesimmunization
             type="button"
@@ -91,7 +92,8 @@
         />
         <div class="mb-1"><span class="myuw-font-encode-sans">Required Husky Prevention & Response
           student course</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect completion status)</span>
+          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
+            completion status)</span>
           <button
             v-uw-collapse.titleix
             type="button"
