@@ -44,33 +44,6 @@
       </div>
 
       <div
-        v-for="notice in iss_before"
-        :key="notice.id_hash"
-        class="d-flex mb-2"
-      >
-        <font-awesome-icon
-          :icon="faCircle"
-          class="me-3 mt-1 text-muted myuw-text-lg"
-        />
-        <div>
-          <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
-          <div class="myuw-text-md" v-html="notice.notice_body" />
-        </div>
-      </div>
-
-      <div
-        v-for="notice in iss_after"
-        :key="notice.id_hash"
-        class="d-flex mb-2"
-      >
-        <font-awesome-icon
-          :icon="faCheckCircle"
-          class="me-3 mt-1 text-success myuw-text-lg"
-        />
-        <div class="myuw-text-md" v-html="notice.notice_content" />
-      </div>
-
-      <div
         v-for="notice in orient_before"
         :key="notice.id_hash"
         class="d-flex mb-2"
@@ -91,28 +64,54 @@
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
         <div class="mb-1"><span class="myuw-font-encode-sans">Required Immunizations</span>
-          <ul class="list-unstyled myuw-text-md">
-            <li>
-              <button
-                v-uw-collapse.measlesimmunization
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-              >Immunization records are required by the 3rd week of your first quarter</button>
-              <uw-collapse id="measlesimmunization">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>All students under 22 must submit evidence of measles, mumps immunity and a
-                    conjugate meningitis ACWY vaccination given at age 16 or older. Students age
-                    22 and older must submit evidence of measles and mumps immunity, either through
-                    vaccinations (two MMR vaccinations) or lab evidence of positive titer.
-                    <a href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
-                    Learn more about immunization requirements and deadlines.</a>
-                  </p>
-                </div>
-              </uw-collapse>
-            </li>
-          </ul>
+          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect completion status)</span>
+          <button
+            v-uw-collapse.measlesimmunization
+            type="button"
+            class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md d-block"
+          >Immunization records are required by the 3rd week of your first quarter</button>
+          <uw-collapse id="measlesimmunization">
+            <div class="p-3 mt-2 bg-light text-dark notice-body">
+              <p>All students must submit evidence of Measles and Mumps immunity, either
+                through vaccinations or lab evidence of positive titer. Students ages 16
+                through 21 also are required to show proof of a Meningitis ACWY vaccination
+                taken at 16 years old or older.
+                <a href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
+                Learn more about immunization requirements and deadlines.</a>
+              </p>
+            </div>
+          </uw-collapse>
         </div>
       </div>
+
+      <div class="d-flex mb-2">
+        <font-awesome-icon
+          :icon="faInfoCircle"
+          class="me-3 mt-1 text-mid-beige myuw-text-lg"
+        />
+        <div class="mb-1"><span class="myuw-font-encode-sans">Required Husky Prevention & Response
+          student course</span>
+          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect completion status)</span>
+          <button
+            v-uw-collapse.titleix
+            type="button"
+            class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md d-block"
+          >Learn about and complete the one-time online course</button>
+          <uw-collapse id="titleix">
+            <div class="p-3 mt-2 bg-light text-dark notice-body">
+              <p><a href="https://www.washington.edu/titleix/title-ix-student-course/">Husky
+                Prevention & Response</a> is a one-time online course on preventing and
+                responding to sex-based and gender-based violence and harassment. Complete the
+                  course — which takes 60–90 minutes — before the start of your first quarter.
+                  If you do not complete the course, you may be unable to register for future
+                  quarters. <a href="https://tixstudent.uw.edu">Access and complete the
+                  course – tixstudent.uw.edu.</a>
+              </p>
+            </div>
+          </uw-collapse>
+        </div>
+      </div>
+
     </template>
   </uw-card>
 </template>
@@ -163,18 +162,6 @@ export default {
         // newstudentclist_advorientregdatea
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_orient_before'),
-        );
-      },
-      iss_before: (state) => {
-        // newstudentclist_intlstucheckina
-        return state.notices.value.filter((notice) =>
-          notice.location_tags.includes('checklist_iss_before'),
-        );
-      },
-      iss_after: (state) => {
-        // newstudentclist_intlstucheckinb
-        return state.notices.value.filter((notice) =>
-          notice.location_tags.includes('checklist_iss_after'),
         );
       },
       measles_before: (state) => {
