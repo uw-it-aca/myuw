@@ -148,22 +148,19 @@ class TestCategoryLinks(TransactionTestCase):
         req = get_request_with_user('bill')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 11)
-        self.assertEqual(links[8]['category_name'], 'Student Finances')
-        self.assertEqual(len(links[8]['subcategories']), 2)
-        self.assertEqual(len(links[8]['subcategories']['Tools']), 5)
-        self.assertEqual(
-            links[8]['subcategories']['Tools']['links'][4]['title'],
-            'Course Stats')
-        self.assertEqual(
-            links[8]['subcategories']['Tools']['links'][5]['title'], 'Zoom')
+        self.assertEqual(links[6]['category_name'], 'Health, Wellness, & Support')
+        self.assertEqual(len(links[6]['subcategories']), 3)
+        self.assertTrue('Advocacy and Support' in links[6]['subcategories'])
+        self.assertTrue('Health & Wellness' in links[6]['subcategories'])
+        self.assertTrue('Resource Centers' in links[6]['subcategories'])
 
         req = get_request_with_user('billbot')
         links = Resource_Links().get_all_grouped_links(req)
-        self.assertEqual(len(links), 10)
+        self.assertEqual(len(links), 11)
         self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')
         req = get_request_with_user('billtac')
         links = Resource_Links().get_all_grouped_links(req)
-        self.assertEqual(len(links), 10)
+        self.assertEqual(len(links), 11)
         self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')
