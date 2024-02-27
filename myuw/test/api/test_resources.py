@@ -17,13 +17,13 @@ class TestResources(MyuwApiTest):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEqual(len(data), 10)
+        self.assertEqual(len(data), 11)
         self.assertEqual(data[1]["category_id"],
                          "emailandaccountsandidentity")
         self.assertEqual(data[2]["category_id"],
                          "servicesforfacultyandstaff")
         self.assertEqual(data[9]["category_id"],
-                         "research")
+                         "teaching")
 
     def test_pin_resource(self):
         self.set_user('bill')
