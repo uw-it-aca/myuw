@@ -13,13 +13,13 @@ class TestLinks(MyuwApiTest):
         response = self.get_response_by_reverse(
             'myuw_links_api',
             kwargs={'category_id': 'pageacademics'})
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
 
-        self.assertEquals(data["link_data"][0]["subcategory"],
-                          "Online Learning")
-        self.assertEquals(len(data["link_data"][0]["links"]), 1)
-        self.assertEquals(data["link_data"][1]["subcategory"],
-                          "Registration")
+        self.assertEqual(data["link_data"][0]["subcategory"],
+                         "Online Learning")
+        self.assertEqual(len(data["link_data"][0]["links"]), 1)
+        self.assertEqual(data["link_data"][1]["subcategory"],
+                         "Registration")
         self.assertGreater(len(data["link_data"][1]["links"]), 1)

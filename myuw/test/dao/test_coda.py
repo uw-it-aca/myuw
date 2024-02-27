@@ -15,13 +15,13 @@ class TestCoDaDAO(TestCase):
 
         processed = coda._process_section_label(section_label)
 
-        self.assertEquals("2018-winter-T%20UNIV-200-A", processed)
+        self.assertEqual("2018-winter-T%20UNIV-200-A", processed)
 
         section_label = "2018_winter_ES S_102_A"
 
         processed = coda._process_section_label(section_label)
 
-        self.assertEquals("2018-winter-ES%20S-102-A", processed)
+        self.assertEqual("2018-winter-ES%20S-102-A", processed)
 
     @patch('myuw.dao.coda.get_fail_rate', spec=True)
     def test_get_fail_rate_err(self, mock):

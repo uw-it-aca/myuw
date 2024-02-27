@@ -81,7 +81,7 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[2]['year'], 2013)
         self.assertEqual(terms[2]['quarter'], "Autumn")
         self.assertIsNone(terms[2]['summer_term'])
-        self.assertEquals(data['next_term_data']['label'], '2013,autumn')
+        self.assertEqual(data['next_term_data']['label'], '2013,autumn')
         self.assertEqual(terms[2]['credits'], '10.0')
 
         # Summer has started - exclude a-term
@@ -144,14 +144,14 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[2]['quarter'], "Autumn")
         self.assertEqual(terms[2]['section_count'], 1)
         self.assertEqual(terms[2]['credits'], '5.0')
-        self.assertEquals(data['next_term_data']['label'], '2013,autumn')
+        self.assertEqual(data['next_term_data']['label'], '2013,autumn')
 
         req = get_request_with_user(
             'jbothell', get_request_with_date("2013-02-19"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 1)
-        self.assertEquals(data['next_term_data']['label'], '2013,spring')
+        self.assertEqual(data['next_term_data']['label'], '2013,spring')
         self.assertEqual(data['next_term_data']['section_count'], 4)
 
         req = get_request_with_user('jbothell')

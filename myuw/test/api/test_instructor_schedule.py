@@ -119,7 +119,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
     def test_bill_future_term(self):
         self.set_user('bill')
         response = self.get_schedule(year=2013, quarter='summer')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         section = data['sections'][0]
         self.assertFalse('failure_rate' in section)
@@ -128,7 +128,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
     def test_bill_past_term(self):
         self.set_user('bill')
         response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertFalse(data['sections'][0]['current'])
 
@@ -146,7 +146,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
             'billsea', get_request_with_date("2017-10-01"))
         schedule = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().get(now_request)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertFalse(data["future_term"])
         self.assertEqual(len(data['sections']), 6)
@@ -279,7 +279,7 @@ class TestInstructorSection(MyuwApiTest):
         now_request = get_request_with_user('staff')
         sche = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().get(now_request)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 0)
 
@@ -310,7 +310,7 @@ class TestInstructorSection(MyuwApiTest):
             'billsea', get_request_with_date('2020-10-01'))
         resp = InstScheCurQuar().get(request)
         data = json.loads(resp.content)
-        self.assertEquals(len(data["sections"]), 5)
+        self.assertEqual(len(data["sections"]), 5)
         ee = data["sections"][0]
         self.assertTrue(ee["is_hybrid"])
         self.assertTrue(ee["meetings"][0]["is_hybrid"])

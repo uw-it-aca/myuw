@@ -10,12 +10,12 @@ class TestBuilding(MyuwApiTest):
     def test_building(self):
         fac_obj = Facilities().search_by_number("1347")
         b_obj = CampusBuilding.upd_building(fac_obj)
-        self.assertEquals(b_obj.latitude, 47.6536929997)
-        self.assertEquals(b_obj.longitude, -122.304747)
-        self.assertEquals(b_obj.name, "Mechanical Engineering Building")
-        self.assertEquals(b_obj.code, 'MEB')
-        self.assertEquals(b_obj.number, '1347')
-        self.assertEquals(
+        self.assertEqual(b_obj.latitude, 47.6536929997)
+        self.assertEqual(b_obj.longitude, -122.304747)
+        self.assertEqual(b_obj.name, "Mechanical Engineering Building")
+        self.assertEqual(b_obj.code, 'MEB')
+        self.assertEqual(b_obj.number, '1347')
+        self.assertEqual(
             b_obj.json_data(),
             {
                 'code': 'MEB',
@@ -28,7 +28,7 @@ class TestBuilding(MyuwApiTest):
         self.assertIsNotNone(str(b_obj))
 
         obj1 = CampusBuilding.get_building_by_code('MEB')
-        self.assertEquals(
+        self.assertEqual(
             obj1.json_data(),
             {
                 'code': 'MEB',
@@ -40,7 +40,7 @@ class TestBuilding(MyuwApiTest):
         )
 
         obj2 = CampusBuilding.get_building_by_number('1347')
-        self.assertEquals(
+        self.assertEqual(
             obj2.json_data(),
             {
                 'code': 'MEB',
@@ -56,5 +56,5 @@ class TestBuilding(MyuwApiTest):
 
         fac_obj.code = 'MEBB'
         obj3 = CampusBuilding.upd_building(fac_obj)
-        self.assertEquals(obj3.code, 'MEBB')
+        self.assertEqual(obj3.code, 'MEBB')
         self.assertFalse(b_obj == obj3)

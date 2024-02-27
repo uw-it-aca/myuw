@@ -25,6 +25,8 @@ Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
 Academics,Registration,all,https://www.degreereg.uw.edu/user-guide,How to Register for PCE Courses,,,,,,,no
+Academics,Rights and Responsibilities,all,http://www.washington.edu/students/reg/ferpa.html,Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information,,,,,,,no
+Academics,Rights and Responsibilities,all,,,http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,https://www.uwb.edu/student-affairs/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/student-conduct/student-code,Student Conduct Code,no
 Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
 Academics,Tools and Software,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
@@ -62,33 +64,23 @@ Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,UW Facili
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
 Services for Faculty and Staff,Others,all,https://astra.admin.uw.edu/astra/,ASTRA,,,,,,,no
 Campus Life,Campus Retail,all,,,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwseattle,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwbothell,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwtacoma,University Book Store,no
-Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/uwt/fa/safety/,Campus Safety & Security,no
+Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Community Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/uwt/fa/safety/,Campus Safety & Security,no
 Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
 Campus Life,Campus Safety,all,https://mychem.ehs.washington.edu/,MyChem,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,https://www.tacoma.uw.edu/fa/safety/emergency-preparedness,UW Tacoma Emergency Response,no
-Campus Life,Campus Safety,all,https://www.washington.edu/titleix/report/,Make a Title IX report,,,,,,,no
 Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/wp-content/uploads/2023/09/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/park-directions,Getting to Seattle Campus,http://www.uwb.edu/visitors/directions,Getting to UW Bothell Campus,https://www.tacoma.uw.edu/fa/facilities/transportation/parking-and-transportation-resources#permalink-19448,Getting to UW Tacoma Campus,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/student-u-pass,U-PASS for Students,https://www.uwb.edu/commuter-services/transportation/upass,U-PASS,https://www.tacoma.uw.edu/uwt/fa/facilities/transportation/u-pass,U-PASS,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/employee-u-pass,U-PASS for Employees,,,,,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/,Transportation Services,https://www.uwb.edu/commuter-services/,Commuter Services,https://www.tacoma.uw.edu/fa/facilities/transportation,Transportation Services,no
 Campus Life,Getting Around Campus,all,,,http://uwshuttles.com/,UW Shuttles,,,,,no
-Campus Life,Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
-Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
-Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
-Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
-Campus Life,Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
-Campus Life,Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,http://apps.tacoma.uw.edu/dawgdollars/,Tacoma Dawg Dollars Account,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,https://www.tacoma.uw.edu/uwt/fa/facilities/food-services,Campus Dining,no
 Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/housing/,Student Housing,http://www.uwb.edu/housing,Student Housing,http://www.tacoma.uw.edu/housing,Housing,no
 Campus Life,Housing & Dining,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facilities/,Facilities and Campus Operations,https://www.tacoma.uw.edu/fa/facilities,Facilities Services,no
 Campus Life,Housing & Dining,all,,,https://facilities.uw.edu/services/requests,Submit Work Request,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
-Campus Life,Rules and Regulations,all,http://www.washington.edu/students/reg/ferpa.html,Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information,,,,,,,no
-Campus Life,Rules and Regulations,all,,,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,https://www.uwb.edu/student-affairs/studentconduct/student-guide,Student Guide to Academic Integrity,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,no
-Campus Life,Rules and Regulations,all,,,http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,https://www.uwb.edu/student-affairs/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/student-conduct/student-code,Student Conduct Code,no
 Campus Life,Support Services,all,https://www.washington.edu/circle/,Center for International Relations & Cultural Leadership Exchange (CIRCLE),,,,,,,no
 Campus Life,Support Services,all,http://www.fiuts.org/,Foundation for International Understanding Through Students (FIUTS),,,,,,,no
 Campus Life,Support Services,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
@@ -97,12 +89,6 @@ Campus Life,Support Services,all,,,http://www.washington.edu/omad/,Diversity Res
 Campus Life,Support Services,all,http://grad.uw.edu/diversity/go-map/,Graduate Opportunities and Minority Achievement Program (GO-MAP),,,,,,,no
 Campus Life,Support Services,all,https://sites.uw.edu/qcenter/,Q Center,,,,,,,no
 Campus Life,Support Services,all,http://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
-Campus Life,Support Services,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
-Campus Life,Support Services,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
-Campus Life,Support Services,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
-Campus Life,Support Services,all,http://www.washington.edu/sexualassault/,Sexual Assault Resources,,,,,,,no
-Campus Life,Support Services,all,http://depts.washington.edu/slsuw/,Student Legal Services,,,,,,,no
-Campus Life,Support Services,all,https://www.washington.edu/cr-investigations/,Civil Rights Investigation Office,,,,,,,no
 Employment,Employment Resources,all,,,http://careers.uw.edu/,Career & Internship Center,http://www.bothell.washington.edu/careers,Career Services,https://www.tacoma.uw.edu/uwt/career,Career Development,no
 Employment,Employment Resources,all,https://wd5.myworkday.com/uw/d/home.htmld,Workday,,,,,,,no
 Employment,Employment Resources,all,https://prp.admin.uw.edu/legacyess,Legacy ESS,,,,,,,no
@@ -121,6 +107,27 @@ Events and Activities,Stay Connected,all,,,https://www.instagram.com/uofwa/,UW I
 Events and Activities,Stay Connected,all,,,https://twitter.com/UW,UW Twitter,https://twitter.com/UWBothell,UW Bothell Twitter,https://twitter.com/uwtacoma,UW Tacoma Twitter,no
 Events and Activities,Stay Connected,all,,,https://www.linkedin.com/company/university-of-washington,UW LinkedIn,https://www.linkedin.com/groups/University-Washington-Bothell-92858?home=&gid=92858,UW Bothell LinkedIn,https://www.linkedin.com/school/university-of-washington-tacoma/,UW Tacoma LinkedIn,no
 Events and Activities,Student Clubs and Organizations,all,,,https://hub.washington.edu/sao/rso-directory/,Registered Student Organizations (RSO) Directory,https://uwb.presence.io/organizations,Club Directory,https://dawgden.tacoma.uw.edu/Organizations,UW Tacoma Clubs and Organizations,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/sexualassault/,Sexual Assault Resources,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,http://depts.washington.edu/slsuw/,Student Legal Services,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/cr-investigations/,Civil Rights Investigation Office,,,,,,,no
+"Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/titleix/report/,Make a Title IX report,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
+"Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
+"Health, Wellness, & Support",Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://www.washington.edu/circle/,Center for International Relations & Cultural Leadership Exchange (CIRCLE),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,http://www.fiuts.org/,Foundation for International Understanding Through Students (FIUTS),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/admin/dso/uw-resources.html,Disability Resources,https://www.uwb.edu/student-affairs/drs,Disability Resources for Students (DRS),http://www.tacoma.uw.edu/drsuwt,Disability Resources for Students,no
+"Health, Wellness, & Support",Resource Centers,all,,,http://www.washington.edu/omad/,Diversity Resources,http://www.uwb.edu/diversity,Diversity Resources,http://www.tacoma.uw.edu/diversity,Diversity Resources,no
+"Health, Wellness, & Support",Resource Centers,all,http://grad.uw.edu/diversity/go-map/,Graduate Opportunities and Minority Achievement Program (GO-MAP),,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,https://sites.uw.edu/qcenter/,Q Center,,,,,,,no
+"Health, Wellness, & Support",Resource Centers,all,http://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
 Libraries,Library Resources,all,,,http://lib.washington.edu/,UW Libraries,http://library.uwb.edu/,UW Bothell Library,http://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Libraries,Library Resources,all,http://search.lib.uw.edu/account,Your Library Account,,,,,,,no
 Libraries,Library Resources,all,http://guides.lib.uw.edu/az.php,Articles and Research Databases,,,,,,,no
@@ -158,6 +165,7 @@ Research,Research Administration,all,https://myresearch.washington.edu/,MyResear
 Research,Research Administration,all,https://www.washington.edu/research/tools/sage/,System to Administer Grants Electronically (SAGE),,,,,,,no
 Research,Research Administration,all,https://www.washington.edu/research/tools/,Research Administration Tools,,,,,,,no
 Research,Research Administration,all,https://www.washington.edu/research/resources/funding-opportunities/,Funding Opportunities,,,,,,,no
+Research,Research Administration,all,https://www.washington.edu/research/compliance/office-of-research-misconduct-proceedings/,Office of Research Misconduct Proceedings,,,,,,,no
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://www.washington.edu/research/research-centers/,Research Centers and Institutes,,,,,,,no
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://www.washington.edu/research/shared-research-facilities-resources/,Shared Research Facilities and Resources,,,,,,,no
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://escience.washington.edu/,eScience Institute,,,,,,,no
