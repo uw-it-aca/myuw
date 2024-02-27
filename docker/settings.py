@@ -103,6 +103,13 @@ else:
     sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
     RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
 
+    MAILMAN_COURSEREQUEST_RECIPIENT = os.getenv("MAILMAN_REQUEST_RECIPIENT")
+    if os.getenv("ENV", "") == "prod":
+        EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    else:
+        EMAIL_BACKEND = "saferecipient.EmailBackend"
+        SAFE_EMAIL_RECIPIENT = os.getenv("SAFE_EMAIL_RECIPIENT")
+
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
