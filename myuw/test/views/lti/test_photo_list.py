@@ -18,13 +18,13 @@ class TestLTILaunch(MyuwLTITest):
         # Invalid http method
         response = self.client.get(
             url, HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 401)
+        self.assertEqual(response.status_code, 401)
 
         # Invalid launch payload
         response = self.client.post(
                 url, data={},
                 HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 401)
+        self.assertEqual(response.status_code, 401)
 
 
 @override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
@@ -48,9 +48,9 @@ class TestLTIPhotoList(MyuwLTITest):
             'blti_params': blti_data,
         }
         context = LTIPhotoList().get_context_data(**kwargs)
-        self.assertEquals(context['lti_course_name'], 'ESS 102 A')
-        self.assertEquals(context['section'], '2013-spring-ESS-102-AA')
-        self.assertEquals(len(context['sections']), 2)
+        self.assertEqual(context['lti_course_name'], 'ESS 102 A')
+        self.assertEqual(context['section'], '2013-spring-ESS-102-AA')
+        self.assertEqual(len(context['sections']), 2)
 
     def test_context_data_no_sections(self):
         blti_data = {
@@ -64,6 +64,6 @@ class TestLTIPhotoList(MyuwLTITest):
             'blti_params': blti_data,
         }
         context = LTIPhotoList().get_context_data(**kwargs)
-        self.assertEquals(context['lti_course_name'], 'ESS 102 B')
-        self.assertEquals(context['section'], '')
-        self.assertEquals(len(context['sections']), 0)
+        self.assertEqual(context['lti_course_name'], 'ESS 102 B')
+        self.assertEqual(context['section'], '')
+        self.assertEqual(len(context['sections']), 0)

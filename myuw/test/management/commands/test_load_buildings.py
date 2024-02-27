@@ -15,11 +15,11 @@ class TestDeleteSessions(TransactionTestCase):
 
     def test_init_load(self):
         records = CampusBuilding.objects.all()
-        self.assertEquals(len(records), 0)
+        self.assertEqual(len(records), 0)
         call_command('load_buildings', '-l')
         records = CampusBuilding.objects.all()
-        self.assertEquals(len(records), 1)
-        self.assertEquals(records[0].code, 'MEB')
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0].code, 'MEB')
 
     def test_update(self):
         obj = CampusBuilding.objects.create(
@@ -39,7 +39,7 @@ class TestDeleteSessions(TransactionTestCase):
         )
         obj.save()
         records = CampusBuilding.objects.all()
-        self.assertEquals(len(records), 2)
+        self.assertEqual(len(records), 2)
 
         with patch.object(Facilities, 'search_by_code', spec=True) as mock:
             mock.return_value = [Facility(
@@ -54,8 +54,8 @@ class TestDeleteSessions(TransactionTestCase):
                 type='Building')]
             call_command('load_buildings')
             records = CampusBuilding.objects.all()
-            self.assertEquals(len(records), 1)
-            self.assertEquals(records[0].code, 'NMEB')
+            self.assertEqual(len(records), 1)
+            self.assertEqual(records[0].code, 'NMEB')
 
     @patch.object(Facilities, 'search_by_code', spec=True)
     def test_error(self, mock):
@@ -73,4 +73,4 @@ class TestDeleteSessions(TransactionTestCase):
             'facility.json?facility_code=MEB', 404, '')
         call_command('load_buildings')
         records = CampusBuilding.objects.all()
-        self.assertEquals(len(records), 1)
+        self.assertEqual(len(records), 1)

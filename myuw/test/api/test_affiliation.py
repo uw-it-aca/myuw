@@ -11,14 +11,14 @@ class TestApiAffiliation(MyuwApiTest):
     def test_javerage(self):
         self.set_user('fffjjj')
         response = self.get_response_by_reverse('myuw_affiliation')
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
         self.set_user('javerage')
         response = self.get_response_by_reverse('myuw_affiliation')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(data["class_level"], "SENIOR")
-        self.assertEquals(data["latest_class_level"], "SENIOR")
+        self.assertEqual(data["class_level"], "SENIOR")
+        self.assertEqual(data["latest_class_level"], "SENIOR")
         self.assertFalse(data["instructor"])
         self.assertFalse(data["applicant"])
         self.assertFalse(data["grad"])

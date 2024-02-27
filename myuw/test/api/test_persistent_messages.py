@@ -16,12 +16,12 @@ class PersistentMessageAPITest(MyuwApiTest):
     def test_javerage(self):
         self.set_user('javerage')
         response = self.get_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(len(data), 2)
+        self.assertEqual(len(data), 2)
 
         Message.objects.all().delete()
         response = self.get_response()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(len(data), 0)
+        self.assertEqual(len(data), 0)

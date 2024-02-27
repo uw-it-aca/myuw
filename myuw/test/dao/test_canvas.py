@@ -30,34 +30,34 @@ class TestCanvas(TestCase):
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
         section1 = schedule.sections[0]
-        self.assertEquals(section1.section_label(),
-                          "2013,spring,PHYS,121/A")
-        self.assertEquals(section1.canvas_course_url,
-                          'https://test.edu/courses/249652')
+        self.assertEqual(section1.section_label(),
+                         "2013,spring,PHYS,121/A")
+        self.assertEqual(section1.canvas_course_url,
+                         'https://test.edu/courses/249652')
 
         section2 = schedule.sections[1]
-        self.assertEquals(section2.section_label(),
-                          "2013,spring,PHYS,121/AC")
-        self.assertEquals(section2.canvas_course_url,
-                          'https://test.edu/courses/249652')
+        self.assertEqual(section2.section_label(),
+                         "2013,spring,PHYS,121/AC")
+        self.assertEqual(section2.canvas_course_url,
+                         'https://test.edu/courses/249652')
 
         section3 = schedule.sections[2]
-        self.assertEquals(section3.section_label(),
-                          "2013,spring,PHYS,121/AQ")
-        self.assertEquals(section3.canvas_course_url,
-                          'https://test.edu/courses/249652')
+        self.assertEqual(section3.section_label(),
+                         "2013,spring,PHYS,121/AQ")
+        self.assertEqual(section3.canvas_course_url,
+                         'https://test.edu/courses/249652')
 
         section8 = schedule.sections[7]
-        self.assertEquals(section8.section_label(),
-                          "2013,spring,ARCTIC,200/A")
+        self.assertEqual(section8.section_label(),
+                         "2013,spring,ARCTIC,200/A")
         self.assertIsNone(section8.canvas_course_url)
 
         section = schedule.sections[3]
-        self.assertEquals(section.section_label(), "2013,spring,TRAIN,100/A")
+        self.assertEqual(section.section_label(), "2013,spring,TRAIN,100/A")
         self.assertIsNotNone(section.canvas_course_url)
 
         section = schedule.sections[4]
-        self.assertEquals(section.section_label(), "2013,spring,TRAIN,101/A")
+        self.assertEqual(section.section_label(), "2013,spring,TRAIN,101/A")
         self.assertIsNotNone(section.canvas_course_url)
 
         req = get_request_with_user("jeos",
@@ -76,26 +76,26 @@ class TestCanvas(TestCase):
         person.regid = "00000000000000000000000000000001"
         sws_section = get_section_by_label('2013,spring,TRAIN,101/A')
         self.assertIsNotNone(get_canvas_course_from_section(sws_section))
-        self.assertEquals(get_canvas_course_url(sws_section, person),
-                          'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(get_canvas_course_url(sws_section, person),
+                         'https://canvas.uw.edu/courses/149651')
 
     def test_sws_section_label(self):
-        self.assertEquals(sws_section_label(None), (None, None))
-        self.assertEquals(sws_section_label('course_12345'), (None, None))
-        self.assertEquals(
+        self.assertEqual(sws_section_label(None), (None, None))
+        self.assertEqual(sws_section_label('course_12345'), (None, None))
+        self.assertEqual(
             sws_section_label('2013-spring-TRAIN-100-A'),
             ('2013,spring,TRAIN,100/A', None))
-        self.assertEquals(
+        self.assertEqual(
             sws_section_label(
                 '2013-spring-TRAIN-100-A-12345678901234567890123456789012'),
             ('2013,spring,TRAIN,100/A', '12345678901234567890123456789012'))
-        self.assertEquals(
+        self.assertEqual(
             sws_section_label('2013-spring-TRAIN-100-AB'),
             ('2013,spring,TRAIN,100/AB', None))
-        self.assertEquals(
+        self.assertEqual(
             sws_section_label('2013-spring-TRAIN-100-A--'),
             ('2013,spring,TRAIN,100/A', None))
-        self.assertEquals(
+        self.assertEqual(
             sws_section_label(
                 '2013-spring-TRAIN-100-A-12345678901234567890123456789012--'),
             ('2013,spring,TRAIN,100/A', '12345678901234567890123456789012'))

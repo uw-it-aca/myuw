@@ -22,7 +22,7 @@ setup(
     name='MyUW',
     version=VERSION,
     packages=['myuw'],
-    author="UW-IT AXDD",
+    author="UW-IT T&LS",
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
@@ -31,7 +31,7 @@ setup(
         'beautifulsoup4',
         'urllib3',
         'uw-memcached-clients~=1.0',
-        'UW-Django-SAML2~=1.7',
+        'UW-Django-SAML2~=1.8',
         'aws-message-client~=1.6',
         'UW-RestClients-Core~=1.4',
         'UW-RestClients-Bookstore~=1.3',

@@ -125,10 +125,10 @@ def json_for_evaluation(request, evaluations, section):
 
         if summer_term_overlaped(request, section):
 
-            if evaluation.is_completed or\
-               not evaluation.is_open() or\
-               now < evaluation.eval_open_date or\
-               now >= evaluation.eval_close_date:
+            if (evaluation.is_completed or
+                    not evaluation.is_open() or
+                    now < evaluation.eval_open_date or
+                    now >= evaluation.eval_close_date):
                 continue
 
             json_item = {
@@ -150,8 +150,8 @@ def json_for_evaluation(request, evaluations, section):
 
                 instructor_json = {}
                 instructor_json['instructor_name'] = instructor.display_name
-                instructor_json['instructor_title'] =\
-                    get_primary_position_title(instructor.positions)
+                instructor_json['instructor_title'] = (
+                    get_primary_position_title(instructor.positions))
                 json_item['instructors'].append(instructor_json)
 
             json_data.append(json_item)

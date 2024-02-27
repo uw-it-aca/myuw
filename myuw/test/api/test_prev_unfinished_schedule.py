@@ -23,49 +23,49 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
 
     def test_404(self):
         response = self.get_prev_unfinished_schedule('javerage')
-        self.assertEquals(response.content, b'Data not found')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.content, b'Data not found')
+        self.assertEqual(response.status_code, 404)
 
     def test_no_prev_terms(self):
         response = self.get_prev_unfinished_schedule('jpce',
                                                      '2013-08-08 00:00:01')
-        self.assertEquals(response.content, b'Data not found')
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.content, b'Data not found')
+        self.assertEqual(response.status_code, 404)
 
     def test_one_prev_term(self):
         response = self.get_prev_unfinished_schedule('jpce')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         ret_data = json.loads(response.content)
 
-        self.assertEquals(len(ret_data), 1)
+        self.assertEqual(len(ret_data), 1)
         data = ret_data[0]
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Winter')
-        self.assertEquals(len(data["sections"]), 2)
+        self.assertEqual(data["term"]["year"], 2013)
+        self.assertEqual(data["term"]["quarter"], 'Winter')
+        self.assertEqual(len(data["sections"]), 2)
 
         com = self.get_section(data, 'COM', '201', 'A')
-        self.assertEquals(com['start_date'], '2013-01-30')
-        self.assertEquals(com['end_date'], '2013-04-29')
+        self.assertEqual(com['start_date'], '2013-01-30')
+        self.assertEqual(com['end_date'], '2013-04-29')
         self.assertFalse(com["is_ended"])
 
         psych = self.get_section(data, 'PSYCH', '203', 'A')
-        self.assertEquals(psych['start_date'], '2013-01-29')
-        self.assertEquals(psych['end_date'], '2013-07-30')
+        self.assertEqual(psych['start_date'], '2013-01-29')
+        self.assertEqual(psych['end_date'], '2013-07-30')
         self.assertFalse(psych["is_ended"])
 
     def test_two_prev_terms(self):
         response = self.get_prev_unfinished_schedule('jpce',
                                                      '2013-06-24 00:00:01')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         ret_data = json.loads(response.content)
-        self.assertEquals(len(ret_data), 2)
+        self.assertEqual(len(ret_data), 2)
 
         data = ret_data[0]
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Winter')
-        self.assertEquals(len(data["sections"]), 1)
+        self.assertEqual(data["term"]["year"], 2013)
+        self.assertEqual(data["term"]["quarter"], 'Winter')
+        self.assertEqual(len(data["sections"]), 1)
 
         data = ret_data[1]
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 2)
+        self.assertEqual(data["term"]["year"], 2013)
+        self.assertEqual(data["term"]["quarter"], 'Spring')
+        self.assertEqual(len(data["sections"]), 2)

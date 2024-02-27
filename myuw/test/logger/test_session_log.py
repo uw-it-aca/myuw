@@ -34,7 +34,7 @@ class TestSessionLog(TestCase):
         req = get_request_with_user('javerage')
         req.META['REMOTE_ADDR'] = '127.0.0.1'
         entry = _get_session_data(req)
-        self.assertEquals(entry['ip'], '127.0.0.1')
+        self.assertEqual(entry['ip'], '127.0.0.1')
 
         req.META['X-Forwarded-For'] = '127.0.0.2'
         entry = _get_session_data(req)
