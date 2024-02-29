@@ -111,10 +111,10 @@ certs:
   keyPath: /certs/my.uw.edu-ic.key
   secretName: my.uw.edu-ic-certs
 
-#mountedSecrets:
-#  enabled: true
-#  mountPath: /ssl
-#  secretName: my.uw.edu-openssl-conf
+mountedSecrets:
+  enabled: true
+  mountPath: /ssl
+  secretName: my.uw.edu-openssl-conf
 
 cronjob:
   enabled: true
