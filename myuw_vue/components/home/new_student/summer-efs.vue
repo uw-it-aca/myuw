@@ -16,15 +16,15 @@
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Consider Early Fall Start
+        Consider College Edge
       </h2>
       <div class="myuw-text-md mb-2">
-        Early Fall Start is a single 5-credit intensive course held
-        over four weeks before autumn quarter begins. Benefit from a small
-        class size, an early introduction to college life, and a lighter
-        course load during autumn quarter. The language courses may be
-        particularly helpful to international students!
-        <a href="http://www.outreach.washington.edu/efs/">Learn more about Early Fall Start and register</a>.
+        College Edge allows students to arrive early and start strong. This optional program
+        invites incoming students to get acclimated to life at UW and complete a 5-credit course
+        before Autumn Quarter begins. College Edge courses are intimate, experiential and apply to
+        your UW degree. College Edge students can move into the UW Residence Halls in mid-August
+        and have the option to stay put for the academic year.
+        <a href="https://CollegeEdge.uw.edu">Learn more about College Edge.</a>
       </div>
     </template>
   </uw-card>
