@@ -5,7 +5,7 @@
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        International Student Check-In
+        International Student Check-In & Welcome
       </h2>
     </template>
     <template v-if="!isErrored" #card-body>
@@ -19,12 +19,15 @@
          and follow the steps to complete this requirement before the first day of class.
       </div>
 
-      <h3 class="h6 myuw-font-encode-sans">International Student Welcome Program</h3>
+      <h3 class="h6 myuw-font-encode-sans">Virtual International Husky Welcome</h3>
       <div class="myuw-text-md mb-2">
-        The Center for International Relations and Cultural Leadership Exchange (CIRCLE),
-        invites you to <a href="https://www.washington.edu/circle/new-students/iwp/">International
-        Welcome Program</a> (IWP). This week of programing provides you with targeted and tailored
-        information and services that meet the needs of international students.
+        The Center for International Relations and Cultural Leadership Exchange (CIRCLE), invites
+        you to the
+        <a href="https://www.washington.edu/circle/new-students/international-husky-welcome/">2024
+          Virtual International Husky Welcome!</a> Sign up for one of nine Zoom sessions
+        on June 15 or June 22. Together, we will guide you through the first steps of college,
+        introduce you to campus resources, and help you get ready for your Advising & Orientation
+        sessions.
       </div>
 
 <!-- USED FOR SWS Notice NSF001000 – Awaiting updates & implementation
