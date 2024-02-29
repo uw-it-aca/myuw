@@ -38,9 +38,6 @@ database:
   secretName: dev.my.uw.edu-sql-secrets
 repo: myuw
 instance: dev
-image:
-  repository: gcr.io/uwit-mci-axdd/myuw
-  tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 1

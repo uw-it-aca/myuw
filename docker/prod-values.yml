@@ -70,9 +70,6 @@ database:
   secretName: my.uw.edu-sql-secrets
 repo: myuw
 instance: prod
-image:
-  repository: gcr.io/uwit-mci-axdd/myuw
-  tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 4
@@ -114,10 +111,10 @@ certs:
   keyPath: /certs/my.uw.edu-ic.key
   secretName: my.uw.edu-ic-certs
 
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: my.uw.edu-openssl-conf
+#mountedSecrets:
+#  enabled: true
+#  mountPath: /ssl
+#  secretName: my.uw.edu-openssl-conf
 
 cronjob:
   enabled: true

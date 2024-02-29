@@ -38,9 +38,6 @@ database:
   secretName: vue.my.uw.edu-sql-secrets
 repo: myuw
 instance: vue
-image:
-  repository: gcr.io/uwit-mci-axdd/myuw
-  tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 1
@@ -52,10 +49,10 @@ certs:
   keyPath: /certs/my.uw.edu-ic.key
   secretName: vue.my.uw.edu-ic-certs
 
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: vue.my.uw.edu-openssl-conf
+# mountedSecrets:
+#  enabled: true
+#  mountPath: /ssl
+#  secretName: vue.my.uw.edu-openssl-conf
 
 cronjob:
   enabled: false
