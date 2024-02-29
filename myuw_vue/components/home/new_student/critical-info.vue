@@ -12,7 +12,7 @@
     <template v-if="!isErrored" #card-body>
       <!-- notice template where data is inserted -->
       <div v-for="notice in notices" :key="notice.id_hash">
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+        <h3 class="h6 myuw-font-encode-sans"
           v-html="notice.notice_title" />
         <div class="mb-3 myuw-text-md" v-html="notice.notice_body" />
       </div>
