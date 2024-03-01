@@ -61,8 +61,9 @@
           </div>
         </div>
         <hr />
-        <major-sea v-if="seattle" />
+        <major-bot v-if="bothell" />
         <major-tac v-else-if="tacoma" />
+        <major-sea v-else />
         <div>
           <h3 class="h6 myuw-font-encode-sans">Interested in a particular major?</h3>
           <ul class="list-style myuw-text-md">
@@ -125,6 +126,7 @@ import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
 import CurMajors from '../../_common/cur_major.vue';
 import MajorInfoSea from './major-sea.vue';
+import MajorInfoBot from './major-bot.vue';
 import MajorInfoTac from './major-tac.vue';
 
 export default {
@@ -133,6 +135,7 @@ export default {
     'uw-collapse': Collapse,
     'cur_majors': CurMajors,
     'major-sea': MajorInfoSea,
+    'major-bot': MajorInfoBot,
     'major-tac': MajorInfoTac,
   },
   data() {
