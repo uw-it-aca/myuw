@@ -75,7 +75,7 @@ module.exports = {
     chunkFilename: '[id]-[contenthash].js',
     publicPath: '/static/myuw/bundles/',
   },
-  
+
   module: {
     rules: [
       {
@@ -129,11 +129,11 @@ module.exports = {
       chunkFilename: '[id]-[contenthash].css',
     }),
 
-    // MARK: Put the 'webpack-stats.json' file in the static location directory so that it 
+    // MARK: Put the 'webpack-stats.json' file in the static location directory so that it
     // can be accessed during development and production static collection
     new BundleTracker({
-      //path: path.resolve('../static/myuw/'),
-      filename: './myuw/static/webpack-stats.json',
+      path: path.resolve('./myuw/static/'),
+      filename: 'webpack-stats.json',
     }),
   ],
 
