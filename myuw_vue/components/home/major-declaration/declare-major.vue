@@ -177,6 +177,9 @@ export default {
     isJunior() {
       return this.classLevel === 'JUNIOR';
     },
+    isSenior() {
+      return this.classLevel === 'SENIOR';
+    },
     isSophomore() {
       return this.classLevel === 'SOPHOMORE';
     },
@@ -186,8 +189,8 @@ export default {
     },
     showCard() {
       return (this.notDeclaredMajor &&
-        (this.isJunior && this.seattle ||
-         this.isSophomore && this.tacoma) &&
+        (this.seattle && (this.isJunior || this.isSenior) ||
+         this.tacoma && (this.isSophomore || this.isJunior || this.isSenior)) &&
         (this.isNoticeFetching || this.isProfileFetching ||
          this.showContent));
     },
