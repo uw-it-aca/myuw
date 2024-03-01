@@ -1,4 +1,4 @@
-ARG DJANGO_CONTAINER_VERSION=2.0.1
+ARG DJANGO_CONTAINER_VERSION=2.0.2
 FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
 
 USER root
