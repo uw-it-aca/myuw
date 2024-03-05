@@ -4,7 +4,7 @@
     <ul class="list-style myuw-text-md">
       <li>
         <a href=""
-        ></a>
+        >UWB</a>
         – .
       </li>
     </ul>

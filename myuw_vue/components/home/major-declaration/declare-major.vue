@@ -190,23 +190,25 @@ export default {
       // MUWM-5261
       return this.noDeclaredMajor(this.termMajors);
     },
-    showCard() {
-      return (this.notDeclaredMajor &&
-        (this.seattle && (this.isJunior || this.isSenior) ||
-         this.tacoma && (this.isSophomore || this.isJunior || this.isSenior)) &&
-        (this.isNoticeFetching || this.isProfileFetching ||
-         this.showContent));
+    isTargetViewer() {
+      return (
+        (this.seattle || this.bothell) && (this.isJunior || this.isSenior) ||
+         this.tacoma && (this.isSophomore || this.isJunior || this.isSenior));
     },
     showContent() {
       return (this.isNoticeReady && this.isProfileReady);
+    },
+    showCard() {
+      return (this.notDeclaredMajor && this.isTargetViewer &&
+        (this.isNoticeFetching || this.isProfileFetching || this.showContent));
     },
     isErrored() {
       return (this.isNoticesErrored || this.isProfileErrored);
     },
   },
   created() {
-    this.fetchNotices();
     this.fetchProfile();
+    this.fetchNotices();
   },
   methods: {
     ...mapActions('notices', {
