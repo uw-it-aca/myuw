@@ -13,7 +13,7 @@ RUN chmod u+x /scripts/app_start.sh
 RUN /app/bin/pip install -r requirements.txt
 RUN /app/bin/pip install psycopg2
 
-FROM node:16.3-stretch AS node-bundler
+FROM node:lts-bookworm AS node-bundler
 
 ADD ./package.json /app/
 WORKDIR /app/
