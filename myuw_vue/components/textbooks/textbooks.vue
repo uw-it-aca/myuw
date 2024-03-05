@@ -1,8 +1,10 @@
 <template>
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
-      <div v-if="showIacErrMsg">
-        digital materials data is not availble at this moment, please try again later
+      <div v-if="showIacErrMsg"
+        class="alert alert-danger myuw-text-md mb-5" role="alert"
+      >
+        digital materials data is not availble at this moment.
       </div>
       <div v-if="displayDayOneAccessProgramPanel"
         class="alert alert-warning myuw-text-md mb-5" role="alert"
@@ -200,7 +202,7 @@ export default {
       return ret;
     },
     showIacErrMsg() {
-      return this.isIacErrored && this.statusCodeIac != 404;
+      return (this.seaStud || this.botStud) && this.isIacErrored;
     },
     displayDayOneAccessProgramPanel() {
       // MUWM-5272
