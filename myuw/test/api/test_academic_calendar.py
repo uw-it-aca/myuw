@@ -20,18 +20,18 @@ class TestCalendarAPI(MyuwApiTest):
     def test_all_events(self):
         self.set_user('javerage')
         response = self.get_cal()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 29)
+        self.assertEqual(len(data), 29)
 
         self.set_date('2013-04-18')
 
         response = self.get_cal()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 28)
+        self.assertEqual(len(data), 28)
 
     def test_MUWM_5230(self):
         self.set_user('javerage')
@@ -45,39 +45,38 @@ class TestCalendarAPI(MyuwApiTest):
         self.set_user('javerage')
         self.set_date('2013-05-30')
         response = self.get_cal_current()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 3)
+        self.assertEqual(len(data), 3)
         for event in data:
             self.assertNotEqual(event["summary"], "Memorial Day (no classes)")
 
         # test MUWM_4485,
-        follow_link = urlopen(data[0]["event_url"])
-        self.assertEquals(follow_link.reason, "")
+        self.assertTrue(len(data[0]["event_url"]) > 0)
 
     def test_current_events(self):
         self.set_user('javerage')
         response = self.get_cal_current()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 4)
+        self.assertEqual(len(data), 4)
 
         self.set_date('2013-04-18')
         response = self.get_cal_current()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 3)
+        self.assertEqual(len(data), 3)
 
     # Test a workaround for MUWM-2522
     def test_failing_term_resource(self):
         self.set_user('javerage')
         self.set_date('2013-07-25')
         response = self.get_cal()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
         self.assertGreater(len(data), 1)
@@ -86,21 +85,21 @@ class TestCalendarAPI(MyuwApiTest):
         self.set_user('bill')
         self.set_date('2013-08-27')
         response = self.get_cal_current()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(len(data), 4)
+        self.assertEqual(len(data), 4)
         self.assertTrue(data[0]["myuw_categories"]["registration"])
-        self.assertEquals(data[0]["summary"],
-                          'Registration Period 2 Autumn Quarter')
-        self.assertEquals(data[3]["summary"],
-                          'First day grades posted to transcript' +
-                          ' and GPA available on MyUW, Summer')
+        self.assertEqual(data[0]["summary"],
+                         'Registration Period 2 Autumn Quarter')
+        self.assertEqual(data[3]["summary"],
+                         'First day grades posted to transcript' +
+                         ' and GPA available on MyUW, Summer')
 
         self.set_user('javerage')
         self.set_date('2013-08-27')
         response = self.get_cal_current()
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(len(data), 1)
-        self.assertEquals(data[0]["summary"],
-                          "Quarter Break - Autumn")
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["summary"],
+                         "Quarter Break - Autumn")

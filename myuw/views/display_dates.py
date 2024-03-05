@@ -1,22 +1,22 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import datetime
+from datetime import datetime, timezone
 from dateutil import tz
 import logging
-import pytz
 import traceback
 from django.shortcuts import render
 from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.test.client import RequestFactory
+from django.utils.timezone import get_default_timezone
 from uw_sws.term import get_term_by_date
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao import is_using_file_dao
 from myuw.dao.term import (
-    get_default_date, get_comparison_datetime, get_default_datetime)
+    get_comparison_datetime, get_default_datetime)
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
 from myuw.logger.logresp import log_exception
@@ -124,11 +124,7 @@ def add_session_context(request, context):
     now_request.session = {}
     context["values_used"] = get_card_visibilty_date_values(request)
 
-    now = datetime.now()
-    default = get_default_date()
-
-    used_date = datetime(default.year, default.month, default.day, now.hour,
-                         now.minute, now.second)
+    used_date = get_default_datetime()
     context["values_now"] = get_values_by_date(used_date, now_request)
 
 
@@ -138,15 +134,12 @@ def add_seen_registration_context(request, context):
     seen_registrations = SeenRegistration.objects.filter(user=user)
     seen = []
 
-    from_zone = tz.tzutc()
-    to_zone = tz.tzlocal()
-    to_zone = pytz.timezone("America/Los_Angeles")
+    local_tz = get_default_timezone()
 
     for reg in seen_registrations:
 
         seen_date = reg.first_seen_date
-        utc = seen_date.replace(tzinfo=from_zone)
-        local = utc.astimezone(to_zone)
+        local = seen_date.replace(tzinfo=timezone.utc).astimezone(local_tz)
 
         seen.append({
             'year': reg.year,

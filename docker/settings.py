@@ -2,9 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from .base_settings import *
+import logging
 import sys
 import os
-import logging
+import ssl
+
 
 INSTALLED_APPS += [
     'uw_oidc',
@@ -94,6 +96,12 @@ else:
         MYUW_SKIP_ACCESS_CHECK = False
 
     RESTCLIENTS_BOOK_HOST = 'https://api.ubookstore.com'
+    CSRF_TRUSTED_ORIGINS = ["https://" + os.getenv('CLUSTER_CNAME')]
+
+    # Address SSLError: DH_KEY_TOO_SMALL
+    sdb_ssl_context = ssl.SSLContext()
+    sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
+    RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"

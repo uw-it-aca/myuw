@@ -4,8 +4,9 @@
 from django.test import TransactionTestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    Res_Links, Resource_Links, pin_category, delete_categor_pin
+from myuw.dao.category_links import (
+    _get_links_by_category_and_campus,
+    Res_Links, Resource_Links, pin_category, delete_categor_pin)
 from myuw.dao.exceptions import InvalidResourceCategory
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.test import get_request_with_user
@@ -19,7 +20,7 @@ class TestCategoryLinks(TransactionTestCase):
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 64)
+        self.assertEqual(len(all_links), 64)
         val = URLValidator()
         for link in all_links:
             try:
@@ -42,7 +43,7 @@ class TestCategoryLinks(TransactionTestCase):
 
     def test_undergrad_category(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
-        self.assertEquals(category_id, "studentcampuslife")
+        self.assertEqual(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": True,
                 "pce": False,
@@ -51,21 +52,21 @@ class TestCategoryLinks(TransactionTestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
     def test_grad_category(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
-        self.assertEquals(category_id, "studentcampuslife")
+        self.assertEqual(category_id, "studentcampuslife")
         affi = {"grad": True,
                 "undergrad": False,
                 "pce": False,
@@ -73,21 +74,21 @@ class TestCategoryLinks(TransactionTestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
     def test_pce_links(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
-        self.assertEquals(category_id, "studentcampuslife")
+        self.assertEqual(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
                 "pce": True,
@@ -95,11 +96,11 @@ class TestCategoryLinks(TransactionTestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
     def test_fyp_links(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
-        self.assertEquals(category_id, "studentcampuslife")
+        self.assertEqual(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
                 "pce": False,
@@ -107,7 +108,7 @@ class TestCategoryLinks(TransactionTestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 0)
+        self.assertEqual(len(links), 0)
 
     def test_get_all_grouped(self):
         req = get_request_with_user("javerage")
@@ -146,23 +147,20 @@ class TestCategoryLinks(TransactionTestCase):
     def test_staff_links(self):
         req = get_request_with_user('bill')
         links = Resource_Links().get_all_grouped_links(req)
-        self.assertEqual(len(links), 10)
-        self.assertEqual(links[8]['category_name'], 'Teaching')
-        self.assertEqual(len(links[8]['subcategories']), 4)
-        self.assertEqual(len(links[8]['subcategories']['Tools']), 5)
-        self.assertEqual(
-            links[8]['subcategories']['Tools']['links'][4]['title'],
-            'Course Stats')
-        self.assertEqual(
-            links[8]['subcategories']['Tools']['links'][5]['title'], 'Zoom')
+        self.assertEqual(len(links), 11)
+        self.assertEqual(links[6]['category_name'], 'Health, Wellness, & Support')
+        self.assertEqual(len(links[6]['subcategories']), 3)
+        self.assertTrue('Advocacy and Support' in links[6]['subcategories'])
+        self.assertTrue('Health & Wellness' in links[6]['subcategories'])
+        self.assertTrue('Resource Centers' in links[6]['subcategories'])
 
         req = get_request_with_user('billbot')
         links = Resource_Links().get_all_grouped_links(req)
-        self.assertEqual(len(links), 10)
+        self.assertEqual(len(links), 11)
         self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')
         req = get_request_with_user('billtac')
         links = Resource_Links().get_all_grouped_links(req)
-        self.assertEqual(len(links), 10)
+        self.assertEqual(len(links), 11)
         self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')

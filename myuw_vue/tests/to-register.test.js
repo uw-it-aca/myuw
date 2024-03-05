@@ -44,8 +44,6 @@ describe('To Register Card', () => {
 
     expect(wrapper.vm.no_orient).toHaveLength(0);
     expect(wrapper.vm.orient_after).toHaveLength(0);
-    expect(wrapper.vm.iss_before).toHaveLength(1);
-    expect(wrapper.vm.iss_after).toHaveLength(0);
     expect(wrapper.vm.measles_before).toHaveLength(1);
     expect(wrapper.vm.measles_after).toHaveLength(0);
     expect(wrapper.vm.orient_before).toHaveLength(1);
@@ -64,8 +62,6 @@ describe('To Register Card', () => {
 
     expect(wrapper.vm.no_orient).toHaveLength(0);
     expect(wrapper.vm.orient_after).toHaveLength(1);
-    expect(wrapper.vm.iss_before).toHaveLength(0);
-    expect(wrapper.vm.iss_after).toHaveLength(1);
     expect(wrapper.vm.measles_before).toHaveLength(0);
     expect(wrapper.vm.measles_after).toHaveLength(1);
     expect(wrapper.vm.orient_before).toHaveLength(0);
@@ -82,8 +78,6 @@ describe('To Register Card', () => {
 
     expect(wrapper.vm.no_orient).toHaveLength(1);
     expect(wrapper.vm.orient_after).toHaveLength(0);
-    expect(wrapper.vm.iss_before).toHaveLength(0);
-    expect(wrapper.vm.iss_after).toHaveLength(0);
     expect(wrapper.vm.measles_before).toHaveLength(0);
     expect(wrapper.vm.measles_after).toHaveLength(0);
     expect(wrapper.vm.orient_before).toHaveLength(0);

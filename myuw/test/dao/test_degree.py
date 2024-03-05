@@ -36,12 +36,12 @@ class TestAdviserDao(TestCase):
         degrees = get_degrees(
             get_request_with_user('javerage')
         )
-        self.assertEquals(len(degrees), 1)
+        self.assertEqual(len(degrees), 1)
 
         degrees = get_degrees(
             get_request_with_user('eight')
         )
-        self.assertEquals(len(degrees), 2)
+        self.assertEqual(len(degrees), 2)
 
         self.assertRaises(DataFailureException,
                           get_degrees,
@@ -56,12 +56,12 @@ class TestAdviserDao(TestCase):
             get_request_with_user('javerage')
         )
         self.maxDiff = None
-        self.assertEquals(degree_data, DEGREE_DATA)
+        self.assertEqual(degree_data, DEGREE_DATA)
         self.maxDiff = None
         degree_data = get_degrees_json(
             get_request_with_user('eight', get_request_with_date("2013-05-10"))
         )
-        self.assertEquals(
+        self.assertEqual(
             degree_data,
             {
                 'degrees': [
@@ -124,7 +124,7 @@ class TestAdviserDao(TestCase):
         degree_data = get_degrees_json(
             get_request_with_user('jbothell')
         )
-        self.assertEquals(
+        self.assertEqual(
             degree_data,
             {'degrees': None, 'error_code': 404})
 

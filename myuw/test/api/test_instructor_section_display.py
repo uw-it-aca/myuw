@@ -21,7 +21,7 @@ class TestInstSectDetails(MyuwApiTest):
         self.set_user('bill')
         self.get_schedule(year=2013, quarter='spring')
         records = UserCourseDisplay.objects.all()
-        self.assertEquals(len(records), 6)
+        self.assertEqual(len(records), 6)
 
         section_id = '2013,spring,PHYS,121/AC'
         resp = self.get_response_by_reverse(

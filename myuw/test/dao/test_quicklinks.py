@@ -39,7 +39,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEquals(len(recent), 2)
+        self.assertEqual(len(recent), 2)
         self.assertTrue(u1 in recent)
         self.assertTrue(u2 in recent)
 
@@ -51,14 +51,14 @@ class TestQuickLinkDAO(TransactionTestCase):
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEquals(len(recent), 1)
+        self.assertEqual(len(recent), 1)
         self.assertTrue(u1 in recent)
 
         CustomLink.objects.create(user=user, url=u1)
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEquals(len(recent), 0)
+        self.assertEqual(len(recent), 0)
 
         for i in range(10):
             VisitedLinkNew.objects.create(user=user,
@@ -67,7 +67,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEquals(len(recent), 5)
+        self.assertEqual(len(recent), 5)
 
     def test_link_label_override(self):
         req = get_request_with_user('none')
@@ -78,21 +78,21 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         l1 = VisitedLinkNew.objects.create(**data)
 
-        self.assertEquals(get_link_label(l1), "Row For Unit Tests")
+        self.assertEqual(get_link_label(l1), "Row For Unit Tests")
 
         l1 = VisitedLinkNew.objects.create(user=user,
                                            url="http://example.com?q=whatever",
                                            label="Original")
-        self.assertEquals(get_link_label(l1), "Original")
+        self.assertEqual(get_link_label(l1), "Original")
 
     def test_hidden_link(self):
         req = get_request_with_user('none')
         url = "http://s.ss.edu"
         link = add_hidden_link(req, url)
-        self.assertEquals(link.url, url)
+        self.assertEqual(link.url, url)
         # second time
         link1 = add_hidden_link(req, url)
-        self.assertEquals(link.pk, link1.pk)
+        self.assertEqual(link.pk, link1.pk)
 
         self.assertIsNotNone(delete_hidden_link(req, link.pk))
         # second time
@@ -107,11 +107,11 @@ class TestQuickLinkDAO(TransactionTestCase):
         url = "http://s.ss.edu"
         link_label = "ss"
         link1 = add_custom_link(req, url, link_label)
-        self.assertEquals(link1.url, url)
-        self.assertEquals(link1.label, link_label)
+        self.assertEqual(link1.url, url)
+        self.assertEqual(link1.label, link_label)
         # second time
         link2 = add_custom_link(req, url, link_label)
-        self.assertEquals(link2.pk, link1.pk)
+        self.assertEqual(link2.pk, link1.pk)
 
     def test_delete_custom_link(self):
         username = 'none'
@@ -130,13 +130,13 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         url1 = "http://s1.ss.edu"
         link1 = edit_custom_link(req, link.pk, url1)
-        self.assertEquals(link1.url, url1)
+        self.assertEqual(link1.url, url1)
 
         url2 = "http://s2.ss.edu"
         label2 = "s2"
         link2 = edit_custom_link(req, link1.pk, url2, label2)
         self.assertIsNotNone(link2)
-        self.assertEquals(link2.label, label2)
+        self.assertEqual(link2.label, label2)
 
     def test_get_quicklink_data(self):
         data = {
