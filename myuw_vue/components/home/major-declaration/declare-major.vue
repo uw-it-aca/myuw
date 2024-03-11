@@ -67,15 +67,24 @@
         <div>
           <h3 class="h6 myuw-font-encode-sans">Interested in a particular major?</h3>
           <ul class="list-style myuw-text-md">
-            <li>
+            <li v-if="seattle">
               <a
                 href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
               >Explore the major</a>
               – Learn how to declare or apply.
             </li>
-            <li>
+            <li v-if="tacoma">
               <a
+                href="https://www.tacoma.uw.edu/home/schools-and-programs"
+              >Explore the major</a>
+              – The process to declare or apply varies across each major.
+            </li>
+            <li>
+              <a v-if="seattle"
                 href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+              >Meet with a major adviser</a>
+              <a v-if="tacoma"
+                href="https://www.tacoma.uw.edu/gaa"
               >Meet with a major adviser</a>
               – Get in depth answers to your questions.
             </li>
@@ -97,8 +106,9 @@
           <h3 class="h6 myuw-font-encode-sans">Get Help and Support</h3>
           <p class="list-style myuw-text-md">
             Navigating majors can be overwhelming, you’re not alone! If you have questions,
-            <a href="https://my.uw.edu/academics/">reach out to your adviser</a> who can give you
-            personalized guidance based on your unique situation.
+            <a v-if="seattle" href="https://my.uw.edu/academics/">reach out to your adviser</a> 
+            <a v-if="tacoma" href="https://www.tacoma.uw.edu/advising">reach out to your adviser</a>
+            who can give you personalized guidance based on your unique situation.
           </p>
         </div>
       </uw-collapse>
