@@ -7,7 +7,7 @@
         <strong>UW Day One Access (digital material) information temporarily
           not available </strong><br>
          If any of your courses have been using UW Day One Access, please
-        check back later – due to a data error, this information is
+        check back later – due to a data error, this information is
         currently not displayed.
       </div>
       <div v-if="displayDayOneAccessProgramPanel"
