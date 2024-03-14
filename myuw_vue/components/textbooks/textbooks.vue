@@ -2,9 +2,11 @@
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
       <div v-if="showIacErrMsg"
-        class="alert alert-danger myuw-text-md mb-5" role="alert"
+        class="alert alert-warning myuw-text-md mb-5" role="alert"
       >
-        digital materials data is not availble at this moment.
+        <strong>UW Day One Access (digital material) information temporarily not available </strong><br>
+         If any of your courses have been using UW Day One Access, please check back later – due to a data error, this information is currently not displayed.
+
       </div>
       <div v-if="displayDayOneAccessProgramPanel"
         class="alert alert-warning myuw-text-md mb-5" role="alert"
