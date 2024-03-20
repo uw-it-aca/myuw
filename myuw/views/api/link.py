@@ -18,7 +18,8 @@ from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import (
-    data_not_found, invalid_input_data, disabled_action_error)
+    data_not_found, invalid_input_data, disabled_action_error,
+    handle_exception)
 
 logger = logging.getLogger(__name__)
 
