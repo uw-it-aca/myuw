@@ -372,10 +372,6 @@ environmentVariablesSecrets:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: test.my.uw.edu-secrets
     secretKey: mailman-request-recipient
-  mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
-    secretName: test.my.uw.edu-secrets
-    secretKey: mailman-auth-key
   email_host-secret:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
