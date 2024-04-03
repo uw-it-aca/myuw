@@ -238,6 +238,8 @@ environmentVariables:
     value: PROD
   - name: MAILMAN_TIMEOUT
     value: "15"
+  - name: MAILMAN_HOST
+    value: test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: EVAL
@@ -309,8 +311,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: safe-email-recipient
@@ -406,6 +408,10 @@ environmentVariablesSecrets:
     name: GOOGLE_SEARCH_KEY
     secretName: test.my.uw.edu-secrets
     secretKey: google-search-key
+  MailmanAPIToken:
+    name: MAILMAN_API_TOKEN
+    secretName: test.my.uw.edu-secrets
+    secretKey: mailman-api-token
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: test.my.uw.edu-ic-certs

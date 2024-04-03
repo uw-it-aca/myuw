@@ -225,11 +225,15 @@ if os.getenv("ENV", '') == "localdev":
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
 
+# additional mailman resetclients config
+RESTCLIENTS_MAILMAN_API_TOKEN = os.getenv('MAILMAN_API_TOKEN')
+RESTCLIENTS_MAILMAN_HOST = os.getenv('MAILMAN_HOST')
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
-# Location of stats file that can be accessed during local development and 
+# Location of stats file that can be accessed during local development and
 # collected from during production build process
 
 if os.getenv("ENV") == "localdev":

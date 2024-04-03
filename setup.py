@@ -43,7 +43,7 @@ setup(
         'UW-RestClients-HFS~=1.0.4',
         'UW-RestClients-IASystem~=1.1',
         'UW-RestClients-Libraries~=1.3',
-        'UW-RestClients-Mailman~=1.0',
+        'UW-RestClients-Mailman~=2.0',
         'UW-RestClients-MyPlan~=1.1',
         'UW-RestClients-PWS~=2.1',
         'UW-RestClients-SWS~=2.4',
