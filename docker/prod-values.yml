@@ -331,7 +331,7 @@ environmentVariables:
   - name: MAILMAN_POOL_SIZE
     value: "15"
   - name: MAILMAN_HOST
-    value: lists.uw.edu
+    value: https://lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
