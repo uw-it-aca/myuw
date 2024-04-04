@@ -239,7 +239,7 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "15"
   - name: MAILMAN_HOST
-    value: test.lists.uw.edu
+    value: https://test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: EVAL
