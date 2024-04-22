@@ -62,6 +62,7 @@ setup(
         'UW-HX-Toolkit~=2.7',
         'django-blti~=2.2',
         'lxml<5',
+        'xmlsec==1.3.13',
         'nh3',
         'pyyaml',
         'ua-parser',
