@@ -49,11 +49,6 @@ certs:
   keyPath: /certs/my.uw.edu-ic.key
   secretName: vue.my.uw.edu-ic-certs
 
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: vue.my.uw.edu-openssl-conf
-
 cronjob:
   enabled: false
 environmentVariables:
@@ -144,6 +139,8 @@ environmentVariables:
     value: PROD
   - name: MAILMAN_TIMEOUT
     value: "30"
+  - name: MAILMAN_HOST
+    value: https://test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
@@ -190,9 +187,6 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: vue.my.uw.edu
 
-  - name: OPENSSL_CONF
-    value: /ssl/openssl.cnf
-
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
@@ -212,8 +206,8 @@ externalSecrets:
           property: coda-auth-token
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: myplan-auth-secret
@@ -253,12 +247,6 @@ externalSecrets:
         - name: uw-idp-cert
           property: cert
 
-    - name: vue.my.uw.edu-openssl-conf
-      externalKey: openssl-conf
-      data:
-        - name: openssl.cnf
-          property: openssl.cnf
-
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -281,9 +269,9 @@ environmentVariablesSecrets:
     secretName: vue.my.uw.edu-secrets
     secretKey: email-host
   mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
+    name: MAILMAN_API_TOKEN
     secretName: vue.my.uw.edu-secrets
-    secretKey: mailman-auth-key
+    secretKey: mailman-api-token
   mailman-request-secret:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: vue.my.uw.edu-secrets

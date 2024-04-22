@@ -110,12 +110,6 @@ certs:
   certPath: /certs/my.uw.edu-ic.cert
   keyPath: /certs/my.uw.edu-ic.key
   secretName: my.uw.edu-ic-certs
-
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: my.uw.edu-openssl-conf
-
 cronjob:
   enabled: true
   jobs:
@@ -336,6 +330,8 @@ environmentVariables:
     value: "30"
   - name: MAILMAN_POOL_SIZE
     value: "15"
+  - name: MAILMAN_HOST
+    value: https://lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
@@ -394,9 +390,6 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: my.uw.edu
 
-  - name: OPENSSL_CONF
-    value: /ssl/openssl.cnf
-
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "50"
 
@@ -418,8 +411,8 @@ externalSecrets:
           property: email-host
         - name: myplan-auth-secret
           property: myplan-auth-secret
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: section-status-queue-arn
@@ -456,12 +449,6 @@ externalSecrets:
         - name: uw-idp-cert
           property: cert
 
-    - name: my.uw.edu-openssl-conf
-      externalKey: openssl-conf
-      data:
-        - name: openssl.cnf
-          property: openssl.cnf
-
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -483,10 +470,6 @@ environmentVariablesSecrets:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: my.uw.edu-secrets
     secretKey: mailman-request-recipient
-  mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
-    secretName: my.uw.edu-secrets
-    secretKey: mailman-auth-key
   email_host-secret:
     name: EMAIL_HOST
     secretName: my.uw.edu-secrets
@@ -519,6 +502,10 @@ environmentVariablesSecrets:
     name: SAML_ENTITY_ID
     secretName: my.uw.edu-secrets
     secretKey: saml-entity-id
+  MailmanAPIToken:
+    name: MAILMAN_API_TOKEN
+    secretName: my.uw.edu-secrets
+    secretKey: mailman-api-token
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: my.uw.edu-ic-certs

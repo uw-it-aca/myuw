@@ -40,7 +40,7 @@ class StudClasSche(ProtectedAPI):
                                prefetch_canvas=True)
             return super(StudClasSche, self).dispatch(request, *args, **kwargs)
         except Exception:
-            handle_exception(logger, timer, traceback)
+            return handle_exception(logger, timer, traceback)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """

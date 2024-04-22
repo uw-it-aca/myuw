@@ -42,4 +42,4 @@ class Affiliation(ProtectedAPI):
             request.session.set_expiry(60)
             return self.json_response(resp)
         except Exception:
-            handle_exception(logger, timer, traceback)
+            return handle_exception(logger, timer, traceback)
