@@ -139,6 +139,8 @@ environmentVariables:
     value: PROD
   - name: MAILMAN_TIMEOUT
     value: "30"
+  - name: MAILMAN_HOST
+    value: https://test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
@@ -204,8 +206,8 @@ externalSecrets:
           property: coda-auth-token
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: myplan-auth-secret
@@ -267,9 +269,9 @@ environmentVariablesSecrets:
     secretName: vue.my.uw.edu-secrets
     secretKey: email-host
   mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
+    name: MAILMAN_API_TOKEN
     secretName: vue.my.uw.edu-secrets
-    secretKey: mailman-auth-key
+    secretKey: mailman-api-token
   mailman-request-secret:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: vue.my.uw.edu-secrets

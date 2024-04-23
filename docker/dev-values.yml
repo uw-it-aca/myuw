@@ -149,6 +149,8 @@ environmentVariables:
     value: EVAL
   - name: MAILMAN_TIMEOUT
     value: "15"
+  - name: MAILMAN_HOST
+    value: https://test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: EVAL
@@ -219,8 +221,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: myplan-auth-secret
@@ -283,9 +285,9 @@ environmentVariablesSecrets:
     secretName: dev.my.uw.edu-secrets
     secretKey: mailman-request-recipient
   mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
+    name: MAILMAN_API_TOKEN
     secretName: dev.my.uw.edu-secrets
-    secretKey: mailman-auth-key
+    secretKey: mailman-api-token
   email_host-secret:
     name: EMAIL_HOST
     secretName: dev.my.uw.edu-secrets
