@@ -139,8 +139,6 @@ environmentVariables:
     value: PROD
   - name: MAILMAN_TIMEOUT
     value: "30"
-  - name: MAILMAN_HOST
-    value: https://test.lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
