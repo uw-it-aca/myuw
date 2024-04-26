@@ -12,7 +12,7 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">General information</h3>
     <p class="myuw-text-md">
         Use <a href="https://www.uwb.edu/international-student-services/"
-        >the ISS websit</a> to learn about your F-1 status and the benefits you can request.
+        >the ISS website</a> to learn about your F-1 status and the benefits you can request.
     </p>
   </div>
 </template>
