@@ -85,16 +85,21 @@
               >Meet with a major adviser</a>
               <a v-if="tacoma"
                 href="https://www.tacoma.uw.edu/gaa"
-              >Meet with a major adviser</a>
+              >Meet with a major advisor</a>
               – Get in depth answers to your questions.
             </li>
             <li>
-              <a href="https://dawgpath.uw.edu/">Explore DawgPath</a>
+              <a v-if="seattle"
+              href="https://dawgpath.uw.edu/">Explore DawgPath</a>
               – Discover majors, average GPA at declaration, and explore career outcomes.
             </li>
-            <li>
+            <li v-if="seattle">
               <a href="https://myplan.uw.edu/program/#/orgs">Find programs and check progress</a>
               - Filter by admission type and compare degree requirements to classes you’ve taken.
+            </li>
+            <li v-if="tacoma">
+              <a href="https://myplan.uw.edu/program/#/orgs">Find programs and check progress</a>
+              - Check your progress toward the degree.
             </li>
             <li>
               Consider multiple majors – Capacity-constrained majors can be selective, consider
@@ -107,7 +112,7 @@
           <p class="list-style myuw-text-md">
             Navigating majors can be overwhelming, you’re not alone! If you have questions,
             <a v-if="seattle" href="https://my.uw.edu/academics/">reach out to your adviser</a> 
-            <a v-if="tacoma" href="https://www.tacoma.uw.edu/advising">reach out to your adviser</a>
+            <a v-if="tacoma" href="https://www.tacoma.uw.edu/advising">reach out to your advisor</a>
             who can give you personalized guidance based on your unique situation.
           </p>
         </div>
