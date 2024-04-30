@@ -88,9 +88,8 @@
               >Meet with a major advisor</a>
               – Get in depth answers to your questions.
             </li>
-            <li>
-              <a v-if="seattle"
-              href="https://dawgpath.uw.edu/">Explore DawgPath</a>
+            <li v-if="seattle">
+              <a href="https://dawgpath.uw.edu/">Explore DawgPath</a>
               – Discover majors, average GPA at declaration, and explore career outcomes.
             </li>
             <li v-if="seattle">
