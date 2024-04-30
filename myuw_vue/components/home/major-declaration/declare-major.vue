@@ -35,8 +35,12 @@
                 class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
                 Registration Hold -
                 <strong>
-                  <a
+                  <a v-if="seattle"
                     href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
+                    class="link-danger"
+                  >Review options</a>
+                  <a v-if="tacoma"
+                    href="https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
                     class="link-danger"
                   >Review options</a>
                 </strong>
