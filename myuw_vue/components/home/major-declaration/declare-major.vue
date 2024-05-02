@@ -114,7 +114,7 @@
           <h3 class="h6 myuw-font-encode-sans">Get Help and Support</h3>
           <p class="list-style myuw-text-md">
             Navigating majors can be overwhelming, you’re not alone! If you have questions,
-            <a v-if="seattle" href="https://my.uw.edu/academics/">reach out to your adviser</a> 
+            <a v-if="seattle" href="https://my.uw.edu/academics/">reach out to your adviser</a>
             <a v-if="tacoma" href="https://www.tacoma.uw.edu/advising">reach out to your advisor</a>
             who can give you personalized guidance based on your unique situation.
           </p>
@@ -210,7 +210,7 @@ export default {
     },
     isTargetViewer() {
       return (
-        (this.seattle || this.bothell) && (this.isJunior || this.isSenior) ||
+        this.seattle && (this.isJunior || this.isSenior) ||
          this.tacoma && (this.isSophomore || this.isJunior || this.isSenior));
     },
     showContent() {
