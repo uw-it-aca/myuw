@@ -235,7 +235,7 @@ environmentVariables:
     value: "5"
 
   - name: MAILMAN_ENV
-    value: PROD
+    value: EVAL
   - name: MAILMAN_TIMEOUT
     value: "15"
 
