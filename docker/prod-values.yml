@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 3
+  minReplicas: 8
   maxReplicas: 100
 targetAverageUtilization: 100
 resources:
@@ -330,8 +330,6 @@ environmentVariables:
     value: "30"
   - name: MAILMAN_POOL_SIZE
     value: "15"
-  - name: MAILMAN_HOST
-    value: https://lists.uw.edu
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
