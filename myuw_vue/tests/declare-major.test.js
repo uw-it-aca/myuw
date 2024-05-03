@@ -8,6 +8,7 @@ import notices from '../vuex/store/notices';
 import profile from '../vuex/store/profile';
 
 import DeclareMajorCard from '../components/home/major-declaration/declare-major.vue';
+import MajorSea from '../components/home/major-declaration/major-sea.vue';
 import CurMajors from '../components/_common/cur_major.vue';
 import mockNotices from './mock_data/notice/jinter.json';
 import premajorProfile from './mock_data/profile/javgPremajor.json';
@@ -56,6 +57,7 @@ describe('Declare Major Card', () => {
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findAllComponents(DeclareMajorCard)).toHaveLength(1);
     expect(wrapper.findAllComponents(CurMajors)).toHaveLength(1);
+    expect(wrapper.findAllComponents(MajorSea)).toHaveLength(1);
     expect(wrapper.findAll('h3').length).toBe(6);
   });
 
