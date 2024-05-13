@@ -38,9 +38,6 @@ database:
   secretName: dev.my.uw.edu-sql-secrets
 repo: myuw
 instance: dev
-image:
-  repository: gcr.io/uwit-mci-axdd/myuw
-  tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 1
@@ -222,8 +219,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: myplan-auth-secret
@@ -286,9 +283,9 @@ environmentVariablesSecrets:
     secretName: dev.my.uw.edu-secrets
     secretKey: mailman-request-recipient
   mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
+    name: MAILMAN_API_TOKEN
     secretName: dev.my.uw.edu-secrets
-    secretKey: mailman-auth-key
+    secretKey: mailman-api-token
   email_host-secret:
     name: EMAIL_HOST
     secretName: dev.my.uw.edu-secrets

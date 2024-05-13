@@ -17,7 +17,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
         self.set_user('bill')
         url = reverse("myuw_date_override")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_date_override"),
             "myuw_date_override urls not configured")
@@ -25,7 +25,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
         self.set_user('faculty')
         url = reverse("myuw_date_override")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     @skipIf(missing_url("myuw_date_override"),
             "myuw_date_override urls not configured")
@@ -33,4 +33,4 @@ class TestViewsLinkAdmin(MyuwApiTest):
         self.set_user('none')
         url = reverse("myuw_date_override")
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)

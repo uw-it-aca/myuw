@@ -121,7 +121,9 @@ export default {
   mounted() {
     const currentUrl = window.location.href;
     if (currentUrl.endsWith(this.section.anchor)) {
-      this.selfAnchoredOnce(this.section);
+      this.$nextTick(() => {  // MUWM-5320: wait for the DOM fully updated
+        this.selfAnchoredOnce(this.section);
+      });
     }
   },
 };

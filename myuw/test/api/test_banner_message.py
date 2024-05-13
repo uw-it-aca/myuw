@@ -47,7 +47,7 @@ class TestBannerMessage(MyuwApiTest):
                            MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
             self.set_user('javerage')
             self.set_userservice_override("bill")
-            self.assertEquals(UserService().get_override_user(), "bill")
+            self.assertEqual(UserService().get_override_user(), "bill")
             resp = self.get_response_by_reverse('myuw_close_banner_message')
             self.assertEqual(resp.status_code, 403)
 
@@ -56,6 +56,6 @@ class TestBannerMessage(MyuwApiTest):
                            MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
             self.set_user('javerage')
             self.set_userservice_override("bill")
-            self.assertEquals(UserService().get_override_user(), "bill")
+            self.assertEqual(UserService().get_override_user(), "bill")
             resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
             self.assertEqual(resp.status_code, 403)

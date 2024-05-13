@@ -69,4 +69,11 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return SEVEN_MINS
             return FOUR_HOURS
 
+        if "mailman" == service:
+            if status and status != 200:
+                if status >= 500:
+                    return FIFTEEN_MINS
+                return SEVEN_MINS
+            return ONE_DAY
+
         return FOUR_HOURS

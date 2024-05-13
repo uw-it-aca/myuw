@@ -1,4 +1,4 @@
-ARG DJANGO_CONTAINER_VERSION=1.4.2
+ARG DJANGO_CONTAINER_VERSION=2.0.3
 FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
 
 USER root
@@ -13,7 +13,10 @@ RUN chmod u+x /scripts/app_start.sh
 RUN /app/bin/pip install -r requirements.txt
 RUN /app/bin/pip install psycopg2
 
-FROM node:16.3-stretch AS node-bundler
+# latest node + ubuntu
+FROM node:20 AS node-base
+FROM ubuntu:22.04 AS node-bundler
+COPY --from=node-base / /
 
 ADD ./package.json /app/
 WORKDIR /app/

@@ -23,7 +23,7 @@ class TestUWNetidDao(TestCase):
     def test_email_forwarding(self):
         req = get_request_with_user('javerage')
         forward = get_email_forwarding_for_current_user(req)
-        self.assertEquals(forward.fwd, "javerage@gamail.uw.edu")
+        self.assertEqual(forward.fwd, "javerage@gamail.uw.edu")
 
         req = get_request_with_user('nobody')
         self.assertRaises(

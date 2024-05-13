@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
-from uw_sws import SWS_TIMEZONE
+from myuw.dao.term import DEFAULT_TZ
 from myuw.models.myuw_notice import (
     MyuwNotice, start_week_range, duration_range)
 from myuw.logger.logresp import log_info, log_exception
@@ -245,11 +245,11 @@ def _save_notice(request, context, notice_id=None):
 
 
 def _get_datetime(dt_string):
-    if dt_string and len(dt_string):
+    if dt_string and len(dt_string) > 0:
         try:
             dt = parse(dt_string)
             if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-                return SWS_TIMEZONE.localize(dt)
+                return dt.replace(tzinfo=DEFAULT_TZ)
             return dt
         except Exception as ex:
             log_info(

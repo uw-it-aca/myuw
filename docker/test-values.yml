@@ -60,9 +60,6 @@ database:
   secretName: test.my.uw.edu-sql-secrets
 repo: myuw
 instance: test
-image:
-  repository: gcr.io/uwit-mci-axdd/myuw
-  tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 1
@@ -73,10 +70,6 @@ certs:
   certPath: /certs/test.my.uw.edu-ic.cert
   keyPath: /certs/test.my.uw.edu-ic.key
   secretName: test.my.uw.edu-ic-certs
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: test.my.uw.edu-openssl-conf
 cronjob:
   enabled: true
   jobs:
@@ -242,7 +235,7 @@ environmentVariables:
     value: "5"
 
   - name: MAILMAN_ENV
-    value: PROD
+    value: EVAL
   - name: MAILMAN_TIMEOUT
     value: "15"
 
@@ -297,9 +290,6 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
 
-  - name: OPENSSL_CONF
-    value: /ssl/openssl.cnf
-
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
@@ -319,8 +309,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
-        - name: mailman-auth-key
-          property: mailman-auth-key
+        - name: mailman-api-token
+          property: mailman-api-token
         - name: mailman-request-recipient
           property: mailman-request-recipient
         - name: safe-email-recipient
@@ -359,12 +349,6 @@ externalSecrets:
         - name: uw-idp-cert
           property: cert
 
-    - name: test.my.uw.edu-openssl-conf
-      externalKey: openssl-conf
-      data:
-        - name: openssl.cnf
-          property: openssl.cnf
-
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -386,10 +370,6 @@ environmentVariablesSecrets:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: test.my.uw.edu-secrets
     secretKey: mailman-request-recipient
-  mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
-    secretName: test.my.uw.edu-secrets
-    secretKey: mailman-auth-key
   email_host-secret:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
@@ -422,6 +402,10 @@ environmentVariablesSecrets:
     name: GOOGLE_SEARCH_KEY
     secretName: test.my.uw.edu-secrets
     secretKey: google-search-key
+  MailmanAPIToken:
+    name: MAILMAN_API_TOKEN
+    secretName: test.my.uw.edu-secrets
+    secretKey: mailman-api-token
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: test.my.uw.edu-ic-certs

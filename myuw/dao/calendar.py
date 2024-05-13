@@ -4,10 +4,10 @@
 import re
 from datetime import timedelta, datetime, time
 from urllib.parse import quote_plus, urlencode
-from uw_sws import SWS_TIMEZONE
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
-from myuw.dao.term import get_comparison_datetime_with_tz
+from myuw.dao.term import (
+  DEFAULT_TZ, get_comparison_datetime_with_tz)
 from myuw.dao.calendar_mapping import get_calendars_for_current_user
 
 
@@ -196,4 +196,4 @@ def _get_date(date):
     if hasattr(date, 'hour'):
         return date
     datetime_naive = datetime.combine(date, time(hour=0, minute=0))
-    return SWS_TIMEZONE.localize(datetime_naive)  # MUWM-5318
+    return datetime_naive.replace(tzinfo=DEFAULT_TZ)  # MUWM-5318
