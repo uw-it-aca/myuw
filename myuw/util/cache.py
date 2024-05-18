@@ -81,6 +81,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
 
         return FOUR_HOURS
 
+
 class IdPhotoToken():
 
     def cache_key(self, token):

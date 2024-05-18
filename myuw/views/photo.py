@@ -18,8 +18,8 @@ def show_photo(request, uwregid, token):
     if id_photo_token.valid_token(token):
         try:
             photo = get_idcard_photo(uwregid)
-            return StreamingHttpResponse([photo.getvalue()],
-                                        content_type="image/jpeg")
+            return StreamingHttpResponse(
+                [photo.getvalue()], content_type="image/jpeg")
         except Exception:
             log_exception(logger, "get_idcard_photo", traceback)
     return data_not_found()
