@@ -225,6 +225,18 @@ if os.getenv("ENV", '') == "localdev":
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
 
+    # Django cache backend for the idcard tokens
+    CACHES = {
+        'default': {
+            'BACKEND': 'memcached_clients.django_backend.PymemcacheCache',
+            'LOCATION': MEMCACHED_SERVERS,
+            'OPTIONS': {
+                'use_pooling': MEMCACHED_USE_POOLING,
+                'max_pool_size': MEMCACHED_MAX_POOL_SIZE,
+            }
+        }
+    }
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
