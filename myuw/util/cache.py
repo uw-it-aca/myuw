@@ -1,6 +1,9 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import random
+import string
+from django.core.cache import cache
 from memcached_clients import RestclientPymemcacheClient
 import re
 
@@ -77,3 +80,22 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return ONE_DAY
 
         return FOUR_HOURS
+
+class IdPhotoToken():
+
+    def cache_key(self, token):
+        return f"idphoto-key-{token}"
+
+    def get_cache_expiration(self):
+        return FIFTEEN_MINS
+
+    def get_token(self):
+        data = {'token_size': 16}
+        token = ''.join(random.SystemRandom().choice(
+            string.ascii_uppercase + string.digits) for _ in range(16))
+        cache_key = self.cache_key(token)
+        cache.set(cache_key, data, timeout=self.get_cache_expiration())
+        return token
+
+    def valid_token(self, token):
+        return cache.get(self.cache_key(token)) is not None
