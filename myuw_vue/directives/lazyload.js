@@ -20,7 +20,8 @@
  *   </script>
  */
 export default {
-  mounted: el => {
+  bind: el => {  // Vue 2.7
+  // mounted: el => {   with Vue 3
     function loadImage() {
       const imageElement = Array.from(el.children).find(
         el => el.nodeName === "IMG"
