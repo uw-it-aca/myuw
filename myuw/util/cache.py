@@ -82,21 +82,31 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         return FOUR_HOURS
 
 
-class IdPhotoToken():
-
-    def cache_key(self, token):
-        return f"idphoto-key-{token}"
+class MyUWCache():
+    def cache_key(self, service, token):
+        return f"{service}-key-{token}"
 
     def get_cache_expiration(self):
-        return FIFTEEN_MINS
+        return SEVEN_MINS
+
+    def cache_get(self, key):
+        return cache.get(key)
+
+    def cache_set(self, key, value):
+        cache.set(key, value, timeout=self.get_cache_expiration())
+
+
+class IdPhotoToken(MyUWCache):
+
+    def get_key(self, token):
+        return self.cache_key("idphoto", token)
 
     def get_token(self):
         data = {'token_size': 16}
         token = ''.join(random.SystemRandom().choice(
             string.ascii_uppercase + string.digits) for _ in range(16))
-        cache_key = self.cache_key(token)
-        cache.set(cache_key, data, timeout=self.get_cache_expiration())
+        self.cache_set(self.get_key(token), data)
         return token
 
     def valid_token(self, token):
-        return cache.get(self.cache_key(token)) is not None
+        return self.cache_get(self.get_key(token)) is not None
