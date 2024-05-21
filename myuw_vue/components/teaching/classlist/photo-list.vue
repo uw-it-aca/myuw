@@ -28,6 +28,9 @@
 <script>
 import LazyLoad from "../../../directives/lazyload.js";
 export default {
+  directives: {
+    lazyload: LazyLoad,
+  },
   props: {
     registrations: {
       type: Array,
@@ -37,9 +40,6 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  directives: {
-    lazyload: LazyLoad,
   },
 };
 </script>
