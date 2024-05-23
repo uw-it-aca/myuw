@@ -49,7 +49,8 @@
           <li class="mb-1">
             <a href="https://workday.uw.edu">Workday@UW website</a>
             <div v-if="!truncateView" class="myuw-text-xs">
-              A curated hub for UW Workday support; start here if you're not sure where to go for help.
+              A curated hub for UW Workday support; start here if you're not sure
+              where to go for help.
             </div>
           </li>
         </ul>
@@ -81,7 +82,8 @@
           <li class="mb-1">
             <a href="https://workday.uw.edu">Workday@UW website</a>
             <div v-if="!truncateView" class="myuw-text-xs">
-              A curated hub for UW Workday support; start here if you're not sure where to go for help.
+              A curated hub for UW Workday support; start here if you're not sure
+              where to go for help.
             </div>
           </li>
         </ul>
