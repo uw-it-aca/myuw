@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="true">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">HR and Payroll</h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Benefits, HR, and Payroll</h2>
     </template>
     <template #card-body>
       <div style="position: relative" class="mb-4">
@@ -17,7 +17,8 @@
           </uw-link-button>
         </div>
         <div class="myuw-text-xs mb-1">
-          Workday is the University’s cloud-based HR/payroll operations system.
+          Workday is the cloud-based software that provides many administrative functions
+          for the UW, including HR, benefits, payroll, procurement, and finance.
         </div>
         <div class="myuw-text-xs mb-1">
           *Please note: The Medical Centers continue to use Kronos for time-tracking and payroll.
@@ -31,18 +32,24 @@
             <a v-else href="https://hr.uw.edu/">UW Human Resources</a>
           </li>
           <li class="mb-1">
-            <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
+            <a href="https://employeehelp.workday.uw.edu">Employee Workday Help</a>
             <div v-if="!truncateView" class="myuw-text-xs">
               Learn how to
               <a v-out="'ISC Time Off'"
-                 href="https://isc.uw.edu/your-time-absence/time-off/"
+                 href="https://employeehelp.workday.uw.edu/your-time-absence/time-off/"
               >look up sick and vacation time</a>,
               <a v-out="'ISC Time Reporting'"
-                 href="https://isc.uw.edu/your-time-absence/time-reporting/"
+                 href="https://employeehelp.workday.uw.edu/your-time-absence/time-reporting/"
               >report time worked</a>,
               <a v-out="'ISC Edit Personal Address'"
-                 href="https://isc.uw.edu/user-guides/edit_personal_information/"
+                 href="https://employeehelp.workday.uw.edu/user-guides/edit_personal_information/"
               >update personal information</a>, and more.
+            </div>
+          </li>
+          <li class="mb-1">
+            <a href="https://workday.uw.edu">Workday@UW website</a>
+            <div v-if="!truncateView" class="myuw-text-xs">
+              A curated hub for UW Workday support; start here if you're not sure where to go for help.
             </div>
           </li>
         </ul>
@@ -60,15 +67,21 @@
             >Teaching or research assistant salary schedules</a>
           </li>
           <li class="mb-1">
-            <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
+            <a href="https://employeehelp.workday.uw.edu">Employee Workday Help</a>
             <div class="myuw-text-xs">
               Learn how to
               <a v-out="'ISC Enter Time'"
-                 href="https://isc.uw.edu/your-time-absence/time-reporting/"
+                 href="https://employeehelp.workday.uw.edu/your-time-absence/time-reporting/"
               >enter your hours in Workday</a>,
               <a v-out="'ISC Set Up direct deposit'"
-                 href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit"
+                 href="https://employeehelp.workday.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit"
               >set up direct deposit</a>, and more.
+            </div>
+          </li>
+          <li class="mb-1">
+            <a href="https://workday.uw.edu">Workday@UW website</a>
+            <div v-if="!truncateView" class="myuw-text-xs">
+              A curated hub for UW Workday support; start here if you're not sure where to go for help.
             </div>
           </li>
         </ul>
