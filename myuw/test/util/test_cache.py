@@ -94,6 +94,13 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "kws", "/key/v1/type/"), ONE_DAY * 7)
 
+        self.assertEqual(cache.get_cache_expiration_time(
+            "mailman", "/uw_list_manager/api/v1/list/"), ONE_DAY)
+        self.assertEqual(cache.get_cache_expiration_time(
+            "mailman", "/uw_list_manager/api/v1/list/", status=404), 60 * 7)
+        self.assertEqual(cache.get_cache_expiration_time(
+            "mailman", "/uw_list_manager/api/v1/list/", status=500), 60 * 15)
+
 
 class TestMyUWCache(TestCase):
 
