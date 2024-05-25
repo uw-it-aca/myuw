@@ -9,7 +9,7 @@ from restclients_core.models import MockHTTP
 from restclients_core.exceptions import DataFailureException
 from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
-from myuw.util.cache import MyUWMemcachedCache
+from myuw.util.cache import MyUWMemcachedCache, MyUWCache, IdPhotoToken
 
 
 MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
@@ -93,3 +93,25 @@ class TestCustomCachePolicy(TestCase):
             "kws", "/key/v1/encryption/"), ONE_DAY * 30)
         self.assertEqual(cache.get_cache_expiration_time(
             "kws", "/key/v1/type/"), ONE_DAY * 7)
+
+
+class TestMyUWCache(TestCase):
+
+    def test_cache(self):
+        cache = MyUWCache()
+        self.assertEqual(
+            cache.cache_key("test", "1"), "test-key-1")
+        self.assertEqual(
+            cache.get_cache_expiration(), 60 * 7)
+        cache.cache_set("test-key-1", {"name": 1})
+        self.assertEqual(
+            cache.cache_get("test-key-1"), {"name": 1})
+
+
+class test_IdPhotoToken(TestCase):
+    def test_cache(self):
+        ipt = IdPhotoToken()
+        self.assertEqual(
+            ipt.get_key("idphoto", "1"), "idphoto-key-1")
+        token = ipt.get_token()
+        self.assertTrue(ipt.valid_token(token))
