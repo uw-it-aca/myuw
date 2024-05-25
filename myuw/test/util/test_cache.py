@@ -111,7 +111,6 @@ class TestMyUWCache(TestCase):
 class test_IdPhotoToken(TestCase):
     def test_cache(self):
         ipt = IdPhotoToken()
-        self.assertEqual(
-            ipt.get_key("idphoto", "1"), "idphoto-key-1")
+        self.assertEqual(ipt.get_key("1"), "idphoto-key-1")
         token = ipt.get_token()
         self.assertTrue(ipt.valid_token(token))
