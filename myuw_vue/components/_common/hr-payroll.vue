@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="true">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Benefits, HR, and Payroll</h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Benefits, HR, &amp; Payroll</h2>
     </template>
     <template #card-body>
       <div style="position: relative" class="mb-4">
@@ -17,7 +17,7 @@
           </uw-link-button>
         </div>
         <div class="myuw-text-xs mb-1">
-          Workday is the cloud-based software that provides many administrative functions
+          Workday is cloud-based software that provides many administrative functions
           for the UW, including HR, benefits, payroll, procurement, and finance.
         </div>
         <div class="myuw-text-xs mb-1">
@@ -47,10 +47,9 @@
             </div>
           </li>
           <li class="mb-1">
-            <a href="https://workday.uw.edu">Workday@UW website</a>
+            <a href="https://workday.uw.edu">Workday@UW</a>
             <div v-if="!truncateView" class="myuw-text-xs">
-              A curated hub for UW Workday support; start here if you're not sure
-              where to go for help.
+              A curated hub for UW Workday support.
             </div>
           </li>
         </ul>
@@ -80,10 +79,9 @@
             </div>
           </li>
           <li class="mb-1">
-            <a href="https://workday.uw.edu">Workday@UW website</a>
+            <a href="https://workday.uw.edu">Workday@UW</a>
             <div v-if="!truncateView" class="myuw-text-xs">
-              A curated hub for UW Workday support; start here if you're not sure
-              where to go for help.
+              A curated hub for UW Workday support.
             </div>
           </li>
         </ul>
