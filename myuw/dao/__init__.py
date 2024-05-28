@@ -8,8 +8,10 @@ from uw_sws import DAO as SWS_DAO
 from userservice.user import (
     UserService, get_user, get_original_user)
 from myuw.util.settings import get_disable_actions_when_override
+from myuw.util.cache import IdPhotoToken
 
 logger = logging.getLogger(__name__)
+id_photo_token = IdPhotoToken()
 
 
 def get_netid_of_current_user(request=None):

@@ -13,8 +13,8 @@
           class="p-1 mb-1"
           :class="reg.isJoint ? (showJointCourseStud ? 'd-inline' : 'd-none') : 'd-inline'"
       >
-        <div style="width: 120px">
-          <img :src=" '/photo/' + reg.url_key"
+        <div v-lazyload style="width: 120px">
+          <img :data-url="reg.photo_url"
               class=""
               width="120px" height="150px"
           >
@@ -26,7 +26,11 @@
   </div>
 </template>
 <script>
+import LazyLoad from "../../../directives/lazyload.js";
 export default {
+  directives: {
+    lazyload: LazyLoad,
+  },
   props: {
     registrations: {
       type: Array,
