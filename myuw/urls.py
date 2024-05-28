@@ -317,7 +317,7 @@ urlpatterns += [
             LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(
         r'photo/(?P<uwregid>[a-fA-F0-9]{32})/(?P<token>[a-zA-Z0-9]{16})$',
-        show_photo),
+        show_photo, name="photo"),
     re_path(r'out/?', outbound_link, name='myuw_outbound_link'),
     # default landing
     re_path(r"^$", home, name="myuw_home"),

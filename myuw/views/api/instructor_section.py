@@ -7,6 +7,7 @@ import traceback
 from datetime import date, datetime
 from blti import BLTI
 from django.conf import settings
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from myuw.dao import coda, id_photo_token
@@ -35,6 +36,10 @@ def is_registration_to_exclude(registration):
     return (registration.is_withdrew() or
             registration.is_pending_status() or
             registration.is_dropped_status())
+
+
+def photo_url(uwregid, token):
+    return reverse('photo', kwargs={'uwregid': uwregid, 'token': token})
 
 
 class OpenInstSectionDetails(OpenAPI):
@@ -207,7 +212,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
                     'email': email1,
-                    'photo_url': f"/photo/{person.uwregid}/{access_token}",
+                    'photo_url': photo_url(person.uwregid, access_token),
                 }
 
             for field in ["start_date", "end_date"]:
