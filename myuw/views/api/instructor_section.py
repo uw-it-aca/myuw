@@ -7,9 +7,10 @@ import traceback
 from datetime import date, datetime
 from blti import BLTI
 from django.conf import settings
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from myuw.dao import coda
+from myuw.dao import coda, id_photo_token
 from myuw.views.error import (
     handle_exception, not_instructor_error)
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
@@ -18,7 +19,6 @@ from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import (
     get_instructor_section, check_section_instructor)
-from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
@@ -36,6 +36,10 @@ def is_registration_to_exclude(registration):
     return (registration.is_withdrew() or
             registration.is_pending_status() or
             registration.is_dropped_status())
+
+
+def photo_url(uwregid, token):
+    return reverse('photo', kwargs={'uwregid': uwregid, 'token': token})
 
 
 class OpenInstSectionDetails(OpenAPI):
@@ -159,17 +163,19 @@ class OpenInstSectionDetails(OpenAPI):
             return
 
         self.processed_primary = True
-
-        registration_list = self._get_reg_for_section(section.registrations)
+        access_token = id_photo_token.get_token()
+        registration_list = self._get_reg_for_section(
+            section.registrations, access_token)
         section_data["registrations"] = registration_list
         try:
             for joint_section in section_data["joint_sections"]:
                 joint_section["registrations"] = \
-                    self._get_reg_for_section(joint_section["registrations"])
+                    self._get_reg_for_section(
+                        joint_section["registrations"], access_token)
         except KeyError:
             pass
 
-    def _get_reg_for_section(self, registration_list):
+    def _get_reg_for_section(self, registration_list, access_token):
         registrations = {}
         name_threads = {}
         enrollment_threads = {}
@@ -206,7 +212,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
                     'email': email1,
-                    'url_key': get_url_key_for_regid(person.uwregid),
+                    'photo_url': photo_url(person.uwregid, access_token),
                 }
 
             for field in ["start_date", "end_date"]:
