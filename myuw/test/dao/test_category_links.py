@@ -148,7 +148,8 @@ class TestCategoryLinks(TransactionTestCase):
         req = get_request_with_user('bill')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 11)
-        self.assertEqual(links[6]['category_name'], 'Health, Wellness, & Support')
+        self.assertEqual(
+            links[6]['category_name'], 'Health, Wellness, & Support')
         self.assertEqual(len(links[6]['subcategories']), 3)
         self.assertTrue('Advocacy and Support' in links[6]['subcategories'])
         self.assertTrue('Health & Wellness' in links[6]['subcategories'])

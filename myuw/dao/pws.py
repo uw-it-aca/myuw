@@ -12,7 +12,6 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
-
 #
 # mailstop campus range limits as set by UW Mailing Services
 #
@@ -162,18 +161,8 @@ def is_retiree(request):
     return isinstance(person, Person) and person.is_retiree()
 
 
-def get_url_key_for_regid(regid):
-    # XXX - I want a hook to obscure/encrypt this down the road
-    return regid
-
-
-def get_regid_for_url_key(key):
-    return key
-
-
 def get_idcard_photo(regid):
     return pws.get_idcard_photo(regid)
-    pass
 
 
 def get_employee_campus(request):
