@@ -96,8 +96,12 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['registrations'][0]["pronouns"], "he/him/his")
         self.assertEqual(
+            len(data['sections'][0]['registrations'][0]["photo_url"]), 56)
+        self.assertEqual(
             data['sections'][0]['registrations'][1]["pronouns"],
             "she, her, hers or they/them/theirs")
+        self.assertEqual(
+            len(data['sections'][0]['registrations'][1]["photo_url"]), 56)
         netid_counts = {}
 
         for registration in data['sections'][0]['registrations']:
