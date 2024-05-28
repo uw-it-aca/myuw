@@ -207,7 +207,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
                     'email': email1,
-                    'url_key': f"{person.uwregid}/{access_token}",
+                    'photo_url': f"/photo/{person.uwregid}/{access_token}",
                 }
 
             for field in ["start_date", "end_date"]:

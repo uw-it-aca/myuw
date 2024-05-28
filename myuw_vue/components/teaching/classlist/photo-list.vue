@@ -14,7 +14,7 @@
           :class="reg.isJoint ? (showJointCourseStud ? 'd-inline' : 'd-none') : 'd-inline'"
       >
         <div v-lazyload style="width: 120px">
-          <img :data-url="'/photo/' + reg.url_key"
+          <img :data-url="reg.photo_url"
               class=""
               width="120px" height="150px"
           >
