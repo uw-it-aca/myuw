@@ -30,6 +30,7 @@ def tz_aware_now():
     """
     return datetime.now(DEFAULT_TZ)
 
+
 def tz_naive_now():
     """
     Return an tz-naive datetime object representing the current time
