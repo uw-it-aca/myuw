@@ -58,6 +58,7 @@ setup(
         'Django-SupportTools~=3.6',
         'Django-Persistent-Message~=1.3',
         'Django-Safe-EmailBackend~=1.2',
+        'uw-person-client~=2.0',
         'django_client_logger~=3.1',
         'UW-HX-Toolkit~=2.7',
         'django-blti~=2.2',
