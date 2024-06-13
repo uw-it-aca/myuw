@@ -29,7 +29,8 @@
             </div>
             <div v-if="hasRegHolds">
               <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
-                Satisfactory Progress Status
+                <span v-if="bothell">105 Credit Rule Status</span>
+                <span v-else>Satisfactory Progress Status</span>
               </h3>
               <span
                 class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
@@ -43,6 +44,10 @@
                     href="https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
                     class="link-danger"
                   >Review options</a>
+                  <a v-if="bothell"
+                    href="https://www.uwb.edu/premajor/academic-advising/petitions"
+                    class="link-danger"
+                  >Review options</a>
                 </strong>
               </span>
             </div>
@@ -51,7 +56,8 @@
             <h3 class="h6 myuw-font-encode-sans">Why plan ahead?</h3>
             <ul class="list-style myuw-text-md">
               <li>
-                <strong>Satisfactory Progress Policy (SPP):</strong> By the
+                <strong v-if="bothell">105-Credit Rule:</strong>
+                <strong v-else>Satisfactory Progress Policy (SPP):</strong> By the
                 time students have earned 105 credits <em>AND</em> completed 5 quarters
                 at the university, students are expected
                 to declare a major or they receive a registration hold.
@@ -70,7 +76,18 @@
         <major-sea v-else />
         <div>
           <h3 class="h6 myuw-font-encode-sans">Interested in a particular major?</h3>
-          <ul class="list-style myuw-text-md">
+          <ul v-if="bothell" class="list-style myuw-text-md">
+            <li><a href="https://uwb.navigate.eab.com/">Meet with your advisor</a> – Get in depth
+              answers to your questions and make a plan to apply or declare.</li>
+            <li><a href="https://www.uwb.edu/advising/majors-and-minors">How and when to declare
+              a major</a> – Learn all about applying for and declaring a major.</li>
+            <li><a href="https://myplan.uw.edu/program/#/orgs">Check your progress toward a degree
+               in MyPlan</a> – Compare degree requirements to classes you’ve taken.</li>
+            <li>Consider multiple majors and embrace a wider perspective – Capacity-constrained
+              majors can be selective, take a holistic approach and reflect on what a meaningful
+              path looks like to you.</li>
+          </ul>
+          <ul v-else class="list-style myuw-text-md">
             <li v-if="seattle">
               <a
                 href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
@@ -116,6 +133,7 @@
             Navigating majors can be overwhelming, you’re not alone! If you have questions,
             <a v-if="seattle" href="https://my.uw.edu/academics/">reach out to your adviser</a>
             <a v-if="tacoma" href="https://www.tacoma.uw.edu/advising">reach out to your advisor</a>
+            <a v-if="bothell" href="https://uwb.navigate.eab.com/">reach out to your advisor</a>
             who can give you personalized guidance based on your unique situation.
           </p>
         </div>
@@ -210,7 +228,7 @@ export default {
     },
     isTargetViewer() {
       return (
-        this.seattle && (this.isJunior || this.isSenior) ||
+        (this.seattle || this.bothell) && (this.isJunior || this.isSenior) ||
          this.tacoma && (this.isSophomore || this.isJunior || this.isSenior));
     },
     showContent() {
