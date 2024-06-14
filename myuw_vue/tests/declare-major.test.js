@@ -41,6 +41,7 @@ describe('Declare Major Card', () => {
   });
 
   it('Verify with a seattle junior of premajor', async () => {
+    // MUWM-5144
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
