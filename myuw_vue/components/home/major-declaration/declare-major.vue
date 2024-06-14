@@ -32,24 +32,9 @@
                 <span v-if="bothell">105 Credit Rule Status</span>
                 <span v-else>Satisfactory Progress Status</span>
               </h3>
-              <span
-                class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2">
-                Registration Hold -
-                <strong>
-                  <a v-if="seattle"
-                    href="https://www.washington.edu/uaa/advising/academic-support/satisfactory-progress/"
-                    class="link-danger"
-                  >Review options</a>
-                  <a v-if="tacoma"
-                    href="https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
-                    class="link-danger"
-                  >Review options</a>
-                  <a v-if="bothell"
-                    href="https://www.uwb.edu/premajor/academic-advising/petitions"
-                    class="link-danger"
-                  >Review options</a>
-                </strong>
-              </span>
+              <span class="badge bg-danger-light fw-normal myuw-text-md text-danger text-wrap p-2"
+              >Registration Hold - <a :href="reviewOptionsUrl" class="link-danger"
+              ><strong>Review options</strong></a></span>
             </div>
           </div>
           <div class="col-12 order-xl-1 col-xl-8">
@@ -240,6 +225,14 @@ export default {
     },
     isErrored() {
       return (this.isNoticesErrored || this.isProfileErrored);
+    },
+    reviewOptionsUrl () {
+      return (this.tacoma ?
+        "https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
+        : this.bothell ?
+          "https://www.uwb.edu/premajor/academic-advising/petitions"
+          : "https://advising.uw.edu/academic-support/satisfactory-progress/"
+      );
     },
   },
   created() {

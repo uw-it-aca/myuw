@@ -2,7 +2,7 @@
   <div class="mt-4">
     <h3 class="h6 myuw-font-encode-sans">Unsure of what major to choose?</h3>
     <ul class="list-style myuw-text-md">
-      <li><a href="https://www.uwb.edu/advising/majors-and-minors">Get an overview</a>  –  Learn
+      <li><a href="https://www.uwb.edu/advising/majors-and-minors">Get an overview</a> – Learn
         the basics about how and when to declare a major.</li>
       <li><a href="https://uwb.navigate.eab.com/">Talk to your pre-major advisor</a> – Narrow down
          majors of interest, identify prerequisites for declaring or applying for a major, plan
