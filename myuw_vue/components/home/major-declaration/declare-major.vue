@@ -217,11 +217,11 @@ export default {
          this.tacoma && (this.isSophomore || this.isJunior || this.isSenior));
     },
     showContent() {
-      return (this.isNoticeReady && this.isProfileReady);
+      return (this.isNoticeReady && this.isProfileReady &&
+        this.isTargetViewer && this.notDeclaredMajor);
     },
     showCard() {
-      return (this.notDeclaredMajor && this.isTargetViewer &&
-        (this.isNoticeFetching || this.isProfileFetching || this.showContent));
+      return (this.isNoticeFetching || this.isProfileFetching || this.showContent);
     },
     isErrored() {
       return (this.isNoticesErrored || this.isProfileErrored);
