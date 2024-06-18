@@ -43,9 +43,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, f/MUWM-5345]
   pull_request:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, f/MUWM-5345]
     types: [opened, reopened, synchronize]
   release:
     branches: [main, master]
@@ -295,7 +295,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'vue/dev'
+        if: needs.context.outputs.git_repo_branch == 'f/MUWM-5345'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -313,7 +313,7 @@ jobs:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
          endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
-         endsWith(github.ref, '/vue/dev'))
+         endsWith(github.ref, '/f/MUWM-5345'))
 
     needs: [context, build, deploy]
 

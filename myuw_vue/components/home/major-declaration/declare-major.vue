@@ -168,7 +168,6 @@ export default {
   },
   computed: {
     ...mapState({
-      classLevel: (state) => state.user.affiliations.class_level,
       seattle: (state) => state.user.affiliations.seattle,  // MUWM-5288
       bothell: (state) => state.user.affiliations.bothell, // MUWM-5296
       tacoma: (state) => state.user.affiliations.tacoma,  // MUWM-5297
@@ -178,6 +177,7 @@ export default {
     }),
     ...mapState('profile', {
       profile: (state) => state.value,
+      classLevel: (state) => state.value.class_level,
       termMajors: (state) => state.value.term_majors,
     }),
     ...mapGetters('notices', {
