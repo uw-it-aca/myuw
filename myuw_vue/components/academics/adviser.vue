@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyProfile"
+    :loaded="showContent"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -11,7 +11,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="advisers && advisers.length">
+      <div v-if="hasAdviser">
         <ul class="d-flex flex-wrap list-unstyled mb-0">
           <li
             v-for="(adviser, index) in advisers"
@@ -165,6 +165,12 @@ export default {
     showCard() {
       return (this.isUndergrad || this.studEmployee && !this.isGrad)
         && !this.isPCE;
+    },
+    hasAdviser() {
+      return this.isReadyAdvisers && this.advisers && this.advisers.length;
+    },
+    showContent() {
+      return this.hasAdviser || this.isReadyProfile && this.profile.campus;
     }
   },
   created() {
