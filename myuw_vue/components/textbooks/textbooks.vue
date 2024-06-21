@@ -205,8 +205,11 @@ export default {
       });
       return ret;
     },
+    iacErrored() {
+      return this.isIacErrored(this.term) && this.statusCodeIac(this.term) !== 404;
+    },
     showIacErrMsg() {
-      return (this.seaStud || this.botStud) && this.isIacErrored;
+      return this.iacErrored && (this.seaStud || this.botStud);
     },
     displayDayOneAccessProgramPanel() {
       // MUWM-5272
