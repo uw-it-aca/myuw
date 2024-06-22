@@ -167,10 +167,13 @@ export default {
         && !this.isPCE;
     },
     hasAdviser() {
-      return this.isReadyAdvisers && this.advisers && this.advisers.length;
+      return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
+    },
+    hasCompus() {
+      return this.profile && this.profile.campus !== undefined;
     },
     showContent() {
-      return this.hasAdviser || this.isReadyProfile && this.profile.campus;
+      return this.hasAdviser || this.hasCompus;
     }
   },
   created() {
