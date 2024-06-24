@@ -33,8 +33,6 @@
   "visa_type": null,
   "veteran_code": "0",
   "resident_code": null,
-  "is_student": true,
-  "is_grad_student": false,
   "degree_status": null,
   "campus": "Seattle",
   "class_level": "JUNIOR",
