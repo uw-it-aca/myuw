@@ -163,8 +163,7 @@ export default {
       );
     },
     showCard() {
-      return (this.isUndergrad || this.studEmployee && !this.isGrad)
-        && !this.isPCE;
+      return !this.isPCE && (this.isUndergrad || this.studEmployee && !this.isGrad);
     },
     hasAdviser() {
       return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
@@ -177,7 +176,7 @@ export default {
     }
   },
   created() {
-    if (this.isUndergrad) {
+    if (this.showCard) {
       this.fetchAdvisers();
       this.fetchProfile();
     }
