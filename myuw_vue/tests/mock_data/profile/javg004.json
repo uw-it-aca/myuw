@@ -32,8 +32,6 @@
   "permanent_phone": "4255556789",
   "visa_type": null,
   "veteran_code": "0",
-  "is_student": true,
-  "is_grad_student": false,
   "degree_status": {
     "degrees": [
       {
