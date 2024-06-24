@@ -23,7 +23,6 @@ export default {
   props: {
     termMajors: {
       type: Array,
-      default: () => [],
     },
   },
 };
