@@ -86,7 +86,7 @@ def get_academic_info(request, response):
     for term in terms:
         if term in enrollments:
             enrollment = enrollments[term]
-            response['class_level'] = enrollment.class_level
+            response['class_level'] = enrollment.class_level.upper()
             break
 
     for term in terms:
