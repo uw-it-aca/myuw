@@ -13,7 +13,6 @@ from myuw.dao import log_err
 from myuw.dao.degree import get_degrees_json
 from myuw.dao.enrollment import (
     get_main_campus, get_latest_class_level, get_enrollments_of_terms)
-from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_and_next_quarters
 
@@ -41,13 +40,9 @@ def get_applicant_profile(request):
 
 def get_student_profile(request):
     """
-    Returns the JSON response for a student's profile
+    Returns the JSON response
     """
-    profile = get_applicant_profile(request)
-
-    response = profile
-    response['is_student'] = True
-    response['is_grad_student'] = is_grad_student(request)
+    response = get_applicant_profile(request)
 
     # MUWM-5045
     response['degree_status'] = get_degree_status(request)
