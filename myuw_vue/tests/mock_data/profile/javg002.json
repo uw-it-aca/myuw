@@ -33,8 +33,6 @@
   "visa_type": "F1",
   "veteran_code": "0",
   "resident_code": "5",
-  "is_student": true,
-  "is_grad_student": false,
   "degree_status": {
     "degrees": null,
     "error_code": 503

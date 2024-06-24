@@ -30,8 +30,6 @@
     },
     "permanent_phone": null,
     "visa_type": "F1",
-    "is_student": true,
-    "is_grad_student": true,
     "campus": "Seattle",
     "class_level": "NON_MATRIC",
     "term_majors": [
