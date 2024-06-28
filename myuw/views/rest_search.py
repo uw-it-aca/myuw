@@ -70,6 +70,8 @@ class MyUWRestSearchView(RestSearchView):
                     "enrollment.json?reg_id",
                     regid,
                     "&transcriptable_course=all&verbose=true")
+            elif "financial" == res:
+                url = f"student/v5/person/{regid}/financial.json"
             elif "notice" == res:
                 url = f"student/v5/notice/{regid}.json"
             elif "person" == res:
