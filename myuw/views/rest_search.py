@@ -36,9 +36,7 @@ class MyUWRestSearchView(RestSearchView):
                     request.POST["sln1"])
         elif service == "grad":
             params = self.format_params(request)
-            print(params)
-            # id = get_student_system_key(request.POST["id"])
-
+            params['id'] = get_student_system_key(params['id'])
         elif service == "hfs":
             url = "myuw/v1/{}".format(request.POST["uwnetid"])
         elif re.match(r'^iasystem', service):
@@ -48,6 +46,13 @@ class MyUWRestSearchView(RestSearchView):
                 index += 1
                 url = url[index:]
                 params = self.format_params(request)
+                if len(params['instructor_id']) > 0:
+                    params['instructor_id'] = get_employee_number(
+                        params['instructor_id'])
+                if len(params['student_id']) > 0:
+                    params['student_id'] = get_student_number(
+                        params['student_id'])
+
         elif service == "myplan":
             url = "plan/v1/{},{},1,{}".format(
                 request.POST["year"],
@@ -88,8 +93,6 @@ def get_regid(userid):
 
 
 def get_student_system_key(userid):
-    if userid and len(userid) == 9:
-        return userid
     return pws.get_person_by_netid(userid).student_system_key
 
 

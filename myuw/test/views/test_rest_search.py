@@ -33,11 +33,12 @@ class RestSearchViewTest(MyuwApiTest):
         # myplan
         url = reverse("myuw_rest_search", args=["myplan", "index"])
         response = self.client.post(url, {
-            "uwregid": "ABC", "year": "2013", "quarter": "spring"})
+            "uwregid": "javerage", "year": "2013", "quarter": "spring"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            "/restclients/view/myplan/plan/v1/2013,spring,1,ABC")
+            "/restclients/view/myplan/plan/v1/2013,spring,1," +
+            "9136CCB8F66711D5BE060004AC494FFE")
 
         # libraries
         url = reverse("myuw_rest_search", args=["libraries", "accounts"])
@@ -50,11 +51,31 @@ class RestSearchViewTest(MyuwApiTest):
         # iasystem
         url = reverse("myuw_rest_search", args=[
             "iasystem_uw", "uw/api/v1/evaluation"])
-        response = self.client.post(url, {"student_id": "123456"})
+        response = self.client.post(
+            url,
+            {
+                'term_name': 'Winter', 'curriculum_abbreviation': 'TRAIN',
+                'course_number': '100', 'section_id': 'A', 'year': '2013',
+                'instructor_id': '', 'student_id': 'javerage'
+            })
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
-            "/restclients/view/iasystem_uw/api/" +
-            "v1/evaluation?student_id=123456"))
+            "/restclients/view/iasystem_uw/api/v1/evaluation?term_name=" +
+            "Winter&curriculum_abbreviation=TRAIN&course_number=100&" +
+            "section_id=A&year=2013&instructor_id=&student_id=1033334"))
+
+        response = self.client.post(
+            url,
+            {
+                'term_name': 'Winter', 'curriculum_abbreviation': 'TRAIN',
+                'course_number': '100', 'section_id': 'A', 'year': '2013',
+                'instructor_id': 'bill', 'student_id': ''
+            })
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/iasystem_uw/api/v1/evaluation?term_name=" +
+            "Winter&curriculum_abbreviation=TRAIN&course_number=100&" +
+            "section_id=A&year=2013&instructor_id=123456782&student_id="))
 
         # uwnetid
         url = reverse("myuw_rest_search", args=["uwnetid", "password"])
@@ -76,11 +97,11 @@ class RestSearchViewTest(MyuwApiTest):
         url = reverse("myuw_rest_search", args=[
             "grad", "services/students/v1/api/committee"])
         response = self.client.post(url, {
-            "id": "12345", "csrfmiddlewaretoken": "0000000"})
+            "id": "seagrad", "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
             "/restclients/view/grad/services/" +
-            "students/v1/api/committee?id=12345"))
+            "students/v1/api/committee?id=001000002"))
 
         # notices
         url = reverse("myuw_rest_search", args=["sws", "notices"])
