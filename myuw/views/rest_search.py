@@ -59,23 +59,21 @@ class MyUWRestSearchView(RestSearchView):
                 request.POST["quarter"],
                 get_regid(request.POST["uwregid"]))
         elif service == "sws":
-            if "advisers" == url:
-                url = "student/v5/person/{}/advisers.json".format(
-                    get_regid(request.POST["uwregid"]))
-            elif "degree" == url:
-                url = "student/v5/person/{}/degree.json?deg_status=all".format(
-                    get_regid(request.POST["uwregid"]))
-            elif "enrollment" == url:
+            regid = get_regid(request.POST["uwregid"])
+            res = request.POST["res"]
+            if "adviser" == res:
+                url = f"student/v5/person/{regid}/advisers.json"
+            elif "degree" == res:
+                url = f"student/v5/person/{regid}/degree.json?deg_status=all"
+            elif "enrollment" == res:
                 url = "student/v5/{}={}{}".format(
                     "enrollment.json?reg_id",
-                    get_regid(request.POST["uwregid"]),
+                    regid,
                     "&transcriptable_course=all&verbose=true")
-            elif "notices" == url:
-                url = "student/v5/notice/{}.json".format(
-                    get_regid(request.POST["uwregid"]))
-            elif "person" == url:
-                url = "student/v5/person/{}.json".format(
-                    get_regid(request.POST["uwregid"]))
+            elif "notice" == res:
+                url = f"student/v5/notice/{regid}.json"
+            elif "person" == res:
+                url = f"student/v5/person/{regid}.json"
 
         elif service == "upass":
             url = "upassdataws/api/person/v1/membershipstatus/{}".format(

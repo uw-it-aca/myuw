@@ -99,39 +99,11 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'sws' 'notices.html' as notices_url %}
-        {% if notices_url %}
+        {% url 'myuw_rest_search' 'sws' 'student.html' as student_url %}
+        {% if student_url %}
             <li>
-                <a href="{{ notices_url }}">Notices</a>
+                <a href="{{ student_url }}">SWS Student</a>
             </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'person.html' as swsperson_url %}
-        {% if swsperson_url %}
-        <li>
-            <a href="{{ swsperson_url }}">SWS Person</a>
-        </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'enrollment.html' as enrollment_url %}
-        {% if enrollment_url %}
-        <li>
-            <a href="{{ enrollment_url }}">SWS Enrollment</a>
-        </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'advisers.html' as advisers_url %}
-        {% if advisers_url %}
-            <li>
-                <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
-            </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'degree.html' as degree_url %}
-        {% if degree_url %}
-        <li>
-            <a href="{{ degree_url }}">Undergrad Degree Status</a>
-        </li>
         {% endif %}
 
         {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
