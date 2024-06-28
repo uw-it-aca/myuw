@@ -33,21 +33,18 @@
 
     <h3>Web Services</h3>
     <ul>
-        {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
-        {% if sws_url %}
-            <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
+        {% url 'myuw_rest_search' 'sws' 'teach.html' as teach_url %}
+        {% if teach_url %}
+        <li>
+            <a href="{{ teach_url }}">SWS Instructor</a>
+        </li>
         {% endif %}
-
-        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
-        {% endif %}
-
-        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
-        {% if gws_url %}
-            <li><a href="{{ gws_url }}">
-                {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
-            </li>
+        
+        {% url 'myuw_rest_search' 'sws' 'student.html' as student_url %}
+        {% if student_url %}
+        <li>
+            <a href="{{ student_url }}">SWS Student</a>
+        </li>
         {% endif %}
 
         {% url 'myuw_rest_search' 'hfs' 'accounts.html' as hfs_url %}
@@ -55,6 +52,13 @@
             <li>
                 <a href="{{ hfs_url }}">HFS</a>
             </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
+        {% if iacourse_url %}
+        <li>
+            <a href="{{ iacourse_url }}">IA Course Digital Materials</a>
+        </li>
         {% endif %}
 
         {% url 'myuw_rest_search' 'iasystem' 'index.html' as ias_url %}
@@ -99,13 +103,6 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'sws' 'student.html' as student_url %}
-        {% if student_url %}
-            <li>
-                <a href="{{ student_url }}">SWS Student</a>
-            </li>
-        {% endif %}
-
         {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
         {% if pw_url %}
             <li>
@@ -125,13 +122,6 @@
             <li>
                 <a href="{{ book_url }}">TextBook</a>
             </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
-        {% if iacourse_url %}
-        <li>
-            <a href="{{ iacourse_url }}">IA Courses</a>
-        </li>
         {% endif %}
 
         {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}

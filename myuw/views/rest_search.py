@@ -58,7 +58,18 @@ class MyUWRestSearchView(RestSearchView):
                 request.POST["year"],
                 request.POST["quarter"],
                 get_regid(request.POST["uwregid"]))
-        elif service == "sws":
+        elif service == "sws" and "teach" == url:
+            regid = get_regid(request.POST["uwregid"])
+            year = request.POST["year"]
+            quarter = request.POST["quarter"]
+            cabbr = request.POST["curriculum_abbreviation"]
+            course_number = request.POST["course_number"]
+            url = (f"student/v5/section.json?year={year}&quarter={quarter}&" +
+                f"future_terms=2&curriculum_abbreviation={cabbr}&" +
+                f"course_number={course_number}&reg_id={regid}&" +
+                "search_by=Instructor&include_secondaries=on&" +
+                "transcriptable_course=all")
+        elif service == "sws" and "student" == url:
             regid = get_regid(request.POST["uwregid"])
             res = request.POST["res"]
             if "adviser" == res:

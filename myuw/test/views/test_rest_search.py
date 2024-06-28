@@ -104,9 +104,10 @@ class RestSearchViewTest(MyuwApiTest):
             "students/v1/api/committee?id=001000002"))
 
         # notices
-        url = reverse("myuw_rest_search", args=["sws", "notices"])
+        url = reverse("myuw_rest_search", args=["sws", "student"])
         response = self.client.post(url, {
             "uwregid": "12345678123456781234567812345678",
+            "res": 'notice',
             "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (

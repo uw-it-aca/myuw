@@ -1,0 +1,35 @@
+<h1>SWS Instructor</h1>
+
+<form method="post" action="{{form_action}}">
+  {% csrf_token %}
+  <p>
+    <label for="uwregid">UW NetID or RegID:</label>
+    <input id="uwregid" name="uwregid" size="32" type="text">
+  </p>
+  <p>
+    <label for="year">Year:</label>
+    <input class="year" id="year" name="year" value="" size="4">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="quarter">Quarter:</label> 
+    <select class="quarter" id="quarter" name="quarter">
+      <option value="">select...</option>
+      <option value="winter">winter</option>
+      <option value="spring">spring</option>
+      <option value="summer">summer</option>
+      <option value="autumn">autumn</option>
+    </select>
+  </p>
+  <p>
+    <label for="curriculum_abbreviation">Curriculum Abbreviation:</label>
+    <input class="curriculum_abbreviation"
+      id="curriculum_abbreviation" name="curriculum_abbreviation" value=""
+       type="text" size="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="course_number">Course number:</label>
+    <input class="course_number" id="course_number" name="course_number"
+      value="" type="text" size="3">
+  </p>
+  <br />
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>
