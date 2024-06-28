@@ -106,6 +106,20 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'sws' 'person.html' as swsperson_url %}
+        {% if swsperson_url %}
+        <li>
+            <a href="{{ swsperson_url }}">SWS Person</a>
+        </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'sws' 'enrollment.html' as enrollment_url %}
+        {% if enrollment_url %}
+        <li>
+            <a href="{{ enrollment_url }}">SWS Enrollment</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'sws' 'advisers.html' as advisers_url %}
         {% if advisers_url %}
             <li>

@@ -65,9 +65,18 @@ class MyUWRestSearchView(RestSearchView):
             elif "degree" == url:
                 url = "student/v5/person/{}/degree.json?deg_status=all".format(
                     get_regid(request.POST["uwregid"]))
+            elif "enrollment" == url:
+                url = "student/v5/{}={}{}".format(
+                    "enrollment.json?reg_id",
+                    get_regid(request.POST["uwregid"]),
+                    "&transcriptable_course=all&verbose=true")
             elif "notices" == url:
                 url = "student/v5/notice/{}.json".format(
                     get_regid(request.POST["uwregid"]))
+            elif "person" == url:
+                url = "student/v5/person/{}.json".format(
+                    get_regid(request.POST["uwregid"]))
+
         elif service == "upass":
             url = "upassdataws/api/person/v1/membershipstatus/{}".format(
                 request.POST["uwnetid"])
