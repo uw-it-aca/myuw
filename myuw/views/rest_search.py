@@ -4,6 +4,7 @@
 import logging
 import re
 from rc_django.views.rest_proxy import RestSearchView
+from myuw.dao.pws import pws
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +25,9 @@ class MyUWRestSearchView(RestSearchView):
 
         if service == "book":
             if "iacourse" == url:
+
                 url = "uw/iacourse_status.json?regid={}".format(
-                    request.POST["uwregid"])
+                    get_regid(request.POST["uwregid"]))
             else:
                 url = "uw/json_utf8_202007.ubs"
                 url = "{}?quarter={}&sln1={}&returnlink=t".format(
@@ -34,6 +36,9 @@ class MyUWRestSearchView(RestSearchView):
                     request.POST["sln1"])
         elif service == "grad":
             params = self.format_params(request)
+            print(params)
+            # id = get_student_system_key(request.POST["id"])
+
         elif service == "hfs":
             url = "myuw/v1/{}".format(request.POST["uwnetid"])
         elif re.match(r'^iasystem', service):
@@ -47,17 +52,17 @@ class MyUWRestSearchView(RestSearchView):
             url = "plan/v1/{},{},1,{}".format(
                 request.POST["year"],
                 request.POST["quarter"],
-                request.POST["uwregid"])
+                get_regid(request.POST["uwregid"]))
         elif service == "sws":
             if "advisers" == url:
                 url = "student/v5/person/{}/advisers.json".format(
-                    request.POST["uwregid"])
+                    get_regid(request.POST["uwregid"]))
             elif "degree" == url:
                 url = "student/v5/person/{}/degree.json?deg_status=all".format(
-                    request.POST["uwregid"])
+                    get_regid(request.POST["uwregid"]))
             elif "notices" == url:
                 url = "student/v5/notice/{}.json".format(
-                    request.POST["uwregid"])
+                    get_regid(request.POST["uwregid"]))
         elif service == "upass":
             url = "upassdataws/api/person/v1/membershipstatus/{}".format(
                 request.POST["uwnetid"])
@@ -74,3 +79,27 @@ class MyUWRestSearchView(RestSearchView):
         logger.debug(
             "Exit MyUWRestProxyView url: {}".format(url))
         return service, url, params
+
+
+def get_regid(userid):
+    if userid and len(userid) == 32:
+        return userid
+    return pws.get_person_by_netid(userid).uwregid
+
+
+def get_student_system_key(userid):
+    if userid and len(userid) == 9:
+        return userid
+    return pws.get_person_by_netid(userid).student_system_key
+
+
+def get_student_number(userid):
+    if userid and userid.isdigit():
+        return userid
+    return pws.get_person_by_netid(userid).student_number
+
+
+def get_employee_number(userid):
+    if userid and userid.isdigit():
+        return userid
+    return pws.get_person_by_netid(userid).employee_id
