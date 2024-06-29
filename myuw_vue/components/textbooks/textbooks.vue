@@ -205,12 +205,22 @@ export default {
       });
       return ret;
     },
+    iacRespCode() {
+      return this.statusCodeIac(this.term);
+    },
+    iacErrored() {
+      // MUWM-5346
+      return this.iacRespCode !== 200 && this.iacRespCode !== 404;
+    },
     showIacErrMsg() {
-      return (this.seaStud || this.botStud) && this.isIacErrored;
+      return (this.seaStud || this.botStud) && this.iacErrored;
+    },
+    iacDataExist() {
+      return this.iacData && this.iacData.ia_courses;
     },
     displayDayOneAccessProgramPanel() {
       // MUWM-5272
-      return (this.seaStud || this.botStud) && this.iacData && this.iacData.ia_courses;
+      return (this.seaStud || this.botStud) && this.iacDataExist;
     },
   },
   created() {
