@@ -1,11 +1,7 @@
-<h1>SWS Instructor</h1>
+<h1>SWS Section</h1>
 
 <form method="post" action="{{form_action}}">
   {% csrf_token %}
-  <p>
-    <label for="uwregid">UW NetID or RegID:</label>
-    <input id="uwregid" name="uwregid" size="32" type="text">
-  </p>
   <p>
     <label for="year">Year:</label>
     <input class="year" id="year" name="year" value="" size="4">
@@ -27,6 +23,14 @@
     <label for="course_number">Course number:</label>
     <input class="course_number" id="course_number" name="course_number"
       value="" type="text" size="3">
+  </p>
+  <p>
+    <label for="sln">SLN:</label>
+    <input class="sln" id="sln" name="sln" value="" type="text" size="7">
+  </p>
+  <p>
+    <label for="uwregid">By instructor's NetID or RegID:</label>
+    <input id="uwregid" name="uwregid" size="32" type="text">
   </p>
   <br />
   <p>

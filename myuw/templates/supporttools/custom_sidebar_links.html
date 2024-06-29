@@ -33,10 +33,10 @@
 
     <h3>Web Services</h3>
     <ul>
-        {% url 'myuw_rest_search' 'sws' 'teach.html' as teach_url %}
-        {% if teach_url %}
+        {% url 'myuw_rest_search' 'sws' 'course.html' as course_url %}
+        {% if course_url %}
         <li>
-            <a href="{{ teach_url }}">SWS Instructor</a>
+            <a href="{{ course_url }}">SWS Course</a>
         </li>
         {% endif %}
         
