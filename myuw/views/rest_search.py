@@ -9,6 +9,12 @@ from myuw.dao.pws import pws
 logger = logging.getLogger(__name__)
 
 
+def get_input_value(post_req, name):
+    if name in post_req and len(post_req[name]):
+        return post_req[name].strip()
+    return ''
+
+
 class MyUWRestSearchView(RestSearchView):
     def __init__(self):
         super(MyUWRestSearchView, self).__init__()
@@ -25,20 +31,20 @@ class MyUWRestSearchView(RestSearchView):
 
         if service == "book":
             if "iacourse" == url:
-
                 url = "uw/iacourse_status.json?regid={}".format(
-                    get_regid(request.POST["uwregid"]))
+                    get_regid(get_input_value(request.POST, "uwregid")))
             else:
                 url = "uw/json_utf8_202007.ubs"
                 url = "{}?quarter={}&sln1={}&returnlink=t".format(
                     "uw/json_utf8_202007.ubs",
-                    request.POST["quarter"],
-                    request.POST["sln1"])
+                    get_input_value(request.POST, "quarter"),
+                    get_input_value(request.POST, "sln1"))
         elif service == "grad":
             params = self.format_params(request)
             params['id'] = get_student_system_key(params['id'])
         elif service == "hfs":
-            url = "myuw/v1/{}".format(request.POST["uwnetid"])
+            url = "myuw/v1/{}".format(
+                get_input_value(request.POST, "uwnetid"))
         elif re.match(r'^iasystem', service):
             if url.endswith('/evaluation'):
                 index = url.find('/')
@@ -48,37 +54,38 @@ class MyUWRestSearchView(RestSearchView):
                 params = self.format_params(request)
                 if len(params['instructor_id']) > 0:
                     params['instructor_id'] = get_employee_number(
-                        params['instructor_id'])
+                        params['instructor_id'].strip())
                 if len(params['student_id']) > 0:
                     params['student_id'] = get_student_number(
-                        params['student_id'])
+                        params['student_id'].strip())
 
         elif service == "myplan":
             url = "plan/v1/{},{},1,{}".format(
-                request.POST["year"],
-                request.POST["quarter"],
-                get_regid(request.POST["uwregid"]))
+                get_input_value(request.POST, "year"),
+                get_input_value(request.POST, "quarter"),
+                get_regid(get_input_value(request.POST, "uwregid")))
 
         elif service == "sws" and "course" == url:
-            year = request.POST["year"]
-            quarter = request.POST["quarter"]
-            cabbr = request.POST["curriculum_abbreviation"]
-            course_number = request.POST["course_number"]
-            sln = request.POST["sln"]
-            if len(request.POST["uwregid"]) > 0:
-                regid = get_regid(request.POST["uwregid"])
+            year = get_input_value(request.POST, "year")
+            quarter = get_input_value(request.POST, "quarter")
+            cabbr = get_input_value(request.POST, "curriculum_abbreviation")
+            course_number = get_input_value(request.POST, "course_number")
+            sln = get_input_value(request.POST, "sln")
+            regid = get_input_value(request.POST, "uwregid")
+            if len(regid) > 0:
+                regid = get_regid(regid)
                 search_by = "Instructor"
             else:
-                regid = ""
                 search_by = ""
-            url = (f"student/v5/section.json?year={year}&quarter={quarter}&" +
+            url = (
+                f"student/v5/section.json?year={year}&quarter={quarter}&" +
                 f"future_terms=2&curriculum_abbreviation={cabbr}&" +
                 f"course_number={course_number}&reg_id={regid}&" +
                 f"search_by={search_by}&include_secondaries=on&" +
                 f"sln={sln}&transcriptable_course=all")
         elif service == "sws" and "student" == url:
-            regid = get_regid(request.POST["uwregid"])
-            res = request.POST["res"]
+            regid = get_regid(get_input_value(request.POST, "uwregid"))
+            res = get_input_value(request.POST, "res")
             if "adviser" == res:
                 url = f"student/v5/person/{regid}/advisers.json"
             elif "degree" == res:
@@ -97,14 +104,14 @@ class MyUWRestSearchView(RestSearchView):
 
         elif service == "upass":
             url = "upassdataws/api/person/v1/membershipstatus/{}".format(
-                request.POST["uwnetid"])
+                get_input_value(request.POST, "uwnetid"))
         elif service == "uwnetid":
             if "password" == url:
                 url = "nws/v1/uwnetid/{}/password".format(
-                    request.POST["uwnetid"])
+                    get_input_value(request.POST, "uwnetid"))
             elif "subscription" == url:
                 url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
-                    request.POST["uwnetid"])
+                    get_input_value(request.POST, "uwnetid"))
         else:
             service, url, params = super().get_proxy_url(request, service, url)
 
