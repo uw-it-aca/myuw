@@ -10,15 +10,15 @@ import ssl
 
 INSTALLED_APPS += [
     'uw_oidc',
+    'django_user_agents',
+    'supporttools',
+    'userservice',
+    'rc_django',   # after supporttools
+    'persistent_message',
+    'blti',
+    'hx_toolkit',
     'compressor',
     'django_client_logger',
-    'django_user_agents',
-    'hx_toolkit',
-    'persistent_message',
-    'rc_django',
-    'userservice',
-    'supporttools',
-    'blti',
     'myuw.apps.MyUWConfig',
     'webpack_loader',
 ]
