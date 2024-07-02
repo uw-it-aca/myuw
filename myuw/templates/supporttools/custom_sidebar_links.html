@@ -68,13 +68,6 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
-        {% if idcard_url %}
-            <li><a href="{{ idcard_url }}">
-                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
-            </li>
-        {% endif %}
-
         {% url 'myuw_rest_search' 'libcurrics' 'index.html' as libcurrics_url %}
         {% if libcurrics_url %}
             <li>
@@ -129,6 +122,13 @@
             <li>
                 <a href="{{ upass_url }}">UPASS</a>
             </li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
+        {% if idcard_url %}
+        <li><a href="{{ idcard_url }}">
+                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
+        </li>
         {% endif %}
 
         <br />
