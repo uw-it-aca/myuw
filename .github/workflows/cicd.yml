@@ -182,7 +182,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     container:
-      image: cypress/browsers:node-18.20.3-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1
+      image: cypress/browsers:node-18.14.1-chrome-110.0.5481.96-1-ff-109.0-edge-110.0.1587.41-1
       # this image works. latest failed
 
     steps:
