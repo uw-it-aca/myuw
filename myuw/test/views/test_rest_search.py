@@ -5,11 +5,39 @@
 from django.test.utils import override_settings
 from django.urls import reverse
 from myuw.test.api import MyuwApiTest
+from myuw.views.rest_search import (
+    get_regid, get_employee_number, get_student_number, get_student_system_key
+)
 
 
 @override_settings(
     RESTCLIENTS_ADMIN_AUTH_MODULE='rc_django.tests.can_proxy_restclient')
 class RestSearchViewTest(MyuwApiTest):
+
+    def test_get_regid(self):
+        self.assertEqual(
+            get_regid("javerage"), "9136CCB8F66711D5BE060004AC494FFE")
+        self.assertEqual(
+            get_regid("9136CCB8F66711D5BE060004AC494FFE"),
+            "9136CCB8F66711D5BE060004AC494FFE")
+
+    def test_get_employee_number(self):
+        self.assertEqual(
+            get_employee_number("javerage"), "123456789")
+        self.assertEqual(
+            get_employee_number("123456789"), "123456789")
+
+    def test_get_student_number(self):
+        self.assertEqual(
+            get_student_number("javerage"), "1033334")
+        self.assertEqual(
+            get_student_number("1033334"), "1033334")
+
+    def test_get_student_system_key(self):
+        self.assertEqual(
+            get_student_system_key("javerage"), "000083856")
+        self.assertEqual(
+            get_student_system_key("000083856"), "000083856")
 
     def test_post(self):
         self.set_user('javerage')
@@ -113,6 +141,50 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.url, (
             "/restclients/view/sws/student/v5/notice/" +
             "12345678123456781234567812345678.json"))
+
+        # person
+        url = reverse("myuw_rest_search", args=["sws", "student"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "res": 'person',
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/person/" +
+            "12345678123456781234567812345678.json"))
+
+        # degree
+        url = reverse("myuw_rest_search", args=["sws", "student"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "res": 'degree',
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/person/" +
+            "12345678123456781234567812345678/degree.json%3Fdeg_status=all"))
+
+        # adviser
+        url = reverse("myuw_rest_search", args=["sws", "student"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "res": 'adviser',
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/person/" +
+            "12345678123456781234567812345678/advisers.json"))
+
+        # Financial
+        url = reverse("myuw_rest_search", args=["sws", "student"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "res": 'financial',
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/person/" +
+            "12345678123456781234567812345678/financial.json"))
 
         # upass
         url = reverse("myuw_rest_search", args=["upass", "index"])

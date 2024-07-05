@@ -9,12 +9,6 @@ from myuw.dao.pws import pws
 logger = logging.getLogger(__name__)
 
 
-def get_input_value(post_req, name):
-    if name in post_req and len(post_req[name]):
-        return post_req[name].strip()
-    return ''
-
-
 class MyUWRestSearchView(RestSearchView):
     def __init__(self):
         super(MyUWRestSearchView, self).__init__()
@@ -120,14 +114,22 @@ class MyUWRestSearchView(RestSearchView):
         return service, url, params
 
 
+def get_input_value(post_req, name):
+    if name in post_req and len(post_req[name]):
+        return post_req[name].strip()
+    return ''
+
+
 def get_regid(userid):
     if userid and len(userid) == 32:
         return userid
     return pws.get_person_by_netid(userid).uwregid
 
 
-def get_student_system_key(userid):
-    return pws.get_person_by_netid(userid).student_system_key
+def get_employee_number(userid):
+    if userid and userid.isdigit():
+        return userid
+    return pws.get_person_by_netid(userid).employee_id
 
 
 def get_student_number(userid):
@@ -136,7 +138,7 @@ def get_student_number(userid):
     return pws.get_person_by_netid(userid).student_number
 
 
-def get_employee_number(userid):
+def get_student_system_key(userid):
     if userid and userid.isdigit():
         return userid
-    return pws.get_person_by_netid(userid).employee_id
+    return pws.get_person_by_netid(userid).student_system_key
