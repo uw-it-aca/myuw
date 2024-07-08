@@ -7,13 +7,13 @@
       Grid of Student Photos
     </h3>
     <div class="sort-buttons">
-      <button
+      Sort by <button
         v-for="field in fields"
         :key="field.key"
-        @click="setSortKey(field.key)"
         :class="buttonClass(field.key)"
+        @click="setSortKey(field.key)"
       >
-        Sort by {{ field.label }}
+        {{ field.label }}
       </button>
     </div>
     <ol class="list-unstyled d-flex flex-wrap">
@@ -53,8 +53,7 @@ export default {
   },
   data() {
     return {
-      sortKey: 'first_name',
-      sortOrder: {},
+      sortKey: 'surname',
       fields: [
         { key: 'first_name', label: 'First Name', sortable: true },
         { key: 'surname', label: 'Surname', sortable: true }
@@ -63,35 +62,31 @@ export default {
   },
   computed: {
     sortedRegistrations() {
+      const key = this.sortKey;
       return [...this.registrations].sort((a, b) => {
-        if (a[this.sortKey] < b[this.sortKey]) return -1;
-        if (a[this.sortKey] > b[this.sortKey]) return 1;
+        if (a[key] < b[key]) return -1;
+        if (a[key] > b[key]) return 1;
         return 0;
       });
     },
-  },
-  methods: {
-    setSortKey(key) {
-      for (const k in this.sortOrder) {
-        if (k !== key) {
-          this.sortOrder[k] = null;
-        }
-      }
-      this.sortKey = key;
-    },
-    buttonClass(key) {
-      return {
-        'btn': true,
-        'btn-primary': this.sortOrder[key],
-        'btn-secondary': !this.sortOrder[key]
-      };
-    }
   },
   mounted() {
     // Initialize sortOrder for each field key
     this.fields.forEach(field => {
       this.sortOrder[field.key] = null;
     });
+  },
+  methods: {
+    setSortKey(key) {
+      this.sortKey = key;
+    },
+    buttonClass(key) {
+      return {
+        'btn': true,
+        'btn-primary': this.sortKey === key,
+        'btn-secondary': this.sortKey !== key
+      };
+    }
   }
 };
 </script>
