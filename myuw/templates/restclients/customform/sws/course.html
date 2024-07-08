@@ -3,9 +3,10 @@
 <form method="post" action="{{form_action}}">
   {% csrf_token %}
   <p>
+    <b>For</b>
     <label for="year">Year:</label>
     <input class="year" id="year" name="year" value="" size="4">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    and
     <label for="quarter">Quarter:</label> 
     <select class="quarter" id="quarter" name="quarter">
       <option value="">select...</option>
@@ -15,7 +16,9 @@
       <option value="autumn">autumn</option>
     </select>
   </p>
-  <p>
+  <p><b>Find using</b> (at least one of the following)</p>
+  <ul>
+  <li>
     <label for="curriculum_abbreviation">Curriculum Abbreviation:</label>
     <input class="curriculum_abbreviation"
       id="curriculum_abbreviation" name="curriculum_abbreviation" value=""
@@ -23,15 +26,16 @@
     <label for="course_number">Course number:</label>
     <input class="course_number" id="course_number" name="course_number"
       value="" type="text" size="3">
-  </p>
-  <p>
+  </li>
+  <li>
     <label for="sln">SLN:</label>
     <input class="sln" id="sln" name="sln" value="" type="text" size="7">
-  </p>
-  <p>
+  </li>
+  <li>
     <label for="uwregid">By instructor's NetID or RegID:</label>
     <input id="uwregid" name="uwregid" size="32" type="text">
-  </p>
+  </li>
+  </ul>
   <br />
   <p>
     <input value="Submit" type="submit">

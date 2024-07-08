@@ -3,9 +3,11 @@
 <form method="post" action="{{form_action}}">
   {% csrf_token %}
   <p>
+    <b>For</b>
     <label for="uwregid">UW NetID or RegID:</label>
     <input id="uwregid" name="uwregid" size="32" type="text">
   </p>
+  <p>Find any of the following:</p>
   <fieldset>
     <div>
       <input type="radio" id="res" name="res" value="adviser" />
