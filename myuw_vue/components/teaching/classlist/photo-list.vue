@@ -71,12 +71,6 @@ export default {
       });
     },
   },
-  mounted() {
-    // Initialize sortOrder for each field key
-    this.fields.forEach(field => {
-      this.sortOrder[field.key] = null;
-    });
-  },
   methods: {
     setSortKey(key) {
       this.sortKey = key;
