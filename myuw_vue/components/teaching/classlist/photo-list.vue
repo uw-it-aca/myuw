@@ -13,7 +13,7 @@
         @click="setSortKey(field.key)"
         :class="buttonClass(field.key)"
       >
-        {{ field.label }}
+        Sort by {{ field.label }}
       </button>
     </div>
     <ol class="list-unstyled d-flex flex-wrap">
