@@ -43,9 +43,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, f/MUWM-4369, develop, vue/dev]
+    branches: [main, master, qa, develop, f/muwm-4369]
   pull_request:
-    branches: [main, master, f/MUWM-4369, develop, vue/dev]
+    branches: [main, master, qa, develop, f/muwm-4369]
     types: [opened, reopened, synchronize]
   release:
     branches: [main, master]
@@ -275,7 +275,7 @@ jobs:
 
       - name: Deployment Pipeline
         if: >-
-          contains(fromJSON('["main", "master", "f/MUWM-4369"]'),
+          contains(fromJSON('["main", "master", "qa"]'),
             needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
@@ -295,7 +295,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'vue/dev'
+        if: needs.context.outputs.git_repo_branch == 'f/muwm-4369'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -312,8 +312,8 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
-         endsWith(github.ref, '/f/MUWM-4369') || endsWith(github.ref, '/develop') ||
-         endsWith(github.ref, '/vue/dev'))
+         endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
+         endsWith(github.ref, '/f/muwm-4369'))
 
     needs: [context, build, deploy]
 
