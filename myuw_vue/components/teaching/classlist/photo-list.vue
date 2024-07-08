@@ -10,6 +10,7 @@
       Sort by <button
         v-for="field in fields"
         :key="field.key"
+        type="button"
         :class="buttonClass(field.key)"
         @click="setSortKey(field.key)"
       >
@@ -83,6 +84,7 @@ export default {
     buttonClass(key) {
       return {
         'btn': true,
+        'btn-link': true,
         'btn-primary': this.sortKey === key,
         'btn-secondary': this.sortKey !== key
       };
@@ -91,16 +93,10 @@ export default {
 };
 </script>
 <style scoped>
-.btn {
-  margin: 0 5px;
-  padding: 5px 10px;
-}
 .btn-primary {
-  background-color: #007bff;
   color: white;
 }
 .btn-secondary {
-  background-color: #6c757d;
   color: white;
 }
 </style>
