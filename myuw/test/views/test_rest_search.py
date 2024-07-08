@@ -42,7 +42,7 @@ class RestSearchViewTest(MyuwApiTest):
 
     def test_post(self):
         self.set_user('javerage')
-        self.assertEqual(get_input_value([], "uwnetid"), "")
+        self.assertEqual(get_input_value({}, "uwnetid"), "")
 
         # hfs
         url = reverse("myuw_rest_search", args=["hfs", "accounts"])
@@ -196,6 +196,19 @@ class RestSearchViewTest(MyuwApiTest):
             "/restclients/view/sws/student/v5/person/" +
             "12345678123456781234567812345678/financial.json"))
         self.maxDiff = None
+
+        # enrollment
+        url = reverse("myuw_rest_search", args=["sws", "student"])
+        response = self.client.post(url, {
+            "uwregid": "javerage",
+            "res": 'enrollment',
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/enrollment.json%3Freg_id=" +
+            "9136CCB8F66711D5BE060004AC494FFE&" +
+            "transcriptable_course=all&verbose=true"))
+
         # Course section
         url = reverse("myuw_rest_search", args=["sws", "course"])
         response = self.client.post(url, {
