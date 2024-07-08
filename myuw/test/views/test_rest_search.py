@@ -6,7 +6,8 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from myuw.test.api import MyuwApiTest
 from myuw.views.rest_search import (
-    get_regid, get_employee_number, get_student_number, get_student_system_key
+    get_input_value, get_regid, get_employee_number, get_student_number,
+    get_student_system_key
 )
 
 
@@ -41,6 +42,7 @@ class RestSearchViewTest(MyuwApiTest):
 
     def test_post(self):
         self.set_user('javerage')
+        self.assertEqual(get_input_value([], "uwnetid"), "")
 
         # hfs
         url = reverse("myuw_rest_search", args=["hfs", "accounts"])
@@ -49,7 +51,15 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(
             response.url, "/restclients/view/hfs/myuw/v1/javerage")
 
-        # bookstore
+        # iacourses
+        url = reverse("myuw_rest_search", args=["book", "iacourse"])
+        response = self.client.post(url, {"uwregid": "javerage"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/book/uw/iacourse_status.json%3Fregid="
+            "9136CCB8F66711D5BE060004AC494FFE"))
+
+        # book
         url = reverse("myuw_rest_search", args=["book", "index"])
         response = self.client.post(url, {
             "sln1": "123", "quarter": "spring", "returnlink": "t"})
@@ -185,6 +195,32 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.url, (
             "/restclients/view/sws/student/v5/person/" +
             "12345678123456781234567812345678/financial.json"))
+        self.maxDiff = None
+        # Course section
+        url = reverse("myuw_rest_search", args=["sws", "course"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "quarter": 'spring',
+            "year": 2013,
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/section.json%3Fyear=2013&" +
+            "quarter=spring&future_terms=2&curriculum_abbreviation=&" +
+            "course_number=&reg_id=12345678123456781234567812345678&" +
+            "search_by=Instructor&include_secondaries=on&" +
+            "sln=&transcriptable_course=all"))
+        response = self.client.post(url, {
+            "sln": "12345",
+            "quarter": 'spring',
+            "year": 2013,
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/restclients/view/sws/student/v5/section.json%3Fyear=2013&" +
+            "quarter=spring&future_terms=2&curriculum_abbreviation=&" +
+            "course_number=&reg_id=&search_by=&include_secondaries=on&" +
+            "sln=12345&transcriptable_course=all"))
 
         # upass
         url = reverse("myuw_rest_search", args=["upass", "index"])
