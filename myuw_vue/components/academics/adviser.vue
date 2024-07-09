@@ -166,11 +166,11 @@ export default {
       return !this.isPCE && (this.isUndergrad || this.studEmployee) && !this.isGrad;
     },
     hasAdviser() {
-      return this.advisers && this.advisers.length > 0;
+      return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
     },
     hasProfile() {
       return (
-        this.profile &&
+        this.isReadyProfile && this.profile &&
         this.profile.campus !== undefined &&
         (this.profile.class_level === 'FRESHMAN' ||
          this.profile.class_level === "SOPHOMORE" ||
