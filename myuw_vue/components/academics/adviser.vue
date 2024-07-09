@@ -163,7 +163,11 @@ export default {
       );
     },
     showCard() {
-      return !this.isPCE && (this.isUndergrad || this.studEmployee && !this.isGrad);
+      // MUWM-5349
+      return (
+        this.profile.class_level != 'GRADUATE' && !this.isGrad && !this.isPCE &&
+        (this.isUndergrad || this.studEmployee)
+        );
     },
     hasAdviser() {
       return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
