@@ -163,20 +163,21 @@ export default {
       );
     },
     showCard() {
-      // MUWM-5349
       return (
-        this.profile.class_level != 'GRADUATE' && !this.isGrad && !this.isPCE &&
-        (this.isUndergrad || this.studEmployee)
+        !this.isGrad && !this.isPCE && (this.isUndergrad || this.studEmployee)
         );
     },
     hasAdviser() {
       return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
     },
-    hasCompus() {
-      return this.profile && this.profile.campus !== undefined;
+    hasProfileData() {
+      return (
+        this.profile && this.profile.campus !== undefined &&
+        this.profile.class_level != 'GRADUATE'
+        );  // MUWM-5349
     },
     showContent() {
-      return this.hasAdviser || this.hasCompus;
+      return this.hasAdviser || this.hasProfileData;
     }
   },
   created() {
