@@ -131,15 +131,18 @@ export default {
       profile: (state) => state.profile.value,
     }),
     ...mapGetters('advisers', {
-      isReadyAdvisers: 'isReady',
+      isFetchingAdvisers: 'isFetching',
       isErroredAdvisers: 'isErrored',
       statusCodeAdvisers: 'statusCode',
     }),
     ...mapGetters('profile', {
-      isReadyProfile: 'isReady',
+      isFetchingProfile: 'isFetching',
       isErroredProfile: 'isErrored',
       statusCodeProfile: 'statusCode',
     }),
+    shouldLoad() {
+      return !this.isPCE && (this.isUndergrad || this.studEmployee) && !this.isGrad;
+    },
     termMajors() {
       return this.profile.term_majors;
     },
@@ -156,21 +159,16 @@ export default {
     },
     showError() {
       return (
-        this.isErroredAdvisers &&
-        this.statusCodeAdvisers != 404 ||
-        this.isErroredProfile &&
-        this.statusCodeProfile != 404
+        this.isErroredAdvisers && this.statusCodeAdvisers != 404 ||
+        this.isErroredProfile && this.statusCodeProfile != 404
       );
     },
-    showCard() {
-      return !this.isPCE && (this.isUndergrad || this.studEmployee) && !this.isGrad;
-    },
     hasAdviser() {
-      return this.isReadyAdvisers && this.advisers && this.advisers.length > 0;
+      return this.advisers && this.advisers.length > 0;
     },
     hasProfile() {
       return (
-        this.isReadyProfile && this.profile &&
+        this.profile &&
         this.profile.campus !== undefined &&
         (this.profile.class_level === 'FRESHMAN' ||
          this.profile.class_level === "SOPHOMORE" ||
@@ -180,10 +178,16 @@ export default {
     },
     showContent() {
       return this.hasAdviser || this.hasProfile;
+    },
+    showCard() {
+      return (
+        this.shouldLoad &&
+        (this.isFetchingAdvisers || this.isFetchingProfile || this.showContent ||
+         this.showError));
     }
   },
   created() {
-    if (this.showCard) {
+    if (this.shouldLoad) {
       this.fetchAdvisers();
       this.fetchProfile();
     }

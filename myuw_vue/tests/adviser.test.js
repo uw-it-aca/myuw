@@ -49,11 +49,11 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
-
+    expect(wrapper.vm.hasAdviser).toBe(true);
+    expect(wrapper.vm.hasProfile).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
-    expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.isUndergrad).toBe(true);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
   });
@@ -69,7 +69,7 @@ describe('Assigned Adviser Card', () => {
     const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.advisers.length).toBe(0);
+    expect(wrapper.vm.hasAdviser).toBe(false);
     expect(wrapper.vm.hasProfile).toBe(true);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
@@ -90,6 +90,7 @@ describe('Assigned Adviser Card', () => {
     store.state.user.affiliations.undergrad = false;
     const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
+    expect(wrapper.vm.shouldLoad).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
   });
 
@@ -103,10 +104,9 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.vm.showCard).toBe(true);
-    console.log(wrapper.vm.profile);
     expect(wrapper.vm.hasProfile).toBe(false);
     expect(wrapper.vm.showContent).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
   });
 
   it('Show card if no adviser record', async () => {
@@ -122,8 +122,8 @@ describe('Assigned Adviser Card', () => {
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.isReadyAdvisers).toBe(false);
-    expect(wrapper.vm.isReadyProfile).toBe(true);
+    expect(wrapper.vm.hasAdviser).toBe(false);
+    expect(wrapper.vm.hasProfile).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });
@@ -134,8 +134,9 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
-    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
   });
 
   it('Hide error', async () => {
@@ -144,9 +145,9 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue,});
     await new Promise(setImmediate);
-    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.vm.showError).toBe(false);
-    expect(wrapper.vm.isReadyAdvisers).toBe(false);
-    expect(wrapper.vm.isReadyProfile).toBe(false);
+    expect(wrapper.vm.hasAdviser).toBe(false);
+    expect(wrapper.vm.hasProfile).toBe(false);
   });
 });
