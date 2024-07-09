@@ -79,18 +79,18 @@ export default {
       return {
         'btn': true,
         'btn-link': true,
-        'btn-primary': this.sortKey === key,
-        'btn-secondary': this.sortKey !== key
+        'active': this.sortKey === key,
+        'inactive': this.sortKey !== key
       };
     }
   }
 };
 </script>
 <style scoped>
-.btn-primary {
-  color: white;
+.active {
+  font-weight: bold;
 }
-.btn-secondary {
-  color: white;
+.inactive {
+  font-weight: normal;
 }
 </style>
