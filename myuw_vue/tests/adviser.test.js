@@ -92,6 +92,18 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.vm.showCard).toBe(false);
   });
 
+  it('Hide Assigned Adviser card if class level is GRAD', async () => {
+    store.state.user.affiliations.grad = false;
+    store.state.user.affiliations.undergrad = true;
+    store.state.profile.campus = 'seattle';
+    store.state.profile.class_level = 'GRADUATE';
+    const wrapper = mount(AssignedAdviserCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.hasProfile).toBe(false);
+    expect(wrapper.vm.showContent).toBe(false);
+  });
+
   it('Show card if no adviser record', async () => {
     axios.get.mockImplementation((url) => {
       if (url === '/api/v1/advisers/') {
