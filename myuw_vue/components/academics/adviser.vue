@@ -163,7 +163,7 @@ export default {
       );
     },
     showCard() {
-      return !this.isPCE && (this.isUndergrad || this.studEmployee && !this.isGrad);
+      return !this.isPCE && (this.isUndergrad || this.studEmployee) && !this.isGrad;
     },
     hasAdviser() {
       return this.advisers && this.advisers.length > 0;
@@ -172,7 +172,10 @@ export default {
       return (
         this.profile &&
         this.profile.campus !== undefined &&
-        this.profile.class_level === 'GRADUATE'
+        (this.profile.class_level === 'FRESHMAN' ||
+         this.profile.class_level === "SOPHOMORE" ||
+         this.profile.class_level === "JUNIOR" ||
+         this.profile.class_level === "SENIOR")
       );  //MUWM-5349
     },
     showContent() {
