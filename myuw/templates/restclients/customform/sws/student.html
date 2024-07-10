@@ -1,0 +1,41 @@
+<h1>SWS Student</h1>
+
+<form method="post" action="{{form_action}}">
+  {% csrf_token %}
+  <p>
+    <b>For</b>
+    <label for="uwregid">UW NetID or RegID:</label>
+    <input id="uwregid" name="uwregid" size="32" type="text">
+  </p>
+  <p>Find any of the following:</p>
+  <fieldset>
+    <div>
+      <input type="radio" id="res" name="res" value="adviser" />
+      <label for="res">Advisers</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="degree" />
+      <label for="res">Degrees</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="enrollment" />
+      <label for="res">Enrollments</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="financial" />
+      <label for="res">Financial</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="person" />
+      <label for="res">Person</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="notice" />
+      <label for="res">Notices</label>
+    </div>
+  </fieldset>
+  <br />
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>
