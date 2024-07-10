@@ -33,21 +33,18 @@
 
     <h3>Web Services</h3>
     <ul>
-        {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
-        {% if sws_url %}
-            <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
+        {% url 'myuw_rest_search' 'sws' 'course.html' as course_url %}
+        {% if course_url %}
+        <li>
+            <a href="{{ course_url }}">SWS Course</a>
+        </li>
         {% endif %}
-
-        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
-        {% endif %}
-
-        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
-        {% if gws_url %}
-            <li><a href="{{ gws_url }}">
-                {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
-            </li>
+        
+        {% url 'myuw_rest_search' 'sws' 'student.html' as student_url %}
+        {% if student_url %}
+        <li>
+            <a href="{{ student_url }}">SWS Student</a>
+        </li>
         {% endif %}
 
         {% url 'myuw_rest_search' 'hfs' 'accounts.html' as hfs_url %}
@@ -57,17 +54,17 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
+        {% if iacourse_url %}
+        <li>
+            <a href="{{ iacourse_url }}">IA Course Digital Materials</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
             <li><a href="{{ ias_url }}">
                 {{ restclients_iasystem_link|default:"IASystem Course Eval" }}</a>
-            </li>
-        {% endif %}
-
-        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
-        {% if idcard_url %}
-            <li><a href="{{ idcard_url }}">
-                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
             </li>
         {% endif %}
 
@@ -99,27 +96,6 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'sws' 'notices.html' as notices_url %}
-        {% if notices_url %}
-            <li>
-                <a href="{{ notices_url }}">Notices</a>
-            </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'advisers.html' as advisers_url %}
-        {% if advisers_url %}
-            <li>
-                <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
-            </li>
-        {% endif %}
-
-        {% url 'myuw_rest_search' 'sws' 'degree.html' as degree_url %}
-        {% if degree_url %}
-        <li>
-            <a href="{{ degree_url }}">Undergrad Degree Status</a>
-        </li>
-        {% endif %}
-
         {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
         {% if pw_url %}
             <li>
@@ -141,18 +117,35 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
-        {% if iacourse_url %}
-        <li>
-            <a href="{{ iacourse_url }}">IA Courses</a>
-        </li>
-        {% endif %}
-
         {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
         {% if upass_url %}
             <li>
                 <a href="{{ upass_url }}">UPASS</a>
             </li>
+        {% endif %}
+        <br />
+        {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
+        {% if sws_url %}
+        <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
+        {% if pws_url %}
+        <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
+        {% if gws_url %}
+        <li><a href="{{ gws_url }}">
+                {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
+        </li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
+        {% if idcard_url %}
+        <li><a href="{{ idcard_url }}">
+                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
+        </li>
         {% endif %}
 
         <br />
