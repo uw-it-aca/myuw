@@ -9,6 +9,8 @@ import profile from '../vuex/store/profile';
 
 import DeclareMajorCard from '../components/home/major-declaration/declare-major.vue';
 import MajorSea from '../components/home/major-declaration/major-sea.vue';
+import MajorBot from '../components/home/major-declaration/major-bot.vue';
+import MajorTac from '../components/home/major-declaration/major-tac.vue';
 import CurMajors from '../components/_common/cur_major.vue';
 import mockNotices from './mock_data/notice/jinter.json';
 import premajorProfile from './mock_data/profile/javgPremajor.json';
@@ -39,6 +41,7 @@ describe('Declare Major Card', () => {
   });
 
   it('Verify with a seattle junior of premajor', async () => {
+    // MUWM-5144
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
@@ -59,6 +62,7 @@ describe('Declare Major Card', () => {
     expect(wrapper.findAllComponents(CurMajors)).toHaveLength(1);
     expect(wrapper.findAllComponents(MajorSea)).toHaveLength(1);
     expect(wrapper.findAll('h3').length).toBe(6);
+    expect(wrapper.vm.reviewOptionsUrl).toHaveLength(63);
   });
 
   it('Verify junior with declared major, hide card', async () => {
@@ -75,19 +79,42 @@ describe('Declare Major Card', () => {
     expect(wrapper.vm.notDeclaredMajor).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
   });
-  it('Verify with a non-seattle, hide the card', async () => {
-    // MUWM - 5288
+  it('Verify Bothell case', async () => {
+    // MUWM-5296
     store.state.user.affiliations.seattle = false;
+    store.state.user.affiliations.bothell = true;
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
-        '/api/v1/profile/': javg005Profile
+        '/api/v1/profile/': premajorProfile
       };
       return Promise.resolve({ data: urlData[url] });
     });
     const wrapper = mount(DeclareMajorCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.vm.seattle).toBe(false);
-    expect(wrapper.vm.showCard).toBe(false);
+    expect(wrapper.vm.bothell).toBe(true);
+    expect(wrapper.vm.isTargetViewer).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.reviewOptionsUrl).toHaveLength(56);
+    expect(wrapper.findAllComponents(MajorBot)).toHaveLength(1);
+  });
+  it('Verify Tacoma case', async () => {
+    // MUWM-5297
+    store.state.user.affiliations.seattle = false;
+    store.state.user.affiliations.tacoma = true;
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': mockNotices,
+        '/api/v1/profile/': premajorProfile
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(DeclareMajorCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.tacoma).toBe(true);
+    expect(wrapper.vm.isTargetViewer).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.reviewOptionsUrl).toHaveLength(69);
+    expect(wrapper.findAllComponents(MajorTac)).toHaveLength(1);
   });
 });

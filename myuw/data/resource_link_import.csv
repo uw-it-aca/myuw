@@ -37,7 +37,7 @@ Academics,Tools and Software,all,https://uw.hosted.panopto.com/,Panopto Lecture 
 Academics,Tools and Software,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Other Software and Hardware Services,,,,,,,no
 Academics,Tools and Software,all,https://itconnect.uw.edu/learn/tools/,Help with Teaching and Learning Tools,,,,,,,no
 Academics,Tools and Software,all,http://www.linkedinlearning.uw.edu/,LinkedIn Learning,,,,,,,no
-Academics,Tools and Software,all,https://gsuite.google.com/dashboard,Google Apps,,,,,,,no
+Academics,Tools and Software,all,https://itconnect.uw.edu/tools-services-support/software-computers/productivity-platforms/google-productivity-platform/,Google Apps,,,,,,,no
 Academics,Tools and Software,all,https://www.office.com/,Office 365 Apps,,,,,,,no
 "Email, and Accounts and Identity",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
 "Email, and Accounts and Identity",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
@@ -69,7 +69,7 @@ Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,
 Campus Life,Campus Safety,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
 Campus Life,Campus Safety,all,https://mychem.ehs.washington.edu/,MyChem,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,https://www.tacoma.uw.edu/fa/safety/emergency-preparedness,UW Tacoma Emergency Response,no
-Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/wp-content/uploads/2023/09/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
+Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/wp-content/uploads/2024/04/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
 Campus Life,Getting Around Campus,all,,,https://transportation.uw.edu/getting-here,Getting to Seattle Campus,http://www.uwb.edu/visitors/directions,Getting to UW Bothell Campus,https://www.tacoma.uw.edu/fa/facilities/transportation/parking-and-transportation-resources#permalink-19448,Getting to UW Tacoma Campus,no
 Campus Life,Getting Around Campus,all,,,https://transportation.uw.edu/getting-here/transit/u-pass#u-pass-students,U-PASS for Students,https://www.uwb.edu/commuter-services/transportation/upass,U-PASS,https://www.tacoma.uw.edu/uwt/fa/facilities/transportation/u-pass,U-PASS,no
 Campus Life,Getting Around Campus,all,,,https://transportation.uw.edu/getting-here/transit/u-pass#u-pass-faculty-staff,U-PASS for Employees,,,,,no
@@ -116,7 +116,7 @@ Events and Activities,Student Clubs and Organizations,all,,,https://hub.washingt
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/titleix/report/,Make a Title IX report,,,,,,,no
 "Health, Wellness, & Support",Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
 "Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,https://www.uwb.edu/student-affairs/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
-"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
+"Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/student-affairs/hawrc,Health and Wellness Resource Center,https://www.tacoma.uw.edu/sh,Student Health Services (SHS),no
 "Health, Wellness, & Support",Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
 "Health, Wellness, & Support",Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),https://www.uwb.edu/arc/,Activities and Recreation Center(ARC),http://www.tacoma.uw.edu/uwy/,Recreation & Fitness,no
 "Health, Wellness, & Support",Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no

@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyProfile"
+    :loaded="showContent"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -11,7 +11,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="advisers && advisers.length">
+      <div v-if="hasAdviser">
         <ul class="d-flex flex-wrap list-unstyled mb-0">
           <li
             v-for="(adviser, index) in advisers"
@@ -131,15 +131,18 @@ export default {
       profile: (state) => state.profile.value,
     }),
     ...mapGetters('advisers', {
-      isReadyAdvisers: 'isReady',
+      isFetchingAdvisers: 'isFetching',
       isErroredAdvisers: 'isErrored',
       statusCodeAdvisers: 'statusCode',
     }),
     ...mapGetters('profile', {
-      isReadyProfile: 'isReady',
+      isFetchingProfile: 'isFetching',
       isErroredProfile: 'isErrored',
       statusCodeProfile: 'statusCode',
     }),
+    shouldLoad() {
+      return !this.isPCE && (this.isUndergrad || this.studEmployee) && !this.isGrad;
+    },
     termMajors() {
       return this.profile.term_majors;
     },
@@ -156,19 +159,35 @@ export default {
     },
     showError() {
       return (
-        this.isErroredAdvisers &&
-        this.statusCodeAdvisers != 404 ||
-        this.isErroredProfile &&
-        this.statusCodeProfile != 404
+        this.isErroredAdvisers && this.statusCodeAdvisers != 404 ||
+        this.isErroredProfile && this.statusCodeProfile != 404
       );
     },
+    hasAdviser() {
+      return this.advisers && this.advisers.length > 0;
+    },
+    hasProfile() {
+      return (
+        this.profile &&
+        this.profile.campus !== undefined &&
+        (this.profile.class_level === 'FRESHMAN' ||
+         this.profile.class_level === "SOPHOMORE" ||
+         this.profile.class_level === "JUNIOR" ||
+         this.profile.class_level === "SENIOR")
+      );  //MUWM-5349
+    },
+    showContent() {
+      return this.hasAdviser || this.hasProfile;
+    },
     showCard() {
-      return (this.isUndergrad || this.studEmployee && !this.isGrad)
-        && !this.isPCE;
+      return (
+        this.shouldLoad &&
+        (this.isFetchingAdvisers || this.isFetchingProfile || this.showContent ||
+         this.showError));
     }
   },
   created() {
-    if (this.isUndergrad) {
+    if (this.shouldLoad) {
       this.fetchAdvisers();
       this.fetchProfile();
     }

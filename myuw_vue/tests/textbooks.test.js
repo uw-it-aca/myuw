@@ -153,5 +153,7 @@ describe('Textbook cards', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.bookData).toEqual({});
+    expect(wrapper.vm.iacErrored).toEqual(false);
+    expect(wrapper.vm.iacDataExist).toEqual(undefined);
   });
 });

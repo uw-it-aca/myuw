@@ -36,7 +36,6 @@ class TestProfile(MyuwApiTest):
         self.assertEqual(data["class_level"], "SENIOR")
         self.assertEqual(len(data["term_majors"]), 4)
         self.assertEqual(len(data["term_minors"]), 4)
-        self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
         self.assertEqual(pw_data["last_change"],
                          "2013-01-27 10:49:42-08:00")
@@ -65,8 +64,6 @@ class TestProfile(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertEqual(data["uwnetid"], "staff")
-        self.assertFalse(data["is_student"])
-        self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
         self.assertTrue(pw_data["last_change"])
         self.assertTrue(pw_data["expires_med"])
