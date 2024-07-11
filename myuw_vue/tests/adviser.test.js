@@ -9,6 +9,7 @@ import profile from '../vuex/store/profile';
 import javgAdvisers from './mock_data/advisers/javerage.json';
 import inactiveAdvisers from './mock_data/advisers/jbot.json';
 import javgProfile from './mock_data/profile/javerage.json';
+import jintProfile from './mock_data/profile/jinter.json';
 
 import AssignedAdviserCard from '../components/academics/adviser.vue';
 import UwCard from '../components/_templates/card.vue';
@@ -38,7 +39,7 @@ describe('Assigned Adviser Card', () => {
     });
   });
 
-  it('Show Assigned Adviser card for undergrad (javerage)', async () => {
+  it('Show Adviser card for undergrad (javerage)', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/advisers/': javgAdvisers,
@@ -48,16 +49,16 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
-
+    expect(wrapper.vm.hasAdviser).toBe(true);
+    expect(wrapper.vm.hasProfile).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
-    expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.isUndergrad).toBe(true);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
   });
 
-  it('Show card but no Assigned Adviser (jbot)', async () => {
+  it('Show card has profile but no Assigned Adviser (jbot)', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/advisers/': inactiveAdvisers,
@@ -67,28 +68,44 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
-
-    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.advisers.length).toBe(0);
+    expect(wrapper.vm.hasAdviser).toBe(false);
+    expect(wrapper.vm.hasProfile).toBe(true);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
   });
 
-  it('Hide Assigned Adviser card if not undergrad', async () => {
+  it('Hide Adviser card if not undergrad', async () => {
     store.state.user.affiliations.undergrad = false;
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false);
   });
 
-  it('Hide Assigned Adviser card if is a student employee and grad', async () => {
+  it('Hide Adviser card if is a student employee and grad', async () => {
     store.state.user.affiliations.stud_employee = true;
     store.state.user.affiliations.grad = true;
     store.state.user.affiliations.undergrad = false;
     const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
+    expect(wrapper.vm.shouldLoad).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
+  });
+
+  it('Hide Adviser card if class level is not desired', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/advisers/': inactiveAdvisers,
+        '/api/v1/profile/': jintProfile,
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(AssignedAdviserCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.hasProfile).toBe(false);
+    expect(wrapper.vm.showContent).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
   });
 
@@ -105,8 +122,8 @@ describe('Assigned Adviser Card', () => {
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.isReadyAdvisers).toBe(false);
-    expect(wrapper.vm.isReadyProfile).toBe(true);
+    expect(wrapper.vm.hasAdviser).toBe(false);
+    expect(wrapper.vm.hasProfile).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });
@@ -117,8 +134,9 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
-    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
   });
 
   it('Hide error', async () => {
@@ -127,9 +145,9 @@ describe('Assigned Adviser Card', () => {
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue,});
     await new Promise(setImmediate);
-    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.vm.showError).toBe(false);
-    expect(wrapper.vm.isReadyAdvisers).toBe(false);
-    expect(wrapper.vm.isReadyProfile).toBe(false);
+    expect(wrapper.vm.hasAdviser).toBe(false);
+    expect(wrapper.vm.hasProfile).toBe(false);
   });
 });
