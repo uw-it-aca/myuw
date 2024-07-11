@@ -6,8 +6,8 @@
     <h3 class="visually-hidden">
       Grid of Student Photos
     </h3>
-    <div class="sort-buttons">
-      Sort by <button
+    <div class="sort-buttons myuw-text-md">
+      <span class="py-1" style=""><strong>Sort by:</strong></span><button
         v-for="field in fields"
         :key="field.key"
         type="button"
@@ -56,8 +56,8 @@ export default {
     return {
       sortKey: 'surname',
       fields: [
-        { key: 'first_name', label: 'First Name', sortable: true },
-        { key: 'surname', label: 'Surname', sortable: true }
+        { key: 'first_name', label: 'first name', sortable: true },
+        { key: 'surname', label: 'last name', sortable: true }
       ]
     };
   },
@@ -80,17 +80,28 @@ export default {
         'btn': true,
         'btn-link': true,
         'active': this.sortKey === key,
-        'inactive': this.sortKey !== key
+        'inactive': this.sortKey !== key,
+        'disabled': this.sortKey === key,
+        'myuw-text-md': true,
+        'px-1': true,
+        'py-1': true
       };
     }
   }
 };
 </script>
 <style scoped>
+.sort-buttons{
+  padding-bottom:.5em;
+}
 .active {
   font-weight: bold;
 }
 .inactive {
   font-weight: normal;
 }
-</style>
+.btn-link.disabled {
+  color: #000;
+  opacity:1;
+}
+  </style>
