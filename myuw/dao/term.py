@@ -526,6 +526,13 @@ def add_term_data_to_context(request, context):
             compare <= cur_term.last_final_exam_date):
         context['is_finals'] = True
 
+    if cur_term.is_summer_quarter():
+        # MUWM-5350
+        if compare >= cur_term.bterm_first_date:
+            context['summer_term'] = "b-term"
+        else:
+            context['summer_term'] = "a-term"
+
     context['first_day'] = cur_term.first_day_quarter
     context['last_day'] = cur_term.last_day_instruction
     context["first_day_quarter"] = cur_term.first_day_quarter
