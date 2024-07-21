@@ -44,7 +44,7 @@ export default {
     ...mapState({
       student: (state) => state.user.affiliations.student,
       quarter: (state) => state.termData.quarter,
-      summerTerm: (state) => state.termData.summer_term,
+      summerTerm: (state) => state.termData.summerTerm,
     }),
     ...mapState('stud_schedule', {
       course(state) {
