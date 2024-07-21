@@ -307,7 +307,7 @@ def get_current_summer_term(request):
     or None if it is not a summer quarter
     """
     if not is_in_summer_quarter(request):
-        return None
+        return ""   # MUWM-5350
     bterm_first_date = get_current_quarter(request).bterm_first_date
     if get_comparison_date(request) >= bterm_first_date:
         return "b-term"
