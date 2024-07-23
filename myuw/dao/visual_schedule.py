@@ -4,7 +4,6 @@
 import logging
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import get_current_quarter, get_current_summer_term
 from myuw.dao.campus_building import get_building_by_code
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *

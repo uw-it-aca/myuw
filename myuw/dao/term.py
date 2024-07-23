@@ -307,9 +307,9 @@ def get_current_summer_term(request):
     or None if it is not a summer quarter
     """
     if not is_in_summer_quarter(request):
-        return None
-    eod_aterm = get_current_quarter(request).get_eod_summer_aterm()
-    if get_comparison_datetime(request) > eod_aterm:
+        return ""   # MUWM-5350 empty string
+    bterm_first_date = get_current_quarter(request).bterm_first_date
+    if get_comparison_date(request) >= bterm_first_date:
         return "b-term"
     else:
         return "a-term"
@@ -526,6 +526,7 @@ def add_term_data_to_context(request, context):
             compare <= cur_term.last_final_exam_date):
         context['is_finals'] = True
 
+    context['summer_term'] = get_current_summer_term(request)
     context['first_day'] = cur_term.first_day_quarter
     context['last_day'] = cur_term.last_day_instruction
     context["first_day_quarter"] = cur_term.first_day_quarter

@@ -399,7 +399,6 @@ class TestTerm(TestCase):
 
     def test_term_data_context_in_quarter(self):
         request = get_request_with_date("2013-03-10")
-
         context = {}
         add_term_data_to_context(request, context)
 
@@ -407,11 +406,20 @@ class TestTerm(TestCase):
         self.assertEqual(context['quarter'], 'winter')
         self.assertEqual(context['is_finals'], False)
         self.assertEqual(context['is_break'], False)
-
+        self.assertEqual(context['summer_term'], "")
         self.assertEqual(context['today'].year, 2013)
         self.assertEqual(context['today'].month, 3)
         self.assertEqual(context['today'].day, 10)
         self.assertEqual(context['future_term'], "2013,spring")
+
+        request = get_request_with_date("2013-07-10")
+        context = {}
+        add_term_data_to_context(request, context)
+        self.assertEqual(context['summer_term'], "a-term")
+        request = get_request_with_date("2013-07-25")
+        context = {}
+        add_term_data_to_context(request, context)
+        self.assertEqual(context['summer_term'], "b-term")
 
     def test_term_data_context_in_finals(self):
         request = get_request_with_date("2013-03-22")
