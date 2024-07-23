@@ -69,7 +69,7 @@ def summer_term_overlaped(request, given_section):
         current summer term in the request
     """
     current_summer_term = get_current_summer_term(request)
-    if given_section is None or len(current_summer_term) == 0 :
+    if given_section is None or not current_summer_term:
         return True
     return (given_section.is_same_summer_term(current_summer_term) or
             given_section.is_full_summer_term() and
