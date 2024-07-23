@@ -39,7 +39,7 @@
       </div>
       <div class="text-end">
         <uw-link-button
-          href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/">
+          href="https://grad.uw.edu/mygrad-program/">
           Go to MyGrad
         </uw-link-button>
       </div>
@@ -48,7 +48,7 @@
       An error occurred and MyUW cannot load your committees request information
       right now. In the meantime, try the
       <a v-out="'MyGrad'"
-        href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
+        href="https://grad.uw.edu/mygrad-program/"
       >MyGrad Program</a> page.
     </template>
   </uw-card>
