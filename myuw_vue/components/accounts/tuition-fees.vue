@@ -10,14 +10,13 @@
     </template>
     <template #card-body>
       <div>
-        <div role="alert" class="alert alert-warning myuw-text-md">
+        <div v-if="hasIacData" role="alert" class="alert alert-warning myuw-text-md">
           <strong>Digital material fees are not included in tuition</strong>, they must be paid
           separately below under "UW Day One Access Fees."
         </div>
         <div
-          style="text-align: center"
           v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
-          class="alert alert-danger text-danger"
+          class="alert alert-danger text-danger" style="text-align: center"
           role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due today.
@@ -152,11 +151,11 @@
               >.
             </p>
           </div>
-          <div role="alert" class="alert alert-danger myuw-text-md">
+          <div v-if="dayOneAccessOverDue" role="alert" class="alert alert-danger myuw-text-md">
             <strong>The payment deadline has passed.</strong> To learn about your options, please
             email <a href="mailto:dayoneaccess@ubookstore.com">dayoneaccess@ubookstore.com</a>.
           </div>
-          <uw-card-status>
+          <uw-card-status v-else>
             <template #status-label>Amount Due</template>
             <template v-if="iacData.balance > 0" #status-value>
               <span class="text-danger">${{ iacData.balance.toFixed(2) }}</span>
@@ -178,7 +177,7 @@
           </uw-card-status>
         </li>
 
-        <li v-if="hasIacData && iacData.balance > 0 && Boolean(iacData.payment_due_day)">
+        <li v-if="hasIacData && iacData.balance > 0 && !dayOneAccessOverDue">
           <uw-card-status>
             <template #status-label>Payment Due</template>
             <template #status-value>
@@ -373,6 +372,10 @@ export default {
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
       return this.toFromNowDate(this.iacData.payment_due_day);
+    },
+    dayOneAccessOverDue() {
+      // MUWM-5351
+      return this.hasPasted(this.iacData.payment_due_day);
     },
     textbooksUrl() {
       // MUWM-5272

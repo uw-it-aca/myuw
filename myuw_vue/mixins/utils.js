@@ -131,6 +131,15 @@ export default {
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
+    hasPasted(dateStr, useCompDate = true) {
+      if (!dateStr || dateStr.length === 0) return false;
+      dayjs.tz.setDefault("America/Los_Angeles");
+      const dt = dayjs(dateStr)
+      if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
+        return dayjs(this.cardDisplayDates.comparison_date) > dt;
+      }
+      return dayjs() > dt;
+    },
     nowDatetime(useCompDate = true) {
       if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
         return dayjs(this.cardDisplayDates.comparison_date);

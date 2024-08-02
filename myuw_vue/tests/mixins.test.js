@@ -140,6 +140,16 @@ describe('mixins', () => {
       .toEqual('in 4 days');
   });
 
+  it('hasPasted', async () => {
+    expect(utils.methods.hasPasted()).toEqual(false);
+    expect(utils.methods.hasPasted('')).toEqual(false);
+    const now = utils.methods.dayjs();
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'd').toISOString(), false))
+      .toEqual(false);
+    expect(utils.methods.toFromNowDate(now.add(1, 'd').toISOString(), false))
+      .toEqual(true);
+  });
+
   it('formatPhoneNumberLink', () => {
     expect(utils.methods.formatPhoneNumberLink("+1 206 543-0000")).toEqual('+1-206-543-0000');
     expect(utils.methods.formatPhoneNumberLink("425-666-6666")).toEqual('+1-425-666-6666');
