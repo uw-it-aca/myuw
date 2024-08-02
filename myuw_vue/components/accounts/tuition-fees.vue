@@ -375,7 +375,7 @@ export default {
     },
     dayOneAccessOverDue() {
       // MUWM-5351
-      return this.hasPasted(this.iacData.payment_due_day);
+      return this.hasPassed(this.iacData.payment_due_day);
     },
     textbooksUrl() {
       // MUWM-5272

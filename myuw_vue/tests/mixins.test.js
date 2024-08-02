@@ -140,14 +140,14 @@ describe('mixins', () => {
       .toEqual('in 4 days');
   });
 
-  it('hasPasted', async () => {
-    expect(utils.methods.hasPasted()).toEqual(false);
-    expect(utils.methods.hasPasted('')).toEqual(false);
+  it('hasPassed', async () => {
+    expect(utils.methods.hasPassed()).toEqual(false);
+    expect(utils.methods.hasPassed('')).toEqual(false);
     const now = utils.methods.dayjs();
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'd').toISOString(), false))
-      .toEqual(false);
-    expect(utils.methods.toFromNowDate(now.add(1, 'd').toISOString(), false))
+    expect(utils.methods.hasPassed(now.subtract(1, 'd').toISOString(), false))
       .toEqual(true);
+    expect(utils.methods.hasPassed(now.add(1, 'd').toISOString(), false))
+      .toEqual(false);
   });
 
   it('formatPhoneNumberLink', () => {

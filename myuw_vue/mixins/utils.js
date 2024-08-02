@@ -131,17 +131,22 @@ export default {
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
-    hasPasted(dateStr, useCompDate = true) {
-      if (!dateStr || dateStr.length === 0) return false;
+
+    hasPassed(dateStr, useCompDate = true) {
+      if (!dateStr) return false;
+
       dayjs.tz.setDefault("America/Los_Angeles");
-      const dt = dayjs(dateStr)
-      if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
-        return dayjs(this.cardDisplayDates.comparison_date) > dt;
+      const dt = dayjs(dateStr);
+
+      if (useCompDate && this.cardDisplayDates?.comparison_date) {
+        return dayjs(this.cardDisplayDates.comparison_date).isAfter(dt);
       }
-      return dayjs() > dt;
+
+      return dayjs().isAfter(dt);
     },
+
     nowDatetime(useCompDate = true) {
-      if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
+      if (useCompDate && this.cardDisplayDates?.comparison_date) {
         return dayjs(this.cardDisplayDates.comparison_date);
       }
       // dayjs.tz.setDefault("America/Los_Angeles");
