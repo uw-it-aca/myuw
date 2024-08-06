@@ -120,6 +120,7 @@ describe('Tuition store', () => {
     expect(wrapper.findAllComponents(CardStatus).length).toBe(5);
     expect(wrapper.vm.hasIacData).toBeTruthy;
     expect(wrapper.vm.dayOneAccessDueDateFromNow).toBeTruthy;
+    expect(wrapper.vm.dayOneAccessOverDue).toBe(false);
   });
 
   it('Evaluate the computed properties of jpce', async () => {
