@@ -41,12 +41,14 @@
         </uw-card-property>
         <uw-card-property v-if="showResidency" title="Residency">
           {{residentDisplayString}}
+          <!--
           <span v-if="hasPendingResidencyChange"><br>
             Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
             {{ pendingResidencyChangeTerm.year }}:
             Pending change in residency status
           </span>
           <br>
+          -->
           <a v-out="'About residency statuses'"
             href="https://registrar.washington.edu/students/residency/"
             title="About residency statuses"
