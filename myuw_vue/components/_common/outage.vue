@@ -29,9 +29,6 @@
         <li v-if="isInstructor || isStudent" class="mb-1">
           <a href="https://canvas.uw.edu/">Canvas LMS</a>
         </li>
-        <li v-if="isInstructor || isStudent" class="mb-1">
-          <a href="https://catalyst.uw.edu/">Catalyst Web Tools</a>
-        </li>
         <li v-if="isStudent" class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
           >Student Registration</a>

@@ -40,16 +40,6 @@
         "restrict_to_campus":null
     },
     {
-	"id":21,
-        "title":"Catalyst Web Tools",
-        "url":"https://catalyst.uw.edu/",
-        "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
-        "on_for_pce":false,
-        "restrict_to_campus":null
-    },
-    {
 	"id":30,
         "title":"Degree Audit Reporting System (DARS)",
         "url":"https://sdb.admin.washington.edu/students/uwnetid/dars.asp",
