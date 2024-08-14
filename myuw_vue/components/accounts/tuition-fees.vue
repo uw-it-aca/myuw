@@ -9,10 +9,14 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Tuition &amp; Fees</h2>
     </template>
     <template #card-body>
-      <div style="text-align: center">
+      <div>
+        <div v-if="hasIacData" role="alert" class="alert alert-warning myuw-text-md">
+          <strong>Digital material fees are not included in tuition</strong>, they must be paid
+          separately below under "UW Day One Access Fees."
+        </div>
         <div
           v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
-          class="alert alert-danger text-danger"
+          class="alert alert-danger text-danger" style="text-align: center"
           role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due today.
@@ -41,14 +45,16 @@
                 <div class="flex-fill w-50">Student Fiscal Services</div>
                 <div class="flex-fill w-50 text-end">
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                  >Tuition Statement</a>
+                    >Tuition Statement</a
+                  >
                 </div>
               </div>
               <div v-if="tuiBalance != 0" class="text-end">
                 <uw-link-button
                   v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
-                >Make payment</uw-link-button>
+                  >Make payment</uw-link-button
+                >
               </div>
             </template>
           </uw-card-status>
@@ -64,7 +70,8 @@
                 <div class="flex-fill w-50 text-end">
                   No payment needed<br />
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                  >Tuition Statement</a>
+                    >Tuition Statement</a
+                  >
                 </div>
               </div>
             </template>
@@ -84,7 +91,8 @@
                   <uw-link-button
                     v-out="'Make Continuum College tuition payment'"
                     href="http://portal.continuum.uw.edu"
-                  >Make payment</uw-link-button>
+                    >Make payment</uw-link-button
+                  >
                 </div>
               </div>
             </template>
@@ -103,7 +111,8 @@
                     v-out="'Continuum College Account Statement'"
                     href="http://portal.continuum.uw.edu"
                     class="myuw-text-md"
-                  >Account Statement</a>
+                    >Account Statement</a
+                  >
                 </div>
               </div>
             </template>
@@ -129,17 +138,24 @@
           <div class="alert alert-warning myuw-text-md" role="alert">
             <p>
               One or more of your enrolled courses provides you access to
-              <a :href="textbooksUrl">required digital materials</a>,
-              in Canvas, on or before the first day of class.
+              <a :href="textbooksUrl">required digital materials</a>, in Canvas, on or before the
+              first day of class.
             </p>
             <p class="mb-0">
-              <strong>To maintain access to these materials at Day One Access pricing,
-              you must pay for these materials</strong>.
+              <strong
+                >To maintain access to these materials at Day One Access pricing, you must pay for
+                these materials</strong
+              >.
               <a href="https://www.ubookstore.com/day-one-access-faq"
-              >About the Day One Access Program</a>.
+                >About the Day One Access Program</a
+              >.
             </p>
           </div>
-          <uw-card-status>
+          <div v-if="dayOneAccessOverDue" role="alert" class="alert alert-danger myuw-text-md">
+            <strong>The payment deadline has passed.</strong> To learn about your options, please
+            email <a href="mailto:dayoneaccess@ubookstore.com">dayoneaccess@ubookstore.com</a>.
+          </div>
+          <uw-card-status v-else>
             <template #status-label>Amount Due</template>
             <template v-if="iacData.balance > 0" #status-value>
               <span class="text-danger">${{ iacData.balance.toFixed(2) }}</span>
@@ -153,14 +169,15 @@
                   <uw-link-button
                     v-out="'Make bookstore payment'"
                     :href="iacData.bookstore_checkout_url"
-                  >Make payment</uw-link-button>
+                    >Make payment</uw-link-button
+                  >
                 </div>
               </div>
             </template>
           </uw-card-status>
         </li>
 
-        <li v-if="hasIacData && iacData.balance > 0 && Boolean(iacData.payment_due_day)">
+        <li v-if="hasIacData && iacData.balance > 0 && !dayOneAccessOverDue">
           <uw-card-status>
             <template #status-label>Payment Due</template>
             <template #status-value>
@@ -180,7 +197,8 @@
           <a
             v-out="'Give Tuition Account Access'"
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
-          >Give access to your tuition account and financial aid information</a>
+            >Give access to your tuition account and financial aid information</a
+          >
           to parents or other third parties.
         </p>
         <p v-for="(msg, i) in pceTuitionDup" :key="i">
@@ -195,7 +213,8 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 class="myuw-text-md"
-              >Financial Aid Status</a>
+                >Financial Aid Status</a
+              >
             </li>
           </ul>
         </template>
@@ -209,11 +228,15 @@
         <a
           v-out="'Tuition Statement'"
           href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-        >Tuition Statement</a> page.
+          >Tuition Statement</a
+        >
+        page.
       </span>
       <span v-else>
         <a v-out="'Continuum College Tuition portal'" href="https://portal.continuum.uw.edu"
-        >PCE Tuition</a> portal.
+          >PCE Tuition</a
+        >
+        portal.
       </span>
     </template>
     <template #card-error-extra>
@@ -344,18 +367,20 @@ export default {
     },
     hasIacData() {
       // MUWM-5272
-      return (
-        (this.seaStud || this.botStud) && this.iacData &&
-         this.iacData.bookstore_checkout_url);
+      return (this.seaStud || this.botStud) && this.iacData && this.iacData.bookstore_checkout_url;
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
       return this.toFromNowDate(this.iacData.payment_due_day);
     },
+    dayOneAccessOverDue() {
+      // MUWM-5351
+      return this.hasPassed(this.iacData.payment_due_day);
+    },
     textbooksUrl() {
       // MUWM-5272
-      return "/textbooks/" + this.iacData.year + ',' +  this.iacData.quarter;
-    }
+      return '/textbooks/' + this.iacData.year + ',' + this.iacData.quarter;
+    },
   },
   created() {
     if (this.isStudent) {
