@@ -11,7 +11,8 @@
     <template #card-body>
       <div>
         <div v-if="hasIacData" role="alert" class="alert alert-warning myuw-text-md">
-          <strong>Digital material fees are not included in tuition</strong>, they must be paid
+          <font-awesome-icon :icon="faExclamationTriangle" />
+          <strong>Digital material fees are not included in tuition</strong>. They must be paid
           separately below under "UW Day One Access Fees."
         </div>
         <div
@@ -35,14 +36,14 @@
         <!-- If there is some or no tuition due -->
         <li v-if="tuiBalance >= 0">
           <uw-card-status>
-            <template #status-label>Amount Due</template>
+            <template #status-label>Student Fiscal Services (SFS)</template>
             <template v-if="tuiBalance > 0" #status-value>
               <span class="text-danger">${{ tuiBalance.toFixed(2) }}</span>
             </template>
             <template v-else #status-value>$ 0</template>
             <template #status-content>
-              <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">Student Fiscal Services</div>
+              <div class="d-flex mb-1 myuw-text-md">
+                <div class="flex-fill w-50">Amount Due</div>
                 <div class="flex-fill w-50 text-end">
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     >Tuition Statement</a
@@ -51,9 +52,11 @@
               </div>
               <div v-if="tuiBalance != 0" class="text-end">
                 <uw-link-button
-                  v-out="'Make tuition payment'"
+                  v-out="'Pay SFS tuition'"
+                  class=""
+                  style="width: 10rem;"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
-                  >Make payment</uw-link-button
+                  >Pay SFS tuition</uw-link-button
                 >
               </div>
             </template>
@@ -62,11 +65,11 @@
         <!-- If there is credit on account -->
         <li v-else-if="tuiBalance < 0">
           <uw-card-status>
-            <template #status-label>Account Credit</template>
+            <template #status-label>Student Fiscal Services (SFS)</template>
             <template #status-value> +${{ Math.abs(tuiBalance).toFixed(2) }} CR </template>
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">Student Fiscal Services</div>
+                <div class="flex-fill w-50">Account Credit</div>
                 <div class="flex-fill w-50 text-end">
                   No payment needed<br />
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
@@ -80,18 +83,19 @@
         <!-- If there is a PCE balance -->
         <li v-if="pceBalance > 0">
           <uw-card-status>
-            <template #status-label>Amount Due</template>
+            <template #status-label>PCE - Continuum College</template>
             <template #status-value>
               <span class="text-danger">${{ pceBalance.toFixed(2) }}</span>
             </template>
             <template #status-content>
-              <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">PCE-Continuum College</div>
-                <div class="flex-fill w-50 text-end">
+              <div class="d-flex mb-2 myuw-text-md row">
+                <div class="col">Amount Due</div>
+                <div class="text-end col">
                   <uw-link-button
-                    v-out="'Make Continuum College tuition payment'"
+                    v-out="'Pay PCE tuition'"
+                    style="width: 10rem;"
                     href="http://portal.continuum.uw.edu"
-                    >Make payment</uw-link-button
+                    >Pay PCE tuition</uw-link-button
                   >
                 </div>
               </div>
@@ -101,11 +105,11 @@
         <!-- If there is no PCE balance, either not pce or paid off -->
         <li v-else-if="isC2">
           <uw-card-status>
-            <template #status-label>Amount Due</template>
+            <template #status-label>PCE-Continuum College</template>
             <template #status-value>$ 0</template>
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">PCE-Continuum College</div>
+                <div class="flex-fill w-50">Amount Due</div>
                 <div class="flex-fill w-50 text-end">
                   <a
                     v-out="'Continuum College Account Statement'"
@@ -134,7 +138,7 @@
         </li>
 
         <li v-if="hasIacData">
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">UW Day One Access Fees</h3>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans mt-4">UW Day One Access Fees</h3>
           <div class="alert alert-warning myuw-text-md" role="alert">
             <p>
               One or more of your enrolled courses provides you access to
@@ -156,20 +160,21 @@
             email <a href="mailto:dayoneaccess@ubookstore.com">dayoneaccess@ubookstore.com</a>.
           </div>
           <uw-card-status v-else>
-            <template #status-label>Amount Due</template>
+            <template #status-label>University Book Store</template>
             <template v-if="iacData.balance > 0" #status-value>
               <span class="text-danger">${{ iacData.balance.toFixed(2) }}</span>
             </template>
             <template v-else #status-value>$ 0</template>
 
             <template v-if="iacData.balance > 0" #status-content>
-              <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">University Book Store</div>
-                <div class="flex-fill w-50 text-end">
+              <div class="d-flex mb-2 myuw-text-md row">
+                <div class="col">Amount Due</div>
+                <div class="text-end col">
                   <uw-link-button
-                    v-out="'Make bookstore payment'"
+                    v-out="'Pay book store tuition'"
+                    style="width: 10rem;"
                     :href="iacData.bookstore_checkout_url"
-                    >Make payment</uw-link-button
+                    >Pay book store fees</uw-link-button
                   >
                 </div>
               </div>
