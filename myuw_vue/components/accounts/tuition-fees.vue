@@ -42,9 +42,9 @@
             </template>
             <template v-else #status-value>$ 0</template>
             <template #status-content>
-              <div class="d-flex mb-1 myuw-text-md">
-                <div class="flex-fill w-50">Amount Due</div>
-                <div class="flex-fill w-50 text-end">
+              <div class="d-flex mb-1 myuw-text-md row">
+                <div class="col">Amount Due</div>
+                <div class="col text-end">
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     >Tuition Statement</a
                   >
@@ -68,9 +68,9 @@
             <template #status-label>Student Fiscal Services (SFS)</template>
             <template #status-value> +${{ Math.abs(tuiBalance).toFixed(2) }} CR </template>
             <template #status-content>
-              <div class="d-flex mb-2 myuw-text-md">
-                <div class="flex-fill w-50">Account Credit</div>
-                <div class="flex-fill w-50 text-end">
+              <div class="d-flex mb-2 myuw-text-md row">
+                <div class="col">Account Credit</div>
+                <div class="col text-end">
                   No payment needed<br />
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     >Tuition Statement</a
