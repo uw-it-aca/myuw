@@ -10,11 +10,11 @@
     </template>
     <template #card-body>
       <div>
-        <div v-if="hasIacData" role="alert" class="alert alert-warning myuw-text-md">
+        <!--<div v-if="hasIacData" role="alert" class="alert alert-warning myuw-text-md">
           <font-awesome-icon :icon="faExclamationTriangle" />
           <strong>Digital material fees are not included in tuition</strong>. They must be paid
           separately below under "UW Day One Access Fees."
-        </div>
+        </div>-->
         <div
           v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
           class="alert alert-danger text-danger" style="text-align: center"
