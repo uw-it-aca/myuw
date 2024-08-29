@@ -1,7 +1,7 @@
 <template>
   <div class="mb-3">
     <div class="d-flex align-items-center">
-      <h3 class="h6 m-0 myuw-font-encode-sans status-label flex-fill">
+      <h3 class="h6 m-0 myuw-font-encode-sans status-label flex-fill pe-3">
         <slot name="status-label" />
       </h3>
       <div class="flex-fill text-end">
