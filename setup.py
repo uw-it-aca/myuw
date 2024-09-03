@@ -59,7 +59,7 @@ setup(
         'UW-RestClients-Django-Utils~=2.3',
         'Django-Safe-EmailBackend~=1.2',
         'django_client_logger~=3.1',
-        'UW-HX-Toolkit~=2.7',
+        #'UW-HX-Toolkit~=2.7',
         'django-blti~=2.2',
         'lxml<5',
         'xmlsec==1.3.13',
