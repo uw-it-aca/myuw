@@ -1,2 +1,2 @@
 -e .
--e git+https://github.com/uw-it-aca/hx-toolkit@existing-changes
+-e git+https://github.com/uw-it-aca/hx-toolkit@f/existing-changes#egg=uw-hx-toolkit
