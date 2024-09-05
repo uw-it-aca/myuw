@@ -63,9 +63,8 @@
           :icon="faInfoCircle"
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
-        <div class="mb-1"><span class="myuw-font-encode-sans">Required Immunizations</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
-            completion status)</span>
+        <div class="mb-1"><span class="myuw-font-encode-sans">Reminder: Required Immunizations</span>
+          <span class="myuw-text-md d-block">(<em>Note:</em> This message is shown even if you have completed this step.)</span>
           <button
             v-uw-collapse.measlesimmunization
             type="button"
@@ -90,10 +89,9 @@
           :icon="faInfoCircle"
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
-        <div class="mb-1"><span class="myuw-font-encode-sans">Required Husky Prevention & Response
+        <div class="mb-1"><span class="myuw-font-encode-sans">Reminder: Required Husky Prevention & Response
           student course</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
-            completion status)</span>
+          <span class="myuw-text-md d-block">(<em>Note:</em> This message is shown even if you have completed this step.)</span>
           <button
             v-uw-collapse.titleix
             type="button"
