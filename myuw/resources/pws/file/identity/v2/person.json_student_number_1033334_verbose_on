@@ -1,0 +1,105 @@
+{
+    "Current": {
+        "Address": null,
+        "AlumAffiliationState": null,
+        "ChangedSinceDate": null,
+        "Department": null,
+        "DevelopmentID": null,
+        "DisplayName": null,
+        "EduPersonAffiliationAffiliate": false,
+        "EduPersonAffiliationAlum": false,
+        "EduPersonAffiliationEmployee": false,
+        "EduPersonAffiliationFaculty": false,
+        "EduPersonAffiliationMember": false,
+        "EduPersonAffiliationStaff": false,
+        "EduPersonAffiliationStudent": false,
+        "Email": null,
+        "EmployeeAffiliationState": null,
+        "EmployeeID": null,
+        "FirstName": null,
+        "HomeDepartment": null,
+        "Href": "/identity/v2/person.json?uwregid=&uwnetid=&employee_id=&student_number=1033334&student_system_key=&development_id=&last_name=&first_name=&display_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&changed_since_date=&phone_number=&mail_stop=&home_dept=&department=&address=&title=&email=&alumAffiliationState=&employeeAffiliationState=&studentAffiliationState=&verbose=on&page_size=10&page_start=1",
+        "LastName": null,
+        "MailStop": null,
+        "PageSize": "10",
+        "PageStart": "1",
+        "PhoneNumber": null,
+        "StudentAffiliationState": null,
+        "StudentNumber": "1033334",
+        "StudentSystemKey": null,
+        "Title": null,
+        "UWNetID": null,
+        "UWRegID": null,
+        "Verbose": true
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Persons": [
+        {
+            "DisplayName": "Jamesian McMiddle Average",
+            "EduPersonAffiliations": [
+                "alum",
+                "employee",
+                "member",
+                "staff",
+                "student"
+            ],
+            "IsTestEntity": true,
+            "PersonAffiliations": {
+                "AlumPersonAffiliation": {
+                    "AlumAffiliationState": "current",
+                    "DevelopmentID": "0000773877"
+                },
+                "EmployeePersonAffiliation": {
+                    "EmployeeAffiliationState": "current",
+                    "EmployeeID": "123456789",
+                    "EmployeeWhitePages": {
+                        "Addresses": [],
+                        "EmailAddresses": [],
+                        "Faxes": [],
+                        "Mobiles": [],
+                        "Name": "Average, Jamesian McMiddle",
+                        "Pagers": [],
+                        "Phones": [],
+                        "Positions": [],
+                        "PublishInDirectory": false,
+                        "TouchDials": [],
+                        "VoiceMails": []
+                    },
+                    "HomeDepartment": "C&C TEST BUDGET",
+                    "MailStop": null
+                },
+                "StudentPersonAffiliation": {
+                    "StudentAffiliationState": "current",
+                    "StudentNumber": "1033334",
+                    "StudentSystemKey": "000083856",
+                    "StudentWhitePages": {
+                        "Class": null,
+                        "Departments": [],
+                        "Email": null,
+                        "Name": "Average, Jamesian McMiddle",
+                        "Phone": null,
+                        "PublishInDirectory": false
+                    }
+                }
+            },
+            "PreferredFirstName": "Jamesian",
+            "PreferredMiddleName": "McMiddle",
+            "PreferredSurname": "Average",
+            "PriorUWNetIDs": [],
+            "PriorUWRegIDs": [],
+            "Pronouns": "they/them/theirs",
+            "RegisteredFirstMiddleName": "JAMES AVERAGE",
+            "RegisteredName": "JAMES AVERAGE STUDENT",
+            "RegisteredSurname": "STUDENT",
+            "RepositoryTimeStamp": "6/6/2024 4:53:02 PM",
+            "UIDNumber": "35443",
+            "UWNetID": "javerage",
+            "UWRegID": "9136CCB8F66711D5BE060004AC494FFE",
+            "WhitepagesPublish": false
+        }
+    ],
+    "Previous": null,
+    "TotalCount": 1
+}
