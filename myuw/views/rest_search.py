@@ -123,6 +123,8 @@ def get_input_value(post_req, name):
 def get_regid(userid):
     if userid and len(userid) == 32:
         return userid
+    if userid and len(userid) == 7 and userid.isdigit():
+        return pws.get_person_by_student_number(userid).uwregid
     return pws.get_person_by_netid(userid).uwregid
 
 
