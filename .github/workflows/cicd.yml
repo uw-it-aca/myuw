@@ -231,11 +231,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v3
         with:
           name: python-coverage
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v3
         with:
           name: jest-cypress-coverage
 
