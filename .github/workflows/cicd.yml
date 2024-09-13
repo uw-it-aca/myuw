@@ -257,6 +257,17 @@ jobs:
         with:
           ruby-version: 3.3.5
 
+      - name: Cache Ruby gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Gems
+        run: bundle install --path vendor/bundle
+
       - name: Record Test Results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
