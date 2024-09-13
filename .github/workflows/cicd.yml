@@ -147,6 +147,9 @@ jobs:
           image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
+      - name: List all files in the workspace
+        run: ls -la
+
       - name: Upload Python Coverage
         uses: actions/upload-artifact@v3
         with:
