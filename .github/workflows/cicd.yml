@@ -154,7 +154,7 @@ jobs:
         run: ls -la
 
       - name: Upload Python Coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-coverage
           path: .coverage.*
@@ -226,7 +226,7 @@ jobs:
           apt install lcov -y
           lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: jest-cypress-coverage
           path: lcov.info
@@ -239,11 +239,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: python-coverage
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: jest-cypress-coverage
 
