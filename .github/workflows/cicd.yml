@@ -147,6 +147,9 @@ jobs:
           image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
+      - name: Change ownership of coverage files
+        run: sudo chown runner:docker .coverage.*
+
       - name: List all files in the workspace
         run: ls -la
 
@@ -155,6 +158,7 @@ jobs:
         with:
           name: python-coverage
           path: .coverage.*
+          include-hidden-files: true
 
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
