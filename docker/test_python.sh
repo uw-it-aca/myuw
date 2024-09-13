@@ -23,7 +23,8 @@ function catch {
 }
 
 run_test "FORCE_VIEW_TESTS=1 python -Wd -m coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
-
+pwd
+ls -al
 # put generaged coverage result where it will get processed
 cp .coverage.* /coverage
 # cp coverage/lcov.info /coverage
