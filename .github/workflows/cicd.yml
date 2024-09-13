@@ -140,9 +140,6 @@ jobs:
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
-      - name: List coverage files
-        run: ls -la coverage
-
       - name: Push Image to Repository
         if: github.event_name == 'push'
         uses: uw-it-aca/actions/gcr-push@main
