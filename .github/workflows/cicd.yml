@@ -140,6 +140,9 @@ jobs:
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
+      - name: List coverage files
+        run: ls -la coverage
+
       - name: Push Image to Repository
         if: github.event_name == 'push'
         uses: uw-it-aca/actions/gcr-push@main
@@ -147,7 +150,11 @@ jobs:
           image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
-      - uses: actions/upload-artifact@v3
+      - name: List all files in the workspace
+        run: ls -la
+
+      - name: Upload Python Coverage
+        uses: actions/upload-artifact@v3
         with:
           name: python-coverage
           path: .coverage.*
@@ -244,10 +251,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Set up Ruby 2.6
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 3.x
 
       - name: Record Test Results
         env:
