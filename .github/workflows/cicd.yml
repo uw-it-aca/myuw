@@ -266,7 +266,9 @@ jobs:
             ${{ runner.os }}-gems-
 
       - name: Install Gems
-        run: bundle install --path ~/.ruby-cache
+        run: |
+          bundle config set path ~/.ruby-cache
+          bundle install
 
       - name: Record Test Results
         env:
