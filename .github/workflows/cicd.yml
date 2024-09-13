@@ -260,13 +260,13 @@ jobs:
       - name: Cache Ruby gems
         uses: actions/cache@v4
         with:
-          path: vendor/bundle
+          path: ~/.ruby-cache
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
 
       - name: Install Gems
-        run: bundle install --path vendor/bundle
+        run: bundle install --path ~/.ruby-cache
 
       - name: Record Test Results
         env:
