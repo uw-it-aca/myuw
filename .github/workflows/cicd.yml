@@ -252,24 +252,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Cache Ruby gems
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.ruby-cache
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.5
-
-      - name: Install Gems
-        working-directory: path/to/your/directory
-        run: |
-          bundle config set path /tmp/.ruby-cache
-          bundle install
 
       - name: Record Test Results
         env:
