@@ -63,9 +63,11 @@
           :icon="faInfoCircle"
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
-        <div class="mb-1"><span class="myuw-font-encode-sans">Required Immunizations</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
-            completion status)</span>
+        <div class="mb-1">
+          <span class="myuw-font-encode-sans">Reminder: Required Immunizations</span>
+          <span class="myuw-text-md d-block">
+            (<em>Note:</em> This message is shown even if you have completed this step.)
+          </span>
           <button
             v-uw-collapse.measlesimmunization
             type="button"
@@ -77,8 +79,8 @@
                 through vaccinations or lab evidence of positive titer. Students ages 16
                 through 21 also are required to show proof of a Meningitis ACWY vaccination
                 taken at 16 years old or older.
-                <a href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
-                Learn more about immunization requirements and deadlines.</a>
+                <a href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/"
+                >Learn more about immunization requirements and deadlines.</a>
               </p>
             </div>
           </uw-collapse>
@@ -90,10 +92,13 @@
           :icon="faInfoCircle"
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
-        <div class="mb-1"><span class="myuw-font-encode-sans">Required Husky Prevention & Response
-          student course</span>
-          <span class="text-muted fw-light fst-italic myuw-text-sm px-2">(Item does not reflect
-            completion status)</span>
+        <div class="mb-1">
+          <span class="myuw-font-encode-sans">
+            Reminder: Required Husky Prevention &amp; Respons student course
+          </span>
+          <span class="myuw-text-md d-block">
+            (<em>Note:</em> This message is shown even if you have completed this step.)
+          </span>
           <button
             v-uw-collapse.titleix
             type="button"
@@ -101,13 +106,15 @@
           >Learn about and complete the one-time online course</button>
           <uw-collapse id="titleix">
             <div class="p-3 mt-2 bg-light text-dark notice-body">
-              <p><a href="https://www.washington.edu/titleix/title-ix-student-course/">Husky
-                Prevention & Response</a> is a one-time online course on preventing and
+              <p>
+                <a href="https://www.washington.edu/titleix/title-ix-student-course/"
+                >Husky Prevention &amp; Response</a> is a one-time online course on preventing and
                 responding to sex-based and gender-based violence and harassment. Complete the
-                  course — which takes 60–90 minutes — before the start of your first quarter.
-                  If you do not complete the course, you may be unable to register for future
-                  quarters. <a href="https://tixstudent.uw.edu">Access and complete the
-                  course – tixstudent.uw.edu.</a>
+                course — which takes 60–90 minutes — before the start of your first quarter.
+                If you do not complete the course, you may be unable to register for future
+                quarters.
+                <a href="https://tixstudent.uw.edu"
+                >Access and complete the course – tixstudent.uw.edu.</a>
               </p>
             </div>
           </uw-collapse>
