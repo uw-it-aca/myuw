@@ -19,6 +19,8 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(
             get_regid("javerage"), "9136CCB8F66711D5BE060004AC494FFE")
         self.assertEqual(
+            get_regid("1033334"), "9136CCB8F66711D5BE060004AC494FFE")
+        self.assertEqual(
             get_regid("9136CCB8F66711D5BE060004AC494FFE"),
             "9136CCB8F66711D5BE060004AC494FFE")
 
