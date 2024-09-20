@@ -52,7 +52,7 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
         (sws_label, inst_regid) = sws_section_label(enrollment.sis_course_id)
         logger.info({
             'sws_label': sws_label,
-            'sis_course_id': sis_course_id,
+            'sis_course_id': enrollment.sis_course_id,
             'canvas_course_url': enrollment.course_url})
         if sws_label is not None and sws_label in section_labels:
             sis_course_id = enrollment.sis_course_id
