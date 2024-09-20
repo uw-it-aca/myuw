@@ -15,6 +15,7 @@ from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_comparison_datetime
 
 logger = logging.getLogger(__name__)
+canvas_enrollments = Enrollments()
 
 
 def canvas_prefetch():
@@ -26,9 +27,11 @@ def canvas_prefetch():
 def get_canvas_active_enrollments(request):
     if not hasattr(request, "canvas_act_enrollments"):
         request.canvas_act_enrollments = (
-            Enrollments().get_enrollments_for_regid(
+            canvas_enrollments.get_enrollments_for_regid(
                 get_regid_of_current_user(request),
                 {'type': ['StudentEnrollment'], 'state': ['active']}))
+        logger.info({'canvas_act_enrollments':
+                     request.canvas_act_enrollments[0].json_data()})
     return request.canvas_act_enrollments
 
 
@@ -108,7 +111,7 @@ def get_viewable_course_sections(canvas_course_id, canvas_user_id):
     limit_privileges_to_course_section = False
     limit_sections = {}
 
-    enrollments = Enrollments().get_enrollments_for_course(
+    enrollments = canvas_enrollments.get_enrollments_for_course(
         canvas_course_id, params={'user_id': canvas_user_id})
 
     for enrollment in enrollments:
