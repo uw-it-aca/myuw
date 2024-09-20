@@ -49,14 +49,18 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
 
     canvas_links = {}  # sis_course_id: canvas course_url
     for enrollment in canvas_active_enrollments:
-        (sws_label, inst_regid) = sws_section_label(enrollment.sis_course_id)
-        logger.info({
-            'sws_label': sws_label,
-            'sis_course_id': enrollment.sis_course_id,
-            'canvas_course_url': enrollment.course_url})
-        if sws_label is not None and sws_label in section_labels:
+        (course_label, inst_regid) = sws_section_label(
+            enrollment.sis_course_id)
+        (section_label, inst_regid) = sws_section_label(
+            enrollment.sws_section_id)
+        if (course_label and course_label in section_labels or
+                section_label and section_label in section_labels):
             sis_course_id = enrollment.sis_course_id
-            if sis_course_id not in canvas_links:
+            logger.info({
+                'course_label': course_label,
+                'section_label': section_label,
+                'canvas_course_url': enrollment.course_url})
+            if sis_course_id and sis_course_id not in canvas_links:
                 canvas_links[sis_course_id] = enrollment.course_url
 
     for section in schedule.sections:
