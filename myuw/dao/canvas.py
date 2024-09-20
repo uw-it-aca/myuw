@@ -50,6 +50,9 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
         (sws_label, inst_regid) = sws_section_label(enrollment.sis_course_id)
         if sws_label is not None and sws_label in section_labels:
             sis_course_id = enrollment.sis_course_id
+            logger.info({
+                'sis_course_id': sis_course_id,
+                'canvas_course_url': enrollment.course_url})
             if sis_course_id not in canvas_links:
                 canvas_links[sis_course_id] = enrollment.course_url
 
