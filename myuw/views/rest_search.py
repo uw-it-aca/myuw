@@ -33,6 +33,11 @@ class MyUWRestSearchView(RestSearchView):
                     "uw/json_utf8_202007.ubs",
                     get_input_value(request.POST, "quarter"),
                     get_input_value(request.POST, "sln1"))
+        elif service == "canvas":
+            regid = get_regid(get_input_value(request.POST, "uwregid"))
+            url = (
+                f"api/v1/users/sis_user_id:{regid}/enrollments?" +
+                f"state[]=active&type[]=StudentEnrollment")
         elif service == "grad":
             params = self.format_params(request)
             params['id'] = get_student_system_key(params['id'])

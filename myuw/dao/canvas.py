@@ -31,7 +31,7 @@ def get_canvas_active_enrollments(request):
             canvas_enrollments.get_enrollments_for_regid(
                 get_regid_of_current_user(request),
                 {'type': ['StudentEnrollment'], 'state': ['active']}))
-        logger.info({'canvas_act_enrollments':
+        logger.debug({'canvas_act_enrollments':
                      request.canvas_act_enrollments[0].json_data()})
     return request.canvas_act_enrollments
 
@@ -67,8 +67,7 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             log_err(
                 logger, f"canvas_section_sis_id of {section_label} {ex}",
                 traceback, request)
-
-    logger.info({'canvas_sis_ids': canvas_sis_ids})
+    logger.debug({'canvas_sis_ids': canvas_sis_ids})
 
     canvas_links = {}  # primary_section_label: canvas course_url
     for enrollment in canvas_active_enrollments:
@@ -81,7 +80,8 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
                 psection_label = canvas_sis_ids[enrollment.sis_course_id]
         if psection_label and psection_label not in canvas_links:
             canvas_links[psection_label] = enrollment.course_url
-    logger.info({'canvas_links': canvas_links})
+    logger.debug({'canvas_links': canvas_links})
+
     for section in schedule.sections:
         section.canvas_course_url = canvas_links.get(
             section.primary_section_label())
