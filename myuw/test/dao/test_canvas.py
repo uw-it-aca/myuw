@@ -29,9 +29,9 @@ class TestCanvas(TestCase):
 
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
-        section1 = schedule.sections[0]
+        section1 = schedule.sections[2]
         self.assertEqual(section1.section_label(),
-                         "2013,spring,PHYS,121/A")
+                         "2013,spring,PHYS,121/AQ")
         self.assertEqual(section1.canvas_course_url,
                          'https://test.edu/courses/249652')
 
@@ -67,8 +67,9 @@ class TestCanvas(TestCase):
         self.assertIsNotNone(req.canvas_act_enrollments)
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
-        with self.assertRaises(AttributeError):
-            a = schedule.sections[0].canvas_course_url
+        self.assertEqual(
+            schedule.sections[0].canvas_course_url,
+            'https://test.edu/courses/249652')
 
     def test_get_canvas_course_url(self):
         person = Person()
