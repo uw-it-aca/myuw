@@ -47,6 +47,13 @@
         </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'canvas' 'active_enrollments.html' as canvas_url %}
+        {% if canvas_url %}
+        <li>
+            <a href="{{ canvas_url }}">Canvas Student</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'hfs' 'accounts.html' as hfs_url %}
         {% if hfs_url %}
             <li>
