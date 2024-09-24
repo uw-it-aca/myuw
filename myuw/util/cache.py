@@ -24,12 +24,12 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         if "myplan" == service:
             return FIVE_SECONDS
 
-        if "sws" == service:
-            if status and status != 200:
-                if status >= 500:
-                    return FIFTEEN_MINS
-                return SEVEN_MINS
+        if status and status != 200:
+            if status >= 500:
+                return FIFTEEN_MINS
+            return SEVEN_MINS
 
+        if "sws" == service:
             if re.match(r'^/student/v5/term/', url):
                 return ONE_DAY
 
@@ -52,31 +52,15 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
         if "gws" == service:
-            if status and status != 200:
-                if status >= 500:
-                    return FIFTEEN_MINS
-                return SEVEN_MINS
             return HALF_HOUR
 
         if "pws" == service:
-            if status and status != 200:
-                if status >= 500:
-                    return FIFTEEN_MINS
-                return SEVEN_MINS
             return ONE_HOUR
 
         if "uwnetid" == service:
-            if status and status != 200:
-                if status >= 500:
-                    return FIFTEEN_MINS
-                return SEVEN_MINS
             return FOUR_HOURS
 
         if "mailman" == service:
-            if status and status != 200:
-                if status >= 500:
-                    return FIFTEEN_MINS
-                return SEVEN_MINS
             return ONE_DAY
 
         return FOUR_HOURS
