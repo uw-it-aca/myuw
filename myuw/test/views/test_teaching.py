@@ -18,6 +18,19 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_teaching_page",
+                        kwargs={}), "myuw urls not configured")
+    def test_current_quarter_access(self):
+        url = reverse("myuw_teaching_page", kwargs={})
+        self.set_user('bill')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['display_term']["year"], '2013')
+        self.assertEqual(
+            response.context['display_term']["quarter"], 'spring')
+
+    @skipIf(missing_url("myuw_teaching_page",
                         kwargs={'year': '2013', 'quarter': 'summer'}),
             "myuw urls not configured")
     def test_future_quarter_access(self):
