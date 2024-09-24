@@ -6,7 +6,7 @@
     <h3 class="visually-hidden">
       Grid of Student Photos
     </h3>
-    <div class="sort-buttons myuw-text-md">
+    <!--div class="sort-buttons myuw-text-md">
       <span class="py-1" style=""><strong>Sort by:</strong></span><button
         v-for="field in fields"
         :key="field.key"
@@ -16,7 +16,7 @@
       >
         {{ field.label }}
       </button>
-    </div>
+    </div -->
     <ol class="list-unstyled d-flex flex-wrap">
       <li v-for="(reg, i) in sortedRegistrations"
           :id="`student-photo-${reg.regid}`"
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      sortKey: 'surname',
+      sortKey: 'first_name',
       fields: [
         { key: 'first_name', label: 'first name', sortable: true },
         { key: 'surname', label: 'last name', sortable: true }
