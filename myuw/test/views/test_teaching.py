@@ -26,7 +26,7 @@ class TestTeachingMethods(MyuwApiTest):
             url,
             HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['display_term']["year"], '2013')
+        self.assertEqual(response.context['display_term']["year"], 2013)
         self.assertEqual(
             response.context['display_term']["quarter"], 'spring')
 
