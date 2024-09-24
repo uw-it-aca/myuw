@@ -293,6 +293,8 @@ urlpatterns += [
             student_photo_list, name="myuw_photo_list"),
     re_path(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+)$',
             teaching, name="myuw_teaching_page"),
+    # MUWM-5363
+    re_path(r'^teaching/current$', teaching, name="myuw_teaching_page"),
     re_path(r'^teaching/?$', teaching, name="myuw_teaching_page"),
     re_path(r'^notices/?', notices, name="myuw_notices_page"),
     re_path(r'^thrive_messages/?', thrive_messages,
