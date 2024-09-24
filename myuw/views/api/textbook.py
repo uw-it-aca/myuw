@@ -13,7 +13,7 @@ from myuw.dao.textbook import (
     get_textbook_by_schedule, get_order_url_by_schedule,
     get_iacourse_status)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call, log_exception
+from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, data_not_found
@@ -51,10 +51,9 @@ class Textbook(ProtectedAPI):
                     by_sln["order_url"] = order_url
             except DataFailureException as ex:
                 if ex.status != 400 and ex.status != 404:
-                    log_exception(
-                        logger,
+                    logger.error(
                         f"Get {term.year}, {term.quarter} " +
-                        f"textbooks for student", ex)
+                        f"textbooks for student {ex}")
                     raise
 
             # instructed sections (not split summer terms)
@@ -64,10 +63,9 @@ class Textbook(ProtectedAPI):
                 by_sln.update(_get_schedule_textbooks(schedule))
             except DataFailureException as ex:
                 if ex.status != 404:
-                    log_exception(
-                        logger,
+                    logger.error(
                         f"Get {term.year}, {term.quarter} " +
-                        f"textbooks for instructor", ex)
+                        f"textbooks for instructor: {ex}")
                     raise
 
             # MUWM-5311: uwt no longer has books
@@ -75,9 +73,9 @@ class Textbook(ProtectedAPI):
             #    log_data_not_found_response(logger, timer)
             #    return data_not_found()
 
-            log_api_call(timer, request, "Get Textbook for {}.{}".format(
-                term.year, term.quarter))
-            return self.json_response(by_sln)
+            log_api_call(
+                timer, request,
+                f"Get Textbook for {term.year}.{term.quarter}")
 
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -134,10 +132,9 @@ class IACDigitalItems(ProtectedAPI):
                 return data_not_found()
             return self.json_response(ret_obj.json_data())
         except Exception as ex:
-            log_exception(
-                logger,
+            logger.error(
                 f"Get {term.year}, {term.quarter} " +
-                f"DaoOneAccess materials", ex)
+                f"DaoOneAccess materials {ex}")
             return handle_exception(logger, timer, traceback)
         finally:
             log_api_call(
@@ -161,10 +158,9 @@ class IACDigitalItemsCur(ProtectedAPI):
                 return data_not_found()
             return self.json_response(ret_obj.json_data())
         except Exception as ex:
-            log_exception(
-                logger,
+            logger.error(
                 f"Get {term.year}, {term.quarter} " +
-                f"DaoOneAccess materials", ex)
+                f"DaoOneAccess materials {ex}")
             return handle_exception(logger, timer, traceback)
         finally:
             log_api_call(timer, request, "IACDigitalItemsCur")
