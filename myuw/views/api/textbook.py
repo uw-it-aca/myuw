@@ -51,9 +51,6 @@ class Textbook(ProtectedAPI):
                     by_sln["order_url"] = order_url
             except DataFailureException as ex:
                 if ex.status != 400 and ex.status != 404:
-                    logger.error(
-                        f"Get {term.year}, {term.quarter} " +
-                        f"textbooks for student {ex}")
                     raise
 
             # instructed sections (not split summer terms)
@@ -63,9 +60,6 @@ class Textbook(ProtectedAPI):
                 by_sln.update(_get_schedule_textbooks(schedule))
             except DataFailureException as ex:
                 if ex.status != 404:
-                    logger.error(
-                        f"Get {term.year}, {term.quarter} " +
-                        f"textbooks for instructor: {ex}")
                     raise
 
             # MUWM-5311: uwt no longer has books
@@ -73,9 +67,9 @@ class Textbook(ProtectedAPI):
             #    log_data_not_found_response(logger, timer)
             #    return data_not_found()
 
-            log_api_call(
-                timer, request,
-                f"Get Textbook for {term.year}.{term.quarter}")
+            log_api_call(timer, request, "Get Textbook for {}.{}".format(
+                term.year, term.quarter))
+            return self.json_response(by_sln)
 
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -125,16 +119,13 @@ class IACDigitalItems(ProtectedAPI):
         timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
-        term = get_specific_term(year, quarter)
         try:
-            ret_obj = get_iacourse_status(request, term)
+            ret_obj = get_iacourse_status(
+                request, get_specific_term(year, quarter))
             if ret_obj is None:
                 return data_not_found()
             return self.json_response(ret_obj.json_data())
-        except Exception as ex:
-            logger.error(
-                f"Get {term.year}, {term.quarter} " +
-                f"DaoOneAccess materials {ex}")
+        except Exception:
             return handle_exception(logger, timer, traceback)
         finally:
             log_api_call(
@@ -151,16 +142,13 @@ class IACDigitalItemsCur(ProtectedAPI):
         GET returns 200 with textbooks for the given quarter
         """
         timer = Timer()
-        term = get_payment_quarter(request)
         try:
-            ret_obj = get_iacourse_status(request, term)
+            ret_obj = get_iacourse_status(
+                request, get_payment_quarter(request))
             if ret_obj is None:
                 return data_not_found()
             return self.json_response(ret_obj.json_data())
-        except Exception as ex:
-            logger.error(
-                f"Get {term.year}, {term.quarter} " +
-                f"DaoOneAccess materials {ex}")
+        except Exception:
             return handle_exception(logger, timer, traceback)
         finally:
             log_api_call(timer, request, "IACDigitalItemsCur")
