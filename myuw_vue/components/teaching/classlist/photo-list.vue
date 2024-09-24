@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      sortKey: 'first_name',
+      sortKey: 'surname',
       fields: [
         { key: 'first_name', label: 'first name', sortable: true },
         { key: 'surname', label: 'last name', sortable: true }
