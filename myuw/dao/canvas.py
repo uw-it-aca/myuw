@@ -9,12 +9,14 @@ from uw_canvas.enrollments import Enrollments
 from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
-from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
+from uw_sws.exceptions import (
+    InvalidCanvasIndependentStudyCourse, InvalidCanvasSection)
 from myuw.dao import log_err
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_comparison_datetime
 
 logger = logging.getLogger(__name__)
+canvas_enrollments = Enrollments()
 
 
 def canvas_prefetch():
@@ -26,9 +28,11 @@ def canvas_prefetch():
 def get_canvas_active_enrollments(request):
     if not hasattr(request, "canvas_act_enrollments"):
         request.canvas_act_enrollments = (
-            Enrollments().get_enrollments_for_regid(
+            canvas_enrollments.get_enrollments_for_regid(
                 get_regid_of_current_user(request),
                 {'type': ['StudentEnrollment'], 'state': ['active']}))
+        logger.debug({'canvas_act_enrollments':
+                     request.canvas_act_enrollments[0].json_data()})
     return request.canvas_act_enrollments
 
 
@@ -37,34 +41,50 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
     """
     Set canvas_course_url in schedule.sections
     """
-    now = get_comparison_datetime(request)
-    section_labels = set()
+    canvas_sis_ids = {}
+    # MUWM-5362 {canvas_section_sis_id: primary_section_label}
     for section in schedule.sections:
-        section_labels.add(section.section_label())
+        section_label = section.section_label()
 
-    canvas_links = {}  # sis_course_id: canvas course_url
-    for enrollment in canvas_active_enrollments:
-        (sws_label, inst_regid) = sws_section_label(enrollment.sis_course_id)
-        if sws_label is not None and sws_label in section_labels:
-            sis_course_id = enrollment.sis_course_id
-            if sis_course_id not in canvas_links:
-                canvas_links[sis_course_id] = enrollment.course_url
-
-    for section in schedule.sections:
         try:
-            section.canvas_course_url = canvas_links.get(
-                section.canvas_course_sis_id())
+            cid = section.canvas_course_sis_id()
+            if cid not in canvas_sis_ids:
+                canvas_sis_ids[cid] = section.primary_section_label()
         except InvalidCanvasIndependentStudyCourse as ex:
             # REQ3132940 known SWS issue:
             # prior quarter's registration data has
             # no independent study instructor.
             # If independent_study_instructor being None occurs
             # in current or future quarter, likely is a data error.
-            if not section.term.is_past(now):
-                log_err(logger,
-                        "{} {}".format(section.section_label(), ex),
-                        traceback, request)
-            pass
+            log_err(
+                logger, f"canvas_course_sis_id of {section_label} {ex}",
+                traceback, request)
+            continue
+        try:
+            cid = section.canvas_section_sis_id()
+            canvas_sis_ids[cid] = section.primary_section_label()
+        except Exception as ex:
+            log_err(
+                logger, f"canvas_section_sis_id of {section_label} {ex}",
+                traceback, request)
+    logger.debug({'canvas_sis_ids': canvas_sis_ids})
+
+    canvas_links = {}  # primary_section_label: canvas course_url
+    for enrollment in canvas_active_enrollments:
+        psection_label = None
+        # MUWM-5362 check both course and section
+        if enrollment.sis_section_id in canvas_sis_ids:
+            psection_label = canvas_sis_ids[enrollment.sis_section_id]
+        else:
+            if enrollment.sis_course_id in canvas_sis_ids:
+                psection_label = canvas_sis_ids[enrollment.sis_course_id]
+        if psection_label and psection_label not in canvas_links:
+            canvas_links[psection_label] = enrollment.course_url
+    logger.debug({'canvas_links': canvas_links})
+
+    for section in schedule.sections:
+        section.canvas_course_url = canvas_links.get(
+            section.primary_section_label())
 
 
 def get_canvas_course_from_section(sws_section):
@@ -91,12 +111,11 @@ def get_canvas_course_url(sws_section, person):
 def sws_section_label(sis_id):
     canvas_section = CanvasSection(sis_section_id=sis_id)
     sws_label = canvas_section.sws_section_id()
-    if sws_label is None:
-        canvas_course = CanvasCourse(sis_course_id=sis_id)
-        sws_label = canvas_course.sws_course_id()
-        return (sws_label, canvas_course.sws_instructor_regid())
-    else:
+    if sws_label is not None:
         return (sws_label, canvas_section.sws_instructor_regid())
+    canvas_course = CanvasCourse(sis_course_id=sis_id)
+    sws_label = canvas_course.sws_course_id()
+    return (sws_label, canvas_course.sws_instructor_regid())
 
 
 def get_viewable_course_sections(canvas_course_id, canvas_user_id):
@@ -108,7 +127,7 @@ def get_viewable_course_sections(canvas_course_id, canvas_user_id):
     limit_privileges_to_course_section = False
     limit_sections = {}
 
-    enrollments = Enrollments().get_enrollments_for_course(
+    enrollments = canvas_enrollments.get_enrollments_for_course(
         canvas_course_id, params={'user_id': canvas_user_id})
 
     for enrollment in enrollments:

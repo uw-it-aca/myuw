@@ -34,7 +34,7 @@
             <li>
               <strong>Opting out:</strong>
               You can choose to opt-out of any item until the deadline.
-              Opt out on your course Canvas <em>Digital Materials</em> page.
+              Opt out on your course Canvas <em>Day One Access Materials</em> page.
             </li>
             <li>
               <strong>Payment status:</strong>

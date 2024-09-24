@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls,
     get_canvas_course_from_section,
@@ -29,9 +30,9 @@ class TestCanvas(TestCase):
 
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
-        section1 = schedule.sections[0]
+        section1 = schedule.sections[2]
         self.assertEqual(section1.section_label(),
-                         "2013,spring,PHYS,121/A")
+                         "2013,spring,PHYS,121/AQ")
         self.assertEqual(section1.canvas_course_url,
                          'https://test.edu/courses/249652')
 
@@ -60,6 +61,12 @@ class TestCanvas(TestCase):
         self.assertEqual(section.section_label(), "2013,spring,TRAIN,101/A")
         self.assertIsNotNone(section.canvas_course_url)
 
+        req = get_request_with_user("jbothell")
+        schedule = get_schedule_by_term(req, get_current_quarter(req))
+        self.assertRaises(
+            DataFailureException, get_canvas_active_enrollments, req)
+
+    def test_InvalidCanvasIndependentStudyCourse_case(self):
         req = get_request_with_user("jeos",
                                     get_request_with_date("2013-10-01"))
         schedule = get_schedule_by_term(req, get_current_quarter(req))
@@ -67,8 +74,8 @@ class TestCanvas(TestCase):
         self.assertIsNotNone(req.canvas_act_enrollments)
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
-        with self.assertRaises(AttributeError):
-            a = schedule.sections[0].canvas_course_url
+        # InvalidCanvasIndependentStudyCourse
+        self.assertIsNone(schedule.sections[0].canvas_course_url)
 
     def test_get_canvas_course_url(self):
         person = Person()
