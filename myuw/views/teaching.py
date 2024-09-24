@@ -1,6 +1,7 @@
 # Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from myuw.dao.term import get_current_quarter
 from myuw.views.page import page
 from myuw.util.page_view import page_view
 
@@ -9,7 +10,12 @@ from myuw.util.page_view import page_view
 def teaching(request,
              year=None,
              quarter=None):
-    context = get_context(year, quarter)
+    if year is None and quarter is None:
+        # MUWM-5363
+        term = get_current_quarter(request)
+        context = get_context(term.year, term.quarter)
+    else:
+        context = get_context(year, quarter)
     return page(request, 'teaching.html', context=context)
 
 
