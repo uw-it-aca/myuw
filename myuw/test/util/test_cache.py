@@ -101,6 +101,11 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "mailman", "/uw_list_manager/api/v1/list/", status=500), 60 * 15)
 
+        self.assertEqual(cache.get_cache_expiration_time(
+            "uwidp", "/idp/profile/oidc/keyset", status=404), 60 * 7)
+        self.assertEqual(cache.get_cache_expiration_time(
+            "uwidp", "/idp/profile/oidc/keyset", status=500), 60 * 15)
+
 
 class TestMyUWCache(TestCase):
 
