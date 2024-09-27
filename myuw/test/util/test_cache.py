@@ -54,21 +54,21 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/section", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "sws", "/student/v5/section", status=503), 60 * 15)
+            "sws", "/student/v5/section", status=503), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "gws", "/group_sws/v3", status=500), 60 * 15)
+            "gws", "/group_sws/v3", status=500), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person"), ONE_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "pws", "/identity/v2/person", status=503), 60 * 15)
+            "pws", "/identity/v2/person", status=503), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
@@ -77,7 +77,7 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid", status=409), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid", status=500), 60 * 15)
+            "uwnetid", "/nws/v1/uwnetid", status=500), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
             "grad", "/services/students"), FOUR_HOURS)
@@ -99,12 +99,12 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "mailman", "/uw_list_manager/api/v1/list/", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "mailman", "/uw_list_manager/api/v1/list/", status=500), 60 * 15)
+            "mailman", "/uw_list_manager/api/v1/list/", status=500), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
             "uwidp", "/idp/profile/oidc/keyset", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
-            "uwidp", "/idp/profile/oidc/keyset", status=500), 60 * 15)
+            "uwidp", "/idp/profile/oidc/keyset", status=500), 60 * 7)
 
 
 class TestMyUWCache(TestCase):
