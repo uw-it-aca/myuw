@@ -25,8 +25,6 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return FIVE_SECONDS
 
         if status and status != 200:
-            if status >= 500:
-                return FIFTEEN_MINS
             return SEVEN_MINS
 
         if "sws" == service:
