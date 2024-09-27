@@ -21,7 +21,17 @@ describe('Summaries', () => {
         hfs,
         library,
       },
-      state: {},
+      state: {
+        user: {
+          affiliations: {
+            alumni: false,
+            student: false,
+            past_stud: false,
+            all_employee: false,
+            past_employee: false,
+          }
+        }
+      },
     });
   });
 
