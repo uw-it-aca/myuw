@@ -47,7 +47,7 @@
         </span>
       </a>
     </div>
-    <div v-if="isHfsReady || isLibraryReady" class="col-md-10">
+    <div v-if="loadData && (isHfsReady || isLibraryReady)" class="col-md-10">
       <div class="row float-md-end" style="padding: 0 10px;">
         <a
           v-if="hfs && hfs.student_husky_card"
@@ -162,6 +162,11 @@ export default {
   computed: {
     ...mapState({
       termData: (state) => state.termData,
+      alum: (state) => state.user.affiliations.alumni,
+      student: (state) => state.user.affiliations.student,
+      employee: (state) => state.user.affiliations.all_employee,
+      past_stud: (state) => state.user.affiliations.past_stud,
+      past_emp: (state) => state.user.affiliations.past_employee,
     }),
     ...mapState('hfs', {
       hfs: (state) => state.value,
@@ -177,10 +182,15 @@ export default {
       isLibraryReady: 'isReady',
       isLibraryErrored: 'isErrored',
     }),
+    loadData() {
+      return (this.alum || this.student || this.past_stud || this.employee || this.past_emp);
+    },
   },
   mounted() {
-    this.fetchHfs();
-    this.fetchLibrary();
+    if (this.loadData) {
+      this.fetchHfs();
+      this.fetchLibrary();
+    }
   },
   methods: {
     ...mapActions('hfs', {
