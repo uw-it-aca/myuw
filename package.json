@@ -27,7 +27,7 @@
     "sass-loader": "12.1.0",
     "terser-webpack-plugin": "5.3.10",
     "url-loader": "4.1.1",
-    "vue": "2.7.16",
+    "vue": "3.0.0",
     "vue-gtag": "1.16.1",
     "vue-loader": "15.11.1",
     "vue-mq": "1.0.1",
