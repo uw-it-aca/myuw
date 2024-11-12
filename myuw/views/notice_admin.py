@@ -152,6 +152,7 @@ def _save_notice(request, context, notice_id=None):
 
     try:
         content = _get_html(request.POST.get('content'))
+        logger.debug({'content': content})
     except Exception as ex:
         content = None
         log_info(logger, {'err': ex, 'msg': 'Invalid content'})
