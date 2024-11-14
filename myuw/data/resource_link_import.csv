@@ -24,7 +24,7 @@ Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.as
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,no
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
-Academics,Registration,all,https://www.degreereg.uw.edu/user-guide,How to Register for PCE Courses,,,,,,,no
+Academics,Registration,all,https://www.degreereg.uw.edu/how-to-register,How to Register for PCE Courses,,,,,,,no
 Academics,Rights and Responsibilities,all,http://www.washington.edu/students/reg/ferpa.html,Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information,,,,,,,no
 Academics,Rights and Responsibilities,all,,,http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,https://www.uwb.edu/student-affairs/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/student-conduct/student-code,Student Conduct Code,no
 Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
@@ -105,7 +105,7 @@ Events and Activities,Stay Connected,all,,,http://www.youtube.com/user/uwhuskies
 Events and Activities,Stay Connected,all,,,https://www.instagram.com/uofwa/,UW Instagram,https://instagram.com/UW_BOTHELL,UW Bothell Instagram,https://www.instagram.com/uwtacoma,UW Tacoma Instagram,no
 Events and Activities,Stay Connected,all,,,https://twitter.com/UW,UW Twitter,https://twitter.com/UWBothell,UW Bothell Twitter,https://twitter.com/uwtacoma,UW Tacoma Twitter,no
 Events and Activities,Stay Connected,all,,,https://www.linkedin.com/company/university-of-washington,UW LinkedIn,https://www.linkedin.com/groups/University-Washington-Bothell-92858?home=&gid=92858,UW Bothell LinkedIn,https://www.linkedin.com/school/university-of-washington-tacoma/,UW Tacoma LinkedIn,no
-Events and Activities,Student Clubs and Organizations,all,,,https://hub.washington.edu/sao/rso-directory/,Registered Student Organizations (RSO) Directory,https://uwb.presence.io/organizations,Club Directory,https://dawgden.tacoma.uw.edu/Organizations,UW Tacoma Clubs and Organizations,no
+Events and Activities,Student Clubs and Organizations,all,,,https://hub.washington.edu/sao/rso-directory/,Registered Student Organizations (RSO) Directory,https://www.uwb.edu/sea/clubs,Club Directory,https://dawgden.tacoma.uw.edu/Organizations,UW Tacoma Clubs and Organizations,no
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
 "Health, Wellness, & Support",Advocacy and Support,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
