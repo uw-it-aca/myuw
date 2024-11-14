@@ -24,6 +24,11 @@ CONTENT = (
     "Operations-Updates\">Husky Card Operations</a> page for " +
     "more information.\n</p>")
 
+CONTENT1_MUWM5374 = (
+    "with <a href=“http://www.margaretomara.com/”>a</a>")
+CONTENT2_MUWM5374 = (
+    "with <a href=‘http://www.margaretomara.com/’>a</a>")
+
 
 class TestNoticeAdmin(MyuwApiTest):
 
@@ -47,6 +52,12 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertIsNone(_get_html(None))
         self.assertEqual(_get_html(''), "")
         self.assertIsNotNone(_get_html(CONTENT))
+        self.assertEqual(
+            _get_html(CONTENT1_MUWM5374),
+            "with <a href=\"http://www.margaretomara.com/\">a</a>")
+        self.assertEqual(
+            _get_html(CONTENT2_MUWM5374),
+            "with <a href=\"http://www.margaretomara.com/\">a</a>")
 
     @patch.object(MyuwNotice, 'save')
     def test_sql_error_save(self, mock):
