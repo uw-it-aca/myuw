@@ -25,7 +25,7 @@
       </div>
       <div v-if="isC2" class="text-center myuw-text-md">
         <a
-          href="https://www.degreereg.uw.edu/user-guide">
+          href="https://www.degreereg.uw.edu/how-to-register">
           How to register for PCE courses
         </a>
       </div>
@@ -72,7 +72,7 @@
           </a>
         </li>
         <li v-if="isC2 && !registrationIsOpen" class="mb-1">
-          <a href="https://www.degreereg.uw.edu/user-guide">
+          <a href="https://www.degreereg.uw.edu/how-to-register">
             How to register for PCE courses
           </a>
         </li>
