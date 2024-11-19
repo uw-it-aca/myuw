@@ -36,7 +36,9 @@ class Notices(ProtectedAPI):
 
             log_api_call(timer, request, "Get Notices")
             return self.json_response(notice_json)
-        except Exception:
+        except Exception as ex:
+            if isinstance(ex, DataFailureException) and ex.status == 404:
+                return []
             return handle_exception(logger, timer, traceback)
 
     def put(self, request, *args, **kwargs):
