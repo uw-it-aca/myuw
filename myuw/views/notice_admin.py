@@ -152,6 +152,7 @@ def _save_notice(request, context, notice_id=None):
 
     try:
         content = _get_html(request.POST.get('content'))
+        logger.debug({'content': content})
     except Exception as ex:
         content = None
         log_info(logger, {'err': ex, 'msg': 'Invalid content'})
@@ -273,7 +274,9 @@ def _get_integer(str):
 def _get_html(value):
     try:
         content = nh3.clean(
-            value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS,
+            remove_curly_quotes(value),   # MUWM-5374
+            tags=ALLOWED_TAGS,
+            attributes=ALLOWED_ATTS,
             link_rel=None)
         return unicodedata.normalize("NFKD", content).strip()
         # MUWM-5092
@@ -281,3 +284,11 @@ def _get_html(value):
         log_info(
             logger, {'err': ex, 'msg': "_get_html({})".format(value)})
         return None
+
+
+def remove_curly_quotes(html_string):
+    # MUWM-5374: Replace curly double and single quotes with straight quotes
+    if html_string:
+        html_string = html_string.replace("“", '"').replace("”", '"')
+        html_string = html_string.replace("‘", "'").replace("’", "'")
+    return html_string
