@@ -38,7 +38,7 @@ class Notices(ProtectedAPI):
             return self.json_response(notice_json)
         except Exception as ex:
             if isinstance(ex, DataFailureException) and ex.status == 404:
-                return []
+                return self.json_response([])   # MUWM-5375
             return handle_exception(logger, timer, traceback)
 
     def put(self, request, *args, **kwargs):
