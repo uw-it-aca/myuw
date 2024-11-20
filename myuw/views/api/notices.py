@@ -4,8 +4,6 @@
 import json
 import logging
 import traceback
-from datetime import datetime
-from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.notice import (
     get_notices_for_current_user, mark_notices_read_for_current_user)
@@ -36,9 +34,7 @@ class Notices(ProtectedAPI):
 
             log_api_call(timer, request, "Get Notices")
             return self.json_response(notice_json)
-        except Exception as ex:
-            if isinstance(ex, DataFailureException) and ex.status == 404:
-                return self.json_response([])   # MUWM-5375
+        except Exception:
             return handle_exception(logger, timer, traceback)
 
     def put(self, request, *args, **kwargs):

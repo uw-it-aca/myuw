@@ -8,6 +8,7 @@ the SWS notice resource.
 
 import logging
 from django.db import IntegrityError
+from restclients_core.exceptions import DataFailureException
 from uw_sws.notice import get_notices_by_regid
 from myuw.models import UserNotices
 from myuw.dao.category_notice import get_category_notices
@@ -29,12 +30,14 @@ def _get_notices_by_regid(user_regid):
     myuw specific categories
     """
 
-    if user_regid is None:
-        return None
-
-    notices = get_notices_by_regid(user_regid)
+    try:
+        notices = get_notices_by_regid(user_regid)
+    except DataFailureException as ex:
+        if ex.status == 404:   # MUWM-5375
+            return []
+        raise
     if notices is None:
-        return None
+        return []
     return categorize_notices(notices)
 
 
