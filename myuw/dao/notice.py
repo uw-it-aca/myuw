@@ -29,7 +29,6 @@ def _get_notices_by_regid(user_regid):
     returns SWS notices for a given regid with
     myuw specific categories
     """
-
     try:
         notices = get_notices_by_regid(user_regid)
     except DataFailureException as ex:
