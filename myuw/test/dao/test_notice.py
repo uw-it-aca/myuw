@@ -15,12 +15,14 @@ class TestNotices(TestCase):
         get_request()
 
     def test_get_notice_by_regid(self):
-        # no regid
-        notices = _get_notices_by_regid(None)
-        self.assertEqual(notices, None)
-
         # bad regid
         notices = _get_notices_by_regid("99999678901234567890123456789012")
+        self.assertEqual(len(notices), 0)
+
+        # MUWM-5375
+        regid = "99999999999999999999999999999999"
+        notices = _get_notices_by_regid(regid)
+        self.assertIsNotNone(notices)
         self.assertEqual(len(notices), 0)
 
         regid = "9136CCB8F66711D5BE060004AC494FFE"
