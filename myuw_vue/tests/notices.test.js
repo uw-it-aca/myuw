@@ -11,6 +11,7 @@ import CollapsedItem from '../components/_common/collapsed-notice.vue';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
+import noNotices from './mock_data/notice/none.json';
 
 const localVue = createLocalVue(Vuex);
 
@@ -161,9 +162,21 @@ describe('Notice Card', () => {
     axios.get.mockResolvedValue({ data: javgNotices, status: 200 });
     const wrapper = mount(NoticeCard, { store, localVue });
     await new Promise(setImmediate);
+    expect(wrapper.vm.showCard).toBeTruthy;
     expect(wrapper.vm.notices.length).toBe(9);
+    expect(wrapper.vm.noDisplayableNotices).toBe(false);
     expect(wrapper.findComponent(NoticeCard).exists()).toBe(true);
     expect(wrapper.findComponent(NoticeList).exists()).toBe(true);
     expect(wrapper.findComponent(CollapsedItem).exists()).toBe(true);
+  });
+
+  it('Check display do not have any notices', async () => {
+    axios.get.mockResolvedValue({ data: noNotices, status: 200 });
+    const wrapper = mount(NoticeCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.showCard).toBeTruthy;
+    expect(wrapper.vm.isErrored).toBe(false);
+    expect(wrapper.vm.noDisplayableNotices).toBe(true);
+    expect(wrapper.findComponent(NoticeCard).exists()).toBe(true);
   });
 });

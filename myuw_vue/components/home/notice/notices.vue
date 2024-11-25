@@ -1,10 +1,10 @@
 <template>
-  <uw-card v-if="!isReady || hasAnyNotices" :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Notices</h2>
     </template>
-    <template v-if="!isErrored" #card-body>
-      <p v-if="notices.length == 0">You do not have any notices at this time.</p>
+    <template v-if="isReady" #card-body>
+      <p v-if="noDisplayableNotices">You do not have any notices at this time.</p>
       <uw-notice-list v-else :notices="sortNotices(notices)" />
     </template>
     <template v-else #card-body>
@@ -36,8 +36,8 @@ export default {
     ...mapState('notices', {
       allNotices: (state) => state.value,
     }),
-    hasAnyNotices() {
-      return this.allNotices.length > 0;
+    showCard() {
+      return this.isFetching || this.isReady && this.allNotices;
     },
     notices() {
       return this.allNotices.filter(
@@ -48,7 +48,11 @@ export default {
           notice.location_tags.includes('notice_banner')
       );
     },
+    noDisplayableNotices() {
+      return this.notices && this.notices.length == 0;
+    },
     ...mapGetters('notices', {
+      isFetching: 'isFetching',
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
