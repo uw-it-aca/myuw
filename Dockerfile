@@ -1,5 +1,5 @@
 ARG DJANGO_CONTAINER_VERSION=2.0.5
-FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} as app-prewebpack-container
+FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} AS app-prewebpack-container
 
 USER root
 RUN apt-get update && apt-get install -y postgresql-client libpq-dev
@@ -29,12 +29,12 @@ ARG VUE_DEVTOOLS
 ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
 RUN npx webpack --mode=production
 
-FROM app-prewebpack-container as app-container
+FROM app-prewebpack-container AS app-container
 
 COPY --chown=acait:acait --from=node-bundler /app/myuw/static /app/myuw/static
 RUN /app/bin/python manage.py collectstatic --noinput
 
-FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-test-container:${DJANGO_CONTAINER_VERSION} as app-test-container
+FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-test-container:${DJANGO_CONTAINER_VERSION} AS app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/
