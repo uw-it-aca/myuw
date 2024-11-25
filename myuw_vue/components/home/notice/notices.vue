@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="!isReady || hasAnyNotices" :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Notices</h2>
     </template>
@@ -36,8 +36,8 @@ export default {
     ...mapState('notices', {
       allNotices: (state) => state.value,
     }),
-    hasAnyNotices() {
-      return this.allNotices.length > 0;
+    showCard() {
+      return this.isFetching || this.isReady && this.allNotices;
     },
     notices() {
       return this.allNotices.filter(
@@ -52,6 +52,7 @@ export default {
       return this.notices && this.notices.length == 0;
     },
     ...mapGetters('notices', {
+      isFetching: 'isFetching',
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
