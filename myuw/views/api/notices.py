@@ -4,8 +4,6 @@
 import json
 import logging
 import traceback
-from datetime import datetime
-from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.notice import (
     get_notices_for_current_user, mark_notices_read_for_current_user)
