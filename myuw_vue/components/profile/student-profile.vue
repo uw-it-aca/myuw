@@ -39,13 +39,13 @@
             </template>
           </ul>
         </uw-card-property>
-        <!--
+
         <uw-card-property v-if="showResidency" title="Residency">
-          {{residentDisplayString}}
-          <span v-if="hasPendingResidencyChange"><br>
-            Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
-            {{ pendingResidencyChangeTerm.year }}:
-            Pending change in residency status
+          {{ titleCaseWord(residentDesc) }}
+          <span v-if="hasPendingResidency"><br>
+            Beginning {{ titleCaseWord(pendingResidency.term.quarter) }}
+            {{ pendingResidency.term.year }}:
+            {{ titleCaseWord(pendingResidency.pending_resident_desc) }}
           </span>
           <br>
           <a v-out="'About residency statuses'"
@@ -53,7 +53,7 @@
             title="About residency statuses"
           >About residency statuses</a>
         </uw-card-property>
-        -->
+
       </uw-card-property-group>
 
       <uw-card-property-group>
@@ -160,7 +160,8 @@ export default {
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
       residentCode: (state) => state.value.resident_code,
-      hasPendingResidencyChange: (state) => state.value.has_pending_residency_change,
+      residentDesc: (state) => state.value.resident_desc,
+      pendingResidency: (state) => state.value.pending_residency_change,
       pendingResidencyChangeTerm: (state) => state.value.pending_residency_change_term,
     }),
     ...mapGetters('profile', {
@@ -177,17 +178,21 @@ export default {
     showError() {
       return false;
     },
+    existResidency () {
+      return this.residentCode && this.residentCode !== "0"
+    },
     showResidency() {
       const undergradLevels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
       let isUG = false;
       if(this.classStanding !== undefined){
         isUG = undergradLevels.includes(this.classStanding.toUpperCase());
       }
-      return this.residentCode !== null
-        && this.residentCode !== "0"
-        && isUG;
+      return isUG && this.existResidency;
     },
-    residentDisplayString(){
+    hasPendingResidency () {
+      return this.pendingResidency && this.pendingResidency.pending_resident_desc.length > 0;
+    },
+    residency(){
       const resValues = ["1", "2"],
         nonresValues = ["3", "4", "6"];
       if(resValues.includes(this.residentCode)){
