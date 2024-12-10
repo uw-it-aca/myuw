@@ -92,8 +92,8 @@ def get_academic_info(request, response):
     for term in terms:
         if term in enrollments:
             enrollment = enrollments[term]
-            if (enrollment.has_pending_resident_change and
-                    enrollment.pending_resident_code != "0"):
+            if enrollment.has_pending_resident_change:
+                # MUWM-5352
                 response["pending_residency_change"] = {
                     "pending_resident_code": enrollment.pending_resident_code,
                     "pending_resident_desc": enrollment.pending_resident_desc,
