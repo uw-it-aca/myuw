@@ -30,14 +30,24 @@
         "zip_code": "98005-1234"
     },
     "permanent_phone": "4255556789",
-    "visa_type": null,
+    "resident_desc": "NONRESIDENT IMMIGRANT",
+    "resident_code": "4",
     "veteran_code": "0",
+    "visa_type": null,
     "degree_status": {
         "degrees": null,
         "error_code": 404
     },
     "campus": "Seattle",
     "class_level": "SENIOR",
+    "pending_residency_change": {
+        "pending_resident_code": "2",
+        "pending_resident_desc": "RESIDENT IMMIGRANT",
+        "term": {
+            "year": 2013,
+            "quarter": "summer"
+        }
+    },
     "term_majors": [
         {
             "quarter": "spring",
@@ -45,8 +55,8 @@
             "majors": [
                 {
                     "degree_abbr": "ACMS",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
                     "campus": "Seattle",
@@ -64,8 +74,8 @@
             "majors": [
                 {
                     "degree_abbr": "ACMS",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
                     "campus": "Seattle",
@@ -75,8 +85,8 @@
                 },
                 {
                     "degree_abbr": "BSKT WVE",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                     "campus": "Seattle",
@@ -94,8 +104,8 @@
             "majors": [
                 {
                     "degree_abbr": "ACMS",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
                     "campus": "Seattle",
@@ -105,8 +115,8 @@
                 },
                 {
                     "degree_abbr": "BSKT WVE",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                     "campus": "Seattle",
@@ -124,8 +134,8 @@
             "majors": [
                 {
                     "degree_abbr": "ACMS",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
                     "campus": "Seattle",
@@ -135,8 +145,8 @@
                 },
                 {
                     "degree_abbr": "BSKT WVE",
-                    "college_abbr": "",
-                    "college_full_name": "",
+                    "college_abbr": null,
+                    "college_full_name": null,
                     "degree_level": 1,
                     "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                     "campus": "Seattle",

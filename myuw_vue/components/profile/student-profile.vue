@@ -190,7 +190,10 @@ export default {
       return isUG && this.existResidency;
     },
     hasPendingResidency () {
-      return this.pendingResidency && this.pendingResidency.pending_resident_desc.length > 0;
+      // MUWM-5352
+      return (
+        this.existResidency && this.pendingResidency &&
+        this.pendingResidency.pending_resident_code !== "0");
     },
     residency(){
       const resValues = ["1", "2"],
