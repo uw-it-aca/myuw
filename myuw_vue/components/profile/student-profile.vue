@@ -162,7 +162,6 @@ export default {
       residentCode: (state) => state.value.resident_code,
       residentDesc: (state) => state.value.resident_desc,
       pendingResidency: (state) => state.value.pending_residency_change,
-      pendingResidencyChangeTerm: (state) => state.value.pending_residency_change_term,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
