@@ -89,17 +89,8 @@ def get_academic_info(request, response):
             response['class_level'] = enrollment.class_level.upper()
             break
 
-    for term in terms:
-        if term in enrollments:
-            enrollment = enrollments[term]
-            if enrollment.has_pending_resident_change:
-                # MUWM-5352
-                response["pending_residency_change"] = {
-                    "pending_resident_code": enrollment.pending_resident_code,
-                    "pending_resident_desc": enrollment.pending_resident_desc,
-                    "term": {"year": term.year, "quarter": term.quarter}
-                }
-                break
+    response["pending_residency_change"] = _get_residency_change(
+        terms, enrollments, response['resident_code'])
 
     response['term_majors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "majors")
@@ -177,3 +168,18 @@ def _has_only_dropped_degrees(first, second):
     has_dropped = len(set(first) - set(second)) > 0
     has_added = len(set(second) - set(first)) > 0
     return has_dropped and not has_added
+
+def _get_residency_change(terms, enrollments, current_resident_code):
+    # MUWM-5352
+    for term in terms:
+        if term in enrollments:
+            enrollment = enrollments[term]
+            if (enrollment.pending_resident_code != current_resident_code and
+                    enrollment.pending_resident_code != "0"):
+                # MUWM-5352
+                return {
+                    "pending_resident_code": enrollment.pending_resident_code,
+                    "pending_resident_desc": enrollment.pending_resident_desc,
+                    "term": {"year": term.year, "quarter": term.quarter}
+                }
+    return None
