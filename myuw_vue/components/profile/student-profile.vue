@@ -214,8 +214,8 @@ export default {
       return location;
     },
     formatResidency(rcode, rdesc) {
-      // MUWM-5352
       if(rcode === "5") return rdesc;
+      if(rcode === "6") return "NONRESIDENT";
       return rdesc.replace(/\s.*/, '');
     }
   },
