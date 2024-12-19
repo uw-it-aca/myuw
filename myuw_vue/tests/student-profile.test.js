@@ -43,7 +43,7 @@ describe('Student Profile Card', () => {
     expect(wrapper.vm.existResidency).toBeTruthy();
     expect(wrapper.vm.showResidency).toBeTruthy();
     expect(wrapper.vm.formatResidency(
-      wrapper.vm.residentCode, wrapper.vm.residentDesc).toBe("NONRESIDENT"));
+      wrapper.vm.residentCode, wrapper.vm.residentDesc)).toBe("NONRESIDENT");
     expect(wrapper.vm.hasPendingResidency).toBeTruthy();
     expect(wrapper.vm.pendingResidency.term.quarter).toBe("autumn");
     expect(wrapper.vm.termMajors).toBeTruthy();
