@@ -14,7 +14,7 @@
         <uw-card-property :v-if="studentNumber" title="Student Number">
           {{ studentNumber }}
         </uw-card-property>
-        <uw-card-property :v-if="classStanding" title="Class Standing">
+        <uw-card-property :v-if="existClassLevel" title="Class Standing">
           {{ classStanding }}
         </uw-card-property>
         <uw-card-property title="Major">
@@ -41,11 +41,13 @@
         </uw-card-property>
 
         <uw-card-property v-if="showResidency" title="Residency">
-          {{ titleCaseWord(residentDesc) }}
+          {{ titleCaseWord(formatResidency(residentCode, residentDesc)) }}
           <span v-if="hasPendingResidency"><br>
             Beginning {{ titleCaseWord(pendingResidency.term.quarter) }}
             {{ pendingResidency.term.year }}:
-            {{ titleCaseWord(pendingResidency.pending_resident_desc) }}
+            {{ titleCaseWord(formatResidency(
+              pendingResidency.pending_resident_code,
+              pendingResidency.pending_resident_desc)) }}
           </span>
           <br>
           <a v-out="'About residency statuses'"
@@ -177,34 +179,20 @@ export default {
     showError() {
       return false;
     },
+    // MUWM-5352
+    existClassLevel () {
+      return this.classStanding !== undefined && this.classStanding.length > 0;
+    },
     existResidency () {
       return this.residentCode && this.residentCode !== "0"
     },
     showResidency() {
-      const undergradLevels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
-      let isUG = false;
-      if(this.classStanding !== undefined){
-        isUG = undergradLevels.includes(this.classStanding.toUpperCase());
-      }
-      return isUG && this.existResidency;
+      return this.existClassLevel  && this.existResidency;
     },
     hasPendingResidency () {
-      // MUWM-5352
       return (
         this.existResidency && this.pendingResidency &&
         this.pendingResidency.pending_resident_code !== "0");
-    },
-    residency(){
-      const resValues = ["1", "2"],
-        nonresValues = ["3", "4", "6"];
-      if(resValues.includes(this.residentCode)){
-        return "Resident";
-      }
-      if(this.residentCode === "5") return "Non-resident student visa";
-      if(nonresValues.includes(this.residentCode)){
-        return "Non-resident";
-      }
-      return "";
     }
   },
   created() {
@@ -225,6 +213,11 @@ export default {
       }
       return location;
     },
+    formatResidency(rcode, rdesc) {
+      // MUWM-5352
+      if(rcode === "5") return rdesc;
+      return rdesc.replace(/\s.*/, '');
+    }
   },
 };
 </script>
