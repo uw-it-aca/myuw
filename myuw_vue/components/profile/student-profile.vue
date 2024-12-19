@@ -14,7 +14,7 @@
         <uw-card-property :v-if="studentNumber" title="Student Number">
           {{ studentNumber }}
         </uw-card-property>
-        <uw-card-property :v-if="classStanding" title="Class Standing">
+        <uw-card-property :v-if="existClassLevel" title="Class Standing">
           {{ classStanding }}
         </uw-card-property>
         <uw-card-property title="Major">
@@ -39,13 +39,15 @@
             </template>
           </ul>
         </uw-card-property>
-        <!--
+
         <uw-card-property v-if="showResidency" title="Residency">
-          {{residentDisplayString}}
-          <span v-if="hasPendingResidencyChange"><br>
-            Beginning {{ titleCaseWord(pendingResidencyChangeTerm.quarter) }}
-            {{ pendingResidencyChangeTerm.year }}:
-            Pending change in residency status
+          {{ titleCaseWord(formatResidency(residentCode, residentDesc)) }}
+          <span v-if="hasPendingResidency"><br>
+            Beginning {{ titleCaseWord(pendingResidency.term.quarter) }}
+            {{ pendingResidency.term.year }}:
+            {{ titleCaseWord(formatResidency(
+              pendingResidency.pending_resident_code,
+              pendingResidency.pending_resident_desc)) }}
           </span>
           <br>
           <a v-out="'About residency statuses'"
@@ -53,7 +55,7 @@
             title="About residency statuses"
           >About residency statuses</a>
         </uw-card-property>
-        -->
+
       </uw-card-property-group>
 
       <uw-card-property-group>
@@ -160,8 +162,8 @@ export default {
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
       residentCode: (state) => state.value.resident_code,
-      hasPendingResidencyChange: (state) => state.value.has_pending_residency_change,
-      pendingResidencyChangeTerm: (state) => state.value.pending_residency_change_term,
+      residentDesc: (state) => state.value.resident_desc,
+      pendingResidency: (state) => state.value.pending_residency_change,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -177,27 +179,20 @@ export default {
     showError() {
       return false;
     },
-    showResidency() {
-      const undergradLevels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
-      let isUG = false;
-      if(this.classStanding !== undefined){
-        isUG = undergradLevels.includes(this.classStanding.toUpperCase());
-      }
-      return this.residentCode !== null
-        && this.residentCode !== "0"
-        && isUG;
+    // MUWM-5352
+    existClassLevel () {
+      return this.classStanding !== undefined && this.classStanding.length > 0;
     },
-    residentDisplayString(){
-      const resValues = ["1", "2"],
-        nonresValues = ["3", "4", "6"];
-      if(resValues.includes(this.residentCode)){
-        return "Resident";
-      }
-      if(this.residentCode === "5") return "Non-resident student visa";
-      if(nonresValues.includes(this.residentCode)){
-        return "Non-resident";
-      }
-      return "";
+    existResidency () {
+      return this.residentCode && this.residentCode !== "0"
+    },
+    showResidency() {
+      return this.existClassLevel  && this.existResidency;
+    },
+    hasPendingResidency () {
+      return (
+        this.existResidency && this.pendingResidency &&
+        this.pendingResidency.pending_resident_code !== "0");
     }
   },
   created() {
@@ -218,6 +213,11 @@ export default {
       }
       return location;
     },
+    formatResidency(rcode, rdesc) {
+      if(rcode === "5") return rdesc;
+      if(rcode === "6") return "NONRESIDENT";
+      return rdesc.replace(/\s.*/, '');
+    }
   },
 };
 </script>
