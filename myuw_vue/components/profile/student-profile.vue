@@ -41,7 +41,12 @@
         </uw-card-property>
 
         <uw-card-property v-if="showResidency" title="Residency">
-          {{ titleCaseWord(formatResidency(residentCode, residentDesc)) }}
+          <span v-if="existResidency">
+            {{ titleCaseWord(formatResidency(residentCode, residentDesc)) }}
+          </span>
+          <span v-else class="text-muted">
+            Unknown
+          </span>
           <span v-if="hasPendingResidency"><br>
             Beginning {{ titleCaseWord(pendingResidency.term.quarter) }}
             {{ pendingResidency.term.year }}:
@@ -192,7 +197,7 @@ export default {
         this.pendingResidency.pending_resident_code !== "0");
     },
     showResidency() {
-      return this.existClassLevel  && (this.existResidency || hasPendingResidency);
+      return this.existClassLevel  && (this.existResidency || this.hasPendingResidency);
     }
   },
   created() {
