@@ -152,9 +152,9 @@
             "PendingClassChange": false,
             "PendingHonorsChange": false,
             "PendingMajorChange": false,
-            "PendingResidentChange": false,
-            "PendingResidencyDescription": null,
-            "PendingResident": "0",
+            "PendingResidentChange": true,
+            "PendingResidencyDescription": "RESIDENT IMMIGRANT",
+            "PendingResident": "2",
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
@@ -208,8 +208,8 @@
             "PendingHonorsChange": false,
             "PendingMajorChange": false,
             "PendingResidentChange": false,
-            "PendingResidencyDescription": null,
-            "PendingResident": "0",
+            "PendingResidencyDescription": "RESIDENT IMMIGRANT",
+            "PendingResident": "2",
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
