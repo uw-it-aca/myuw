@@ -186,13 +186,13 @@ export default {
     existResidency () {
       return this.residentCode && this.residentCode !== "0"
     },
-    showResidency() {
-      return this.existClassLevel  && this.existResidency;
-    },
     hasPendingResidency () {
       return (
         this.existResidency && this.pendingResidency &&
         this.pendingResidency.pending_resident_code !== "0");
+    },
+    showResidency() {
+      return this.existClassLevel  && (this.existResidency || hasPendingResidency);
     }
   },
   created() {
