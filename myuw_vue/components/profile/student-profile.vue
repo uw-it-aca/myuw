@@ -42,17 +42,16 @@
 
         <uw-card-property v-if="showResidency" title="Residency">
           <span v-if="existResidency">
-            {{ titleCaseWord(formatResidency(residentCode, residentDesc)) }}
+            {{ currentResidencyD }}
           </span>
-          <span v-else class="text-muted">
-            Unknown
-          </span>
-          <span v-if="hasPendingResidency"><br>
-            Beginning {{ titleCaseWord(pendingResidency.term.quarter) }}
+          <span v-if="hasResidencyChange">
+            <span v-if="existResidency">
+              <br>
+            </span>
+            Beginning
+            {{ titleCaseWord(pendingResidency.term.quarter) }}
             {{ pendingResidency.term.year }}:
-            {{ titleCaseWord(formatResidency(
-              pendingResidency.pending_resident_code,
-              pendingResidency.pending_resident_desc)) }}
+            {{ pendingResidencyD }}
           </span>
           <br>
           <a v-out="'About residency statuses'"
@@ -191,12 +190,26 @@ export default {
     existResidency () {
       return this.residentCode && this.residentCode !== "0"
     },
+    currentResidencyD() {
+      return this.titleCaseWord(
+        this.formatResidency(this.residentCode, this.residentDesc));
+    },
     hasPendingResidency () {
       return (
         this.pendingResidency && this.pendingResidency.pending_resident_code !== "0");
     },
+    pendingResidencyD() {
+      return this.hasPendingResidency ?
+        this.titleCaseWord(this.formatResidency(
+          this.pendingResidency.pending_resident_code,
+          this.pendingResidency.pending_resident_desc)) :
+        "-";
+    },
+    hasResidencyChange() {
+      return this.hasPendingResidency && this.currentResidencyD != this.pendingResidencyD;
+    },
     showResidency() {
-      return this.existClassLevel  && (this.existResidency || this.hasPendingResidency);
+      return this.existClassLevel  && (this.existResidency || this.hasResidencyChange);
     }
   },
   created() {
