@@ -107,9 +107,9 @@ export default {
           { url: "https://teaching.washington.edu/inclusive-teaching/",
             title: "Inclusive Teaching" },
           { url: "https://teaching.washington.edu/engaging-students/",
-            title: "Engaging students" },
-          { url: "https://teaching.washington.edu/reflect-and-iterate/",
-            title: "Reflection and Assessment" },
+            title: "Engagement Strategies" },
+          { url: "https://teaching.washington.edu/course-design/flipped-hybrid-and-online-teaching/designing-and-refining-hybrid-and-online-courses/",
+            title: "Hybrid and Online Course Design" },
         ];
       }
     }),
