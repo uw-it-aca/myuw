@@ -98,16 +98,18 @@ export default {
         ];
       },
       helpLinks() {
+        // MUWM-5379
         return [
-          { url: "https://teaching.washington.edu/", title: "Center for Teaching and Learning" },
-          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-your-course-and-syllabus/",
+          { url: "https://teaching.washington.edu/",
+            title: "Center for Teaching and Learning" },
+          { url: "https://teaching.washington.edu/course-design/",
             title: "Course and Syllabus Design" },
-          { url: "https://teaching.washington.edu/topics/inclusive-teaching/inclusive-teaching-strategies/",
+          { url: "https://teaching.washington.edu/inclusive-teaching/",
             title: "Inclusive Teaching" },
-          { url: "https://teaching.washington.edu/topics/engaging-students-in-learning/",
-            title: "Engagement Strategies" },
-          { url: "https://teaching.washington.edu/topics/preparing-to-teach/designing-and-refining-hybrid-and-online-courses/",
-            title: "Hybrid and Online Course Design" },
+          { url: "https://teaching.washington.edu/engaging-students/",
+            title: "Engaging students" },
+          { url: "https://teaching.washington.edu/reflect-and-iterate/",
+            title: "Reflection and Assessment" },
         ];
       }
     }),
