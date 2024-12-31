@@ -56,17 +56,13 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             # no independent study instructor.
             # If independent_study_instructor being None occurs
             # in current or future quarter, likely is a data error.
-            log_err(
-                logger, f"canvas_course_sis_id of {section_label} {ex}",
-                traceback, request)
+            logger.warning(f"canvas_course_sis_id of {section_label} {ex}")
             continue
         try:
             cid = section.canvas_section_sis_id()
             canvas_sis_ids[cid] = section.primary_section_label()
         except Exception as ex:
-            log_err(
-                logger, f"canvas_section_sis_id of {section_label} {ex}",
-                traceback, request)
+            logger.warning(f"canvas_section_sis_id of {section_label} {ex}")
     logger.debug({'canvas_sis_ids': canvas_sis_ids})
 
     canvas_links = {}  # primary_section_label: canvas course_url
