@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
@@ -50,19 +50,22 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             cid = section.canvas_course_sis_id()
             if cid not in canvas_sis_ids:
                 canvas_sis_ids[cid] = section.primary_section_label()
-        except InvalidCanvasIndependentStudyCourse as ex:
+        except InvalidCanvasIndependentStudyCourse:
             # REQ3132940 known SWS issue:
             # prior quarter's registration data has
             # no independent study instructor.
             # If independent_study_instructor being None occurs
             # in current or future quarter, likely is a data error.
-            logger.warning(f"canvas_course_sis_id of {section_label} {ex}")
             continue
         try:
             cid = section.canvas_section_sis_id()
             canvas_sis_ids[cid] = section.primary_section_label()
+        except InvalidCanvasSection:
+            continue
         except Exception as ex:
-            logger.warning(f"canvas_section_sis_id of {section_label} {ex}")
+            log_err(
+                logger, f"Get canvas_section_sis_id({section_label}) {ex}",
+                traceback, request)
     logger.debug({'canvas_sis_ids': canvas_sis_ids})
 
     canvas_links = {}  # primary_section_label: canvas course_url
