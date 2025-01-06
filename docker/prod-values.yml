@@ -8,7 +8,7 @@ resources:
     cpu: 1.0
     memory: 1.0Gi
   requests:
-    cpu: 256m
+    cpu: 384m
     memory: 0.6Gi
 affinity:
    podsSpanNodes: true
@@ -238,7 +238,7 @@ environmentVariables:
   - name: CANVAS_TIMEOUT
     value: "60"
   - name: CANVAS_POOL_SIZE
-    value: "15"
+    value: "25"
 
   - name: CODA_ENV
     value: PROD
@@ -266,14 +266,14 @@ environmentVariables:
   - name: GWS_TIMEOUT
     value: "5"
   - name: GWS_POOL_SIZE
-    value: "30"
+    value: "50"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "30"
+    value: "40"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
@@ -313,7 +313,7 @@ environmentVariables:
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBCURRICS_TIMEOUT
     value: "7"
 
@@ -345,7 +345,7 @@ environmentVariables:
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "30"
+    value: "50"
 
   - name: SDBMYUW_ENV
     value: PROD
@@ -374,7 +374,7 @@ environmentVariables:
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "30"
+    value: "40"
   - name: UWNETID_TIMEOUT
     value: "10"
 
