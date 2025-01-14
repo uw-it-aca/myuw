@@ -182,6 +182,15 @@ environmentVariables:
   - name: UWIDP_TIMEOUT
     value: "10"
 
+  - name: AXDD_PERSON_CLIENT_ENV
+    value: PROD
+
+  - name: UW_PERSON_DB_HOSTNAME
+    value: 172.18.1.67
+
+  - name: UW_PERSON_DB_DATABASE
+    value: uw-person-prod
+
   - name: CLUSTER_CNAME
     value: vue.my.uw.edu
 
@@ -244,6 +253,14 @@ externalSecrets:
       data:
         - name: uw-idp-cert
           property: cert
+
+    - name: vue.my.uw.edu-shared-secrets
+      externalKey: my/shared/secrets
+      data:
+        - name: person-db-user
+          property: person-db-user
+        - name: person-db-pass
+          property: person-db-pass
 
 environmentVariablesSecrets:
   django-secret:
@@ -310,3 +327,11 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  personDBUser:
+    name: UW_PERSON_DB_USERNAME
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-user
+  personDBPass:
+    name: UW_PERSON_DB_PASSWORD
+    secretName: vue.my.uw.edu-shared-secrets
+    secretKey: person-db-pass
