@@ -160,12 +160,12 @@ environmentVariables:
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_TIMEOUT
-    value: "45"
+    value: "30"
 
   - name: CALENDAR_ENV
     value: PROD
   - name: CALENDAR_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: CANVAS_ENV
     value: PROD
@@ -175,7 +175,7 @@ environmentVariables:
   - name: CODA_ENV
     value: PROD
   - name: CODA_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: GRAD_ENV
     value: PROD
@@ -185,54 +185,54 @@ environmentVariables:
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_TIMEOUT
-    value: "10"
+    value: "5"
 
   - name: GWS_ENV
     value: PROD
   - name: GWS_TIMEOUT
-    value: "10"
+    value: "5"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
   - name: IASYSTEM_UWB_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: IASYSTEM_UWT_ENV
     value: PROD
   - name: IASYSTEM_UWT_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWT_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: IASYSTEM_UWEO_AP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_AP_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: IASYSTEM_UWEO_IELP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: MAILMAN_ENV
     value: EVAL
@@ -251,19 +251,19 @@ environmentVariables:
   - name: PWS_POOL_SIZE
     value: "20"
   - name: PWS_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: SWS_ENV
     value: EVAL
   - name: SWS_POOL_SIZE
     value: "20"
   - name: SWS_TIMEOUT
-    value: "45"
+    value: "5"
 
   - name: SPACE_ENV
     value: EVAL
@@ -278,7 +278,7 @@ environmentVariables:
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_TIMEOUT
-    value: "15"
+    value: "5"
 
   - name: UWIDP_ENV
     value: PROD

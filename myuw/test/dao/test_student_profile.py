@@ -109,14 +109,7 @@ class TestStudentProfile(TestCase):
         req = get_request_with_user('javg002',
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
-        self.assertEqual(data["resident_code"], "6")
-        self.assertEqual(data["resident_desc"], "NONCITIZEN OTHER")
-        self.assertIsNotNone(data['pending_residency_change'])
+        self.assertTrue(data['has_pending_residency_change'])
         self.assertEqual(
-            data["pending_residency_change"],
-            {
-                "pending_resident_code": "4",
-                "pending_resident_desc": "NONRESIDENT IMMIGRANT",
-                "term": {"quarter": "autumn", "year": 2013},
-            },
-        )
+            data['pending_residency_change_term'],
+            {"year": 2013, "quarter": "autumn"})

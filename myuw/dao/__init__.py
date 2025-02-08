@@ -81,5 +81,5 @@ def _get_file_path(settings_key, filename):
 def log_err(logger, msg_str, stacktrace, request):
     logger.error(
         {**get_userids(request=request),
-         **{'Msg': msg_str,
-            'Err': stacktrace.format_exc(chain=False).splitlines()}})
+         **{'at': msg_str,
+            'err': stacktrace.format_exc(chain=False).splitlines()}})

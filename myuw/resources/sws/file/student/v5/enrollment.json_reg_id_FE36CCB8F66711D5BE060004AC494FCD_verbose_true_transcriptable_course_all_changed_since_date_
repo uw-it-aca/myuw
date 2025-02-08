@@ -30,8 +30,6 @@
     "PendingHonorsChange": false,
     "PendingMajorChange": false,
     "PendingResidentChange": false,
-    "PendingResidencyDescription": null,
-    "PendingResident": "0",
     "PendingSpecialProgramChange": false,
     "Person": {
         "Href": "/student/v5/person/FE36CCB8F66711D5BE060004AC494FCD.json",
@@ -346,8 +344,6 @@
             "PendingHonorsChange": false,
             "PendingMajorChange": false,
             "PendingResidentChange": false,
-            "PendingResidencyDescription": null,
-            "PendingResident": "0",
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/FE36CCB8F66711D5BE060004AC494FCD.json",
