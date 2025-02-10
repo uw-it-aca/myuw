@@ -10,7 +10,7 @@
         You don’t appear to be registered for any credit courses in
         {{ quarter }} {{ summerTerm }} quarter. If you think this is an
         error, please contact the
-        <a href="https://itconnect.uw.edu/it-connect-home/question/"
+        <a href="https://it.uw.edu/help/uw/"
            title="Send email to UW-IT Service Center"
         >UW-IT Service Center</a>.
       </p>

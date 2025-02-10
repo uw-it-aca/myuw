@@ -40,8 +40,9 @@ def no_access():
         "<p>This is a test environment of MyUW, "
         "its access is limited to specific people. "
         "To request access, please contact the "
-        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
-        "UW-IT Service Center</a>.</p>")
+        '<a href="https://it.uw.edu/help/uw/">'
+        "UW-IT Service Center</a>.</p>",
+    )
 
 
 def not_instructor_error():

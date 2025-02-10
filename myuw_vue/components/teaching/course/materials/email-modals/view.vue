@@ -97,7 +97,7 @@
         <p>
           Need help with mailing lists?
           <a v-out="'Mailman Help'"
-             href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+             href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033982"
           >Mailman help documentation</a>
         </p>
       </template>
@@ -115,7 +115,7 @@
 
       <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
         <a v-out="'Mailman Help'"
-           href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+           href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033982"
         >Mailman help</a>
         <button type="button" class="btn btn-light"
           @click="$refs['view-modal'].hide()">Close</button>
@@ -150,7 +150,7 @@
 
       <template v-else #modal-footer>
         <a v-out="'Mailman Help'"
-           href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+           href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033982"
         >
           Mailman Help
         </a>

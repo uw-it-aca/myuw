@@ -227,7 +227,7 @@
               <font-awesome-icon :icon="faEnvelope" class="me-1" />Contact</a>
           </li>
           <li class="list-inline-item">
-            <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
+            <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033852"
             class="text-white me-2">MyUW Help</a>
           </li>
           <li class="list-inline-item me-0 d-lg-none">
@@ -269,25 +269,25 @@
         Watch a video tour of
         <a
           v-out="'MyUW video for Instructors'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
+          href="https://youtu.be/AIXJ4UPGXE4"
           title="MyUW video tour for instructors"
           >MyUW for Instructors</a
         >,
         <a
           v-out="'MyUW video for staff'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
+          href="https://youtu.be/awJI8AdlbDk"
           title="MyUW video tour for staff"
           >for staff</a
         >, or
         <a
           v-out="'MyUW video for students'"
-          href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
+          href="https://www.youtube.com/watch?v=K7GoUc32TMs&t=5s&list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&index=1"
           title="MyUW video tour for students"
           >for students</a
         >. <br /><a
           v-out="'MyUW Help Center'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
-          title="MyUW Help Center in IT Connect"
+          href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033852"
+          title="MyUW Help Center in UWConnect"
           >Visit the MyUW help guide for more information</a
         >.
       </p>
