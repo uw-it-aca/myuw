@@ -30,8 +30,10 @@
     "zip_code": "98005-1234"
   },
   "permanent_phone": "4255556789",
-  "visa_type": null,
+  "resident_desc": "RESIDENT IMMIGRANT",
+  "resident_code": "2",
   "veteran_code": "0",
+  "visa_type": null,
   "degree_status": {
     "degrees": [
       {
@@ -52,7 +54,8 @@
         "is_degree_earned_term": true,
         "before_degree_earned_term": false,
         "during_april_may": true,
-        "last_4_inst_weeks_in_degree_term": true
+        "last_4_inst_weeks_in_degree_term": true,
+        "after_last_final_exam_day": false
       },
       {
         "campus": "SEATTLE",
@@ -72,13 +75,22 @@
         "is_degree_earned_term": true,
         "before_degree_earned_term": false,
         "during_april_may": true,
-        "last_4_inst_weeks_in_degree_term": true
+        "last_4_inst_weeks_in_degree_term": true,
+        "after_last_final_exam_day": false
       }
     ],
     "error_code": null
   },
   "campus": "Seattle",
   "class_level": "SENIOR",
+  "pending_residency_change": {
+    "pending_resident_code": "1",
+    "pending_resident_desc": "RESIDENT",
+    "term": {
+      "year": 2013,
+      "quarter": "autumn"
+    }
+  },
   "term_majors": [
     {
       "quarter": "spring",
@@ -86,8 +98,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -97,8 +109,8 @@
         },
         {
           "degree_abbr": "BSKT WVE",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
           "campus": "Seattle",
@@ -116,8 +128,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -135,8 +147,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -154,8 +166,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -242,3 +254,4 @@
   "has_pending_minor": true,
   "display_name": "June Average Student"
 }
+ 

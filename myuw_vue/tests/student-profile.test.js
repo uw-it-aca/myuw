@@ -39,10 +39,15 @@ describe('Student Profile Card', () => {
     await new Promise(setImmediate);
 
     expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.existClassLevel).toBeTruthy();
+    expect(wrapper.vm.existResidency).toBeTruthy();
     expect(wrapper.vm.showResidency).toBeTruthy();
-    expect(wrapper.vm.residentDisplayString).toBe("Non-resident student visa");
-    expect(wrapper.vm.hasPendingResidencyChange).toBeTruthy();
-    expect(wrapper.vm.pendingResidencyChangeTerm).toBeTruthy();
+    expect(wrapper.vm.currentResidencyD).toBe("Nonresident");
+    expect(wrapper.vm.hasPendingResidency).toBeTruthy();
+    expect(wrapper.vm.hasPendingResidency).toBeTruthy();
+    expect(wrapper.vm.pendingResidency.term.quarter).toBe("autumn");
+    expect(wrapper.vm.pendingResidencyD).toBe("Nonresident");
+    expect(wrapper.vm.hasResidencyChange).toBeFalsy();
     expect(wrapper.vm.termMajors).toBeTruthy();
     expect(wrapper.vm.hasMinors).toBeTruthy();
     expect(wrapper.vm.termMinors).toBeTruthy();
