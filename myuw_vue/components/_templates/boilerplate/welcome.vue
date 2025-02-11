@@ -14,7 +14,7 @@
       <li class="mb-1">
         <a
           v-out="'MyUW Help Center'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
+          href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033852"
           class="text-body"
         >
           Learn more about MyUW

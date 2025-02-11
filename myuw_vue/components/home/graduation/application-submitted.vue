@@ -303,7 +303,7 @@
                     <p>
                       All UW accounts will be deleted two quarters after graduation. Take steps now
                       to
-                      <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
+                      <a href="https://it.uw.edu/get-started/students/save-work-before-graduation/"
                         >save all your UW work</a
                       >
                       so that you don't lose it.
