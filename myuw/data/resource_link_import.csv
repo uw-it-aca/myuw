@@ -31,18 +31,18 @@ Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Tools and Software,all,,,https://scout.uw.edu/seattle,Scout: Discover the UW,https://scout.uw.edu/bothell,Scout: Discover the UW,https://scout.uw.edu/tacoma,Scout: Discover the UW,no
 Academics,Tools and Software,all,http://grad.uw.edu/for-students-and-post-docs/mygrad-program/,MyGrad – Graduate School Portal,,,,,,,no
-Academics,Tools and Software,all,https://itconnect.uw.edu/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
+Academics,Tools and Software,all,https://it.uw.edu/uware/tableau/,Tableau Data Analysis Software,,,,,,,no
 Academics,Tools and Software,all,https://uw.hosted.panopto.com/,Panopto Lecture Capture,,,,,,,no
-Academics,Tools and Software,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Other Software and Hardware Services,,,,,,,no
-Academics,Tools and Software,all,https://itconnect.uw.edu/learn/tools/,Help with Teaching and Learning Tools,,,,,,,no
+Academics,Tools and Software,all,https://it.uw.edu/software/,Other Software and Hardware Services,,,,,,,no
+Academics,Tools and Software,all,https://uwconnect.uw.edu/it?id=service_catalog_category&sys_id=4fbe6c25dbee7f40d6a77a8eaf96193c,Help with Teaching and Learning Tools,,,,,,,no
 Academics,Tools and Software,all,http://www.linkedinlearning.uw.edu/,LinkedIn Learning,,,,,,,no
-Academics,Tools and Software,all,https://itconnect.uw.edu/tools-services-support/software-computers/productivity-platforms/google-productivity-platform/,Google Apps,,,,,,,no
+Academics,Tools and Software,all,https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0034358,Google Apps,,,,,,,no
 Academics,Tools and Software,all,https://www.office.com/,Office 365 Apps,,,,,,,no
 "Email, and Accounts and Identity",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
 "Email, and Accounts and Identity",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
 "Email, and Accounts and Identity",Email,all,http://outlook.com/owa/myuw.net,MyUW.net Email,,,,,,,no
 "Email, and Accounts and Identity",Email,all,https://uwnetid.washington.edu/manage/?forward,Email Forwarding,,,,,,,no
-"Email, and Accounts and Identity",Email,all,,,http://itconnect.uw.edu/connect/email,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/communications-email,Email and Calendaring Options,http://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
+"Email, and Accounts and Identity",Email,all,,,https://it.uw.edu/guides/email-calendaring/email/,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/communications-email,Email and Calendaring Options,http://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
 "Email, and Accounts and Identity",Accounts and Identity,all,https://uwnetid.washington.edu/manage/,Manage UW NetID Account,,,,,,,no
 "Email, and Accounts and Identity",Accounts and Identity,all,http://services.uwmedicine.org/passwordportal,UW Medicine Password Portal,,,,,,,no
 "Email, and Accounts and Identity",Accounts and Identity,all,https://identity.uw.edu/,Identity.UW,,,,,,,no
@@ -56,8 +56,8 @@ Services for Faculty and Staff,Finance and Procurement,all,"https://uw.service-n
 Services for Faculty and Staff,Finance and Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/planning-administration/fiscal-audit-services/procurement,Purchasing,https://www.tacoma.uw.edu/fa/finance/procurement,Procurement Services,no
 Services for Faculty and Staff,Finance and Procurement,all,"http://wd5.myworkday.com/uw/login.htmld	",Workday,,,,,,,no
 Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
-Services for Faculty and Staff,Others,all,,,https://itconnect.uw.edu/,IT Connect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
-Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/tools-services-support/software-computers/uware/,Software and Hardware,,,,,,,no
+Services for Faculty and Staff,Others,all,,,https://it.uw.edu/,UWConnect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
+Services for Faculty and Staff,Others,all,https://it.uw.edu/software/,Software and Hardware,,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facilities/,Facilities and Campus Operations,https://www.tacoma.uw.edu/fa/facilities,Facilities Services,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
@@ -153,7 +153,7 @@ Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/ch
 Teaching,Grading,all,,,https://registrar.washington.edu/staffandfaculty/grading-resources/,Faculty Resource on Grading,https://www.uwb.edu/registrar/policies/grading,Grading Policies,https://www.tacoma.uw.edu/uwt/registrar/grading-policy,Grading Policy,no
 Teaching,Tools,all,https://canvas.uw.edu,Canvas LMS,,,,,,,no
 Teaching,Tools,all,https://uw.hosted.panopto.com,Panopto Lecture Capture,,,,,,,no
-Teaching,Tools,all,https://itconnect.uw.edu/learn/tools/polleverywhere/,Poll Everywhere,,,,,,,no
+Teaching,Tools,all,https://uwconnect.uw.edu/it?id=sc_entry&sys_id=d6353a45db4abbc037ae9ec6db9619a5&sysparm_category=4fbe6c25dbee7f40d6a77a8eaf96193c,Poll Everywhere,,,,,,,no
 Teaching,Tools,all,https://coda.uw.edu,Course Stats,,,,,,,no
 Teaching,Tools,all,https://washington.zoom.us,Zoom,,,,,,,no
 Research,Research Administration,all,https://www.washington.edu/research/,UW Research,,,,,,,no
@@ -173,7 +173,7 @@ Research,Research Data and Publishing,all,https://www.lib.washington.edu/dataser
 Research,Research Data and Publishing,all,https://guides.lib.uw.edu/research/dmg,Research Data Services,,,,,,,no
 Research,Research Data and Publishing,all,,,https://www.lib.washington.edu/openscholarship,"Open Scholarship Commons: Tools, Services, Consultations",https://guides.lib.uw.edu/bothell/digitalscholarship,Digital Scholarship,https://guides.lib.uw.edu/tacdigitalscholarship,Digital Scholarship,no
 Research,Research Data and Publishing,all,https://guides.lib.uw.edu/research/spoa,Scholarly Publishing and Open Access,,,,,,,no
-Research,Technical Support,all,https://itconnect.uw.edu/help/,UW-IT Technical Support,,,,,,,no
+Research,Technical Support,all,https://it.uw.edu/help/,UW-IT Technical Support,,,,,,,no
 Research,Technical Support,all,https://uw.service-now.com/sp?id=sc_audience&sys_id=bd183bc1db07bb8c37ae9ec6db9619d9&sysparm_category=bd183bc1db07bb8c37ae9ec6db9619d9,UW-IT Services for Researchers,,,,,,,no
-Research,Technical Support,all,https://itconnect.uw.edu/research/,UW-IT Research Computing Resources,,,,,,,no
+Research,Technical Support,all,https://it.uw.edu/guides/research/,UW-IT Research Computing Resources,,,,,,,no
 Research,Technical Support,all,https://www.lib.washington.edu/dataservices/tools/storage-options,Data Storage Options,,,,,,,no
