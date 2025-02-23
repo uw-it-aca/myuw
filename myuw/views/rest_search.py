@@ -107,9 +107,9 @@ class MyUWRestSearchView(RestSearchView):
             netid = get_input_value(request.POST, "uwnetid")
             if "idcard" == res:
                 url = f"idcarddataws/api/person/v1/eligibility/{netid}"
-            if "upass" == res:
+            elif "upass" == res:
                 url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
-            
+
         elif service == "uwnetid":
             if "password" == url:
                 url = "nws/v1/uwnetid/{}/password".format(
