@@ -10,4 +10,4 @@ from myuw.dao import get_netid_of_current_user
 
 
 def get_idcard_eli(request):
-    return get_idcard_elig(get_netid_of_current_user(request))
+    return get_idcard_elig(get_netid_of_current_user(request)).json_data()
