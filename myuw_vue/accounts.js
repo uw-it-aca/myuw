@@ -17,6 +17,7 @@ import TuitionFees from './components/accounts/tuition-fees.vue';
 
 // stores
 import hfs from './vuex/store/hfs';
+import idcardelig from './vuex/store/idcard-elig';
 import library from './vuex/store/library';
 import profile from './vuex/store/profile';
 import upass from './vuex/store/upass';
@@ -25,6 +26,7 @@ import notices from './vuex/store/notices';
 import iac from './vuex/store/iacourse-digital-material';
 
 vueConf.store.registerModule('hfs', hfs);
+vueConf.store.registerModule('idcardelig', idcardelig);
 vueConf.store.registerModule('library', library);
 vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('upass', upass);
