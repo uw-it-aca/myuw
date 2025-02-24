@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Account</h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Card Account</h2>
     </template>
 
     <template #card-body>
