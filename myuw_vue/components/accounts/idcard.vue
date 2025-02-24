@@ -64,7 +64,6 @@ export default {
   components: {
     'uw-card': Card,
     'uw-card-status': CardStatus,
-    'uw-link-button': LinkButton,
   },
   computed: {
     ...mapState('idcardelig', {
