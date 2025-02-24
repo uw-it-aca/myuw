@@ -56,7 +56,6 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
-import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
