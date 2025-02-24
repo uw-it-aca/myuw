@@ -6,10 +6,11 @@
 
     <template #card-body>
       <ul class="list-unstyled">
-        <li v-if="idcard.student_eligible" class="mb-1">
+        <li v-if="student" class="mb-1">
           <uw-card-status>
             <template #status-label>Your Student ID</template>
-            <template #status-value>is eligible</template>
+            <template v-if="idcard.student_eligible" #status-value>is eligible</template>
+            <template v-else #status-value>is not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
@@ -17,10 +18,11 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="idcard.employee_eligible" class="mb-1">
+        <li v-if="employee" class="mb-1">
           <uw-card-status>
             <template #status-label>Your Employee ID</template>
-            <template #status-value>is eligible</template>
+            <template v-if="idcard.employee_eligible" #status-value>is eligible</template>
+            <template v-else #status-value>is not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
@@ -28,10 +30,11 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="idcard.retiree_eligible" class="mb-1">
+        <li v-if="retiree" class="mb-1">
           <uw-card-status>
             <template #status-label>Your Retiree ID</template>
-            <template #status-value>is eligible</template>
+            <template v-if="idcard.retiree_eligible" #status-value>is eligible</template>
+            <template v-else #status-value>is not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
@@ -75,12 +78,11 @@ export default {
     ...mapState({
       student: (state) => state.user.affiliations.student,
       employee: (state) => state.user.affiliations.all_employee,
-      past_stud: (state) => state.user.affiliations.past_stud,
-      past_employee: (state) => state.user.affiliations.past_employee,
+      retiree: (state) => state.user.affiliations.retiree,
     }),
     showCard() {
       return (
-        (this.student || this.past_stud || this.employee || this.past_employee) &&
+        (this.student || this.employee || this.retiree) &&
         (!this.isReady || this.idcard)
       );
     },
@@ -89,7 +91,7 @@ export default {
     },
   },
   created() {
-    if (this.student || this.past_stud || this.employee || this.past_employee) this.fetchIDcard();
+    if (this.student || this.employee || this.retiree) this.fetchIDcard();
   },
   methods: {
     ...mapActions('idcardelig', {
