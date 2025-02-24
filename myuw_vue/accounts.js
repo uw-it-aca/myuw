@@ -10,6 +10,7 @@ import HRPayroll from './components/_common/hr-payroll.vue';
 // accounts components
 import HfsSea from './components/accounts/hfs-sea.vue';
 import HuskyCard from './components/accounts/husky.vue';
+import IDCard from './components/accounts/idcard.vue';
 import MedicineAccount from './components/accounts/medicine-account.vue';
 import UpassCard from './components/accounts/upass.vue';
 import LibraryCard from './components/accounts/library.vue';
@@ -44,6 +45,7 @@ vueConf.store.commit('addVarToState', {
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-hfs-sea', HfsSea);
+Vue.component('myuw-idcard', IDCard);
 Vue.component('myuw-husky', HuskyCard);
 Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-hr-payroll', HRPayroll);
