@@ -35,7 +35,8 @@ export default {
   },
   computed: {
     ...mapState({
-      showCard: (state) => state.user.affiliations.retiree,
+      showCard: (state) => (
+        state.user.affiliations.retiree && state.user.affiliations.no_1st_class_affi),
     }),
   },
 };

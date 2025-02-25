@@ -78,6 +78,12 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["no_1st_class_affi"])
 
+        now_request = get_request_with_user("jeos")
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations["retiree"])
+        self.assertTrue(affiliations["student"])
+        self.assertFalse(affiliations["employee"])
+
     def test_is_pce_stud(self):
         now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)

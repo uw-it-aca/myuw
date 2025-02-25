@@ -6,9 +6,9 @@
 
     <template #card-body>
       <ul class="list-unstyled">
-        <li v-if="student || idcard.student_eligible" class="mb-1">
+        <li v-if="student" class="mb-1">
           <uw-card-status>
-            <template #status-label>Your Student ID</template>
+            <template #status-label>Your Student Card</template>
             <template v-if="idcard.student_eligible" #status-value>is eligible</template>
             <template v-else #status-value>is not eligible</template>
             <template #status-content>
@@ -18,9 +18,9 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="employee || idcard.employee_eligible" class="mb-1">
+        <li v-if="employee" class="mb-1">
           <uw-card-status>
-            <template #status-label>Your Employee ID</template>
+            <template #status-label>Your Employee Card</template>
             <template v-if="idcard.employee_eligible" #status-value>is eligible</template>
             <template v-else #status-value>is not eligible</template>
             <template #status-content>
@@ -30,9 +30,9 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="retiree || idcard.retiree_eligible" class="mb-1">
+        <li v-if="retiree" class="mb-1">
           <uw-card-status>
-            <template #status-label>Your Retiree ID</template>
+            <template #status-label>Your Retiree Card</template>
             <template v-if="idcard.retiree_eligible" #status-value>is eligible</template>
             <template v-else #status-value>is not eligible</template>
             <template #status-content>
