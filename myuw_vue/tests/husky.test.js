@@ -46,7 +46,7 @@ describe('Husky Card', () => {
     ).toBe(true);
     expect(
       wrapper.findAll('h2').at(0).text()
-    ).toBe('Husky Card');
+    ).toBe('Husky Card Account');
     expect(
       wrapper.findAll('h3').at(0).text()
     ).toBe('Student Husky Account');

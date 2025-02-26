@@ -61,6 +61,8 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'idcard_elig' 'index.html' as idcard_elig_url %}
+
         {% url 'myuw_rest_search' 'book' 'iacourse.html' as iacourse_url %}
         {% if iacourse_url %}
         <li>
@@ -127,7 +129,7 @@
         {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
         {% if upass_url %}
             <li>
-                <a href="{{ upass_url }}">UPASS</a>
+                <a href="{{ upass_url }}">ID Card</a>
             </li>
         {% endif %}
         <br />

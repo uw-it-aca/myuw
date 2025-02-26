@@ -241,9 +241,24 @@ class RestSearchViewTest(MyuwApiTest):
         url = reverse("myuw_rest_search", args=["upass", "index"])
         response = self.client.post(url, {
             "uwnetid": "bill",
+            "res": "upass",
             "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
             "/restclients/view/upass/upassdataws/" +
             "api/person/v1/membershipstatus/bill")
+
+        # idcard
+        url = reverse("myuw_rest_search", args=["upass", "index"])
+        response = self.client.post(
+            url, {"uwnetid": "bill",
+                  "res": "idcard",
+                  "csrfmiddlewaretoken": "0000000"}
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url,
+            "/restclients/view/upass/idcarddataws/"
+            + "api/person/v1/eligibility/bill",
+        )

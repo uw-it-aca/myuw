@@ -23,6 +23,7 @@ describe('HR Payroll Card - Home Page', () => {
             retiree: false,
             past_employee: false,
             faculty: false,
+            no_1st_class_affi: true,
           }
         }
       }

@@ -59,6 +59,7 @@ from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
+from myuw.views.api.idcard_elig import IDcardElig
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
@@ -202,6 +203,9 @@ urlpatterns += [
     re_path(r'api/v1/link/?$',
             ManageLinks.as_view(),
             name='myuw_manage_links'),
+    re_path(r'^api/v1/idcard-elig/$',
+            IDcardElig.as_view(),
+            name="myuw_idcard_elig_api"),
     re_path(r'^api/v1/upass/$',
             UPass.as_view(),
             name="myuw_upass_api"),

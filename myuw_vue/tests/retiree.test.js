@@ -16,6 +16,7 @@ describe('User is a retireee', () => {
         user: {
           affiliations: {
             retiree: true,
+            no_1st_class_affi: true,
           }
         }
       }
