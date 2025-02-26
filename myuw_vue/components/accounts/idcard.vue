@@ -9,8 +9,8 @@
         <li v-if="student" class="mb-1">
           <uw-card-status>
             <template #status-label>Your Student Card</template>
-            <template v-if="idcard.student_eligible" #status-value>is eligible</template>
-            <template v-else #status-value>is not eligible</template>
+            <template v-if="idcard.student_eligible" #status-value>Eligible</template>
+            <template v-else #status-value>Not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
@@ -21,8 +21,8 @@
         <li v-if="employee || retiree" class="mb-1">
           <uw-card-status v-if="retiree">
             <template #status-label>Your Retiree Card</template>
-            <template v-if="idcard.retiree_eligible" #status-value>is eligible</template>
-            <template v-else #status-value>is not eligible</template>
+            <template v-if="idcard.retiree_eligible" #status-value>Eligible</template>
+            <template v-else #status-value>Not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
@@ -31,8 +31,8 @@
           </uw-card-status>
           <uw-card-status v-else>
             <template #status-label>Your Employee Card</template>
-            <template v-if="idcard.employee_eligible" #status-value>is eligible</template>
-            <template v-else #status-value>is not eligible</template>
+            <template v-if="idcard.employee_eligible" #status-value>Eligible</template>
+            <template v-else #status-value>Not eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
                 ......
