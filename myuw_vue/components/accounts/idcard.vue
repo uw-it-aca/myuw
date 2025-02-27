@@ -11,7 +11,7 @@
             <template #status-label>Status</template>
             <template #status-value>Not Eligible</template>
             <template #status-content>
-              <div v-if="hfs.student_husky_card.last_updated" class="myuw-text-sm text-muted">
+              <div class="myuw-text-sm text-muted">
                 No access into buildings, no UPASS membership, no parking permit, etc.
               </div>
             </template>
@@ -67,19 +67,24 @@ export default {
       student: (state) => state.user.affiliations.student,
       employee: (state) => state.user.affiliations.all_employee,
       retiree: (state) => state.user.affiliations.retiree,
+      past_employee: (state) => state.user.affiliations.past_employee,
+      past_stud: (state) => state.user.affiliations.past_stud,
     }),
-    showCard() {
+    isTargetViewer() {
       return (
-        (this.student || this.employee || this.retiree) &&
-        (!this.isReady || this.idcard)
+        this.student || this.employee || this.retiree ||
+        this.past_employee || this.past_stud
       );
+    },
+    showCard() {
+      return this.isTargetViewer && (!this.isReady || this.idcard !== undefined);
     },
     showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    if (this.student || this.employee || this.retiree) this.fetchIDcard();
+    if (this.isTargetViewer) this.fetchIDcard();
   },
   methods: {
     ...mapActions('idcardelig', {
