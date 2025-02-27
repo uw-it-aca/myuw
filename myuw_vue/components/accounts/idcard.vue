@@ -31,7 +31,7 @@
         </li>
       </ul>
       <div class="myuw-text-sm text-muted">
-        <a href="/">About Husky Card</a>
+        <a href="https://hfs.uw.edu/Husky-Card-Services">About Husky Card</a>
       </div>
     </template>
     <template #card-error>
