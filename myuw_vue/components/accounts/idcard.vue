@@ -12,7 +12,7 @@
             <template #status-value>Not Eligible</template>
             <template #status-content>
               <div class="myuw-text-sm text-muted">
-                No access into buildings, no UPASS membership, no parking permit, etc.
+                No current active UW affiliation.
               </div>
             </template>
           </uw-card-status>
@@ -35,12 +35,12 @@
       </div>
     </template>
     <template #card-error>
-      An error occurred and MyUW cannot load your ID card right now. In the meantime,
-      check out
+      An error occurred and MyUW cannot load your status right now. In the meantime,
+      you may check
       <a
         v-out="'idcard'"
-        href="https://hfs.uw.edu/Husky-Card-Services/Husky-Card/ID-Center-Locations"
-      >the ID center</a>.
+        href="https://hfs.uw.edu/Husky-Card-Services/Operations-Updates"
+      >the Husky Card Operations page</a>.
     </template>
   </uw-card>
 </template>
