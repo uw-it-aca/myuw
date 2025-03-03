@@ -1,8 +1,22 @@
 <template>
-  <div v-if="applicant && !isErrored">
-    <uw-seattle :applicant-data="seattleApplicant" :is-ready="isReady" />
-    <uw-bothell v-if="isBothellReturning" :applicant-data="bothellApplicant" :is-ready="isReady" />
-    <uw-tacoma :applicant-data="tacomaApplicant" :is-ready="isReady" />
+  <div v-if="applicant">
+    <div v-if="!isErrored">
+      <uw-seattle :applicant-data="seattleApplication" :is-ready="isReady" />
+      <uw-bothell v-if="isBothellReturning" :applicant-data="bothellApplication" :is-ready="isReady" />
+      <uw-tacoma :applicant-data="tacomaApplication" :is-ready="isReady" />
+    </div>
+    <uw-card v-else :errored="isErrored" :errored-show="showError">
+      <template #card-heading>
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Application Information</h2>
+      </template>
+      <template #card-error>
+        An error occurred and MyUW cannot load your status right now. In the meantime,
+        you may find what you need on the
+        <a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp">
+          Application Status
+        </a> page.
+      </template>
+    </uw-card>
   </div>
 </template>
 
@@ -21,19 +35,29 @@ export default {
   computed: {
     ...mapState({
       applicant: (state) => state.user.affiliations.applicant,
-      seattleApplicant: (state) =>
-        state.applicant.value.filter((applicant) => applicant.is_seattle)[0],
-      bothellApplicant: (state) =>
-        state.applicant.value.filter((applicant) => applicant.is_bothell)[0],
-      tacomaApplicant: (state) =>
-        state.applicant.value.filter((applicant) => applicant.is_tacoma)[0],
+    }),
+    ...mapState('applicant', {
+      application: (state) => state.value,
     }),
     ...mapGetters('applicant', {
       isReady: 'isReady',
       isErrored: 'isErrored',
+      statusCode: 'statusCode',
     }),
+    bothellApplication() {
+      return this.application.is_bothell[0];
+    },
+    seattleApplication() {
+      return this.application.is_seattle[0];
+    },
+    tacomaApplication() {
+      return this.application.is_tacoma[0];
+    },
     isBothellReturning() {
-      return this.bothellApplicant && this.bothellApplicant.is_returning;
+      return this.bothellApplication && this.bothellApplication.is_returning;
+    },
+    showError() {
+      return this.statusCode !== 404;
     },
   },
   created() {
