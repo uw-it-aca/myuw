@@ -45,13 +45,13 @@ export default {
       statusCode: 'statusCode',
     }),
     botApplication() {
-      return this.application.is_bothell[0];
+      return this.application.filter((item) => item.is_bothell)[0];
     },
     seaApplication() {
-      return this.application.is_seattle[0];
+      return this.application.filter((item) => item.is_seattle)[0];
     },
     tacApplication() {
-      return this.application.is_tacoma[0];
+      return this.application.filter((item) => item.is_tacoma)[0];
     },
     isBotReturning() {
       return this.botApplication && this.botApplication.is_returning;
