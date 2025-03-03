@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 10
+  minReplicas: 20
   maxReplicas: 150
 targetAverageUtilization: 100
 resources:
@@ -350,9 +350,9 @@ environmentVariables:
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "20"
+    value: "100"
   - name: SDBMYUW_TIMEOUT
-    value: "15"
+    value: "10"
 
   - name: SWS_ENV
     value: PROD
@@ -369,7 +369,7 @@ environmentVariables:
   - name: UPASS_TIMEOUT
     value: "10"
   - name: UPASS_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: UWNETID_ENV
     value: PROD
