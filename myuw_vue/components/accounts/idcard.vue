@@ -31,19 +31,20 @@
         </li>
       </ul>
       <div class="myuw-text-sm text-muted">
-        <a href="https://hfs.uw.edu/Husky-Card-Services">About Husky Card</a>
+        <a href="https://hfs.uw.edu/Husky-Card-Services">Visit Husky Card Services for more information</a>
       </div>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your status right now. In the meantime,
-      you may check
+       you may find what you need on the
       <a
         v-out="'idcard'"
-        href="https://hfs.uw.edu/Husky-Card-Services/Operations-Updates"
-      >the Husky Card Operations page</a>.
+        href="https://hfs.uw.edu/Husky-Card-Services/"
+      >Husky Card Services</a> page.
     </template>
   </uw-card>
 </template>
+
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
