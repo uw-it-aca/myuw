@@ -7,18 +7,19 @@ import IDcardCard from '../components/accounts/idcard.vue';
 
 const localVue = createLocalVue(Vuex);
 const mockIDcard = {
-  "not_eligible": false, "employee_eligible": false, "retiree_eligible": true, "student_eligible": true
+  "not_eligible": false, "employee_eligible": false,
+  "retiree_eligible": true, "student_eligible": true
 };
 
 jest.mock('axios');
 
-describe('idcard Card', () => {
+describe('IDcard Card', () => {
   let store;
 
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        idcard- elig,
+        idcard-elig,
       },
       state: {
         user: {
@@ -35,7 +36,7 @@ describe('idcard Card', () => {
   });
 
   it('Evaluate the computed properties', async () => {
-    axios.get.mockResolvedValue({data: mockidcard});
+    axios.get.mockResolvedValue({data: mockIDcard});
     const wrapper = mount(IDcardCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
