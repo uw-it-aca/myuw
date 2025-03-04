@@ -10,7 +10,7 @@
         <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Application Information</h2>
       </template>
       <template #card-error>
-        An error occurred and MyUW cannot load your status right now. In the meantime,
+        An error occurred and MyUW cannot load your information right now. In the meantime,
         you may find what you need on the
         <a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp">
           Application Status
