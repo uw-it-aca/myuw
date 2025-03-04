@@ -32,6 +32,12 @@ export default {
     'uw-bothell': Bothell,
     'uw-tacoma': Tacoma,
   },
+  data() {
+    return {
+      duringAdmissionDecissionRelease: true,
+      // make this configureble in the future
+    };
+  },
   computed: {
     ...mapState({
       applicant: (state) => state.user.affiliations.applicant,
@@ -57,7 +63,8 @@ export default {
       return this.botApplication && this.botApplication.is_returning;
     },
     showError() {
-      return this.statusCode !== 404;
+      // MUWM-5391
+      return this.duringAdmissionDecissionRelease && this.statusCode !== 404;
     },
   },
   created() {
