@@ -22,12 +22,14 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
+import Card from '../../_templates/card.vue';
 import Seattle from './seattle.vue';
 import Bothell from './bothell.vue';
 import Tacoma from './tacoma.vue';
 
 export default {
   components: {
+    'uw-card': Card,
     'uw-seattle': Seattle,
     'uw-bothell': Bothell,
     'uw-tacoma': Tacoma,
