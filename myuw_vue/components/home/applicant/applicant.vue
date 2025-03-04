@@ -5,7 +5,7 @@
       <uw-bothell v-if="isBotReturning" :applicant-data="botApplication" :is-ready="isReady" />
       <uw-tacoma :applicant-data="tacApplication" :is-ready="isReady" />
     </div>
-    <uw-card v-else :loaded="showError" :errored="showError" :errored-show="showError">
+    <uw-card v-else :errored="showError">
       <template #card-heading>
         <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Application Information</h2>
       </template>
