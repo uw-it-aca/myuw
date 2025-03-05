@@ -37,13 +37,12 @@ describe('Applicant Card - applicant.vue', () => {
     axios.get.mockResolvedValue({data: mockApplicant});
     const wrapper = mount(ApplicantCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.find('div').exists()).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(true);
-    expect(wrapper.vm.seattleApplicant.is_seattle).toBe(true);
-    expect(wrapper.vm.bothellApplicant.is_bothell).toBe(true);
-    expect(wrapper.vm.tacomaApplicant.is_tacoma).toBe(true);
+    expect(wrapper.vm.seaApplication.is_seattle).toBe(true);
+    expect(wrapper.vm.botApplication.is_bothell).toBe(true);
+    expect(wrapper.vm.tacApplication.is_tacoma).toBe(true);
   });
 
   it('Render Logic applicant = false', async () => {
@@ -51,7 +50,7 @@ describe('Applicant Card - applicant.vue', () => {
     axios.get.mockResolvedValue({data: mockApplicant});
     const wrapper = mount(ApplicantCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.find('div').exists()).toBe(false);
+    expect(wrapper.vm.applicant).toBe(false);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(false);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(false);
