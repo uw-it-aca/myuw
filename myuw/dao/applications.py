@@ -18,10 +18,7 @@ def get_applications(request):
             raise DataFailureException(
                 "/sdb_MyUW/appstatus.asp",
                 500, "mock 500 error")
-        if netid == 'jnew':
-            raise DataFailureException(
-                "/sdb_MyUW/appstatus.asp",
-                404, "mock 404 error")
+
     response = []
     system_key = get_student_system_key_of_current_user(request)
     if system_key is not None:
