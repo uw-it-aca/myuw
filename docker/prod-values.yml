@@ -266,14 +266,14 @@ environmentVariables:
   - name: GWS_TIMEOUT
     value: "5"
   - name: GWS_POOL_SIZE
-    value: "50"
+    value: "40"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "40"
+    value: "30"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
@@ -313,14 +313,14 @@ environmentVariables:
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "30"
+    value: "24"
   - name: LIBCURRICS_TIMEOUT
     value: "7"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "30"
+    value: "24"
   - name: LIBRARIES_TIMEOUT
     value: "7"
 
@@ -345,7 +345,7 @@ environmentVariables:
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "50"
+    value: "40"
 
   - name: SDBMYUW_ENV
     value: PROD
@@ -369,12 +369,12 @@ environmentVariables:
   - name: UPASS_TIMEOUT
     value: "10"
   - name: UPASS_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "40"
+    value: "30"
   - name: UWNETID_TIMEOUT
     value: "10"
 
