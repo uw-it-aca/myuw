@@ -14,6 +14,12 @@
     "timestamp": 1524865000001
   },
   "data": [
+    {
+      "regid": "15ea2a29c7884e62b7bf043cea699784",
+      "displayName": "UW Applicants",
+      "id": "uw_affiliation_applicant",
+      "url": "https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_applicant"
+    },
     { "regid":"40537c45c40247a28ccf223c772bd786",
       "displayName":"UW Alumni",
       "id":"uw_affiliation_alumni",
