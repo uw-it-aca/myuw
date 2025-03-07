@@ -20,7 +20,7 @@ describe('IDcard Card', () => {
     store = new Vuex.Store({
       modules: {
         idcardelig,
-      }, 
+      },
       state: {
         user: {
           affiliations: {
