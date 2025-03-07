@@ -169,6 +169,7 @@ def _has_only_dropped_degrees(first, second):
     has_added = len(set(second) - set(first)) > 0
     return has_dropped and not has_added
 
+
 def _get_residency_change(terms, enrollments, current_resident_code):
     # MUWM-5352
     for term in terms:

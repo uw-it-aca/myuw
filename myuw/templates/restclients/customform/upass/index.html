@@ -1,2 +1,23 @@
-<h1>UPASS</h1>
-{% include "restclients/customform/_common/netid.html" %}
+<h1>Husky Card</h1>
+<form method="post" action="{{form_action}}">
+  {% csrf_token %}
+  <p>
+    <label for="uwnetid">UW NetID:</label>
+    <input id="uwnetid" name="uwnetid" size="20" type="text">
+  </p>
+  <p>Find any of the following:</p>
+  <fieldset>
+    <div>
+      <input type="radio" id="res" name="res" value="idcard" />
+      <label for="res">Husky Card ID Eligibility</label>
+    </div>
+    <div>
+      <input type="radio" id="res" name="res" value="upass" />
+      <label for="res">UPASS Membership</label>
+    </div>
+  </fieldset>
+  <br />
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>
