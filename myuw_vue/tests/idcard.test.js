@@ -2,7 +2,7 @@ import axios from 'axios';
 import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import idcard from '../vuex/store/idcard-elig';
+import idcardelig from '../vuex/store/idcard-elig';
 import IDcardCard from '../components/accounts/idcard.vue';
 
 const localVue = createLocalVue(Vuex);
@@ -20,7 +20,7 @@ describe('IDcard Card', () => {
     store = new Vuex.Store({
       modules: {
         idcardelig,
-      },
+      }, 
       state: {
         user: {
           affiliations: {
