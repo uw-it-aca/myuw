@@ -7,7 +7,7 @@ import IDcardCard from '../components/accounts/idcard.vue';
 
 const localVue = createLocalVue(Vuex);
 const mockIDcard = {
-  "idcardelig": false, "employee_eligible": false,
+  "not_eligible": false, "employee_eligible": false,
   "retiree_eligible": true, "student_eligible": true
 };
 
@@ -19,7 +19,7 @@ describe('IDcard Card', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        idcard-elig,
+        idcardelig,
       },
       state: {
         user: {
