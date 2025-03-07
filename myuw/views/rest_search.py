@@ -103,8 +103,13 @@ class MyUWRestSearchView(RestSearchView):
                 url = f"student/v5/person/{regid}.json"
 
         elif service == "upass":
-            url = "upassdataws/api/person/v1/membershipstatus/{}".format(
-                get_input_value(request.POST, "uwnetid"))
+            res = get_input_value(request.POST, "res")
+            netid = get_input_value(request.POST, "uwnetid")
+            if "idcard" == res:
+                url = f"idcarddataws/api/person/v1/eligibility/{netid}"
+            elif "upass" == res:
+                url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
+
         elif service == "uwnetid":
             if "password" == url:
                 url = "nws/v1/uwnetid/{}/password".format(

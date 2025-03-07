@@ -111,7 +111,7 @@ def get_all_affiliations(request):
             "hxt_viewer": is_hxt_viewer,
             "alum_asso": is_alum_asso(request),
             "alumni": is_alumni(request) and not_major_affi,
-            "retiree": is_retiree(request) and not_major_affi,
+            "retiree": is_retiree(request),
             "past_employee": is_prior_employee(request) and not_major_affi,
             "past_stud": is_prior_student(request) and not_major_affi,
             "no_1st_class_affi": not_major_affi,
