@@ -7,7 +7,7 @@ import IDcardCard from '../components/accounts/idcard.vue';
 
 const localVue = createLocalVue(Vuex);
 const mockIDcard = {
-  "not_eligible": false, "employee_eligible": false,
+  "idcardelig": false, "employee_eligible": false,
   "retiree_eligible": true, "student_eligible": true
 };
 
