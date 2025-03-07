@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 30
+  minReplicas: 5
   maxReplicas: 200
 targetAverageUtilization: 100
 resources:
@@ -266,21 +266,21 @@ environmentVariables:
   - name: GWS_TIMEOUT
     value: "5"
   - name: GWS_POOL_SIZE
-    value: "40"
+    value: "50"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "30"
+    value: "40"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
     value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
-    value: "20"
+    value: "25"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
@@ -313,16 +313,16 @@ environmentVariables:
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "24"
+    value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "7"
+    value: "5"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "24"
+    value: "30"
   - name: LIBRARIES_TIMEOUT
-    value: "7"
+    value: "5"
 
   - name: MAILMAN_ENV
     value: PROD
@@ -343,16 +343,16 @@ environmentVariables:
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "10"
+    value: "7"
   - name: PWS_POOL_SIZE
-    value: "40"
+    value: "50"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
     value: "30"
   - name: SDBMYUW_TIMEOUT
-    value: "10"
+    value: "5"
 
   - name: SWS_ENV
     value: PROD
@@ -374,9 +374,9 @@ environmentVariables:
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "30"
+    value: "40"
   - name: UWNETID_TIMEOUT
-    value: "10"
+    value: "7"
 
   - name: UWIDP_ENV
     value: PROD
