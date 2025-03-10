@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
@@ -67,6 +67,11 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_retiree(req))
         self.assertTrue(is_alumni(req))
         self.assertTrue(is_prior_student(req))
+
+        req = get_request_with_user("jeos")
+        self.assertTrue(is_retiree(req))
+        self.assertTrue(is_alumni(req))
+        self.assertTrue(is_student(req))
 
     def test_is_prior_employee(self):
         req = get_request_with_user('jpce')

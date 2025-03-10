@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -301,8 +301,8 @@ class TestInstructorSection(MyuwApiTest):
         resp = InstScheCurQuar().get(request)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 2)
-        self.assertEqual(data['sections'][0]['current_enrollment'], 18)
-        self.assertEqual(data['sections'][1]['current_enrollment'], 3)
+        self.assertEqual(data['sections'][0]['current_enrollment'], 17)
+        self.assertEqual(data['sections'][1]['current_enrollment'], 2)
 
     def test_courese_mode(self):
         # MUWM-5099

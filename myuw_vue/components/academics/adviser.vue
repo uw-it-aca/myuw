@@ -40,7 +40,7 @@
         <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
-          href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+          href="https://advising.uw.edu/academic-support/advising-offices-by-program/"
         >View departmental and major advising offices’ contact information</a>
       </div>
 

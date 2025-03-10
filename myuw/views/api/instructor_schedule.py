@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
@@ -184,9 +184,8 @@ def set_course_resources(section_data, section, person, is_future_term):
 def get_enrollment_status_for_section(section, section_json):
     try:
         status = get_section_status_by_label(section.section_label())
-        if not is_joint_section(section):
-            # MUWM-3954, MUWM-3999
-            section_json["current_enrollment"] = status.current_enrollment
+        # MUWM-4349, MUWM-5392
+        section_json["current_enrollment"] = status.current_enrollment
         section_json["limit_estimated_enrollment"] =\
             status.limit_estimated_enrollment
 

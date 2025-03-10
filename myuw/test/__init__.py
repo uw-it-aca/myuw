@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test.utils import override_settings
@@ -17,7 +17,7 @@ from uw_grad.util import fdao_grad_override
 from uw_bookstore.util import fdao_bookstore_override
 from uw_canvas.utilities import fdao_canvas_override
 from uw_mailman.util import fdao_mailman_override
-from uw_upass.util import fdao_upass_override
+from uw_admin_systems.util import fdao_uw_admin_sys_override
 from uw_hfs.util import fdao_hfs_override
 from restclients_core.util.decorators import use_mock
 

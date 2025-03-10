@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import os
@@ -51,7 +51,7 @@ setup(
         'UW-RestClients-Sdbmyuw~=1.0',
         'UW-RestClients-Space~=1.2',
         'UW-RestClients-Trumba~=1.4',
-        'UW-RestClients-UPass~=2.1',
+        'UW-RestClients-UPass~=3.0',
         'UW-RestClients-UWNetID~=1.1',
         'Uw-Django-Oidc<1.0',
         'Django-SupportTools~=3.6',

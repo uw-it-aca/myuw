@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from myuw.views.error import (
@@ -40,10 +40,13 @@ class TestViewsError(MyuwApiTest):
         response = no_access()
         self.assertEqual(
             response.content,
-            (b'<p>This is a test environment of MyUW, '
-             b'its access is limited to specific people. To request access, '
-             b'please contact the <a href="https://itconnect.uw.edu/'
-             b'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
+            (
+                b"<p>This is a test environment of MyUW, its access "
+                b"is limited to specific people. To request access, "
+                b'please contact the <a href="https://it.uw.edu/help/uw/'
+                b'">UW-IT Service Center</a>.</p>'
+            ),
+        )
         self.assertEqual(response.status_code, 403)
 
     def test_not_instructor_error(self):

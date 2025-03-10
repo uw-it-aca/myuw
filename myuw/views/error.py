@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import sys
@@ -40,8 +40,9 @@ def no_access():
         "<p>This is a test environment of MyUW, "
         "its access is limited to specific people. "
         "To request access, please contact the "
-        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
-        "UW-IT Service Center</a>.</p>")
+        '<a href="https://it.uw.edu/help/uw/">'
+        "UW-IT Service Center</a>.</p>",
+    )
 
 
 def not_instructor_error():

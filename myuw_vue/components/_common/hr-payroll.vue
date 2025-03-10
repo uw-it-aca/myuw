@@ -115,17 +115,18 @@ export default {
       instructor: (state) => state.user.affiliations.instructor,
       retiree: (state) => state.user.affiliations.retiree,
       pastEmployee: (state) => state.user.affiliations.past_employee,
+      no_1st_class_affi: (state) => state.user.affiliations.no_1st_class_affi,
       staticUrl: (state) => state.staticUrl,
     }),
     showCard () {
       if (this.isHomePage) {
-        return this.retiree || this.pastEmployee ||
+        return this.retiree && this.no_1st_class_affi || this.pastEmployee ||
           this.employee && !this.student && !this.instructor;
       }
       return this.studEmployee || this.instructor;
     },
     truncateView () {
-      return this.retiree || this.pastEmployee;
+      return this.retiree && this.no_1st_class_affi || this.pastEmployee;
     },
   },
 };

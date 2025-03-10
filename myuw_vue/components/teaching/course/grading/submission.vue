@@ -74,7 +74,7 @@
         </span>
         <a
           v-out="'GradePage Help'"
-          href="https://itconnect.uw.edu/learn/tools/gradepage/"
+          href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0034601"
         >
           <font-awesome-icon :icon="faQuestionCircle" />
         </a>
@@ -150,7 +150,7 @@
           </span>
           <br>
           To make changes, use <a
-            href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
+            href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0034604"
           ><em>Change Submitted Grades</em></a> form
         </div>
       </div>
