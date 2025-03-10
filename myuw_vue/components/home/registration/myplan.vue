@@ -118,7 +118,7 @@ export default {
       }
       return {};
     },
-    repRegReqCompleted() {
+    preRegReqCompleted() {
       return this.currentPlanData.complete_pre_reg;
     },
     readyCount() {
