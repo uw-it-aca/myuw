@@ -118,6 +118,9 @@ export default {
       }
       return {};
     },
+    preRegReqCompleted() {
+      return this.currentPlanData.complete_pre_reg;
+    },
     readyCount() {
       return this.currentPlanData.ready_count;
     },
