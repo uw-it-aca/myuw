@@ -119,6 +119,7 @@ export default {
       return {};
     },
     preRegCompleted() {
+      // MUWM-5395
       return this.currentPlanData && this.currentPlanData.complete_pre_reg;
     },
     readyCount() {
