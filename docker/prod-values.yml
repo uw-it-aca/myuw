@@ -1,7 +1,7 @@
 autoscaling:
   enabled: true
   minReplicas: 30
-  maxReplicas: 200
+  maxReplicas: 240
 targetAverageUtilization: 100
 resources:
   limits:
@@ -350,7 +350,7 @@ environmentVariables:
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "30"
+    value: "50"
   - name: SDBMYUW_TIMEOUT
     value: "5"
 
