@@ -257,9 +257,9 @@ environmentVariables:
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
-    value: "15"
+    value: "30"
   - name: GRADEPAGE_TIMEOUT
-    value: "10"
+    value: "15"
 
   - name: GWS_ENV
     value: PROD
@@ -345,12 +345,12 @@ environmentVariables:
   - name: PWS_TIMEOUT
     value: "7"
   - name: PWS_POOL_SIZE
-    value: "50"
+    value: "65"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "50"
+    value: "30"
   - name: SDBMYUW_TIMEOUT
     value: "5"
 
