@@ -168,7 +168,7 @@ export default {
     showCard() {
       return (
         (this.employee || this.student) &&
-        !isReady || (shownEvents.length > 0 || futureCalCount > 0)
+        (!isReady || shownEvents.length > 0 || futureCalCount > 0)
       );
     },
     showError() {
