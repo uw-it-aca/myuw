@@ -68,6 +68,11 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_alumni(req))
         self.assertTrue(is_prior_student(req))
 
+        req = get_request_with_user("jeos")
+        self.assertTrue(is_retiree(req))
+        self.assertTrue(is_alumni(req))
+        self.assertTrue(is_student(req))
+
     def test_is_prior_employee(self):
         req = get_request_with_user('jpce')
         self.assertTrue(is_prior_employee(req))

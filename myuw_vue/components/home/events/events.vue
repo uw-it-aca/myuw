@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
+  <uw-card v-if="showCard"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -152,6 +152,8 @@ export default {
   },
   computed: {
     ...mapState({
+      employee: (state) => state.user.affiliations.all_employee,
+      student: (state) => state.user.affiliations.student,
       shownEvents: (state) => state.events.value.shownEvents || [],
       hiddenEvents: (state) => state.events.value.hiddenEvents || [],
       futureCalCount: (state) => state.events.value.futureCalCount,
@@ -163,12 +165,18 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
+    showCard() {
+      return (
+        (this.employee || this.student) &&
+        (!this.isReady || this.shownEvents.length > 0 || this.futureCalCount > 0)
+      );
+    },
     showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    this.fetch();
+    if (this.employee || this.student) this.fetch();
   },
   methods: {
     ...mapActions('events', ['fetch']),

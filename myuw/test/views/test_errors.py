@@ -41,8 +41,8 @@ class TestViewsError(MyuwApiTest):
         self.assertEqual(
             response.content,
             (
-                b"<p>This is a test environment of MyUW, "
-                b"its access is limited to specific people. To request access, "
+                b"<p>This is a test environment of MyUW, its access "
+                b"is limited to specific people. To request access, "
                 b'please contact the <a href="https://it.uw.edu/help/uw/'
                 b'">UW-IT Service Center</a>.</p>'
             ),

@@ -16,6 +16,7 @@ from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.persistent_messages import BannerMessage
+from myuw.dao.pws import is_student
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user, not_existing_user
 from myuw.dao.user_pref import get_migration_preference
@@ -120,12 +121,14 @@ def page(request,
 
 def try_prefetch(request, template, context):
     try:
-        prefetch_resources(request,
-                           prefetch_migration_preference=True,
-                           prefetch_enrollment=True,
-                           prefetch_group=True,
-                           prefetch_instructor=True,
-                           prefetch_sws_person=True)
+        prefetch_resources(
+            request,
+            prefetch_migration_preference=True,
+            prefetch_enrollment=(True if is_student(request) else False),
+            prefetch_group=True,
+            prefetch_instructor=True,
+            prefetch_sws_person=(True if is_student(request) else False)
+        )
     except DataFailureException:
         log_exception(logger, "prefetch error", traceback)
         context["webservice_outage"] = True
