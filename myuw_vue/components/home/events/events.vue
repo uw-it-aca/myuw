@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
+  <uw-card v-if="showCard"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -165,6 +165,12 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
+    showCard() {
+      return (
+        (this.employee || this.student) &&
+        !isReady || (shownEvents.length > 0 || futureCalCount > 0)
+      );
+    },
     showError() {
       return this.statusCode !== 404;
     },
