@@ -22,6 +22,13 @@ describe('Event Store and Card', () => {
       modules: {
         'events': events,
       },
+      state: {
+        user: {
+          affiliations: {
+            student: true,
+          }
+        }
+      }
     });
   });
 
