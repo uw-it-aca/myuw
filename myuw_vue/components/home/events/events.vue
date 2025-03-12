@@ -152,6 +152,8 @@ export default {
   },
   computed: {
     ...mapState({
+      employee: (state) => state.user.affiliations.all_employee,
+      student: (state) => state.user.affiliations.student,
       shownEvents: (state) => state.events.value.shownEvents || [],
       hiddenEvents: (state) => state.events.value.hiddenEvents || [],
       futureCalCount: (state) => state.events.value.futureCalCount,
@@ -168,7 +170,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.employee || this.student) this.fetch();
   },
   methods: {
     ...mapActions('events', ['fetch']),
