@@ -329,7 +329,7 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "30"
   - name: MAILMAN_POOL_SIZE
-    value: "15"
+    value: "30"
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
