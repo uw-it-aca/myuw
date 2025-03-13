@@ -15,7 +15,7 @@
         </a>
       </div>
     </div>
-    <div v-else-if="!preRegCompleted" class="mb-4 text-center">
+    <div v-else-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
         class="mb-2"
@@ -143,9 +143,12 @@ export default {
 
       return '';
     },
-    preRegCompleted() {
+    showComPreReg() {
       // MUWM-5395
-      return true || this.currentPlanData && this.currentPlanData.complete_pre_reg;
+      // The display window is determined by the preRegNotices
+      // and show/no-show by complete_pre_reg
+      return (this.preRegNotices && this.preRegNotices.length &&
+        this.currentPlanData && !this.currentPlanData.complete_pre_reg);
     },
   },
 };
