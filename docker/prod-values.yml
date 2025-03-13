@@ -1,7 +1,7 @@
 autoscaling:
   enabled: true
-  minReplicas: 30
-  maxReplicas: 240
+  minReplicas: 4
+  maxReplicas: 180
 targetAverageUtilization: 100
 resources:
   limits:
@@ -343,9 +343,9 @@ environmentVariables:
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "7"
+    value: "10"
   - name: PWS_POOL_SIZE
-    value: "65"
+    value: "80"
 
   - name: SDBMYUW_ENV
     value: PROD
@@ -359,7 +359,7 @@ environmentVariables:
   - name: SWS_TIMEOUT
     value: "10"
   - name: SWS_POOL_SIZE
-    value: "60"
+    value: "80"
 
   - name: SPACE_ENV
     value: PROD
