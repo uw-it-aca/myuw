@@ -147,7 +147,7 @@ export default {
       // MUWM-5395
       // The display window is determined by the preRegNotices
       // and show/no-show by complete_pre_reg
-      return (this.preRegNotices && this.preRegNotices.length &&
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
         this.currentPlanData && !this.currentPlanData.complete_pre_reg);
     },
   },
