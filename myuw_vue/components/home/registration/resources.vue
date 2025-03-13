@@ -2,27 +2,12 @@
   <div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
-        href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+        :href="registrationHref"
         class="mb-2"
       >
-        Register using SLN codes
+        Register using ...
       </uw-link-button>
-      <div v-if="myplanRegistrationHref" class="d-inline-block">
-        <uw-link-button
-          :href="myplanRegistrationHref"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
-      </div>
-      <div v-else class="d-inline-block">
-        <uw-link-button
-          :href="`https://myplan.uw.edu/plan/#/${nextTermYear}${nextTermQuarterCode}`"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
-      </div>
+
       <div v-if="isC2" class="text-center myuw-text-md">
         <a
           href="https://www.degreereg.uw.edu/how-to-register">
@@ -30,7 +15,7 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4 text-center">
+    <div v-else-if="!preRegCompleted" class="mb-4 text-center">
       <uw-link-button
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
         class="mb-2"
@@ -132,7 +117,7 @@ export default {
       }
       return {};
     },
-    myplanRegistrationHref() {
+    registrationHref() {
       return this.currentPlanData.registration_href;
     },
     degreeAuditHref() {
@@ -157,6 +142,10 @@ export default {
       }
 
       return '';
+    },
+    preRegCompleted() {
+      // MUWM-5395
+      return true || this.currentPlanData && this.currentPlanData.complete_pre_reg;
     },
   },
 };
