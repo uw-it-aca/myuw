@@ -7,7 +7,7 @@
              "Label":"Autumn 2013",
              "OpenForRegistration": true
              },
-        "RegistrationHref":"https://register-dev.sis.uw.edu/#/au13",
+        "RegistrationHref":"https://register.uw.edu",
         "MyPlanHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20134",
         "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
         "PlanAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
