@@ -5,8 +5,11 @@
         :href="registrationHref"
         class="mb-2"
       >
-        Register using ...
+        Register at Register.UW
       </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3">
+        (You will be able to import your ready planned items from MyPlan)
+      </div>
 
       <div v-if="isC2" class="text-center myuw-text-md">
         <a
@@ -17,7 +20,7 @@
     </div>
     <div v-else-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
-        href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
+        :href="registrationHref"
         class="mb-2"
       >
         Complete Pre-Registration Requirements
