@@ -30,7 +30,7 @@
         Issues
       </h5>
       <p class="myuw-text-md">
-        The following plan items have issues you must resolve before Registration.
+        The following plan items have issues you must resolve before they can be imported into Register.UW
       </p>
       <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in coursesUnRegistrable" :key="i">
@@ -103,7 +103,7 @@ export default {
     },
   },
   methods: {
-    
+
   },
 };
 </script>
