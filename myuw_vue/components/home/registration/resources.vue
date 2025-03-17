@@ -7,8 +7,8 @@
       >
         Register at Register.UW
       </uw-link-button>
-      <div class="text-center myuw-text-sm pb-3">
-        (You will be able to import your ready planned items from MyPlan)
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will be able to import your ready planned items from MyPlan
       </div>
 
       <div v-if="isC2" class="text-center myuw-text-md">
@@ -25,6 +25,9 @@
       >
         Complete Pre-Registration Requirements
       </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will not be able to register until you complete Pre-Registration
+      </div>
     </div>
     <div>
       <h3 class="visually-hidden">Registration resources</h3>
