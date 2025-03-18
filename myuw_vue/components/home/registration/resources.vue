@@ -5,7 +5,7 @@
         :href="registrationHref"
         class="mb-2"
       >
-        Register at Register.UW
+        Go to Register.UW
       </uw-link-button>
       <div class="text-center myuw-text-sm pb-3 fst-italic">
         You will be able to import your ready planned items from MyPlan
