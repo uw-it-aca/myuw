@@ -2,7 +2,7 @@
   <div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
-        :href="registrationHref"
+        :href="registrationHref+'/register/#/sp25'"
         class="mb-2"
       >
         Go to Register.UW
@@ -20,7 +20,7 @@
     </div>
     <div v-else-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
-        :href="registrationHref"
+        :href="registrationHref+'/register/#/sp25'"
         class="mb-2"
       >
         Complete Pre-Registration Requirements
