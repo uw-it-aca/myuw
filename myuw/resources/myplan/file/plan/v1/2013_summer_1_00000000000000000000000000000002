@@ -1,7 +1,7 @@
 [
     {
         "Term":{"Quarter":"Summer","Year":2013},
-        "RegistrationHref":"https://register.sis.uw.edu/register/",
+        "RegistrationHref":"https://register.uw.edu/#/su13",
         "MyPlanHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20133",
         "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
         "PlanAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
