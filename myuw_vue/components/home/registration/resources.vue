@@ -124,41 +124,14 @@ export default {
       return {};
     },
     registrationHref() {
-      // Registration site will default to current quarter if this term code
-      // is not set or is invalid
-      return `${this.currentPlanData.registration_href}/register/#/${this.registrationUrlTermCode}`;
+      // MyPlan returns quarter specific registration href
+      return this.currentPlanData.registration_href;
     },
     degreeAuditHref() {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
       return 'https://myplan.uw.edu/audit/#/degree';
-    },
-    registrationUrlTermCode() {
-      return `${this.nextTermQuarterCode}${this.nextTermYearCode}`;
-    },
-    nextTermYearCode() {
-      if (!this.nextTermYear || this.nextTermYear === 0) {
-        return '';
-      }
-      return this.nextTermYear.toString().slice(-2);
-    },
-    nextTermQuarterCode() {
-      if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
-        return '';
-      }
-      const q = this.nextTermQuarter.toLowerCase();
-      if (q === 'winter') {
-        return 'wi';
-      } else if (q === 'spring') {
-        return 'sp';
-      } else if (q === 'summer') {
-        return 'su';
-      } else if (q === 'autumn') {
-        return 'au';
-      }
-
-      return '';
     },
     showComPreReg() {
       // MUWM-5395

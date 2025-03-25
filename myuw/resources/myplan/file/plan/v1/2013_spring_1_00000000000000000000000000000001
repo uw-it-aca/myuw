@@ -1,7 +1,7 @@
 [
     {
         "Term":{"Quarter":"Spring","Year":2013},
-        "RegistrationHref":"https://register.uw.edu",
+        "RegistrationHref":"https://register.uw.edu/#/sp13",
         "MyPlanHref":"http://example.com/MyPlan",
         "PreRegistrationComplete": false,
         "Courses":[
