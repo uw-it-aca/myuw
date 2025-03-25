@@ -5,7 +5,7 @@
     </h4>
     <div v-if="hadReadyCourses">
       <h5 class="myuw-text-md fw-bold">
-        Ready for registration
+        Ready Courses
       </h5>
       <ul class="list-unstyled m-0 myuw-text-sm" data-columns="3">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
@@ -30,8 +30,9 @@
         Issues
       </h5>
       <p class="myuw-text-md">
-        The following plan items have issues you must resolve before they
-        can be sent to Registration.
+        The following plan items have issues you must resolve
+        before they can be imported into Register.UW
+        <!--<span v-if="!registrationIsOpen">on your estimated registration date.</span>-->
       </p>
       <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in coursesUnRegistrable" :key="i">
@@ -104,7 +105,7 @@ export default {
     },
   },
   methods: {
-    
+
   },
 };
 </script>
