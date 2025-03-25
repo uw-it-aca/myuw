@@ -2,7 +2,7 @@
   <div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
-        :href="registrationHref+'/register/#/sp25'"
+        :href="registrationHref"
         class="mb-2"
       >
         Go to Register.UW
@@ -20,7 +20,7 @@
     </div>
     <div v-else-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
-        :href="registrationHref+'/register/#/sp25'"
+        :href="registrationHref"
         class="mb-2"
       >
         Complete Pre-Registration Requirements
@@ -124,7 +124,9 @@ export default {
       return {};
     },
     registrationHref() {
-      return this.currentPlanData.registration_href;
+      // Registration site will default to current quarter if this term code
+      // is not set or is invalid
+      return `${this.currentPlanData.registration_href}/register/#/${this.registrationUrlTermCode}`;
     },
     degreeAuditHref() {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
@@ -132,19 +134,28 @@ export default {
       }
       return 'https://myplan.uw.edu/audit/#/degree';
     },
+    registrationUrlTermCode() {
+      return `${this.nextTermQuarterCode}${this.nextTermYearCode}`;
+    },
+    nextTermYearCode() {
+      if (!this.nextTermYear || this.nextTermYear === 0) {
+        return '';
+      }
+      return this.nextTermYear.toString().slice(-2);
+    },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
         return '';
       }
       const q = this.nextTermQuarter.toLowerCase();
       if (q === 'winter') {
-        return 'Wi';
+        return 'wi';
       } else if (q === 'spring') {
-        return 'Sp';
+        return 'sp';
       } else if (q === 'summer') {
-        return 'Su';
+        return 'su';
       } else if (q === 'autumn') {
-        return 'Au';
+        return 'au';
       }
 
       return '';
