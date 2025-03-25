@@ -30,7 +30,8 @@
         Issues
       </h5>
       <p class="myuw-text-md">
-        The following plan items have issues you must resolve before they can be imported into Register.UW <!--<span v-if="!registrationIsOpen">on your estimated registration date.</span>-->
+        The following plan items have issues you must resolve before they can be imported into Register.UW 
+        <!--<span v-if="!registrationIsOpen">on your estimated registration date.</span>-->
       </p>
       <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in coursesUnRegistrable" :key="i">
