@@ -144,7 +144,7 @@
         ]
     },
     {
-        "notice_content": "<span class=\"notice-title\">Deadline to Use Quarterly Drop</span><span class=\"notice-body-with-title\">The last day to use your Quarterly Drop for A-term is <span class=\"date\"> Wed, July 14</span>. <a href=\"https://registrar.washington.edu/registration/changes/\">About Quarterly Drop</a></span>",
+        "notice_content": "<span class=\"notice-title\">Deadline to Use Quarterly Drop</span><span class=\"notice-body-with-title\">The last day to use your Quarterly Drop for A-term is <span class=\"date\"> Wed, July 14</span>. <a href=\"https://registrar.washington.edu/register/changes/\">About Quarterly Drop</a></span>",
         "attributes": [
             {
                 "name": "DisplayBegin",
