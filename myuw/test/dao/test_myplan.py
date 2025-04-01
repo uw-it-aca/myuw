@@ -15,6 +15,7 @@ class TestMyPlanDao(TestCase):
         self.assertEqual(data['terms'][0]['quarter'], 'Summer')
         self.assertEqual(len(data["terms"][0]["courses"]), 3)
         self.assertEqual(data["terms"][0]["unready_count"], 3)
+        self.assertTrue(data["terms"][0]["complete_pre_reg"])
 
         req = get_request_with_user('jinter')
         data = get_plan(req, 2013, 'autumn')
