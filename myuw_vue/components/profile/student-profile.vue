@@ -55,7 +55,7 @@
           </span>
           <br>
           <a v-out="'About residency statuses'"
-            href="https://registrar.washington.edu/students/residency/"
+            href="https://registrar.washington.edu/residency/"
             title="About residency statuses"
           >About residency statuses</a>
         </uw-card-property>

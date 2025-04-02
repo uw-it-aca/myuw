@@ -42,22 +42,22 @@ export default {
           { url: "https://www.uwb.edu/registrar/policies/name-change",
             title: "Name Change Policy" } : null,
         this.nonBotTacStudent ?
-          { url: "https://registrar.washington.edu/students/personal-data/names/",
+          { url: "https://registrar.washington.edu/personal-data/names/",
             title: "Student Name and Updates" } : null,
         this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
             title: "Preferred Names" } : null,
         this.nonBotTacStudent ?
-          { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
+          { url: "https://registrar.washington.edu/personal-data/names/pn-faqs/",
             title: "Preferred Names FAQ" } : null,
         this.nonBotTacStudent ?
-          { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
+          { url: "https://registrar.washington.edu/personal-data/gender-identity/",
             title: "Gender Identity & Updates" } : null,
         this.employee || this.studEmployee ?
           { url: "https://isc.uw.edu/using-workday/managing-your-personal-and-work-information/",
             title: "Change Your Personal Information" } : null,
         this.student ?
-          { url: "https://registrar.washington.edu/students/enrollment-and-degree-verification/",
+          { url: "https://registrar.washington.edu/register/enrollment-verification/",
             title: "Self-Service Enrollment Verification" } : null,
       ].filter(x => x !== null);
     }

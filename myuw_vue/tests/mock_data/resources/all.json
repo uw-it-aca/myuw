@@ -63,7 +63,7 @@
                     },
                     {
                         "title": "About Ordering Transcripts",
-                        "url": "https://registrar.washington.edu/students/transcripts/"
+                        "url": "https://registrar.washington.edu/transcripts/"
                     },
                     {
                         "title": "Order Official Transcripts",
@@ -83,7 +83,7 @@
                 "links": [
                     {
                         "title": "Applying for Graduation",
-                        "url": "https://registrar.washington.edu/students/graduation-commencement-and-diplomas/"
+                        "url": "https://registrar.washington.edu/graduation/"
                     }
                 ]
             },
@@ -327,7 +327,7 @@
                 "links": [
                     {
                         "title": "Electronic Advising Records System (EARS)",
-                        "url": "http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears"
+                        "url": "https://registrar.washington.edu/staff-faculty/ears/"
                     },
                     {
                         "title": "IT Connect",
