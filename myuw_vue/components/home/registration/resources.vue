@@ -2,27 +2,15 @@
   <div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
-        href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+        :href="registrationHref"
         class="mb-2"
       >
-        Register using SLN codes
+        Go to Register.UW
       </uw-link-button>
-      <div v-if="myplanRegistrationHref" class="d-inline-block">
-        <uw-link-button
-          :href="myplanRegistrationHref"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will be able to import your ready planned items from MyPlan
       </div>
-      <div v-else class="d-inline-block">
-        <uw-link-button
-          :href="`https://myplan.uw.edu/plan/#/${nextTermYear}${nextTermQuarterCode}`"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
-      </div>
+
       <div v-if="isC2" class="text-center myuw-text-md">
         <a
           href="https://www.degreereg.uw.edu/how-to-register">
@@ -30,13 +18,16 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4 text-center">
+    <div v-else-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
-        href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
+        :href="registrationHref"
         class="mb-2"
       >
         Complete Pre-Registration Requirements
       </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will not be able to register until you complete Pre-Registration
+      </div>
     </div>
     <div>
       <h3 class="visually-hidden">Registration resources</h3>
@@ -132,7 +123,8 @@ export default {
       }
       return {};
     },
-    myplanRegistrationHref() {
+    registrationHref() {
+      // MyPlan returns quarter specific registration href
       return this.currentPlanData.registration_href;
     },
     degreeAuditHref() {
@@ -141,22 +133,12 @@ export default {
       }
       return 'https://myplan.uw.edu/audit/#/degree';
     },
-    nextTermQuarterCode() {
-      if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
-        return '';
-      }
-      const q = this.nextTermQuarter.toLowerCase();
-      if (q === 'winter') {
-        return 'Wi';
-      } else if (q === 'spring') {
-        return 'Sp';
-      } else if (q === 'summer') {
-        return 'Su';
-      } else if (q === 'autumn') {
-        return 'Au';
-      }
-
-      return '';
+    showComPreReg() {
+      // MUWM-5395
+      // The display window is determined by the preRegNotices
+      // and show/no-show by complete_pre_reg
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
+        this.currentPlanData && !this.currentPlanData.complete_pre_reg);
     },
   },
 };

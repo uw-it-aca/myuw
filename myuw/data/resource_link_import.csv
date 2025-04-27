@@ -10,18 +10,18 @@ Academics,Advising & Tutoring,all,,,http://studyabroad.washington.edu/,Study Abr
 Academics,Advising & Tutoring,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
 Academics,Grades & Transcripts,all,https://www.washington.edu/uaa/advising/academic-planning/plan-your-degree/,GPA Calculator,,,,,,,no
 Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx,Grade Report,,,,,,,no
-Academics,Grades & Transcripts,all,https://registrar.washington.edu/students/transcripts/,About Ordering Transcripts,,,,,,,no
+Academics,Grades & Transcripts,all,https://registrar.washington.edu/transcripts/,About Ordering Transcripts,,,,,,,no
 Academics,Grades & Transcripts,all,https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php,Order Official Transcripts,,,,,,,no
 Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,no
-Academics,Graduation,all,,,https://registrar.washington.edu/students/graduation-commencement-and-diplomas/,Applying for Graduation,https://www.uwb.edu/registrar/graduation/apply,Applying for Graduation,https://www.tacoma.uw.edu/uwt/registrar/graduation-procedures,Applying to Graduate,no
+Academics,Graduation,all,,,https://registrar.washington.edu/graduation/,Applying for Graduation,https://www.uwb.edu/registrar/graduation/apply,Applying for Graduation,https://www.tacoma.uw.edu/uwt/registrar/graduation-procedures,Applying to Graduate,no
 Academics,Registration,all,,,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,https://www.uwb.edu/academic-calendar/,UW Bothell Academic Calendar,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,no
 Academics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
 Academics,Registration,all,https://myplan.uw.edu/audit/#/degree,Check Your Degree Progress (DARS),,,,,,,no
 Academics,Registration,all,https://myplan.uw.edu/,MyPlan,,,,,,,no
 Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Registration,all,http://dawgpath.uw.edu,DawgPath,,,,,,,no
-Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,no
-Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,no
+Academics,Registration,all,https://register.uw.edu,Registration,,,,,,,no
+Academics,Registration,all,,,https://myplan.uw.edu/plan/#/schedule,Schedule Finder,https://myplan.uw.edu/plan/#/schedule,Schedule Finder,,,no
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
 Academics,Registration,all,https://www.degreereg.uw.edu/how-to-register,How to Register for PCE Courses,,,,,,,no
@@ -55,7 +55,7 @@ Services for Faculty and Staff,Finance and Procurement,all,"https://biportal.uw.
 Services for Faculty and Staff,Finance and Procurement,all,"https://uw.service-now.com/finance	","UW Connect Finance	",,,,,,,no
 Services for Faculty and Staff,Finance and Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/planning-administration/fiscal-audit-services/procurement,Purchasing,https://www.tacoma.uw.edu/fa/finance/procurement,Procurement Services,no
 Services for Faculty and Staff,Finance and Procurement,all,"http://wd5.myworkday.com/uw/login.htmld	",Workday,,,,,,,no
-Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
+Services for Faculty and Staff,Others,all,https://registrar.washington.edu/staff-faculty/ears/,Electronic Advising Records System (EARS),,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://it.uw.edu/,UWConnect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
 Services for Faculty and Staff,Others,all,https://it.uw.edu/software/,Software and Hardware,,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/safety/ehs-emergency/environment-health-safety,Environmental Health & Safety,https://www.tacoma.uw.edu/fa/environmental-health-safety,Environmental Health & Safety,no
@@ -150,7 +150,7 @@ Teaching,Course Materials,all,https://finance.uw.edu/c2/printing-copying/course-
 Teaching,Course Materials,all,https://lib.washington.edu/types/course/instructors/request,Request Course Reserves,,,,,,,no
 Teaching,Grading,all,https://gradepage.uw.edu,GradePage,,,,,,,no
 Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/change.php,Change Submitted Grades,,,,,,,no
-Teaching,Grading,all,,,https://registrar.washington.edu/staffandfaculty/grading-resources/,Faculty Resource on Grading,https://www.uwb.edu/registrar/policies/grading,Grading Policies,https://www.tacoma.uw.edu/uwt/registrar/grading-policy,Grading Policy,no
+Teaching,Grading,all,,,https://registrar.washington.edu/staff-faculty/grading-resources/,Faculty Resource on Grading,https://www.uwb.edu/registrar/policies/grading,Grading Policies,https://www.tacoma.uw.edu/uwt/registrar/grading-policy,Grading Policy,no
 Teaching,Tools,all,https://canvas.uw.edu,Canvas LMS,,,,,,,no
 Teaching,Tools,all,https://uw.hosted.panopto.com,Panopto Lecture Capture,,,,,,,no
 Teaching,Tools,all,https://uwconnect.uw.edu/it?id=sc_entry&sys_id=d6353a45db4abbc037ae9ec6db9619a5&sysparm_category=4fbe6c25dbee7f40d6a77a8eaf96193c,Poll Everywhere,,,,,,,no
