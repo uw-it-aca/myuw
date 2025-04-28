@@ -2,14 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-from myuw.dao.registration import get_schedule_by_term
-from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.campus_building import get_building_by_code
-from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+from myuw.dao.registration import get_schedule_by_term
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
+from myuw.dao.campus_building import get_building_by_code
+from restclients_core.exceptions import DataFailureException
 
 logger = logging.getLogger(__name__)
 
