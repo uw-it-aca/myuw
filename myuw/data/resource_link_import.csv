@@ -6,6 +6,7 @@ Academics,Advising & Tutoring,all,,,http://iss.washington.edu/,International Stu
 Academics,Advising & Tutoring,all,,,http://depts.washington.edu/owrc,Odegaard Writing & Research Center,https://www.uwb.edu/academic-support-programs/wacc,Writing and Communication Center (WaCC),https://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources,Writing Center,no
 Academics,Advising & Tutoring,all,,,,,,,http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0,Academic Writing Resources,no
 Academics,Advising & Tutoring,all,,,http://www.washington.edu/uaa/advising/,Undergraduate Academic Advising (Pre-major),https://www.uwb.edu/premajor/academic-advising,Undergraduate Academic Advising (Pre-major),https://www.tacoma.uw.edu/advising,Undergraduate Academic Advising (Pre-major),no
+Academics,Advising & Tutoring,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/prefmajor.aspx,Update Intended Major,,,,,,,no
 Academics,Advising & Tutoring,all,,,http://studyabroad.washington.edu/,Study Abroad,https://www.uwb.edu/connected-learning/global/abroad,Study Abroad,https://www.tacoma.uw.edu/oga/sa,Study Abroad,no
 Academics,Advising & Tutoring,all,https://grad.uw.edu/current-students/student-success/,Graduate School Student Success,,,,,,,no
 Academics,Grades & Transcripts,all,https://www.washington.edu/uaa/advising/academic-planning/plan-your-degree/,GPA Calculator,,,,,,,no
@@ -21,7 +22,7 @@ Academics,Registration,all,https://myplan.uw.edu/,MyPlan,,,,,,,no
 Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Registration,all,http://dawgpath.uw.edu,DawgPath,,,,,,,no
 Academics,Registration,all,https://register.uw.edu,Registration,,,,,,,no
-Academics,Registration,all,,,https://myplan.uw.edu/plan/#/schedule,Schedule Finder,https://myplan.uw.edu/plan/#/schedule,Schedule Finder,,,no
+Academics,Registration,all,,,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,,,no
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
 Academics,Registration,all,https://www.degreereg.uw.edu/how-to-register,How to Register for PCE Courses,,,,,,,no
