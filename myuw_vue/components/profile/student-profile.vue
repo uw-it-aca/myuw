@@ -143,7 +143,7 @@ import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
 import CardPropertyGroup from '../_templates/card-property-group.vue';
-import CurMajors from '../_common/major/cur_fut_majors.vue';
+import CurMajors from '../_common/major/cur-fut-majors.vue';
 
 export default {
   components: {

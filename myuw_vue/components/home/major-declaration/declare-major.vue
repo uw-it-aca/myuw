@@ -145,7 +145,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
-import CurMajors from '../../_common/major/cur_fut_majors.vue';
+import CurMajors from '../../_common/major/cur-fut-majors.vue';
 import MajorInfoSea from './major-sea.vue';
 import MajorInfoBot from './major-bot.vue';
 import MajorInfoTac from './major-tac.vue';

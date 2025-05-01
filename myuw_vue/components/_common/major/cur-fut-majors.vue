@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Major from './term_major.vue';
+import Major from './term-major.vue';
 export default {
   components: {
     'major': Major,
