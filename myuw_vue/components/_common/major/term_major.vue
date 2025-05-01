@@ -1,7 +1,9 @@
 <template>
   <li v-if="index == 0" class="mb-1" :key="index">
-    {{ degreeListString(termMajor.majors) }}
-    <span v-if="invalid_degree_name" :id="`major-${index}}`">
+    <span :id="`major-${index}}`">
+      {{ degreeListString(termMajor.majors) }}
+    </span>
+    <span v-if="invalid_degree_name">
       <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
       <uw-tooltip :target="`major-${index}}`" :title="tooltipMessage" />
     </span>
@@ -50,7 +52,7 @@ export default {
     },
     tooltipMessage() {
       return (
-        "The major name your have has been terminated. " +
+        "The major name that you have used has been terminated. " +
         "Please contact your department to update your major(s)."
       );
     }
