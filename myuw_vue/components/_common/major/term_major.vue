@@ -1,5 +1,5 @@
 <template>
-  <li v-if="index == 0" class="mb-1" :key="index">
+  <li v-if="index == 0" class="mb-1">
     <span :id="`major-${index}}`">
       {{ degreeListString(termMajor.majors) }}
     </span>
@@ -8,7 +8,7 @@
       <uw-tooltip :target="`major-${index}}`" :title="tooltipMessage" />
     </span>
   </li>
-  <li v-else-if="termMajor.degrees_modified" class="mb-1" :key="index">
+  <li v-else-if="termMajor.degrees_modified" class="mb-1">
     Beginning {{ titleCaseWord(termMajor.quarter) }} {{ termMajor.year }}:
     &nbsp;&nbsp;
     <span v-if="termMajor.majors.length > 0" :id="`major-${index}}`">
@@ -29,11 +29,6 @@ export default {
   components: {
     'uw-tooltip': Tooltip,
   },
-  data() {
-    return {
-      faExclamationTriangle,
-    };
-  },
   props: {
     index: {
       type: Number,
@@ -43,6 +38,11 @@ export default {
       type: Object,
       required: true
     },
+  },
+  data() {
+    return {
+      faExclamationTriangle,
+    };
   },
   computed: {
     invalid_degree_name () {
