@@ -52,7 +52,7 @@ export default {
     },
     tooltipMessage() {
       return (
-        "The major name that you have used has been terminated. " +
+        "The major name that you have used is no longer valid. " +
         "Please contact your department to update your major(s)."
       );
     }
