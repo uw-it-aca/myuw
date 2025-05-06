@@ -45,16 +45,14 @@ export default {
     };
   },
   computed: {
+    // MUWM-5399
     invalid_degree_name () {
       if (this.termMajor.majors.length == 0) return false;
       const major = this.termMajor.majors[0];
       return major.name === null && major.college_abbr.length > 0 && major.degree_level > 0;
     },
     tooltipMessage() {
-      return (
-        "The major name that you have used is no longer valid. " +
-        "Please contact your department to update your major(s)."
-      );
+      return "Please contact your academic adviser to resolve this error.";
     }
   },
 };
