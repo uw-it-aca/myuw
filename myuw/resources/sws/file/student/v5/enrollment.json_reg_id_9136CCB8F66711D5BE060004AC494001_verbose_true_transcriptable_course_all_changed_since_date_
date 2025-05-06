@@ -515,6 +515,61 @@
             }
         },
         {
+            "ClassCode": "4",
+            "ClassLevel": "SENIOR",
+            "CurrentRegisteredCredits": null,
+            "EnrollmentStatus": "Registered",
+            "EnrollmentStatusDate": "2014-01-08",
+            "FullName": "James McMiddle Average 1 1",
+            "HonorsProgram": false,
+            "LeaveEndQuarter": 0,
+            "LeaveEndYear": 0,
+            "Majors": [
+                {
+                    "Abbreviation": null,
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "BE",
+                    "CollegeFullName": "COLLEGE OF BUILT ENVIRONMENTS",
+                    "DegreeLevel": 4,
+                    "DegreeName": null,
+                    "DegreeType": 1,
+                    "DepartmentAbbreviation": null,
+                    "DepartmentCode": null,
+                    "DepartmentFullName": null,
+                    "FullName": null,
+                    "MajorName": null,
+                    "Pathway": 0,
+                    "ShortName": null
+                }
+            ],
+            "Metadata": "EnrollmentSourceLocation=SDB;",
+            "Minors": [
+            ],
+            "PendingClassChange": false,
+            "PendingHonorsChange": false,
+            "PendingMajorChange": false,
+            "PendingResidentChange": false,
+            "PendingResidencyDescription": null,
+            "PendingResident": "0",
+            "PendingSpecialProgramChange": false,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494001.json",
+                "Name": "James McMiddle Average 1",
+                "RegID": "9136CCB8F66711D5BE060004AC494001"
+            },
+            "QtrGradePoints": 30,
+            "QtrGradedAttmp": 10,
+            "QtrNonGrdEarned": 2,
+            "RegID": "9136CCB8F66711D5BE060004AC494001",
+            "Registrations": [
+            ],
+            "Term": {
+                "Href": "/student/v5/term/2014,spring.json",
+                "Quarter": "spring",
+                "Year": "2014"
+            }
+        },
+        {
             "ClassCode": "6",
             "ClassLevel": "NON_MATRIC",
             "FullName": "Average,Jake Joseph",

@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 4
+  minReplicas: 10
   maxReplicas: 180
 targetAverageUtilization: 100
 resources:

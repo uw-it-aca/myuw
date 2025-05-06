@@ -25,7 +25,7 @@
               Current Major
             </h3>
             <div class="myuw-text-md">
-              <cur_majors :term-majors="termMajors"></cur_majors>
+              <major-list :term-majors="termMajors"></major-list>
             </div>
             <div v-if="hasRegHolds">
               <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
@@ -145,7 +145,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
-import CurMajors from '../../_common/cur_major.vue';
+import CurMajors from '../../_common/major/cur-fut-majors.vue';
 import MajorInfoSea from './major-sea.vue';
 import MajorInfoBot from './major-bot.vue';
 import MajorInfoTac from './major-tac.vue';
@@ -154,7 +154,7 @@ export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
-    'cur_majors': CurMajors,
+    'major-list': CurMajors,
     'major-sea': MajorInfoSea,
     'major-bot': MajorInfoBot,
     'major-tac': MajorInfoTac,
