@@ -1,21 +1,19 @@
 <template>
   <li v-if="index == 0" class="mb-1">
-    <span :id="`major-${index}}`">
-      {{ degreeListString(termMajor.majors) }}
-    </span>
+    {{ degreeListString(termMajor.majors) }}
     <span v-if="invalid_degree_name">
-      <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
+      <font-awesome-icon :id="`major-${index}}`" :icon="faExclamationTriangle" class="me-1" />
       <uw-tooltip :target="`major-${index}}`" :title="tooltipMessage" />
     </span>
   </li>
   <li v-else-if="termMajor.degrees_modified" class="mb-1">
     Beginning {{ titleCaseWord(termMajor.quarter) }} {{ termMajor.year }}:
     &nbsp;&nbsp;
-    <span v-if="termMajor.majors.length > 0" :id="`major-${index}}`">
+    <span v-if="termMajor.majors.length > 0">
       {{ degreeListString(termMajor.majors) }}
     </span>
     <span v-if="invalid_degree_name">
-      <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
+      <font-awesome-icon :id="`major-${index}}`" :icon="faExclamationTriangle" class="me-1" />
       <uw-tooltip :target="`major-${index}}`" :title="tooltipMessage" />
     </span>
   </li>
