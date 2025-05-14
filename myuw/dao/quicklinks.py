@@ -34,21 +34,7 @@ def get_quicklink_data(request):
 
     data['custom_links'] = custom
 
-    popular = []
-
-    popular_links = get_data_for_affiliations(model=PopularLink,
-                                              affiliations=affiliations,
-                                              unique=lambda x: x.url)
-    for link in popular_links:
-        added = link.url in custom_lookup
-        existing_list_urls.add(link.url)
-        popular.append({'added': added,
-                        'url': link.url,
-                        'label': link.label,
-                        'id': link.pk})
-
-    data['popular_links'] = popular
-
+    # MUWM-4955
     hidden = HiddenLink.objects.filter(user=user)
     hidden_lookup = set()
     for link in hidden:
@@ -58,19 +44,33 @@ def get_quicklink_data(request):
 
     shown_defaults = []
     for link in default:
-        if link['url'] not in hidden_lookup:
-            shown_defaults.append({'url': link['url'],
-                                   'label': link['label']
-                                   })
+        added = link["url"] in custom_lookup or link["url"] in hidden_lookup
+        if not added:
+            shown_defaults.append({"url": link["url"], "label": link["label"]})
 
-    data['default_links'] = shown_defaults
+    data["default_links"] = shown_defaults
+
+    popular = []
+
+    popular_links = get_data_for_affiliations(model=PopularLink,
+                                              affiliations=affiliations,
+                                              unique=lambda x: x.url)
+    for link in popular_links:
+        added = link.url in custom_lookup or link.url in hidden_lookup
+        existing_list_urls.add(link.url)
+        popular.append({'added': added,
+                        'url': link.url,
+                        'label': link.label,
+                        'id': link.pk})
+
+    data['popular_links'] = popular
 
     recents = []
     recent_links = VisitedLinkNew.recent_for_user(user)
     for link in recent_links:
         if link.url in existing_list_urls:
             continue
-        added = link.url in custom_lookup
+        added = link.url in custom_lookup or link.url in hidden_lookup
         recents.append({'added': added,
                         'url': link.url,
                         'label': get_link_label(link),
