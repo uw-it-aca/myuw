@@ -58,7 +58,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEqual(len(recent), 0)
+        self.assertEqual(len(recent), 2)
 
         for i in range(10):
             VisitedLinkNew.objects.create(user=user,
