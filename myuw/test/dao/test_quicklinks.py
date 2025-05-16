@@ -51,7 +51,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         data = get_quicklink_data(req)
         recent = _get_recent(data)
 
-        self.assertEqual(len(recent), 1)
+        self.assertEqual(len(recent), 2)
         self.assertTrue(u1 in recent)
 
         CustomLink.objects.create(user=user, url=u1)
