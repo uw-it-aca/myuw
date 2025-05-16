@@ -102,7 +102,20 @@ def _get_default_links(affiliations):
     return defaults
 
 
+def get_existing_custom_links(request):
+    existing_link_urls = set()
+    user = get_user_model(request)
+    user_links = CustomLink.objects.filter(user=user).order_by('pk')
+    for link in user_links:
+        existing_link_urls.add(link.url)
+    return existing_link_urls
+
+
 def add_custom_link(request, url, link_label=None):
+    # MUWM-4955
+    existing_link_urls = get_existing_custom_links(request)
+    if url in existing_link_urls:
+        return get_custom_link_by_url(request, url)
     try:
         with transaction.atomic():
             return CustomLink.objects.create(user=get_user_model(request),
