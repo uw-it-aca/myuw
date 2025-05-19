@@ -69,24 +69,24 @@ export default {
             title: "Workshops and Office Hours" },
           { url: "https://washington.zoom.us/", title: "Zoom" },
           { url: "https://uw.hosted.panopto.com/", title: "Panopto" },
-          { url: "http://polleverywhere.com/", title: "Poll Everywhere" }
+          { url: "https://polleverywhere.com/", title: "Poll Everywhere" }
         ].filter(x => x !== null);
       },
       courseMaterialLinks() {
         return [
-          { url: "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
+          { url: "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
             title: "Order Textbooks" },
-          { url: "http://www.lib.washington.edu/types/course",
+          { url: "https://www.lib.washington.edu/types/course",
             title: "Course Reserves" },
-          { url: "http://f2.washington.edu/fm/c2/printing-copying/course-packs",
+          { url: "https://f2.washington.edu/fm/c2/printing-copying/course-packs",
             title: "Request Course Packs" }
         ];
       },
       webToolsLinks() {
         return [
-          { url: "http://canvas.uw.edu", title: "Canvas" },
+          { url: "https://canvas.uw.edu", title: "Canvas" },
           { url: "https://uw.hosted.panopto.com", title: "Panopto Lecture Capture" },
-          { url: "http://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
+          { url: "https://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
           { url: "https://gradepage.uw.edu", title: "GradePage" },
           { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php",
             title: "Change Submitted Grades" },

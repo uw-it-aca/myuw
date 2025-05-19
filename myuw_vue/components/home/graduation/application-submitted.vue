@@ -346,7 +346,7 @@
         <ul class="myuw-text-md">
           <li v-if="seattle">
             <a
-              href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+              href="https://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
               >Departmental advisor</a
             >
             - graduation and academic support
