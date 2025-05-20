@@ -18,13 +18,7 @@ from myuw.test import get_request_with_user
 
 class TestQuickLinkDAO(TransactionTestCase):
 
-    def test_recent_filtering(self):
-        def _get_recent(data):
-            recent = set()
-            for link in data['recent_links']:
-                recent.add(link['url'])
-            return recent
-
+    def test_get_quicklink_data(self):
         username = 'none'
         req = get_request_with_user(username)
         user = get_user_model(req)
@@ -37,10 +31,22 @@ class TestQuickLinkDAO(TransactionTestCase):
         v1 = VisitedLinkNew.objects.create(
             user=user, url=u1.url, label=u1.label)
         self.assertTrue(get_recent_link_by_id(req, v1.pk))
-        p1 = PopularLink.objects.create(url="https://washington.zoom.us/")
+
+        p1 = PopularLink.objects.create(
+            label="Zoom", url="https://washington.zoom.us/")
         p2 = PopularLink.objects.create(
-            url="https://uwnetid.washington.edu/manage/", label="UW NetID")
+            label="UW NetID", url="https://uwnetid.washington.edu/manage/")
         self.assertTrue(get_popular_link_by_id(p1.pk))
+        self.assertEqual(
+            p1.json_data(),
+            {
+                'affiliation': None,
+                'campus': None,
+                'label': 'Zoom',
+                'pce': None,
+                'url': 'https://washington.zoom.us/'
+            })
+        self.assertTrue(str(p1))
 
         h1 = HiddenLink.objects.create(user=user, url=p2.url)
 
