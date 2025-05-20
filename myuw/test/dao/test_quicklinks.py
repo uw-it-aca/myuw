@@ -18,7 +18,7 @@ from myuw.test import get_request_with_user
 
 class TestQuickLinkDAO(TransactionTestCase):
 
-    def test_get_quicklink_data(self):
+    def test_MUWM4955(self):
         username = 'none'
         req = get_request_with_user(username)
         user = get_user_model(req)
