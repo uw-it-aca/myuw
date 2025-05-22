@@ -102,32 +102,15 @@ def _get_default_links(affiliations):
     return defaults
 
 
-def get_existing_custom_links(request):
-    existing_link_urls = set()
-    user = get_user_model(request)
-    user_links = CustomLink.objects.filter(user=user).order_by('pk')
-    for link in user_links:
-        existing_link_urls.add(link.url)
-    return existing_link_urls
-
-
 def add_custom_link(request, url, link_label=None):
-    # MUWM-4955
-    existing_link_urls = get_existing_custom_links(request)
-    if url in existing_link_urls:
-        return get_custom_link_by_url(request, url)
     try:
-        with transaction.atomic():
-            return CustomLink.objects.create(user=get_user_model(request),
-                                             url=url,
-                                             label=link_label)
-    except IntegrityError:
-        try:
-            return get_custom_link_by_url(request, url)
-        except Exception:
-            log_err(logger,
-                    "add_custom_link({}, {})".format(url, link_label),
-                    traceback, request)
+        obj, created = CustomLink.objects.update_or_create(
+            user=get_user_model(request), url=url, label=link_label)
+        return obj
+    except Exception:
+        log_err(
+            logger, f"add_custom_link({url}, {link_label})", traceback, request
+        )
     return None
 
 
@@ -136,8 +119,8 @@ def delete_custom_link(request, link_id):
         link = get_custom_link_by_id(request, link_id)
         return link.delete()
     except Exception:
-        log_err(logger, "delete_custom_link({})".format(link_id),
-                traceback, request)
+        log_err(
+            logger, f"delete_custom_link({link_id})", traceback, request)
     return None
 
 
@@ -150,9 +133,9 @@ def edit_custom_link(request, link_id, new_url, new_label=None):
         link.save()
         return link
     except Exception:
-        log_err(logger,
-                "edit_custom_link({}, {}, {})".format(
-                    link_id, new_url, new_label), traceback, request)
+        log_err(
+            logger, f"edit_custom_link({link_id}, {new_url}, {new_label})",
+            traceback, request)
     return None
 
 
@@ -166,16 +149,12 @@ def get_custom_link_by_url(request, url):
 
 def add_hidden_link(request, url):
     try:
-        logger.error(f"add_hidden_link({url})")
-        with transaction.atomic():
-            return HiddenLink.objects.create(user=get_user_model(request),
-                                             url=url)
-    except IntegrityError:
-        try:
-            return get_hidden_link_by_url(request, url)
-        except Exception:
-            log_err(logger, f"add_hidden_link({url})",
-                    traceback, request)
+        logger.debug(f"add_hidden_link({url})")
+        obj, created = HiddenLink.objects.update_or_create(
+            user=get_user_model(request), url=url)
+        return obj
+    except Exception:
+        log_err(logger, f"add_hidden_link({url})", traceback, request)
     return None
 
 
