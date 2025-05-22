@@ -44,15 +44,15 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">Academic Support</h3>
     <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
-        <a href="http://depts.washington.edu/aspuw/clue/home/"
+        <a href="https://depts.washington.edu/aspuw/clue/home/"
           >Center for Learning and Undergraduate Enrichment (CLUE)</a
         >
       </li>
       <li class="mb-1">
-        <a href="http://depts.washington.edu/owrc">Odegaard Writing and Research Center</a>
+        <a href="https://depts.washington.edu/owrc">Odegaard Writing and Research Center</a>
       </li>
       <li class="mb-1">
-        <a href="http://aep.washington.edu/">Academic English Program</a>
+        <a href="https://aep.washington.edu/">Academic English Program</a>
       </li>
     </ul>
 
@@ -62,7 +62,7 @@
         <a href="https://www.washington.edu/circle/calendar/">CIRCLE Events Calendar</a>
       </li>
       <li>
-        <a href="http://www.fiuts.org/events">FIUTS Event Calendar</a>
+        <a href="https://www.fiuts.org/events">FIUTS Event Calendar</a>
       </li>
     </ul>
   </div>

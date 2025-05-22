@@ -184,7 +184,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         req = get_request_with_user(username)
         bot_qls = get_quicklink_data(req)
         self.assertEqual(bot_qls['default_links'][0]['url'],
-                         "http://www.uwb.edu/cie")
+                         "https://www.uwb.edu/cie")
 
     def test_tac_quicklinks(self):
         username = "tacgrad"

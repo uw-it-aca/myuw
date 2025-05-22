@@ -75,7 +75,7 @@
           <ul v-else class="list-style myuw-text-md">
             <li v-if="seattle">
               <a
-                href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
+                href="https://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
               >Explore the major</a>
               – Learn how to declare or apply.
             </li>
@@ -87,7 +87,7 @@
             </li>
             <li>
               <a v-if="seattle"
-                href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+                href="https://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
               >Meet with a major adviser</a>
               <a v-if="tacoma"
                 href="https://www.tacoma.uw.edu/gaa"
