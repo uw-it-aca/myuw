@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     orderBookUrl() {
-      let baseUrl = 'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
+      let baseUrl = 'https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
       if (this.section.bothellCampus) {
         baseUrl += 'uwbothell';
       } else {

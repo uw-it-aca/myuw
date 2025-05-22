@@ -79,7 +79,7 @@ describe('Textbook cards', () => {
     expect(wrapper.findAllComponents(Book).length).toBe(6);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.vm.orderUrl).toBe(
-      "http://www.ubookstore.com/adoption-search-results?ccid=9335,1132,5320,2230,4405");
+      "https://www.ubookstore.com/adoption-search-results?ccid=9335,1132,5320,2230,4405");
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
@@ -113,7 +113,7 @@ describe('Textbook cards', () => {
       propsData: {'term': '2013,spring'}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderUrl).toBe(
-      "http://www.ubookstore.com/adoption-search");
+      "https://www.ubookstore.com/adoption-search");
     const bookData = wrapper.vm.bookData;
     expect(bookData.sections.length).toBe(5);
     const seaSection = bookData.sections[1];
@@ -126,21 +126,21 @@ describe('Textbook cards', () => {
       propsData: {'section': seaSection}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderBookUrl).toBe(
-      "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
+      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
     );
 
     wrapper = mount(Section, {store, localVue,
       propsData: {'section': BotSection}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderBookUrl).toBe(
-      "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwbothell"
+      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwbothell"
     );
 
     wrapper = mount(Section, {store, localVue,
       propsData: {'section': TacSection}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderBookUrl).toBe(
-      "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
+      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
     );
   });
 

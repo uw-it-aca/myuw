@@ -40,12 +40,12 @@
             You are currently classified as a "Non-Resident.”
             If you believe you qualify for
             <a
-              href="http://www.washington.edu/students/reg/residency/index.html"
+              href="https://www.washington.edu/students/reg/residency/index.html"
             >
               resident status
             </a>, you may apply for a change of status by completing the
             <a
-              href="http://www.washington.edu/students/reg/residency/applicationProcess.html"
+              href="https://www.washington.edu/students/reg/residency/applicationProcess.html"
             >
               Residence Questionnaire
             </a>, or contact the Residency Office at
