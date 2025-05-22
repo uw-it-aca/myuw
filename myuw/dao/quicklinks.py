@@ -23,15 +23,15 @@ def get_quicklink_data(request):
     data = {}
     # MUWM-4955
     existing_link_urls = set()
-    user_added_links = []
+    existing_custom_links = []
     user = get_user_model(request)
     custom_links = CustomLink.objects.filter(user=user).order_by('pk')
     for link in custom_links:
-        user_added_links.append(
+        existing_custom_links.append(
             {'url': link.url, 'label': link.label, 'id': link.pk})
         existing_link_urls.add(link.url)
 
-    data['custom_links'] = user_added_links
+    data['custom_links'] = existing_custom_links
 
     # user saved default links
     hidden = HiddenLink.objects.filter(user=user)
