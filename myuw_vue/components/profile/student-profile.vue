@@ -129,7 +129,7 @@
             of attendance
             <em v-text="directoryRelease ? 'are releasable' : 'cannot be released'"/>
             by the Office of the University Registrar when requested.
-            <a href="http://www.washington.edu/students/reg/ferpa.html"
+            <a href="https://www.washington.edu/students/reg/ferpa.html"
             >Learn more about your privacy (FERPA)</a>
           </p>
         </uw-card-property>

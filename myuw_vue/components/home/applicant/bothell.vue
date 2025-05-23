@@ -48,7 +48,7 @@
       </h3>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a v-out="'UW Bothell Student Financial Aid'" href="http://www.uwb.edu/financialaid">
+          <a v-out="'UW Bothell Student Financial Aid'" href="https://www.uwb.edu/financialaid">
             Learn all about student financial aid and scholarships
           </a>
         </li>

@@ -28,7 +28,7 @@
     <template #card-error>
       An error has occurred and MyUW cannot display calendar data right now.
       In the meantime, try the
-      <a href="http://www.washington.edu/students/reg/calendar.html"
+      <a href="https://www.washington.edu/students/reg/calendar.html"
       >UW Academic Calendars</a> page.
     </template>
   </uw-card>

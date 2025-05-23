@@ -55,7 +55,7 @@
                   v-out="'Pay SFS tuition'"
                   class=""
                   style="width: 10rem;"
-                  href="http://f2.washington.edu/fm/sfs/tuition/payment"
+                  href="https://f2.washington.edu/fm/sfs/tuition/payment"
                   >Pay SFS tuition</uw-link-button
                 >
               </div>
@@ -94,7 +94,7 @@
                   <uw-link-button
                     v-out="'Pay PCE tuition'"
                     style="width: 10rem;"
-                    href="http://portal.continuum.uw.edu"
+                    href="https://portal.continuum.uw.edu"
                     >Pay PCE tuition</uw-link-button
                   >
                 </div>
@@ -113,7 +113,7 @@
                 <div class="flex-fill w-50 text-end">
                   <a
                     v-out="'Continuum College Account Statement'"
-                    href="http://portal.continuum.uw.edu"
+                    href="https://portal.continuum.uw.edu"
                     class="myuw-text-md"
                     >Account Statement</a
                   >

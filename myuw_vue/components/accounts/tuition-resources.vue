@@ -15,15 +15,15 @@
         </a>
       </li>
       <li v-if="is_grad" class="mb-1">
-        <a href="http://www.lib.washington.edu/commons/services/gfis">
+        <a href="https://www.lib.washington.edu/commons/services/gfis">
           Graduate Funding Information Service (GFIS)
         </a>
       </li>
       <li v-if="!is_C2" class="mb-1">
-        <a href="http://f2.washington.edu/fm/sfs/tuition">About Tuition</a>
+        <a href="https://f2.washington.edu/fm/sfs/tuition">About Tuition</a>
       </li>
       <li class="mb-1">
-        <a href="http://f2.washington.edu/fm/sfs/tax">Student Tax Information</a>
+        <a href="https://f2.washington.edu/fm/sfs/tax">Student Tax Information</a>
       </li>
     </ul>
   </div>
@@ -44,13 +44,13 @@ export default {
     }),
     finAidScholarshipsLink() {
       if (this.is_tacoma) {
-        return 'http://www.tacoma.uw.edu/uwt/financial-aid';
+        return 'https://www.tacoma.uw.edu/uwt/financial-aid';
       } else if (this.is_bothell) {
         return 'https://www.uwb.edu/financialaid';
       } else if (this.is_C2) {
         return 'https://www.washington.edu/financialaid/getting-started/eligibility/fee-based-programs/';
       } else {
-        return 'http://www.washington.edu/students/osfa/';
+        return 'https://www.washington.edu/students/osfa/';
       }
     },
   },
