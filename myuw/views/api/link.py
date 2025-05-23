@@ -14,7 +14,7 @@ from myuw.dao.quicklinks import (
     get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
     edit_custom_link, add_hidden_link, delete_hidden_link,
     get_popular_link_by_id, get_recent_link_by_id)
-from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
+from myuw.models import PopularLink, VisitedLinkNew, CustomLink
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
