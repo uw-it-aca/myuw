@@ -57,7 +57,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEqual(data["custom_links"][0]['url'], u1.url)
         self.assertEqual(data["custom_links"][0]['label'], u1.label)
 
-        self.assertEqual(len(data["default_links"]), 2)
+        self.assertEqual(len(data["default_links"]), 3)
 
         self.assertEqual(len(data["recent_links"]), 1)
         self.assertEqual(data["recent_links"][0]['url'], v1.url)
