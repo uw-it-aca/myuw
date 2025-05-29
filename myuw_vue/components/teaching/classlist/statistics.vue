@@ -14,7 +14,7 @@
     <template #card-body>
       <p v-if="majors && majors.length">
         {{ majors[0].percent_students }}% of your students
-        are {{ titleCaseWord(majors[0].major_name) }} majors.
+        are {{ titleCaseName(majors[0].major_name) }} majors.
       </p>
       <a v-out="'Course Dashboard'" :href="url" target="_blank" :title="label">
         View course statistics dashboard
