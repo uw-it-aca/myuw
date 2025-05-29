@@ -91,6 +91,9 @@ class TestInstSectDetails(MyuwApiTest):
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
             len(data['sections'][0]['grade_submission_delegates']), 1)
+        self.assertEqual(
+            data["sections"][0]["current_student_majors"][0]["major_name"],
+            "PRE MAJOR (A&S)")
 
         self.assertEqual(len(data['sections'][0]['registrations']), 2)
         self.assertEqual(
