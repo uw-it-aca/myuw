@@ -82,7 +82,7 @@
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided courtesy of
-          <a href="http://www.bookstore.washington.edu">University Book Store</a>
+          <a href="https://www.bookstore.washington.edu">University Book Store</a>
           and is subject to change regularly and without notice.
         </p>
       </div>
@@ -192,7 +192,7 @@ export default {
       if (this.bookData.orderUrl) {
         return this.bookData.orderUrl;
       }
-      return 'http://www.ubookstore.com/adoption-search';
+      return 'https://www.ubookstore.com/adoption-search';
     },
     useBookstore() {
       // MUWM-5311

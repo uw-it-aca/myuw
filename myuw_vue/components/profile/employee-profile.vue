@@ -76,7 +76,7 @@
           <p>
             Search for faculty, staff, and students in the
             <a v-if="isTacoma"
-                href="http://directory.tacoma.uw.edu/"
+                href="https://directory.tacoma.uw.edu/"
             >UW Tacoma Directory</a>
             <a v-else
                 href="https://www.washington.edu/home/peopledir/"

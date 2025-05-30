@@ -140,7 +140,7 @@ export default {
       if (this.book.order_url) {
         return this.book.order_url;
       }
-      return 'http://www.ubookstore.com/adoption-search';
+      return 'https://www.ubookstore.com/adoption-search';
     },
   },
 };

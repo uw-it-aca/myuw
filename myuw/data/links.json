@@ -2,7 +2,7 @@
     {
 	"id":10,
         "title":"Campus Maps",
-        "url":"http://www.washington.edu/maps/",
+        "url":"https://www.washington.edu/maps/",
         "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -22,7 +22,7 @@
     {
 	"id":12,
         "title":"Campus Map - Tacoma",
-        "url":"http://www.tacoma.uw.edu/campus-map",
+        "url":"https://www.tacoma.uw.edu/campus-map",
         "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -32,7 +32,7 @@
     {
 	"id":20,
         "title":"Canvas LMS",
-        "url":"http://canvas.uw.edu/",
+        "url":"https://canvas.uw.edu/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -82,7 +82,7 @@
     {
 	"id":50,
         "title":"Directory Search",
-        "url":"http://www.washington.edu/home/peopledir/",
+        "url":"https://www.washington.edu/home/peopledir/",
         "on_for_employees":false,
         "on_for_undergrad":false,
         "on_for_gradstudent":false,
@@ -122,7 +122,7 @@
     {
 	"id":80,
         "title":"Libraries",
-        "url":"http://www.lib.washington.edu/",
+        "url":"https://www.lib.washington.edu/",
         "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -152,7 +152,7 @@
     {
 	"id":100,
         "title":"SpaceScout",
-        "url":"http://spacescout.uw.edu/",
+        "url":"https://spacescout.uw.edu/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -172,7 +172,7 @@
     {
 	"id":102,
         "title":"Time Schedule - Seattle",
-        "url":"http://www.washington.edu/students/timeschd/",
+        "url":"https://www.washington.edu/students/timeschd/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -182,7 +182,7 @@
     {
 	"id":103,
         "title":"Time Schedule - Tacoma",
-        "url":"http://www.washington.edu/students/timeschd/T/",
+        "url":"https://www.washington.edu/students/timeschd/T/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -192,7 +192,7 @@
     {
 	"id":104,
         "title":"Time Schedule - UW Professional & Continuing Education",
-        "url":"http://www.washington.edu/students/timeschd/95index.html",
+        "url":"https://www.washington.edu/students/timeschd/95index.html",
         "on_for_employees":false,
         "on_for_undergrad":false,
         "on_for_gradstudent":false,

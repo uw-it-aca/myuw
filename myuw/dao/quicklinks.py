@@ -21,27 +21,40 @@ logger = logging.getLogger(__name__)
 def get_quicklink_data(request):
     affiliations = get_all_affiliations(request)
     data = {}
-    # For excluding from the recent list
-    existing_list_urls = set()
-    custom = []
-    custom_lookup = set()
+    # MUWM-4955
+    existing_link_urls = set()
+    existing_custom_links = []
     user = get_user_model(request)
     custom_links = CustomLink.objects.filter(user=user).order_by('pk')
     for link in custom_links:
-        existing_list_urls.add(link.url)
-        custom_lookup.add(link.url)
-        custom.append({'url': link.url, 'label': link.label, 'id': link.pk})
+        existing_custom_links.append(
+            {'url': link.url, 'label': link.label, 'id': link.pk})
+        existing_link_urls.add(link.url)
 
-    data['custom_links'] = custom
+    data['custom_links'] = existing_custom_links
+
+    # user saved default links
+    hidden = HiddenLink.objects.filter(user=user)
+    saved_def_link_urls = set()
+    for link in hidden:
+        saved_def_link_urls.add(link.url)
+
+    default_links = []
+    default = _get_default_links(affiliations)
+    for link in default:
+        if (link["url"] not in existing_link_urls and
+                link["url"] not in saved_def_link_urls):
+            default_links.append({"url": link["url"], "label": link["label"]})
+            existing_link_urls.add(link["url"])
+
+    data["default_links"] = default_links
 
     popular = []
-
     popular_links = get_data_for_affiliations(model=PopularLink,
                                               affiliations=affiliations,
                                               unique=lambda x: x.url)
     for link in popular_links:
-        added = link.url in custom_lookup
-        existing_list_urls.add(link.url)
+        added = link.url in existing_link_urls
         popular.append({'added': added,
                         'url': link.url,
                         'label': link.label,
@@ -49,28 +62,10 @@ def get_quicklink_data(request):
 
     data['popular_links'] = popular
 
-    hidden = HiddenLink.objects.filter(user=user)
-    hidden_lookup = set()
-    for link in hidden:
-        hidden_lookup.add(link.url)
-
-    default = _get_default_links(affiliations)
-
-    shown_defaults = []
-    for link in default:
-        if link['url'] not in hidden_lookup:
-            shown_defaults.append({'url': link['url'],
-                                   'label': link['label']
-                                   })
-
-    data['default_links'] = shown_defaults
-
     recents = []
     recent_links = VisitedLinkNew.recent_for_user(user)
     for link in recent_links:
-        if link.url in existing_list_urls:
-            continue
-        added = link.url in custom_lookup
+        added = link.url in existing_link_urls
         recents.append({'added': added,
                         'url': link.url,
                         'label': get_link_label(link),
@@ -109,17 +104,13 @@ def _get_default_links(affiliations):
 
 def add_custom_link(request, url, link_label=None):
     try:
-        with transaction.atomic():
-            return CustomLink.objects.create(user=get_user_model(request),
-                                             url=url,
-                                             label=link_label)
-    except IntegrityError:
-        try:
-            return get_custom_link_by_url(request, url)
-        except Exception:
-            log_err(logger,
-                    "add_custom_link({}, {})".format(url, link_label),
-                    traceback, request)
+        obj, created = CustomLink.objects.update_or_create(
+            user=get_user_model(request), url=url, label=link_label)
+        return obj
+    except Exception:
+        log_err(
+            logger, f"add_custom_link({url}, {link_label})", traceback, request
+        )
     return None
 
 
@@ -128,8 +119,8 @@ def delete_custom_link(request, link_id):
         link = get_custom_link_by_id(request, link_id)
         return link.delete()
     except Exception:
-        log_err(logger, "delete_custom_link({})".format(link_id),
-                traceback, request)
+        log_err(
+            logger, f"delete_custom_link({link_id})", traceback, request)
     return None
 
 
@@ -142,9 +133,9 @@ def edit_custom_link(request, link_id, new_url, new_label=None):
         link.save()
         return link
     except Exception:
-        log_err(logger,
-                "edit_custom_link({}, {}, {})".format(
-                    link_id, new_url, new_label), traceback, request)
+        log_err(
+            logger, f"edit_custom_link({link_id}, {new_url}, {new_label})",
+            traceback, request)
     return None
 
 
@@ -158,24 +149,22 @@ def get_custom_link_by_url(request, url):
 
 def add_hidden_link(request, url):
     try:
-        with transaction.atomic():
-            return HiddenLink.objects.create(user=get_user_model(request),
-                                             url=url)
-    except IntegrityError:
-        try:
-            return get_hidden_link_by_url(request, url)
-        except Exception:
-            log_err(logger, "add_hidden_link({})".format(url),
-                    traceback, request)
+        logger.debug(f"add_hidden_link({url})")
+        obj, created = HiddenLink.objects.update_or_create(
+            user=get_user_model(request), url=url)
+        return obj
+    except Exception:
+        log_err(logger, f"add_hidden_link({url})", traceback, request)
     return None
 
 
 def delete_hidden_link(request, link_id):
     try:
+        logger.error(f"delete_hidden_link({link_id})")
         link = get_hidden_link_by_id(request, link_id)
         return link.delete()
     except Exception:
-        log_err(logger, "delete_hidden_link({})".format(link_id),
+        log_err(logger, f"delete_hidden_link({link_id})",
                 traceback, request)
     return None
 

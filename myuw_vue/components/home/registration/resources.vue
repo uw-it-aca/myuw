@@ -41,17 +41,17 @@
           </a>
         </li>
         <li v-if="seattle" class="mb-1">
-          <a href="http://www.washington.edu/students/timeschd/">
+          <a href="https://www.washington.edu/students/timeschd/">
             Seattle Time Schedule
           </a>
         </li>
         <li v-if="tacoma" class="mb-1">
-          <a href="http://www.washington.edu/students/timeschd/T/">
+          <a href="https://www.washington.edu/students/timeschd/T/">
             Tacoma Time Schedule Browse
           </a>
         </li>
         <li v-if="tacoma" class="mb-1">
-          <a href="http://www.tacoma.uw.edu/ts-quicksearch/">
+          <a href="https://www.tacoma.uw.edu/ts-quicksearch/">
             Tacoma Time Schedule Quick Search
           </a>
         </li>
@@ -71,7 +71,7 @@
           <a :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
         <li class="mb-1">
-          <a href="http://dawgpath.uw.edu">DawgPath</a>
+          <a href="https://dawgpath.uw.edu">DawgPath</a>
         </li>
       </ul>
     </div>
