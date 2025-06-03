@@ -33,23 +33,17 @@ export default {
       bothell_emp: (state) => state.user.affiliations.official_bothell,
       tacoma_emp: (state) => state.user.affiliations.official_tacoma,
       linkData() {
-        let textbookLink = '';
         let courseEvalLink = '';
         if (this.bothell_emp) {
-          textbookLink = 'uwbothell';
           courseEvalLink = 'https://uwb.iasystem.org/faculty';
         } else if (this.tacoma_emp) {
-          textbookLink = 'uwtacoma';
           courseEvalLink = 'https://uwt.iasystem.org/faculty';
         } else if (this.seattle_emp) {
-          textbookLink = 'uwmain';
           courseEvalLink = 'https://uw.iasystem.org/faculty';
         } else {
-          textbookLink = 'uwmain';
           courseEvalLink = 'https://www.washington.edu/assessment/course-evaluations/';
         }
         return {
-          textbook: textbookLink,
           courseEval: courseEvalLink,
         };
       },
@@ -74,7 +68,7 @@ export default {
       },
       courseMaterialLinks() {
         return [
-          { url: "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
+          { url: "https://www.ubookstore.com/faculty",
             title: "Order Textbooks" },
           { url: "https://www.lib.washington.edu/types/course",
             title: "Course Reserves" },
