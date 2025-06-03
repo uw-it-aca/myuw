@@ -121,27 +121,6 @@ describe('Textbook cards', () => {
     expect(BotSection.bothellCampus).toBe(true);
     const TacSection = bookData.sections[4];
     expect(TacSection.tacomaCampus).toBe(true);
-
-    wrapper = mount(Section, {store, localVue,
-      propsData: {'section': seaSection}});
-    await new Promise(setImmediate);
-    expect(wrapper.vm.orderBookUrl).toBe(
-      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
-    );
-
-    wrapper = mount(Section, {store, localVue,
-      propsData: {'section': BotSection}});
-    await new Promise(setImmediate);
-    expect(wrapper.vm.orderBookUrl).toBe(
-      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwbothell"
-    );
-
-    wrapper = mount(Section, {store, localVue,
-      propsData: {'section': TacSection}});
-    await new Promise(setImmediate);
-    expect(wrapper.vm.orderBookUrl).toBe(
-      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
-    );
   });
 
   it('Verify 404 book data error', async () => {

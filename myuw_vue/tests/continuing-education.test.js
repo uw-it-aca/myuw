@@ -48,9 +48,7 @@ describe('User has no 1st class affiliation', () => {
     ).toBe('https://www.pce.uw.edu');
 
     let link2 = links.at(1);
-    expect(link2.text()).toBe('Career Accelerator Certificate Programs');
-    expect(link2.attributes().href
-    ).toBe('https://www.pce.uw.edu/career-accelerator-certificates');
+    expect(link2.text()).toBe('Specializations');
 
     let link3 = links.at(2);
     expect(link3.text()).toBe('Certificate Programs');

@@ -82,7 +82,7 @@
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided courtesy of
-          <a href="https://www.bookstore.washington.edu">University Book Store</a>
+          <a href="https://www.ubookstore.com/">University Book Store</a>
           and is subject to change regularly and without notice.
         </p>
       </div>

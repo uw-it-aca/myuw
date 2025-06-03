@@ -49,7 +49,7 @@
         </span>
         <span v-else>
           No textbooks have been ordered for this course.
-          <a :href="orderBookUrl">
+          <a href="https://uw.verbacollect.com/session/selfassign">
             Order textbooks
           </a>
         </span>
@@ -91,17 +91,6 @@ export default {
       isOpen: !this.collapsable,
       faSquareFull,
     };
-  },
-  computed: {
-    orderBookUrl() {
-      let baseUrl = 'https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
-      if (this.section.bothellCampus) {
-        baseUrl += 'uwbothell';
-      } else {
-        baseUrl += 'uwmain';
-      }
-      return baseUrl;
-    },
   },
 };
 </script>
