@@ -126,7 +126,7 @@ describe('Textbook cards', () => {
       propsData: {'section': seaSection}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderBookUrl).toBe(
-      "https://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"
+      "https://uw.verbacollect.com/session/selfassign"
     );
 
     wrapper = mount(Section, {store, localVue,
