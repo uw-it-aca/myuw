@@ -4,7 +4,7 @@
     <p class="myuw-text-md">
       Use ISSS Portal to create requests, maintain your immigration record, report required
       immigration information to the U.S. government, and get critical updates about visa status.
-      <br />
+      <br>
       <uw-link-button class="mt-2 mb-1" href="https://isss.tacoma.uw.edu/">
         Go to ISSS Portal
       </uw-link-button>

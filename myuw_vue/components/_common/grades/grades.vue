@@ -13,7 +13,7 @@
     <template #card-body>
       <div v-if="isHomePage">
         <p class="myuw-text-md">
-          Final grades are hidden to protect your privacy.<br />
+          Final grades are hidden to protect your privacy.<br>
           <a v-uw-collapse="`grades-collapse`"
             v-no-track-collapse
             class="p-0 border-0 mb-2 bg-transparent"
