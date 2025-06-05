@@ -87,7 +87,7 @@ export default {
           { url: this.linkData.courseEval, title: "Course Evaluations" },
           { url: "https://coda.uw.edu", title: "Course Statistics Dashboard" },
           { url: "https://gsuite.google.com/dashboard", title: "Google Apps" },
-          { url: "https://www.office.com/", title: "Office 365 Apps" },
+          { url: "https://m365.cloud.microsoft/apps/", title: "Office 365 Apps" },
           { url: "https://washington.zoom.us/", title: "Zoom" }
         ];
       },
