@@ -153,11 +153,24 @@ class TestQuickLinkDAO(TransactionTestCase):
         req = get_request_with_user(username)
         bot_qls = get_quicklink_data(req)
         self.assertEqual(
-            bot_qls["default_links"][9]["url"], "https://www.uwb.edu/cie")
+            bot_qls["default_links"][8]["label"], "Time Schedule - Bothell")
+        self.assertEqual(
+            bot_qls["default_links"][16]["label"], "UW Bothell Libraries")
 
     def test_tac_quicklinks(self):
         username = "tacgrad"
         req = get_request_with_user(username)
         tac_qls = get_quicklink_data(req)
         self.assertEqual(
-            tac_qls["default_links"][11]["label"], "Online Learning Support")
+            tac_qls["default_links"][8]["label"], "Time Schedule - Tacoma")
+        self.assertEqual(
+            tac_qls["default_links"][16]["label"], "UW Tacoma Libraries")
+
+    def test_tac_inst_quicklinks(self):
+        username = "billtac"
+        req = get_request_with_user(username)
+        tac_qls = get_quicklink_data(req)
+        self.assertEqual(
+            tac_qls["default_links"][3]["label"], "Time Schedule - Tacoma")
+        self.assertEqual(
+            tac_qls["default_links"][11]["label"], "UW Tacoma Libraries")
