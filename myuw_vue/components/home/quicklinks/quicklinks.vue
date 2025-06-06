@@ -37,37 +37,14 @@
       <hr v-if="recentLinks.length" class="bg-secondary">
       <p class="m-0 myuw-text-md">
         <span>
-          Not seeing the links you're looking for?
-          <span v-if="popularLinks.length">
-            Select from
-            <button v-uw-collapse.popular_qlinks
-              type="button"
-              :disabled="disableActions"
-              class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
-            >popular links</button>, or
-          </span>
+          Not seeing the links you're looking for?<br>
           <button v-uw-collapse.custom_qlinks
             type="button"
             :disabled="disableActions"
             class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
-          >
-            <span v-if="popularLinks.length">add your own</span>
-            <span v-else>Add your own</span>
-          </button>
+          >Add your own</button>
         </span>
       </p>
-
-      <uw-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
-        <h3 class="h6">
-          Popular Links
-        </h3>
-        <ul class="list-unstyled myuw-text-md mb-0">
-          <uw-link
-            v-for="(link, index) in popularLinks" :key="`popular-${index}`"
-            :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
-          />
-        </ul>
-      </uw-collapse>
 
       <uw-collapse
         id="custom_qlinks"
@@ -154,7 +131,6 @@ export default {
     }),
     ...mapState('quicklinks', {
       recentLinks: (state) => state.value.recent_links,
-      popularLinks: (state) => state.value.popular_links,
       customLinks: (state) => state.value.custom_links,
       defaultLinks: (state) => state.value.default_links,
     }),
