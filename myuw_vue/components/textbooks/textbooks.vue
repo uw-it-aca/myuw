@@ -17,7 +17,7 @@
           <h2 class="myuw-text-lg">UW Day One Access Program</h2>
           <p>
             At least one of your enrolled courses provides you access to required digital
-            materials in Canvas, on or before the first day of class.<br />
+            materials in Canvas, on or before the first day of class.<br>
             <strong>
               To maintain access to required digital materials, you must
               <a v-out="'Make bookstore payment'" :href="iacData.bookstore_checkout_url"
