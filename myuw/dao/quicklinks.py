@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 def get_quicklink_data(request):
     affiliations = get_all_affiliations(request)
     data = {}
-    # MUWM-4955
+    # MUWM-4955, MUWM-5416
     existing_link_urls = set()
     existing_custom_links = []
     user = get_user_model(request)
@@ -32,17 +32,17 @@ def get_quicklink_data(request):
 
     data['custom_links'] = existing_custom_links
 
-    # user's deletion of default links
+    # The default links that the user has turned off
     hidden = HiddenLink.objects.filter(user=user)
-    saved_def_link_urls = set()
+    def_links_to_hide = set()
     for link in hidden:
-        saved_def_link_urls.add(link.url)
+        def_links_to_hide.add(link.url)
 
     default_links = []
     default = _get_default_links(affiliations)
     for link in default:
         if (link["url"] not in existing_link_urls and
-                link["url"] not in saved_def_link_urls):
+                link["url"] not in def_links_to_hide):
             default_links.append({"url": link["url"], "label": link["label"]})
             existing_link_urls.add(link["url"])
 
