@@ -22,6 +22,9 @@ Affiliation: definition
  seattle: UW Seattle student
  bothell: UW Bothell student
  tacoma: UW Tacoma student
+ official_seattle: Seattle employee
+ official_bothell: Bothell emp
+ official_tacoma: Tacoma emp
  no_1st_class_affii: no 1st class affiliation
  alumni: current UW alumni and no_1st_class_affii
  retiree: current retired staff and no_1st_class_affii
