@@ -71,7 +71,7 @@
               <div class="d-flex mb-2 myuw-text-md row">
                 <div class="col">Account Credit</div>
                 <div class="col text-end">
-                  No payment needed<br />
+                  No payment needed<br>
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     >Tuition Statement</a
                   >

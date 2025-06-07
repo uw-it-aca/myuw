@@ -431,7 +431,7 @@
               >
                 How a Professional Job is Different from Being a Student
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
@@ -449,7 +449,7 @@
               <a href="/husky_experience_message?article=preparing-professional-life">
                 Preparing for a Professional Life
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
@@ -470,7 +470,7 @@
               <a href="/husky_experience_message?article=between-college-and-career">
                 Between College and Career
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
