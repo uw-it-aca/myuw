@@ -60,6 +60,9 @@ database:
   secretName: test.my.uw.edu-sql-secrets
 repo: myuw
 instance: test
+namespace:
+  enabled: true
+
 memcached:
   enabled: true
   replicaCount: 1
