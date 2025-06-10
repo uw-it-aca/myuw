@@ -181,6 +181,9 @@ class Resource_Links(MyuwLink):
         grouped_links = {}
         affiliations = get_all_affiliations(request)
         campus = get_base_campus(affiliations)
+        # If exist campus specific employee/faculty/instructor resource links,
+        # the affiliation and campus checking logic in
+        # dao.affiliation_data.get_data_for_affiliations works better
 
         for link in self.links:
             link = _get_link_by_affiliation(link, campus, affiliations)
