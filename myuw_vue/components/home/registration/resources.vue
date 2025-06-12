@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div v-if="showComPreReg" class="mb-4 text-center">
+      <uw-link-button
+        :href="registrationHref"
+        class="mb-2"
+      >
+        Complete Pre-Registration Requirements
+      </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will not be able to register until you complete Pre-Registration
+      </div>
+    </div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
         :href="registrationHref"
@@ -17,27 +28,15 @@
         </a>
       </div>
     </div>
-    <div v-else>
-      <div v-if="showComPreReg" class="mb-4 text-center">
-        <uw-link-button
-          :href="registrationHref"
-          class="mb-2"
-        >
-          Complete Pre-Registration Requirements
-        </uw-link-button>
-        <div class="text-center myuw-text-sm pb-3 fst-italic">
-          You will not be able to register until you complete Pre-Registration
-        </div>
-      </div>
-      <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
-        You have completed all pre-registration requirements for
-        {{ nextTermQuarter }} {{ nextTermYear }}. <br />
-        <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
-        >Learn about registration</a>
-        or <a title="build schedule in MyPlan"
-        href="https://myplan.uw.edu/plan/">build your schedule in MyPlan</a>
-      </div>
+    <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
+      You have completed all pre-registration requirements for
+      {{ nextTermQuarter }} {{ nextTermYear }}. <br />
+      <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
+      >Learn about registration</a>
+      or <a title="build schedule in MyPlan"
+      href="https://myplan.uw.edu/plan/">build your schedule in MyPlan</a>
     </div>
+
     <div>
       <h3 class="visually-hidden">Registration resources</h3>
       <ul class="m-0 list-unstyled myuw-text-md">
