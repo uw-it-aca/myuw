@@ -1,5 +1,26 @@
 <template>
   <div>
+    <div v-if="showComPreReg" class="mb-4 text-center">
+      <uw-link-button
+        :href="registrationHref"
+        class="mb-2"
+      >
+        Complete Pre-Registration Requirements
+      </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will not be able to register until you complete Pre-Registration
+      </div>
+    </div>
+    <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
+      <div class="myuw-text-md">
+        You have completed all pre-registration requirements for
+        {{ nextTermQuarter }} {{ nextTermYear }}. <br />
+        <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
+        >Learn about registration</a>
+        or <a title="build schedule in MyPlan"
+        href="https://myplan.uw.edu/plan/">build your schedule in MyPlan</a>
+      </div>
+    </div>
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
         :href="registrationHref"
@@ -16,24 +37,6 @@
           href="https://www.degreereg.uw.edu/how-to-register">
           How to register for PCE courses
         </a>
-      </div>
-    </div>
-    <div v-else-if="showComPreReg" class="mb-4 text-center">
-      <uw-link-button
-        :href="registrationHref"
-        class="mb-2"
-      >
-        Complete Pre-Registration Requirements
-      </uw-link-button>
-      <div class="text-center myuw-text-sm pb-3 fst-italic">
-        You will not be able to register until you complete Pre-Registration
-      </div>
-    </div>
-    <div v-else-if="!showComPreReg && !registrationIsOpen" class="mb-4 text-center myuw-text-md">
-      <div class="myuw-text-md">You have completed all pre-registration requirements for {{ nextTermQuarter }} {{ nextTermYear }}. <br />
-        <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391">Learn about registration</a>
-        or <a title="build schedule in MyPlan"
-        href="https://myplan.uw.edu/plan/">build your schedule in MyPlan</a>
       </div>
     </div>
     <div>
@@ -139,6 +142,11 @@ export default {
         return this.currentPlanData.degree_audit_href;
       }
       return 'https://myplan.uw.edu/audit/#/degree';
+    },
+    preRegCompleted() {
+      // MUWM-5401
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
+        this.currentPlanData && this.currentPlanData.complete_pre_reg);
     },
     showComPreReg() {
       // MUWM-5395
