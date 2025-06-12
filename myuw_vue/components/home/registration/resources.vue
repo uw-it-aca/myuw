@@ -11,7 +11,7 @@
         You will not be able to register until you complete Pre-Registration
       </div>
     </div>
-    <div v-if="registrationIsOpen" class="my-4 text-center">
+    <div v-else-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
         :href="registrationHref"
         class="mb-2"
