@@ -30,11 +30,13 @@
     </div>
     <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
       You have completed all pre-registration requirements for
-      {{ nextTermQuarter }} {{ nextTermYear }}. <br />
-      <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
-      >Learn about registration</a>
-      or <a title="build schedule in MyPlan"
-      href="https://myplan.uw.edu/plan/">build your schedule in MyPlan</a>
+      {{ nextTermQuarter }} {{ nextTermYear }}.
+      <div>
+          <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
+          >Learn about registration</a> or
+          <a title="build schedule in MyPlan" :href="myplanHref"
+          >build your schedule in MyPlan</a>
+      </div>
     </div>
 
     <div>
@@ -133,13 +135,23 @@ export default {
     },
     registrationHref() {
       // MyPlan returns quarter specific registration href
-      return this.currentPlanData.registration_href;
+      if (this.currentPlanData && this.currentPlanData.registration_href) {
+        return this.currentPlanData.registration_href;
+      }
+      return "https://register.uw.edu/";
     },
     degreeAuditHref() {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://myplan.uw.edu/audit/#/degree';
+      return "https://myplan.uw.edu/audit/#/degree";
+    },
+    myplanHref() {
+      // MyPlan returns quarter specific href
+      if (this.currentPlanData && this.currentPlanData.myplan_href) {
+        return this.currentPlanData.myplan_href;
+      }
+      return "https://myplan.uw.edu/plan/";
     },
     preRegCompleted() {
       // MUWM-5401
