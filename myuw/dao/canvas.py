@@ -13,7 +13,6 @@ from uw_sws.exceptions import (
     InvalidCanvasIndependentStudyCourse, InvalidCanvasSection)
 from myuw.dao import log_err
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.term import get_comparison_datetime
 
 logger = logging.getLogger(__name__)
 canvas_enrollments = Enrollments()
