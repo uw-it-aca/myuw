@@ -3,7 +3,7 @@
     <uw-card-property title="Course Stats">
       <ul class="mb-0 list-unstyled">
         <li v-if="'failure_rate' in section" class="mb-1">
-          {{ (section.failure_rate * 100).toFixed(0) }}% historic course fail rate
+          {{ (section.failure_rate * 100).toFixed(2) }}% historic course fail rate
         </li>
         <li class="mb-1">
           <a
