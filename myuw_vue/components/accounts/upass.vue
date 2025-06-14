@@ -20,7 +20,7 @@
         <a :href="getTroubleshootingUrl" class="myuw-text-md">
           U-PASS not working?
         </a>
-        <br />
+        <br>
         <a v-out="'What is U-PASS'" :href="getWhatIsUrl" class="myuw-text-md">
           What is the U-PASS?
         </a>

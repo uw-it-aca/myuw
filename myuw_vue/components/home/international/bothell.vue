@@ -4,7 +4,7 @@
     <p class="myuw-text-md">
       Use the ISS Portal to check in with UWB's International Student Services
       and make requests for your immigration status.
-      <br />
+      <br>
       <uw-link-button class="mt-2 mb-1" href="https://iss.uwb.edu">
         Go to ISS Portal
       </uw-link-button>

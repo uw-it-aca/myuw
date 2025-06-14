@@ -6,13 +6,10 @@ import csv
 from myuw.dao.exceptions import InvalidAffiliationDataFile
 
 
-def get_data_for_affiliations(model=None, file=None, affiliations=None,
+def get_data_for_affiliations(model=None, file=None, affiliations={},
                               unique=None, **filters):
     data = []
     matched_data = []
-
-    if affiliations is None:
-        affiliations = {}
 
     if file:
         data = _load_data_from_file(file)
@@ -21,20 +18,30 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
 
     unique_lookup = set()
     for entry in data:
-        if entry['campus']:
-            required = entry['campus']
-            if required not in affiliations or not affiliations[required]:
-                continue
-        if entry['pce'] is True:
-            if 'pce' not in affiliations or not affiliations['pce']:
-                continue
-        if entry['pce'] is False:
-            if 'pce' in affiliations and affiliations['pce']:
+        # MUWM-5417
+        required_aff = entry.get('affiliation')
+        required_campus = entry.get('campus')
+
+        if required_aff and required_campus:
+            if (
+                not affiliations or
+                not affiliations.get(required_aff) or
+                not affiliations.get(required_campus)
+            ):
                 continue
 
-        if entry['affiliation']:
-            required = entry['affiliation']
-            if required not in affiliations or not affiliations[required]:
+            if (affiliations.get(required_aff) and
+                    affiliations.get(required_campus)):
+                pass
+        elif required_campus:
+            if not affiliations or not affiliations.get(required_campus):
+                continue
+        elif required_aff:
+            if not affiliations or not affiliations.get(required_aff):
+                continue
+
+        if entry.get('pce'):
+            if not affiliations or not affiliations.get('pce'):
                 continue
 
         if unique:

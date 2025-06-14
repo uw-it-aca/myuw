@@ -3,7 +3,7 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">MyISSS</h3>
     <p class="myuw-text-md">
       Use MyISSS to create requests, maintain your immigration record, report required immigration
-      information to the U.S. government, and get critical updates about visa status. <br />
+      information to the U.S. government, and get critical updates about visa status. <br>
       <uw-link-button class="mt-2 mb-1" href="https://isss.uw.edu/"> Go to MyISSS </uw-link-button>
     </p>
 

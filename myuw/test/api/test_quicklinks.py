@@ -4,7 +4,7 @@
 import json
 from django.urls import reverse
 from myuw.dao.user import get_user_model
-from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
+from myuw.models import VisitedLinkNew, CustomLink, HiddenLink
 from myuw.views.api.link import get_link_data
 from myuw.test import get_request_with_user
 from myuw.test.api import MyuwApiTest
@@ -34,41 +34,6 @@ class TestQuickLinksAPI(MyuwApiTest):
                 }
         link_id, url, label = get_link_data(data)
         self.assertEqual(link_id, 1)
-
-    def test_add_popular_link(self):
-        PopularLink.objects.all().delete()
-        CustomLink.objects.all().delete()
-
-        l1 = PopularLink.objects.create(label="Label",
-                                        url="http://example.com")
-
-        self.set_user('javerage')
-
-        url = reverse('myuw_manage_links')
-
-        data = json.dumps({'type': 'popular', 'id': l1.pk})
-        response = self.client.post(url, data, content_type='application_json')
-        self.assertEqual(response.status_code, 200)
-
-        all = CustomLink.objects.all()
-        self.assertEqual(len(all), 1)
-        self.assertEqual(all[0].url, 'http://example.com')
-        self.assertEqual(all[0].label, 'Label')
-
-        data = json.dumps({'type': 'popular', 'id': l1.pk+1})
-        response = self.client.post(url, data, content_type='application_json')
-
-        self.assertEqual(response.status_code, 404)
-
-        all = CustomLink.objects.all()
-        self.assertEqual(len(all), 1)
-
-        # Test a double post...
-        data = json.dumps({'type': 'popular', 'id': l1.pk})
-        response = self.client.post(url, data, content_type='application_json')
-        self.assertEqual(response.status_code, 200)
-        all = CustomLink.objects.all()
-        self.assertEqual(len(all), 1)
 
     def test_add_recent(self):
         req = get_request_with_user('none')

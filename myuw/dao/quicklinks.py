@@ -5,8 +5,7 @@ import csv
 import logging
 import os
 import traceback
-from django.db import transaction, IntegrityError
-from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
+from myuw.models import VisitedLinkNew, CustomLink, HiddenLink
 from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
@@ -21,7 +20,7 @@ logger = logging.getLogger(__name__)
 def get_quicklink_data(request):
     affiliations = get_all_affiliations(request)
     data = {}
-    # MUWM-4955
+    # MUWM-4955, MUWM-5416
     existing_link_urls = set()
     existing_custom_links = []
     user = get_user_model(request)
@@ -33,34 +32,21 @@ def get_quicklink_data(request):
 
     data['custom_links'] = existing_custom_links
 
-    # user saved default links
+    # The default links that the user has turned off
     hidden = HiddenLink.objects.filter(user=user)
-    saved_def_link_urls = set()
+    def_links_to_hide = set()
     for link in hidden:
-        saved_def_link_urls.add(link.url)
+        def_links_to_hide.add(link.url)
 
     default_links = []
     default = _get_default_links(affiliations)
     for link in default:
         if (link["url"] not in existing_link_urls and
-                link["url"] not in saved_def_link_urls):
+                link["url"] not in def_links_to_hide):
             default_links.append({"url": link["url"], "label": link["label"]})
             existing_link_urls.add(link["url"])
 
     data["default_links"] = default_links
-
-    popular = []
-    popular_links = get_data_for_affiliations(model=PopularLink,
-                                              affiliations=affiliations,
-                                              unique=lambda x: x.url)
-    for link in popular_links:
-        added = link.url in existing_link_urls
-        popular.append({'added': added,
-                        'url': link.url,
-                        'label': link.label,
-                        'id': link.pk})
-
-    data['popular_links'] = popular
 
     recents = []
     recent_links = VisitedLinkNew.recent_for_user(user)
@@ -175,10 +161,6 @@ def get_hidden_link_by_id(request, link_id):
 
 def get_hidden_link_by_url(request, url):
     return HiddenLink.objects.get(user=get_user_model(request), url=url)
-
-
-def get_popular_link_by_id(link_id):
-    return PopularLink.objects.get(pk=link_id)
 
 
 def get_recent_link_by_id(request, link_id):
