@@ -96,7 +96,6 @@ def get_all_affiliations(request):
         "intl_stud": False,
         "2fa_permitted": is_2fa_permitted(request),
         "affi_emp": is_affi_emp(request),
-        "all_employee": is_employee(request) or is_clinician(request),
         "clinician": is_clinician(request),
         "employee": (is_employee(request) and not is_student_employee(request)),
         "faculty": is_faculty(request),
@@ -117,7 +116,8 @@ def get_all_affiliations(request):
         "past_stud": is_prior_student(request) and not_major_affi,
         "no_1st_class_affi": not_major_affi,
     }
-
+    data["all_employee"] = (
+        data["employee"] or data["clinician"] or data["affi_emp"])
     campuses = []
 
     if data["student"]:
