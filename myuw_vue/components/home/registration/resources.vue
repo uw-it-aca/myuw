@@ -1,24 +1,6 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen" class="my-4 text-center">
-      <uw-link-button
-        :href="registrationHref"
-        class="mb-2"
-      >
-        Go to Register.UW
-      </uw-link-button>
-      <div class="text-center myuw-text-sm pb-3 fst-italic">
-        You will be able to import your ready planned items from MyPlan
-      </div>
-
-      <div v-if="isC2" class="text-center myuw-text-md">
-        <a
-          href="https://www.degreereg.uw.edu/how-to-register">
-          How to register for PCE courses
-        </a>
-      </div>
-    </div>
-    <div v-else-if="showComPreReg" class="mb-4 text-center">
+    <div v-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
         :href="registrationHref"
         class="mb-2"
@@ -29,6 +11,34 @@
         You will not be able to register until you complete Pre-Registration
       </div>
     </div>
+    <div v-else-if="registrationIsOpen" class="my-4 text-center">
+      <uw-link-button
+        :href="registrationHref"
+        class="mb-2"
+      >
+        Go to Register.UW
+      </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will be able to import your ready planned items from MyPlan
+      </div>
+      <div v-if="isC2" class="text-center myuw-text-md">
+        <a
+          href="https://www.degreereg.uw.edu/how-to-register">
+          How to register for PCE courses
+        </a>
+      </div>
+    </div>
+    <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
+      You have completed all pre-registration requirements for
+      {{ nextTermQuarter }} {{ nextTermYear }}.
+      <div>
+          <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
+          >Learn about registration</a> or
+          <a title="build schedule in MyPlan" :href="myplanHref"
+          >build your schedule in MyPlan</a>
+      </div>
+    </div>
+
     <div>
       <h3 class="visually-hidden">Registration resources</h3>
       <ul class="m-0 list-unstyled myuw-text-md">
@@ -125,13 +135,28 @@ export default {
     },
     registrationHref() {
       // MyPlan returns quarter specific registration href
-      return this.currentPlanData.registration_href;
+      if (this.currentPlanData && this.currentPlanData.registration_href) {
+        return this.currentPlanData.registration_href;
+      }
+      return "https://register.uw.edu/";
     },
     degreeAuditHref() {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://myplan.uw.edu/audit/#/degree';
+      return "https://myplan.uw.edu/audit/#/degree";
+    },
+    myplanHref() {
+      // MyPlan returns quarter specific href
+      if (this.currentPlanData && this.currentPlanData.myplan_href) {
+        return this.currentPlanData.myplan_href;
+      }
+      return "https://myplan.uw.edu/plan/";
+    },
+    preRegCompleted() {
+      // MUWM-5401
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
+        this.currentPlanData && this.currentPlanData.complete_pre_reg);
     },
     showComPreReg() {
       // MUWM-5395

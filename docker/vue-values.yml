@@ -38,6 +38,9 @@ database:
   secretName: vue.my.uw.edu-sql-secrets
 repo: myuw
 instance: vue
+namespace:
+  enabled: true
+
 memcached:
   enabled: true
   replicaCount: 1
