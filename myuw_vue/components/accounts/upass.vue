@@ -94,6 +94,7 @@ export default {
       statusCode: 'statusCode',
     }),
     ...mapState({
+      affiEmp: (state) => state.user.affiliations.affi_emp,
       employee: (state) => state.user.affiliations.all_employee,
       student: (state) => state.user.affiliations.student,
       tacoma: (state) => state.user.affiliations.tacoma,
@@ -109,7 +110,7 @@ export default {
       return this.status.in_summer;
     },
     showCard() {
-      return this.employee || this.student;
+      return this.employee || this.student || this.affiEmp;
     },
     showError() {
       return this.statusCode !== 404;
