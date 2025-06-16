@@ -29,6 +29,7 @@ uwp_staff = 'uw_affiliation_uwp-staff'
 uwnc_staff = 'uw_affiliation_uwnc-staff'
 applicant = 'uw_affiliation_applicant'
 staff = 'uw_affiliation_staff-employee'
+affi_emp = 'uw_affiliation_affiliate-employee'
 stud_emp = 'uw_affiliation_student-employee'
 bot_stud = 'uw_affiliation_bothell-student'
 sea_stud = 'uw_affiliation_seattle-student'
@@ -184,6 +185,13 @@ def is_staff_employee(request):
     An UW staff employee (grace 15 days)
     """
     return staff in get_groups(request)
+
+
+def is_affi_emp(request):
+    """
+    A current UW Affiliate Employees
+    """
+    return affi_emp in get_groups(request)
 
 
 def is_applicant(request):
