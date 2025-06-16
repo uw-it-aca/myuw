@@ -97,7 +97,8 @@ def get_all_affiliations(request):
         "2fa_permitted": is_2fa_permitted(request),
         "affi_emp": is_affi_emp(request),
         "clinician": is_clinician(request),
-        "employee": (is_employee(request) and not is_student_employee(request)),
+        "employee": (
+            is_employee(request) and not is_student_employee(request)),
         "faculty": is_faculty(request),
         "instructor": is_instructor(request),
         "staff_employee": is_staff_employee(request),
