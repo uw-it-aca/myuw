@@ -95,6 +95,7 @@ def get_all_affiliations(request):
         "J1": False,
         "intl_stud": False,
         "2fa_permitted": is_2fa_permitted(request),
+        "is_affi_emp": is_affi_emp(request),
         "all_employee": (
             is_employee(request) or is_clinician(request) or
             is_affi_emp(request)),
