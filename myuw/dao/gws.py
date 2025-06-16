@@ -43,7 +43,7 @@ undergrad_c2 = 'uw_affiliation_continuum-student_undergraduate'
 all_groups = [alumni_asso, staff, medicine_wf, medicine_aff, medicine_staff,
               uwp_pro, uwp_staff, med_res, fhcrc_emp, scca_emp, uwnc_staff,
               applicant, stud_emp, bot_stud, sea_stud, tac_stud, undergrad,
-              grad_prof, grad, pce, grad_c2, undergrad_c2]
+              grad_prof, grad, pce, grad_c2, undergrad_c2, affi_emp]
 RELEVANT_GROUPS = frozenset(all_groups)
 
 
