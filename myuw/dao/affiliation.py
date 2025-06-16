@@ -31,7 +31,11 @@ def get_all_affiliations(request):
     return a dictionary of affiliation indicators.
 
     The first class affiliations:
-    ["all_employee"]: employee or clinician (include student employee)
+    ["all_employee"]: employee or clinician (include student employee
+                    and affiliate employee)
+    ["affi_emp"]: True if the user is an affiliate employee
+    ["enrolled_stud"]: True if the user is enrolled in current term
+    ["2fa_permitted"]: True if the user is permitted to use 2FA
     ["employee"]: True if is current employee (not student employee, clinician)
     ["clinician"]: True if in uw affiliation clinical groups
     ["faculty"]: True if the user is currently faculty.
@@ -81,6 +85,8 @@ def get_all_affiliations(request):
                       not is_instructor(request) and
                       not is_student(request))
     (is_sea_stud, is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
+    all_employee = (
+        is_clinician(request) or is_employee(request) or is_affi_emp(request))
     data = {
         "class_level": None,
         "latest_class_level": get_latest_class_level(request),
@@ -96,6 +102,7 @@ def get_all_affiliations(request):
         "intl_stud": False,
         "2fa_permitted": is_2fa_permitted(request),
         "affi_emp": is_affi_emp(request),
+        "all_employee": all_employee,
         "clinician": is_clinician(request),
         "employee": (
             is_employee(request) and not is_student_employee(request)),
@@ -117,8 +124,6 @@ def get_all_affiliations(request):
         "past_stud": is_prior_student(request) and not_major_affi,
         "no_1st_class_affi": not_major_affi,
     }
-    data["all_employee"] = (
-        data["employee"] or data["clinician"] or data["affi_emp"])
     campuses = []
 
     if data["student"]:
