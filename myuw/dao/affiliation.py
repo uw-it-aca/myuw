@@ -12,7 +12,7 @@ from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
     get_main_campus, get_cur_class_level, get_latest_class_level)
 from myuw.dao.gws import (
-    is_clinician, is_staff_employee, is_student_employee,
+    is_clinician, is_staff_employee, is_student_employee, is_affi_emp,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
     is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
     is_applicant, is_grad_c2, is_undergrad_c2, in_hxtoolkit_group)
@@ -31,7 +31,11 @@ def get_all_affiliations(request):
     return a dictionary of affiliation indicators.
 
     The first class affiliations:
-    ["all_employee"]: employee or clinician (include student employee)
+    ["all_employee"]: employee or clinician (include student employee
+                    and affiliate employee)
+    ["affi_emp"]: True if the user is an affiliate employee
+    ["enrolled_stud"]: True if the user is enrolled in current term
+    ["2fa_permitted"]: True if the user is permitted to use 2FA
     ["employee"]: True if is current employee (not student employee, clinician)
     ["clinician"]: True if in uw affiliation clinical groups
     ["faculty"]: True if the user is currently faculty.
@@ -81,42 +85,45 @@ def get_all_affiliations(request):
                       not is_instructor(request) and
                       not is_student(request))
     (is_sea_stud, is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
-    data = {"class_level": None,
-            "latest_class_level": get_latest_class_level(request),
-            "grad": is_grad_student(request),
-            "undergrad": is_undergrad,
-            "applicant": is_applicant(request),
-            "student": is_student(request),
-            "pce": is_pce_student(request),
-            "grad_c2": is_grad_c2(request),
-            "undergrad_c2": is_undergrad_c2(request),
-            "F1": False,
-            "J1": False,
-            "intl_stud": False,
-            "2fa_permitted": is_2fa_permitted(request),
-            "all_employee": is_employee(request) or is_clinician(request),
-            "clinician": is_clinician(request),
-            "employee": (is_employee(request) and
-                         not is_student_employee(request)),
-            "faculty": is_faculty(request),
-            "instructor": is_instructor(request),
-            "staff_employee": is_staff_employee(request),
-            "stud_employee": is_student_employee(request),
-            "seattle": is_sea_stud,
-            "bothell": is_bothell_student(request),
-            "tacoma": is_tacoma_student(request),
-            "official_seattle": False,
-            "official_bothell": False,
-            "official_tacoma": False,
-            "hxt_viewer": is_hxt_viewer,
-            "alum_asso": is_alum_asso(request),
-            "alumni": is_alumni(request) and not_major_affi,
-            "retiree": is_retiree(request),
-            "past_employee": is_prior_employee(request) and not_major_affi,
-            "past_stud": is_prior_student(request) and not_major_affi,
-            "no_1st_class_affi": not_major_affi,
-            }
-
+    all_employee = (
+        is_clinician(request) or is_employee(request) or is_affi_emp(request))
+    data = {
+        "class_level": None,
+        "latest_class_level": get_latest_class_level(request),
+        "grad": is_grad_student(request),
+        "undergrad": is_undergrad,
+        "applicant": is_applicant(request),
+        "student": is_student(request),
+        "pce": is_pce_student(request),
+        "grad_c2": is_grad_c2(request),
+        "undergrad_c2": is_undergrad_c2(request),
+        "F1": False,
+        "J1": False,
+        "intl_stud": False,
+        "2fa_permitted": is_2fa_permitted(request),
+        "affi_emp": is_affi_emp(request),
+        "all_employee": all_employee,
+        "clinician": is_clinician(request),
+        "employee": (
+            is_employee(request) and not is_student_employee(request)),
+        "faculty": is_faculty(request),
+        "instructor": is_instructor(request),
+        "staff_employee": is_staff_employee(request),
+        "stud_employee": is_student_employee(request),
+        "seattle": is_sea_stud,
+        "bothell": is_bothell_student(request),
+        "tacoma": is_tacoma_student(request),
+        "official_seattle": False,
+        "official_bothell": False,
+        "official_tacoma": False,
+        "hxt_viewer": is_hxt_viewer,
+        "alum_asso": is_alum_asso(request),
+        "alumni": is_alumni(request) and not_major_affi,
+        "retiree": is_retiree(request),
+        "past_employee": is_prior_employee(request) and not_major_affi,
+        "past_stud": is_prior_student(request) and not_major_affi,
+        "no_1st_class_affi": not_major_affi,
+    }
     campuses = []
 
     if data["student"]:
