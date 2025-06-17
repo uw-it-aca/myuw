@@ -94,7 +94,7 @@
         />
         <div class="mb-1">
           <span class="myuw-font-encode-sans">
-            Reminder: Required Husky Prevention &amp; Respons student course
+            Reminder: Required Husky Prevention &amp; Response student course
           </span>
           <span class="myuw-text-md d-block">
             (<em>Note:</em> This message is shown even if you have completed this step.)
