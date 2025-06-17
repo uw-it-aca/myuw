@@ -13,15 +13,16 @@ logger = logging.getLogger(__name__)
 
 def get_classlist_details(section_label, json_data=None):
     section_label = _process_section_label(section_label)
+    msg = f"Coda get_majors {section_label}"
     try:
         majors = get_majors(section_label, 1)
     except DataFailureException:
-        log_err(logger, "Coda get_majors", traceback, None)
+        log_err(logger, msg, traceback, None)
         return
 
     if json_data is not None:
         json_data.update(majors)
-
+    logger.info(f"{msg} => {majors}")
     return majors
 
 
@@ -45,15 +46,21 @@ def get_course_card_details(section_label, json_data=None):
 
 
 def _set_json_fail_rate(section_label, json_obj):
+    msg = f"Coda fail_rate {section_label}"
     try:
-        json_obj.update(get_fail_rate(section_label))
+        fail_rate = get_fail_rate(section_label)
+        json_obj.update(fail_rate)
+        logger.info(f"{msg} => {fail_rate}")
     except Exception:
         log_err(logger, "Coda get_fail_rate", traceback, None)
 
 
 def _set_json_cgpa(section_label, json_obj):
+    msg = f"Coda current_median {section_label}"
     try:
-        json_obj.update(get_course_cgpa(section_label))
+        current_median = get_course_cgpa(section_label)
+        json_obj.update(current_median)
+        logger.info(f"{msg} => {current_median}")
     except Exception:
         log_err(logger, "Coda get_course_cgpa", traceback, None)
 
