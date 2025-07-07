@@ -89,6 +89,7 @@ def index_by_sln(book_data):
         json_data[sln] = []
         for book in book_data[sln]:
             json_data[sln].append(book.json_data())
+    logger.debug("index_by_sln: {}".format(json_data))
     return json_data
 
 
