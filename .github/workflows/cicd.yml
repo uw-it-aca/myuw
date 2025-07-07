@@ -43,9 +43,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, fix/MUWM-5420]
   pull_request:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, fix/MUWM-5420]
     types: [opened, reopened, synchronize]
   release:
     branches: [main, master]
@@ -79,7 +79,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -250,7 +250,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -304,7 +304,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'vue/dev'
+        if: needs.context.outputs.git_repo_branch == 'fix/MUWM-5420'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -322,7 +322,7 @@ jobs:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
          endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
-         endsWith(github.ref, '/vue/dev'))
+         endsWith(github.ref, '/fix/MUWM-5420'))
 
     needs: [context, build, deploy]
 
