@@ -10,8 +10,7 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import (
   get_specific_term, get_comparison_date, get_current_quarter, get_term_after)
 from myuw.dao.textbook import (
-    get_textbook_by_schedule, get_order_url_by_schedule,
-    get_iacourse_status)
+    get_sln_textbook_json, get_order_url, get_iacourse_status)
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
@@ -39,58 +38,58 @@ class Textbook(ProtectedAPI):
     def respond(self, timer, request, term, summer_term):
         try:
             prefetch_resources(request)
-            by_sln = {}
-            # enrolled sections
+            sln_books = {}
+            stud_course_slns = set()
+            inst_course_slns = set()
             try:
+                # student enrolled sections
                 schedule = get_schedule_by_term(
                     request, term=term, summer_term=summer_term)
-                by_sln.update(_get_schedule_textbooks(schedule))
+                stud_course_slns = _get_sln_set(schedule)
+                logger.debug(f"Student SLNs: {stud_course_slns}")
 
-                order_url = get_order_url_by_schedule(schedule)
-                if order_url:
-                    by_sln["order_url"] = order_url
+                if stud_course_slns:
+                    sln_books["order_url"] = get_order_url(
+                        term.quarter, stud_course_slns)
             except DataFailureException as ex:
                 if ex.status != 400 and ex.status != 404:
                     raise
 
-            # instructed sections (not split summer terms)
             try:
+                # inst sections (not split summer terms)
                 schedule = get_instructor_schedule_by_term(
                     request, term=term, summer_term="full-term")
-                by_sln.update(_get_schedule_textbooks(schedule))
+                inst_course_slns = _get_sln_set(schedule)
+                logger.debug(f"Instructor SLNs: {inst_course_slns}")
             except DataFailureException as ex:
                 if ex.status != 404:
                     raise
 
-            # MUWM-5311: uwt no longer has books
-            # if len(by_sln) == 0:
-            #    log_data_not_found_response(logger, timer)
-            #    return data_not_found()
-
-            log_api_call(timer, request, "Get Textbook for {}.{}".format(
-                term.year, term.quarter))
-            return self.json_response(by_sln)
+            sln_set = stud_course_slns | inst_course_slns
+            if sln_set:
+                try:
+                    sln_books.update(
+                        get_sln_textbook_json(term.quarter, sln_set))
+                except DataFailureException as ex:
+                    if ex.status != 400 and ex.status != 404:
+                        raise
+            logger.debug(
+                f"Get Textbook for {term.year}.{term.quarter} {sln_books}")
+            log_api_call(
+                timer, request,
+                f"Get Textbook for {term.year}.{term.quarter}")
+            return self.json_response(sln_books)
 
         except Exception:
             return handle_exception(logger, timer, traceback)
 
 
-def _get_schedule_textbooks(schedule):
-    by_sln = {}
-    if schedule and len(schedule.sections):
-        book_data = get_textbook_by_schedule(schedule)
-        by_sln.update(index_by_sln(book_data))
-    return by_sln
-
-
-def index_by_sln(book_data):
-    json_data = {}
-    for sln in book_data:
-        json_data[sln] = []
-        for book in book_data[sln]:
-            json_data[sln].append(book.json_data())
-    logger.debug("index_by_sln: {}".format(json_data))
-    return json_data
+def _get_sln_set(schedule):
+    return {
+        section.sln
+        for section in schedule.sections
+        if not section.is_campus_tacoma() and section.sln
+    }
 
 
 class TextbookCur(Textbook):

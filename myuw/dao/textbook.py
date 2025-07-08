@@ -5,24 +5,33 @@
 encapsulates the interactions with the Bookstore web service.
 """
 
+import logging
 from uw_bookstore.digital_material import IACoursesStatus as Bookstore
 from myuw.dao.pws import get_regid_of_current_user
 
 bookstore = Bookstore()
+logger = logging.getLogger(__name__)
 
 
-def get_textbook_by_schedule(schedule):
+def get_sln_textbook_json(quarter, sln_set):
     """
-    returns textbooks for a valid schedule
+    returns a dict of sln to books in json format
     """
-    return bookstore.get_books_for_schedule(schedule)
+    sln_to_books = bookstore.get_textbook(quarter, sln_set)
+    json_data = {}
+    for sln in sln_set:
+        json_data[sln] = []
+        for book in sln_to_books.get(sln):
+            json_data[sln].append(book.json_data())
+    logger.debug(f"_get_textbook_json: {sln} {json_data[sln]}")
+    return json_data
 
 
-def get_order_url_by_schedule(schedule):
+def get_order_url(quarter, sln_set):
     """
     returns a link to the bookstore ordering page for a given schedule
     """
-    return bookstore.get_url_for_schedule(schedule)
+    return bookstore.get_order_url(quarter, sln_set)
 
 
 def get_iacourse_status(request, term):
