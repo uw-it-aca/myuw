@@ -5,12 +5,13 @@ from datetime import timedelta
 import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
+from myuw.dao.pws import is_student
+from myuw.dao.instructor import is_instructor
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import (
   get_specific_term, get_comparison_date, get_current_quarter, get_term_after)
-from myuw.dao.textbook import (
-    get_sln_textbook_json, get_order_url, get_iacourse_status)
+from myuw.dao.textbook import get_textbook_json, get_iacourse_status
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
 from myuw.views import prefetch_resources
@@ -41,38 +42,31 @@ class Textbook(ProtectedAPI):
             sln_books = {}
             stud_course_slns = set()
             inst_course_slns = set()
-            try:
-                # student enrolled sections
-                schedule = get_schedule_by_term(
-                    request, term=term, summer_term=summer_term)
-                stud_course_slns = _get_sln_set(schedule)
-                logger.debug(f"Student SLNs: {stud_course_slns}")
-
-                if stud_course_slns:
-                    sln_books["order_url"] = get_order_url(
-                        term.quarter, stud_course_slns)
-            except DataFailureException as ex:
-                if ex.status != 400 and ex.status != 404:
-                    raise
-
-            try:
-                # inst sections (not split summer terms)
-                schedule = get_instructor_schedule_by_term(
-                    request, term=term, summer_term="full-term")
-                inst_course_slns = _get_sln_set(schedule)
-                logger.debug(f"Instructor SLNs: {inst_course_slns}")
-            except DataFailureException as ex:
-                if ex.status != 404:
-                    raise
-
-            sln_set = stud_course_slns | inst_course_slns
-            if sln_set:
+            # student enrolled sections
+            if is_student(request):
                 try:
-                    sln_books.update(
-                        get_sln_textbook_json(term.quarter, sln_set))
+                    schedule = get_schedule_by_term(
+                        request, term=term, summer_term=summer_term)
+                    stud_course_slns = _get_sln_set(schedule)
+                    logger.debug(f"Student SLNs: {stud_course_slns}")
                 except DataFailureException as ex:
                     if ex.status != 400 and ex.status != 404:
                         raise
+            if is_instructor(request):
+                try:
+                    # inst sections (not split summer terms)
+                    schedule = get_instructor_schedule_by_term(
+                        request, term=term, summer_term="full-term")
+                    inst_course_slns = _get_sln_set(schedule)
+                    logger.debug(f"Instructor SLNs: {inst_course_slns}")
+                except DataFailureException as ex:
+                    if ex.status != 400 and ex.status != 404:
+                        raise
+
+            sln_set = stud_course_slns | inst_course_slns
+            if sln_set:
+                sln_books = get_textbook_json(term.quarter, sln_set)
+
             logger.debug(
                 f"Get Textbook for {term.year}.{term.quarter} {sln_books}")
             log_api_call(
@@ -101,11 +95,8 @@ class TextbookCur(Textbook):
         GET returns 200 with the current quarter Textbook
         """
         timer = Timer()
-        try:
-            return self.respond(
-                timer, request, get_current_quarter(request), None)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
+        return self.respond(
+            timer, request, get_current_quarter(request), None)
 
 
 class IACDigitalItems(ProtectedAPI):

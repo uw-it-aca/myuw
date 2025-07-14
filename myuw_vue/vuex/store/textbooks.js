@@ -25,7 +25,7 @@ const customGetters = {
       const hasBookData = !!(
         bookData &&
         bookData[section.sln] &&
-        bookData[section.sln].length
+        bookData[section.sln].length > 0
       );
       return {
         index: i,
@@ -35,8 +35,7 @@ const customGetters = {
         sectionId: section.section_id,
         colorId: section.color_id,
         sln: section.sln,
-        hasBooks: hasBookData,
-        books: hasBookData ? bookData[section.sln] : [],
+        book_value: hasBookData ? bookData[section.sln] : {},
         isInstructor: isInstructor,
         bothellCampus: bothellCampus(section),
         tacomaCampus: tacomaCampus(section),

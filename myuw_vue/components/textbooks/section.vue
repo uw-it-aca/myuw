@@ -20,12 +20,12 @@
       </div>
     </button>
     <uw-collapse
-      v-if="section.hasBooks"
+      v-if="hasBook"
       :id="`books-${section.sln}`"
       v-model="isOpen"
     >
       <uw-book
-        v-for="book in section.books"
+        v-for="book in sectionBooks"
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
         :sln="section.sln"
@@ -42,7 +42,7 @@
           Check textbooks
         </a>
       </template>
-      <template v-else>
+      <template v-else-if="hasNoBook">
         <span v-if="!instructor">
           No textbook requirement has been received for this course.
           Please check with your instructor.
@@ -52,6 +52,11 @@
           <a href="https://uw.verbacollect.com/session/selfassign">
             Order textbooks
           </a>
+        </span>
+      </template>
+      <template v-else-if="hasBookError">
+        <span class="text-danger">
+          No textbook data is available at this moment.
         </span>
       </template>
     </uw-collapse>
@@ -92,6 +97,26 @@ export default {
       faSquareFull,
     };
   },
+  computed: {
+    sectionBookData() {
+      return this.section && this.section.book_value;
+    },
+    hasBookData() {
+      return this.sectionBookData && this.sectionBookData.length > 0;
+    },
+    hasBookError() {
+      return this.hasBookData ? this.sectionBookData.error : false;
+    },
+    sectionBooks() {
+      return this.hasBookData ? this.sectionBookData.books : [];
+    },
+    hasNoBook() {
+      return this.sectionBooks.length == 0;
+    },
+    hasBook() {
+      return this.sectionBooks.length > 0;
+    },
+  }
 };
 </script>
 

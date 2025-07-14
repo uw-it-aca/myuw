@@ -6,6 +6,8 @@ encapsulates the interactions with the Bookstore web service.
 """
 
 import logging
+from restclients_core.exceptions import DataFailureException
+from uw_bookstore import Textbook
 from uw_bookstore.digital_material import IACoursesStatus as Bookstore
 from myuw.dao.pws import get_regid_of_current_user
 
@@ -13,25 +15,32 @@ bookstore = Bookstore()
 logger = logging.getLogger(__name__)
 
 
-def get_sln_textbook_json(quarter, sln_set):
+def get_textbook_json(quarter, sln_set):
     """
-    returns a dict of sln to books in json format
+    returns a dict in json format
     """
-    sln_to_books = bookstore.get_textbook(quarter, sln_set)
-    json_data = {}
+    result = bookstore.get_textbooks(quarter, sln_set)
+    if result is None:
+        return {}
+    json_data = {"order_url": None}
+    course_ids = []
+    search_url = None
     for sln in sln_set:
-        json_data[sln] = []
-        for book in sln_to_books.get(sln):
-            json_data[sln].append(book.json_data())
-    logger.debug(f"_get_textbook_json: {sln} {json_data[sln]}")
+        json_data[sln] = {}
+        value = result.get(sln)
+        if isinstance(value, Textbook):
+            json_data[sln] = value.json_data()
+            course_ids.append(value.course_id)
+            if not search_url:
+                search_url = value.search_url
+            continue
+        if isinstance(value, DataFailureException):
+            json_data[sln]["error"] = str(value)
+    if search_url and len(course_ids):
+        json_data["order_url"] = f"{search_url}{','.join(sorted(course_ids))}"
+
+    logger.debug(f"get_textbook_json {quarter} {sln_set} ==> {json_data}")
     return json_data
-
-
-def get_order_url(quarter, sln_set):
-    """
-    returns a link to the bookstore ordering page for a given schedule
-    """
-    return bookstore.get_order_url(quarter, sln_set)
 
 
 def get_iacourse_status(request, term):
