@@ -5,16 +5,26 @@ from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_current_quarter
 from myuw.dao.textbook import (
-    get_textbook_json, get_iacourse_status)
+    get_textbook_json, get_search_url, get_iacourse_status)
 from myuw.test import get_request_with_user, get_request_with_date
 
 
 class TestTextbooks(TestCase):
 
+    def test_get_search_url(self):
+        self.assertEqual(
+            get_search_url("url/", ["a", "b", "c"]),
+            "url/a,b,c")
+        self.assertEqual(
+            get_search_url("url/", ["a"]), "url/a")
+        self.assertEqual(
+            get_search_url("url/", []), "url/")
+
     def test_get_textbooks(self):
-        books = get_textbook_json("spring", {18529, 18532, 13830, 13833, 18545})
+        books = get_textbook_json(
+            "spring", {18529, 18532, 13830, 13833, 18545})
         self.assertEqual(len(books), 6)
-        self.maxDiff = None
+        # self.maxDiff = None
         self.assertEqual(
             books[13830],
             {
@@ -38,7 +48,7 @@ class TestTextbooks(TestCase):
             },
         )
         self.assertEqual(
-            books[18529], 
+            books[18529],
             {"books": [],
              "course_id": "uws-phys-121-a-123",
              "search_url": "https://ubookstore.com/pages/" +
@@ -47,9 +57,14 @@ class TestTextbooks(TestCase):
         books = get_textbook_json("spring", {})
         self.assertEqual(books, {})
 
-        books = get_textbook_json("spring", {18529, 18545, 18532, 13830, 13833, 15612})
+        books = get_textbook_json(
+            "spring", {18529, 18545, 18532, 13830, 13833, 15612})
         self.assertEqual(len(books), 7)
-        # self.assertEqual(books, {})
+
+        books = get_textbook_json("autumn", {13870, 13519})
+        self.assertTrue('Status code: 404' in books[13519]['error'])
+        self.assertTrue('Status code: 404' in books[13870]['error'])
+        self.assertIsNone(books['order_url'])
 
     def test_get_iacourse_status(self):
         req = get_request_with_user(

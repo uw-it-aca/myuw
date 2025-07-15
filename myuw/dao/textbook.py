@@ -36,11 +36,16 @@ def get_textbook_json(quarter, sln_set):
             continue
         if isinstance(value, DataFailureException):
             json_data[sln]["error"] = str(value)
-    if search_url and len(course_ids):
-        json_data["order_url"] = f"{search_url}{','.join(sorted(course_ids))}"
-
+    json_data["order_url"] = get_search_url(search_url, course_ids)
     logger.debug(f"get_textbook_json {quarter} {sln_set} ==> {json_data}")
     return json_data
+
+
+def get_search_url(search_url, course_ids):
+    if search_url and course_ids:
+        query_str = ','.join(sorted(course_ids))
+        return f"{search_url}{query_str}"
+    return search_url
 
 
 def get_iacourse_status(request, term):
