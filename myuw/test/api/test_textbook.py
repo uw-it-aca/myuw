@@ -4,7 +4,7 @@
 import json
 from myuw.views.api.textbook import get_payment_quarter
 from myuw.test import get_request_with_date
-from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
+from myuw.test.api import MyuwApiTest, fdao_bookstore_override
 
 VERBACOMPARE_URL_PREFIX = "http://uw-seattle.verbacompare.com"
 IMAGE_URL_PREFIX = "www7.bookstore.washington.edu/MyUWImage.taf"
@@ -14,8 +14,7 @@ IMAGE_URL_PREFIX = "www7.bookstore.washington.edu/MyUWImage.taf"
 class TestApiBooks(MyuwApiTest):
     """Tests textbooks api"""
 
-    @require_url("myuw_book_api")
-    def test_javerage_books(self):
+    def test_textbooks(self):
         self.set_user("javerage")
         response = self.get_response_by_reverse(
             "myuw_book_api",
@@ -26,8 +25,20 @@ class TestApiBooks(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(len(data), 6)
 
-    @require_url("myuw_home")
-    def test_no_sche_books(self):
+    def test_textbooks_404(self):
+        self.set_user("javerage")
+        response = self.get_response_by_reverse(
+            "myuw_book_api",
+            kwargs={"year": 2013,
+                    "quarter": "autumn",
+                    "summer_term": ""})
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertIsNotNone(data.get('13519'))
+        self.assertIsNotNone(data.get('13870'))
+        self.assertIsNone(data.get("order_url"))
+
+    def test_noschedule_books(self):
         self.set_user("billtac")  # MUWM-5311
         response = self.get_response_by_reverse(
             "myuw_book_api",
@@ -38,7 +49,6 @@ class TestApiBooks(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(data, {})
 
-    @require_url("myuw_iacourse_digital_material_api")
     def test_digital_material_api(self):
         self.set_user("javerage")
         response = self.get_response_by_reverse(

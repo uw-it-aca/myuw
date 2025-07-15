@@ -42,33 +42,32 @@ class Textbook(ProtectedAPI):
             sln_books = {}
             stud_course_slns = set()
             inst_course_slns = set()
-            # student enrolled sections
+
             if is_student(request):
                 try:
-                    schedule = get_schedule_by_term(
+                    student_schedule = get_schedule_by_term(
                         request, term=term, summer_term=summer_term)
-                    stud_course_slns = _get_sln_set(schedule)
-                    logger.debug(f"Student SLNs: {stud_course_slns}")
+                    stud_course_slns = _get_sln_set(student_schedule)
+                    logger.debug(f"Student course SLNs: {stud_course_slns}")
                 except DataFailureException as ex:
-                    if ex.status != 400 and ex.status != 404:
+                    if ex.status not in (400, 404):
                         raise
             if is_instructor(request):
                 try:
                     # inst sections (not split summer terms)
-                    schedule = get_instructor_schedule_by_term(
+                    instructor_schedule = get_instructor_schedule_by_term(
                         request, term=term, summer_term="full-term")
-                    inst_course_slns = _get_sln_set(schedule)
-                    logger.debug(f"Instructor SLNs: {inst_course_slns}")
+                    inst_course_slns = _get_sln_set(instructor_schedule)
+                    logger.debug(f"Instructor course SLNs: {inst_course_slns}")
                 except DataFailureException as ex:
-                    if ex.status != 400 and ex.status != 404:
+                    if ex.status not in (400, 404):
                         raise
 
             sln_set = stud_course_slns | inst_course_slns
-            if sln_set:
+            if term and len(sln_set):
                 sln_books = get_textbook_json(term.quarter, sln_set)
-
             logger.debug(
-                f"Get Textbook for {term.year}.{term.quarter} {sln_books}")
+                f"Textbook {term.quarter} {summer_term} ==> {sln_books}")
             log_api_call(
                 timer, request,
                 f"Get Textbook for {term.year}.{term.quarter}")
