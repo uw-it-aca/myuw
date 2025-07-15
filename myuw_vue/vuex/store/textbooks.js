@@ -24,8 +24,7 @@ const customGetters = {
     function makeSectionData(i, section, isInstructor) {
       const hasBookData = !!(
         bookData &&
-        bookData[section.sln] &&
-        bookData[section.sln].length > 0
+        bookData[section.sln]
       );
       return {
         index: i,
@@ -66,8 +65,6 @@ const customGetters = {
     )
     processedData.collapseSections = numSections > 10;
     processedData.hasTeachingSections = processedData.teachingSections.length > 0;
-
-    processedData.verbaLink = bookData ? bookData.verbaLink : null;
     return processedData;
   }
 }

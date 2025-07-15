@@ -29,6 +29,7 @@
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
         :sln="section.sln"
+        :order-url="orderBookUrl"
       />
     </uw-collapse>
     <uw-collapse
@@ -102,19 +103,32 @@ export default {
       return this.section && this.section.book_value;
     },
     hasBookData() {
+      console.log("hasBookError", this.sectionBookData.length);
       return this.sectionBookData && this.sectionBookData.length > 0;
     },
     hasBookError() {
+      console.log("hasBookError", this.sectionBookData.error);
       return this.hasBookData ? this.sectionBookData.error : false;
     },
     sectionBooks() {
-      return this.hasBookData ? this.sectionBookData.books : [];
+      console.log("sectionBooks", this.sectionBookData.books);
+      return this.sectionBookData.books;
     },
     hasNoBook() {
+      console.log("hasNoBook:", this.sectionBooks.length == 0);
       return this.sectionBooks.length == 0;
     },
     hasBook() {
+      console.log("hasBook:", this.sectionBooks.length > 0);
       return this.sectionBooks.length > 0;
+    },
+    orderBookUrl() {
+      if (this.hasBookData && this.sectionBookData.search_url &&
+          this.sectionBookData.course_id) {
+        console.log("Order URL:", this.sectionBookData.search_url, this.sectionBookData.course_id);
+        return this.sectionBookData.search_url + this.sectionBookData.course_id;
+      }
+      return 'https://www.ubookstore.com/adoption-search';
     },
   }
 };
