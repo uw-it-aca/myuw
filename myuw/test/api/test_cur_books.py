@@ -29,9 +29,10 @@ class TestApiCurBooks(MyuwApiTest):
         data = json.loads(resp.content)
         self.assertEqual(
             data.get('21838'), {
-            'books': [],
-            'course_id': 'uws-muse-700-a-123',
-            'search_url': 'https://ubookstore.com/pages/adoption-search/course='
+                'books': [],
+                'course_id': 'uws-muse-700-a-123',
+                'search_url': 'https://ubookstore.com/pages/' +
+                              'adoption-search/course='
             }
         )
 
