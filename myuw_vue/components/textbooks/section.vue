@@ -100,35 +100,26 @@ export default {
   },
   computed: {
     sectionBookData() {
-      return this.section && this.section.book_value;
-    },
-    hasBookData() {
-      console.log("hasBookError", this.sectionBookData.length);
-      return this.sectionBookData && this.sectionBookData.length > 0;
+      return this.section && this.section.bookData;
     },
     hasBookError() {
-      console.log("hasBookError", this.sectionBookData.error);
-      return this.hasBookData ? this.sectionBookData.error : false;
+      return this.sectionBookData && this.sectionBookData.error;
     },
     sectionBooks() {
-      console.log("sectionBooks", this.sectionBookData.books);
-      return this.sectionBookData.books;
+      return this.sectionBookData && this.sectionBookData.books;
     },
     hasNoBook() {
-      console.log("hasNoBook:", this.sectionBooks.length == 0);
-      return this.sectionBooks.length == 0;
+      return this.sectionBooks && this.sectionBooks.length == 0;
     },
     hasBook() {
-      console.log("hasBook:", this.sectionBooks.length > 0);
-      return this.sectionBooks.length > 0;
+      return this.sectionBooks && this.sectionBooks.length > 0;
     },
     orderBookUrl() {
-      if (this.hasBookData && this.sectionBookData.search_url &&
+      if (this.sectionBookData && this.sectionBookData.search_url &&
           this.sectionBookData.course_id) {
-        console.log("Order URL:", this.sectionBookData.search_url, this.sectionBookData.course_id);
         return this.sectionBookData.search_url + this.sectionBookData.course_id;
       }
-      return 'https://www.ubookstore.com/adoption-search';
+      return 'https://ubookstore.com/pages/adoption-search/';
     },
   }
 };

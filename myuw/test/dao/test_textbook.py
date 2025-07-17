@@ -42,7 +42,7 @@ class TestTextbooks(TestCase):
                         "used_price": None,
                     }
                 ],
-                "course_id": "uws-phys-121-aq-123",
+                "course_id": "uws-train-100-a-123",
                 "search_url": "https://ubookstore.com/pages/"
                 + "adoption-search/course=",
             },

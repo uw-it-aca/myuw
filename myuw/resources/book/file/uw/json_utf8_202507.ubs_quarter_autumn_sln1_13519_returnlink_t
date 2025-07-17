@@ -1,14 +1,18 @@
 {
-    "10675": [{
+    "13519": [{
                 "isbn":"9781256396062",
-                "title":"Tutorials In Introductory Physics II",
+                "title":"2 P/S Tutorials In Introductory Physics",
                 "authors": [{"name":"Mcdermott"}],
                 "price":58.00,
+                "used_price":null,
                 "lowest_price": 58.00,
                 "highest_price": 58.00,
-                "used_price":null,
                 "required":true,
                 "notes":null,
                 "cover_image": null
-            }]
+            }],
+    "ubsLink": {
+       "search": "https://ubookstore.com/pages/adoption-search/course=",
+       "course_id": "uws-engl-207-a-123"
+    }
 }

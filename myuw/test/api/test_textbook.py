@@ -38,7 +38,7 @@ class TestApiBooks(MyuwApiTest):
         self.assertIsNotNone(data.get('13870'))
         self.assertIsNone(data.get("order_url"))
 
-    def test_noschedule_books(self):
+    def test_noschedule(self):
         self.set_user("billtac")  # MUWM-5311
         response = self.get_response_by_reverse(
             "myuw_book_api",

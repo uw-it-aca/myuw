@@ -22,10 +22,6 @@ const customGetters = {
     }
 
     function makeSectionData(i, section, isInstructor) {
-      const hasBookData = !!(
-        bookData &&
-        bookData[section.sln]
-      );
       return {
         index: i,
         sectionTitle: section.course_title,
@@ -34,7 +30,7 @@ const customGetters = {
         sectionId: section.section_id,
         colorId: section.color_id,
         sln: section.sln,
-        book_value: hasBookData ? bookData[section.sln] : {},
+        bookData: bookData ? bookData[section.sln] : {},
         isInstructor: isInstructor,
         bothellCampus: bothellCampus(section),
         tacomaCampus: tacomaCampus(section),

@@ -5,10 +5,6 @@ import json
 from myuw.test.api import MyuwApiTest, fdao_bookstore_override
 
 
-VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
-IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
-
-
 @fdao_bookstore_override
 class TestApiCurBooks(MyuwApiTest):
 
@@ -16,7 +12,6 @@ class TestApiCurBooks(MyuwApiTest):
         self.set_user('javerage')
         response = self.get_response_by_reverse('myuw_current_book')
         self.assertEqual(response.status_code, 200)
-
         data = json.loads(response.content)
         self.assertIsNotNone(data.get("13833"))
 
@@ -24,6 +19,24 @@ class TestApiCurBooks(MyuwApiTest):
         self.set_user('eight')
         response = self.get_response_by_reverse('myuw_current_book')
         self.assertEqual(response.status_code, 200)
-
         data = json.loads(response.content)
         self.assertIsNotNone(data.get("11646"))
+
+    def test_inst_nobook(self):
+        self.set_user("billpce")
+        self.set_date("2013-10-16 09:00:00")
+        resp = self.get_response_by_reverse("myuw_current_book")
+        data = json.loads(resp.content)
+        self.assertEqual(
+            data.get('21838'), {
+            'books': [],
+            'course_id': 'uws-muse-700-a-123',
+            'search_url': 'https://ubookstore.com/pages/adoption-search/course='
+            }
+        )
+
+    def test_inst_noschedule(self):
+        self.set_user('billtac')
+        resp = self.get_response_by_reverse('myuw_current_book')
+        data = json.loads(resp.content)
+        self.assertEqual(data, {})
