@@ -57,13 +57,14 @@ class TestTextbooks(TestCase):
         books = get_textbook_json("spring", {})
         self.assertEqual(books, {})
 
+        # bill's
         books = get_textbook_json(
             "spring", {18529, 18545, 18532, 13830, 13833, 15612})
         self.assertEqual(len(books), 7)
 
-        books = get_textbook_json("autumn", {13870, 13519})
-        self.assertTrue('Status code: 404' in books[13519]['error'])
-        self.assertTrue('Status code: 404' in books[13870]['error'])
+       # jbothell's
+        books = get_textbook_json("spring", {13835})
+        self.assertTrue("Status code: 404" in books[13835]["error"])
         self.assertIsNone(books['order_url'])
 
     def test_get_iacourse_status(self):

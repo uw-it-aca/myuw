@@ -36,7 +36,7 @@ class TestApiBooks(MyuwApiTest):
         data = json.loads(response.content)
         self.assertIsNotNone(data.get('13519'))
         self.assertIsNotNone(data.get('13870'))
-        self.assertIsNone(data.get("order_url"))
+        self.assertIsNotNone(data.get("order_url"))
 
     def test_noschedule(self):
         self.set_user("billtac")  # MUWM-5311

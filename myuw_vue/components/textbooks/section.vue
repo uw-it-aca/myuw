@@ -57,7 +57,7 @@
       </template>
       <template v-else-if="hasBookError">
         <span class="text-danger">
-          No textbook data is available at this moment.
+          Textbook data is not available due to an error.
         </span>
       </template>
     </uw-collapse>

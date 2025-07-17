@@ -10,5 +10,9 @@
                 "required":true,
                 "notes":null,
                 "cover_image": null
-            }]
+            }],
+    "ubsLink": {
+       "search": "https://ubookstore.com/pages/adoption-search/course=",
+       "course_id": "uws-bisseb-259-a-123"
+    }
 }
