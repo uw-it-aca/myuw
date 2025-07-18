@@ -49,7 +49,7 @@
           </ul>
         </div>
       </div>
-      <div v-if="bookData.teachingSections.length > 0">
+      <div v-if="bookData.hasTeachingSections">
         <h2 class="h5">Teaching</h2>
         <hr class="bg-secondary" />
         <uw-section

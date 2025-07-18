@@ -77,7 +77,7 @@ describe('Textbook cards', () => {
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
     expect(bookData.enrolledSections.length).toBe(5);
-    expect(bookData.teachingSections.length).toBe(6);
+    expect(bookData.hasTeachingSections).toBe(true);
   });
 
   it('Verify other campus courses', async () => {
