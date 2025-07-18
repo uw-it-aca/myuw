@@ -195,13 +195,13 @@ export default {
           this.bookData.orderUrl.length > url.length) {
         url = this.bookData.orderUrl;
       }
-      return url
+      return url;
     },
     hasBookListed() {
       // MUWM-5311
       let ret = false;
       this.bookData.sections.forEach((section) => {
-        if (section.bookData.books &&
+        if (section.bookData && section.bookData.books &&
             section.bookData.books.length > 0) {
           ret = true;
           return;
