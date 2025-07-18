@@ -20,11 +20,11 @@ import mockStudCourses from
 import mockStudTextbook from './mock_data/textbooks/javerage-2013-spr.json';
 import mockInstSche from './mock_data/inst_schedule/bill2013spr.json';
 const mockTextbook = {
-  "13830": [],
-  "13833": [],
-  "18529": [],
-  "18532": [],
-  "18545": [],
+  "13830": {},
+  "13833": {},
+  "18529": {},
+  "18532": {},
+  "18545": {},
   "order_url": null
 };
 import { library } from '@fortawesome/fontawesome-svg-core';
