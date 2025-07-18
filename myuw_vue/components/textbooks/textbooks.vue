@@ -73,7 +73,7 @@
         :collapsable="bookData.collapseSections"
       />
 
-      <div v-if="useBookstore" class="my-4 text-center">
+      <div v-if="orderUrl && hasBookListed" class="my-4 text-center">
         <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
@@ -189,16 +189,20 @@ export default {
       return {};
     },
     orderUrl() {
-      if (this.bookData.orderUrl) {
-        return this.bookData.orderUrl;
+      // MUWM-5420
+      let url = 'https://ubookstore.com/pages/adoption-search/';
+      if (this.bookData && this.bookData.orderUrl &&
+          this.bookData.orderUrl.length > url.length) {
+        url = this.bookData.orderUrl;
       }
-      return 'https://www.ubookstore.com/adoption-search';
+      return url
     },
-    useBookstore() {
+    hasBookListed() {
       // MUWM-5311
       let ret = false;
       this.bookData.sections.forEach((section) => {
-        if (section.hasBooks) {
+        if (section.bookData.books &&
+            section.bookData.books.length > 0) {
           ret = true;
           return;
         }

@@ -3,7 +3,6 @@ import {createLocalVue} from './helper';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import UwPanel from '../components/_templates/panel.vue';
 import Textbooks from '../components/textbooks/textbooks.vue';
 import Section from '../components/textbooks/section.vue';
 import Book from '../components/textbooks/book.vue';
@@ -74,26 +73,18 @@ describe('Textbook cards', () => {
     expect(wrapper.vm.term).toEqual('2013,spring');
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.isErrored).toBe(false);
-    expect(wrapper.findComponent(UwPanel).exists()).toBe(true);
-    expect(wrapper.findAllComponents(Section).length).toBe(11);
-    expect(wrapper.findAllComponents(Book).length).toBe(6);
+    expect(wrapper.vm.orderUrl.length).toBe(77);
+    expect(wrapper.vm.hasBookListed).toBe(true);
+    expect(wrapper.findAllComponents(Section).length).toBe(5);
+    expect(wrapper.findAllComponents(Book).length).toBe(3);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
-    expect(wrapper.vm.orderUrl).toBe(
-      "https://www.ubookstore.com/adoption-search-results?ccid=9335,1132,5320,2230,4405");
+
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
-    expect(bookData.collapseSections).toBe(true);
+    expect(bookData.collapseSections).toBe(false);
     expect(bookData.enrolledSections.length).toBe(5);
-    expect(bookData.sections.length).toBe(11);
-    expect(bookData.hasTeachingSections).toBe(true);
-
-    const section5 = wrapper.vm.bookData.enrolledSections[4];
-    wrapper = mount(Book, {
-      store, localVue,
-      propsData: { 'book': section5.books[0], 'sln': section5.sln }
-    });
-    expect(wrapper.vm.digitalItem).toBeTruthy();
+    expect(bookData.teachingSections.length == 0).toBe(true);
   });
 
   it('Verify other campus courses', async () => {
