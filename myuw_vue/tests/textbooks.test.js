@@ -4,6 +4,7 @@ import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import Textbooks from '../components/textbooks/textbooks.vue';
+import Section from '../components/textbooks/section.vue';
 
 import stud_schedule from '../vuex/store/schedule/student';
 import inst_schedule from '../vuex/store/schedule/instructor';
@@ -16,11 +17,11 @@ import mockStudCourses from
 import mockStudTextbook from './mock_data/textbooks/javerage-2013-spr.json';
 import mockInstSche from './mock_data/inst_schedule/bill2013spr.json';
 const mockTextbook = {
-  "13830": {},
-  "13833": {},
-  "18529": {},
-  "18532": {},
-  "18545": {},
+  "13830": {"error" : "-"},
+  "13833": {"error": "-" },
+  "18529": {"error": "-" },
+  "18532": {"error": "-" },
+  "18545": {"error": "-" },
   "order_url": null
 };
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -78,8 +79,17 @@ describe('Textbook cards', () => {
     expect(bookData.quarter).toBe('spring');
     expect(bookData.collapseSections).toBe(true);
     expect(bookData.hasEnrolledSections).toBe(true);
-    expect(bookData.hasTeachingSections).toBe(true);
     expect(bookData.sections.length).toBe(11);
+    expect(bookData.hasTeachingSections).toBe(true);
+
+    const section5 = wrapper.vm.bookData.enrolledSections[4];
+    wrapper = mount(Section, {
+      store, localVue,
+      propsData: { 'section': section5}
+    });
+    expect(wrapper.vm.hasBook).toBeTruthy();
+    expect(wrapper.vm.hasBookError).toBeFalsy();
+    expect(wrapper.vm.orderBookUrl).toBeTruthy();
   });
 
   it('Verify other campus courses', async () => {
