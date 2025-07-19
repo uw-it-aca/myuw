@@ -15,8 +15,8 @@
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
       <div v-if="!section.tacomaCampus && collapsable && !isOpen" class="mb-3">
-        {{ section.books.length }}
-        {{ section.books.length > 1 ? "textbooks" : "textbook" }}
+        {{ sectionBooks.length }}
+        {{ sectionBooks.length > 1 ? "textbooks" : "textbook" }}
       </div>
     </button>
     <uw-collapse

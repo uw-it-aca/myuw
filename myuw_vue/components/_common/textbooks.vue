@@ -131,7 +131,7 @@ export default {
         data.enrolledSections.forEach((section) => {
           let required = 0;
           let optional = 0;
-          if (section.bookData) {
+          if (section.bookData && section.bookData.books) {
             section.bookData.books.forEach((book) => {
               if (book.is_required) {
                 required += 1;
