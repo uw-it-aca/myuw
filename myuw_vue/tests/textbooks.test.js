@@ -53,7 +53,7 @@ describe('Textbook cards', () => {
     });
   });
 
-  it('Verify with books', async () => {
+  it('Verify with both student and teaching schedules', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/book/2013,spring': mockStudTextbook,
@@ -76,10 +76,10 @@ describe('Textbook cards', () => {
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
-    expect(bookData.sections.length).toBe(11);
     expect(bookData.collapseSections).toBe(true);
     expect(bookData.hasEnrolledSections).toBe(true);
     expect(bookData.hasTeachingSections).toBe(true);
+    expect(bookData.sections.length).toBe(11);
   });
 
   it('Verify other campus courses', async () => {
