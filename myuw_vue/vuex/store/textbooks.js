@@ -60,6 +60,7 @@ const customGetters = {
       processedData.teachingSections.length
     )
     processedData.collapseSections = numSections > 10;
+    processedData.hasEnrolledSections = processedData.enrolledSections.length > 0;
     processedData.hasTeachingSections = processedData.teachingSections.length > 0;
     return processedData;
   }

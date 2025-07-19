@@ -76,7 +76,9 @@ describe('Textbook cards', () => {
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
-    expect(bookData.enrolledSections.length).toBe(5);
+    expect(bookData.sections.length).toBe(11);
+    expect(bookData.collapseSections).toBe(true);
+    expect(bookData.hasEnrolledSections).toBe(true);
     expect(bookData.hasTeachingSections).toBe(true);
   });
 

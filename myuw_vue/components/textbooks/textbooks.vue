@@ -60,7 +60,7 @@
           instructor
         />
         <hr v-if="bookData.collapseSections" class="bg-secondary" />
-        <div v-if="bookData.enrolledSections.length > 0">
+        <div v-if="bookData.hasEnrolledSections">
           <h2 class="h5">Enrolled</h2>
           <hr class="bg-secondary" />
         </div>
@@ -73,7 +73,7 @@
         :collapsable="bookData.collapseSections"
       />
 
-      <div v-if="orderUrl && hasBookListed" class="my-4 text-center">
+      <div v-if="hasBookListed" class="my-4 text-center">
         <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
@@ -201,7 +201,8 @@ export default {
       // MUWM-5311
       let ret = false;
       this.bookData.sections.forEach((section) => {
-        if (section.bookData && section.bookData.books &&
+        if (section.bookData &&
+            section.bookData.books &&
             section.bookData.books.length > 0) {
           ret = true;
           return;
