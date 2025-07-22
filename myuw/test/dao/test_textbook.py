@@ -13,12 +13,12 @@ class TestTextbooks(TestCase):
 
     def test_get_search_url(self):
         self.assertEqual(
-            get_search_url("url/", ["a", "b", "c"]),
+            get_search_url("url/", {"a", "b", "c"}),
             "url/a,b,c")
         self.assertEqual(
-            get_search_url("url/", ["a"]), "url/a")
+            get_search_url("url/", {"a"}), "url/a")
         self.assertEqual(
-            get_search_url("url/", []), "url/")
+            get_search_url("url/", {}), "url/")
 
     def test_get_textbooks(self):
         books = get_textbook_json(
@@ -50,7 +50,7 @@ class TestTextbooks(TestCase):
         self.assertEqual(
             books[18529],
             {"books": [],
-             "course_id": "uws-phys-121-a-123",
+             "course_id": None,
              "search_url": "https://ubookstore.com/pages/" +
                            "adoption-search/course="})
 

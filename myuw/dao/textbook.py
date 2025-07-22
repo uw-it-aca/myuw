@@ -23,14 +23,15 @@ def get_textbook_json(quarter, sln_set):
     if result is None:
         return {}
     json_data = {"order_url": None}
-    course_ids = []
+    course_ids = set()
     search_url = None
     for sln in sln_set:
         json_data[sln] = {}
         value = result.get(sln)
         if isinstance(value, Textbook):
             json_data[sln] = value.json_data()
-            course_ids.append(value.course_id)
+            if value.course_id:
+                course_ids.add(value.course_id)
             if not search_url:
                 search_url = value.search_url
             continue
