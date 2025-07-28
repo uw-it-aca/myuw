@@ -14,7 +14,7 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="!section.tacomaCampus && collapsable && !isOpen" class="mb-3">
+      <div v-if="!hasNoBook && !section.tacomaCampus && collapsable && !isOpen" class="mb-3">
         {{ sectionBooks.length }}
         {{ sectionBooks.length > 1 ? "textbooks" : "textbook" }}
       </div>
@@ -43,6 +43,11 @@
           Check textbooks
         </a>
       </template>
+      <template v-else-if="hasBookError">
+        <span class="text-danger">
+          An error has occurred when loading the textbook requirement for this course.
+        </span>
+      </template>
       <template v-else-if="hasNoBook">
         <span v-if="!instructor">
           No textbook requirement has been received for this course.
@@ -53,11 +58,6 @@
           <a href="https://uw.verbacollect.com/session/selfassign">
             Order textbooks
           </a>
-        </span>
-      </template>
-      <template v-else-if="hasBookError">
-        <span class="text-danger">
-          Textbook data is not available due to an error.
         </span>
       </template>
     </uw-collapse>
@@ -109,7 +109,7 @@ export default {
       return this.sectionBookData && this.sectionBookData.books;
     },
     hasNoBook() {
-      return this.sectionBooks && this.sectionBooks.length == 0;
+      return !this.sectionBooks || this.sectionBooks.length == 0;
     },
     hasBook() {
       return this.sectionBooks && this.sectionBooks.length > 0;
