@@ -44,13 +44,13 @@
     ]
   },
   "18529": {
-    "course_id": "uws-phys-121-a-123",
-    "search_url": "https://ubookstore.com/pages/adoption-search/course=",
+    "course_id": null,
+    "search_url": null,
     "books": []
   },
   "18532": {
-    "course_id": "uws-phys-121-ac-123",
-    "search_url": "https://ubookstore.com/pages/adoption-search/course=",
+    "course_id": null,
+    "search_url": null,
     "books": [
       {
         "isbn": "9780878935970",
@@ -71,8 +71,8 @@
     ]
   },
   "18545": {
-    "course_id": "uws-phys-121-aq-123",
-    "search_url": "https://ubookstore.com/pages/adoption-search/course=",
+    "course_id": null,
+    "search_url": null,
     "books": []
   },
   "order_url": "https://ubookstore.com/pages/adoption-search/course=uws-phys-121-a-123,uws-phys-121-ac-123,uws-phys-121-aq-123,uws-train-100-a-123,uws-train-101-a-123"
