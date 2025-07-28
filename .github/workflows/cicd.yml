@@ -190,9 +190,8 @@ jobs:
     runs-on: ubuntu-24.04
 
     container:
-      # image: cypress/browsers:node14.16.0-chrome90-ff88
       image: cypress/browsers:22.17.1
-      # this image works. later images failed
+      # run tests on latest cypress/browser image
 
     steps:
       - name: Checkout Repo
