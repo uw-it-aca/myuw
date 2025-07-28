@@ -35,7 +35,7 @@ setup(
         'django-userservice~=3.1',
         'aws-message-client~=1.6',
         'UW-RestClients-Core~=1.4',
-        'UW-RestClients-Bookstore==1.3.3.8',
+        'UW-RestClients-Bookstore==1.3.3.9',
         'UW-RestClients-Canvas~=1.2',
         'UW-RestClients-CoDa~=1.0',
         'UW-RestClients-Grad~=1.1',
