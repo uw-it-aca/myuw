@@ -31,8 +31,7 @@ class TestApiCurBooks(MyuwApiTest):
             data.get('21838'), {
                 'books': [],
                 'course_id': None,
-                'search_url': 'https://ubookstore.com/pages/' +
-                              'adoption-search/course='
+                'search_url': None
             }
         )
 

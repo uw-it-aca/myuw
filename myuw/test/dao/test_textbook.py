@@ -51,8 +51,7 @@ class TestTextbooks(TestCase):
             books[18529],
             {"books": [],
              "course_id": None,
-             "search_url": "https://ubookstore.com/pages/" +
-                           "adoption-search/course="})
+             "search_url": None})
 
         books = get_textbook_json("spring", {})
         self.assertEqual(books, {})

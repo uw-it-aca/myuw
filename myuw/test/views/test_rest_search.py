@@ -67,7 +67,7 @@ class RestSearchViewTest(MyuwApiTest):
             "sln1": "123", "quarter": "spring", "returnlink": "t"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
-            "/restclients/view/book/uw/json_utf8_202007.ubs%3F"
+            "/restclients/view/book/uw/json_utf8_202507.ubs%3F"
             "quarter=spring&sln1=123&returnlink=t"))
 
         # myplan
