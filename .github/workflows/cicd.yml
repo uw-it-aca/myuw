@@ -214,7 +214,7 @@ jobs:
         shell: bash
         run: |
           ls -la coverage
-          mv coverage/lcov.info lcov.info
+          mv coverage/lcov.info lcov-jest.info
           rm -rf coverage
 
       - name: Run cypress
