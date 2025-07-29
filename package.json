@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@babel/core": "7.22",
-    "@babel/preset-env": "7.22",
+    "@babel/core": "7.28.0",
+    "@babel/preset-env": "7.28.0",
     "@fortawesome/fontawesome-svg-core": "1.2.35",
     "@fortawesome/free-regular-svg-icons": "5.15.3",
     "@fortawesome/free-solid-svg-icons": "5.15.3",
