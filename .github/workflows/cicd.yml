@@ -223,7 +223,6 @@ jobs:
       - name: Merge cypress and jest lcov reports
         shell: bash
         run: |
-          apt update
           apt install lcov -y
           lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
