@@ -27,7 +27,7 @@
     >
       <template #collapsed-body>
         Use the
-        <a href="https://www.ubookstore.com/faculty">
+        <a href="https://ubookstore.com/pages/faculty">
           UW Bookstore Course Materials Request Form </a>
           to provide a list of required reading materials for your course as early as possible.<br>
         
