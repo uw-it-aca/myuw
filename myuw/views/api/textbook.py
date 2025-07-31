@@ -83,7 +83,7 @@ def _get_sln_set(schedule):
     returned_slns = set()
     for section in schedule.sections:
         logger.debug(
-            f"{section.section_label} {section.sln} {section.course_campus }"
+            f"{section.section_label()} {section.sln} {section.course_campus }"
         )
         if not section.is_campus_tacoma() and section.sln:
             returned_slns.add(section.sln)
