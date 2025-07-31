@@ -48,19 +48,23 @@ class Textbook(ProtectedAPI):
                     student_schedule = get_schedule_by_term(
                         request, term=term, summer_term=summer_term)
                     if student_schedule and len(student_schedule.sections):
+                        logger.debug(f"{len(student_schedule.sections)}")
                         stud_course_slns = _get_sln_set(student_schedule)
-                    logger.debug(f"Student course SLNs: {stud_course_slns}")
+                        logger.debug(
+                            f"Student course SLNs: {stud_course_slns}")
                 except DataFailureException as ex:
                     if ex.status not in (400, 404):
                         raise
+
             if is_instructor(request):
                 try:
                     # inst sections (not split summer terms)
-                    instructor_schedule = get_instructor_schedule_by_term(
+                    inst_schedule = get_instructor_schedule_by_term(
                         request, term=term, summer_term="full-term")
-                    if instructor_schedule and len(instructor_schedule.sections):
-                        inst_course_slns = _get_sln_set(instructor_schedule)
-                    logger.debug(f"Instructor course SLNs: {inst_course_slns}")
+                    if inst_schedule and len(inst_schedule.sections):
+                        inst_course_slns = _get_sln_set(inst_schedule)
+                        logger.debug(
+                            f"Instructor course SLNs: {inst_course_slns}")
                 except DataFailureException as ex:
                     if ex.status not in (400, 404):
                         raise
@@ -68,12 +72,14 @@ class Textbook(ProtectedAPI):
             sln_set = stud_course_slns | inst_course_slns
             if term and len(sln_set):
                 sln_books = get_textbook_json(term.quarter, sln_set)
-            logger.debug(
-                f"Textbook {term.quarter} {summer_term} ==> {sln_books}")
-            log_api_call(
-                timer, request,
-                f"Get Textbook for {term.year}.{term.quarter}")
-            return self.json_response(sln_books)
+                logger.debug(
+                    f"Textbook {term.quarter} {summer_term} ==> {sln_books}")
+                log_api_call(
+                    timer, request,
+                    f"Get Textbook for {term.year}.{term.quarter}")
+                return self.json_response(sln_books)
+
+            return data_not_found()
 
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -83,7 +89,7 @@ def _get_sln_set(schedule):
     returned_slns = set()
     for section in schedule.sections:
         logger.debug(
-            f"{section.section_label()} {section.sln} {section.course_campus }"
+            f"{section.section_label()} {section.sln} {section.course_campus}"
         )
         if not section.is_campus_tacoma() and section.sln:
             returned_slns.add(section.sln)

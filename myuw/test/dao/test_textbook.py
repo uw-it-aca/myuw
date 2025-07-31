@@ -61,7 +61,7 @@ class TestTextbooks(TestCase):
             "spring", {18529, 18545, 18532, 13830, 13833, 15612})
         self.assertEqual(len(books), 7)
 
-       # jbothell's
+        # jbothell's
         books = get_textbook_json("spring", {13835})
         self.assertTrue("Status code: 404" in books[13835]["error"])
         self.assertIsNone(books['order_url'])
