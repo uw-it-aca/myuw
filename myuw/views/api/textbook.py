@@ -32,7 +32,7 @@ class Textbook(ProtectedAPI):
         timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
-        summer_term = kwargs.get("summer_term", "full-term")
+        summer_term = kwargs.get("summer_term", "full-term").lstrip(",")
         return self.respond(
             timer, request, get_specific_term(year, quarter), summer_term)
 
