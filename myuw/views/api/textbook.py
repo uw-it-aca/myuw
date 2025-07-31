@@ -76,7 +76,8 @@ class Textbook(ProtectedAPI):
                     f"Textbook {term.quarter} {summer_term} ==> {sln_books}")
                 log_api_call(
                     timer, request,
-                    f"Get Textbook for {term.year}.{term.quarter}")
+                    f"Textbook for {term.year} {term.quarter} {summer_term}",
+                )
                 return self.json_response(sln_books)
 
             return data_not_found()

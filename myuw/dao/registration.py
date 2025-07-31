@@ -28,9 +28,9 @@ def get_schedule_by_term(request, term=None, summer_term=None, tsprint=True):
     None: a term-specific schedule if "currently" in the summer term and
     the schedule has some A-term or B-term course(s).
     """
+    term = term if term is not None else get_current_quarter(request)
     student_schedule = get_schedule_by_regid_and_term(
-        get_regid_of_current_user(request),
-        term if term is not None else get_current_quarter(request),
+        get_regid_of_current_user(request), term,
         per_section_prefetch_callback=myuw_section_prefetch,
         transcriptable_course="all")
 
@@ -42,7 +42,10 @@ def get_schedule_by_term(request, term=None, summer_term=None, tsprint=True):
         set_course_display_pref(request, student_schedule)
         if tsprint:
             _exclude_not_tsprint_instructors(student_schedule)
-
+    logger.debug(
+        f"get_schedule_by_term {term.year}.{term.quarter} {summer_term}" +
+        f" returns: {len(student_schedule.sections)} sections"
+    )
     return student_schedule
 
 

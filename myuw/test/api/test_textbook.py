@@ -45,9 +45,7 @@ class TestApiBooks(MyuwApiTest):
             kwargs={"year": 2013,
                     "quarter": "spring",
                     "summer_term": ""})
-        self.assertEqual(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data, {})
+        self.assertEqual(response.status_code, 404)
 
     def test_digital_material_api(self):
         self.set_user("javerage")
