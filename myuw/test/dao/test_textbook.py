@@ -54,7 +54,7 @@ class TestTextbooks(TestCase):
              "search_url": None})
 
         books = get_textbook_json("spring", {})
-        self.assertEqual(books, {})
+        self.assertEqual(books, {"order_url": None})
 
         # bill's
         books = get_textbook_json(
@@ -64,7 +64,7 @@ class TestTextbooks(TestCase):
         # jbothell's
         books = get_textbook_json("spring", {13835})
         self.assertTrue("Status code: 404" in books[13835]["error"])
-        self.assertIsNone(books['order_url'])
+        self.assertIsNone(books.get("order_url"))
 
     def test_get_iacourse_status(self):
         req = get_request_with_user(

@@ -20,9 +20,7 @@ def get_textbook_json(quarter, sln_set):
     returns a dict in json format
     """
     result = bookstore.get_textbooks(quarter, sln_set)
-    if result is None:
-        return {}
-    json_data = {"order_url": None}
+    json_data = {}
     course_ids = set()
     search_url = None
     for sln in sln_set:
@@ -34,9 +32,12 @@ def get_textbook_json(quarter, sln_set):
                 course_ids.add(value.course_id)
             if not search_url:
                 search_url = value.search_url
-            continue
-        if isinstance(value, DataFailureException):
+        elif isinstance(value, DataFailureException):
             json_data[sln]["error"] = str(value)
+        else:
+            logger.error(f"{quarter} {sln} unexpected value: {value}")
+            json_data[sln]["error"] = f"{value}"
+
     json_data["order_url"] = get_search_url(search_url, course_ids)
     logger.debug(f"get_textbook_json {quarter} {sln_set} ==> {json_data}")
     return json_data
