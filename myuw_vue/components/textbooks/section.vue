@@ -14,21 +14,22 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="!section.tacomaCampus && collapsable && !isOpen" class="mb-3">
-        {{ section.books.length }}
-        {{ section.books.length > 1 ? "textbooks" : "textbook" }}
+      <div v-if="sectionBooks && !section.tacomaCampus && collapsable && !isOpen" class="mb-3">
+        {{ sectionBooks.length }}
+        {{ sectionBooks.length > 1 ? "textbooks" : "textbook" }}
       </div>
     </button>
     <uw-collapse
-      v-if="section.hasBooks"
+      v-if="hasBook"
       :id="`books-${section.sln}`"
       v-model="isOpen"
     >
       <uw-book
-        v-for="book in section.books"
+        v-for="book in sectionBooks"
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
         :sln="section.sln"
+        :order-url="orderBookUrl"
       />
     </uw-collapse>
     <uw-collapse
@@ -42,7 +43,12 @@
           Check textbooks
         </a>
       </template>
-      <template v-else>
+      <template v-else-if="hasBookError">
+        <span class="text-danger">
+          An error has occurred when loading the textbook requirement for this course.
+        </span>
+      </template>
+      <template v-else-if="hasNoBook">
         <span v-if="!instructor">
           No textbook requirement has been received for this course.
           Please check with your instructor.
@@ -92,6 +98,30 @@ export default {
       faSquareFull,
     };
   },
+  computed: {
+    sectionBookData() {
+      return this.section && this.section.bookData;
+    },
+    hasBookError() {
+      return this.sectionBookData && this.sectionBookData.error;
+    },
+    sectionBooks() {
+      return this.sectionBookData && this.sectionBookData.books;
+    },
+    hasNoBook() {
+      return this.sectionBooks && this.sectionBooks.length == 0;
+    },
+    hasBook() {
+      return this.sectionBooks && this.sectionBooks.length > 0;
+    },
+    orderBookUrl() {
+      if (this.sectionBookData && this.sectionBookData.search_url &&
+          this.sectionBookData.course_id) {
+        return this.sectionBookData.search_url + this.sectionBookData.course_id;
+      }
+      return 'https://ubookstore.com/pages/adoption-search/';
+    },
+  }
 };
 </script>
 

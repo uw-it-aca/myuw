@@ -13,5 +13,9 @@
                       "notes":"required",
                        "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9780878935970&key=46c9ef715edb2ec69517e2c8e6ec9c18"
                         
-             }]
+             }],
+    "ubsLink": {
+       "search": "https://ubookstore.com/pages/adoption-search/course=",
+        "course_id": "uws-phys-121-ac-123"
+    }
 }

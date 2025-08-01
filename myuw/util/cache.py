@@ -21,7 +21,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         if "myplan_auth" == service:
             return FIFTEEN_MINS * 3
 
-        if "myplan" == service:
+        if "book" == service or "myplan" == service:
             return FIVE_SECONDS
 
         if status and status != 200:
