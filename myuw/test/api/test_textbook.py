@@ -39,13 +39,15 @@ class TestApiBooks(MyuwApiTest):
         self.assertIsNotNone(data.get("order_url"))
 
     def test_noschedule(self):
-        self.set_user("billtac")  # MUWM-5311
-        response = self.get_response_by_reverse(
+        self.set_user("jinter")  # MUWM-5311
+        resp = self.get_response_by_reverse(
             "myuw_book_api",
             kwargs={"year": 2013,
                     "quarter": "spring",
-                    "summer_term": ""})
-        self.assertEqual(response.status_code, 404)
+                    "summer_term": "full-term"})
+        self.assertEqual(resp.status_code, 200)
+        data = json.loads(resp.content)
+        self.assertEqual(data, {})
 
     def test_digital_material_api(self):
         self.set_user("javerage")

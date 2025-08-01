@@ -36,6 +36,8 @@ class TestApiCurBooks(MyuwApiTest):
         )
 
     def test_inst_noschedule(self):
-        self.set_user('billtac')
+        self.set_user('jinter')
         resp = self.get_response_by_reverse('myuw_current_book')
-        self.assertEqual(resp.status_code, 404)
+        self.assertEqual(resp.status_code, 200)
+        data = json.loads(resp.content)
+        self.assertEqual(data, {})
