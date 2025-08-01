@@ -179,8 +179,11 @@ export default {
          this.isInstScheduleErrored(this.term))
       );
     },
+    bkErrorCode() {
+      return this.statusCodeTextbooks(this.term);
+    },
     isErrored() {
-      return this.isTextbookErrored(this.term);
+      return this.isTextbookErrored(this.term) && this.bkErrorCode !== 404;
     },
     bookData() {
       if (this.isReady) {
