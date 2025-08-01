@@ -217,20 +217,20 @@ jobs:
           mv coverage/lcov.info lcov-jest.info
           rm -rf coverage
 
-      #- name: Run cypress
-      #  run: ./node_modules/.bin/cypress run-ct
+      - name: Run cypress
+        run: ./node_modules/.bin/cypress run-ct
 
-      #- name: Merge cypress and jest lcov reports
-      #  shell: bash
-      #  run: |
-      #    apt update
-      #    apt install lcov -y
-      #    lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
+      - name: Merge cypress and jest lcov reports
+        shell: bash
+        run: |
+          apt update
+          apt install lcov -y
+          lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
       - uses: actions/upload-artifact@v4
         with:
           name: jest-cypress-coverage
-          path: lcov-jest.info
+          path: lcov.info
 
   collect-coverage:
     needs: [build, jest-cypress]
