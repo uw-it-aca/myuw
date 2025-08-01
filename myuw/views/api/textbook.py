@@ -48,7 +48,6 @@ class Textbook(ProtectedAPI):
                     student_schedule = get_schedule_by_term(
                         request, term=term, summer_term=summer_term)
                     if student_schedule and len(student_schedule.sections):
-                        logger.debug(f"{len(student_schedule.sections)}")
                         stud_course_slns = _get_sln_set(student_schedule)
                         logger.debug(
                             f"Student course SLNs: {stud_course_slns}")
