@@ -126,6 +126,7 @@ describe('Textbook cards', () => {
     let wrapper = mount(Textbooks, {store, localVue,
       propsData: {'term': '2013,spring'}});
     await new Promise(setImmediate);
+    expect(wrapper.vm.bkErrorCode).toBe(404);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.bookData).toEqual({});
     expect(wrapper.vm.iacErrored).toEqual(false);

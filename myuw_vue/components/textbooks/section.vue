@@ -14,7 +14,7 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="!hasNoBook && !section.tacomaCampus && collapsable && !isOpen" class="mb-3">
+      <div v-if="sectionBooks && !section.tacomaCampus && collapsable && !isOpen" class="mb-3">
         {{ sectionBooks.length }}
         {{ sectionBooks.length > 1 ? "textbooks" : "textbook" }}
       </div>
