@@ -183,7 +183,7 @@ export default {
       return this.statusCodeTextbooks(this.term);
     },
     isErrored() {
-      return this.isTextbookErrored(this.term) && this.bkErrorCode !== 404;
+      return this.isTextbookErrored(this.term);
     },
     bookData() {
       if (this.isReady) {
