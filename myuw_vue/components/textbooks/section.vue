@@ -109,7 +109,7 @@ export default {
       return this.sectionBookData && this.sectionBookData.books;
     },
     hasNoBook() {
-      return !this.sectionBooks || this.sectionBooks.length == 0;
+      return this.sectionBooks && this.sectionBooks.length == 0;
     },
     hasBook() {
       return this.sectionBooks && this.sectionBooks.length > 0;
