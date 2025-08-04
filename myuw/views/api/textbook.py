@@ -45,7 +45,7 @@ class Textbook(ProtectedAPI):
                 student_schedule = get_schedule_by_term(
                     request, term=term, summer_term=summer_term)
                 if student_schedule and len(student_schedule.sections):
-                    stud_course_slns = _get_sln_set(student_schedule)
+                    stud_course_slns = get_sln_set(student_schedule)
             except DataFailureException as ex:
                 if ex.status not in (400, 404):
                     raise
@@ -55,7 +55,7 @@ class Textbook(ProtectedAPI):
                 inst_schedule = get_instructor_schedule_by_term(
                     request, term=term, summer_term="full-term")
                 if inst_schedule and len(inst_schedule.sections):
-                    inst_course_slns = _get_sln_set(inst_schedule)
+                    inst_course_slns = get_sln_set(inst_schedule)
             except DataFailureException as ex:
                 if ex.status not in (400, 404):
                     raise
@@ -75,22 +75,12 @@ class Textbook(ProtectedAPI):
             return handle_exception(logger, timer, traceback)
 
 
-def _get_sln_set(schedule):
-    returned_slns = set()
-    for section in schedule.sections:
-        logger.debug(
-            f"{section.section_label()} {section.sln} {section.course_campus}"
-        )
-        if not section.is_campus_tacoma() and section.sln:
-            returned_slns.add(section.sln)
-    return returned_slns
-    """
+def get_sln_set(schedule):
     return {
         section.sln
         for section in schedule.sections
         if not section.is_campus_tacoma() and section.sln
     }
-    """
 
 
 class TextbookCur(Textbook):
