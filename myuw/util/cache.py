@@ -7,7 +7,7 @@ from django.core.cache import cache
 from memcached_clients import RestclientPymemcacheClient
 import re
 
-FIVE_SECONDS = 5
+FEW_SECONDS = 10
 SEVEN_MINS = 60 * 7
 FIFTEEN_MINS = 60 * 15
 HALF_HOUR = 60 * 30
@@ -21,8 +21,8 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         if "myplan_auth" == service:
             return FIFTEEN_MINS * 3
 
-        if "book" == service or "myplan" == service:
-            return FIVE_SECONDS
+        if "myplan" == service:
+            return FEW_SECONDS
 
         if status and status != 200:
             return SEVEN_MINS
