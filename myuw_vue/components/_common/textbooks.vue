@@ -36,11 +36,11 @@
               >
                 Error loading textbooks
               </span>
+              <span v-else-if="section.noBookSpecified" title="Please check with your instructor.">
+                No textbook specified
+              </span>
               <template v-else>
-                <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
-                  No books
-                </span>
-                <span v-else class="h6 myuw-font-encode-sans">
+                <span class="myuw-font-encode-sans">
                   {{ section.totalBooks }}
                   {{ section.totalBooks > 1 ? 'books' : 'book' }}
                 </span>
@@ -147,8 +147,8 @@ export default {
             sectionData.hasBookError = section.bookData.error !== undefined;
 
             if (section.bookData.books) {
-              sectionData.noCourseBooks = section.bookData.books.length === 0;
-              if (!sectionData.noCourseBooks) {
+              sectionData.noBookSpecified = section.bookData.books.length === 0;
+              if (!sectionData.noBookSpecified) {
                 let required = 0;
                 let optional = 0;
                 section.bookData.books.forEach((book) => {
