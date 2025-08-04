@@ -58,7 +58,7 @@ describe('Textbook card', () => {
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
-    expect(bookData.noBookAssigned).toBe(false);
+    expect(bookData.hasBookAssigned).toBe(true);
     expect(bookData.sections.length).toBe(5);
     expect(bookData.sections[1].requiredBooks).toBe(1);
   });

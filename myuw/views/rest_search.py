@@ -28,9 +28,8 @@ class MyUWRestSearchView(RestSearchView):
                 url = "uw/iacourse_status.json?regid={}".format(
                     get_regid(get_input_value(request.POST, "uwregid")))
             else:
-                url = "uw/json_utf8_202007.ubs"
                 url = "{}?quarter={}&sln1={}&returnlink=t".format(
-                    "uw/json_utf8_202007.ubs",
+                    "uw/json_utf8_202507.ubs",
                     get_input_value(request.POST, "quarter"),
                     get_input_value(request.POST, "sln1"))
         elif service == "canvas":

@@ -144,8 +144,11 @@ urlpatterns += [
     re_path(r'^api/v1/book/current/?$',
             TextbookCur.as_view(),
             name="myuw_current_book"),
-    re_path(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
-            r'(?P<summer_term>[-,fulabterm]*)$',
+    re_path(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
+            r'(?P<summer_term>[-fulabterm]*)$',
+            Textbook.as_view(),
+            name="myuw_book_api"),
+    re_path(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)$',
             Textbook.as_view(),
             name="myuw_book_api"),
     re_path(r'^api/v1/iacourse/(?P<year>\d{4}),(?P<quarter>[a-z]+)',

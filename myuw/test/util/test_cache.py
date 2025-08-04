@@ -13,7 +13,6 @@ from myuw.util.cache import MyUWMemcachedCache, MyUWCache, IdPhotoToken
 
 
 MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
-FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
 HALF_HOUR = FIFTEEN_MINS * 2
 ONE_HOUR = 60 * 60
@@ -30,7 +29,7 @@ class TestCustomCachePolicy(TestCase):
             "uwidp", "/idp/profile/oidc/keyset"), ONE_DAY)
 
         self.assertEqual(cache.get_cache_expiration_time(
-            "myplan", "/api/plan/"), FIVE_SECONDS)
+            "myplan", "/api/plan/"), 10)
         self.assertEqual(cache.get_cache_expiration_time(
             "myplan_auth", "/oauth2/token"), 60 * 45)
         self.assertEqual(cache.get_cache_expiration_time(
@@ -105,6 +104,13 @@ class TestCustomCachePolicy(TestCase):
             "uwidp", "/idp/profile/oidc/keyset", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
             "uwidp", "/idp/profile/oidc/keyset", status=500), 60 * 7)
+
+        self.assertEqual(
+            cache.get_cache_expiration_time(
+                "book", "/uw/json_utf8_202507.ubs"), FOUR_HOURS)
+        self.assertEqual(
+            cache.get_cache_expiration_time(
+                "book", "/uw/iacourse_status.json"), FOUR_HOURS)
 
 
 class TestMyUWCache(TestCase):
