@@ -90,6 +90,10 @@ export default {
       type: Number,
       required: true,
     },
+    orderUrl: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     // MUWM-5272
@@ -135,13 +139,7 @@ export default {
         return `${window.location.protocol}//${this.book.cover_image_url}`;
       }
       return false;
-    },
-    orderUrl() {
-      if (this.book.order_url) {
-        return this.book.order_url;
-      }
-      return 'https://www.ubookstore.com/adoption-search';
-    },
+    }
   },
 };
 </script>

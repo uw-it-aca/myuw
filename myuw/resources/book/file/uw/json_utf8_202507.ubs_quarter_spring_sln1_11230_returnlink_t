@@ -1,7 +1,7 @@
 {
-    "13833": [{
-                "isbn":"9781256396062",
-                "title":"2 P/S Tutorials In Introductory Physics",
+    "11230": [{
+                "isbn":"9781256396362",
+                "title":"Writ of BC",
                 "authors": [{"name":"Mcdermott"}],
                 "price":58.00,
                 "lowest_price": 58.00,
@@ -10,5 +10,9 @@
                 "required":true,
                 "notes":null,
                 "cover_image": null
-            }]
+            }],
+    "ubsLink": {
+       "search": "https://ubookstore.com/pages/adoption-search/course=",
+       "course_id": "uws-bcwrit-500-a-123"
+    }
 }
