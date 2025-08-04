@@ -30,23 +30,30 @@
                 Check textbooks
               </a>
             </template>
-            <template v-else>
-              <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
-                No books
+            <template v-else-if="section.showBData">
+              <span v-if="section.hasBookError" class="text-danger"
+                title="An error has occurred when loading the textbook requirement for this course"
+              >
+                Error loading textbooks
               </span>
-              <span v-else class="h6 myuw-font-encode-sans">
-                {{ section.totalBooks }}
-                {{ section.totalBooks > 1 ? 'books' : 'book' }}
+              <span v-else-if="section.noBookSpecified" title="Please check with your instructor.">
+                No textbook specified
               </span>
-              <span class="fw-normal fst-italic">
-                  ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
-                  required)
-              </span>
+              <template v-else>
+                <span class="myuw-font-encode-sans">
+                  {{ section.totalBooks }}
+                  {{ section.totalBooks > 1 ? 'books' : 'book' }}
+                </span>
+                <span class="fw-normal fst-italic">
+                    ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
+                    required)
+                </span>
+              </template>
             </template>
           </div>
         </li>
       </ul>
-      <div v-if="!bookData.noBookAssigned"
+      <div v-if="bookData.hasBookAssigned"
            class="myuw-chevron"
       >
         <a
@@ -125,43 +132,46 @@ export default {
     bookData() {
       if (this.isReadyTextbook(this.term) && this.isReadySchedule(this.term)) {
         const data = this.getProcessedData(this.courseData);
-        let noBookAssigned = true;
+        let hasBookAssigned = false;
         const sectionBookData = [];
 
         data.enrolledSections.forEach((section) => {
-          let required = 0;
-          let optional = 0;
-          if (section.books) {
-            section.books.forEach((book) => {
-              if (book.is_required) {
-                required += 1;
-              } else {
-                optional += 1;
-              }
-              if (noBookAssigned) {
-                noBookAssigned = false;
-              }
-            });
-          }
-          const courseId = `${section.curriculum} ${section.courseNumber} ${
-            section.sectionId
-          }`;
-
           const sectionData = {
-            courseId: courseId,
             colorId: section.colorId,
-            requiredBooks: required,
-            totalBooks: required + optional,
-            noCourseBooks: (required + optional) ? false :true,
-            viewUWTBookUrl: section.tacomaCampus ? this.viewUWTBookUrl(section) : ""
-            // MUWM-5311
+            courseId: `${section.curriculum} ${section.courseNumber} ${section.sectionId}`,
+            viewUWTBookUrl: section.tacomaCampus ? `/textbooks/uwt/${section.sln}` : null
           };
+          // MUWM-5420
+          if (section.bookData !== undefined) {
+            sectionData.showBData = true;
+            sectionData.hasBookError = section.bookData.error !== undefined;
 
+            if (section.bookData.books) {
+              sectionData.noBookSpecified = section.bookData.books.length === 0;
+              if (!sectionData.noBookSpecified) {
+                let required = 0;
+                let optional = 0;
+                section.bookData.books.forEach((book) => {
+                  if (book.is_required) {
+                    required += 1;
+                  } else {
+                    optional += 1;
+                  }
+                });
+                sectionData.requiredBooks = required;
+                sectionData.totalBooks = required + optional;
+              }
+            }
+
+            if (!hasBookAssigned) {
+              hasBookAssigned = sectionData.totalBooks > 0;
+            }
+          }
           sectionBookData.push(sectionData);
         });
 
         return {
-          noBookAssigned: noBookAssigned,
+          hasBookAssigned: hasBookAssigned,
           quarter: data.quarter,
           year: data.year,
           summerTerm: data.summerTerm,
