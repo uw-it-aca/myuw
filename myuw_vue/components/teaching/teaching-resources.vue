@@ -68,7 +68,7 @@ export default {
       },
       courseMaterialLinks() {
         return [
-          { url: "https://www.ubookstore.com/faculty",
+          { url: "https://ubookstore.com/pages/faculty",
             title: "Order Textbooks" },
           { url: "https://www.lib.washington.edu/types/course",
             title: "Course Reserves" },
