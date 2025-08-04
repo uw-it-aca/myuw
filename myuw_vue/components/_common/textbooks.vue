@@ -36,7 +36,7 @@
               >
                 Error loading textbooks
               </span>
-              <span v-else>
+              <template v-else>
                 <span v-if="section.noCourseBooks" class="h6 myuw-font-encode-sans">
                   No books
                 </span>
@@ -48,7 +48,7 @@
                     ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
                     required)
                 </span>
-              </span>
+              </template>
             </template>
           </div>
         </li>
