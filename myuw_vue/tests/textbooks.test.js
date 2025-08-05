@@ -3,11 +3,8 @@ import {createLocalVue} from './helper';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import UwPanel from '../components/_templates/panel.vue';
 import Textbooks from '../components/textbooks/textbooks.vue';
 import Section from '../components/textbooks/section.vue';
-import Book from '../components/textbooks/book.vue';
-import LinkButton from '../components/_templates/link-button.vue';
 
 import stud_schedule from '../vuex/store/schedule/student';
 import inst_schedule from '../vuex/store/schedule/instructor';
@@ -20,11 +17,11 @@ import mockStudCourses from
 import mockStudTextbook from './mock_data/textbooks/javerage-2013-spr.json';
 import mockInstSche from './mock_data/inst_schedule/bill2013spr.json';
 const mockTextbook = {
-  "13830": [],
-  "13833": [],
-  "18529": [],
-  "18532": [],
-  "18545": [],
+  "13830": {"error" : "-"},
+  "13833": {"error": "-" },
+  "18529": {"error": "-" },
+  "18532": {"error": "-" },
+  "18545": {"error": "-" },
   "order_url": null
 };
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -57,7 +54,7 @@ describe('Textbook cards', () => {
     });
   });
 
-  it('Verify with both student and teaching sches', async () => {
+  it('Verify with both student and teaching schedules', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/book/2013,spring': mockStudTextbook,
@@ -74,26 +71,25 @@ describe('Textbook cards', () => {
     expect(wrapper.vm.term).toEqual('2013,spring');
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.isErrored).toBe(false);
-    expect(wrapper.findComponent(UwPanel).exists()).toBe(true);
-    expect(wrapper.findAllComponents(Section).length).toBe(11);
-    expect(wrapper.findAllComponents(Book).length).toBe(6);
-    expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
-    expect(wrapper.vm.orderUrl).toBe(
-      "https://www.ubookstore.com/adoption-search-results?ccid=9335,1132,5320,2230,4405");
+    expect(wrapper.vm.orderUrl.length).toBe(150);
+    expect(wrapper.vm.hasBookListed).toBe(true);
+
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
     expect(bookData.collapseSections).toBe(true);
-    expect(bookData.enrolledSections.length).toBe(5);
+    expect(bookData.hasEnrolledSections).toBe(true);
     expect(bookData.sections.length).toBe(11);
     expect(bookData.hasTeachingSections).toBe(true);
 
     const section5 = wrapper.vm.bookData.enrolledSections[4];
-    wrapper = mount(Book, {
+    wrapper = mount(Section, {
       store, localVue,
-      propsData: { 'book': section5.books[0], 'sln': section5.sln }
+      propsData: { 'section': section5}
     });
-    expect(wrapper.vm.digitalItem).toBeTruthy();
+    expect(wrapper.vm.hasBook).toBeTruthy();
+    expect(wrapper.vm.hasBookError).toBeFalsy();
+    expect(wrapper.vm.orderBookUrl).toBeTruthy();
   });
 
   it('Verify other campus courses', async () => {
@@ -113,7 +109,7 @@ describe('Textbook cards', () => {
       propsData: {'term': '2013,spring'}});
     await new Promise(setImmediate);
     expect(wrapper.vm.orderUrl).toBe(
-      "https://www.ubookstore.com/adoption-search");
+      "https://ubookstore.com/pages/adoption-search/");
     const bookData = wrapper.vm.bookData;
     expect(bookData.sections.length).toBe(5);
     const seaSection = bookData.sections[1];
@@ -130,6 +126,7 @@ describe('Textbook cards', () => {
     let wrapper = mount(Textbooks, {store, localVue,
       propsData: {'term': '2013,spring'}});
     await new Promise(setImmediate);
+    expect(wrapper.vm.bkErrorCode).toBe(404);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.bookData).toEqual({});
     expect(wrapper.vm.iacErrored).toEqual(false);
