@@ -6,7 +6,6 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 // common components
 import CacheMsg from './components/_common/cache-msg.vue';
 import Grades from './components/_common/grades/grades.vue';
-import HuskyExperience from './components/_common/husky-experience.vue';
 import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
@@ -97,7 +96,6 @@ Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-retiree', Retiree);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
-Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
 Vue.component('myuw-summer-efs', SummerEfs);
