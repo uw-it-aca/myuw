@@ -9,7 +9,7 @@
     </div>
 
     <uw-card-status v-else>
-      <template #status-label>Registration Date</template>
+      <template #status-label>Your Registration Starts</template>
       <template #status-value>
         <uw-formatted-date :due-date="estRegData.estRegDate" />
       </template>
