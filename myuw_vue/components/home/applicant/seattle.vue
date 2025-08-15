@@ -96,9 +96,9 @@
         </li>
         <li class="mb-1">
           <a
-            href="https://www.washington.edu/financialaid/applying-for-aid/key-dates-and-deadlines/"
+            href="https://www.washington.edu/financialaid/applying-for-aid/key-dates/"
           >
-            Financial aid key dates and deadlines
+            Financial aid key dates
           </a>
         </li>
         <li class="mb-1">
@@ -131,7 +131,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://fyp.washington.edu/getting-started-at-the-university-of-washington/">
+          <a href="https://fyp.uw.edu/orientation/">
             Register for an Advising &amp; Orientation session
           </a>
         </li>
@@ -141,7 +141,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://www.washington.edu/newhuskies/must-do/#photo">
+          <a href="https://www.washington.edu/newhuskies/must-do/submit-a-photo-for-your-husky-card/">
             Submit a photo for your Husky Card
           </a>
         </li>
