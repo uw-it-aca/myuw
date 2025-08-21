@@ -1,80 +1,84 @@
 <template>
   <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-      {{ book.title }}
+    <h3 v-if="showNotesOnly" class="myuw-font-encode-sans">
+      {{ book.notes }}
     </h3>
-
-    <div class="d-flex">
-      <div class="me-3"
-           style="min-width:80px !important; width:80px !important;"
-      >
-        <img
-          v-if="formattedCoverImageUrl"
-          :src="formattedCoverImageUrl"
-          width="80px"
+    <template v-else>
+      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        {{ book.title }}
+      </h3>
+      <div class="d-flex">
+        <div class="me-3"
+            style="min-width:80px !important; width:80px !important;"
         >
-        <div v-else title="No cover image available"
-             class="py-5 bg-white border text-center text-muted text-uppercase
-             myuw-text-md"
-        >
-          No<br>image
+          <img
+            v-if="formattedCoverImageUrl"
+            :src="formattedCoverImageUrl"
+            width="80px"
+          >
+          <div v-else title="No cover image available"
+              class="py-5 bg-white border text-center text-muted text-uppercase
+              myuw-text-md"
+          >
+            No<br>image
+          </div>
+        </div>
+        <div class="flex-fill myuw-text-md">
+          <dl>
+            <dt v-if="digitalItem">
+              DIGITAL MATERIAL
+            </dt>
+            <dd v-if="digitalItem">
+              <span v-if="digitalItemPaid">Paid</span>
+              <span v-else-if="digitalItemOptedOut">Opted out</span>
+              <span v-else>Payment due</span>
+            </dd>
+            <dt>
+              {{ book.authors > 1 ? "Authors" : "Author" }}
+            </dt>
+            <dd
+              v-for="(author, i) in book.authors"
+              :key="`book-${book.isbn}-author-${i}`"
+            >
+              {{ author.name }}
+            </dd>
+            <dt>Price </dt>
+            <dd>
+              <div v-if="book.lowest_price && book.highest_price">
+                <span v-if="book.lowest_price!=book.highest_price">
+                  ${{ book.lowest_price.toFixed(2) }}
+                  to
+                  ${{ book.highest_price.toFixed(2) }}
+                </span>
+                <span v-else>
+                  ${{ book.lowest_price.toFixed(2) }}
+                </span>
+              </div>
+              <div v-if="digitalItem">Digital: ${{ digitalItem.price.toFixed(2) }}</div>
+              <div>
+                Visit
+                <a :href="orderUrl">
+                  ubookstore.com
+                </a>
+                for pricing on all available formats.
+              </div>
+            </dd>
+            <dt v-if="book.notes">
+              Notes
+            </dt>
+            <dd v-if="book.notes">
+              <span class="text-capitalize">{{ book.notes }}</span>
+            </dd>
+            <dt v-if="book.isbn">
+              ISBN
+            </dt>
+            <dd v-if="book.isbn">
+              {{ book.isbn }}
+            </dd>
+          </dl>
         </div>
       </div>
-      <div class="flex-fill myuw-text-md">
-        <dl>
-          <dt v-if="digitalItem">
-            DIGITAL MATERIAL
-          </dt>
-          <dd v-if="digitalItem">
-            <span v-if="digitalItemPaid">Paid</span>
-            <span v-else-if="digitalItemOptedOut">Opted out</span>
-            <span v-else>Payment due</span>
-          </dd>
-          <dt>
-            {{ book.authors > 1 ? "Authors" : "Author" }}
-          </dt>
-          <dd
-            v-for="(author, i) in book.authors"
-            :key="`book-${book.isbn}-author-${i}`"
-          >
-            {{ author.name }}
-          </dd>
-          <dt>Price </dt>
-          <dd>
-            <div v-if="book.lowest_price && book.highest_price">
-              <span v-if="book.lowest_price!=book.highest_price">
-                ${{ book.lowest_price.toFixed(2) }}
-                to
-                ${{ book.highest_price.toFixed(2) }}
-              </span>
-              <span v-else>
-                ${{ book.lowest_price.toFixed(2) }}
-              </span>
-            </div>
-            <div v-if="digitalItem">Digital: ${{ digitalItem.price.toFixed(2) }}</div>
-            <div>
-              Visit
-              <a :href="orderUrl">
-                ubookstore.com
-              </a>
-              for pricing on all available formats.
-            </div>
-          </dd>
-          <dt v-if="book.notes">
-            Notes
-          </dt>
-          <dd v-if="book.notes">
-            <span class="text-capitalize">{{ book.notes }}</span>
-          </dd>
-          <dt v-if="book.isbn">
-            ISBN
-          </dt>
-          <dd v-if="book.isbn">
-            {{ book.isbn }}
-          </dd>
-        </dl>
-      </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -139,7 +143,10 @@ export default {
         return `${window.location.protocol}//${this.book.cover_image_url}`;
       }
       return false;
-    }
+    },
+    showNotesOnly() {
+      return this.book.title === 'See Notes';
+    },
   },
 };
 </script>
