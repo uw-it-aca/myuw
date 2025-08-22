@@ -46,7 +46,7 @@
       <template v-else-if="hasBookError">
         <span
           class="text-danger"
-          title="`Course SLN: ${section.sln}`">
+          :title="`Course SLN: ${section.sln}`">
           An error has occurred when loading the textbook requirement for this course.
         </span>
       </template>
