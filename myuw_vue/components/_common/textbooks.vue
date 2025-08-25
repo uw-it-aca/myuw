@@ -39,6 +39,9 @@
               <span v-else-if="section.noBookSpecified" title="Please check with your instructor.">
                 No textbook specified
               </span>
+              <span v-else-if="section.showNotesOnly">
+                {{ section.bookNotes }}
+              </span>
               <template v-else>
                 <span class="myuw-font-encode-sans">
                   {{ section.totalBooks }}
@@ -149,17 +152,23 @@ export default {
             if (section.bookData.books) {
               sectionData.noBookSpecified = section.bookData.books.length === 0;
               if (!sectionData.noBookSpecified) {
-                let required = 0;
-                let optional = 0;
-                section.bookData.books.forEach((book) => {
-                  if (book.is_required) {
-                    required += 1;
-                  } else {
-                    optional += 1;
-                  }
-                });
-                sectionData.requiredBooks = required;
-                sectionData.totalBooks = required + optional;
+
+                sectionData.showNotesOnly = section.bookData.books[0].title === 'See Notes';
+                if (sectionData.showNotesOnly) {
+                  sectionData.bookNotes = section.bookData.books[0].notes;
+                } else {
+                  let required = 0;
+                  let optional = 0;
+                  section.bookData.books.forEach((book) => {
+                    if (book.is_required) {
+                      required += 1;
+                    } else {
+                      optional += 1;
+                    }
+                  });
+                  sectionData.requiredBooks = required;
+                  sectionData.totalBooks = required + optional;
+                }
               }
             }
 
