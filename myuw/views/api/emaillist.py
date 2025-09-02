@@ -76,8 +76,7 @@ class Emaillist(ProtectedAPI):
                             single_section_labels,
                             joint_section_labels))
 
-                if (not is_employee(request) or
-                        not validate_is_instructor(
+                if (not validate_is_instructor(
                             request,
                             single_section_labels,
                             joint_section_labels)):
