@@ -81,7 +81,7 @@ class Emaillist(ProtectedAPI):
                             single_section_labels,
                             joint_section_labels)):
                     raise NotInstructorError(
-                        "Not a current instructor can't request emaillist for"
+                        "Not a current instructor can't request emaillist for "
                         "single :{} and joint:{}".format(
                             single_section_labels,
                             joint_section_labels))
