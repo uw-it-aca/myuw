@@ -69,8 +69,8 @@ def apply_showhide(request, notices):
         if equals_myuwid(notice, "StudentFinAid_AidPriorityDate"):
             # not critical after the first week and
             # before last two weeks
-            if is_after_eof_days_after_open(now, notice, 15) and\
-                    is_before_bof_days_before_close(now, notice, 15):
+            if (is_after_eof_days_after_open(now, notice, 15) and
+                    is_before_bof_days_before_close(now, notice, 15)):
                 notice.is_critical = False
     return notices
 
@@ -81,8 +81,7 @@ def get_open_date(notice):
     in utc timezone
     """
     for attribute in notice.attributes:
-        if attribute.data_type == "date" and\
-                attribute.name.endswith("Begin"):
+        if attribute.data_type == "date" and attribute.name.endswith("Begin"):
             return attribute._date_value
 
 
@@ -92,8 +91,7 @@ def get_close_date(notice):
     in utc timezone
     """
     for attribute in notice.attributes:
-        if attribute.data_type == "date" and\
-                attribute.name.endswith("End"):
+        if attribute.data_type == "date" and attribute.name.endswith("End"):
             return attribute._date_value
 
 
@@ -116,12 +114,11 @@ def get_est_reg_info(request, notice):
            "my_reg_has_opened": False}
     now = get_comparison_datetime_with_tz(request)
     for attribute in notice.attributes:
-        if attribute.data_type == "date" and\
-                attribute.name == "Date":
+        if attribute.data_type == "date" and attribute.name == "Date":
             reg_start = attribute._date_value
             ret["my_reg_has_opened"] = (now >= reg_start)
-            ret["is_my_1st_reg_day"] =\
-                (now >= reg_start and now < reg_start + timedelta(hours=24))
+            ret["is_my_1st_reg_day"] = (
+                now >= reg_start and now < reg_start + timedelta(hours=24))
     return ret
 
 
@@ -136,9 +133,9 @@ def get_json_for_notices(request, notices):
 
     for notice in apply_showhide(request, notices):
 
-        if notice.notice_category == "StudentFinAid" and\
-                notice.notice_type.endswith("Short") and\
-                notice.long_notice is not None:
+        if (notice.notice_category == "StudentFinAid" and
+                notice.notice_type.endswith("Short") and
+                notice.long_notice is not None):
             data = notice.long_notice.json_data(
                 include_abbr_week_month_day_format=True)
             data['short_content'] = notice.notice_content
@@ -158,10 +155,8 @@ def get_json_for_notices(request, notices):
             data['location_tags'] = notice.location_tags
             if "est_reg_date" in notice.location_tags:
                 est_reg = get_est_reg_info(request, notice)
-                data["is_my_1st_reg_day"] =\
-                    est_reg["is_my_1st_reg_day"]
-                data["my_reg_has_opened"] =\
-                    est_reg["my_reg_has_opened"]
+                data["is_my_1st_reg_day"] = est_reg["is_my_1st_reg_day"]
+                data["my_reg_has_opened"] = est_reg["my_reg_has_opened"]
             if notice.custom_category == "MyUW Banner Notice":
                 data["display_begin"] = notice.start
         notice_json.append(data)

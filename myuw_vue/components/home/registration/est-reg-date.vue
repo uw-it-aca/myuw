@@ -9,13 +9,17 @@
     </div>
 
     <uw-card-status v-else>
-      <template #status-label>Est. Registration Date</template>
+      <template #status-label>Your Registration Starts</template>
       <template #status-value>
         <uw-formatted-date :due-date="estRegData.estRegDate" />
       </template>
       <template #status-content>
         <div class="d-flex myuw-text-md">
-          <div class="flex-fill w-50"></div>
+          <div class="flex-fill w-50 myuw-text-md">
+            <a href="https://registrar.washington.edu/register/date/">
+              Learn how registration dates are calculated
+            </a>
+          </div>
           <div class="flex-fill w-50 text-end">at 6:00 AM</div>
         </div>
       </template>
