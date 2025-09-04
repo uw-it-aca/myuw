@@ -12,6 +12,13 @@ module.exports = {
       url: [
         // add URLs to be tested (usually matches /pages structure)
         `http://localhost:${port}/`,
+        `http://localhost:${port}/academics`,
+        `http://localhost:${port}/husky_experience`,
+        `http://localhost:${port}/accounts`,
+        `http://localhost:${port}/notices`,
+        `http://localhost:${port}/profile`,
+        `http://localhost:${port}/academic_calendar`,
+        `http://localhost:${port}/resources`,
       ],
       // specify other options like numberOfRuns, staticDistDir, etc.
       numberOfRuns: 1,
