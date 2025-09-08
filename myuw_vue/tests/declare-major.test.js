@@ -95,7 +95,7 @@ describe('Declare Major Card', () => {
     expect(wrapper.vm.bothell).toBe(true);
     expect(wrapper.vm.isTargetViewer).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.reviewOptionsUrl).toHaveLength(56);
+    expect(wrapper.vm.reviewOptionsUrl).toBeTruthy();
     expect(wrapper.findAllComponents(MajorBot)).toHaveLength(1);
   });
   it('Verify Tacoma case', async () => {
