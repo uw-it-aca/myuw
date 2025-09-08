@@ -229,8 +229,7 @@ export default {
     reviewOptionsUrl () {
       return (this.tacoma ?
         "https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
-        : this.bothell ?
-          "https://www.uwb.edu/premajor/academic-advising/petitions"
+        : this.bothell ? "https://www.uwb.edu/premajor/resources/petitions"
           : "https://advising.uw.edu/academic-support/satisfactory-progress/"
       );
     },
