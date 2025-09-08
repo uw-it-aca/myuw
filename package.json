@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "lighthouse": "lhci collect"
+  },
   "dependencies": {
     "@babel/core": "7.28.0",
     "@babel/preset-env": "7.28.0",
@@ -43,11 +46,13 @@
     "@cypress/code-coverage": "3.9.7",
     "@cypress/vue": "^2.2.3",
     "@cypress/webpack-dev-server": "1.4.0",
+    "@lhci/cli": "^0.15.1",
     "@vue/test-utils": "1.2.1",
     "babel-plugin-istanbul": "6.0.0",
     "coveralls": "3.1.0",
     "css.escape": "1.5.1",
     "cypress": "7.7.0",
+    "dotenv": "^17.2.2",
     "eslint": "7.32.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "7.2.0",
