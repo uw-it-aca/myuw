@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span v-if="showNotesOnly" class="myuw-text-md">
+    <span v-if="showNotesOnly" class="text-dark-beige myuw-text-lg">
       {{ book.notes }}
     </span>
     <template v-else>
@@ -15,6 +15,7 @@
             v-if="formattedCoverImageUrl"
             :src="formattedCoverImageUrl"
             width="80px"
+            alt="Book cover image"
           >
           <div v-else title="No cover image available"
               class="py-5 bg-white border text-center text-muted text-uppercase
