@@ -20,7 +20,7 @@ from myuw.dao.term import (
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
 from myuw.logger.logresp import log_exception
-from myuw.views.decorators import admin_required
+from myuw.views.decorators import override_required
 from myuw.views import set_admin_wrapper_template
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
-@admin_required
+@override_required
 def override(request):
     context = {}
     if request.method == "POST":

@@ -21,14 +21,6 @@ class TestViewsLinkAdmin(MyuwApiTest):
 
     @skipIf(missing_url("myuw_date_override"),
             "myuw_date_override urls not configured")
-    def test_override(self):
-        self.set_user('faculty')
-        url = reverse("myuw_date_override")
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 403)
-
-    @skipIf(missing_url("myuw_date_override"),
-            "myuw_date_override urls not configured")
     def test_override_required_decorator(self):
         self.set_user('none')
         url = reverse("myuw_date_override")
