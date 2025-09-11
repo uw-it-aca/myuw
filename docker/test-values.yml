@@ -163,7 +163,7 @@ environmentVariables:
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_TIMEOUT
-    value: "45"
+    value: "60"
 
   - name: CALENDAR_ENV
     value: PROD

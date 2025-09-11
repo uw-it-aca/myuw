@@ -227,7 +227,7 @@ environmentVariables:
   - name: BOOK_POOL_SIZE
     value: "40"
   - name: BOOK_TIMEOUT
-    value: "15"
+    value: "30"
 
   - name: CALENDAR_ENV
     value: PROD
