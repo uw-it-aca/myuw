@@ -7,9 +7,7 @@ import re
 import traceback
 from django.contrib.auth.decorators import login_required
 from urllib.parse import unquote
-from django.http import HttpResponseRedirect, HttpResponse
-from django.db import IntegrityError
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.http import HttpResponseRedirect
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao import is_action_disabled, get_netid_of_current_user

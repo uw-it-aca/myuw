@@ -82,7 +82,7 @@ export default {
       const ready = this.isDataReady(this.term);
       if (ready && this.bookData) {
         const book = this.bookData[this.section.sln];
-        return (book && book.length > 0);
+        return (book && book.course_id);   // MUWM-5420
       }
       return false;
     },

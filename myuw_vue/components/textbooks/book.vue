@@ -1,8 +1,8 @@
 <template>
   <div>
-    <span v-if="showNotesOnly" class="text-dark-beige myuw-text-lg">
+    <div v-if="showNotesOnly" class="text-dark-beige myuw-text-lg mb-3">
       {{ book.notes }}
-    </span>
+    </div>
     <template v-else>
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         {{ book.title }}
