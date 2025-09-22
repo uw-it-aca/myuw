@@ -62,7 +62,6 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.idcard_elig import IDcardElig
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
-from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 from myuw.views.api.hx_toolkit import (
   HxToolkitMessage, HxToolkitWeekMessage, HxToolkitMessageList)

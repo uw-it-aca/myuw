@@ -59,7 +59,6 @@ setup(
         'Django-Safe-EmailBackend~=1.2',
         'django_client_logger~=3.1',
         'UW-HX-Toolkit~=2.7',
-        'django-blti~=3.0',
         'lxml==5.3.1',
         'xmlsec==1.3.14',
         'nh3',
