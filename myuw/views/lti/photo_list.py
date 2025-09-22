@@ -28,7 +28,7 @@ class LTIPhotoList(BLTILaunchView):
             pass
 
         blti_data['authorized_sections'] = [s.sis_section_id for s in sections]
-        self.set_session(**blti_data)
+        self.set_session(request, **blti_data)
 
         return {
             'lti_session_id': request.session.session_key,

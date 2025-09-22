@@ -16,7 +16,7 @@ def get_lti_request():
     request.session.save()
 
     kwargs = {'authorized_sections': ['2013-spring-ESS-102-A']}
-    BLTI().set_session(**kwargs)
+    BLTI().set_session(request, **kwargs)
     return request
 
 
