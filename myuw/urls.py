@@ -32,8 +32,7 @@ from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.persistent_messages import BannerMessage
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_section import (InstSectionDetails,
-                                               LTIInstSectionDetails)
+from myuw.views.api.instructor_section import InstSectionDetails
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect)
 from myuw.views.api.instructor_section_display import (
@@ -236,9 +235,6 @@ urlpatterns += [
     re_path(r'^api/v1/instructor_section_details/(?P<section_id>.*)/?$',
             InstSectionDetails.as_view(),
             name="myuw_instructor_section_details_api"),
-    re_path(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
-            LTIInstSectionDetails.as_view(),
-            name="myuw_lti_instructor_section_details_api"),
     re_path(r'api/v1/inst_section_display/(?P<section_label>.*)/close_mini',
             CloseMinicard.as_view(),
             name="myuw_inst_section_display_close_mini"),
