@@ -317,8 +317,6 @@ urlpatterns += [
     re_path(r'^resource(/((?P<category>[a-z]+)?(/(?P<topic>[a-z]+))?)?)?',
             category, name="myuw_resource_page"),
     re_path(r'^logout', logout, name="myuw_logout"),
-    re_path(r'lti/students$',
-            LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(
         r'photo/(?P<uwregid>[a-fA-F0-9]{32})/(?P<token>[a-zA-Z0-9]{16})$',
         show_photo, name="photo"),
