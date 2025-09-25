@@ -22,7 +22,7 @@ INSTALLED_APPS += [
     'webpack_loader',
 ]
 
-# MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
+MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
 
 MIDDLEWARE += [
     'django.middleware.locale.LocaleMiddleware',
