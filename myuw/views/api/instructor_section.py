@@ -5,7 +5,6 @@ import re
 import logging
 import traceback
 from datetime import date, datetime
-from blti import BLTI
 from django.conf import settings
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -24,7 +23,6 @@ from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
-from myuw.views.decorators import blti_admin_required
 from myuw.views.api.instructor_schedule import (
     load_schedule, _set_current)
 
@@ -280,20 +278,3 @@ class InstSectionDetails(OpenInstSectionDetails):
     def is_authorized_for_section(self, request, schedule):
         if len(schedule.sections):
             check_section_instructor(schedule.sections[0], schedule.person)
-
-
-@method_decorator(blti_admin_required, name='dispatch')
-class LTIInstSectionDetails(OpenInstSectionDetails):
-
-    def is_authorized_for_section(self, request, schedule):
-        pass
-
-    def validate_section_id(self, request, section_id):
-        blti_data = BLTI().get_session(request)
-        authorized_sections = blti_data.get('authorized_sections', [])
-
-        if section_id not in authorized_sections:
-            raise NotSectionInstructorException
-
-        (sws_section_id, instructor_regid) = sws_section_label(section_id)
-        return sws_section_id
