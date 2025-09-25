@@ -32,8 +32,7 @@ from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.persistent_messages import BannerMessage
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_section import (InstSectionDetails,
-                                               LTIInstSectionDetails)
+from myuw.views.api.instructor_section import InstSectionDetails
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect)
 from myuw.views.api.instructor_section_display import (
@@ -62,7 +61,6 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.idcard_elig import IDcardElig
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
-from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 from myuw.views.api.hx_toolkit import (
   HxToolkitMessage, HxToolkitWeekMessage, HxToolkitMessageList)
@@ -237,9 +235,6 @@ urlpatterns += [
     re_path(r'^api/v1/instructor_section_details/(?P<section_id>.*)/?$',
             InstSectionDetails.as_view(),
             name="myuw_instructor_section_details_api"),
-    re_path(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
-            LTIInstSectionDetails.as_view(),
-            name="myuw_lti_instructor_section_details_api"),
     re_path(r'api/v1/inst_section_display/(?P<section_label>.*)/close_mini',
             CloseMinicard.as_view(),
             name="myuw_inst_section_display_close_mini"),
@@ -322,8 +317,6 @@ urlpatterns += [
     re_path(r'^resource(/((?P<category>[a-z]+)?(/(?P<topic>[a-z]+))?)?)?',
             category, name="myuw_resource_page"),
     re_path(r'^logout', logout, name="myuw_logout"),
-    re_path(r'lti/students$',
-            LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(
         r'photo/(?P<uwregid>[a-fA-F0-9]{32})/(?P<token>[a-zA-Z0-9]{16})$',
         show_photo, name="photo"),

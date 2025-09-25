@@ -4,7 +4,6 @@
 from django.test.client import RequestFactory
 from django.contrib.sessions.middleware import SessionMiddleware
 from myuw.test.api import MyuwApiTest
-from blti import BLTI
 import mock
 
 
