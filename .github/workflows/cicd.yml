@@ -37,7 +37,7 @@ env:
   DJANGO_APP: myuw
   CONF_PATH: myuw
   COVERAGE_DJANGO_VERSION: '5.2'
-  COVERAGE_PYTHON_VERSION: '3.12'
+  COVERAGE_PYTHON_VERSION: '3.11'
 
 # Be sure that branches defined here have corresponding steps
 # defined in the "deploy" job
@@ -79,7 +79,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -251,7 +251,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
