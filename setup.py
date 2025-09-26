@@ -52,7 +52,7 @@ setup(
         'UW-RestClients-Trumba~=1.4',
         'UW-RestClients-UPass~=3.1',
         'UW-RestClients-UWNetID~=1.1',
-        'Uw-Django-Oidc~=1.0',
+        'Uw-Django-Oidc==1.0.2.1',
         'Django-SupportTools~=3.6',
         'Django-Persistent-Message~=1.3',
         'UW-RestClients-Django-Utils~=2.3',
