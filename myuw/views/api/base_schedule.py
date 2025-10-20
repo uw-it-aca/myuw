@@ -66,12 +66,15 @@ def load_schedule(request, schedule):
     if schedule.term.is_summer_quarter():
         json_data["summer_term"] = schedule.summer_term
     if len(schedule.sections):
-        try:
-            set_section_canvas_course_urls(
-                get_canvas_active_enrollments(request), schedule, request)
-        except Exception:
-            log_exception(logger, 'get_canvas_active_enrollments', traceback)
-            pass
+        # Temporarily removing call to canvas due to outage
+        pass
+
+        # try:
+        #     set_section_canvas_course_urls(
+        #         get_canvas_active_enrollments(request), schedule, request)
+        # except Exception:
+        #     log_exception(logger, 'get_canvas_active_enrollments', traceback)
+        #     pass
 
     section_index = 0
     json_data["has_eos_dates"] = False
