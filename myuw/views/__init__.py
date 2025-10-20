@@ -68,7 +68,8 @@ def prefetch_resources(request,
 
     if prefetch_canvas:
         # depends on pws.person
-        prefetch_methods.extend(canvas_prefetch())
+        # prefetch_methods.extend(canvas_prefetch())
+        pass
 
     if prefetch_password:
         prefetch_methods.extend(password_prefetch())
