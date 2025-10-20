@@ -39,7 +39,7 @@
         <li>
           You will then register beginning with Registration Period II for your returning quarter.
           Check dates on the
-          <a href="http://www.washington.edu/students/reg/calendar.html">Academic Calendar</a>.
+          <a href="https://www.washington.edu/students/reg/calendar.html">Academic Calendar</a>.
         </li>
       </ul>
 
@@ -51,12 +51,12 @@
           </a>
         </li>
         <li class="mb-1">
-          <a v-out="'Student Guide'" href="http://www.washington.edu/students/">
+          <a v-out="'Student Guide'" href="https://www.washington.edu/students/">
             Check out the Student Guide
           </a>
         </li>
         <li class="mb-1">
-          <a href="http://www.washington.edu/students/reg/calendar.html">
+          <a href="https://www.washington.edu/students/reg/calendar.html">
             View the UW Academic Calendar
           </a>
         </li>
@@ -72,7 +72,7 @@
       <ul class="list-unstyled myuw-text-md">
         <li v-if="applicantData.is_freshman" class="mb-1">
           <a href="https://admit.washington.edu/apply/dates-deadlines/">
-            Key dates &amp; deadlines for freshmen
+            Key dates &amp; deadlines for first-year students
           </a>
         </li>
         <li v-if="applicantData.is_transfer" class="mb-1">
@@ -96,9 +96,9 @@
         </li>
         <li class="mb-1">
           <a
-            href="https://www.washington.edu/financialaid/applying-for-aid/key-dates-and-deadlines/"
+            href="https://www.washington.edu/financialaid/applying-for-aid/key-dates/"
           >
-            Financial aid key dates and deadlines
+            Financial aid key dates
           </a>
         </li>
         <li class="mb-1">
@@ -111,13 +111,13 @@
       <h4 class="h6">STUDENT LIFE</h4>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a href="http://admit.washington.edu/Visit"> Plan your visit: Seattle campus tours </a>
+          <a href="https://admit.washington.edu/Visit"> Plan your visit: Seattle campus tours </a>
         </li>
         <li class="mb-1">
           <a href="https://hfs.uw.edu/Live"> Explore campus living </a>
         </li>
         <li class="mb-1">
-          <a href="http://depts.washington.edu/uwdrs/"> Disability Resources for Students (DRS) </a>
+          <a href="https://depts.washington.edu/uwdrs/"> Disability Resources for Students (DRS) </a>
         </li>
       </ul>
       <h3 class="h6 myuw-font-encode-sans">Next steps if you are admitted</h3>
@@ -131,7 +131,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="http://fyp.washington.edu/getting-started-at-the-university-of-washington/">
+          <a href="https://fyp.uw.edu/orientation/">
             Register for an Advising &amp; Orientation session
           </a>
         </li>
@@ -141,12 +141,12 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://www.washington.edu/newhuskies/must-do/#photo">
+          <a href="https://www.washington.edu/newhuskies/must-do/submit-a-photo-for-your-husky-card/">
             Submit a photo for your Husky Card
           </a>
         </li>
         <li class="mb-1">
-          <a href="http://www.washington.edu/newhuskies/must-do/">
+          <a href="https://www.washington.edu/newhuskies/must-do/">
             See additional steps required to enroll at the UW
           </a>
         </li>
@@ -160,16 +160,16 @@
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a
-            href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/"
+            href="https://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/"
           >
             View undergraduate majors
           </a>
         </li>
         <li class="mb-1">
-          <a href="http://fyp.washington.edu/"> Learn about First Year Programs </a>
+          <a href="https://fyp.washington.edu/"> Learn about First Year Programs </a>
         </li>
         <li class="mb-1">
-          <a href="http://www.washington.edu/students/"> Check out the Student Guide </a>
+          <a href="https://www.washington.edu/students/"> Check out the Student Guide </a>
         </li>
       </ul>
     </template>

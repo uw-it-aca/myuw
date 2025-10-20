@@ -5,16 +5,14 @@ import logging
 import json
 import re
 import traceback
-from django.db import transaction, IntegrityError
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.quicklinks import (
     get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
     edit_custom_link, add_hidden_link, delete_hidden_link,
-    get_popular_link_by_id, get_recent_link_by_id)
-from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
+    get_recent_link_by_id)
+from myuw.models import VisitedLinkNew, CustomLink
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
@@ -65,17 +63,6 @@ class ManageLinks(ProtectedAPI):
         link = None
         if "type" not in data:
             return data_not_found()
-
-        if "popular" == data["type"]:
-            link_id = get_link_id(data)
-            if link_id:
-                try:
-                    plink = get_popular_link_by_id(link_id)
-                except PopularLink.DoesNotExist:
-                    return data_not_found()
-                link = add_custom_link(request, plink.url, plink.label)
-                log_api_call(timer, request,
-                             "Popular==>Custom link ({})".format(plink.url))
 
         elif "recent" == data["type"]:
             link_id = get_link_id(data)

@@ -124,12 +124,13 @@ def set_section_evaluation(section, person):
             log_exception(logger, 'set_section_evaluation', traceback)
 
 
-def set_course_resources(section_data, section, person, is_future_term):
+def set_course_resources(section_data, section, person,
+                         is_future_term, is_past_term):
     threads = []
 
     t = ThreadWithResponse(
         target=get_enrollment_status_for_section,
-        args=(section, section_data))
+        args=(section, section_data, is_past_term))
     t.start()
     threads.append((t, None, section_data))
 
@@ -181,13 +182,16 @@ def set_course_resources(section_data, section, person, is_future_term):
             logger.error("{}: {}".format(k, t.exception))
 
 
-def get_enrollment_status_for_section(section, section_json):
+def get_enrollment_status_for_section(section, section_json, is_past_term):
     try:
         status = get_section_status_by_label(section.section_label())
-        # MUWM-4349, MUWM-5392
-        section_json["current_enrollment"] = status.current_enrollment
-        section_json["limit_estimated_enrollment"] =\
-            status.limit_estimated_enrollment
+        if is_past_term:
+            # MUWM-4349, MUWM-5392, MUWM-5402
+            pass
+        else:
+            section_json["current_enrollment"] = status.current_enrollment
+            section_json["limit_estimated_enrollment"] =\
+                status.limit_estimated_enrollment
 
         if (status.current_enrollment and section.sln and
                 section.is_independent_study):
@@ -314,7 +318,7 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
         t = Thread(target=set_course_resources, args=(
             section_data, section, schedule.person,
-            is_future(schedule.term, request)))
+            json_data["future_term"], json_data["past_term"]))
         course_resource_threads.append(t)
         t.start()
 

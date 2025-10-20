@@ -43,9 +43,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, feat/MUWM-5395, develop, vue/dev]
+    branches: [main, master, qa, develop, vue/dev]
   pull_request:
-    branches: [main, master, feat/MUWM-5395, develop, vue/dev]
+    branches: [main, master, qa, develop, vue/dev]
     types: [opened, reopened, synchronize]
   release:
     branches: [main, master]
@@ -79,7 +79,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -190,8 +190,8 @@ jobs:
     runs-on: ubuntu-24.04
 
     container:
-      image: cypress/browsers:node14.16.0-chrome90-ff88
-      # this image works. later images failed
+      image: cypress/browsers:22.17.1
+      # run tests on latest cypress/browser image
 
     steps:
       - name: Checkout Repo
@@ -223,6 +223,7 @@ jobs:
       - name: Merge cypress and jest lcov reports
         shell: bash
         run: |
+          apt update
           apt install lcov -y
           lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
@@ -250,7 +251,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -284,7 +285,7 @@ jobs:
 
       - name: Deployment Pipeline
         if: >-
-          contains(fromJSON('["main", "master", "feat/MUWM-5395"]'),
+          contains(fromJSON('["main", "master", "qa"]'),
             needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
@@ -321,7 +322,7 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
-         endsWith(github.ref, '/feat/MUWM-5395') || endsWith(github.ref, '/develop') ||
+         endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
          endsWith(github.ref, '/vue/dev'))
 
     needs: [context, build, deploy]

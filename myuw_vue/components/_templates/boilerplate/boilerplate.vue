@@ -284,7 +284,7 @@
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&t=5s&list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&index=1"
           title="MyUW video tour for students"
           >for students</a
-        >. <br /><a
+        >. <br><a
           v-out="'MyUW Help Center'"
           href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033852"
           title="MyUW Help Center in UWConnect"

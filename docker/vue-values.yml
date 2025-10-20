@@ -38,6 +38,9 @@ database:
   secretName: vue.my.uw.edu-sql-secrets
 repo: myuw
 instance: vue
+namespace:
+  enabled: true
+
 memcached:
   enabled: true
   replicaCount: 1
@@ -63,7 +66,7 @@ environmentVariables:
   - name: BOOK_POOL_SIZE
     value: "5"
   - name: BOOK_TIMEOUT
-    value: "15"
+    value: "60"
 
   - name: CALENDAR_ENV
     value: PROD

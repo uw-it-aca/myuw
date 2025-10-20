@@ -28,9 +28,7 @@
 </template>
 
 <script>
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '../../../_templates/tooltip.vue';
 
 export default {

@@ -27,7 +27,7 @@
     >
       <template #collapsed-body>
         Use the
-        <a href="https://www.ubookstore.com/faculty">
+        <a href="https://ubookstore.com/pages/faculty">
           UW Bookstore Course Materials Request Form </a>
           to provide a list of required reading materials for your course as early as possible.<br>
         
@@ -82,7 +82,7 @@ export default {
       const ready = this.isDataReady(this.term);
       if (ready && this.bookData) {
         const book = this.bookData[this.section.sln];
-        return (book && book.length > 0);
+        return (book && book.course_id);   // MUWM-5420
       }
       return false;
     },

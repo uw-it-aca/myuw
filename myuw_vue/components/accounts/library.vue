@@ -6,7 +6,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your library account information right now. In the
       meantime, try the
-      <a href="http://www.lib.washington.edu/"
+      <a href="https://www.lib.washington.edu/"
       >UW Libraries</a> page.
     </template>
     <template #card-body>
@@ -70,7 +70,7 @@
       </ul>
 
       <div class="text-end">
-        <uw-link-button href="http://search.lib.uw.edu/account">
+        <uw-link-button href="https://search.lib.uw.edu/account">
           Access library account
         </uw-link-button>
       </div>

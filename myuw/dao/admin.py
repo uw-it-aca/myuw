@@ -34,7 +34,7 @@ def _search_groups(uwnetid):
 
             if gr.name == MYUW_OVERRIDE_GROUP:
                 override = True
-
+    logger.debug(f"is_admin:{is_admin} override:{override}")
     return is_admin, override
 
 

@@ -33,23 +33,17 @@ export default {
       bothell_emp: (state) => state.user.affiliations.official_bothell,
       tacoma_emp: (state) => state.user.affiliations.official_tacoma,
       linkData() {
-        let textbookLink = '';
         let courseEvalLink = '';
         if (this.bothell_emp) {
-          textbookLink = 'uwbothell';
           courseEvalLink = 'https://uwb.iasystem.org/faculty';
         } else if (this.tacoma_emp) {
-          textbookLink = 'uwtacoma';
           courseEvalLink = 'https://uwt.iasystem.org/faculty';
         } else if (this.seattle_emp) {
-          textbookLink = 'uwmain';
           courseEvalLink = 'https://uw.iasystem.org/faculty';
         } else {
-          textbookLink = 'uwmain';
           courseEvalLink = 'https://www.washington.edu/assessment/course-evaluations/';
         }
         return {
-          textbook: textbookLink,
           courseEval: courseEvalLink,
         };
       },
@@ -69,31 +63,31 @@ export default {
             title: "Workshops and Office Hours" },
           { url: "https://washington.zoom.us/", title: "Zoom" },
           { url: "https://uw.hosted.panopto.com/", title: "Panopto" },
-          { url: "http://polleverywhere.com/", title: "Poll Everywhere" }
+          { url: "https://polleverywhere.com/", title: "Poll Everywhere" }
         ].filter(x => x !== null);
       },
       courseMaterialLinks() {
         return [
-          { url: "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
+          { url: "https://ubookstore.com/pages/faculty",
             title: "Order Textbooks" },
-          { url: "http://www.lib.washington.edu/types/course",
+          { url: "https://www.lib.washington.edu/types/course",
             title: "Course Reserves" },
-          { url: "http://f2.washington.edu/fm/c2/printing-copying/course-packs",
+          { url: "https://f2.washington.edu/fm/c2/printing-copying/course-packs",
             title: "Request Course Packs" }
         ];
       },
       webToolsLinks() {
         return [
-          { url: "http://canvas.uw.edu", title: "Canvas" },
+          { url: "https://canvas.uw.edu", title: "Canvas" },
           { url: "https://uw.hosted.panopto.com", title: "Panopto Lecture Capture" },
-          { url: "http://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
+          { url: "https://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
           { url: "https://gradepage.uw.edu", title: "GradePage" },
           { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php",
             title: "Change Submitted Grades" },
           { url: this.linkData.courseEval, title: "Course Evaluations" },
           { url: "https://coda.uw.edu", title: "Course Statistics Dashboard" },
           { url: "https://gsuite.google.com/dashboard", title: "Google Apps" },
-          { url: "https://www.office.com/", title: "Office 365 Apps" },
+          { url: "https://m365.cloud.microsoft/apps/", title: "Office 365 Apps" },
           { url: "https://washington.zoom.us/", title: "Zoom" }
         ];
       },

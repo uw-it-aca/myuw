@@ -16,8 +16,7 @@ from myuw.dao import log_err
 from myuw.dao.term import (
     get_comparison_datetime, get_comparison_datetime_with_tz,
     get_current_summer_term, get_bod_7d_before_last_instruction,
-    get_eod_current_term, is_b_term,)
-
+    get_eod_current_term, is_b_term)
 
 logger = logging.getLogger(__name__)
 

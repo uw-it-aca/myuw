@@ -13,11 +13,13 @@
     <template #card-body>
       <div v-if="isHomePage">
         <p class="myuw-text-md">
-          Final grades are hidden to protect your privacy.
+          Final grades are hidden to protect your privacy.<br>
           <a v-uw-collapse="`grades-collapse`"
             v-no-track-collapse
             class="p-0 border-0 mb-2 bg-transparent"
           >View final grades</a>
+          <font-awesome-icon v-if="gradesOpen" :icon="faChevronUp" />
+          <font-awesome-icon v-else :icon="faChevronDown" />
         </p>
         <uw-collapse
           :id="`grades-collapse`"

@@ -29,6 +29,7 @@ uwp_staff = 'uw_affiliation_uwp-staff'
 uwnc_staff = 'uw_affiliation_uwnc-staff'
 applicant = 'uw_affiliation_applicant'
 staff = 'uw_affiliation_staff-employee'
+affi_emp = 'uw_affiliation_affiliate-employee'
 stud_emp = 'uw_affiliation_student-employee'
 bot_stud = 'uw_affiliation_bothell-student'
 sea_stud = 'uw_affiliation_seattle-student'
@@ -42,7 +43,7 @@ undergrad_c2 = 'uw_affiliation_continuum-student_undergraduate'
 all_groups = [alumni_asso, staff, medicine_wf, medicine_aff, medicine_staff,
               uwp_pro, uwp_staff, med_res, fhcrc_emp, scca_emp, uwnc_staff,
               applicant, stud_emp, bot_stud, sea_stud, tac_stud, undergrad,
-              grad_prof, grad, pce, grad_c2, undergrad_c2]
+              grad_prof, grad, pce, grad_c2, undergrad_c2, affi_emp]
 RELEVANT_GROUPS = frozenset(all_groups)
 
 
@@ -184,6 +185,13 @@ def is_staff_employee(request):
     An UW staff employee (grace 15 days)
     """
     return staff in get_groups(request)
+
+
+def is_affi_emp(request):
+    """
+    A current UW Affiliate Employees
+    """
+    return affi_emp in get_groups(request)
 
 
 def is_applicant(request):

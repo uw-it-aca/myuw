@@ -18,7 +18,7 @@
           {{ classStanding }}
         </uw-card-property>
         <uw-card-property title="Major">
-          <cur_majors :term-majors="termMajors"></cur_majors>
+          <major-list :term-majors="termMajors"></major-list>
         </uw-card-property>
         <uw-card-property v-if="hasMinors" title="Minor">
           <ul class="list-unstyled mb-0">
@@ -129,7 +129,7 @@
             of attendance
             <em v-text="directoryRelease ? 'are releasable' : 'cannot be released'"/>
             by the Office of the University Registrar when requested.
-            <a href="http://www.washington.edu/students/reg/ferpa.html"
+            <a href="https://www.washington.edu/students/reg/ferpa.html"
             >Learn more about your privacy (FERPA)</a>
           </p>
         </uw-card-property>
@@ -143,14 +143,14 @@ import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
 import CardPropertyGroup from '../_templates/card-property-group.vue';
-import CurMajors from '../_common/cur_major.vue';
+import CurMajors from '../_common/major/cur-fut-majors.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-property': CardProperty,
     'uw-card-property-group': CardPropertyGroup,
-    'cur_majors': CurMajors,
+    'major-list': CurMajors,
   },
   computed: {
     ...mapState('profile', {

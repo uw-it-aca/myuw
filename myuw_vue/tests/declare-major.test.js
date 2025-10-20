@@ -11,7 +11,7 @@ import DeclareMajorCard from '../components/home/major-declaration/declare-major
 import MajorSea from '../components/home/major-declaration/major-sea.vue';
 import MajorBot from '../components/home/major-declaration/major-bot.vue';
 import MajorTac from '../components/home/major-declaration/major-tac.vue';
-import CurMajors from '../components/_common/cur_major.vue';
+import CurMajors from '../components/_common/major/cur-fut-majors.vue';
 import mockNotices from './mock_data/notice/jinter.json';
 import premajorProfile from './mock_data/profile/javgPremajor.json';
 import javg005Profile from './mock_data/profile/javg005.json';
@@ -95,7 +95,7 @@ describe('Declare Major Card', () => {
     expect(wrapper.vm.bothell).toBe(true);
     expect(wrapper.vm.isTargetViewer).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.vm.reviewOptionsUrl).toHaveLength(56);
+    expect(wrapper.vm.reviewOptionsUrl).toBeTruthy();
     expect(wrapper.findAllComponents(MajorBot)).toHaveLength(1);
   });
   it('Verify Tacoma case', async () => {

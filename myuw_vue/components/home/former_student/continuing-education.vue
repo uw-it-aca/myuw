@@ -21,11 +21,6 @@
       </h3>
       <ul class="list-unstyled myuw-text-md mb-2">
         <li class="mb-1">
-          <a v-out="'PCE Career Accelerator Programs'"
-            href="https://www.pce.uw.edu/career-accelerator-certificates">
-            Career Accelerator Certificate Programs</a>
-        </li>
-        <li class="mb-1">
           <a v-out="'PCE Certificate Programs'" href="https://www.pce.uw.edu/certificates"
            >Certificate Programs</a>
         </li>
@@ -33,9 +28,13 @@
           <a v-out="'PCE Degree Programs'" href="https://www.pce.uw.edu/degrees"
            >Degree Programs</a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'PCE Courses'" href="https://www.pce.uw.edu/courses"
            >Courses</a>
+        </li>
+        <li>
+          <a v-out="'Specializations'"
+            href="https://www.pce.uw.edu/specializations">Specializations</a>
         </li>
       </ul>
     </template>

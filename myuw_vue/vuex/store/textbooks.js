@@ -22,11 +22,6 @@ const customGetters = {
     }
 
     function makeSectionData(i, section, isInstructor) {
-      const hasBookData = !!(
-        bookData &&
-        bookData[section.sln] &&
-        bookData[section.sln].length
-      );
       return {
         index: i,
         sectionTitle: section.course_title,
@@ -35,8 +30,7 @@ const customGetters = {
         sectionId: section.section_id,
         colorId: section.color_id,
         sln: section.sln,
-        hasBooks: hasBookData,
-        books: hasBookData ? bookData[section.sln] : [],
+        bookData: bookData ? bookData[section.sln] : {},
         isInstructor: isInstructor,
         bothellCampus: bothellCampus(section),
         tacomaCampus: tacomaCampus(section),
@@ -66,9 +60,8 @@ const customGetters = {
       processedData.teachingSections.length
     )
     processedData.collapseSections = numSections > 10;
+    processedData.hasEnrolledSections = processedData.enrolledSections.length > 0;
     processedData.hasTeachingSections = processedData.teachingSections.length > 0;
-
-    processedData.verbaLink = bookData ? bookData.verbaLink : null;
     return processedData;
   }
 }
