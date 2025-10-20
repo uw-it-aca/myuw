@@ -239,7 +239,7 @@ environmentVariables:
   - name: CANVAS_ENV
     value: PROD
   - name: CANVAS_TIMEOUT
-    value: "5"
+    value: "60"
   - name: CANVAS_POOL_SIZE
     value: "25"
 
