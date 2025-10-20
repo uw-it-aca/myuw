@@ -46,7 +46,9 @@ ingress:
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      return 302 $scheme://my.uw.edu/500;
+      if ($host != 'my.uw.edu') {
+        return 301 $scheme://my.uw.edu;
+      }
 lifecycle:
   enabled: true
   preStop:
