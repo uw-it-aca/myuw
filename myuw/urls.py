@@ -72,7 +72,6 @@ from myuw.views.notice_admin import create_notice, edit_notice, list_notices
 
 urlpatterns = []
 
-
 # debug routes error pages
 if settings.DEBUG:
 
@@ -97,7 +96,6 @@ if settings.DEBUG:
             TemplateView.as_view(template_name="403.html"),
             name="403_response",
         ),
-
         re_path(
             r"^404$",
             TemplateView.as_view(template_name="404.html"),
