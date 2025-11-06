@@ -39,7 +39,7 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/course/.../status.json"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
-            "sws", "/student/v5/course/"), FIFTEEN_MINS)
+            "sws", "/student/v5/course/"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/person/"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
