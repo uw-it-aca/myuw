@@ -109,7 +109,7 @@ export default {
       return this.timeDeltaFrom(this.expiresMed, 'second') < 0;
     },
     passwordChange() {
-      return 'https://services.uwmedicine.org/passwordportal/login.htm';
+      return 'https://sailpoint.uwmedicine.org/';
     }
   },
   mounted() {
