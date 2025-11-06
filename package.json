@@ -11,7 +11,7 @@
     "@fortawesome/vue-fontawesome": "2.0.2",
     "@popperjs/core": "^2.9.3",
     "autoprefixer": "10.3.1",
-    "axios": "0.30.0",
+    "axios": "0.30.2",
     "babel-loader": "8.2.2",
     "bootstrap": "5.1.0",
     "browserslist": "4.16.6",
@@ -24,7 +24,7 @@
     "less": "4.1.1",
     "less-loader": "10.0.0",
     "mini-css-extract-plugin": "2.1.0",
-    "postcss": "8.3.5",
+    "postcss": "8.4.31",
     "postcss-loader": "6.1.1",
     "sass": "1.35.2",
     "sass-loader": "12.1.0",
@@ -70,7 +70,7 @@
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "vue-jest": "4.0.1",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "5.2.1"
   },
   "jest": {
     "moduleFileExtensions": [
