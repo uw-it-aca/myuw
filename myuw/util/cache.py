@@ -35,8 +35,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_HOUR
 
             if re.match(r'^/student/v5/course/', url):
-                if re.match(r'^/student/v5/course/.*/status.json$', url):
-                    return FOUR_HOURS
+                return ONE_HOUR
 
             return FIFTEEN_MINS
 
