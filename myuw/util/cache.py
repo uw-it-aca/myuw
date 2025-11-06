@@ -32,10 +32,10 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
             if re.match(r'^/student/v5/person/', url):
-                return ONE_HOUR
+                return HALF_HOUR
 
             if re.match(r'^/student/v5/course/', url):
-                return ONE_HOUR
+                return HALF_HOUR
 
             return FIFTEEN_MINS
 
@@ -55,7 +55,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return ONE_HOUR
 
         if "uwnetid" == service:
-            return FOUR_HOURS
+            return ONE_HOUR * 2
 
         if "mailman" == service:
             return ONE_DAY

@@ -37,11 +37,11 @@ class TestCustomCachePolicy(TestCase):
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEqual(cache.get_cache_expiration_time(
-            "sws", "/student/v5/course/.../status.json"), FOUR_HOURS)
+            "sws", "/student/v5/course/.../status.json"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/course/"), FIFTEEN_MINS)
         self.assertEqual(cache.get_cache_expiration_time(
-            "sws", "/student/v5/person/"), ONE_HOUR)
+            "sws", "/student/v5/person/"), HALF_HOUR)
         self.assertEqual(cache.get_cache_expiration_time(
             "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEqual(cache.get_cache_expiration_time(
@@ -70,7 +70,7 @@ class TestCustomCachePolicy(TestCase):
             "pws", "/identity/v2/person", status=503), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
+            "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS / 2)
         self.assertEqual(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
