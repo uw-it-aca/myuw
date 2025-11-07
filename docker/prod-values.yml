@@ -239,9 +239,9 @@ environmentVariables:
   - name: CANVAS_ENV
     value: PROD
   - name: CANVAS_TIMEOUT
-    value: "60"
+    value: "20"
   - name: CANVAS_POOL_SIZE
-    value: "25"
+    value: "30"
 
   - name: CODA_ENV
     value: PROD
@@ -318,7 +318,7 @@ environmentVariables:
   - name: LIBCURRICS_POOL_SIZE
     value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD

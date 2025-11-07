@@ -30,7 +30,7 @@
           <a href="https://canvas.uw.edu/">Canvas LMS</a>
         </li>
         <li v-if="isStudent" class="mb-1">
-          <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+          <a href="https://register.uw.edu/"
           >Student Registration</a>
         </li>
         <li v-if="isStudent" class="mb-1">
