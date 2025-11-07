@@ -70,7 +70,7 @@ class TestCustomCachePolicy(TestCase):
             "pws", "/identity/v2/person", status=503), 60 * 7)
 
         self.assertEqual(cache.get_cache_expiration_time(
-            "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS / 2)
+            "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR * 2)
         self.assertEqual(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 7)
         self.assertEqual(cache.get_cache_expiration_time(
