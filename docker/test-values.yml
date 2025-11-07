@@ -188,7 +188,7 @@ environmentVariables:
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_TIMEOUT
-    value: "10"
+    value: "15"
 
   - name: GWS_ENV
     value: PROD
