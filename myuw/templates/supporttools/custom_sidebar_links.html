@@ -77,6 +77,13 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
+        {% if upass_url %}
+        <li>
+            <a href="{{ upass_url }}">ID Card</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'libcurrics' 'index.html' as libcurrics_url %}
         {% if libcurrics_url %}
             <li>
@@ -119,12 +126,6 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
-        {% if upass_url %}
-            <li>
-                <a href="{{ upass_url }}">ID Card</a>
-            </li>
-        {% endif %}
         <br />
         {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
         {% if sws_url %}
