@@ -110,10 +110,11 @@ class MyUWRestSearchView(RestSearchView):
                 url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
 
         elif service == "uwnetid":
-            if "password" == url:
+            res = get_input_value(request.POST, "res")
+            if "password" == res:
                 url = "nws/v1/uwnetid/{}/password".format(
                     get_input_value(request.POST, "uwnetid"))
-            elif "subscription" == url:
+            elif "subscription" == res:
                 url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
                     get_input_value(request.POST, "uwnetid"))
         else:
