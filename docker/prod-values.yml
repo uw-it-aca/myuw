@@ -281,7 +281,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "10"
+    value: "15"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "25"
 
