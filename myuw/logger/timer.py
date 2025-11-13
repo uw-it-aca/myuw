@@ -15,6 +15,6 @@ class Timer:
         Return the time spent in seconds
         """
         return (time.time() - self.start)
-    
+
     def get_message(self):
         return self.msg
