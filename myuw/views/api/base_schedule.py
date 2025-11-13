@@ -7,7 +7,8 @@ from operator import itemgetter
 from myuw.dao.campus_building import get_building_by_code
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls)
-from myuw.dao.enrollment import get_enrollment_for_term, is_ended
+from myuw.dao.registration import get_schedule_by_term
+from myuw.dao.enrollment import is_ended
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
@@ -23,7 +24,10 @@ class StudClasSche(ProtectedAPI):
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            prefetch_resources(request)
+            prefetch_resources(
+                request,
+                prefetch_enrollment=True
+            )
         except Exception as ex:
             log_exception(logger, f"prefetch_resources {ex}", traceback)
         return super(StudClasSche, self).dispatch(request, *args, **kwargs)
@@ -33,10 +37,10 @@ class StudClasSche(ProtectedAPI):
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        msg =  "Get Student Schedule {term.year} {term.quarter},{summer_term}"
+        msg = f"StudClasSche {term.year} {term.quarter}, {summer_term}"
         timer = Timer(msg=msg)
         try:
-            schedule = get_enrollment_for_term(
+            schedule = get_schedule_by_term(
                 request, term=term, summer_term=summer_term)
 
             if len(schedule.sections) == 0:
