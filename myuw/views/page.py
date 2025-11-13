@@ -67,10 +67,8 @@ def page(request,
     }
 
     if prefetch:
-        # Some pages need to prefetch before this point
-        failure = try_prefetch(request, template, context)
-        if failure:
-            return failure
+        try_prefetch(request, template, context)
+        # the pre-fetch should have no impact to homepage initial loading
 
     try:
         affiliations = get_all_affiliations(request)
@@ -129,11 +127,11 @@ def try_prefetch(request, template, context):
             prefetch_instructor=True,
             prefetch_sws_person=(True if is_student(request) else False)
         )
-    except DataFailureException:
-        log_exception(logger, "prefetch error", traceback)
-        context["webservice_outage"] = True
-        return render(request, template, context)
-    return
+    except DataFailureException as ex:
+        log_exception(logger, f"prefetch error {ex}", traceback)
+        # This ex should not block the homepage initial rendering as it is
+        # unclear what impact this resource error will make to the
+        # content panel referencing it down the line.
 
 
 @login_required
