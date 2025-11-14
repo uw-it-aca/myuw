@@ -130,8 +130,8 @@ def prefetch(request):
         )
     except DataFailureException as ex:
         log_exception(logger, f"prefetch_resources {ex}", traceback)
-        # This ex should not block the homepage initial rendering as it is
-        # unclear what impact this resource error will make to the
+        # This ex should not block the page initial loading as it is
+        # unclear at this point what impact this error will make to the
         # content panel referencing it down the line.
 
 
