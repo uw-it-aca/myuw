@@ -26,7 +26,8 @@ class StudClasSche(ProtectedAPI):
         try:
             prefetch_resources(
                 request,
-                prefetch_enrollment=True
+                prefetch_enrollment=True,
+                prefetch_canvas=True
             )
         except Exception as ex:
             log_exception(logger, f"prefetch_resources {ex}", traceback)
