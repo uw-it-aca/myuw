@@ -6,7 +6,7 @@ import traceback
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
-from restclients_core.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException, InvalidNetID
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
@@ -18,7 +18,7 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.persistent_messages import BannerMessage
 from myuw.dao.pws import is_student
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_updated_user, not_existing_user
+from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -29,7 +29,7 @@ from myuw.util.settings import (
     get_google_search_key, get_google_analytics_key, get_django_debug,
     get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import no_access
+from myuw.views.error import no_access, unknown_uwnetid
 from django.contrib.auth.decorators import login_required
 
 
@@ -46,17 +46,20 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
+    except InvalidNetID as er:
+        log_exception(logger, f"get_updated_user: {er}", traceback)
+        return unknown_uwnetid()
     except DataFailureException as ex:
-        log_exception(logger, "PWS error", traceback)
+        log_exception(logger, f"get_updated_user {ex}", traceback)
         if ex.status == 404:
-            return render(request, '403.html', status=403)
+            return unknown_uwnetid()
         return render(request, '500.html', status=500)
 
     try:
         if not can_access_myuw(request):
             return no_access()
-    except DataFailureException:
-        log_exception(logger, "GWS error", traceback)
+    except DataFailureException as err:
+        log_exception(logger, f"can_access_myuw {err}", traceback)
         return render(request, '500.html', status=500)
 
     netid = user.uwnetid
@@ -70,7 +73,8 @@ def page(request,
 
     try:
         affiliations = get_all_affiliations(request)
-    except BlockedNetidErr:
+    except BlockedNetidErr as ex:
+        log_exception(logger, f"get_all_affiliations {ex}", traceback)
         return render(request, '400.html', status=400)
     except DataFailureException:
         log_exception(logger, "Failed to get_all_affiliations", traceback)
