@@ -29,7 +29,7 @@ from myuw.util.settings import (
     get_google_search_key, get_google_analytics_key, get_django_debug,
     get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import no_access, unknown_uwnetid
+from myuw.views.error import no_access
 from django.contrib.auth.decorators import login_required
 
 
@@ -48,11 +48,11 @@ def page(request,
         user = get_updated_user(request)
     except InvalidNetID as er:
         log_exception(logger, f"get_updated_user: {er}", traceback)
-        return unknown_uwnetid()
+        return render(request, '403.html', status=403)
     except DataFailureException as ex:
         log_exception(logger, f"get_updated_user {ex}", traceback)
         if ex.status == 404:
-            return unknown_uwnetid()
+            return render(request, '403.html', status=403)
         return render(request, '500.html', status=500)
 
     try:
