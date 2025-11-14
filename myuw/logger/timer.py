@@ -17,4 +17,7 @@ class Timer:
         return (time.time() - self.start)
 
     def get_message(self):
+        """
+        Return the message associated with the timer
+        """
         return self.msg
