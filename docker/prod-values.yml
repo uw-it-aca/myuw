@@ -238,10 +238,10 @@ environmentVariables:
 
   - name: CANVAS_ENV
     value: PROD
-  - name: CANVAS_POOL_SIZE
-    value: "30"
   - name: CANVAS_TIMEOUT
     value: "15"
+  - name: CANVAS_POOL_SIZE
+    value: "30"
 
   - name: CODA_ENV
     value: PROD
