@@ -39,7 +39,6 @@ logger = logging.getLogger(__name__)
 def page(request,
          template,
          context=None,
-         prefetch=True,
          add_quicklink_context=False):
     if context is None:
         context = {}
@@ -66,9 +65,8 @@ def page(request,
         "isHybrid": is_native(request),
     }
 
-    if prefetch:
-        prefetch(request)
-        # the prefetch should have no impact to page initial loading
+    prefetch(request)
+    # the prefetch should have no impact to page initial loading
 
     try:
         affiliations = get_all_affiliations(request)
