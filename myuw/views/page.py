@@ -69,7 +69,6 @@ def page(request,
     }
 
     prefetch(request)
-    # the prefetch should have no impact to page initial loading
 
     try:
         affiliations = get_all_affiliations(request)
