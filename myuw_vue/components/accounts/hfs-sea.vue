@@ -18,84 +18,28 @@
       </uw-card-status>
 
       <div>
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-          Explore Campus Housing
-        </h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
-            <a href="https://www.hfs.uw.edu">
-              Housing &amp; Food Services
-            </a>
+            <a href="https://hfs.uw.edu">Explore campus housing &amp; dining</a>
           </li>
           <li class="mb-1">
-            <a v-out="'HFS: Dates and Deadlines'"
-              href="https://www.trumba.com/calendars/sea_hfs"
-            >
-              Dates and Deadlines
-            </a>
+            <a href="https://hfs.uw.edu/uw-housing-guides"
+            >View UW housing guides</a>
           </li>
           <li class="mb-1">
-            <a v-out="'HFS: Apply for Campus Housing'"
-              href="https://ucharm.hfs.washington.edu/ucharm"
-            >
-              Apply for Campus Housing
-            </a>
+            <a href="https://www.trumba.com/calendars/sea_hfs"
+            >Dates, deadlines and events</a>
           </li>
           <li class="mb-1">
-            <a href="mailto:hfsinfo@uw.edu">Contact HFS </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-          Manage Account
-        </h3>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a v-out="'HFS: Make a Payment'"
-              href="https://www.hfs.uw.edu/myhfs/account.aspx"
-            >
-              Make a Payment
-            </a>
+            <a href="https://washington.starrezhousing.com/StarRezPortalX/"
+            >Apply for housing and manage your account</a>
           </li>
           <li class="mb-1">
-            <a v-out="'HFS: View Charges'"
-              href="https://www.hfs.uw.edu/myhfs/ledger.aspx">
-              View Charges
-            </a>
+            <a href="mailto:hfsinfo@uw.edu">Contact HFS</a>
           </li>
           <li class="mb-1">
-            <a v-out="'HFS: Change Dining Level'"
-              href="https://www.hfs.uw.edu/myhfs/dininglevel"
-            >
-              Change Dining Level
-            </a>
-          </li>
-          <li class="mb-1">
-            <a v-out="'HFS: Update Account'"
-              href="https://ucharm.hfs.washington.edu/ucharm">
-              Update Account
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-          Resident Resources
-        </h3>
-        <ul class="list-unstyled myuw-text-md mb-1">
-          <li class="mb-1">
-            <a v-out="'HFS: Check Laundry Status'"
-              href="https://mc360.maytag.com/#/">
-              Check Laundry Status
-            </a>
-          </li>
-          <li class="mb-1">
-            <a v-out="'HFS: Submit a Work Order'"
-              href="https://fms.admin.uw.edu/fs-works/uwnetid"
-            >
-              Submit a Work Order
-            </a>
+            <a href="https://washington.assetworks.cloud/ready/"
+            >Submit a work order</a>
           </li>
         </ul>
       </div>
