@@ -102,7 +102,7 @@ def load_schedule(request, schedule):
                     get_subject_guide_by_section(section)
             except Exception as ex:
                 log_exception(
-                    logger,f"get_subject_guide_by_section {ex}", traceback)
+                    logger, f"get_subject_guide_by_section {ex}", traceback)
                 pass
 
         if section.final_exam:
