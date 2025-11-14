@@ -67,8 +67,8 @@ def page(request,
     }
 
     if prefetch:
-        try_prefetch(request, template, context)
-        # the pre-fetch should have no impact to homepage initial loading
+        prefetch(request)
+        # the prefetch should have no impact to page initial loading
 
     try:
         affiliations = get_all_affiliations(request)
@@ -117,7 +117,7 @@ def page(request,
     return render(request, template, context)
 
 
-def try_prefetch(request, template, context):
+def prefetch(request):
     try:
         prefetch_resources(
             request,
