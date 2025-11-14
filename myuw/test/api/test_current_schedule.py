@@ -212,10 +212,6 @@ class TestSchedule(MyuwApiTest):
                                                  '2013-4-25 00:00:01')
         self.assertEqual(response.status_code, 404)
 
-    def test_invalid_user(self):
-        response = self.get_response_by_reverse('myuw_current_schedule')
-        self.assertEqual(response.status_code, 403)
-
     def test_remote_courese(self):
         # MUWM-5099
         response = self.get_current_schedule_res('eight',

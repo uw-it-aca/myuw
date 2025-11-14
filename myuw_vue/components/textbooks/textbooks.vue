@@ -94,7 +94,7 @@
             <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
-            An error has occurred and we can't load this content right now.
+            An error has occurred and MyUW can't load this content right now.
             Please try again later.
           </div>
         </div>

@@ -436,10 +436,11 @@ class InstScheCurQuar(InstSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        timer = Timer()
+        term = get_current_quarter(request)
+        timer = Timer(msg=f"InstScheCurQuar {term.year} {term.quarter}")
         try:
             return self.make_http_resp(
-                timer, get_current_quarter(request), request, "full-term")
+                timer, term, request, "full-term")
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -456,9 +457,9 @@ class InstScheQuar(InstSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
+        timer = Timer(msg=f"InstScheQuar {year} {quarter}")
         summer_term = kwargs.get("summer_term", "full-term")
         try:
             return self.make_http_resp(
@@ -505,7 +506,7 @@ class InstSect(ProtectedAPI):
                 status 543: data error
         """
         section_id = kwargs.get("section_id")
-        timer = Timer()
+        timer = Timer(msg=f"InstSect {section_id}")
         try:
             return self.make_http_resp(timer, request, section_id)
         except Exception:
