@@ -60,7 +60,7 @@
           <a href="https://uw.hosted.panopto.com/">Panopto Lecture Capture</a>
         </li>
         <li class="mb-1">
-          <a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp"
+          <a href="https://eo.admin.uw.edu/uweomyuw/outage/uwnetid/myuwoutage.asp"
           >UW Professional &amp; Continuing Education</a>
         </li>
         <li v-if="isEmployee && !isAcademicsPage" class="mb-1">
