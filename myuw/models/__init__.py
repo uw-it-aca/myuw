@@ -381,9 +381,9 @@ class UserCourseDisplay(models.Model):
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
         unique_together = ("user", "section_label")
-        index_together = [
-            ["user", "year", "quarter"],
-            ["user", "section_label"],
+        indexes = [
+             models.Index(fields=["user", "year", "quarter"]),
+             models.Index(fields=["user", "section_label"]),
         ]
         ordering = ['section_label']
 

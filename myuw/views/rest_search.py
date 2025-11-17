@@ -110,12 +110,12 @@ class MyUWRestSearchView(RestSearchView):
                 url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
 
         elif service == "uwnetid":
-            if "password" == url:
-                url = "nws/v1/uwnetid/{}/password".format(
-                    get_input_value(request.POST, "uwnetid"))
-            elif "subscription" == url:
-                url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
-                    get_input_value(request.POST, "uwnetid"))
+            res = get_input_value(request.POST, "res")
+            netid = get_input_value(request.POST, "uwnetid")
+            if "password" == res:
+                url = f"nws/v1/uwnetid/{netid}/password"
+            elif "subscription" == res:
+                url = f"nws/v1/uwnetid/{netid}/subscription/60,64,105"
         else:
             service, url, params = super().get_proxy_url(request, service, url)
 
