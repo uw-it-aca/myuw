@@ -111,12 +111,11 @@ class MyUWRestSearchView(RestSearchView):
 
         elif service == "uwnetid":
             res = get_input_value(request.POST, "res")
+            netid = get_input_value(request.POST, "uwnetid")
             if "password" == res:
-                url = "nws/v1/uwnetid/{}/password".format(
-                    get_input_value(request.POST, "uwnetid"))
+                url = f"nws/v1/uwnetid/{netid}/password"
             elif "subscription" == res:
-                url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
-                    get_input_value(request.POST, "uwnetid"))
+                url = f"nws/v1/uwnetid/{netid}/subscription/60,64,105"
         else:
             service, url, params = super().get_proxy_url(request, service, url)
 
