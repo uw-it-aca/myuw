@@ -4,21 +4,17 @@
 import logging
 import traceback
 from operator import itemgetter
-from restclients_core.exceptions import InvalidNetID
 from myuw.dao.campus_building import get_building_by_code
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls)
-from myuw.dao.enrollment import get_enrollment_for_term, is_ended
-from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_schedule_by_term
-# from myuw.dao.schedule import filter_schedule_sections_by_summer_term
-# from myuw.dao.registered_term import get_current_summer_term_in_schedule
+from myuw.dao.enrollment import is_ended
+from myuw.dao.library import get_subject_guide_by_section
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_data_not_found_response, log_api_call, log_exception)
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import data_not_found, unknown_uwnetid, handle_exception
+from myuw.views.error import data_not_found, handle_exception
 from myuw.views import prefetch_resources
 
 logger = logging.getLogger(__name__)
@@ -27,37 +23,35 @@ logger = logging.getLogger(__name__)
 class StudClasSche(ProtectedAPI):
 
     def dispatch(self, request, *args, **kwargs):
-        timer = Timer()
         try:
-            person = get_person_of_current_user(request)
-        except InvalidNetID:
-            return unknown_uwnetid()
-
-        try:
-            prefetch_resources(request,
-                               prefetch_enrollment=True,
-                               prefetch_library=True,
-                               prefetch_canvas=True)
-            return super(StudClasSche, self).dispatch(request, *args, **kwargs)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
+            prefetch_resources(
+                request,
+                prefetch_enrollment=True,
+                prefetch_canvas=True
+            )
+        except Exception as ex:
+            log_exception(logger, f"prefetch_resources {ex}", traceback)
+        return super(StudClasSche, self).dispatch(request, *args, **kwargs)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        schedule = get_schedule_by_term(
-            request, term=term, summer_term=summer_term)
+        msg = f"StudClasSche {term.year} {term.quarter}, {summer_term}"
+        timer = Timer(msg=msg)
+        try:
+            schedule = get_schedule_by_term(
+                request, term=term, summer_term=summer_term)
 
-        if len(schedule.sections) == 0:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            if len(schedule.sections) == 0:
+                log_data_not_found_response(logger, timer)
+                return data_not_found()
 
-        resp_data = load_schedule(request, schedule)
-        log_api_call(timer, request,
-                     "Get Student Schedule {},{}".format(term.year,
-                                                         term.quarter))
+            resp_data = load_schedule(request, schedule)
+            log_api_call(timer, request, msg)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
         return self.json_response(resp_data)
 
 
@@ -69,9 +63,9 @@ def load_schedule(request, schedule):
         try:
             set_section_canvas_course_urls(
                 get_canvas_active_enrollments(request), schedule, request)
-        except Exception:
-            log_exception(logger, 'get_canvas_active_enrollments', traceback)
-            pass
+        except Exception as ex:
+            log_exception(
+                logger, f"get_canvas_active_enrollments {ex}", traceback)
 
     section_index = 0
     json_data["has_eos_dates"] = False
@@ -107,9 +101,9 @@ def load_schedule(request, schedule):
             try:
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
-            except Exception:
-                log_exception(logger,
-                              'get_subject_guide_by_section', traceback)
+            except Exception as ex:
+                log_exception(
+                    logger, f"get_subject_guide_by_section {ex}", traceback)
                 pass
 
         if section.final_exam:

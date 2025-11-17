@@ -82,7 +82,8 @@ class TestCanvas(TestCase):
         person.uwnetid = "javerage"
         person.regid = "00000000000000000000000000000001"
         sws_section = get_section_by_label('2013,spring,TRAIN,101/A')
-        self.assertIsNotNone(get_canvas_course_from_section(sws_section))
+        self.assertIsNotNone(
+            get_canvas_course_from_section(sws_section, person.uwnetid))
         self.assertEqual(get_canvas_course_url(sws_section, person),
                          'https://canvas.uw.edu/courses/149651')
 

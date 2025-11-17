@@ -2,13 +2,13 @@ autoscaling:
   enabled: true
   minReplicas: 4
   maxReplicas: 180
-targetAverageUtilization: 100
+targetAverageUtilization: 90
 resources:
   limits:
-    cpu: 1.0
-    memory: 1152Mi
+    cpu: 700m
+    memory: 1.0Gi
   requests:
-    cpu: 384m
+    cpu: 300m
     memory: 768Mi
 affinity:
    podsSpanNodes: true
@@ -227,7 +227,7 @@ environmentVariables:
   - name: BOOK_POOL_SIZE
     value: "40"
   - name: BOOK_TIMEOUT
-    value: "15"
+    value: "30"
 
   - name: CALENDAR_ENV
     value: PROD
@@ -239,9 +239,9 @@ environmentVariables:
   - name: CANVAS_ENV
     value: PROD
   - name: CANVAS_TIMEOUT
-    value: "60"
+    value: "15"
   - name: CANVAS_POOL_SIZE
-    value: "25"
+    value: "30"
 
   - name: CODA_ENV
     value: PROD
@@ -281,7 +281,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "10"
+    value: "15"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "25"
 
@@ -318,7 +318,7 @@ environmentVariables:
   - name: LIBCURRICS_POOL_SIZE
     value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD

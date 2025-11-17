@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "lighthouse": "lhci collect"
+  },
   "dependencies": {
     "@babel/core": "7.28.0",
     "@babel/preset-env": "7.28.0",
@@ -8,7 +11,7 @@
     "@fortawesome/vue-fontawesome": "2.0.2",
     "@popperjs/core": "^2.9.3",
     "autoprefixer": "10.3.1",
-    "axios": "0.21.2",
+    "axios": "0.30.2",
     "babel-loader": "8.2.2",
     "bootstrap": "5.1.0",
     "browserslist": "4.16.6",
@@ -21,7 +24,7 @@
     "less": "4.1.1",
     "less-loader": "10.0.0",
     "mini-css-extract-plugin": "2.1.0",
-    "postcss": "8.3.5",
+    "postcss": "8.4.31",
     "postcss-loader": "6.1.1",
     "sass": "1.35.2",
     "sass-loader": "12.1.0",
@@ -43,11 +46,13 @@
     "@cypress/code-coverage": "3.9.7",
     "@cypress/vue": "^2.2.3",
     "@cypress/webpack-dev-server": "1.4.0",
+    "@lhci/cli": "^0.15.1",
     "@vue/test-utils": "1.2.1",
     "babel-plugin-istanbul": "6.0.0",
     "coveralls": "3.1.0",
     "css.escape": "1.5.1",
     "cypress": "7.7.0",
+    "dotenv": "^17.2.2",
     "eslint": "7.32.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "7.2.0",

@@ -42,7 +42,8 @@ def log_err(logger, timer, exc_info):
     """
     logger.error(
         {**get_userids(),
-         **{'err': exc_info.format_exc(chain=False).splitlines(),
+         **{'Msg': timer.get_message(),
+            'Err': exc_info.format_exc(chain=False).splitlines(),
             'Time': "{} seconds".format(timer.get_elapsed())}})
 
 

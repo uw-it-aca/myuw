@@ -5,8 +5,7 @@ import os
 from setuptools import setup
 
 README = """
-See the README on `GitHub
-<https://github.com/uw-it-aca/myuw>`_.
+See the README on `GitHub <https://github.com/uw-it-aca/myuw>`_.
 """
 
 # The VERSION file is created by travis-ci, based on the tag name
@@ -22,17 +21,17 @@ setup(
     name='MyUW',
     version=VERSION,
     packages=['myuw'],
-    author="UW-IT T&LS",
-    author_email="aca-it@uw.edu",
+    author="UW-IT Student & Educational Technology Services",
+    author_email='aca-it@uw.edu',
     include_package_data=True,
     install_requires=[
-        'Django~=4.2',
+        'Django~=5.2',
         'ordereddict',
         'beautifulsoup4',
         'urllib3',
-        'uw-memcached-clients~=1.0',
+        'uw-memcached-clients~=1.1',
         'UW-Django-SAML2~=1.8',
-        'django-userservice~=3.1',
+        'django-userservice~=3.2',
         'aws-message-client~=1.6',
         'UW-RestClients-Core~=1.4',
         'UW-RestClients-Bookstore~=1.4',
@@ -44,25 +43,24 @@ setup(
         'UW-RestClients-HFS~=1.0',
         'UW-RestClients-IASystem~=1.1',
         'UW-RestClients-Libraries~=1.3',
-        'UW-RestClients-Mailman~=2.0',
-        'UW-RestClients-MyPlan~=1.2',
+        'UW-RestClients-Mailman~=2.1',
+        'UW-RestClients-MyPlan~=1.3',
         'UW-RestClients-PWS~=2.1',
         'UW-RestClients-SWS~=2.4',
         'UW-RestClients-Sdbmyuw~=1.0',
         'UW-RestClients-Space~=1.2',
         'UW-RestClients-Trumba~=1.4',
-        'UW-RestClients-UPass~=3.0',
+        'UW-RestClients-UPass~=3.1',
         'UW-RestClients-UWNetID~=1.1',
-        'Uw-Django-Oidc<1.0',
+        'Uw-Django-Oidc~=1.0',
         'Django-SupportTools~=3.6',
         'Django-Persistent-Message~=1.3',
         'UW-RestClients-Django-Utils~=2.3',
         'Django-Safe-EmailBackend~=1.2',
         'django_client_logger~=3.1',
         'UW-HX-Toolkit~=2.7',
-        'django-blti~=2.2',
-        'lxml<5',
-        'xmlsec==1.3.13',
+        'lxml==5.3.1',
+        'xmlsec==1.3.14',
         'nh3',
         'pyyaml',
         'ua-parser',

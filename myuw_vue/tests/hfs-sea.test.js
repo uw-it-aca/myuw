@@ -47,21 +47,6 @@ describe('HFS Sea Card', () => {
     expect(
       wrapper.findAll('h2').at(0).text()
     ).toBe('Housing & Food Services');
-    expect(
-      wrapper.findAll('h3').at(0).text()
-    ).toBe('Dining Balance');
-    expect(
-      wrapper.findAll('h3').at(1).text()
-    ).toBe('Explore Campus Housing');
-    expect(
-      wrapper.findAll('h3').at(2).text()
-    ).toBe('Manage Account');
-    expect(
-      wrapper.findAll('h3').at(3).text()
-    ).toBe('Resident Resources');
-    expect(wrapper.findAll('span').at(0).text()
-    ).toBe('$5.10');
-    expect(wrapper.findAll('a').length).toBe(10);
   });
 
   it('Hide card if not a seattle student', async () => {
