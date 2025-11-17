@@ -28,9 +28,8 @@ class MyUWRestSearchView(RestSearchView):
                 url = "uw/iacourse_status.json?regid={}".format(
                     get_regid(get_input_value(request.POST, "uwregid")))
             else:
-                url = "uw/json_utf8_202007.ubs"
                 url = "{}?quarter={}&sln1={}&returnlink=t".format(
-                    "uw/json_utf8_202007.ubs",
+                    "uw/json_utf8_202507.ubs",
                     get_input_value(request.POST, "quarter"),
                     get_input_value(request.POST, "sln1"))
         elif service == "canvas":
@@ -111,12 +110,12 @@ class MyUWRestSearchView(RestSearchView):
                 url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
 
         elif service == "uwnetid":
-            if "password" == url:
-                url = "nws/v1/uwnetid/{}/password".format(
-                    get_input_value(request.POST, "uwnetid"))
-            elif "subscription" == url:
-                url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
-                    get_input_value(request.POST, "uwnetid"))
+            res = get_input_value(request.POST, "res")
+            netid = get_input_value(request.POST, "uwnetid")
+            if "password" == res:
+                url = f"nws/v1/uwnetid/{netid}/password"
+            elif "subscription" == res:
+                url = f"nws/v1/uwnetid/{netid}/subscription/60,64,105"
         else:
             service, url, params = super().get_proxy_url(request, service, url)
 

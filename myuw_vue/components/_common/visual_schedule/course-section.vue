@@ -188,7 +188,7 @@ export default {
           'latitude' in this.meetingData.meeting &&
           'longitude' in this.meetingData.meeting
       ) {
-        return `http://maps.google.com/maps?q=${
+        return `https://maps.google.com/maps?q=${
           this.meetingData.meeting.latitude
         },${this.meetingData.meeting.longitude}+(${
           this.meetingData.meeting.building

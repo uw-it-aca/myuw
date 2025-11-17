@@ -6,7 +6,7 @@ import traceback
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
-from restclients_core.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException, InvalidNetID
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
@@ -16,8 +16,9 @@ from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.persistent_messages import BannerMessage
+from myuw.dao.pws import is_student
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_updated_user, not_existing_user
+from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -38,7 +39,6 @@ logger = logging.getLogger(__name__)
 def page(request,
          template,
          context=None,
-         prefetch=True,
          add_quicklink_context=False):
     if context is None:
         context = {}
@@ -46,8 +46,11 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
+    except InvalidNetID as er:
+        log_exception(logger, f"get_updated_user: {er}", traceback)
+        return render(request, '403.html', status=403)
     except DataFailureException as ex:
-        log_exception(logger, "PWS error", traceback)
+        log_exception(logger, f"get_updated_user {ex}", traceback)
         if ex.status == 404:
             return render(request, '403.html', status=403)
         return render(request, '500.html', status=500)
@@ -55,8 +58,8 @@ def page(request,
     try:
         if not can_access_myuw(request):
             return no_access()
-    except DataFailureException:
-        log_exception(logger, "GWS error", traceback)
+    except DataFailureException as err:
+        log_exception(logger, f"can_access_myuw {err}", traceback)
         return render(request, '500.html', status=500)
 
     netid = user.uwnetid
@@ -65,15 +68,12 @@ def page(request,
         "isHybrid": is_native(request),
     }
 
-    if prefetch:
-        # Some pages need to prefetch before this point
-        failure = try_prefetch(request, template, context)
-        if failure:
-            return failure
+    prefetch(request)
 
     try:
         affiliations = get_all_affiliations(request)
-    except BlockedNetidErr:
+    except BlockedNetidErr as ex:
+        log_exception(logger, f"get_all_affiliations {ex}", traceback)
         return render(request, '400.html', status=400)
     except DataFailureException:
         log_exception(logger, "Failed to get_all_affiliations", traceback)
@@ -118,19 +118,21 @@ def page(request,
     return render(request, template, context)
 
 
-def try_prefetch(request, template, context):
+def prefetch(request):
     try:
-        prefetch_resources(request,
-                           prefetch_migration_preference=True,
-                           prefetch_enrollment=True,
-                           prefetch_group=True,
-                           prefetch_instructor=True,
-                           prefetch_sws_person=True)
-    except DataFailureException:
-        log_exception(logger, "prefetch error", traceback)
-        context["webservice_outage"] = True
-        return render(request, template, context)
-    return
+        prefetch_resources(
+            request,
+            prefetch_migration_preference=True,
+            prefetch_enrollment=(True if is_student(request) else False),
+            prefetch_group=True,
+            prefetch_instructor=True,
+            prefetch_sws_person=(True if is_student(request) else False)
+        )
+    except DataFailureException as ex:
+        log_exception(logger, f"prefetch_resources {ex}", traceback)
+        # This ex should not block the page initial loading as it is
+        # unclear at this point what impact this error will make to the
+        # content panel referencing it down the line.
 
 
 @login_required

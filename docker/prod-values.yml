@@ -1,14 +1,14 @@
 autoscaling:
   enabled: true
-  minReplicas: 30
-  maxReplicas: 200
-targetAverageUtilization: 100
+  minReplicas: 4
+  maxReplicas: 180
+targetAverageUtilization: 90
 resources:
   limits:
-    cpu: 1.0
-    memory: 1152Mi
+    cpu: 700m
+    memory: 1.0Gi
   requests:
-    cpu: 384m
+    cpu: 300m
     memory: 768Mi
 affinity:
    podsSpanNodes: true
@@ -70,6 +70,9 @@ database:
   secretName: my.uw.edu-sql-secrets
 repo: myuw
 instance: prod
+namespace:
+  enabled: true
+
 memcached:
   enabled: true
   replicaCount: 4
@@ -224,7 +227,7 @@ environmentVariables:
   - name: BOOK_POOL_SIZE
     value: "40"
   - name: BOOK_TIMEOUT
-    value: "15"
+    value: "30"
 
   - name: CALENDAR_ENV
     value: PROD
@@ -236,9 +239,9 @@ environmentVariables:
   - name: CANVAS_ENV
     value: PROD
   - name: CANVAS_TIMEOUT
-    value: "60"
+    value: "15"
   - name: CANVAS_POOL_SIZE
-    value: "25"
+    value: "30"
 
   - name: CODA_ENV
     value: PROD
@@ -257,9 +260,9 @@ environmentVariables:
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
-    value: "15"
+    value: "30"
   - name: GRADEPAGE_TIMEOUT
-    value: "10"
+    value: "15"
 
   - name: GWS_ENV
     value: PROD
@@ -278,7 +281,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "10"
+    value: "15"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "25"
 
@@ -315,7 +318,7 @@ environmentVariables:
   - name: LIBCURRICS_POOL_SIZE
     value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD
@@ -329,7 +332,7 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "30"
   - name: MAILMAN_POOL_SIZE
-    value: "15"
+    value: "30"
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
@@ -343,23 +346,23 @@ environmentVariables:
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "7"
+    value: "10"
   - name: PWS_POOL_SIZE
-    value: "50"
+    value: "80"
 
   - name: SDBMYUW_ENV
     value: PROD
   - name: SDBMYUW_POOL_SIZE
-    value: "30"
+    value: "20"
   - name: SDBMYUW_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
     value: "10"
   - name: SWS_POOL_SIZE
-    value: "60"
+    value: "80"
 
   - name: SPACE_ENV
     value: PROD

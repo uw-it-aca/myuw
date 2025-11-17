@@ -25,7 +25,7 @@
               Current Major
             </h3>
             <div class="myuw-text-md">
-              <cur_majors :term-majors="termMajors"></cur_majors>
+              <major-list :term-majors="termMajors"></major-list>
             </div>
             <div v-if="hasRegHolds">
               <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1 mt-4">
@@ -75,7 +75,7 @@
           <ul v-else class="list-style myuw-text-md">
             <li v-if="seattle">
               <a
-                href="http://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
+                href="https://www.washington.edu/uaa/advising/degree-overview/majors/list-of-undergraduate-majors/"
               >Explore the major</a>
               – Learn how to declare or apply.
             </li>
@@ -87,7 +87,7 @@
             </li>
             <li>
               <a v-if="seattle"
-                href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+                href="https://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
               >Meet with a major adviser</a>
               <a v-if="tacoma"
                 href="https://www.tacoma.uw.edu/gaa"
@@ -145,7 +145,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
-import CurMajors from '../../_common/cur_major.vue';
+import CurMajors from '../../_common/major/cur-fut-majors.vue';
 import MajorInfoSea from './major-sea.vue';
 import MajorInfoBot from './major-bot.vue';
 import MajorInfoTac from './major-tac.vue';
@@ -154,7 +154,7 @@ export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
-    'cur_majors': CurMajors,
+    'major-list': CurMajors,
     'major-sea': MajorInfoSea,
     'major-bot': MajorInfoBot,
     'major-tac': MajorInfoTac,
@@ -229,8 +229,7 @@ export default {
     reviewOptionsUrl () {
       return (this.tacoma ?
         "https://www.tacoma.uw.edu/registrar/academic-policies#permalink-16061"
-        : this.bothell ?
-          "https://www.uwb.edu/premajor/academic-advising/petitions"
+        : this.bothell ? "https://www.uwb.edu/premajor/resources/petitions"
           : "https://advising.uw.edu/academic-support/satisfactory-progress/"
       );
     },

@@ -13,7 +13,6 @@ from uw_sws.exceptions import (
     InvalidCanvasIndependentStudyCourse, InvalidCanvasSection)
 from myuw.dao import log_err
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.term import get_comparison_datetime
 
 logger = logging.getLogger(__name__)
 canvas_enrollments = Enrollments()
@@ -86,25 +85,25 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             section.primary_section_label())
 
 
-def get_canvas_course_from_section(sws_section):
+def get_canvas_course_from_section(sws_section, uwnetid):
     try:
         return Courses().get_course_by_sis_id(
             sws_section.canvas_course_sis_id())
     except DataFailureException as err:
-        if err.status == 404:
-            return None
-        raise ValueError
+        label = sws_section.section_label()
+        logger.error(
+            f"get_canvas_course_from_section({label}, {uwnetid}) ==> {err}" +
+            traceback.format_exc(chain=False).splitlines()
+        )
+    return None
 
 
 def get_canvas_course_url(sws_section, person):
     if sws_section.is_independent_study:
         sws_section.independent_study_instructor_regid = person.uwregid
-    try:
-        canvas_course = get_canvas_course_from_section(sws_section)
-    except ValueError:
-        return "error"
-    if canvas_course:
-        return canvas_course.course_url
+    canvas_course = get_canvas_course_from_section(
+        sws_section, person.uwnetid)
+    return canvas_course.course_url if canvas_course else None
 
 
 def sws_section_label(sis_id):

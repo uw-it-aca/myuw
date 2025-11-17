@@ -67,7 +67,7 @@ class RestSearchViewTest(MyuwApiTest):
             "sln1": "123", "quarter": "spring", "returnlink": "t"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
-            "/restclients/view/book/uw/json_utf8_202007.ubs%3F"
+            "/restclients/view/book/uw/json_utf8_202507.ubs%3F"
             "quarter=spring&sln1=123&returnlink=t"))
 
         # myplan
@@ -118,15 +118,21 @@ class RestSearchViewTest(MyuwApiTest):
             "section_id=A&year=2013&instructor_id=123456782&student_id="))
 
         # uwnetid
-        url = reverse("myuw_rest_search", args=["uwnetid", "password"])
-        response = self.client.post(url, {"uwnetid": "javerage"})
+        url = reverse("myuw_rest_search", args=["uwnetid", "index"])
+        response = self.client.post(url, {
+            "uwnetid": "javerage",
+            "res": "password",
+            "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
             "/restclients/view/uwnetid/nws/v1/uwnetid/javerage/password")
 
-        url = reverse("myuw_rest_search", args=["uwnetid", "subscription"])
-        response = self.client.post(url, {"uwnetid": "javerage"})
+        url = reverse("myuw_rest_search", args=["uwnetid", "index"])
+        response = self.client.post(url, {
+            "uwnetid": "javerage",
+            "res": "subscription",
+            "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,

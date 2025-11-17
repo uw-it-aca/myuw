@@ -2,72 +2,51 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
-from myuw.models import VisitedLinkNew, CustomLink, PopularLink, User
+from myuw.models import (
+  HiddenLink, VisitedLinkNew, CustomLink, User)
 from myuw.test import get_request_with_user
 from myuw.dao.user import get_user_model
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.quicklinks import (
     get_quicklink_data, get_link_label,
     add_custom_link, delete_custom_link, edit_custom_link,
-    add_hidden_link, delete_hidden_link, get_popular_link_by_id,
-    get_recent_link_by_id)
+    add_hidden_link, delete_hidden_link, get_recent_link_by_id)
 
 from myuw.test import get_request_with_user
 
 
 class TestQuickLinkDAO(TransactionTestCase):
 
-    def test_recent_filtering(self):
-        def _get_recent(data):
-            recent = set()
-            for link in data['recent_links']:
-                recent.add(link['url'])
-            return recent
-
+    def test_MUWM4955(self):
         username = 'none'
         req = get_request_with_user(username)
         user = get_user_model(req)
 
-        u1 = 'http://example.com?q=1'
-        u2 = 'http://example.com?q=2'
+        u1 = add_custom_link(
+            req, 'http://www.washington.edu/home/peopledir/',
+            link_label="UW Directory")
+        self.assertEqual(u1.url,  'http://www.washington.edu/home/peopledir/')
 
-        v1 = VisitedLinkNew.objects.create(user=user, url=u1)
+        v1 = VisitedLinkNew.objects.create(
+            user=user, url=u1.url, label=u1.label)
         self.assertTrue(get_recent_link_by_id(req, v1.pk))
 
-        v2 = VisitedLinkNew.objects.create(user=user, url=u2)
+        h1 = HiddenLink.objects.create(
+            user=user, url="https://uwnetid.washington.edu/manage/"
+        )
 
         data = get_quicklink_data(req)
-        recent = _get_recent(data)
+        self.maxDiff = None
+        self.assertEqual(len(data), 3)
+        self.assertEqual(len(data["custom_links"]), 1)
+        self.assertEqual(data["custom_links"][0]['url'], u1.url)
+        self.assertEqual(data["custom_links"][0]['label'], u1.label)
 
-        self.assertEqual(len(recent), 2)
-        self.assertTrue(u1 in recent)
-        self.assertTrue(u2 in recent)
+        self.assertEqual(len(data["default_links"]), 3)
 
-        plink = PopularLink.objects.create(url=u2)
-        self.assertTrue(get_popular_link_by_id(plink.pk))
-        self.assertIsNotNone(plink.json_data())
-        self.assertIsNotNone(str(plink))
-
-        data = get_quicklink_data(req)
-        recent = _get_recent(data)
-
-        self.assertEqual(len(recent), 1)
-        self.assertTrue(u1 in recent)
-
-        CustomLink.objects.create(user=user, url=u1)
-        data = get_quicklink_data(req)
-        recent = _get_recent(data)
-
-        self.assertEqual(len(recent), 0)
-
-        for i in range(10):
-            VisitedLinkNew.objects.create(user=user,
-                                          url="http://example.com?q=%s" % i)
-
-        data = get_quicklink_data(req)
-        recent = _get_recent(data)
-
-        self.assertEqual(len(recent), 5)
+        self.assertEqual(len(data["recent_links"]), 1)
+        self.assertEqual(data["recent_links"][0]['url'], v1.url)
+        self.assertTrue(data["recent_links"][0]['added'])
 
     def test_link_label_override(self):
         req = get_request_with_user('none')
@@ -139,16 +118,6 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEqual(link2.label, label2)
 
     def test_get_quicklink_data(self):
-        data = {
-            "affiliation": "student",
-            "url": "http://iss1.washington.edu/",
-            "label": "ISS1",
-            "campus": "seattle",
-            "pce": False,
-            "affiliation": "{intl_stud: True}",
-            }
-        plink = PopularLink.objects.create(**data)
-
         username = "jinter"
         req = get_request_with_user(username)
         affiliations = get_all_affiliations(req)
@@ -176,19 +145,32 @@ class TestQuickLinkDAO(TransactionTestCase):
         qls = get_quicklink_data(req)
         self.assertEqual(qls['recent_links'][0]['label'], "ISS1")
 
-        self.assertEqual(qls['default_links'][0]['label'],
+        self.assertEqual(qls['default_links'][11]['label'],
                          "International Student Services (ISS)")
 
     def test_bot_quicklinks(self):
         username = "botgrad"
         req = get_request_with_user(username)
         bot_qls = get_quicklink_data(req)
-        self.assertEqual(bot_qls['default_links'][0]['url'],
-                         "http://www.uwb.edu/cie")
+        self.assertEqual(
+            bot_qls["default_links"][8]["label"], "Time Schedule - Bothell")
+        self.assertEqual(
+            bot_qls["default_links"][17]["label"], "UW Bothell Libraries")
 
     def test_tac_quicklinks(self):
         username = "tacgrad"
         req = get_request_with_user(username)
         tac_qls = get_quicklink_data(req)
-        self.assertEqual(tac_qls['default_links'][0]['label'],
-                         "International Student and Scholar Services (ISSS)")
+        self.assertEqual(
+            tac_qls["default_links"][8]["label"], "Time Schedule - Tacoma")
+        self.assertEqual(
+            tac_qls["default_links"][17]["label"], "UW Tacoma Libraries")
+
+    def test_tac_inst_quicklinks(self):
+        username = "billtac"
+        req = get_request_with_user(username)
+        tac_qls = get_quicklink_data(req)
+        self.assertEqual(
+            tac_qls["default_links"][3]["label"], "Time Schedule - Tacoma")
+        self.assertEqual(
+            tac_qls["default_links"][11]["label"], "UW Tacoma Libraries")

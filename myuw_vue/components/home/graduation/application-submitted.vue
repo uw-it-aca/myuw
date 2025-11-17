@@ -184,7 +184,7 @@
                   <template #notice-body>
                     <p>
                       You can use the
-                      <a href="https://registrar.washington.edu/diploma-name/">
+                      <a href="https://registrar.washington.edu/diplomas/diploma-name//">
                         Diploma Name and Address form</a
                       >
                       to update your diploma name and mailing address until the registrar&apos;s
@@ -199,7 +199,7 @@
                     <p class="mb-0">
                       For more information about diplomas, including shipping time and CeDiplomas,
                       visit the
-                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
+                      <a href="https://registrar.washington.edu/diplomas/"
                         >Graduations and Diplomas</a
                       >
                       page.
@@ -225,7 +225,7 @@
               <li v-if="seattle && tacoma">
                 Find out how to
                 <a
-                  href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
+                  href="https://registrar.washington.edu/diplomas/degree-certification/"
                   >provide degree certification</a
                 >
                 to other parties.
@@ -346,7 +346,7 @@
         <ul class="myuw-text-md">
           <li v-if="seattle">
             <a
-              href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+              href="https://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
               >Departmental advisor</a
             >
             - graduation and academic support
@@ -431,7 +431,7 @@
               >
                 How a Professional Job is Different from Being a Student
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
@@ -449,7 +449,7 @@
               <a href="/husky_experience_message?article=preparing-professional-life">
                 Preparing for a Professional Life
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
@@ -470,7 +470,7 @@
               <a href="/husky_experience_message?article=between-college-and-career">
                 Between College and Career
               </a>
-              <br />
+              <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>

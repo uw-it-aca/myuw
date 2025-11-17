@@ -6,7 +6,7 @@
             "Label":"Spring 2013",
             "OpenForRegistration":true,
             "Year":2013},
-                "RegistrationHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20132",
+        "RegistrationHref":"https://register.uw.edu/#/sp13",
         "MyPlanHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20132",
         "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
         "PlanAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
@@ -15,6 +15,8 @@
         "CourseSearchHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/course",
         "RegisteredCoursesCount":0,
         "RegisteredSectionsCount":0,
+        "PreRegistrationComplete": true,
+        "PreRegistrationComplete": true,
         "Courses":[
             {
                 "CurriculumAbbreviation":"PHYS",

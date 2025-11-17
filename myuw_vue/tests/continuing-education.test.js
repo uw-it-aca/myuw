@@ -48,24 +48,22 @@ describe('User has no 1st class affiliation', () => {
     ).toBe('https://www.pce.uw.edu');
 
     let link2 = links.at(1);
-    expect(link2.text()).toBe('Career Accelerator Certificate Programs');
+    expect(link2.text()).toBe('Certificate Programs');
     expect(link2.attributes().href
-    ).toBe('https://www.pce.uw.edu/career-accelerator-certificates');
-
-    let link3 = links.at(2);
-    expect(link3.text()).toBe('Certificate Programs');
-    expect(link3.attributes().href
     ).toBe('https://www.pce.uw.edu/certificates');
 
-    let link4 = links.at(3);
-    expect(link4.text()).toBe('Degree Programs');
-    expect(link4.attributes().href
+    let link3 = links.at(2);
+    expect(link3.text()).toBe('Degree Programs');
+    expect(link3.attributes().href
     ).toBe('https://www.pce.uw.edu/degrees');
 
-    let link5 = links.at(4);
+    let link5 = links.at(3);
     expect(link5.text()).toBe('Courses');
     expect(link5.attributes().href
     ).toBe('https://www.pce.uw.edu/courses');
+
+    let link6 = links.at(4);
+    expect(link6.text()).toBe('Specializations');
 
   });
 });

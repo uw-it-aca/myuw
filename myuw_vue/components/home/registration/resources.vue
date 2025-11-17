@@ -1,27 +1,25 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen" class="my-4 text-center">
+    <div v-if="showComPreReg" class="mb-4 text-center">
       <uw-link-button
-        href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+        :href="registrationHref"
         class="mb-2"
       >
-        Register using SLN codes
+        Complete Pre-Registration Requirements
       </uw-link-button>
-      <div v-if="myplanRegistrationHref" class="d-inline-block">
-        <uw-link-button
-          :href="myplanRegistrationHref"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will not be able to register until you complete Pre-Registration
       </div>
-      <div v-else class="d-inline-block">
-        <uw-link-button
-          :href="`https://myplan.uw.edu/plan/#/${nextTermYear}${nextTermQuarterCode}`"
-          class="mb-2"
-        >
-          Use MyPlan to Register
-        </uw-link-button>
+    </div>
+    <div v-else-if="registrationIsOpen" class="my-4 text-center">
+      <uw-link-button
+        :href="registrationHref"
+        class="mb-2"
+      >
+        Go to Register.UW
+      </uw-link-button>
+      <div class="text-center myuw-text-sm pb-3 fst-italic">
+        You will be able to import your ready planned items from MyPlan
       </div>
       <div v-if="isC2" class="text-center myuw-text-md">
         <a
@@ -30,14 +28,17 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4 text-center">
-      <uw-link-button
-        href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
-        class="mb-2"
-      >
-        Complete Pre-Registration Requirements
-      </uw-link-button>
+    <div v-else-if="preRegCompleted" class="mb-4 text-center myuw-text-md">
+      You have completed all pre-registration requirements for
+      {{ nextTermQuarter }} {{ nextTermYear }}.
+      <div>
+          <a href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0035391"
+          >Learn about registration</a> or
+          <a title="build schedule in MyPlan" :href="myplanHref"
+          >build your schedule in MyPlan</a>
+      </div>
     </div>
+
     <div>
       <h3 class="visually-hidden">Registration resources</h3>
       <ul class="m-0 list-unstyled myuw-text-md">
@@ -50,17 +51,17 @@
           </a>
         </li>
         <li v-if="seattle" class="mb-1">
-          <a href="http://www.washington.edu/students/timeschd/">
+          <a href="https://www.washington.edu/students/timeschd/">
             Seattle Time Schedule
           </a>
         </li>
         <li v-if="tacoma" class="mb-1">
-          <a href="http://www.washington.edu/students/timeschd/T/">
+          <a href="https://www.washington.edu/students/timeschd/T/">
             Tacoma Time Schedule Browse
           </a>
         </li>
         <li v-if="tacoma" class="mb-1">
-          <a href="http://www.tacoma.uw.edu/ts-quicksearch/">
+          <a href="https://www.tacoma.uw.edu/ts-quicksearch/">
             Tacoma Time Schedule Quick Search
           </a>
         </li>
@@ -80,7 +81,7 @@
           <a :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
         <li class="mb-1">
-          <a href="http://dawgpath.uw.edu">DawgPath</a>
+          <a href="https://dawgpath.uw.edu">DawgPath</a>
         </li>
       </ul>
     </div>
@@ -132,31 +133,37 @@ export default {
       }
       return {};
     },
-    myplanRegistrationHref() {
-      return this.currentPlanData.registration_href;
+    registrationHref() {
+      // MyPlan returns quarter specific registration href
+      if (this.currentPlanData && this.currentPlanData.registration_href) {
+        return this.currentPlanData.registration_href;
+      }
+      return "https://register.uw.edu/";
     },
     degreeAuditHref() {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://myplan.uw.edu/audit/#/degree';
+      return "https://myplan.uw.edu/audit/#/degree";
     },
-    nextTermQuarterCode() {
-      if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
-        return '';
+    myplanHref() {
+      // MyPlan returns quarter specific href
+      if (this.currentPlanData && this.currentPlanData.myplan_href) {
+        return this.currentPlanData.myplan_href;
       }
-      const q = this.nextTermQuarter.toLowerCase();
-      if (q === 'winter') {
-        return 'Wi';
-      } else if (q === 'spring') {
-        return 'Sp';
-      } else if (q === 'summer') {
-        return 'Su';
-      } else if (q === 'autumn') {
-        return 'Au';
-      }
-
-      return '';
+      return "https://myplan.uw.edu/plan/";
+    },
+    preRegCompleted() {
+      // MUWM-5401
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
+        this.currentPlanData && this.currentPlanData.complete_pre_reg);
+    },
+    showComPreReg() {
+      // MUWM-5395
+      // The display window is determined by the preRegNotices
+      // and show/no-show by complete_pre_reg
+      return (this.preRegNotices && this.preRegNotices.length > 0 &&
+        this.currentPlanData && !this.currentPlanData.complete_pre_reg);
     },
   },
 };

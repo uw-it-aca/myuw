@@ -7,8 +7,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Registration
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
 from myuw.views.api.instructor_section import (
-    InstSectionDetails,
-    LTIInstSectionDetails, is_registration_to_exclude)
+    InstSectionDetails, is_registration_to_exclude)
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 
@@ -91,6 +90,9 @@ class TestInstSectDetails(MyuwApiTest):
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
             len(data['sections'][0]['grade_submission_delegates']), 1)
+        self.assertEqual(
+            data["sections"][0]["current_student_majors"][0]["major_name"],
+            "PRE MAJOR (A&S)")
 
         self.assertEqual(len(data['sections'][0]['registrations']), 2)
         self.assertEqual(
@@ -173,42 +175,3 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(len(data['sections'][0]['joint_sections']), 2)
         self.assertEqual(len(data['sections'][0]['joint_sections'][0]
                              ['registrations']), 3)
-
-
-@override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
-                   BLTI_AES_IV=b"1111111111111111")
-class TestLTIInstructorSectionDetails(MyuwLTITest):
-    def test_bill_section(self):
-        request = get_lti_request()
-        request = get_request_with_user('bill', request)
-        section_id = '2013-spring-ESS-102-A'
-        resp = LTIInstSectionDetails().get(request, section_id=section_id)
-
-        self.assertEqual(resp.status_code, 200)
-
-        data = json.loads(resp.content)
-        self.assertEqual(len(data['sections']), 2)
-        self.assertEqual(
-            data['sections'][0]['limit_estimate_enrollment'], 15)
-        self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'], 47.6536929997)
-        self.assertEqual(data['sections'][0]['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(
-            len(data['sections'][0]['grade_submission_delegates']), 1)
-
-        self.assertGreater(len(data['related_terms']), 3)
-        self.assertEqual(data['related_terms'][
-            len(data['related_terms']) - 3]['quarter'], 'Spring')
-        self.assertEqual(data['related_terms'][5]['year'], 2013)
-
-    def test_invalid_section(self):
-        request = get_lti_request()
-
-        section_id = ''
-        resp = LTIInstSectionDetails().get(request, section_id=section_id)
-        self.assertEqual(resp.status_code, 403)
-
-        section_id = '12345'
-        resp = LTIInstSectionDetails().get(request, section_id=section_id)
-        self.assertEqual(resp.status_code, 403)

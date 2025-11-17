@@ -5,24 +5,49 @@
 encapsulates the interactions with the Bookstore web service.
 """
 
+import logging
+from restclients_core.exceptions import DataFailureException
+from uw_bookstore import Textbook
 from uw_bookstore.digital_material import IACoursesStatus as Bookstore
 from myuw.dao.pws import get_regid_of_current_user
 
 bookstore = Bookstore()
+logger = logging.getLogger(__name__)
 
 
-def get_textbook_by_schedule(schedule):
+def get_textbook_json(quarter, sln_set):
     """
-    returns textbooks for a valid schedule
+    returns a dict in json format
     """
-    return bookstore.get_books_for_schedule(schedule)
+    result = bookstore.get_textbooks(quarter, sln_set)
+    json_data = {}
+    course_ids = set()
+    search_url = None
+    for sln in sln_set:
+        json_data[sln] = {}
+        value = result.get(sln)
+        if isinstance(value, Textbook):
+            json_data[sln] = value.json_data()
+            if value.course_id:
+                course_ids.add(value.course_id)
+            if not search_url:
+                search_url = value.search_url
+        elif isinstance(value, DataFailureException):
+            json_data[sln]["error"] = str(value)
+        else:
+            logger.error(f"{quarter} {sln} unexpected value: {value}")
+            json_data[sln]["error"] = f"{value}"
+
+    json_data["order_url"] = get_search_url(search_url, course_ids)
+    logger.debug(f"get_textbook_json {quarter} {sln_set} ==> {json_data}")
+    return json_data
 
 
-def get_order_url_by_schedule(schedule):
-    """
-    returns a link to the bookstore ordering page for a given schedule
-    """
-    return bookstore.get_url_for_schedule(schedule)
+def get_search_url(search_url, course_ids):
+    if search_url and course_ids:
+        query_str = ','.join(sorted(course_ids))
+        return f"{search_url}{query_str}"
+    return search_url
 
 
 def get_iacourse_status(request, term):

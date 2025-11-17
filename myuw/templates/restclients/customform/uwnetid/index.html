@@ -1,0 +1,24 @@
+<h1>UWNetID</h1>
+
+<form method="post" action="{{form_action}}">
+  {% csrf_token %}
+  <p>
+    <label for="uwnetid">UW NetID:</label>
+    <input id="uwnetid" name="uwnetid" size="20" type="text">
+  </p>
+  <p>Find any of the following:
+    <fieldset>
+      <div>
+        <input type="radio" id="res-password" name="res" value="password" />
+        <label for="res-password">Password</label>
+      </div>
+      <div>
+        <input type="radio" id="res-subscription" name="res" value="subscription" />
+        <label for="res-subscription">UW Email Forwarding</label>
+      </div>
+    </fieldset>
+  </p>
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>

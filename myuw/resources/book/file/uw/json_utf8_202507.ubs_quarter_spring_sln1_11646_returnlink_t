@@ -10,5 +10,9 @@
               "required":true,
               "notes":"required",
               "cover_image":null
-             }]
+             }],
+    ubsLink": {
+       "search": "https://ubookstore.com/pages/adoption-search/course=",
+        "course_id": "uws-arctic-200-a-123"
+    }
 }

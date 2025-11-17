@@ -104,7 +104,7 @@
       <a href="https://www.washington.edu/uaa/advising/">
         Undergraduate Advising
       </a> page and to contact a departmental or major adviser, try the
-      <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">
+      <a href="https://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">
         Departmental and Major Advising Offices
       </a> page.
     </template>

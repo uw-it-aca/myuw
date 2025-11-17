@@ -365,7 +365,7 @@
       "current": true,
       "current_student_majors": [
         {
-          "major": "PRE MAJOR (A&S)",
+          "major_name": "PRE MAJOR (A&S)",
           "percent_students": 17.77,
           "number_students": 35
         }

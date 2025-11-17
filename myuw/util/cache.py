@@ -7,7 +7,7 @@ from django.core.cache import cache
 from memcached_clients import RestclientPymemcacheClient
 import re
 
-FIVE_SECONDS = 5
+FEW_SECONDS = 10
 SEVEN_MINS = 60 * 7
 FIFTEEN_MINS = 60 * 15
 HALF_HOUR = 60 * 30
@@ -22,7 +22,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return FIFTEEN_MINS * 3
 
         if "myplan" == service:
-            return FIVE_SECONDS
+            return FEW_SECONDS
 
         if status and status != 200:
             return SEVEN_MINS
@@ -32,11 +32,10 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
             if re.match(r'^/student/v5/person/', url):
-                return ONE_HOUR
+                return HALF_HOUR
 
             if re.match(r'^/student/v5/course/', url):
-                if re.match(r'^/student/v5/course/.*/status.json$', url):
-                    return FOUR_HOURS
+                return HALF_HOUR
 
             return FIFTEEN_MINS
 
@@ -56,7 +55,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             return ONE_HOUR
 
         if "uwnetid" == service:
-            return FOUR_HOURS
+            return ONE_HOUR * 2
 
         if "mailman" == service:
             return ONE_DAY

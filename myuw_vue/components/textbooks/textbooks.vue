@@ -17,7 +17,7 @@
           <h2 class="myuw-text-lg">UW Day One Access Program</h2>
           <p>
             At least one of your enrolled courses provides you access to required digital
-            materials in Canvas, on or before the first day of class.<br />
+            materials in Canvas, on or before the first day of class.<br>
             <strong>
               To maintain access to required digital materials, you must
               <a v-out="'Make bookstore payment'" :href="iacData.bookstore_checkout_url"
@@ -49,7 +49,7 @@
           </ul>
         </div>
       </div>
-      <div v-if="bookData.teachingSections.length > 0">
+      <div v-if="bookData.hasTeachingSections">
         <h2 class="h5">Teaching</h2>
         <hr class="bg-secondary" />
         <uw-section
@@ -60,7 +60,7 @@
           instructor
         />
         <hr v-if="bookData.collapseSections" class="bg-secondary" />
-        <div v-if="bookData.enrolledSections.length > 0">
+        <div v-if="bookData.hasEnrolledSections">
           <h2 class="h5">Enrolled</h2>
           <hr class="bg-secondary" />
         </div>
@@ -73,7 +73,7 @@
         :collapsable="bookData.collapseSections"
       />
 
-      <div v-if="useBookstore" class="my-4 text-center">
+      <div v-if="hasBookListed" class="my-4 text-center">
         <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
@@ -82,7 +82,7 @@
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided courtesy of
-          <a href="http://www.bookstore.washington.edu">University Book Store</a>
+          <a href="https://www.ubookstore.com/">University Book Store</a>
           and is subject to change regularly and without notice.
         </p>
       </div>
@@ -94,7 +94,7 @@
             <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
-            An error has occurred and we can't load this content right now.
+            An error has occurred and MyUW can't load this content right now.
             Please try again later.
           </div>
         </div>
@@ -179,6 +179,9 @@ export default {
          this.isInstScheduleErrored(this.term))
       );
     },
+    bkErrorCode() {
+      return this.statusCodeTextbooks(this.term);
+    },
     isErrored() {
       return this.isTextbookErrored(this.term);
     },
@@ -189,16 +192,21 @@ export default {
       return {};
     },
     orderUrl() {
-      if (this.bookData.orderUrl) {
-        return this.bookData.orderUrl;
+      // MUWM-5420
+      let url = 'https://ubookstore.com/pages/adoption-search/';
+      if (this.bookData && this.bookData.orderUrl &&
+          this.bookData.orderUrl.length > url.length) {
+        url = this.bookData.orderUrl;
       }
-      return 'http://www.ubookstore.com/adoption-search';
+      return url;
     },
-    useBookstore() {
+    hasBookListed() {
       // MUWM-5311
       let ret = false;
       this.bookData.sections.forEach((section) => {
-        if (section.hasBooks) {
+        if (section.bookData &&
+            section.bookData.books &&
+            section.bookData.books.length > 0) {
           ret = true;
           return;
         }

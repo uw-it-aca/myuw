@@ -4,7 +4,6 @@
 from django.conf import settings
 from django import template
 from myuw.dao.enrollment import enrollment_prefetch
-from myuw.dao.library import library_resource_prefetch
 from myuw.dao.gws import group_prefetch
 from myuw.dao.instructor import is_instructor_prefetch
 from myuw.dao.pws import person_prefetch
@@ -62,9 +61,6 @@ def prefetch_resources(request,
 
     if prefetch_group:
         prefetch_methods.extend(group_prefetch())
-
-    if prefetch_library:
-        prefetch_methods.extend(library_resource_prefetch())
 
     if prefetch_canvas:
         # depends on pws.person

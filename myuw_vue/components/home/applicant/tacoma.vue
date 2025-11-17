@@ -116,7 +116,7 @@
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a v-out="'UW Tacoma Campus Tours'"
-             href="http://www.tacoma.uw.edu/admissions/visit"
+             href="https://www.tacoma.uw.edu/admissions/visit"
           >
             Plan your visit: Tacoma campus tours
           </a>
@@ -138,7 +138,7 @@
         </li>
         <li class="mb-1">
           <a v-out="'UW Tacoma Disability Resources for Students (DRS)'"
-             href="http://www.tacoma.uw.edu/drsuwt"
+             href="https://www.tacoma.uw.edu/drsuwt"
           >
             Disability Resources for Students (DRS)
           </a>
@@ -171,7 +171,7 @@
         </li>
         <li v-if="applicantData.is_international">
           <a v-out="'UW Tacoma Intl student to-do list'"
-             href="http://www.tacoma.uw.edu/iss/to-do-list"
+             href="https://www.tacoma.uw.edu/iss/to-do-list"
           >
             View the Int’l student to-do list from International Student
             and Scholar Services (ISSS)

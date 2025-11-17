@@ -41,7 +41,7 @@ describe('User is a retireee', () => {
     let link1 = links.at(0);
     expect(link1.text()).toBe('Learn more about UWRA');
     expect(link1.attributes().href
-    ).toBe('http://www.washington.edu/uwra/');
+    ).toBe('https://www.washington.edu/uwra/');
   });
 
 });

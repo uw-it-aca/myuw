@@ -4,7 +4,7 @@
     <p class="myuw-text-md">
       Use ISSS Portal to create requests, maintain your immigration record, report required
       immigration information to the U.S. government, and get critical updates about visa status.
-      <br />
+      <br>
       <uw-link-button class="mt-2 mb-1" href="https://isss.tacoma.uw.edu/">
         Go to ISSS Portal
       </uw-link-button>
@@ -35,12 +35,12 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">Academic Support</h3>
     <ul class="list-unstyled myuw-text-md mb-2">
       <li class="mb-1">
-        <a href="http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"
+        <a href="https://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"
           >Academic Writing Resources</a
         >
       </li>
       <li>
-        <a href="http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center"
+        <a href="https://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center"
           >Teaching and Learning Center</a
         >
       </li>
