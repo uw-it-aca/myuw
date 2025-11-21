@@ -188,7 +188,8 @@ def get_enrollment_status_for_section(section, section_json, is_past_term):
                 f"SectionStatus {section_label}: {status.current_enrollment}"
                 + f" of limit {status.limit_estimated_enrollment}")
             section_json["current_enrollment"] = status.current_enrollment
-            section_json["limit_estimated_enrollment"] =\
+            # MUWM-5431 estimate instead of estimated
+            section_json["limit_estimate_enrollment"] =\
                 status.limit_estimated_enrollment
 
         if (status.current_enrollment and section.sln and
