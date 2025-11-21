@@ -2,29 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 import re
 import traceback
 from myuw.dao import coda
 from myuw.views.error import handle_exception, not_instructor_error
 import logging
-from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
 from uw_gradepage.grading_status import get_grading_status
 from uw_iasystem.exceptions import TermEvalNotCreated
-from uw_sws.person import get_person_by_regid
-from uw_sws.enrollment import get_enrollment_by_regid_and_term
+from uw_sws.section_status import get_section_status_by_label
 from uw_sws.term import get_specific_term
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.campus_building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_course_url, sws_section_label
-from myuw.dao.enrollment import get_code_for_class_level
+from myuw.dao.canvas import get_canvas_course_url
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, check_section_instructor,
-    get_section_status_by_label, get_instructor_section,
-    get_active_registrations_for_section)
+    get_instructor_section, get_active_registrations_for_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.term import (
@@ -184,9 +178,8 @@ def set_course_resources(section_data, section, person,
 
 def get_enrollment_status_for_section(section, section_json, is_past_term):
     try:
-        section_label = section.section_label()
-        status = get_section_status_by_label(section_label)
-        logger.debug(f"SectionStatus {section_label}: {status}")
+        status = get_section_status_by_label(section.section_label())
+        logger.debug(f"SectionStatus {section.section_label()}: {status}")
         if is_past_term:
             # MUWM-4349, MUWM-5392, MUWM-5402
             pass
@@ -219,9 +212,8 @@ def set_indep_study_section_enrollments(section, section_json_data):
             section_json_data['current_enrollment'] = total_enrollment
         if total_enrollment == 1:
             person = registrations[0].person
-            section_json_data['enrollment_student_name'] =\
-                "{}, {}".format(person.surname.title(),
-                                person.first_name.title())
+            section_json_data['enrollment_student_name'] = (
+                f"{person.surname.title()}, {person.first_name.title()}")
     except DataFailureException as ex:
         if ex.status == 404:
             section_json_data['current_enrollment'] = 0
