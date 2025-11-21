@@ -184,7 +184,9 @@ def set_course_resources(section_data, section, person,
 
 def get_enrollment_status_for_section(section, section_json, is_past_term):
     try:
-        status = get_section_status_by_label(section.section_label())
+        section_label = section.section_label()
+        status = get_section_status_by_label(section_label)
+        logger.debug(f"SectionStatus {section_label}: {status}")
         if is_past_term:
             # MUWM-4349, MUWM-5392, MUWM-5402
             pass
