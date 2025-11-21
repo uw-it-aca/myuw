@@ -13,7 +13,6 @@ from uw_sws.registration import get_active_registrations_by_section
 from uw_sws.section import (
     get_sections_by_instructor_and_term, get_section_by_url,
     get_section_by_label)
-from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
 from myuw.dao import (
     log_err, is_using_file_dao, get_netid_of_current_user)
