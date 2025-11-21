@@ -177,13 +177,16 @@ def set_course_resources(section_data, section, person,
 
 
 def get_enrollment_status_for_section(section, section_json, is_past_term):
+    section_label = section.section_label()
     try:
-        status = get_section_status_by_label(section.section_label())
-        logger.debug(f"SectionStatus {section.section_label()}: {status}")
+        status = get_section_status_by_label(section_label)
         if is_past_term:
             # MUWM-4349, MUWM-5392, MUWM-5402
             pass
         else:
+            logger.debug(
+                f"SectionStatus {section_label}: {status.current_enrollment}"
+                + f" of limit {status.limit_estimated_enrollment}")
             section_json["current_enrollment"] = status.current_enrollment
             section_json["limit_estimated_enrollment"] =\
                 status.limit_estimated_enrollment
