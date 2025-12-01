@@ -160,6 +160,19 @@ environmentVariables:
   - name: SDBMYUW_TIMEOUT
     value: "10"
 
+
+  - name: SPS_CONTACTS_ENV
+    value: EVAL
+  - name: SPS_CONTACTS_TIMEOUT
+    value: "30"
+
+  - name: SPS_CONTACTS_AUTH_ENV
+    value: EVAL
+  - name: SPS_CONTACTS_ENV
+    value: EVAL
+  - name: SPS_CONTACTS_TIMEOUT
+    value: "20"
+
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
@@ -221,6 +234,8 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
+        - name: sps-contacts-auth-secret
+          property: sps-contacts-auth-secret
         - name: google-analytics-key
           property: google-analytics-key
         - name: google-search-key
@@ -285,6 +300,10 @@ environmentVariablesSecrets:
     name: SAFE_EMAIL_RECIPIENT
     secretName: vue.my.uw.edu-secrets
     secretKey: safe-email-recipient
+  sps-contacts-auth-secret:
+    name: SPS_CONTACTS_AUTH_SECRET
+    secretName: vue.my.uw.edu-secrets
+    secretKey: sps-contacts-auth-secret
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: vue.my.uw.edu-secrets
