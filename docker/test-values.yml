@@ -268,9 +268,7 @@ environmentVariables:
 
   - name: SPS_CONTACTS_AUTH_ENV
     value: EVAL
-  - name: SPS_CONTACTS_ENV
-    value: EVAL
-  - name: SPS_CONTACTS_TIMEOUT
+  - name: SPS_CONTACTS_AUTH_TIMEOUT
     value: "20"
 
   - name: SWS_ENV

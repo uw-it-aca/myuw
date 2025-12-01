@@ -145,10 +145,8 @@ environmentVariables:
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
-  - name: MYPLAN_ENV
-    value: PROD
-  - name: MYPLAN_TIMEOUT
-    value: "10"
+  - name: MYPLAN_AUTH_TIMEOUT
+    value: "15"
 
   - name: PWS_ENV
     value: PROD
@@ -162,15 +160,13 @@ environmentVariables:
 
 
   - name: SPS_CONTACTS_ENV
-    value: EVAL
+    value: PROD
   - name: SPS_CONTACTS_TIMEOUT
     value: "30"
 
   - name: SPS_CONTACTS_AUTH_ENV
-    value: EVAL
-  - name: SPS_CONTACTS_ENV
-    value: EVAL
-  - name: SPS_CONTACTS_TIMEOUT
+    value: PROD
+  - name: SPS_CONTACTS_AUTH_TIMEOUT
     value: "20"
 
   - name: SWS_ENV
