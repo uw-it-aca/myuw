@@ -10,10 +10,10 @@ from myuw.dao.pws import (
 
 
 logger = logging.getLogger(__name__)
-stud_eme_contact = EmergencyContacts()
+stud_emergency_contact = EmergencyContacts()
 
 
-def get_eme_contacts(request):
+def get_emergency_contacts(request):
     if is_using_file_dao:
         netid = get_netid_of_current_user(request)
         if netid == 'jerror':
@@ -23,14 +23,17 @@ def get_eme_contacts(request):
 
     json_values = []
     system_key = get_student_system_key_of_current_user(request)
-    if system_key is not None:
-        values = stud_eme_contact.get_contacts(
+    if system_key:
+        values = stud_emergency_contact.get_contacts(
             get_student_system_key_of_current_user(request))
 
         for contact in values:
             json_values.append(contact.json_data())
     else:
         logger.error(
-            {**get_userids(request),
-             **{'msg': "Missing Student System Key"}})
+            {
+                **get_userids(request),
+                **{"msg": "get_emergency_contacts missing System Key"},
+            }
+        )
     return json_values
