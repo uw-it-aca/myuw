@@ -15,11 +15,12 @@ class TestApplications(TestCase):
         )
         self.assertEqual(len(applications), 3)
 
+        self.assertEqual(
+            get_applications(get_request_with_user("none")),
+            []
+        )
+
     def test_get_error_case(self):
         self.assertRaises(DataFailureException,
                           get_applications,
                           get_request_with_user('jerror'))
-
-        self.assertRaises(DataFailureException,
-                          get_applications,
-                          get_request_with_user('none'))

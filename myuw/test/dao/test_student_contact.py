@@ -10,20 +10,19 @@ from myuw.test import get_request_with_user
 class TestStudEmeContacts(TestCase):
 
     def test_get_normal_case(self):
+        self.assertEqual(
+            get_emergency_contacts(get_request_with_user("none")), [])
+
         eme_contacts = get_emergency_contacts(
             get_request_with_user('javerage')
         )
         self.assertEqual(len(eme_contacts), 1)
 
         eme_contacts = get_emergency_contacts(
-            get_request_with_user("jintel"))
+            get_request_with_user("eight"))
         self.assertEqual(len(eme_contacts), 2)
 
     def test_get_error_case(self):
         self.assertRaises(DataFailureException,
                           get_emergency_contacts,
                           get_request_with_user('jerror'))
-
-        self.assertRaises(DataFailureException,
-                          get_emergency_contacts,
-                          get_request_with_user('none'))
