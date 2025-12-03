@@ -24,9 +24,7 @@ def get_emergency_contacts(request):
     json_values = []
     system_key = get_student_system_key_of_current_user(request)
     if system_key:
-        values = stud_emergency_contact.get_contacts(
-            get_student_system_key_of_current_user(request))
-
+        values = stud_emergency_contact.get_contacts(system_key)
         for contact in values:
             json_values.append(contact.json_data())
     else:
