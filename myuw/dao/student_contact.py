@@ -14,7 +14,7 @@ stud_emergency_contact = EmergencyContacts()
 
 
 def get_emergency_contacts(request):
-    if is_using_file_dao:
+    if is_using_file_dao():
         netid = get_netid_of_current_user(request)
         if netid == 'jerror':
             raise DataFailureException(
