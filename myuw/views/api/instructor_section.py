@@ -14,7 +14,6 @@ from myuw.views.error import (
     handle_exception, not_instructor_error)
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.person import get_person_by_regid
-from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import (
     get_instructor_section, check_section_instructor)
