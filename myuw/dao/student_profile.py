@@ -14,6 +14,7 @@ from myuw.dao.degree import get_degrees_json
 from myuw.dao.enrollment import (
     get_main_campus, get_latest_class_level, get_enrollments_of_terms)
 from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.student_contact import get_emergency_contacts
 from myuw.dao.term import get_current_and_next_quarters
 
 
@@ -54,6 +55,9 @@ def get_student_profile(request):
         response['campus'] = 'Tacoma'
     elif 'Bothell' in campuses:
         response['campus'] = 'Bothell'
+
+    # MUWM-5452
+    response['emergency_contacts'] = get_student_emergency_contacts(request)
 
     get_academic_info(request, response)
 
@@ -184,3 +188,11 @@ def _get_residency_change(terms, enrollments, current_resident_code):
                     "term": {"year": term.year, "quarter": term.quarter}
                 }
     return None
+
+def get_student_emergency_contacts(request):
+    # MUWM-5452
+    try:
+        return get_emergency_contacts(request)
+    except Exception:
+        log_err(logger, "get_student_emergency_contacts", traceback, request)
+        return None
