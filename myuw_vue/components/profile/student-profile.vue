@@ -167,7 +167,14 @@
           <a v-out="'Edit emergecy contacts'"
             href="https://student-personal.my.uw.edu/emergency"
             title="Go to Emergency Contacts website"
-          >Edit emergecy contacts</a>
+          >
+            <span v-if="!primaryEmergencyContact && !secondaryEmergencyContact">
+              Add emergency contacts
+            </span>
+            <span v-else>
+              Edit emergecy contacts
+            </span>
+          </a>
         </uw-card-property>
       </uw-card-property-group>
 
