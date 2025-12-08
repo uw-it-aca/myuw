@@ -114,11 +114,11 @@
       <uw-card-property-group>
         <uw-card-property title="Primary Emergency Contact">
           <div v-if="!primaryEmergencyContact"class="text-muted">
-            No contact added
+            No contact information added
           </div>
           <div v-else>
-            <div v-if="primaryEmergencyContact.name"
-              v-text="primaryEmergencyContact.name">
+            <div v-if="primaryEmergencyContact.name">
+              {{ titleCaseName(primaryEmergencyContact.name) }}
             </div>
             <div v-if="primaryEmergencyContact.phone_number"
               v-text="primaryEmergencyContact.phone_number">
@@ -139,7 +139,7 @@
         </uw-card-property>
         <uw-card-property title="Secondary Emergency Contact">
           <div v-if="!secondaryEmergencyContact" class="text-muted">
-            No contact added
+            No contact information added
           </div>
           <div v-else>
             <div v-if="secondaryEmergencyContact.name"
