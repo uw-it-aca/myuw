@@ -124,7 +124,7 @@
               v-text="primaryEmergencyContact.phone_number">
             </div>
             <div v-else class="text-muted">
-              v-text="No phone number added>
+              No phone number added
             </div>
             <div v-if="primaryEmergencyContact.email"
               v-text="primaryEmergencyContact.email">
@@ -133,7 +133,7 @@
               v-text="primaryEmergencyContact.relationship">
             </div>
             <div v-else class="text-muted">
-              v-text="No relationship added">
+              No relationship added
             </div>
           </div>
         </uw-card-property>
@@ -149,7 +149,7 @@
               v-text="secondaryEmergencyContact.phone_number">
             </div>
             <div v-else class="text-muted">
-              v-text="No phone number added>
+              No phone number added
             </div>
             <div v-if="secondaryEmergencyContact.email"
               v-text="secondaryEmergencyContact.email">
@@ -158,12 +158,12 @@
               v-text="secondaryEmergencyContact.relationship">
             </div>
             <div v-else class="text-muted">
-              v-text="No relationship added">
+              No relationship added
             </div>
           </div>
         </uw-card-property>
         <uw-card-property title="">
-          Please ensure that you at least have an up-to-date primary emergency contact.
+          Please ensure that you at least have an up-to-date primary emergency contact.<br />
           <a v-out="'Edit emergecy contacts'"
             href="https://student-personal.my.uw.edu/emergency"
             title="Go to Emergency Contacts website"
