@@ -113,7 +113,7 @@
 
       <uw-card-property-group>
         <uw-card-property title="Primary Emergency Contact">
-          <div v-if="!primaryEmergencyContact"class="text-muted">
+          <div v-if="!primaryEmergencyContact" class="text-muted">
             No contact information added
           </div>
           <div v-else>
