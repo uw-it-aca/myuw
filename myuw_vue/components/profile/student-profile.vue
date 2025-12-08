@@ -165,15 +165,11 @@
         <uw-card-property title="">
           Please ensure that you at least have an up-to-date primary emergency contact.<br />
           <a v-out="'Edit emergecy contacts'"
-            href="https://student-personal.my.uw.edu/emergency"
+            :href="emergencyContactsUrl"
             title="Go to Emergency Contacts website"
           >
-            <span v-if="!primaryEmergencyContact && !secondaryEmergencyContact">
-              Add emergency contacts
-            </span>
-            <span v-else>
-              Edit emergecy contacts
-            </span>
+            <span v-if="!primaryEmergencyContact && !secondaryEmergencyContact">Add</span>
+            <span v-else>Edit</span> emergency contacts
           </a>
         </uw-card-property>
       </uw-card-property-group>
@@ -292,6 +288,13 @@ export default {
         this.emergencyContacts && this.emergencyContacts.length > 1 ?
         this.emergencyContacts[1] : null
       );
+    },
+    emergencyContactsUrl() {
+      const hostname = window.location.hostname;
+      return (hostname.includes("test") || hostname.includes("local")
+       ? "https://test-personal.my.uw.edu/emergency"
+       : "https://student-personal.my.uw.edu/emergency"
+       );
     },
   },
   created() {
