@@ -142,8 +142,8 @@
             No contact information added
           </div>
           <div v-else>
-            <div v-if="secondaryEmergencyContact.name"
-              v-text="secondaryEmergencyContact.name">
+            <div v-if="secondaryEmergencyContact.name">
+              {{ titleCaseName(secondaryEmergencyContact.name) }}
             </div>
             <div v-if="secondaryEmergencyContact.phone_number"
               v-text="secondaryEmergencyContact.phone_number">
@@ -164,7 +164,7 @@
         </uw-card-property>
         <uw-card-property title="">
           Please ensure that you at least have an up-to-date primary emergency contact.<br />
-          <a v-out="'Edit emergecy contacts'"
+          <a v-out="'Edit Emergency contacts'"
             :href="emergencyContactsUrl"
             title="Go to Emergency Contacts website"
           >
