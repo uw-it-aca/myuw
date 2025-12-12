@@ -80,7 +80,7 @@ class Command(BaseCommand):
                         writer.writerow(
                             [
                                 f"{fac.name} ({fac.code})",
-                                (f"`https://maps.google.com/maps?q={bname}@" +
+                                (f"https://maps.google.com/maps?q={bname}@" +
                                     f"{fac.latitude},{fac.longitude}&z=18"),
                                 f"\"{fac.latitude},{fac.longitude}\""
                             ])
