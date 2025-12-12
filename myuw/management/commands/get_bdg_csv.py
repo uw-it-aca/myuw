@@ -1,7 +1,7 @@
 # Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-
+import html
 import logging
 import csv
 import os
@@ -62,6 +62,7 @@ def get_building_data():
             logger.error(f"{ex} with name in line: {line}")
     return buildings
 
+
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
@@ -69,15 +70,17 @@ class Command(BaseCommand):
         if building_data and len(building_data) > 0:
             try:
                 with open(
-                    "./upd_buildings.csv", "w", newline="", encoding="utf-8") as f:
+                    "./upd_buildings.csv", "w", newline="", encoding="utf-8"
+                ) as f:
                     writer = csv.writer(f)
-                    writer.writerow(["Campus location Name", "Map link", "Address"])
-            
+                    writer.writerow(
+                        ["Campus location Name", "Map link", "Address"])
                     for fac in building_data:
+                        bname = html.escape(fac.name)
                         writer.writerow(
                             [
                                 f"{fac.name} ({fac.code})",
-                                (f"`https://maps.google.com/maps?q=" +
+                                (f"`https://maps.google.com/maps?q={bname}@" +
                                     f"{fac.latitude},{fac.longitude}&z=18"),
                                 f"\"{fac.latitude},{fac.longitude}\""
                             ])
