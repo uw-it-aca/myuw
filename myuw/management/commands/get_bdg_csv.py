@@ -68,6 +68,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         building_data = get_building_data()
         if building_data and len(building_data) > 0:
+            logger.info(f"Found {len(building_data)} buildings")
             try:
                 with open(
                     "./upd_buildings.csv", "w", newline="", encoding="utf-8"
@@ -81,7 +82,7 @@ class Command(BaseCommand):
                             [
                                 f"{fac.name} ({fac.code})",
                                 (f"\"https://maps.google.com/maps?q={bname}@" +
-                                    f"{fac.latitude},{fac.longitude}&z=18\""),
+                                    f"{fac.latitude},{fac.longitude}&t=k&z=18\""),
                                 f"\"{fac.latitude},{fac.longitude}\""
                             ])
             except Exception as ex:
