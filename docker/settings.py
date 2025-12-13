@@ -211,7 +211,8 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
+            'level': 'INFO'
+            # if os.getenv('ENV', 'test') == 'prod' else 'DEBUG'
         }
     }
 }
