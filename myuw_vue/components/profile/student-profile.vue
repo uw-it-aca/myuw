@@ -142,8 +142,8 @@
             No contact information added
           </div>
           <div v-else>
-            <div v-if="secondaryEmergencyContact.name">
-              {{ titleCaseName(secondaryEmergencyContact.name) }}
+            <div v-if="secondaryEmergencyContact.name"
+              v-text="secondaryEmergencyContact.name">
             </div>
             <div v-if="secondaryEmergencyContact.phone_number"
               v-text="secondaryEmergencyContact.phone_number">
@@ -164,7 +164,7 @@
         </uw-card-property>
         <uw-card-property title="">
           Please ensure that you at least have an up-to-date primary emergency contact.<br />
-          <a v-out="'Edit Emergency contacts'"
+          <a v-out="'Edit emergecy contacts'"
             :href="emergencyContactsUrl"
             title="Go to Emergency Contacts website"
           >
@@ -291,7 +291,7 @@ export default {
     },
     emergencyContactsUrl() {
       const hostname = window.location.hostname;
-      return (hostname.includes("test") || hostname.includes("local")
+      return (hostname && (hostname.includes("test") || hostname.includes("local"))
        ? "https://test-personal.my.uw.edu/emergency"
        : "https://student-personal.my.uw.edu/emergency"
        );
