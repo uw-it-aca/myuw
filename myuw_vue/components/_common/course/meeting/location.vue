@@ -67,7 +67,7 @@ export default {
     locationUrl() {
       return `https://maps.google.com/maps?q=${this.meeting.latitude},${
         this.meeting.longitude
-        }+(${this.encodeForMaps(this.meeting.building)})&z=18`;
+        }+(${this.encodeForMaps(this.meeting.building)})&t=k&z=18`;
     },
   },
 };

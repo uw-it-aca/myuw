@@ -93,7 +93,7 @@ Employment,Employment Resources,all,,,https://careers.uw.edu/,Career & Internshi
 Employment,Employment Resources,all,https://wd5.myworkday.com/uw/d/home.htmld,Workday,,,,,,,no
 Employment,Employment Resources,all,https://careers.uw.edu/jobs,Career & Internship Center - Job Postings,,,,,,,no
 Employment,Employment Resources,all,https://uw.joinhandshake.com/,Handshake,,,,,,,no
-Employment,Employment Resources,all,https://www.lib.washington.edu/about/employment/students,Student Employment in the Libraries,,,,,,,no
+Employment,Employment Resources,all,https://lib.uw.edu/about/employment/students/,Student Employment in the Libraries,,,,,,,no
 Employment,Employment Resources,all,https://isc.uw.edu,Integrated Service Center (ISC),,,,,,,no
 Employment,Employment Resources,all,https://hr.uw.edu/jobs/,Employment at UW,,,,,,,no
 Events and Activities,Events,all,,,https://www.washington.edu/calendar/,Campus Event Calendar,https://www.uwb.edu/calendar,Campus Event Calendar,https://www.tacoma.uw.edu/home/events-calendar,Campus Event Calendar,no
@@ -127,18 +127,18 @@ Events and Activities,Student Clubs and Organizations,all,,,https://hub.washingt
 "Health, Wellness, & Support",Resource Centers,all,https://grad.uw.edu/diversity/go-map/,Graduate Opportunities and Minority Achievement Program (GO-MAP),,,,,,,no
 "Health, Wellness, & Support",Resource Centers,all,https://sites.uw.edu/qcenter/,Q Center,,,,,,,no
 "Health, Wellness, & Support",Resource Centers,all,https://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
-Libraries,Library Resources,all,,,https://lib.washington.edu/,UW Libraries,https://library.uwb.edu/,UW Bothell Library,https://www.tacoma.uw.edu/library,UW Tacoma Library,no
+Libraries,Library Resources,all,,,https://lib.uw.edu/,UW Libraries,https://library.uwb.edu/,UW Bothell Library,https://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Libraries,Library Resources,all,https://search.lib.uw.edu/account,Your Library Account,,,,,,,no
 Libraries,Library Resources,all,https://guides.lib.uw.edu/az.php,Articles and Research Databases,,,,,,,no
-Libraries,Library Resources,all,https://guides.lib.uw.edu/research/ejournals,Electronic Journals,,,,,,,no
-Libraries,Library Resources,all,https://lib.washington.edu/types,UW Libraries: Start Your Research,,,,,,,no
+Libraries,Library Resources,all,https://search.lib.uw.edu/ejournals,Electronic Journals,,,,,,,no
+Libraries,Library Resources,all,https://lib.uw.edu/types/,UW Libraries: Start Your Research,,,,,,,no
 Libraries,Library Resources,all,https://offcampus.lib.washington.edu/login?url=https://ncbi.nlm.nih.gov/pubmed?myncbishare=uwonline,PubMed,,,,,,,no
 Libraries,Library Resources,all,https://hsl.uw.edu/toolkits/care-provider,Care Provider Toolkit,,,,,,,no
 Libraries,Library Resources,all,https://hsl.uw.edu,Health Sciences Library,,,,,,,no
 Student Finances,Tuition and Financial Aid,all,https://finance.uw.edu/sfs/home,Student Fiscal Services,,,,,,,no
 Student Finances,Tuition and Financial Aid,all,,,https://www.washington.edu/students/osfa/,Financial Aid and Scholarships,https://www.bothell.washington.edu/financialaid,Financial Aid and Scholarships,https://www.tacoma.uw.edu/uwt/financial-aid,Financial Aid and Scholarships,no
 Student Finances,Tuition and Financial Aid,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx,Financial Aid Status,,,,,,,no
-Student Finances,Tuition and Financial Aid,all,https://www.lib.washington.edu/commons/services/gfis,Graduate Funding Information Service (GFIS),,,,,,,no
+Student Finances,Tuition and Financial Aid,all,https://lib.uw.edu/commons/services/gfis/,Graduate Funding Information Service (GFIS),,,,,,,no
 Student Finances,Taxes,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx,Form 1098-T,,,,,,,no
 Student Finances,Taxes,all,https://f2.washington.edu/fm/sfs/tax,Student Tax Information,,,,,,,no
 Student Finances,Tuition and Financial Aid,all,https://f2.washington.edu/fm/sfs/tuition,Tuition Overview,,,,,,,no
@@ -147,7 +147,7 @@ Teaching,Course Evaluation,all,,,https://uw.iasystem.org/faculty,My Course Evalu
 Teaching,Course Evaluation,all,,,https://www.washington.edu/assessment/course-evaluations/,Course Evaluations,https://www.washington.edu/assessment/course-evaluations/,Course Evaluations,https://www.washington.edu/assessment/course-evaluations/,Course Evaluations,no
 Teaching,Course Materials,all,https://ubookstore.com/pages/faculty,Order Textbooks,,,,,,,no
 Teaching,Course Materials,all,https://finance.uw.edu/c2/printing-copying/course-packs,Request Course Packs,,,,,,,no
-Teaching,Course Materials,all,https://lib.washington.edu/types/course/instructors/request,Request Course Reserves,,,,,,,no
+Teaching,Course Materials,all,https://lib.uw.edu/types/course/instructors/request,Request Course Reserves,,,,,,,no
 Teaching,Grading,all,https://gradepage.uw.edu,GradePage,,,,,,,no
 Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/change.php,Change Submitted Grades,,,,,,,no
 Teaching,Grading,all,,,https://registrar.washington.edu/staff-faculty/grading-resources/,Faculty Resource on Grading,https://www.uwb.edu/registrar/policies/grading,Grading Policies,https://www.tacoma.uw.edu/uwt/registrar/grading-policy,Grading Policy,no
@@ -168,12 +168,11 @@ Research,Research Administration,all,https://www.washington.edu/research/complia
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://www.washington.edu/research/research-centers/,Research Centers and Institutes,,,,,,,no
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://www.washington.edu/research/shared-research-facilities-resources/,Shared Research Facilities and Resources,,,,,,,no
 Research,"Research Centers, Shared Facilities, and Equipment",all,https://escience.washington.edu/,eScience Institute,,,,,,,no
-Research,Research Data and Publishing,all,https://www.lib.washington.edu/services/faculty,Getting Started with Library Research,,,,,,,no
-Research,Research Data and Publishing,all,https://www.lib.washington.edu/dataservices/tools/services,Tools for Data-Related Research,,,,,,,no
+Research,Research Data and Publishing,all,https://lib.uw.edu/services/faculty/,Getting Started with Library Research,,,,,,,no
+Research,Research Data and Publishing,all,https://lib.uw.edu/dataservices/tools/,Tools for Data-Related Research,,,,,,,no
 Research,Research Data and Publishing,all,https://guides.lib.uw.edu/research/dmg,Research Data Services,,,,,,,no
-Research,Research Data and Publishing,all,,,https://www.lib.washington.edu/openscholarship,"Open Scholarship Commons: Tools, Services, Consultations",https://guides.lib.uw.edu/bothell/digitalscholarship,Digital Scholarship,https://guides.lib.uw.edu/tacdigitalscholarship,Digital Scholarship,no
+Research,Research Data and Publishing,all,,,https://lib.uw.edu/openscholarship/,"Open Scholarship Commons: Tools, Services, Consultations",https://guides.lib.uw.edu/bothell/digitalscholarship,Digital Scholarship,https://guides.lib.uw.edu/tacdigitalscholarship,Digital Scholarship,no
 Research,Research Data and Publishing,all,https://guides.lib.uw.edu/research/spoa,Scholarly Publishing and Open Access,,,,,,,no
 Research,Technical Support,all,https://it.uw.edu/help/,UW-IT Technical Support,,,,,,,no
 Research,Technical Support,all,https://uw.service-now.com/sp?id=sc_audience&sys_id=bd183bc1db07bb8c37ae9ec6db9619d9&sysparm_category=bd183bc1db07bb8c37ae9ec6db9619d9,UW-IT Services for Researchers,,,,,,,no
 Research,Technical Support,all,https://it.uw.edu/guides/research/,UW-IT Research Computing Resources,,,,,,,no
-Research,Technical Support,all,https://www.lib.washington.edu/dataservices/tools/storage-options,Data Storage Options,,,,,,,no
