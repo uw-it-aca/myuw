@@ -134,6 +134,9 @@ class OpenInstSectionDetails(OpenAPI):
                 if regid not in sections_for_user:
                     sections_for_user[regid] = []
                 sections_for_user[regid].append(section_id)
+                logger.debug(
+                        f"{section.section_label()} {regid} " +
+                        f" linked_section {sections_for_user[regid]}")
 
         for registration in resp_data["sections"][0]["registrations"]:
             registration["linked_sections"] = ""
@@ -142,9 +145,6 @@ class OpenInstSectionDetails(OpenAPI):
                 registration["linked_sections"] = " ".join(
                     sections_for_user[regid])
                 has_linked_sections = True
-                logger.debug(
-                    f"add_linked_section_data " +
-                    f"{registration['linked_sections']}")
         resp_data["sections"][0]['has_linked_sections'] =\
             has_linked_sections
 
