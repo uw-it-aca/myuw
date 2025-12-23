@@ -144,6 +144,7 @@ class OpenInstSectionDetails(OpenAPI):
                 has_linked_sections = True
         resp_data["sections"][0]['has_linked_sections'] =\
             has_linked_sections
+        logger.debug(f"add_linked_section_data {resp_data}")
 
     def per_section_data(self, section, section_data):
         # We don't want to fetch all this data a second time in for
