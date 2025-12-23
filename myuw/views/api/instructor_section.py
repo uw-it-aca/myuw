@@ -142,9 +142,11 @@ class OpenInstSectionDetails(OpenAPI):
                 registration["linked_sections"] = " ".join(
                     sections_for_user[regid])
                 has_linked_sections = True
+                logger.debug(
+                    f"add_linked_section_data " +
+                    f"{registration['linked_sections']}")
         resp_data["sections"][0]['has_linked_sections'] =\
             has_linked_sections
-        logger.debug(f"add_linked_section_data {resp_data}")
 
     def per_section_data(self, section, section_data):
         # We don't want to fetch all this data a second time in for
