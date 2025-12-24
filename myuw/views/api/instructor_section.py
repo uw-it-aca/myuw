@@ -124,6 +124,9 @@ class OpenInstSectionDetails(OpenAPI):
         raise NotSectionInstructorException()
 
     def add_linked_section_data(self, resp_data):
+        """
+        Add linked section data to primary section registrations
+        """
         sections_for_user = {}  # {regid: [section_id,]}
         has_linked_sections = False
 
@@ -134,9 +137,6 @@ class OpenInstSectionDetails(OpenAPI):
                 if regid not in sections_for_user:
                     sections_for_user[regid] = []
                 sections_for_user[regid].append(section_id)
-                logger.debug(
-                        f"{section.section_label()} {regid} " +
-                        f" linked_section {sections_for_user[regid]}")
 
         for registration in resp_data["sections"][0]["registrations"]:
             registration["linked_sections"] = ""

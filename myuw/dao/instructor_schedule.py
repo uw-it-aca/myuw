@@ -159,6 +159,8 @@ def get_instructor_section(request,
     if include_linked_sections:
         threads = []
         for url in section.linked_section_urls:
+            logger.debug(
+                f"{section.section_label()} get_linked_section {url}")
             t = ThreadWithResponse(target=get_linked_section,
                                    args=(url, instructor_regid))
             t.start()
@@ -169,6 +171,7 @@ def get_instructor_section(request,
             linked = thread.response
             if linked:
                 schedule.sections.append(linked)
+                logger.debug(f"ADD {linked.section_label()}")
     set_course_display_pref(request, schedule)
     return schedule
 
