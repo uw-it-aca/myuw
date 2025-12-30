@@ -145,9 +145,10 @@ export default {
       return dayjs().isAfter(dt);
     },
     convertTimeIsoStrToDateStr(isoString) {
-      // timeStr is in hh:mm format
       const cleaned = isoString.replace(/\.\d+/, '');
-      return dayjs(cleaned).format('YYYY-MM-DD');
+      const pacificTime = dayjs.tz(cleaned, "America/Los_Angeles");
+      console.log('converted date str:', pacificTime);
+      return pacificTime.format('YYYY-MM-DD');
     },
     nowDatetime(useCompDate = true) {
       if (useCompDate && this.cardDisplayDates?.comparison_date) {
