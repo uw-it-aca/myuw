@@ -178,11 +178,16 @@ export default {
       return 'in ' + (delta - 1) + ' days';
     },
     timeDeltaFrom(date_str, unit = 'day', useCompDate = true) {
-      // return the number of units that the date_str (must be a valid date/datetime string)
-      // is to the comparison date.
+      // date_str must be a valid date/datetime string
       // https://day.js.org/docs/en/display/difference
-      date_str = date_str.replace(' ', 'T');  // MUWM-5095: 'T' time works on all browsers
-      return Math.ceil(dayjs(date_str).diff(this.nowDatetime(useCompDate), unit, true));
+      const comparison_date = this.nowDatetime(useCompDate);
+
+      // MUWM-5095: 'T' time works on all browsers
+      const dt = date_str.replace(' ', 'T');
+
+      const delta = dayjs(dt).diff(comparison_date, unit, true);
+      console.log("timeDeltaFrom:", dt, comparison_date.format(), delta);
+      return Math.ceil(delta);
     },
     toCalendar(date_str) {
       // to be removed
