@@ -2,7 +2,7 @@
   "quarter": "spring",
   "year": 2013,
   "balance": 219.85,
-  "payment_due_day": "2013-04-19",
+  "payment_due_day": "2013-04-19T23:59:59.999999-08:00",
   "bookstore_digital_material_url": "https://www.ubookstore.com/materials?idset=500555,3000366,2000268",
   "bookstore_checkout_url": "https://www.ubookstore.com/app/site/query/additemtocart.nl?n=3&buyid=multi&multi=500555,1;3000366,1;2000268,1;",
   "last_updated": "2013-02-09T00:51:09.769370-08:00",

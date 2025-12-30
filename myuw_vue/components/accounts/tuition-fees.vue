@@ -374,9 +374,13 @@ export default {
       // MUWM-5272
       return (this.seaStud || this.botStud) && this.iacData && this.iacData.bookstore_checkout_url;
     },
+    dayOneAccessDueDay() {
+      // MUWM-5455
+      return this.convertTimeisoStringToDate(this.iacData.payment_due_day);
+    },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
-      return this.toFromNowDate(this.iacData.payment_due_day);
+      return this.toFromNowDate(this.dayOneAccessDueDay);
     },
     dayOneAccessOverDue() {
       // MUWM-5351
