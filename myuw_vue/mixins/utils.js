@@ -181,12 +181,9 @@ export default {
       // date_str must be a valid date/datetime string
       // https://day.js.org/docs/en/display/difference
       const comparison_date = this.nowDatetime(useCompDate);
-
       // MUWM-5095: 'T' time works on all browsers
       const dt = date_str.replace(' ', 'T');
-
       const delta = dayjs(dt).diff(comparison_date, unit, true);
-      console.log("timeDeltaFrom:", dt, comparison_date.format(), delta);
       return Math.ceil(delta);
     },
     toCalendar(date_str) {
