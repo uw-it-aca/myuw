@@ -376,7 +376,7 @@ export default {
     },
     dayOneAccessDueDay() {
       // MUWM-5455
-      return this.convertTimeisoStringToDate(this.iacData.payment_due_day);
+      return this.convertTimeIsoStrToDateStr(this.iacData.payment_due_day);
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
