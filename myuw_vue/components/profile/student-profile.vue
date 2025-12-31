@@ -142,8 +142,8 @@
             No contact information added
           </div>
           <div v-else>
-            <div v-if="secondaryEmergencyContact.name"
-              v-text="secondaryEmergencyContact.name">
+            <div v-if="secondaryEmergencyContact.name">
+              {{ titleCaseName(secondaryEmergencyContact.name) }}
             </div>
             <div v-if="secondaryEmergencyContact.phone_number"
               v-text="secondaryEmergencyContact.phone_number">
