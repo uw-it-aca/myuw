@@ -34,9 +34,8 @@ class TestDeptCalAPI(MyuwApiTest):
             event_two['summary'],
             'Organic Chemistry Seminar: Prof. Matthew Becker3')
         self.assertEqual(
-            event_two['event_url'],
-            'http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D11074'
-            '21160%26view%3Devent'
+            event_two["event_url"],
+            "https://calendar.washington.edu/5_current/event3"
         )
         self.assertTrue(event_two['is_all_day'])
         self.assertEqual(event_two['start'], '2013-04-18T00:00:00-07:00')

@@ -261,15 +261,19 @@ environmentVariables:
   - name: SDBMYUW_TIMEOUT
     value: "15"
 
+  - name: SPACE_ENV
+    value: PROD
+  - name: SPACE_POOL_SIZE
+    value: "10"
+  - name: SPACE_TIMEOUT
+    value: "15"
+
   - name: SWS_ENV
     value: EVAL
   - name: SWS_POOL_SIZE
     value: "20"
   - name: SWS_TIMEOUT
     value: "45"
-
-  - name: SPACE_ENV
-    value: EVAL
 
   - name: UPASS_ENV
     value: PROD

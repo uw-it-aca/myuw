@@ -101,6 +101,10 @@ class MyUWRestSearchView(RestSearchView):
             elif "person" == res:
                 url = f"student/v5/person/{regid}.json"
 
+        elif service == "space":
+            code = get_input_value(request.POST, "code")
+            url = f"space/v2/facility.json?facility_code={code}"
+
         elif service == "upass":
             res = get_input_value(request.POST, "res")
             netid = get_input_value(request.POST, "uwnetid")

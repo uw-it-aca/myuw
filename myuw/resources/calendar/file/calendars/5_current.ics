@@ -41,6 +41,7 @@ DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron
 CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107241160
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event1
 END:VEVENT
 
 BEGIN:VEVENT
@@ -61,6 +62,7 @@ DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron
 CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107541160
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event2
 END:VEVENT
 
 BEGIN:VEVENT
@@ -77,6 +79,7 @@ DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron
 CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107421160
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event3
 END:VEVENT
 
 BEGIN:VEVENT
@@ -97,6 +100,7 @@ DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron
 CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107431160
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event4
 END:VEVENT
 
 BEGIN:VEVENT
@@ -117,6 +121,7 @@ DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron
 CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/1107241160
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event5
 END:VEVENT
 
 BEGIN:VEVENT
@@ -142,6 +147,7 @@ DESCRIPTION:Event interval: Single day event<br>Year: 2013<br>Quarter: A
  buildings are closed. Check with specific offices to confirm.
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/164159383
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event6
 END:VEVENT
 
 BEGIN:VEVENT
@@ -167,5 +173,6 @@ DESCRIPTION:Event interval: Single day event<br>Year: 2013<br>Quarter: A
  buildings are closed. Check with specific offices to confirm.
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/164159384
+X-TRUMBA-LINK:https://calendar.washington.edu/5_current/event7
 END:VEVENT
 END:VCALENDAR
