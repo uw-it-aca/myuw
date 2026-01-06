@@ -7,7 +7,7 @@ from django.test import TestCase
 from myuw.dao.calendar import DEFAULT_TZ, get_events
 
 
-TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
+TRUMBA_PREFIX = 'https://calendar.washington.edu/5_current'
 
 
 class TestCalendar(TestCase):
