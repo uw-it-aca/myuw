@@ -153,16 +153,18 @@ def _get_all_events(dept_cals):
             calendar = get_calendar_by_name(cal_id)
 
             for event in calendar.walk('vevent'):
+                event.base_url = get_calendar_url(cal_id)
                 event.cal_id = cal_id
+
                 event.event_url = event.get("X-TRUMBA-LINK")
                 # The standard iCal field name for an event’s URL is 'URL'
                 # but Trumba uses it for something else.
-                event.base_url = get_calendar_url(event.cal_id)
                 if (event.event_url and len(event.event_url) > 0 and
                         "trumbaEmbed=" in event.event_url):
                     # MUWM - 5459
                     event.base_url = event.event_url.split(
                         "?trumbaEmbed=", 1)[0]
+
                 event.cal_title = calendar.get(
                     'x-wr-calname').to_ical().decode("utf-8")
                 events.append(event)
