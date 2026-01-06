@@ -175,14 +175,11 @@ def parse_event_url(event, cal_url, cal_id):
 
     url = "{}?trumbaEmbed={}".format(
         base_url, quote_plus(urlencode(url_params, doseq=True)))
-
     return url
 
 
 def get_calendar_url(calendar_id):
-    url = "http://www.trumba.com/calendar/{}".format(calendar_id)
-
-    return url
+    return f"https://calendar.washington.edu/{calendar_id}"
 
 
 def parse_event_location(event):
