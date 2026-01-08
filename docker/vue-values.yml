@@ -162,8 +162,6 @@ environmentVariables:
 
   - name: SPACE_ENV
     value: PROD
-  - name: SPACE_POOL_SIZE
-    value: "10"
   - name: SPACE_TIMEOUT
     value: "15"
 
