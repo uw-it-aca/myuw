@@ -266,19 +266,18 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(
             response.url,
             "/restclients/view/upass/idcarddataws/"
-            + "api/person/v1/eligibility/bill",
+            + "api/person/v1/eligibility/bill"
         )
 
         # space
         url = reverse("myuw_rest_search", args=["space", "index"])
         response = self.client.post(
             url,
-            {
-                "code": "MOR",
-                "csrfmiddlewaretoken": "0000000",
-            }
+            {"code": "MOR",
+            "csrfmiddlewaretoken": "0000000"}
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
-             "/space/v2/facility.json?facility_code=MOR"
+            response.url,
+            "/restclients/view/space/space/v2/facility.json%3Ffacility_code=MOR"
         )
