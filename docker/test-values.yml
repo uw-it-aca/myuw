@@ -269,7 +269,7 @@ environmentVariables:
     value: "45"
 
   - name: SPACE_ENV
-    value: PROD
+    value: EVAL
   - name: SPACE_TIMEOUT
     value: "15"
 
