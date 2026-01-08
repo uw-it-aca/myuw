@@ -103,7 +103,8 @@ class MyUWRestSearchView(RestSearchView):
 
         elif service == "space":
             code = get_input_value(request.POST, "code")
-            url = f"/v2/facility.json?facility_code={code}"
+            logger.debug("Space facility code: {}".format(code))
+            url = f"/space/v2/facility.json?facility_code={code}"
 
         elif service == "upass":
             res = get_input_value(request.POST, "res")
