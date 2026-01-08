@@ -159,8 +159,7 @@ def _get_all_events(dept_cals):
                 event.event_url = event.get("X-TRUMBA-LINK")
                 # The standard iCal field name for an event’s URL is 'URL'
                 # but Trumba uses it for something else.
-                if (event.event_url and len(event.event_url) > 0 and
-                        "trumbaEmbed=" in event.event_url):
+                if event.event_url and "trumbaEmbed=" in event.event_url:
                     # MUWM - 5459
                     event.base_url = event.event_url.split(
                         "?trumbaEmbed=", 1)[0]
