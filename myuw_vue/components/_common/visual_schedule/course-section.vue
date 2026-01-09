@@ -192,7 +192,7 @@ export default {
           this.meetingData.meeting.latitude
         },${this.meetingData.meeting.longitude}+(${
           this.meetingData.meeting.building
-        })&z=18`;
+        })&t=k&z=18`;
       }
       return false;
     },

@@ -1,0 +1,11 @@
+<h1>UW Space Building Search</h1>
+<form method="post" action="{{form_action}}">
+  {% csrf_token %}
+  <p>
+    <label for="code">Building Code:</label>
+    <input id="code" name="code" size="20" type="text">
+  </p>
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>

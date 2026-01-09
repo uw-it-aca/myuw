@@ -1,4 +1,4 @@
-# Copyright 2025 UW-IT, University of Washington
+# Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
@@ -100,6 +100,10 @@ class MyUWRestSearchView(RestSearchView):
                 url = f"student/v5/notice/{regid}.json"
             elif "person" == res:
                 url = f"student/v5/person/{regid}.json"
+
+        elif service == "space":
+            code = get_input_value(request.POST, "code")
+            url = f"space/v2/facility.json?facility_code={code}"
 
         elif service == "upass":
             res = get_input_value(request.POST, "res")
