@@ -366,6 +366,8 @@ environmentVariables:
 
   - name: SPACE_ENV
     value: PROD
+  - name: SPACE_TIMEOUT
+    value: "15"
 
   - name: UPASS_ENV
     value: PROD

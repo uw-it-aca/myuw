@@ -112,6 +112,13 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'space' 'index.html' as space_url %}
+        {% if space_url %}
+        <li>
+            <a href="{{ space_url }}">Space</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'uwnetid' 'index.html' as uwnetid_url %}
         {% if uwnetid_url %}
             <li>
