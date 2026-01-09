@@ -1,6 +1,7 @@
-# Copyright 2025 UW-IT, University of Washington
+# Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import logging
 import re
 from datetime import timedelta, datetime, time
 from urllib.parse import quote_plus, urlencode
@@ -15,6 +16,7 @@ from myuw.dao.calendar_mapping import get_calendars_for_current_user
 DISPLAY_CUTOFF_DAYS = 14
 # Number of future days to search for displaying link to cal and card
 FUTURE_CUTOFF_DAYS = 30
+logger = logging.getLogger(__name__)
 
 
 def api_request(request):
@@ -76,6 +78,10 @@ def _get_cal_url_from_event(event):
     return url
 
 
+def get_calendar_url(calendar_id):
+    return f"https://calendar.washington.edu/{calendar_id}/"
+
+
 def _get_active_cal_json(event):
     return {"title": event.cal_title,
             "url": _get_cal_url_from_event(event)}
@@ -93,6 +99,7 @@ def _get_json_for_event(event):
         "start": _get_date(event.get('dtstart').dt).isoformat(),
         "end": _get_date(end).isoformat(),
         "event_url": event.event_url,
+        "base_url": event.base_url,
         "event_location": event_location,
         "is_all_day": is_allday
     }
@@ -141,13 +148,22 @@ def _get_all_events(dept_cals):
     events = []
     for key in dept_cals:
         cal_id = key
-        cal_base_url = dept_cals[key]
+
         try:
             calendar = get_calendar_by_name(cal_id)
+
             for event in calendar.walk('vevent'):
-                event.event_url = parse_event_url(event, cal_base_url, cal_id)
+                event.base_url = get_calendar_url(cal_id)
                 event.cal_id = cal_id
-                event.base_url = cal_base_url
+
+                event.event_url = event.get("X-TRUMBA-LINK")
+                # The standard iCal field name for an event’s URL is 'URL'
+                # but Trumba uses it for something else.
+                if event.event_url and "trumbaEmbed=" in event.event_url:
+                    # MUWM - 5459
+                    event.base_url = event.event_url.split(
+                        "?trumbaEmbed=", 1)[0]
+
                 event.cal_title = calendar.get(
                     'x-wr-calname').to_ical().decode("utf-8")
                 events.append(event)
@@ -158,31 +174,6 @@ def _get_all_events(dept_cals):
 
 def sort_events(events):
     return sorted(events, key=lambda e: _get_date(e.get('dtstart').dt))
-
-
-def parse_event_url(event, cal_url, cal_id):
-    uid = event.get('uid')
-
-    matches = re.match(r'.*?(\d+)$', uid)
-    if not matches:
-        return
-
-    event_id = matches.group(1)
-    base_url = get_calendar_url(cal_id)
-    if cal_url is not None:
-        base_url = cal_url
-    url_params = (('eventid', event_id), ('view', 'event'))
-
-    url = "{}?trumbaEmbed={}".format(
-        base_url, quote_plus(urlencode(url_params, doseq=True)))
-
-    return url
-
-
-def get_calendar_url(calendar_id):
-    url = "http://www.trumba.com/calendar/{}".format(calendar_id)
-
-    return url
 
 
 def parse_event_location(event):

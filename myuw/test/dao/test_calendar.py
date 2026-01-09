@@ -1,13 +1,10 @@
-# Copyright 2025 UW-IT, University of Washington
+# Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
 from datetime import datetime
 from django.test import TestCase
 from myuw.dao.calendar import DEFAULT_TZ, get_events
-
-
-TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
 
 
 class TestCalendar(TestCase):
@@ -51,9 +48,13 @@ class TestCalendar(TestCase):
     def test_event_url(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
-        url = "%s?%s" % (TRUMBA_PREFIX,
-                         'trumbaEmbed=eventid%3D1107241160%26view%3Devent')
-        self.assertEqual(event_response['events'][0]['event_url'], url)
+        e = event_response["events"][0]
+        self.assertEqual(
+            e["event_url"], "https://calendar.washington.edu/5_current/event1"
+        )
+        self.assertEqual(
+            e["base_url"], "https://calendar.washington.edu/5_current/"
+        )
 
     def test_date_sort(self):
         cal = {'5_current': None}
@@ -67,10 +68,10 @@ class TestCalendar(TestCase):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertEqual(len(event_response['active_cals']), 1)
-        self.assertEqual(event_response['active_cals'][0]['url'],
-                         TRUMBA_PREFIX)
-        self.assertEqual(event_response['active_cals'][0]['title'],
-                         "Department of Five Events")
+        e = event_response["active_cals"][0]
+        self.assertEqual(
+            e['url'], "https://calendar.washington.edu/5_current/")
+        self.assertEqual(e['title'], "Department of Five Events")
 
     def test_pst_pdt(self):
         # MUWM-5318
