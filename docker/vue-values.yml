@@ -158,7 +158,6 @@ environmentVariables:
   - name: SDBMYUW_TIMEOUT
     value: "10"
 
-
   - name: SPS_CONTACTS_ENV
     value: PROD
   - name: SPS_CONTACTS_TIMEOUT
@@ -169,13 +168,15 @@ environmentVariables:
   - name: SPS_CONTACTS_AUTH_TIMEOUT
     value: "20"
 
+  - name: SPACE_ENV
+    value: PROD
+  - name: SPACE_TIMEOUT
+    value: "15"
+
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
     value: "10"
-
-  - name: SPACE_ENV
-    value: PROD
 
   - name: UPASS_ENV
     value: PROD
