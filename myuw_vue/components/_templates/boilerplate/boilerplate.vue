@@ -115,7 +115,7 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
+              <ul class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
@@ -187,7 +187,7 @@
                   ><font-awesome-icon :icon="faBookmark" class="me-2" fixed-width
                     />UW Resources</a>
                 </li>
-              </div>
+              </ul>
             </uw-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
           </div>
