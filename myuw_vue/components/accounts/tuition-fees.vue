@@ -17,14 +17,14 @@
         </div>-->
         <div
           v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
-          class="alert alert-danger text-danger" style="text-align: center"
+          class="alert alert-danger text-danger-emphasis" style="text-align: center"
           role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due today.
         </div>
         <div
           v-if="hasTuitionDate && daysDiffTuitionDueDate < 0 && tuiBalance > 0"
-          class="alert alert-danger text-danger myuw-text-md"
+          class="alert alert-danger text-danger-emphasis myuw-text-md"
           role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" />
