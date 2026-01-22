@@ -167,9 +167,8 @@
                   ><font-awesome-icon :icon="faUser" class="me-2" fixed-width />Profile</a>
                 </li>
                 <li class="nav-item mb-2" aria-hidden="true">
-                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#"
-                  ><hr class="m-0 bg-secondary" /><span class="visually-hidden"
-                    >Navigation separator</span></a>
+                  <hr class="m-0 bg-secondary" /><span class="visually-hidden"
+                    >Navigation separator</span>
                 </li>
                 <li class="nav-item mb-2">
                   <a
