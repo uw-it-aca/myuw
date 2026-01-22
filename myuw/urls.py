@@ -62,8 +62,6 @@ from myuw.views.api.idcard_elig import IDcardElig
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
-from myuw.views.api.hx_toolkit import (
-  HxToolkitMessage, HxToolkitWeekMessage, HxToolkitMessageList)
 from myuw.views.api.resources import (ResourcesList,
                                       ResourcesPin,
                                       PinnedResources)
@@ -252,15 +250,6 @@ urlpatterns += [
     re_path(r'^api/v1/thrive/$',
             ThriveMessages.as_view(),
             name="myuw_thrive_api"),
-    re_path(r'^api/v1/hx_toolkit/week/$',
-            HxToolkitWeekMessage.as_view(),
-            name="myuw_hxtoolkit_week_api"),
-    re_path(r'^api/v1/hx_toolkit/list/$',
-            HxToolkitMessageList.as_view(),
-            name="myuw_hxtoolkit_list_api"),
-    re_path(r'^api/v1/hx_toolkit/(?P<article_id>.*?)$',
-            HxToolkitMessage.as_view(),
-            name="myuw_hxtoolkit_api"),
     re_path(r'^api/v1/directory/$',
             MyDirectoryInfo.as_view(),
             name="myuw_directory_api"),

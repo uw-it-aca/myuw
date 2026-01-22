@@ -115,7 +115,7 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
+              <ul class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
                 <li class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
@@ -167,9 +167,8 @@
                   ><font-awesome-icon :icon="faUser" class="me-2" fixed-width />Profile</a>
                 </li>
                 <li class="nav-item mb-2" aria-hidden="true">
-                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#"
-                  ><hr class="m-0 bg-secondary" /><span class="visually-hidden"
-                    >Navigation separator</span></a>
+                  <hr class="m-0 bg-secondary" /><span class="visually-hidden"
+                    >Navigation separator</span>
                 </li>
                 <li class="nav-item mb-2">
                   <a
@@ -187,7 +186,7 @@
                   ><font-awesome-icon :icon="faBookmark" class="me-2" fixed-width
                     />UW Resources</a>
                 </li>
-              </div>
+              </ul>
             </uw-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
           </div>

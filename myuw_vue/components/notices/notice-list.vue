@@ -17,7 +17,7 @@
           <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
         </div>
       </div>
-      <span v-if="!critical && criticalCount !== 0" class="text-muted myuw-text-md">
+      <span v-if="!critical && criticalCount !== 0" class="myuw-text-md">
         {{ criticalCount }} Critical
       </span>
     </div>
@@ -30,7 +30,7 @@
         class="bg-white mb-2 p-3"
       >
         <div class="d-flex">
-          <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
+          <div class="mb-2 myuw-text-md">{{ notice.category }}</div>
           <div class="ms-auto myuw-text-md">
             <span v-if="!notice.is_read" class="badge badge-warning fw-normal"
             >New</span>

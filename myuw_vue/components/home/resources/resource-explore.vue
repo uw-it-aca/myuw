@@ -7,41 +7,41 @@
     </template>
     <template #card-body>
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
-      
-      <ul class="list-unstyled myuw-text-lg myuw-resource-links">
+
+      <div class="myuw-text-lg myuw-resource-links">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <ul class="col-md-6 list-unstyled m-0">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ms-1" href="/resources/#academics">Academic Resources</a>
               </li>
-            </div>
-            <div class="col-md-6">
+            </ul>
+            <ul class="col-md-6 list-unstyled m-0">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ms-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
-            </div>
+            </ul>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <ul class="col-md-6 list-unstyled m-0">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ms-1"
                    href="/resources/#emailandaccountsandidentity"
                 >Accounts, Identity, and Email</a>
               </li>
-            </div>
-            <div class="col-md-6">
+            </ul>
+            <ul class="col-md-6 list-unstyled m-0">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ms-1" href="/resources/#employment">Employment</a>
               </li>
-            </div>
+            </ul>
           </div>
         </div>
-      </ul>
+      </div>
       <hr class="bg-secondary">
       <div>
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">

@@ -1,11 +1,11 @@
 <template>
   <div class="p-3 bg-light-gray">
-    <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
+    <ul class="m-0 list-unstyled text-wrap">
       <li class="mb-1">
         <div>
           <button v-uw-modal.tourModal
             type="button"
-            class="btn btn-link btn-sm p-0 m-0 text-body text-start myuw-text-xs"
+            class="btn btn-link btn-sm p-0 m-0 text-body text-start"
           >
             See MyUW at a glance
           </button>
@@ -15,7 +15,7 @@
         <a
           v-out="'MyUW Help Center'"
           href="https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0033852"
-          class="text-body"
+          class="text-body small"
         >
           Learn more about MyUW
         </a>
