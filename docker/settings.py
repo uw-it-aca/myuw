@@ -15,7 +15,6 @@ INSTALLED_APPS += [
     'userservice',
     'rc_django',   # after supporttools
     'persistent_message',
-    'hx_toolkit',
     'compressor',
     'django_client_logger',
     'myuw.apps.MyUWConfig',
