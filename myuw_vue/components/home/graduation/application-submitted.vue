@@ -407,27 +407,18 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                :href="
-                  '/husky_experience_message?article=' +
-                  'how-professional-job-different-being-student'
-                "
+                href="https://sas.uaa.uw.edu/husky-experience/make-your-way/how-a-professional-job-is-different-from-being-a-student/"
               >
                 <img
                   class="img-fluid"
-                  :src="
-                    '/static/hx_toolkit_output/images/' +
-                    'How_Professional_Job_Different_From_Student_480.jpg'
-                  "
+                  src="https://sas.uaa.uw.edu/site/assets/files/1392/how_professional_job_different_from_student_1000.400x0.jpg"
                   alt="Urban planning student documenting observations in a downtown Seattle park."
                 />
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                :href="
-                  '/husky_experience_message?article=' +
-                  'how-professional-job-different-being-student'
-                "
+                href="https://sas.uaa.uw.edu/husky-experience/make-your-way/how-a-professional-job-is-different-from-being-a-student/"
               >
                 How a Professional Job is Different from Being a Student
               </a>
@@ -437,16 +428,18 @@
           </div>
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a href="/husky_experience_message?article=preparing-professional-life">
+              <a
+                href="https://sas.uaa.uw.edu/husky-experience/know-the-world/preparing-for-professional-life/"
+              >
                 <img
                   class="img-fluid"
-                  src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg"
+                  src="https://sas.uaa.uw.edu/site/assets/files/1162/preparing_for_professional_life_1000.400x0.jpg"
                   alt="Student and his mentor working together in a UW Health Sciences lab."
                 />
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a href="/husky_experience_message?article=preparing-professional-life">
+              <a href="https://sas.uaa.uw.edu/husky-experience/know-the-world/preparing-for-professional-life/">
                 Preparing for a Professional Life
               </a>
               <br>
@@ -455,10 +448,12 @@
           </div>
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a href="/husky_experience_message?article=between-college-and-career">
+              <a
+              href="https://sas.uaa.uw.edu/husky-experience/make-your-way/between-college-and-career/"
+              >
                 <img
                   class="img-fluid"
-                  src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg"
+                  src="https://sas.uaa.uw.edu/site/assets/files/1400/between_college_career_1000.400x0.jpg"
                   :alt="
                     'Person seated on rock ledge above a ' +
                     'road that curves away in opposite directions.'
@@ -467,7 +462,9 @@
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a href="/husky_experience_message?article=between-college-and-career">
+              <a
+                href="https://sas.uaa.uw.edu/husky-experience/make-your-way/between-college-and-career/"
+              >
                 Between College and Career
               </a>
               <br>

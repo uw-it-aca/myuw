@@ -19,6 +19,7 @@
             <a
               v-out="'Library Account Requests'"
               href="https://search.lib.uw.edu/account"
+              class="text-reset text-info-emphasis"
               >{{ itemsRequestedText }}
             </a>
           </div>
