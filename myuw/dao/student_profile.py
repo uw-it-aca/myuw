@@ -189,6 +189,7 @@ def _get_residency_change(terms, enrollments, current_resident_code):
                 }
     return None
 
+
 def get_student_emergency_contacts(request):
     # MUWM-5452
     try:
