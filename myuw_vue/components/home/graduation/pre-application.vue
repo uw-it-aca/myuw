@@ -62,9 +62,10 @@
         </p>
         <p v-if="bothell && intlStudent" class="myuw-text-md">
           International students, may find additional graduation guidance about
-          <a href=
-          "https://www.uwb.edu/international-student-services/optional-practical-training-opt">
-            Optional Practical Training (OPT)
+          <a
+            href="https://www.uwb.edu/international-student-services/f-1-benefits/practical-training"
+          >
+            Practical Training
           </a>.
         </p>
         <p v-if="seattle && intlStudent" class="myuw-text-md">
