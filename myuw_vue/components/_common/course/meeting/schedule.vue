@@ -3,59 +3,46 @@
     <table class="mb-0 w-100 table table-sm table-borderless myuw-text-md">
       <thead class="visually-hidden">
         <tr>
-          <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
+          <th v-if="section.hasEosDates" :id="`dates-${section.id}`" scope="col">
             Meeting Date(s)
           </th>
-          <th :id="`days-${section.id}`">
+          <th :id="`days-${section.id}`" scope="col">
             Meeting Day(s)
           </th>
-          <th :id="`time-${section.id}`">
+          <th :id="`time-${section.id}`" scope="col">
             Meeting Time
           </th>
-          <th :id="`location-${section.id}`">
+          <th :id="`location-${section.id}`" scope="col">
             Meeting Location
           </th>
-          <th v-if="section.showMtgType" :id="`type-${section.id}`">
+          <th v-if="section.showMtgType" :id="`type-${section.id}`" scope="col">
             Meeting Type
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="meeting in section.meetings" :key="meeting.id"
-          style="line-height: 24px;">
-          <td v-if="section.hasEosDates"
-            :headers="`dates-${meeting.id}`"
-            class="text-start p-0"
-          >
+        <tr v-for="meeting in section.meetings" :key="meeting.id" style="line-height: 24px;">
+          <td v-if="section.hasEosDates" class="text-start p-0">
             <span v-if="meeting.eos_start_date && meeting.eos_end_date">
               {{ formatEos(meeting) }}
             </span>
           </td>
 
-          <td v-if="meeting.wont_meet"
-            :headers="`days-${meeting.id}`"
-            colspan="3" class="p-0"
-          >
+          <td v-if="meeting.wont_meet" colspan="3" class="p-0">
             <span v-if="isAsyHyb(meeting)" class="text-muted">
               No meeting time (coursework online)
             </span>
             <span v-else class="text-muted">Class does not meet</span>
           </td>
 
-          <td v-else-if="meeting.days_tbd"
-            :headers="`days-${meeting.id}`"
-            colspan="3" class="p-0"
-          >
+          <td v-else-if="meeting.days_tbd" colspan="3" class="p-0">
             <span v-if="isAsyHyb(meeting)" class="text-muted">
               No meeting time (coursework online)
             </span>
             <span v-else class="text-muted">Days and times to be arranged</span>
           </td>
 
-          <td v-else-if="meeting.no_meeting"
-            :headers="`days-${meeting.id}`"
-            colspan="3" class="p-0"
-          >
+          <td v-else-if="meeting.no_meeting" colspan="3" class="p-0">
             <span v-if="isAsyHyb(meeting)" class="text-muted">
               No meeting time (coursework online)
             </span>
@@ -63,32 +50,21 @@
           </td>
 
           <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="`days-${meeting.id}`"
-              class="p-0 text-start text-nowrap pe-3 w-25"
-            >
+            <td class="p-0 text-start text-nowrap pe-3 w-25">
               <uw-meeting-days :meeting="meeting" />
             </td>
-            <td :headers="`time-${meeting.id}`"
-              class="p-0 text-start text-nowrap w-50"
-            >
+            <td class="p-0 text-start text-nowrap w-50">
               {{ meeting.start_time.format('h:mm') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
-            <td :headers="`location-${meeting.id}`"
-              class="p-0 text-start text-nowrap"
-            >
+            <td class="p-0 text-start text-nowrap">
               <uw-meeting-location :meeting="meeting" :show-room-info="showRoomInfo" />
             </td>
           </template>
 
-          <td v-if="section.showMtgType"
-            :headers="`type-${meeting.id}`"
-            class="p-0 text-start"
-          >
+          <td v-if="section.showMtgType" class="p-0 text-start">
             <span v-if="meeting.displayType" :title="`${meeting.type}`"
-                  :class="`px-1 border myuw-text-sm
-                  text-uppercase text-c${section.color_id}`"
-            >
+              :class="`px-1 border myuw-text-sm text-uppercase text-c${section.color_id}`">
               {{ shortenMtgType(meeting.type) }}
             </span>
           </td>
