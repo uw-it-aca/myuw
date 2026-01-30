@@ -163,7 +163,8 @@
           </div>
         </uw-card-property>
         <uw-card-property title="">
-          Please ensure that you at least have an up-to-date primary emergency contact.<br />
+          Please make sure your emergency contacts are up-to-date.
+          You can change this information at any time<br />
           <a v-out="'Edit emergecy contacts'"
             :href="emergencyContactsUrl"
             title="Go to Emergency Contacts website"
