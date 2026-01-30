@@ -112,7 +112,7 @@
       </uw-card-property-group>
 
       <uw-card-property-group>
-        <uw-card-property title="Primary Emergency Contact">
+        <uw-card-property title="Emergency Contact 1">
           <div v-if="!primaryEmergencyContact" class="text-muted">
             No contact information added
           </div>
@@ -137,7 +137,7 @@
             </div>
           </div>
         </uw-card-property>
-        <uw-card-property title="Secondary Emergency Contact">
+        <uw-card-property title="Emergency Contact 2">
           <div v-if="!secondaryEmergencyContact" class="text-muted">
             No contact information added
           </div>
