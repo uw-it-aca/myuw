@@ -120,6 +120,9 @@
             <div v-if="primaryEmergencyContact.name">
               {{ titleCaseName(primaryEmergencyContact.name) }}
             </div>
+            <div v-else class="text-muted">
+              No name added
+            </div>
             <div v-if="primaryEmergencyContact.phone_number"
               v-text="primaryEmergencyContact.phone_number">
             </div>
@@ -128,6 +131,9 @@
             </div>
             <div v-if="primaryEmergencyContact.email"
               v-text="primaryEmergencyContact.email">
+            </div>
+            <div v-else class="text-muted">
+              No email added
             </div>
             <div v-if="primaryEmergencyContact.relationship"
               v-text="primaryEmergencyContact.relationship">
@@ -145,6 +151,9 @@
             <div v-if="secondaryEmergencyContact.name">
               {{ titleCaseName(secondaryEmergencyContact.name) }}
             </div>
+            <div v-else class="text-muted">
+              No name added
+            </div>
             <div v-if="secondaryEmergencyContact.phone_number"
               v-text="secondaryEmergencyContact.phone_number">
             </div>
@@ -153,6 +162,9 @@
             </div>
             <div v-if="secondaryEmergencyContact.email"
               v-text="secondaryEmergencyContact.email">
+            </div>
+            <div v-else class="text-muted">
+              No email added
             </div>
             <div v-if="secondaryEmergencyContact.relationship"
               v-text="secondaryEmergencyContact.relationship">
