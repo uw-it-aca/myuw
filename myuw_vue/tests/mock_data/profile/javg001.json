@@ -9,6 +9,17 @@
     "student_name": "Average,Jake Joseph",
     "student_number": "1033001",
     "employee_id": "123456789",
+    "emergency_contacts": [
+        {
+            "id": "69aae9d9-c123-4d1d-868e-e09a6051fed1",
+            "syskey": 83856,
+            "name": "FRAN SPA",
+            "phone_number": null,
+            "email": "f123456@gmail.com",
+            "relationship": null,
+            "last_modified": "2025-11-17T20:50:12.161064"
+        }
+    ],
     "directory_release": true,
     "local_address": {
         "city": "Seattle",

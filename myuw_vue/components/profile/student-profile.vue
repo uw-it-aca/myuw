@@ -110,6 +110,70 @@
           >Change Address</a>
         </uw-card-property>
       </uw-card-property-group>
+
+      <uw-card-property-group>
+        <uw-card-property title="Primary Emergency Contact">
+          <div v-if="!primaryEmergencyContact" class="text-muted">
+            No contact information added
+          </div>
+          <div v-else>
+            <div v-if="primaryEmergencyContact.name">
+              {{ titleCaseName(primaryEmergencyContact.name) }}
+            </div>
+            <div v-if="primaryEmergencyContact.phone_number"
+              v-text="primaryEmergencyContact.phone_number">
+            </div>
+            <div v-else class="text-muted">
+              No phone number added
+            </div>
+            <div v-if="primaryEmergencyContact.email"
+              v-text="primaryEmergencyContact.email">
+            </div>
+            <div v-if="primaryEmergencyContact.relationship"
+              v-text="primaryEmergencyContact.relationship">
+            </div>
+            <div v-else class="text-muted">
+              No relationship added
+            </div>
+          </div>
+        </uw-card-property>
+        <uw-card-property title="Secondary Emergency Contact">
+          <div v-if="!secondaryEmergencyContact" class="text-muted">
+            No contact information added
+          </div>
+          <div v-else>
+            <div v-if="secondaryEmergencyContact.name">
+              {{ titleCaseName(secondaryEmergencyContact.name) }}
+            </div>
+            <div v-if="secondaryEmergencyContact.phone_number"
+              v-text="secondaryEmergencyContact.phone_number">
+            </div>
+            <div v-else class="text-muted">
+              No phone number added
+            </div>
+            <div v-if="secondaryEmergencyContact.email"
+              v-text="secondaryEmergencyContact.email">
+            </div>
+            <div v-if="secondaryEmergencyContact.relationship"
+              v-text="secondaryEmergencyContact.relationship">
+            </div>
+            <div v-else class="text-muted">
+              No relationship added
+            </div>
+          </div>
+        </uw-card-property>
+        <uw-card-property title="">
+          Please ensure that you at least have an up-to-date primary emergency contact.<br />
+          <a v-out="'Edit emergecy contacts'"
+            :href="emergencyContactsUrl"
+            title="Go to Emergency Contacts website"
+          >
+            <span v-if="!primaryEmergencyContact && !secondaryEmergencyContact">Add</span>
+            <span v-else>Edit</span> emergency contacts
+          </a>
+        </uw-card-property>
+      </uw-card-property-group>
+
       <uw-card-property-group>
         <uw-card-property title="Student Directory Information">
           <p>
@@ -168,6 +232,7 @@ export default {
       residentCode: (state) => state.value.resident_code,
       residentDesc: (state) => state.value.resident_desc,
       pendingResidency: (state) => state.value.pending_residency_change,
+      emergencyContacts: (state) => state.value.emergency_contacts,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -210,7 +275,27 @@ export default {
     },
     showResidency() {
       return this.existClassLevel  && (this.existResidency || this.hasResidencyChange);
-    }
+    },
+    // MUWM-5452
+    primaryEmergencyContact() {
+      return (
+        this.emergencyContacts && this.emergencyContacts.length > 0 ?
+        this.emergencyContacts[0] : null
+      );
+    },
+    secondaryEmergencyContact() {
+      return (
+        this.emergencyContacts && this.emergencyContacts.length > 1 ?
+        this.emergencyContacts[1] : null
+      );
+    },
+    emergencyContactsUrl() {
+      const hostname = window.location.hostname;
+      return (hostname && (hostname.includes("test") || hostname.includes("local"))
+       ? "https://test-personal.my.uw.edu/emergency"
+       : "https://student-personal.my.uw.edu/emergency"
+       );
+    },
   },
   created() {
     if (this.student || this.studentEmployee) this.fetch();
