@@ -175,7 +175,7 @@ environmentVariables:
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
-    value: "10"
+    value: "60"
 
   - name: UPASS_ENV
     value: PROD
