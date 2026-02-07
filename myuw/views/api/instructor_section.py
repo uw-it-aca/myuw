@@ -180,7 +180,9 @@ class OpenInstSectionDetails(OpenAPI):
 
             if is_registration_to_exclude(registration):
                 continue
-
+            if not registration.person or not registration.person.uwregid:
+                logger.error("Invalid registration.person")
+                continue
             person = registration.person  # pws person
             regid = person.uwregid
 
