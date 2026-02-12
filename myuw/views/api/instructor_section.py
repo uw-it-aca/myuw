@@ -154,9 +154,6 @@ class OpenInstSectionDetails(OpenAPI):
 
                 if is_registration_to_exclude(registration):
                     continue
-                if not registration.person or not registration.person.uwregid:
-                    logger.error("159: Invalid registration.person")
-                    continue
                 registrations.append(registration.person.uwregid)
 
             section_data["registrations"] = registrations
@@ -183,9 +180,7 @@ class OpenInstSectionDetails(OpenAPI):
 
             if is_registration_to_exclude(registration):
                 continue
-            if not registration.person or not registration.person.uwregid:
-                logger.error("187: Invalid registration.person")
-                continue
+
             person = registration.person  # pws person
             regid = person.uwregid
 
