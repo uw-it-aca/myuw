@@ -21,13 +21,6 @@ lifecycle:
     enabled: true
 securityPolicy:
   enabled: false
-resources:
-  limits:
-    cpu: 700m
-    memory: 1.0Gi
-  requests:
-    cpu: 300m
-    memory: 768Mi
 affinity:
    podsSpanNodes: true
 readiness:
