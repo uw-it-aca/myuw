@@ -23,8 +23,8 @@ securityPolicy:
   enabled: false
 resources:
   limits:
-    cpu: 1000m
-    memory: 3.0Gi
+    cpu: 700m
+    memory: 1.0Gi
   requests:
     cpu: 300m
     memory: 768Mi
@@ -160,7 +160,7 @@ environmentVariables:
   - name: PWS_ENV
     value: PROD
   - name: PWS_POOL_SIZE
-    value: "100"
+    value: "30"
   - name: PWS_TIMEOUT
     value: "30"
 
@@ -177,9 +177,9 @@ environmentVariables:
   - name: SWS_ENV
     value: PROD
   - name: SWS_POOL_SIZE
-    value: "100"
+    value: "30"
   - name: SWS_TIMEOUT
-    value: "60"
+    value: "30"
 
   - name: UPASS_ENV
     value: PROD
