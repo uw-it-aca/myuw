@@ -16,6 +16,7 @@ from myuw.dao.instructor_schedule import (
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
+from myuw.util.thread import Thread
 from myuw.views.api import OpenAPI
 from myuw.views.api.instructor_schedule import (
     load_schedule, _set_current)
@@ -168,44 +169,44 @@ class OpenInstSectionDetails(OpenAPI):
             pass
 
     def _get_reg_for_section(self, registration_list, access_token):
-        registrations = {}
+        registrations = {}  # {regid: [reg,]}
         for registration in registration_list:
-
             if is_registration_to_exclude(registration):
                 continue
 
-            person = registration.person  # pws person
-            regid = person.uwregid
+            # MUWM-5466
+            regid = registration.regid
             majors = []
             for major in registration.majors:
                 majors.append(major.json_data())
-            email1 = None
-            if len(person.email_addresses):
-                email1 = person.email_addresses[0]
-
             reg = {
-                "first_name": person.first_name,
-                "surname": person.surname.title(),
-                "full_name": person.display_name,
-                "netid": person.uwnetid,
-                "regid": person.uwregid,
-                "pronouns": person.pronouns,
-                "student_number": person.student_number,
+                "class_level": registration.class_level,
                 "credits": registration.credits,
                 "is_auditor": registration.is_auditor,
                 "is_independent_start": registration.is_independent_start,
-                "class_level": registration.student_class,
-                "email": email1,
-                "photo_url": photo_url(person.uwregid, access_token),
                 "majors": majors,
+                "photo_url": photo_url(regid, access_token),
+                "regid": regid,
             }
-
             for field in ["start_date", "end_date"]:
                 if registration.is_independent_start:
                     date = getattr(registration, field)
                     reg[field] = date.strftime("%m/%d/%Y")
                 else:
                     reg[field] = ""
+
+            swsperson = registration.person  # SwsPerson object
+            if swsperson:
+                reg.update(
+                    {
+                        "email": swsperson.email,
+                        "first_name": swsperson.first_name,
+                        "surname": swsperson.last_name,
+                        "netid": swsperson.uwnetid,
+                        "pronouns": swsperson.pronouns,
+                        "student_number": swsperson.student_number,
+                    }
+                )
 
             if regid not in registrations:
                 registrations[regid] = [reg]
