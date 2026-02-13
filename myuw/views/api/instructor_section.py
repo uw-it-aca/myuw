@@ -4,23 +4,18 @@
 import re
 import logging
 import traceback
-from datetime import date, datetime
-from django.conf import settings
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from myuw.dao import coda, id_photo_token
 from myuw.views.error import (
     handle_exception, not_instructor_error)
-from uw_sws.enrollment import get_enrollment_by_regid_and_term
-from uw_sws.person import get_person_by_regid
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import (
     get_instructor_section, check_section_instructor)
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
-from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
 from myuw.views.api.instructor_schedule import (
     load_schedule, _set_current)
@@ -174,8 +169,6 @@ class OpenInstSectionDetails(OpenAPI):
 
     def _get_reg_for_section(self, registration_list, access_token):
         registrations = {}
-        name_threads = {}
-        enrollment_threads = {}
         for registration in registration_list:
 
             if is_registration_to_exclude(registration):
@@ -183,34 +176,29 @@ class OpenInstSectionDetails(OpenAPI):
 
             person = registration.person  # pws person
             regid = person.uwregid
-
-            name_email_thread = ThreadWithResponse(target=self.get_person_info,
-                                                   args=(regid,))
-            enrollment_thread = ThreadWithResponse(target=self.get_enrollments,
-                                                   args=(regid,))
-
-            name_threads[regid] = name_email_thread
-            enrollment_threads[regid] = enrollment_thread
-            name_email_thread.start()
-            enrollment_thread.start()
-
+            majors = []
+            for major in registration.majors:
+                majors.append(major.json_data())
             email1 = None
             if len(person.email_addresses):
                 email1 = person.email_addresses[0]
 
             reg = {
-                    'full_name': person.display_name,
-                    'netid': person.uwnetid,
-                    'regid': person.uwregid,
-                    'pronouns': person.pronouns,
-                    'student_number': person.student_number,
-                    'credits': registration.credits,
-                    'is_auditor': registration.is_auditor,
-                    'is_independent_start': registration.is_independent_start,
-                    'class_level': person.student_class,
-                    'email': email1,
-                    'photo_url': photo_url(person.uwregid, access_token),
-                }
+                "first_name": person.first_name,
+                "surname": person.surname.title(),
+                "full_name": person.display_name,
+                "netid": person.uwnetid,
+                "regid": person.uwregid,
+                "pronouns": person.pronouns,
+                "student_number": person.student_number,
+                "credits": registration.credits,
+                "is_auditor": registration.is_auditor,
+                "is_independent_start": registration.is_independent_start,
+                "class_level": registration.student_class,
+                "email": email1,
+                "photo_url": photo_url(person.uwregid, access_token),
+                "majors": majors,
+            }
 
             for field in ["start_date", "end_date"]:
                 if registration.is_independent_start:
@@ -223,50 +211,7 @@ class OpenInstSectionDetails(OpenAPI):
                 registrations[regid] = [reg]
             else:
                 registrations[regid].append(reg)
-
-        registration_list = []
-        for regid in name_threads:
-            thread = name_threads[regid]
-            thread.join()
-
-            for reg in registrations[regid]:
-
-                reg["first_name"] = thread.response["first_name"]
-                reg["surname"] = thread.response["surname"]
-                reg["email"] = thread.response["email"]
-
-            thread = enrollment_threads[regid]
-            thread.join()
-            if thread.response:
-                for reg in registrations[regid]:
-                    reg["majors"] = thread.response["majors"]
-                    reg["class_level"] = thread.response["class_level"]
-                    reg['class_code'] = thread.response["class_code"]
-
-            registration_list.extend(registrations[regid])
-        return registration_list
-
-    def get_person_info(self, regid):
-        sws_person = get_person_by_regid(regid)
-        try:
-            fname = sws_person.first_name.title()
-        except AttributeError:
-            fname = ""
-
-        return {"first_name": fname,
-                "surname": sws_person.last_name.title(),
-                "email": sws_person.email}
-
-    def get_enrollments(self, regid):
-        enrollment = get_enrollment_by_regid_and_term(regid, self.term)
-
-        majors = []
-        for major in enrollment.majors:
-            majors.append(major.json_data())
-
-        return {"majors": majors,
-                "class_level": enrollment.class_level,
-                "class_code": enrollment.class_code}
+        return registrations
 
 
 @method_decorator(login_required, name='dispatch')
