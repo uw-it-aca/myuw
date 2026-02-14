@@ -64,11 +64,6 @@ class OpenInstSectionDetails(OpenAPI):
             status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        try:
-            section_id = self.validate_section_id(request, section_id)
-        except NotSectionInstructorException:
-            return not_instructor_error()
-
         schedule = get_instructor_section(request,
                                           section_id,
                                           include_registrations=True,
@@ -85,10 +80,8 @@ class OpenInstSectionDetails(OpenAPI):
                                   section_callback=self.per_section_data)
 
         _set_current(self.term, request, resp_data)
-
         # Concurrently fetch section data and ICD data
         threads = []
-
         t = Thread(target=self.add_linked_section_data,
                    args=(resp_data,))
         threads.append(t)
@@ -108,13 +101,9 @@ class OpenInstSectionDetails(OpenAPI):
 
         self.add_linked_section_data(resp_data)
         log_api_call(timer, request,
-                     "Get Instructor Section Details for {}".format(
-                         section_id))
+                     f"Get Instructor Section Details for {section_id}")
 
         return self.json_response(resp_data)
-
-    def validate_section_id(self, request, section_id):
-        return section_id
 
     def is_authorized_for_section(self, request, schedule):
         raise NotSectionInstructorException()
@@ -160,6 +149,7 @@ class OpenInstSectionDetails(OpenAPI):
         registration_list = self._get_reg_for_section(
             section.registrations, access_token)
         section_data["registrations"] = registration_list
+
         try:
             for joint_section in section_data["joint_sections"]:
                 joint_section["registrations"] = \
@@ -169,7 +159,7 @@ class OpenInstSectionDetails(OpenAPI):
             pass
 
     def _get_reg_for_section(self, registration_list, access_token):
-        registrations = {}  # {regid: [reg,]}
+        registrations = []
         for registration in registration_list:
             if is_registration_to_exclude(registration):
                 continue
@@ -180,13 +170,14 @@ class OpenInstSectionDetails(OpenAPI):
             for major in registration.majors:
                 majors.append(major.json_data())
             reg = {
+                "class_code": registration.class_code,
                 "class_level": registration.class_level,
                 "credits": registration.credits,
                 "is_auditor": registration.is_auditor,
                 "is_independent_start": registration.is_independent_start,
                 "majors": majors,
                 "photo_url": photo_url(regid, access_token),
-                "regid": regid,
+                "regid": regid
             }
             for field in ["start_date", "end_date"]:
                 if registration.is_independent_start:
@@ -208,10 +199,7 @@ class OpenInstSectionDetails(OpenAPI):
                     }
                 )
 
-            if regid not in registrations:
-                registrations[regid] = [reg]
-            else:
-                registrations[regid].append(reg)
+            registrations.append(reg)
         return registrations
 
 
