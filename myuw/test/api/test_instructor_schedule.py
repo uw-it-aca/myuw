@@ -273,7 +273,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(len(data['sections']), 2)
         self.assertEqual(data['sections'][0]['current_enrollment'], 1)
         self.assertEqual(data['sections'][0]['enrollment_student_name'],
-                         "Student1, Jake Average")
+                         "Student1, Jake")
 
     def test_non_instructor(self):
         now_request = get_request_with_user('staff')
