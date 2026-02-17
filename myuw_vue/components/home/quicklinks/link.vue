@@ -5,21 +5,23 @@
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
-        <button v-if="activeButtons['edit']"
+        <button
+          v-if="activeButtons['edit']"
           v-uw-collapse="`${customId}-collapse`"
           type="button"
           :aria-label="`Edit link '${link.label}'`"
           title="Edit link"
-          class="btn btn-link btn-sm p-0 me-1 border-0 align-bottom"
+          class="btn btn-link btn-sm p-0 px-2 me-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
         >
           <font-awesome-icon :icon="faPencilAlt" />
         </button>
-        <button v-if="activeButtons['remove']"
+        <button
+          v-if="activeButtons['remove']"
           type="button"
           :aria-label="`Remove link '${link.label}' from Quick Links list`"
           title="Remove link from Quick Links list"
-          class="btn btn-link btn-sm p-0 m-0 border-0 align-bottom"
+          class="btn btn-link btn-sm p-0 px-2 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           @click="removeLink(link, canActuallyRemove)"
         >
@@ -35,7 +37,8 @@
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
           />
-          <button v-else
+          <button
+            v-else
             type="button"
             :aria-label="`Save link '${link.label}' to your Quick Links list`"
             title="Save link to your Quick Links list"
@@ -57,13 +60,9 @@
       @open="populateCustomLink"
     >
       <form @submit="updateLink" @reset="onReset">
-        <h3 class="h6 fw-bold">
-          Edit Quick Link
-        </h3>
+        <h3 class="h6 fw-bold">Edit Quick Link</h3>
         <div class="mb-3">
-          <label :for="`${customId}-edit-url`" class="form-label">
-            URL
-          </label>
+          <label :for="`${customId}-edit-url`" class="form-label"> URL </label>
           <input
             :id="`${customId}-edit-url`"
             v-model="currentCustomLink.url"
@@ -74,9 +73,7 @@
           />
         </div>
         <div class="mb-3">
-          <label :for="`${customId}-edit-label`" class="form-label">
-            Link name (optional)
-          </label>
+          <label :for="`${customId}-edit-label`" class="form-label"> Link name (optional) </label>
           <input
             :id="`${customId}-edit-label`"
             v-model="currentCustomLink.label"
@@ -86,11 +83,10 @@
           />
         </div>
         <div class="d-flex justify-content-end">
-          <button v-uw-collapse="`${customId}-collapse`" class="btn btn-link btn-sm"
-            type="reset"
-          >Cancel</button>
-          <button class="btn btn-primary btn-sm" type="submit"
-          >Save</button>
+          <button v-uw-collapse="`${customId}-collapse`" class="btn btn-link btn-sm" type="reset">
+            Cancel
+          </button>
+          <button class="btn btn-primary btn-sm" type="submit">Save</button>
         </div>
       </form>
     </uw-collapse>
@@ -98,13 +94,8 @@
 </template>
 
 <script>
-import {
-  faTimes,
-  faPencilAlt,
-  faCheck,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import {mapActions} from 'vuex';
+import { faTimes, faPencilAlt, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { mapActions } from 'vuex';
 import Collapse from '../../_templates/collapse.vue';
 
 export default {
@@ -129,7 +120,7 @@ export default {
       default: false,
     },
   },
-  data: function() {
+  data: function () {
     return {
       activeButtons: {
         edit: false,
@@ -159,15 +150,15 @@ export default {
     }),
     removeLink(link, canActuallyRemove) {
       this.$logger.quicklink('remove', link.url);
-      this.quicklinksRemoveLink({link, canActuallyRemove});
+      this.quicklinksRemoveLink({ link, canActuallyRemove });
     },
-    updateLink: function(event) {
+    updateLink: function (event) {
       event.preventDefault();
       this.$logger.quicklink('edit', this.currentCustomLink.url);
       this.quicklinksUpdateLink(this.currentCustomLink);
       this.isEditOpen = false;
     },
-    onReset: function(event) {
+    onReset: function (event) {
       event.preventDefault();
       this.populateCustomLink();
       this.isEditOpen = false;
@@ -179,13 +170,13 @@ export default {
     },
     populateCustomLink() {
       this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
+@use 'sass:map';
 @import '../../../../myuw/static/css/myuw/variables.scss';
 
 .myuw-quicklinks {
