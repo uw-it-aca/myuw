@@ -215,9 +215,9 @@ def set_indep_study_section_enrollments(section, section_json_data):
         if total_enrollment < section.current_enrollment:
             section_json_data['current_enrollment'] = total_enrollment
         if total_enrollment == 1:
-            person = registrations[0].person
+            person = registrations[0].person   # SWSPerson
             section_json_data['enrollment_student_name'] = (
-                f"{person.surname.title()}, {person.first_name.title()}")
+                f"{person.last_name.title()}, {person.first_name.title()}")
     except DataFailureException as ex:
         if ex.status == 404:
             section_json_data['current_enrollment'] = 0

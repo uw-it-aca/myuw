@@ -4,23 +4,19 @@
 import re
 import logging
 import traceback
-from datetime import date, datetime
-from django.conf import settings
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from myuw.dao import coda, id_photo_token
 from myuw.views.error import (
     handle_exception, not_instructor_error)
-from uw_sws.enrollment import get_enrollment_by_regid_and_term
-from uw_sws.person import get_person_by_regid
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import (
     get_instructor_section, check_section_instructor)
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
-from myuw.util.thread import Thread, ThreadWithResponse
+from myuw.util.thread import Thread
 from myuw.views.api import OpenAPI
 from myuw.views.api.instructor_schedule import (
     load_schedule, _set_current)
@@ -68,11 +64,6 @@ class OpenInstSectionDetails(OpenAPI):
             status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        try:
-            section_id = self.validate_section_id(request, section_id)
-        except NotSectionInstructorException:
-            return not_instructor_error()
-
         schedule = get_instructor_section(request,
                                           section_id,
                                           include_registrations=True,
@@ -89,10 +80,8 @@ class OpenInstSectionDetails(OpenAPI):
                                   section_callback=self.per_section_data)
 
         _set_current(self.term, request, resp_data)
-
         # Concurrently fetch section data and ICD data
         threads = []
-
         t = Thread(target=self.add_linked_section_data,
                    args=(resp_data,))
         threads.append(t)
@@ -112,13 +101,9 @@ class OpenInstSectionDetails(OpenAPI):
 
         self.add_linked_section_data(resp_data)
         log_api_call(timer, request,
-                     "Get Instructor Section Details for {}".format(
-                         section_id))
+                     f"Get Instructor Section Details for {section_id}")
 
         return self.json_response(resp_data)
-
-    def validate_section_id(self, request, section_id):
-        return section_id
 
     def is_authorized_for_section(self, request, schedule):
         raise NotSectionInstructorException()
@@ -164,6 +149,7 @@ class OpenInstSectionDetails(OpenAPI):
         registration_list = self._get_reg_for_section(
             section.registrations, access_token)
         section_data["registrations"] = registration_list
+
         try:
             for joint_section in section_data["joint_sections"]:
                 joint_section["registrations"] = \
@@ -173,45 +159,26 @@ class OpenInstSectionDetails(OpenAPI):
             pass
 
     def _get_reg_for_section(self, registration_list, access_token):
-        registrations = {}
-        name_threads = {}
-        enrollment_threads = {}
+        registrations = []
         for registration in registration_list:
-
             if is_registration_to_exclude(registration):
                 continue
 
-            person = registration.person  # pws person
-            regid = person.uwregid
-
-            name_email_thread = ThreadWithResponse(target=self.get_person_info,
-                                                   args=(regid,))
-            enrollment_thread = ThreadWithResponse(target=self.get_enrollments,
-                                                   args=(regid,))
-
-            name_threads[regid] = name_email_thread
-            enrollment_threads[regid] = enrollment_thread
-            name_email_thread.start()
-            enrollment_thread.start()
-
-            email1 = None
-            if len(person.email_addresses):
-                email1 = person.email_addresses[0]
-
+            # MUWM-5466
+            regid = registration.regid
+            majors = []
+            for major in registration.majors:
+                majors.append(major.json_data())
             reg = {
-                    'full_name': person.display_name,
-                    'netid': person.uwnetid,
-                    'regid': person.uwregid,
-                    'pronouns': person.pronouns,
-                    'student_number': person.student_number,
-                    'credits': registration.credits,
-                    'is_auditor': registration.is_auditor,
-                    'is_independent_start': registration.is_independent_start,
-                    'class_level': person.student_class,
-                    'email': email1,
-                    'photo_url': photo_url(person.uwregid, access_token),
-                }
-
+                "class_code": registration.class_code,
+                "class_level": registration.class_level,
+                "credits": registration.credits,
+                "is_auditor": registration.is_auditor,
+                "is_independent_start": registration.is_independent_start,
+                "majors": majors,
+                "photo_url": photo_url(regid, access_token),
+                "regid": regid
+            }
             for field in ["start_date", "end_date"]:
                 if registration.is_independent_start:
                     date = getattr(registration, field)
@@ -219,54 +186,21 @@ class OpenInstSectionDetails(OpenAPI):
                 else:
                     reg[field] = ""
 
-            if regid not in registrations:
-                registrations[regid] = [reg]
-            else:
-                registrations[regid].append(reg)
+            swsperson = registration.person  # SwsPerson object
+            if swsperson:
+                reg.update(
+                    {
+                        "email": swsperson.email,
+                        "first_name": swsperson.first_name,
+                        "surname": swsperson.last_name,
+                        "netid": swsperson.uwnetid,
+                        "pronouns": swsperson.pronouns,
+                        "student_number": swsperson.student_number,
+                    }
+                )
 
-        registration_list = []
-        for regid in name_threads:
-            thread = name_threads[regid]
-            thread.join()
-
-            for reg in registrations[regid]:
-
-                reg["first_name"] = thread.response["first_name"]
-                reg["surname"] = thread.response["surname"]
-                reg["email"] = thread.response["email"]
-
-            thread = enrollment_threads[regid]
-            thread.join()
-            if thread.response:
-                for reg in registrations[regid]:
-                    reg["majors"] = thread.response["majors"]
-                    reg["class_level"] = thread.response["class_level"]
-                    reg['class_code'] = thread.response["class_code"]
-
-            registration_list.extend(registrations[regid])
-        return registration_list
-
-    def get_person_info(self, regid):
-        sws_person = get_person_by_regid(regid)
-        try:
-            fname = sws_person.first_name.title()
-        except AttributeError:
-            fname = ""
-
-        return {"first_name": fname,
-                "surname": sws_person.last_name.title(),
-                "email": sws_person.email}
-
-    def get_enrollments(self, regid):
-        enrollment = get_enrollment_by_regid_and_term(regid, self.term)
-
-        majors = []
-        for major in enrollment.majors:
-            majors.append(major.json_data())
-
-        return {"majors": majors,
-                "class_level": enrollment.class_level,
-                "class_code": enrollment.class_code}
+            registrations.append(reg)
+        return registrations
 
 
 @method_decorator(login_required, name='dispatch')
