@@ -3,7 +3,7 @@
 
 from django.test import TestCase
 from myuw.dao.student_profile import (
-    _get_degrees_for_terms, get_degree_status,
+    _get_degrees_for_terms, get_student_emergency_contacts,
     get_cur_future_enrollments, get_student_profile)
 from myuw.test import (
     fdao_sws_override, fdao_pws_override,
@@ -83,12 +83,14 @@ class TestStudentProfile(TestCase):
                                     get_request_with_date("2013-07-01"))
         data = get_student_profile(req)
         self.assertEqual(data['class_level'], 'SOPHOMORE')
+        self.assertIsNotNone(data["emergency_contacts"])
 
     def test_degree_status(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
         self.assertEqual(data['degree_status'], DEGREE_DATA)
+        self.assertIsNotNone(data["emergency_contacts"])
 
         # enrolled in the previous term
         req = get_request_with_user('javg003',
@@ -104,6 +106,7 @@ class TestStudentProfile(TestCase):
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
         self.assertIsNone(data['degree_status'])
+        self.assertIsNotNone(data["emergency_contacts"])
 
     def test_residency_status_change(self):
         req = get_request_with_user('javg002',
@@ -120,3 +123,17 @@ class TestStudentProfile(TestCase):
                 "term": {"quarter": "autumn", "year": 2013},
             },
         )
+
+    def test_get_student_emergency_contacts(self):
+        # MUWM-5452
+        req = get_request_with_user('javerage')
+        eme_contacts = get_student_emergency_contacts(req)
+        self.assertEqual(len(eme_contacts), 1)
+
+        req = get_request_with_user('eight')
+        eme_contacts = get_student_emergency_contacts(req)
+        self.assertEqual(len(eme_contacts), 2)
+
+        req = get_request_with_user('jerror')
+        eme_contacts = get_student_emergency_contacts(req)
+        self.assertIsNone(eme_contacts)

@@ -31,6 +31,8 @@
   },
   "permanent_phone": "4255556789",
   "visa_type": null,
+  "resident_desc": "RESIDENT",
+  "resident_code": "1",
   "veteran_code": "0",
   "degree_status": {
     "degrees": [
@@ -59,7 +61,19 @@
     "error_code": null
   },
   "campus": "Seattle",
+  "emergency_contacts": [
+    {
+      "id": "69aae9d9-c123-4d1d-868e-e09a6051fed1",
+      "syskey": 83856,
+      "name": "FRAN SPA",
+      "phone_number": null,
+      "email": "f123456@gmail.com",
+      "relationship": null,
+      "last_modified": "2025-11-17T20:50:12.161064"
+    }
+  ],
   "class_level": "SENIOR",
+  "pending_residency_change": null,
   "term_majors": [
     {
       "quarter": "spring",
@@ -67,8 +81,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -86,8 +100,8 @@
       "majors": [
         {
           "degree_abbr": "ACMS",
-          "college_abbr": "",
-          "college_full_name": "",
+          "college_abbr": null,
+          "college_full_name": null,
           "degree_level": 1,
           "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
           "campus": "Seattle",
@@ -217,8 +231,6 @@
     "netid_status": [
       "Person",
       "Active"
-    ],
-    "days_after_last_pw_change": 77,
-    "has_active_med_pw": false
+    ]
   }
 }
