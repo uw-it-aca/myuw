@@ -221,5 +221,5 @@ def get_primary_section(secondary_section):
 def get_active_registrations_for_section(section, instructor_regid):
     if section.is_independent_study:
         section.independent_study_instructor_regid = instructor_regid
-    return get_active_registrations_by_section(section,
-                                               transcriptable_course="all")
+    return get_active_registrations_by_section(
+        section, transcriptable_course="all", include_major_class_info=True)

@@ -2,16 +2,16 @@
     "student_husky_card": {
         "balance": 1.23,
         "last_updated": "over 6 years ago",
-        "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
+        "add_funds_url": "https://hfs.uw.edu/olco"
     },
     "employee_husky_card": {
         "balance": 1,
         "last_updated": "over 6 years ago",
-        "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
+        "add_funds_url": "https://hfs.uw.edu/olco"
     },
     "resident_dining": {
         "balance": 5.1,
         "last_updated": "over 6 years ago",
-        "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
+        "add_funds_url": "https://hfs.uw.edu/olco"
     }
 }

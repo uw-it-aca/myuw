@@ -18,12 +18,12 @@ class TestHFS(TestCase):
         self.assertEqual(accounts.student_husky_card.balance, 1.23)
         self.assertEqual(
             accounts.student_husky_card.add_funds_url,
-            "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx")
+            "https://hfs.uw.edu/olco")
         # Testing case where json.loads poorly handles floats
         self.assertEqual(accounts.resident_dining.balance, 5.1)
         self.assertEqual(
             accounts.employee_husky_card.add_funds_url,
-            "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx")
+            "https://hfs.uw.edu/olco")
 
         # Missing account
         self.assertRaises(DataFailureException,
