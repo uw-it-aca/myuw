@@ -45,16 +45,17 @@ Academics,Tools and Software,all,https://m365.cloud.microsoft/apps/,Office 365 A
 "Email, and Accounts and Identity",Email,all,https://uwnetid.washington.edu/manage/?forward,Email Forwarding,,,,,,,no
 "Email, and Accounts and Identity",Email,all,,,https://it.uw.edu/guides/email-calendaring/email/,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/communications-email,Email and Calendaring Options,https://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
 "Email, and Accounts and Identity",Accounts and Identity,all,https://uwnetid.washington.edu/manage/,Manage UW NetID Account,,,,,,,no
-"Email, and Accounts and Identity",Accounts and Identity,all,https://services.uwmedicine.org/passwordportal,UW Medicine Password Portal,,,,,,,no
 "Email, and Accounts and Identity",Accounts and Identity,all,https://identity.uw.edu/,Identity.UW,,,,,,,no
 "Email, and Accounts and Identity",Accounts and Identity,all, https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx,Student Personal Services,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,https://wd5.myworkday.com/uw/login.htmld,Workday,,,,,,,no
+Services for Faculty and Staff,"HR, Payroll, and Benefits",all,https://employeehelp.workday.uw.edu/,Employee Workday Help,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,,,https://hr.uw.edu/benefits/,Benefits,https://www.uwb.edu/hr/benefits,Benefits,https://hr.uw.edu/benefits/,Benefits,no
+Services for Faculty and Staff,"HR, Payroll, and Benefits",all,https://employeehelp.workday.uw.edu/admin-corner/,Administrators' Corner,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
-Services for Faculty and Staff,Finance and Procurement,all,"https://biportal.uw.edu	",Financial Reports (BI Portal),,,,,,,no
-Services for Faculty and Staff,Finance and Procurement,all,"https://uw.service-now.com/finance	","UW Connect Finance	",,,,,,,no
+Services for Faculty and Staff,Finance and Procurement,all,"https://biportal.uw.edu",Financial Reports (BI Portal),,,,,,,no
+Services for Faculty and Staff,Finance and Procurement,all,"https://uw.service-now.com/finance","UW Connect Finance	",,,,,,,no
 Services for Faculty and Staff,Finance and Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/planning-administration/fiscal-audit-services/procurement,Purchasing,https://www.tacoma.uw.edu/fa/finance/procurement,Procurement Services,no
-Services for Faculty and Staff,Finance and Procurement,all,"https://wd5.myworkday.com/uw/login.htmld	",Workday,,,,,,,no
+Services for Faculty and Staff,Finance and Procurement,all,"https://wd5.myworkday.com/uw/login.htmld",Workday,,,,,,,no
 Services for Faculty and Staff,Others,all,https://registrar.washington.edu/staff-faculty/ears/,Electronic Advising Records System (EARS),,,,,,,no
 Services for Faculty and Staff,Others,all,,,https://it.uw.edu/,UWConnect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
 Services for Faculty and Staff,Others,all,https://it.uw.edu/software/,Software and Hardware,,,,,,,no
@@ -93,7 +94,7 @@ Employment,Employment Resources,all,https://wd5.myworkday.com/uw/d/home.htmld,Wo
 Employment,Employment Resources,all,https://careers.uw.edu/jobs,Career & Internship Center - Job Postings,,,,,,,no
 Employment,Employment Resources,all,https://uw.joinhandshake.com/,Handshake,,,,,,,no
 Employment,Employment Resources,all,https://lib.uw.edu/about/employment/students/,Student Employment in the Libraries,,,,,,,no
-Employment,Employment Resources,all,https://isc.uw.edu,Integrated Service Center (ISC),,,,,,,no
+Employment,Employment Resources,all,https://employeehelp.workday.uw.edu/,Employee Workday Help,,,,,,,no
 Employment,Employment Resources,all,https://hr.uw.edu/jobs/,Employment at UW,,,,,,,no
 Events and Activities,Events,all,,,https://www.washington.edu/calendar/,Campus Event Calendar,https://www.uwb.edu/calendar,Campus Event Calendar,https://www.tacoma.uw.edu/home/events-calendar,Campus Event Calendar,no
 Events and Activities,Events,all,,,https://hub.washington.edu/whats-happening/,HUB What's Happening,https://www.uwb.edu/sea/events,Student Engagement & Activities Events,,,no
