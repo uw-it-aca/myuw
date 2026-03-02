@@ -363,7 +363,7 @@ environmentVariables:
     value: "10"
   - name: SWS_POOL_SIZE
     value: "80"
-  - name: RESTCLIENTS_SWS_THREAD_POOL_SIZE
+  - name: SWS_THREAD_POOL_SIZE
     value: "30"
 
   - name: SPACE_ENV

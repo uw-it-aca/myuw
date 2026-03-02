@@ -267,7 +267,7 @@ environmentVariables:
     value: "20"
   - name: SWS_TIMEOUT
     value: "45"
-  - name: RESTCLIENTS_SWS_THREAD_POOL_SIZE
+  - name: SWS_THREAD_POOL_SIZE
     value: "30"
 
   - name: SPACE_ENV
