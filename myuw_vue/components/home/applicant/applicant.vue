@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      duringAdmissionDecissionRelease: true,
+      duringAdmissionDecissionRelease: false,
       // make this configureble in the future
     };
   },
