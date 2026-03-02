@@ -173,7 +173,7 @@ environmentVariables:
     value: "30"
   - name: SWS_TIMEOUT
     value: "30"
-  - name: RESTCLIENTS_SWS_THREAD_POOL_SIZE
+  - name: SWS_THREAD_POOL_SIZE
     value: "30"
 
   - name: UPASS_ENV
