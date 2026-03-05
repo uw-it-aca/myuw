@@ -1,15 +1,36 @@
 autoscaling:
   enabled: true
-  minReplicas: 4
-  maxReplicas: 200
-targetAverageUtilization: 80
+  minReplicas: 3
+  maxReplicas: 180
+
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 300
+
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 85
+
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 90
+
 resources:
   limits:
     cpu: 700m
     memory: 1.0Gi
   requests:
-    cpu: 300m
-    memory: 768Mi
+    cpu: 500m  # change to 600m during peak load periods
+    memory: 896Mi
 affinity:
    podsSpanNodes: true
 ingress:
