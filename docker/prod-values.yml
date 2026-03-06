@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 3
+  minReplicas: 10
   maxReplicas: 200
 
   behavior:
@@ -39,17 +39,17 @@ autoscaling:
       name: memory
       target:
         type: Utilization
-        averageUtilization: 80
+        averageUtilization: 85
 
 resources:
   limits:
-    cpu: 800m
-    memory: 1.1Gi
+    cpu: 1100m
+    memory: 1.5Gi
   requests:
-    cpu: 600m
-    memory: 800Mi
-    # Gives 320m of CPU buffer and 460Mi memory buffer to
-    # handle requests while the new pods are being provisioned
+    cpu: 800m
+    memory: 1Gi
+    # Gives ~40% buffer to handle requests
+    # while the new pods are being provisioned
 affinity:
    podsSpanNodes: true
    # spread pods across different nodes
