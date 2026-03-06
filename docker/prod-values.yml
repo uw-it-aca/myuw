@@ -1,17 +1,58 @@
 autoscaling:
   enabled: true
-  minReplicas: 20
-  maxReplicas: 180
-targetAverageUtilization: 80
+  minReplicas: 3
+  maxReplicas: 200
+
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 30
+      # filters out sub-30s "noise" spikes
+      # The default is 0 seconds (reacts instantly)
+      selectPolicy: Min
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 60
+      - type: Pods
+        value: 30
+        periodSeconds: 60
+        # Takes ~10 minutes to reach 200 replicas
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      # waits for 5 mins then remove 10 pods/min
+      policies:
+      - type: Pods
+        value: 10
+        periodSeconds: 60
+        # takes ~20 minutes from 200 replicas back down to min
+
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
 resources:
   limits:
-    cpu: 700m
-    memory: 1.0Gi
+    cpu: 800m
+    memory: 1.1Gi
   requests:
-    cpu: 300m
-    memory: 768Mi
+    cpu: 600m
+    memory: 800Mi
+    # Gives 320m of CPU buffer and 460Mi memory buffer to
+    # handle requests while the new pods are being provisioned
 affinity:
    podsSpanNodes: true
+   # spread pods across different nodes
 ingress:
   enabled: true
   tls:
@@ -363,6 +404,8 @@ environmentVariables:
     value: "10"
   - name: SWS_POOL_SIZE
     value: "80"
+  - name: SWS_THREAD_POOL_SIZE
+    value: "30"
 
   - name: SPACE_ENV
     value: PROD
