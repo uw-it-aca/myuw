@@ -43,10 +43,10 @@ autoscaling:
 
 resources:
   limits:
-    cpu: 800m
+    cpu: 1100m
     memory: 1.5Gi
   requests:
-    cpu: 600m
+    cpu: 800m
     memory: 1Gi
     # Gives ~40% buffer to handle requests
     # while the new pods are being provisioned
