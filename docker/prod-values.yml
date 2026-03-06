@@ -16,7 +16,7 @@ autoscaling:
       - type: Pods
         value: 30
         periodSeconds: 60
-        # Takes ~8 minutes to reach 200 replicas
+        # Takes ~10 minutes to reach 200 replicas
     scaleDown:
       stabilizationWindowSeconds: 300
       # waits for 5 mins then remove 10 pods/min
