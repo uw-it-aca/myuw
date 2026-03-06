@@ -22,7 +22,7 @@ autoscaling:
       name: memory
       target:
         type: Utilization
-        averageUtilization: 90
+        averageUtilization: 80
 
 resources:
   limits:
