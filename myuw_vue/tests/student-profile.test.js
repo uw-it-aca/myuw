@@ -59,7 +59,10 @@ describe('Student Profile Card', () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
     await new Promise(setImmediate);
-
+    expect(wrapper.vm.primaryEmergencyContact.name).toEqual("FRAN SPA");
+    expect(wrapper.vm.secondaryEmergencyContact).toEqual(null);
+    expect(wrapper.vm.emergencyContactsUrl).toEqual(
+      "https://test-personal.my.uw.edu/emergency");
     expect(
       wrapper.vm.addressLocationString(wrapper.vm.permanentAddress)
     ).toEqual('Bellevue, WA 98005-1234');
