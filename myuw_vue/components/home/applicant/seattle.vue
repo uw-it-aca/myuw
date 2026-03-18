@@ -114,7 +114,7 @@
           <a href="https://admit.washington.edu/Visit"> Plan your visit: Seattle campus tours </a>
         </li>
         <li class="mb-1">
-          <a href="https://hfs.uw.edu/Live"> Explore campus living </a>
+          <a href="https://hfs.uw.edu/live"> Explore campus living </a>
         </li>
         <li class="mb-1">
           <a href="https://depts.washington.edu/uwdrs/"> Disability Resources for Students (DRS) </a>

@@ -86,6 +86,6 @@ describe('Husky Card', () => {
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.findAll('a')).toHaveLength(1);
     expect(wrapper.find('a').attributes().href
-    ).toBe('https://hfs.uw.edu/olco/Secure/AccountSummary.aspx');
+    ).toBe('https://hfs.uw.edu/olco/secure');
   });
 });
