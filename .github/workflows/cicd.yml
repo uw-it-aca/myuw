@@ -271,6 +271,7 @@ jobs:
           coverage combine
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
+        continue-on-error: true
 
   deploy:
     if: github.event_name == 'push'
