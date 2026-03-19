@@ -31,7 +31,7 @@
         </li>
       </ul>
       <div class="myuw-text-sm text-muted">
-        <a href="https://hfs.uw.edu/Husky-Card-Services">Visit Husky Card Services for more information</a>
+        <a href="https://hfs.uw.edu/husky-card-services">Visit Husky Card Services for more information</a>
       </div>
     </template>
     <template #card-error>
@@ -39,7 +39,7 @@
        you may find what you need on the
       <a
         v-out="'idcard'"
-        href="https://hfs.uw.edu/Husky-Card-Services/"
+        href="https://hfs.uw.edu/husky-card-services/"
       >Husky Card Services</a> page.
     </template>
   </uw-card>
