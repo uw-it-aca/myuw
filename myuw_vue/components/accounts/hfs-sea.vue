@@ -8,7 +8,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
-        href="https://hfs.uw.edu/myhfs/account.aspx"
+        href="https://hfs.uw.edu/olco/secure"
       > Housing &amp; Food Services</a> page.
     </template>
     <template #card-body>
