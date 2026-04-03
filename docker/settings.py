@@ -163,6 +163,10 @@ if os.getenv('MYPLAN_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
     else:
         RESTCLIENTS_MYPLAN_AUTH_HOST = 'https://auth.api.planning-eval.sis.uw.edu:443'
 
+# Testing 4/1/2026
+if os.getenv('UPASS_ENV') == 'EVAL':
+    RESTCLIENTS_UPASS_HOST = 'https://eval-asws.admin.uw.edu'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
