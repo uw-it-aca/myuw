@@ -287,7 +287,7 @@ environmentVariables:
 
 
   - name: UPASS_ENV
-    value: PROD
+    value: EVAL
   - name: UPASS_POOL_SIZE
     value: "5"
   - name: UPASS_TIMEOUT

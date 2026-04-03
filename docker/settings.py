@@ -138,6 +138,10 @@ AWS_SQS = {
     }
 }
 
+# Testing 4/1/2026
+if os.getenv('UPASS_ENV') == 'EVAL':
+    RESTCLIENTS_UPASS_HOST = 'https://eval-asws.admin.uw.edu'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

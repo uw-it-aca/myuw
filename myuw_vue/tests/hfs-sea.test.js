@@ -78,6 +78,6 @@ describe('HFS Sea Card', () => {
     expect(wrapper.vm.showError).toBe(true);
     expect(wrapper.findAll('a').length).toBe(1);
     expect(wrapper.findAll('a').at(0).attributes().href
-    ).toBe('https://hfs.uw.edu/myhfs/account.aspx');
+    ).toBe('https://hfs.uw.edu/olco/secure');
   });
 });
