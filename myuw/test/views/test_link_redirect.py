@@ -93,8 +93,8 @@ class TestRedirect(MyuwApiTest):
     def test_ignore_link(self):
         url = reverse('myuw_outbound_link')
         self.set_user('jbothell')
-        response = self.client.get(url, {'u': 'http://gmail.uw.edu'})
+        response = self.client.get(url, {'u': 'https://gmail.uw.edu'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], "http://gmail.uw.edu")
+        self.assertEqual(response["Location"], "https://gmail.uw.edu")
         all = VisitedLinkNew.objects.all()
         self.assertEqual(len(all), 0)
