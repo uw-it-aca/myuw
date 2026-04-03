@@ -11,7 +11,7 @@ from myuw.test import get_request_with_user
 class TestEmailServiceUrl(TestCase):
 
     def test_(self):
-        netids = [('javerage', "http://gmail.uw.edu"),
+        netids = [('javerage', "https://gmail.uw.edu"),
                   ('retirestaff', "http://outlook.com/myuw.net"),
                   ('jeos', "https://exchange.uwmedicine.org"),
                   ('jpce', "https://mail.uwmed.org"),
