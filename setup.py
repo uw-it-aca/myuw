@@ -11,17 +11,17 @@ See the README on `GitHub <https://github.com/uw-it-aca/myuw>`_.
 # The VERSION file is created by travis-ci, based on the tag name
 version_path = 'myuw/VERSION'
 VERSION = open(os.path.join(os.path.dirname(__file__), version_path)).read()
-VERSION = VERSION.replace("\n", "")
+VERSION = VERSION.replace('\n', '')
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-url = "https://github.com/uw-it-aca/myuw"
+url = 'https://github.com/uw-it-aca/myuw'
 setup(
     name='MyUW',
     version=VERSION,
     packages=['myuw'],
-    author="UWIT Student & Educational Technology Services",
+    author='UWIT Student & Educational Technology Services',
     author_email='aca-it@uw.edu',
     include_package_data=True,
     install_requires=[
@@ -49,6 +49,7 @@ setup(
         'uw-restclients-sws~=2.5',
         'uw-restclients-sdbmyuw~=1.0',
         'uw-restclients-space~=1.2',
+        'uw-restclients-sps-contacts~=1.0',
         'uw-restclients-trumba~=1.4',
         'uw-restclients-upass~=3.1',
         'uw-restclients-uwnetid~=1.1',
