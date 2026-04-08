@@ -306,7 +306,7 @@ export default {
       const hostname = window.location.hostname;
       return (hostname && (hostname.includes("test") || hostname.includes("local"))
        ? "https://test-personal.my.uw.edu/emergency"
-       : "https://student-personal.my.uw.edu/emergency"
+       : "https://personal.my.uw.edu/emergency"
        );
     },
   },
