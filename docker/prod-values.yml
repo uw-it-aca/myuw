@@ -398,6 +398,16 @@ environmentVariables:
   - name: SDBMYUW_TIMEOUT
     value: "10"
 
+  - name: SPS_CONTACTS_ENV
+    value: PROD
+  - name: SPS_CONTACTS_TIMEOUT
+    value: "30"
+
+  - name: SPS_CONTACTS_AUTH_ENV
+    value: PROD
+  - name: SPS_CONTACTS_AUTH_TIMEOUT
+    value: "20"
+
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
@@ -467,6 +477,8 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
+        - name: sps-contacts-auth-secret
+          property: sps-contacts-auth-secret
         - name: google-analytics-key
           property: google-analytics-key
         - name: google-search-key
@@ -524,6 +536,10 @@ environmentVariablesSecrets:
     name: MYPLAN_AUTH_SECRET
     secretName: my.uw.edu-secrets
     secretKey: myplan-auth-secret
+  sps-contacts-auth-secret:
+    name: SPS_CONTACTS_AUTH_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: sps-contacts-auth-secret
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets
