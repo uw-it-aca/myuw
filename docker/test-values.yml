@@ -186,7 +186,7 @@ environmentVariables:
     value: "10"
 
   - name: GRADEPAGE_ENV
-    value: PROD
+    value: EVAL
   - name: GRADEPAGE_TIMEOUT
     value: "15"
 
