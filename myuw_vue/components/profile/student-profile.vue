@@ -123,8 +123,8 @@
             <div v-else class="text-muted">
               No name added
             </div>
-            <div v-if="primaryEmergencyContact.phone_number"
-              v-text="primaryEmergencyContact.phone_number">
+            <div v-if="primaryEmergencyContact.phone_number">
+              {{ formatPhoneNumber(primaryEmergencyContact.phone_number) }}
             </div>
             <div v-else class="text-muted">
               No phone number added
@@ -154,8 +154,8 @@
             <div v-else class="text-muted">
               No name added
             </div>
-            <div v-if="secondaryEmergencyContact.phone_number"
-              v-text="secondaryEmergencyContact.phone_number">
+            <div v-if="secondaryEmergencyContact.phone_number">
+              {{ formatPhoneNumber(secondaryEmergencyContact.phone_number) }}
             </div>
             <div v-else class="text-muted">
               No phone number added
@@ -221,6 +221,7 @@ import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
 import CardPropertyGroup from '../_templates/card-property-group.vue';
 import CurMajors from '../_common/major/cur-fut-majors.vue';
+import { parsePhoneNumber } from "libphonenumber-js";
 
 export default {
   components: {
@@ -332,7 +333,20 @@ export default {
       if(rcode === "5") return rdesc;
       if(rcode === "6") return "NONRESIDENT";
       return rdesc.replace(/\s.*/, '');
-    }
+    },
+    formatPhoneNumber(e164_phone_number) {
+      const defaultCountryCode = "1";
+      try {
+        const parsed = parsePhoneNumber(e164_phone_number);
+        if (parsed) {
+          return (parsed.countryCallingCode === defaultCountryCode)
+            ? parsed.formatNational()
+            : parsed.formatInternational();
+        }
+      } catch (error) {
+        return e164_phone_number;
+      }
+    },
   },
 };
 </script>
