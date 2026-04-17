@@ -334,17 +334,17 @@ export default {
       if(rcode === "6") return "NONRESIDENT";
       return rdesc.replace(/\s.*/, '');
     },
-    formatPhoneNumber(e164_phone_number) {
+    formatPhoneNumber(e164PhoneNumber) {
       const defaultCountryCode = "1";
       try {
-        const parsed = parsePhoneNumber(e164_phone_number);
+        const parsed = parsePhoneNumber(e164PhoneNumber);
         if (parsed) {
           return (parsed.countryCallingCode === defaultCountryCode)
             ? parsed.formatNational()
             : parsed.formatInternational();
         }
       } catch (error) {
-        return e164_phone_number;
+        return e164PhoneNumber;
       }
     },
   },
