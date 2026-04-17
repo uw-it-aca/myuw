@@ -2,7 +2,7 @@
     "Notices": [
         {
             "NoticeAttributes": [
-                {       
+                {
                     "Name": "Date",
                     "DataType": "date",
                     "Value": "week"
@@ -88,7 +88,7 @@
                     "Name": "Date",
                     "DataType": "date",
                     "Value": "next_week"
-                }   
+                }
             ],
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for winter quarter is <span class=\"date\">May 13, 2014</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
@@ -322,7 +322,7 @@
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentFOOT",
-            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://fyp.washington.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"https://nstp.uw.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
             "NoticeType": "SummerRegInfo"
         },
        {

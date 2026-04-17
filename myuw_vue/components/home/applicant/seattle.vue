@@ -131,7 +131,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://fyp.uw.edu/orientation/">
+          <a href="https://nstp.uw.edu/orientation/">
             Register for an Advising &amp; Orientation session
           </a>
         </li>
@@ -166,7 +166,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://fyp.washington.edu/"> Learn about First Year Programs </a>
+          <a href="https://nstp.uw.edu/"> Learn about First Year Programs </a>
         </li>
         <li class="mb-1">
           <a href="https://www.washington.edu/students/"> Check out the Student Guide </a>
