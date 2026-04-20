@@ -4,11 +4,10 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.idcard_elig import get_idcard_eli
-from myuw.test import (
-    fdao_uw_admin_sys_override, get_request_with_user)
+from myuw.test import fdao_idcard_override, get_request_with_user
 
 
-@fdao_uw_admin_sys_override
+@fdao_idcard_override
 class TestIDcardDao(TestCase):
 
     def test_get_idcard_eli(self):
