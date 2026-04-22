@@ -51,7 +51,7 @@ setup(
         'uw-restclients-space~=1.2',
         'uw-restclients-sps-contacts~=1.0',
         'uw-restclients-trumba~=1.4',
-        'uw-restclients-upass~=3.1',
+        'uw-restclients-upass~=4.0',
         'uw-restclients-uwnetid~=1.1',
         'uw-django-oidc~=1.0',
         'django-supporttools~=3.6',

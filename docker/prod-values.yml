@@ -354,6 +354,13 @@ environmentVariables:
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
     value: "10"
 
+  - name: IDCARD_ENV
+    value: PROD
+  - name: IDCARD_POOL_SIZE
+    value: "5"
+  - name: IDCARD_TIMEOUT
+    value: "15"
+
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE

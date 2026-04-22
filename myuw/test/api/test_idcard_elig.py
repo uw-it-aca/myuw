@@ -4,10 +4,10 @@
 from datetime import datetime
 import json
 from myuw.test.api import (
-    MyuwApiTest, require_url, fdao_uw_admin_sys_override)
+    MyuwApiTest, require_url, fdao_idcard_override)
 
 
-@fdao_uw_admin_sys_override
+@fdao_idcard_override
 @require_url("myuw_idcard_elig_api")
 class TestIDcardApi(MyuwApiTest):
 
