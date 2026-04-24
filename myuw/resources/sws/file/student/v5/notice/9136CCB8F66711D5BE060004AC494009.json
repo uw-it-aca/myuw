@@ -307,7 +307,7 @@
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentFOOT",
-            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://fyp.washington.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"https://nstp.uw.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
             "NoticeType": "SummerRegInfo"
         },
        {
@@ -325,7 +325,7 @@
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
-            "NoticeContent": "<span class=\"notice-title\">Register for Advising &#47O Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You haven't registered for an Advising &#47O Orientation session yet. <strong>You will register for your first quarter classes during this session</strong>. <a href=\"http://fyp.washington.edu/getting-started-at-the-university-of-washington/\">Sign up for a session</a>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Register for Advising &#47O Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You haven't registered for an Advising &#47O Orientation session yet. <strong>You will register for your first quarter classes during this session</strong>. <a href=\"https://nstp.uw.edu/getting-started-at-the-university-of-washington/\">Sign up for a session</a>.</span>",
             "NoticeType": "AdvOrientRegDateA"
         },
        {
