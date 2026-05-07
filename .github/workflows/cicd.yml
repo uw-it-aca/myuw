@@ -151,7 +151,7 @@ jobs:
 #        run: sudo chown runner:docker .coverage.*
 
 #      - name: List all files in the workspace
-        run: ls -la
+#        run: ls -la
 
 #      - name: Upload Python Coverage
 #        uses: actions/upload-artifact@v7
