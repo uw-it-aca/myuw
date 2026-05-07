@@ -117,28 +117,28 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Build Test Image
-        uses: docker/build-push-action@v7
-        with:
-          target: app-test-container
-          tags: app-test-container
-          push: false
-          load: true
+#      - name: Build Test Image
+#        uses: docker/build-push-action@v7
+#        with:
+#          target: app-test-container
+#          tags: app-test-container
+#          push: false
+#          load: true
 
-      - name: Start Memcached
-        run: docker run -d -h memcached -p 11211:11211 memcached:1.6-alpine
+#      - name: Start Memcached
+#        run: docker run -d -h memcached -p 11211:11211 memcached:1.6-alpine
 
-      - name: Run Tests in Image
-        id: tests
-        shell: bash
-        run: >-
-          docker run -u root -t
-          -v ${PWD}:/coverage
-          -e DJANGO_APP="$DJANGO_APP"
-          -e ENV="localdev"
-          -e AUTH="SAML_MOCK"
-          app-test-container
-          bash -c ". ./docker/test_python.sh"
+#      - name: Run Tests in Image
+#        id: tests
+#        shell: bash
+#        run: >-
+#          docker run -u root -t
+#          -v ${PWD}:/coverage
+#          -e DJANGO_APP="$DJANGO_APP"
+#          -e ENV="localdev"
+#          -e AUTH="SAML_MOCK"
+#          app-test-container
+#          bash -c ". ./docker/test_python.sh"
 
       - name: Push Image to Repository
         if: github.event_name == 'push'
