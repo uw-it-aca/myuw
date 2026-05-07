@@ -153,12 +153,12 @@ jobs:
       - name: List all files in the workspace
         run: ls -la
 
-      - name: Upload Python Coverage
-        uses: actions/upload-artifact@v7
-        with:
-          name: python-coverage
-          path: .coverage.*
-          include-hidden-files: true
+#      - name: Upload Python Coverage
+#        uses: actions/upload-artifact@v7
+#        with:
+#          name: python-coverage
+#          path: .coverage.*
+#          include-hidden-files: true
 
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
