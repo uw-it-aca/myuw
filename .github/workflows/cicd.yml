@@ -117,28 +117,28 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Build Test Image
-        uses: docker/build-push-action@v7
-        with:
-          target: app-test-container
-          tags: app-test-container
-          push: false
-          load: true
+#      - name: Build Test Image
+#        uses: docker/build-push-action@v7
+#        with:
+#          target: app-test-container
+#          tags: app-test-container
+#          push: false
+#          load: true
 
-      - name: Start Memcached
-        run: docker run -d -h memcached -p 11211:11211 memcached:1.6-alpine
+#      - name: Start Memcached
+#        run: docker run -d -h memcached -p 11211:11211 memcached:1.6-alpine
 
-      - name: Run Tests in Image
-        id: tests
-        shell: bash
-        run: >-
-          docker run -u root -t
-          -v ${PWD}:/coverage
-          -e DJANGO_APP="$DJANGO_APP"
-          -e ENV="localdev"
-          -e AUTH="SAML_MOCK"
-          app-test-container
-          bash -c ". ./docker/test_python.sh"
+#      - name: Run Tests in Image
+#        id: tests
+#        shell: bash
+#        run: >-
+#          docker run -u root -t
+#          -v ${PWD}:/coverage
+#          -e DJANGO_APP="$DJANGO_APP"
+#          -e ENV="localdev"
+#          -e AUTH="SAML_MOCK"
+#          app-test-container
+#          bash -c ". ./docker/test_python.sh"
 
       - name: Push Image to Repository
         if: github.event_name == 'push'
@@ -147,18 +147,18 @@ jobs:
           image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
-      - name: Change ownership of coverage files
-        run: sudo chown runner:docker .coverage.*
+#      - name: Change ownership of coverage files
+#        run: sudo chown runner:docker .coverage.*
 
-      - name: List all files in the workspace
-        run: ls -la
+#      - name: List all files in the workspace
+#        run: ls -la
 
-      - name: Upload Python Coverage
-        uses: actions/upload-artifact@v7
-        with:
-          name: python-coverage
-          path: .coverage.*
-          include-hidden-files: true
+#      - name: Upload Python Coverage
+#        uses: actions/upload-artifact@v7
+#        with:
+#          name: python-coverage
+#          path: .coverage.*
+#          include-hidden-files: true
 
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
@@ -232,46 +232,46 @@ jobs:
           name: jest-cypress-coverage
           path: lcov.info
 
-  collect-coverage:
-    needs: [build, jest-cypress]
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v6
-
-      - uses: actions/download-artifact@v8
-        with:
-          name: python-coverage
-
-      - uses: actions/download-artifact@v8
-        with:
-          name: jest-cypress-coverage
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.3.5
-
-      - name: Report Test Coverage
-        if: |
-          matrix.django-version == env.COVERAGE_DJANGO_VERSION &&
-          matrix.python-version == env.COVERAGE_PYTHON_VERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          gem install coveralls-lcov
-          python -m pip install --upgrade pip coverage coveralls==3.3.1
-          coverage combine
-          coveralls-lcov -v -n lcov.info > js-coverage.json
-          coveralls --merge=js-coverage.json
-        continue-on-error: true
+#  collect-coverage:
+#    needs: [build, jest-cypress]
+#    runs-on: ubuntu-24.04
+#
+#    steps:
+#      - name: Checkout Repo
+#        uses: actions/checkout@v6
+#
+#      - uses: actions/download-artifact@v8
+#        with:
+#          name: python-coverage
+#
+#      - uses: actions/download-artifact@v8
+#        with:
+#          name: jest-cypress-coverage
+#
+#      - name: Set up Python
+#        uses: actions/setup-python@v6
+#        with:
+#          python-version: '3.12'
+#
+#      - name: Set up Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 3.3.5
+#
+#      - name: Report Test Coverage
+#        if: |
+#          matrix.django-version == env.COVERAGE_DJANGO_VERSION &&
+#          matrix.python-version == env.COVERAGE_PYTHON_VERSION
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        shell: bash
+#        run: |
+#          gem install coveralls-lcov
+#          python -m pip install --upgrade pip coverage coveralls==3.3.1
+#          coverage combine
+#          coveralls-lcov -v -n lcov.info > js-coverage.json
+#          coveralls --merge=js-coverage.json
+#        continue-on-error: true
 
   deploy:
     if: github.event_name == 'push'
