@@ -25,6 +25,14 @@ def canvas_prefetch():
 
 
 def get_canvas_active_enrollments(request):
+
+    #
+    # short circuit while Canvas API is returning 503
+    #
+    import os
+    if os.getenv("ENV", '') != "localdev":
+        return ([])
+
     if not hasattr(request, "canvas_act_enrollments"):
         request.canvas_act_enrollments = (
             canvas_enrollments.get_enrollments_for_regid(
