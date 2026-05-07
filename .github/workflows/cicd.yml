@@ -147,10 +147,10 @@ jobs:
           image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
-      - name: Change ownership of coverage files
-        run: sudo chown runner:docker .coverage.*
+#      - name: Change ownership of coverage files
+#        run: sudo chown runner:docker .coverage.*
 
-      - name: List all files in the workspace
+#      - name: List all files in the workspace
         run: ls -la
 
 #      - name: Upload Python Coverage
