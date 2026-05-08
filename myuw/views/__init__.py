@@ -62,7 +62,7 @@ def prefetch_resources(request,
     if prefetch_group:
         prefetch_methods.extend(group_prefetch())
 
-    if False and prefetch_canvas:
+    if prefetch_canvas:
         # depends on pws.person
         prefetch_methods.extend(canvas_prefetch())
 

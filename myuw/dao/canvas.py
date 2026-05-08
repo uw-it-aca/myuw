@@ -25,14 +25,6 @@ def canvas_prefetch():
 
 
 def get_canvas_active_enrollments(request):
-
-    #
-    # short circuit while Canvas API is returning 503
-    #
-    import os
-    if os.getenv("ENV", '') != "localdev":
-        return ([])
-
     if not hasattr(request, "canvas_act_enrollments"):
         request.canvas_act_enrollments = (
             canvas_enrollments.get_enrollments_for_regid(
@@ -94,15 +86,6 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
 
 
 def get_canvas_course_from_section(sws_section, uwnetid):
-
-    #
-    # short circuit while Canvas API is returning 503
-    #
-    import os
-    if os.getenv("ENV", '') != "localdev":
-        return None
-
-
     try:
         return Courses().get_course_by_sis_id(
             sws_section.canvas_course_sis_id())
@@ -116,15 +99,6 @@ def get_canvas_course_from_section(sws_section, uwnetid):
 
 
 def get_canvas_course_url(sws_section, person):
-
-    #
-    # short circuit while Canvas API is returning 503
-    #
-    import os
-    if os.getenv("ENV", '') != "localdev":
-        return None
-
-
     if sws_section.is_independent_study:
         sws_section.independent_study_instructor_regid = person.uwregid
     canvas_course = get_canvas_course_from_section(
