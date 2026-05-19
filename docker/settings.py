@@ -165,7 +165,7 @@ if os.getenv('IDCARD_ENV') in RESTCLIENTS_DEFAULT_ENVS:
     RESTCLIENTS_IDCARD_CERT_FILE = APPLICATION_CERT_PATH
     RESTCLIENTS_IDCARD_KEY_FILE = APPLICATION_KEY_PATH
     if os.getenv('IDCARD_ENV') == 'PROD':
-        RESTCLIENTS_IDCARD_HOST = 'https://wscc.admin.uw.edu'
+        RESTCLIENTS_IDCARD_HOST = 'https://asws.admin.uw.edu'
     else:
         RESTCLIENTS_IDCARD_HOST = 'https://eval-asws.admin.uw.edu'
 # End Migration settings
