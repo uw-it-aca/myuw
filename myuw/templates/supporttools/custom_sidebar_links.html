@@ -39,7 +39,7 @@
             <a href="{{ course_url }}">SWS Course</a>
         </li>
         {% endif %}
-        
+
         {% url 'myuw_rest_search' 'sws' 'student.html' as student_url %}
         {% if student_url %}
         <li>
@@ -77,10 +77,10 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
-        {% if upass_url %}
+        {% url 'myuw_rest_search' 'idcard' 'index.html' as idcard_url %}
+        {% if idcard_url %}
         <li>
-            <a href="{{ upass_url }}">ID Card</a>
+            <a href="{{ idcard_url }}">IDCard Eligibility</a>
         </li>
         {% endif %}
 
@@ -104,7 +104,7 @@
                 <a href="{{ libraries_url }}">My Library Info</a>
             </li>
         {% endif %}
-        
+
         {% url 'myuw_rest_search' 'myplan' 'index.html' as myplan_url %}
         {% if myplan_url %}
             <li>
@@ -116,6 +116,13 @@
         {% if space_url %}
         <li>
             <a href="{{ space_url }}">Space</a>
+        </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
+        {% if upass_url %}
+        <li>
+            <a href="{{ upass_url }}">UPass Membership</a>
         </li>
         {% endif %}
 
