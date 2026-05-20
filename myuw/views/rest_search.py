@@ -105,13 +105,13 @@ class MyUWRestSearchView(RestSearchView):
             code = get_input_value(request.POST, "code")
             url = f"space/v2/facility.json?facility_code={code}"
 
-        elif service == "upass":
-            res = get_input_value(request.POST, "res")
+        elif service == "idcard":
             netid = get_input_value(request.POST, "uwnetid")
-            if "idcard" == res:
-                url = f"idcarddataws/api/person/v1/eligibility/{netid}"
-            elif "upass" == res:
-                url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
+            url = f"idcarddataws/api/person/v1/eligibility/{netid}"
+
+        elif service == "upass":
+            netid = get_input_value(request.POST, "uwnetid")
+            url = f"upassdataws/api/person/v1/membershipstatus/{netid}"
 
         elif service == "uwnetid":
             res = get_input_value(request.POST, "res")
