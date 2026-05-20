@@ -256,7 +256,7 @@ class RestSearchViewTest(MyuwApiTest):
             "api/person/v1/membershipstatus/bill")
 
         # idcard
-        url = reverse("myuw_rest_search", args=["upass", "index"])
+        url = reverse("myuw_rest_search", args=["idcard", "index"])
         response = self.client.post(
             url, {"uwnetid": "bill",
                   "res": "idcard",
@@ -265,7 +265,7 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            "/restclients/view/upass/idcarddataws/"
+            "/restclients/view/idcard/idcarddataws/"
             + "api/person/v1/eligibility/bill"
         )
 
