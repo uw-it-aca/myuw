@@ -14,6 +14,7 @@ class CampusBuilding(models.Model):
     latitude = models.CharField(max_length=32)
     longitude = models.CharField(max_length=32)
     name = models.CharField(max_length=96)
+    location_url = models.CharField(max_length=256, null=True, blank=True)
 
     def __init__(self, *args, **kwargs):
         super(CampusBuilding, self).__init__(*args, **kwargs)
@@ -60,6 +61,7 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
+                    # TODO:  Update location_url when available
                     b_entry.save()
                 return b_entry
 
@@ -75,6 +77,7 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
+                    # TODO:  Update location_url when available
                     b_entry.save()
                 return b_entry
 
@@ -83,7 +86,9 @@ class CampusBuilding(models.Model):
             number=fac_obj.number,
             latitude=fac_obj.latitude,
             longitude=fac_obj.longitude,
-            name=fac_obj.name)
+            name=fac_obj.name,
+            # TODO:  Add location_url when available
+        )
 
     def no_change(self, fac_obj):
         return (
@@ -91,7 +96,9 @@ class CampusBuilding(models.Model):
             self.number == fac_obj.number and
             self.latitude == fac_obj.latitude and
             self.longitude == fac_obj.longitude and
-            self.name == fac_obj.name)
+            self.name == fac_obj.name and
+            self.location_url == self.location_url
+        )
 
     def json_data(self):
         return {
@@ -100,6 +107,7 @@ class CampusBuilding(models.Model):
             "longitude": self.longitude,
             "name": self.name,
             "number": self.number,
+            "location_url": self.location_url,
         }
 
     def __str__(self):
@@ -107,5 +115,3 @@ class CampusBuilding(models.Model):
 
     class Meta:
         app_label = 'myuw'
-        # db_table = "myuw_campusbuilding"
-        # would cause a rename of table

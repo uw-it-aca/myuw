@@ -23,6 +23,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': -122.304747,
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': None,
             }
         )
         self.assertIsNotNone(str(b_obj))
@@ -36,6 +37,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': None,
             }
         )
 
@@ -48,6 +50,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': None,
             }
         )
 
