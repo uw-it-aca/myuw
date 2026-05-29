@@ -393,8 +393,7 @@
               "room": "A102",
               "room_number": "A102",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             },
             {
@@ -563,8 +562,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -628,8 +626,7 @@
               "room": "B164",
               "room_number": "B164",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -689,8 +686,7 @@
               "room": "B108",
               "room_number": "B108",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1048,8 +1044,7 @@
             "building": "KNE",
             "room_number": "012",
             "room": "012",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "location_url": "https://map.uw.edu/?id=2099",
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 2,
@@ -1102,8 +1097,7 @@
               "room": "A102",
               "room_number": "A102",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             },
             {
@@ -1272,8 +1266,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1337,8 +1330,7 @@
               "room": "B164",
               "room_number": "B164",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1398,8 +1390,7 @@
               "room": "B108",
               "room_number": "B108",
               "instructors": [],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],

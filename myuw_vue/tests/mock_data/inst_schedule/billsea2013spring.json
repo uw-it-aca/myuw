@@ -236,8 +236,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         },
@@ -420,8 +419,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         }
@@ -443,8 +441,7 @@
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
@@ -883,8 +880,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         },
@@ -1087,8 +1083,7 @@
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
@@ -1412,8 +1407,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B164"
         }
@@ -1435,8 +1429,7 @@
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
@@ -1738,8 +1731,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B176"
         }
@@ -1761,8 +1753,7 @@
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
@@ -2085,8 +2076,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
         },
@@ -2256,8 +2246,7 @@
         "building": "PAA",
         "room_number": "A102",
         "room": "A102",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
       },
@@ -2649,8 +2638,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
         }
@@ -2672,8 +2660,7 @@
         "building": "PAA",
         "room_number": "A110",
         "room": "A110",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
       },
@@ -3011,8 +2998,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
         }
@@ -3034,8 +3020,7 @@
         "building": "PAA",
         "room_number": "A110",
         "room": "A110",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
       },
@@ -3337,8 +3322,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
         }
@@ -3360,8 +3344,7 @@
         "building": "ARC",
         "room_number": "147",
         "room": "147",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
       },

@@ -135,8 +135,7 @@
               "student_state": "prior"
             }
           ],
-          "latitude": 47.654829,
-          "longitude": -122.307751,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mary Gates Hall (MGH)"
         }
       ],

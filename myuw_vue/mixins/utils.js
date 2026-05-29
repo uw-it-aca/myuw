@@ -24,14 +24,6 @@ export default {
   methods: {
     dayjs: dayjs,
     today: () => dayjs().hour(0).minute(0).second(0).millisecond(0),  // bof
-    encodeForMaps(s) {
-      if (s) {
-        s = s.replace(/ \(/g, " - ");
-        s = s.replace(/[\)&]/g, "");
-        s = encodeURIComponent(s);
-      }
-      return s;
-    },
     // Phone Number Utils
     parsePhoneNumber(phNumStr) {
       let parsed = null;
