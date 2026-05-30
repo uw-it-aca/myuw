@@ -62,6 +62,7 @@ class CampusBuilding(models.Model):
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
                     # TODO:  Update location_url when available
+                    # b_entry.location_url = fac_obj.location_url
                     b_entry.save()
                 return b_entry
 
@@ -78,6 +79,7 @@ class CampusBuilding(models.Model):
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
                     # TODO:  Update location_url when available
+                    # b_entry.location_url = fac_obj.location_url
                     b_entry.save()
                 return b_entry
 
@@ -88,6 +90,7 @@ class CampusBuilding(models.Model):
             longitude=fac_obj.longitude,
             name=fac_obj.name,
             # TODO:  Add location_url when available
+            # location_url=fac_obj.location_url,
         )
 
     def no_change(self, fac_obj):
@@ -96,8 +99,9 @@ class CampusBuilding(models.Model):
             self.number == fac_obj.number and
             self.latitude == fac_obj.latitude and
             self.longitude == fac_obj.longitude and
-            self.name == fac_obj.name and
-            self.location_url == self.location_url
+            # TODO:  Add location_url when available
+            # self.location_url == fac_obj.location_url and
+            self.name == fac_obj.name
         )
 
     def json_data(self):
