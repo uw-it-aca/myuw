@@ -114,6 +114,13 @@ class CampusBuilding(models.Model):
             "location_url": self.location_url,
         }
 
+    def _google_map_url(self):
+        if self.latitude and self.longitude:
+            return (
+                f"https://maps.google.com/maps?q={self.latitude},"
+                f"{self.longitude}+({self.code})&t=k&z=18"
+            )
+
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
 

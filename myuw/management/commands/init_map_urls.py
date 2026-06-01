@@ -20,6 +20,11 @@ class Command(BaseCommand):
                             dest="commit", default=False,
                             help="Update building models with map urls")
 
+    def valid_map_url(self, url):
+        if url == "" or url == "https://map.uw.edu/":
+            return False
+        return True
+
     def handle(self, *args, **options):
         file_path = options.get("file_path")
         commit = options.get("commit")
@@ -33,7 +38,7 @@ class Command(BaseCommand):
                 building_code = row[1].strip()
                 map_url = row[6].strip()
 
-                if building_code and map_url:
+                if building_code and self.valid_map_url(map_url):
                     building_lookup[building_code] = map_url
 
         for building in CampusBuilding.objects.all():
@@ -41,7 +46,12 @@ class Command(BaseCommand):
             if map_url:
                 logger.info(f"Found map_url for building {building.code}")
                 building.location_url = map_url
-                if commit:
-                    building.save()
-                    logger.info(
-                        f"Updated location_url for building {building.code}")
+            elif building.latitude and building.longitude:
+                building.location_url = building._google_map_url()
+            else:
+                continue
+
+            if commit:
+                building.save()
+                logger.info(
+                    f"Updated location_url for building {building.code}")

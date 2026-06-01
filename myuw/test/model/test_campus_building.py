@@ -46,6 +46,7 @@ class TestBuilding(MyuwApiTest):
         )
 
         obj2 = CampusBuilding.get_building_by_number('1347')
+        obj2.location_url = obj2._google_map_url()
         self.assertEqual(
             obj2.json_data(),
             {
@@ -54,7 +55,9 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
-                'location_url': location_url,
+                'location_url': (
+                    'https://maps.google.com/maps?q=47.6536929997,'
+                    '-122.304747+(MEB)&t=k&z=18'),
             }
         )
 
