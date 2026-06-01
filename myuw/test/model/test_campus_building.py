@@ -56,8 +56,9 @@ class TestBuilding(MyuwApiTest):
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
                 'location_url': (
-                    'https://maps.google.com/maps?q=47.6536929997,'
-                    '-122.304747+(MEB)&t=k&z=18'),
+                    'https://www.google.com/maps/search/?api=1&query='
+                    '47.6536929997,-122.304747'
+                ),
             }
         )
 

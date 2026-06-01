@@ -117,8 +117,8 @@ class CampusBuilding(models.Model):
     def _google_map_url(self):
         if self.latitude and self.longitude:
             return (
-                f"https://maps.google.com/maps?q={self.latitude},"
-                f"{self.longitude}+({self.code})&t=k&z=18"
+                f"https://www.google.com/maps/search/?api=1&query="
+                f"{self.latitude},{self.longitude}"
             )
 
     def __str__(self):
