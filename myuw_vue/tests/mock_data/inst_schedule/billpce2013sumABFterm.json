@@ -139,8 +139,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/ARC+160"
         }
@@ -450,8 +449,7 @@
           "is_asynchronous": false,
           "is_synchronous": false,
           "is_hybrid": false,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/MGH+430"
         }
@@ -733,8 +731,7 @@
           "is_synchronous": false,
           "is_hybrid": false,
           "start_end_same": true,
-          "latitude": 47.6536929997,
-          "longitude": -122.304747,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/SMI+115"
         },

@@ -544,8 +544,8 @@
                                     "student_state": null
                                 }
                             ],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         },
                         {
                             "index": "2",
@@ -572,8 +572,8 @@
                             "room": "261",
                             "room_number": "261",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,
@@ -641,8 +641,8 @@
                             "room": "191B",
                             "room_number": "191B",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,
@@ -1214,8 +1214,8 @@
                                     "student_state": null
                                 }
                             ],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         },
                         {
                             "index": "2",
@@ -1242,8 +1242,8 @@
                             "room": "261",
                             "room_number": "261",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,
@@ -1311,8 +1311,8 @@
                             "room": "191B",
                             "room_number": "191B",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,
@@ -1875,8 +1875,8 @@
                                     "student_state": null
                                 }
                             ],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         },
                         {
                             "index": "2",
@@ -1903,8 +1903,8 @@
                             "room": "261",
                             "room_number": "261",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,
@@ -1972,8 +1972,8 @@
                             "room": "191B",
                             "room_number": "191B",
                             "instructors": [],
-                            "latitude": 47.6534911755,
-                            "longitude": -122.30882034
+                            "location_url": "https://map.uw.edu/?id=2099",
+                            "building_name": "Kane Hall (KNE)"
                         }
                     ],
                     "for_credit": true,

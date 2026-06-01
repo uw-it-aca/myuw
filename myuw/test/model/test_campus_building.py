@@ -8,13 +8,17 @@ from myuw.test.api import MyuwApiTest
 
 class TestBuilding(MyuwApiTest):
     def test_building(self):
+        location_url = "https://map.uw.edu/?id=2099#!m/974994?share"
         fac_obj = Facilities().search_by_number("1347")
         b_obj = CampusBuilding.upd_building(fac_obj)
+        b_obj.location_url = location_url
+        b_obj.save()
         self.assertEqual(b_obj.latitude, 47.6536929997)
         self.assertEqual(b_obj.longitude, -122.304747)
         self.assertEqual(b_obj.name, "Mechanical Engineering Building")
         self.assertEqual(b_obj.code, 'MEB')
         self.assertEqual(b_obj.number, '1347')
+        self.assertEqual(b_obj.location_url, location_url)
         self.assertEqual(
             b_obj.json_data(),
             {
@@ -23,6 +27,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': -122.304747,
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': location_url,
             }
         )
         self.assertIsNotNone(str(b_obj))
@@ -36,6 +41,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': location_url,
             }
         )
 
@@ -48,6 +54,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
+                'location_url': location_url,
             }
         )
 

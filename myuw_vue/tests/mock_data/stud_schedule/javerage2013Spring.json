@@ -1,6 +1,6 @@
 {
   "year": 2013,
-  "quarter": "spring",
+      "quarter": "spring",
   "term": {
     "quarter": "Spring",
     "year": 2013,
@@ -82,8 +82,7 @@
           "room": "A102",
           "room_number": "A102",
           "instructors": [],
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Physics / Astronomy Auditorium (PAA)"
         },
         {
@@ -248,8 +247,7 @@
               "student_state": null
             }
           ],
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Physics / Astronomy Auditorium (PAA)"
         }
       ],
@@ -317,8 +315,7 @@
           "room": "B164",
           "room_number": "B164",
           "instructors": [],
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Physics / Astronomy Building (PAB)"
         }
       ],
@@ -382,8 +379,7 @@
           "room": "B108",
           "room_number": "B108",
           "instructors": [],
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Physics / Astronomy Building (PAB)"
         }
       ],
@@ -735,8 +731,7 @@
         "building": "KNE",
         "room_number": "012",
         "room": "012",
-        "longitude": -122.309198619,
-        "latitude": 47.6565514399,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Kane Hall (KNE)"
       },
       "color_id": 2,

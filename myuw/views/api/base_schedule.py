@@ -113,9 +113,8 @@ def load_schedule(request, schedule):
             # if section.final_exam.building:
             #    building = get_building_by_code(section.final_exam.building)
             #    if building:
-            #        final["longitude"] = building.longitude
-            #        final["latitude"] = building.latitude
             #        final["building_name"] = building.name
+            #        final["location_url"] = building.location_url
 
         # Also backfill the meeting building data
         section_data["has_eos_dates"] = False
@@ -139,9 +138,8 @@ def load_schedule(request, schedule):
                 if not mdata["building_tbd"] and len(mdata["building"]):
                     building = get_building_by_code(mdata["building"])
                     if building is not None:
-                        mdata["latitude"] = building.latitude
-                        mdata["longitude"] = building.longitude
                         mdata["building_name"] = building.name
+                        mdata["location_url"] = building.location_url
 
                 for instructor in mdata["instructors"]:
                     if (len(instructor["email_addresses"]) == 0 and

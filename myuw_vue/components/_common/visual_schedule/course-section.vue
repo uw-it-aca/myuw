@@ -184,15 +184,8 @@ export default {
       return 'Location: TBD';
     },
     meetingLocationUrl() {
-      if (this.hasBuildingRoom &&
-          'latitude' in this.meetingData.meeting &&
-          'longitude' in this.meetingData.meeting
-      ) {
-        return `https://maps.google.com/maps?q=${
-          this.meetingData.meeting.latitude
-        },${this.meetingData.meeting.longitude}+(${
-          this.meetingData.meeting.building
-        })&t=k&z=18`;
+      if (this.hasBuildingRoom && "location_url" in this.meetingData.meeting) {
+        return this.meetingData.meeting.location_url;
       }
       return false;
     },

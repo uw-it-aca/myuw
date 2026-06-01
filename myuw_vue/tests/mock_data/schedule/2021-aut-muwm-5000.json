@@ -50,8 +50,8 @@
         "room": "233",
         "room_number": "233",
         "instructors": [],
-        "latitude": 47.654881773113,
-        "longitude": -122.30655410185
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",
@@ -175,8 +175,8 @@
         "room": "136",
         "room_number": "136",
         "instructors": [],
-        "latitude": 47.65646093404,
-        "longitude": -122.3104401865
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",
@@ -257,8 +257,8 @@
         "room": "233",
         "room_number": "233",
         "instructors": [],
-        "latitude": 47.654881773113,
-        "longitude": -122.30655410185
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",
@@ -382,8 +382,8 @@
         "room": "136",
         "room_number": "136",
         "instructors": [],
-        "latitude": 47.65646093404,
-        "longitude": -122.3104401865
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",
@@ -455,8 +455,8 @@
         "room": "233",
         "room_number": "233",
         "instructors": [],
-        "latitude": 47.654881773113,
-        "longitude": -122.30655410185
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",
@@ -580,8 +580,8 @@
         "room": "136",
         "room_number": "136",
         "instructors": [],
-        "latitude": 47.65646093404,
-        "longitude": -122.3104401865
+        "location_url": "https://map.uw.edu/?id=2099",
+        "building_name": "Kane Hall (KNE)"
       }],
       "for_credit": true,
       "credits": "4.0",

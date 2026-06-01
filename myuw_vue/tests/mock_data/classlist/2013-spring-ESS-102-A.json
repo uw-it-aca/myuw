@@ -141,8 +141,7 @@
               "student_state": null
             }
           ],
-          "latitude": 47.656645546715,
-          "longitude": -122.30718991534,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Smith Hall (SMI)",
           "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
         }
@@ -161,8 +160,7 @@
         "building": "SMI",
         "room_number": "401",
         "room": "401",
-        "longitude": -122.30718991534,
-        "latitude": 47.656645546715,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Smith Hall (SMI)",
         "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
       },
@@ -418,8 +416,7 @@
           "room": "140",
           "room_number": "140",
           "instructors": [],
-          "latitude": 47.654588546146,
-          "longitude": -122.30887827116,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Johnson Hall (JHN)",
           "classroom_info_url": "http://www.washington.edu/classroom/JHN+140"
         }

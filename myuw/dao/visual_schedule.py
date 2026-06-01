@@ -42,9 +42,8 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
                         building = get_building_by_code(final['building'])
 
                         if building is not None:
-                            final["latitude"] = building.latitude
-                            final["longitude"] = building.longitude
                             final["building_name"] = building.name
+                            final["location_url"] = building.location_url
 
             for meeting in section["meetings"]:
                 if 'building' in meeting:
@@ -52,9 +51,8 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
                     building = get_building_by_code(building_code)
 
                     if building is not None:
-                        meeting["latitude"] = building.latitude
-                        meeting["longitude"] = building.longitude
                         meeting["building_name"] = building.name
+                        meeting["location_url"] = building.location_url
 
     response['periods'] = schedule_periods
 
