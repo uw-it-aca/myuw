@@ -14,7 +14,7 @@ class Command(BaseCommand):
     help = "Seed campus_building.location_url from a crosswalk CSV file"
 
     def add_arguments(self, parser):
-        parser.add_argument("file_path"
+        parser.add_argument("file_path",
                             help="CSV file containing map urls")
         parser.add_argument("-c", "--commit", action="store_true",
                             dest="commit", default=False,
