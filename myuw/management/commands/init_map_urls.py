@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("file_path"
-                            help="CSV file containing map urls.")
+                            help="CSV file containing map urls")
         parser.add_argument("-c", "--commit", action="store_true",
                             dest="commit", default=False,
                             help="Update building models with map urls")
@@ -39,8 +39,9 @@ class Command(BaseCommand):
         for building in CampusBuilding.objects.all():
             map_url = building_lookup.get(building.code)
             if map_url:
+                logger.info(f"Found map_url for building {building.code}")
                 building.location_url = map_url
                 if commit:
                     building.save()
-                else:
-                    logger.info(f"Found map_url for building {building.code}")
+                    logger.info(
+                        f"Updated location_url for building {building.code}")
