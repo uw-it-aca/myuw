@@ -46,7 +46,7 @@ class Command(BaseCommand):
             if map_url:
                 logger.info(f"Found map_url for building {building.code}")
                 building.location_url = map_url
-            elif building.latitude and building.longitude:
+            elif building._google_map_url():
                 building.location_url = building._google_map_url()
             else:
                 continue
