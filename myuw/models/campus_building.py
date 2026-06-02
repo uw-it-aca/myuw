@@ -3,6 +3,7 @@
 
 from django.db import models
 from django.db import transaction
+from decimal import Decimal
 import json
 
 
@@ -114,12 +115,19 @@ class CampusBuilding(models.Model):
             "location_url": self.location_url,
         }
 
+    # TODO: Replace this temporary method with one that chooses the
+    # best-available map url from the facility obj:
+    #   1. fac_obj.campus_map_url
+    #   2. fac_obj.center_point_url
+    #   3. None (no map url available)
     def _google_map_url(self):
-        if self.latitude and self.longitude:
+        if (self.latitude is not None and self.longitude is not None and
+                Decimal(self.latitude) and Decimal(self.longitude)):
             return (
-                f"https://www.google.com/maps/search/?api=1&query="
+                f"https://maps.google.com/maps?ll="
                 f"{self.latitude},{self.longitude}"
             )
+        return None
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
