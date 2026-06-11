@@ -130,13 +130,6 @@
                     ><font-awesome-icon :icon="faGraduationCap" class="me-2" fixed-width
                       />Academics</a>
                 </li>
-                <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
-                  <a
-                    class="nav-link text-dark d-block px-2 py-1"
-                    href="/husky_experience/"
-                    :class="{ active: page.title == 'Husky Experience Toolkit' }"
-                  ><font-awesome-icon :icon="faPaw" class="me-2" fixed-width />Husky Experience</a>
-                </li>
                 <li v-if="instructor" class="nav-item mb-2">
                   <a
                     class="nav-link text-dark d-block px-2 py-1"
@@ -205,7 +198,7 @@
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{ 'visually-hidden': hideTitle || $mq != 'desktop' }"
+              :class="{ 'visually-hidden': $mq != 'desktop' }"
             >
               {{ page.title }}
             </h1>
@@ -375,7 +368,6 @@ export default {
       affiliations: state => state.user.affiliations,
       undergrad: state => state.user.affiliations.undergrad,
       seattle: state => state.user.affiliations.seattle,
-      hxtViewer: state => state.user.affiliations.hxt_viewer,
       student: state => state.user.affiliations.student,
       applicant: state => state.user.affiliations.applicant,
       instructor: state => state.user.affiliations.instructor,
@@ -384,10 +376,6 @@ export default {
       disableActions: state => state.disableActions,
       displayPopUp: state => state.displayPopUp,
     }),
-    hideTitle() {
-      const currentUrl = window.location.href;
-      return currentUrl.includes("husky_experience_message") || this.page.hideTitle;
-    },
   },
   created() {
     this.$logger.setUserProperties(this.affiliations);
