@@ -76,7 +76,7 @@
               v-text="currentAddress.country">
             </div>
             <div v-if="currentPhone">
-              Phone: {{ formatPhoneNumberDisaply(currentPhone) }}
+              Phone: {{ formatPhoneNumberDisplay(currentPhone) }}
             </div>
           </div>
           <div v-else class="text-muted">
@@ -96,7 +96,7 @@
               v-text="permanentAddress.country">
             </div>
             <div v-if="permanentPhone">
-              Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
+              Phone: {{ formatPhoneNumberDisplay(permanentPhone) }}
             </div>
           </div>
           <div v-else class="text-muted">

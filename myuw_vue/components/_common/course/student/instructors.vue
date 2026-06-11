@@ -32,7 +32,7 @@
               :href="`tel:${formatPhoneNumberLink(phone)}`"
               class="d-block"
             >
-              {{ formatPhoneNumberDisaply(phone) }}
+              {{ formatPhoneNumberDisplay(phone) }}
             </a>
             <div
               v-for="(address, j) in instructor.addresses"

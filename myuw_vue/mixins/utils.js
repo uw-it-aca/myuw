@@ -35,7 +35,7 @@ export default {
       }
       return parsed;
     },
-    formatPhoneNumberDisaply(phNumStr) {
+    formatPhoneNumberDisplay(phNumStr) {
       let parsed = this.parsePhoneNumber(phNumStr);
       if (parsed) {
         return `(${parsed.area}) ${parsed.exchange}-${parsed.line}`;
