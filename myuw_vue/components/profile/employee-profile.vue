@@ -28,16 +28,16 @@
           </p>
           <ul v-else class="list-unstyled myuw-text-md">
             <li v-if="phone" class="mb-1">
-              Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
+              Office:&nbsp;&nbsp;{{ formatPhoneNumberDisplay(phone) }}
             </li>
             <li v-if="mobile" class="mb-1">
-              Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
+              Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisplay(mobile) }}
             </li>
             <li v-if="voiceMail" class="mb-1">
-              Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
+              Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisplay(voiceMail) }}
             </li>
             <li v-if="fax" class="mb-1">
-              Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
+              Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisplay(fax) }}
             </li>
           </ul>
         </uw-card-property>

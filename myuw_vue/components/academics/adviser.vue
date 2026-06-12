@@ -27,7 +27,7 @@
                 <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
               </div>
               <div>{{ adviser.email_address }}</div>
-              <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
+              <div>{{ formatPhoneNumberDisplay(adviser.phone_number) }}</div>
               <div v-if="adviser.booking_url">
                 <a :href="adviser.booking_url">Make an appointment online</a>
               </div>

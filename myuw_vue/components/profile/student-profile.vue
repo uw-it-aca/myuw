@@ -63,20 +63,20 @@
       </uw-card-property-group>
 
       <uw-card-property-group>
-        <uw-card-property title="Local Address">
-          <div v-if="localAddress">
-            <div v-if="localAddress.street_line1"
-              v-text="localAddress.street_line1">
+        <uw-card-property title="Current Address">
+          <div v-if="currentAddress">
+            <div v-if="currentAddress.street_line1"
+              v-text="currentAddress.street_line1">
             </div>
-            <div v-if="localAddress.street_line2"
-              v-text="localAddress.street_line2">
+            <div v-if="currentAddress.street_line2"
+              v-text="currentAddress.street_line2">
             </div>
-            <span v-text="addressLocationString(localAddress)" />
-            <div v-if="localAddress.country"
-              v-text="localAddress.country">
+            <span v-text="addressLocationString(currentAddress)" />
+            <div v-if="currentAddress.country"
+              v-text="currentAddress.country">
             </div>
-            <div v-if="localPhone">
-              Phone: {{ formatPhoneNumberDisaply(localPhone) }}
+            <div v-if="currentPhone">
+              Phone: {{ formatPhoneNumberDisplay(currentPhone) }}
             </div>
           </div>
           <div v-else class="text-muted">
@@ -96,7 +96,7 @@
               v-text="permanentAddress.country">
             </div>
             <div v-if="permanentPhone">
-              Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
+              Phone: {{ formatPhoneNumberDisplay(permanentPhone) }}
             </div>
           </div>
           <div v-else class="text-muted">
@@ -238,8 +238,8 @@ export default {
       termMajors: (state) => state.value.term_majors,
       termMinors: (state) => state.value.term_minors,
       hasMinors: (state) => state.value.has_minors,
-      localAddress: (state) => state.value.local_address,
-      localPhone: (state) => state.value.local_phone,
+      currentAddress: (state) => state.value.local_address,
+      currentPhone: (state) => state.value.local_phone,
       permanentAddress: (state) => state.value.permanent_address,
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
