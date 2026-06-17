@@ -115,8 +115,7 @@
               "student_state": null
             }
           ],
-          "latitude": 47.654561,
-          "longitude": -122.310904,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Architecture Hall (ARC)",
           "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
         }
@@ -135,8 +134,7 @@
         "building": "ARC",
         "room_number": "147",
         "room": "147",
-        "longitude": -122.310904,
-        "latitude": 47.654561,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Architecture Hall (ARC)",
         "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
       },
@@ -421,8 +419,7 @@
               "student_state": null
             }
           ],
-          "latitude": 47.654561,
-          "longitude": -122.310904,
+          "location_url": "https://map.uw.edu/?id=2099",
           "building_name": "Architecture Hall (ARC)",
           "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
         }

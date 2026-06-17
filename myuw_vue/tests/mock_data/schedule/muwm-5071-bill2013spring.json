@@ -113,8 +113,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -278,8 +277,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             },
             {
@@ -448,8 +446,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -573,8 +570,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -694,8 +690,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1199,8 +1194,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1218,8 +1212,7 @@
             "building": "SMI",
             "room_number": "401",
             "room": "401",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "location_url": "https://map.uw.edu/?id=2099",
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 1,
@@ -1367,8 +1360,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             },
             {
@@ -1537,8 +1529,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1662,8 +1653,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -1783,8 +1773,7 @@
                   "student_state": null
                 }
               ],
-              "latitude": "47.653693",
-              "longitude": "-122.304747",
+              "location_url": "https://map.uw.edu/?id=2099",
               "building_name": "Mechanical Engineering Building"
             }
           ],
@@ -2168,8 +2157,7 @@
             "building": "KNE",
             "room_number": "012",
             "room": "012",
-            "latitude": "47.653693",
-            "longitude": "-122.304747",
+            "location_url": "https://map.uw.edu/?id=2099",
             "building_name": "Mechanical Engineering Building"
           },
           "color_id": 4,

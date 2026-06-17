@@ -53,25 +53,14 @@ export const processSectionDates = (section) => {
   }
 };
 
-function encodeForMaps(s) {
-  if (s) {
-    s = s.replace(/ \(/g, " - ");
-    s = s.replace(/[\)&]/g, "");
-    s = encodeURIComponent(s);
-  }
-  return s;
-};
-
 export const generateMeetingLocationData = (meeting) => {
   const data = [{}];
   if (!meeting.building_tbd) {
     let i = 0;
-    if (meeting.latitude && meeting.longitude) {
+    if (meeting.location_url) {
       data[i].text = `${meeting.building}`;
       data[i].label = `Map ${data[i].text}`;
-      data[i].link = `http://maps.google.com/maps?q=${meeting.latitude},${
-        meeting.longitude
-      }+(${encodeForMaps(meeting.building_name)})&z=18`;
+      data[i].link = meeting.location_url;
       i++;
       data[i] = {};
     } else if (meeting.building == '*') {

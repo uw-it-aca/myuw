@@ -166,7 +166,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="https://nstp.uw.edu/"> Learn about First Year Programs </a>
+          <a href="https://nstp.uw.edu/"> Learn about New Student & Transfer Programs </a>
         </li>
         <li class="mb-1">
           <a href="https://www.washington.edu/students/"> Check out the Student Guide </a>

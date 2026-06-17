@@ -59,8 +59,8 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(section1['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(section1['limit_estimate_enrollment'], 15)
-        self.assertEqual(section1['final_exam']['latitude'],
-                         47.6536929997)
+        self.assertEqual(section1['final_exam']['building_name'],
+                         'Mechanical Engineering Building')
         self.assertEqual(
             section1["email_list"]['section_list']['list_address'],
             'ess102a_sp13')
@@ -102,8 +102,9 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         data = json.loads(resp.content)
         # MUWM-4085
         final = data['sections'][0]['final_exam']
-        self.assertTrue(final['longitude'])
-        self.assertTrue(final['latitude'])
+        self.assertEqual(final['building_name'],
+                         'Mechanical Engineering Building')
+        self.assertEqual(final['location_url'], None)
 
 
 @require_url('myuw_instructor_schedule_api',
@@ -193,8 +194,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['limit_estimate_enrollment'], 15)
         self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'],
-            47.6536929997)
+            data['sections'][0]['final_exam']['location_url'], None)
         self.assertEqual(data['sections'][0]['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(

@@ -9,8 +9,8 @@
   </span>
   <span v-else>
     <span v-if="meeting.building">
-      <a v-if="meeting.latitude"
-        :href="locationUrl"
+      <a v-if="meeting.location_url"
+        :href="meeting.location_url"
         :title="`Map of ${meeting.building_name}`"
       >{{ meeting.building }}</a>
       <span v-else title="No building information available">
@@ -63,11 +63,6 @@ export default {
         this.meeting.building_tbd &&
         (this.meeting.is_asynchronous || this.meeting.is_synchronous || this.meeting.is_hybrid)
       );
-    },
-    locationUrl() {
-      return `https://maps.google.com/maps?q=${this.meeting.latitude},${
-        this.meeting.longitude
-        }+(${this.encodeForMaps(this.meeting.building)})&t=k&z=18`;
     },
   },
 };

@@ -212,8 +212,7 @@
         "building": "MGH",
         "room_number": "012",
         "room": "012",
-        "longitude": -122.304747,
-        "latitude": 47.6536929997,
+        "location_url": "https://map.uw.edu/?id=2099",
         "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/MGH+012"
       },

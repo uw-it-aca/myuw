@@ -3,6 +3,7 @@
 
 from django.db import models
 from django.db import transaction
+from decimal import Decimal
 import json
 
 
@@ -14,6 +15,7 @@ class CampusBuilding(models.Model):
     latitude = models.CharField(max_length=32)
     longitude = models.CharField(max_length=32)
     name = models.CharField(max_length=96)
+    location_url = models.CharField(max_length=256, null=True, blank=True)
 
     def __init__(self, *args, **kwargs):
         super(CampusBuilding, self).__init__(*args, **kwargs)
@@ -60,6 +62,8 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
+                    # TODO:  Update location_url when available
+                    # b_entry.location_url = fac_obj.location_url
                     b_entry.save()
                 return b_entry
 
@@ -75,6 +79,8 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
+                    # TODO:  Update location_url when available
+                    # b_entry.location_url = fac_obj.location_url
                     b_entry.save()
                 return b_entry
 
@@ -83,7 +89,10 @@ class CampusBuilding(models.Model):
             number=fac_obj.number,
             latitude=fac_obj.latitude,
             longitude=fac_obj.longitude,
-            name=fac_obj.name)
+            name=fac_obj.name,
+            # TODO:  Add location_url when available
+            # location_url=fac_obj.location_url,
+        )
 
     def no_change(self, fac_obj):
         return (
@@ -91,7 +100,10 @@ class CampusBuilding(models.Model):
             self.number == fac_obj.number and
             self.latitude == fac_obj.latitude and
             self.longitude == fac_obj.longitude and
-            self.name == fac_obj.name)
+            # TODO:  Add location_url when available
+            # self.location_url == fac_obj.location_url and
+            self.name == fac_obj.name
+        )
 
     def json_data(self):
         return {
@@ -100,12 +112,25 @@ class CampusBuilding(models.Model):
             "longitude": self.longitude,
             "name": self.name,
             "number": self.number,
+            "location_url": self.location_url,
         }
+
+    # TODO: Replace this temporary method with one that chooses the
+    # best-available map url from the facility obj:
+    #   1. fac_obj.campus_map_url
+    #   2. fac_obj.center_point_url
+    #   3. None (no map url available)
+    def _google_map_url(self):
+        if (self.latitude is not None and self.longitude is not None and
+                Decimal(self.latitude) and Decimal(self.longitude)):
+            return (
+                f"https://maps.google.com/maps?ll="
+                f"{self.latitude},{self.longitude}"
+            )
+        return None
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
 
     class Meta:
         app_label = 'myuw'
-        # db_table = "myuw_campusbuilding"
-        # would cause a rename of table

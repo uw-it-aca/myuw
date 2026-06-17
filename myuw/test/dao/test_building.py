@@ -22,7 +22,8 @@ class TestBuildings(TestCase):
                 'latitude': 47.6536929997,
                 'longitude': -122.304747,
                 'name': 'Mechanical Engineering Building',
-                'number': '1347'
+                'number': '1347',
+                'location_url': None,
             })
 
         self.assertTrue(CampusBuilding.exists('PAA'))

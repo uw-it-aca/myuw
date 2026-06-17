@@ -51,7 +51,7 @@ describe('Student Profile Card', () => {
     expect(wrapper.vm.termMajors).toBeTruthy();
     expect(wrapper.vm.hasMinors).toBeTruthy();
     expect(wrapper.vm.termMinors).toBeTruthy();
-    expect(wrapper.vm.localAddress).toBeTruthy();
+    expect(wrapper.vm.currentAddress).toBeTruthy();
     expect(wrapper.vm.permanentAddress).toBeTruthy();
   });
 
