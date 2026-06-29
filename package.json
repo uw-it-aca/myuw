@@ -3,7 +3,7 @@
     "lighthouse": "lhci collect"
   },
   "dependencies": {
-    "@babel/core": "7.28.0",
+    "@babel/core": "7.29.6",
     "@babel/preset-env": "7.28.0",
     "@fortawesome/fontawesome-svg-core": "1.2.35",
     "@fortawesome/free-regular-svg-icons": "5.15.3",
