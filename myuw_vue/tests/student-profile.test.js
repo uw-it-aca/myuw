@@ -82,5 +82,27 @@ describe('Student Profile Card', () => {
       })
     ).toEqual('');
   });
+
+  it('handles null pending residency change values', async () => {
+    const profileWithNullPendingResidency = {
+      ...javg002Profile,
+      pending_residency_change: {
+        pending_resident_code: null,
+        pending_resident_desc: null,
+        term: {
+          year: 2026,
+          quarter: 'summer',
+        },
+      },
+    };
+
+    axios.get.mockResolvedValue({data: profileWithNullPendingResidency, status: 200});
+    const wrapper = shallowMount(StudentProfileCard, {store, localVue});
+    await new Promise(setImmediate);
+
+    expect(wrapper.vm.hasPendingResidency).toBeFalsy();
+    expect(wrapper.vm.pendingResidencyD).toBe('-');
+    expect(wrapper.vm.hasResidencyChange).toBeFalsy();
+  });
 });
  

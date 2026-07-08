@@ -274,8 +274,13 @@ export default {
         this.formatResidency(this.residentCode, this.residentDesc));
     },
     hasPendingResidency () {
+      const pendingCode = this.pendingResidency && this.pendingResidency.pending_resident_code;
       return (
-        this.pendingResidency && this.pendingResidency.pending_resident_code !== "0");
+        pendingCode !== undefined &&
+        pendingCode !== null &&
+        pendingCode !== '' &&
+        pendingCode !== "0"
+      );
     },
     pendingResidencyD() {
       return this.hasPendingResidency ?
@@ -330,6 +335,7 @@ export default {
       return location;
     },
     formatResidency(rcode, rdesc) {
+      if (!rdesc || typeof rdesc !== 'string') return '';
       if(rcode === "5") return rdesc;
       if(rcode === "6") return "NONRESIDENT";
       return rdesc.replace(/\s.*/, '');
