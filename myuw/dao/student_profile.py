@@ -179,11 +179,13 @@ def _get_residency_change(terms, enrollments, current_resident_code):
     for term in terms:
         if term in enrollments:
             enrollment = enrollments[term]
-            if (enrollment.pending_resident_code != current_resident_code and
-                    enrollment.pending_resident_code != "0"):
+            pending_code = enrollment.pending_resident_code
+            if pending_code in (None, "", "0"):
+                continue
+            if pending_code != current_resident_code:
                 # MUWM-5352
                 return {
-                    "pending_resident_code": enrollment.pending_resident_code,
+                    "pending_resident_code": pending_code,
                     "pending_resident_desc": enrollment.pending_resident_desc,
                     "term": {"year": term.year, "quarter": term.quarter}
                 }
