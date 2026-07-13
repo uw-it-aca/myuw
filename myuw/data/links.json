@@ -150,16 +150,6 @@
         "restrict_to_campus":null
     },
     {
-	"id":100,
-        "title":"SpaceScout",
-        "url":"https://spacescout.uw.edu/",
-        "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
-        "on_for_pce":false,
-        "restrict_to_campus":"seattle"
-    },
-    {
 	"id":101,
         "title":"Time Schedule - Bothell",
         "url":"https://www.uwb.edu/registrar/time",
