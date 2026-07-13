@@ -2,9 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+from collections import namedtuple
+from types import SimpleNamespace
 from myuw.dao.student_profile import (
     _get_degrees_for_terms, get_student_emergency_contacts,
-    get_cur_future_enrollments, get_student_profile)
+    get_cur_future_enrollments, get_student_profile, _get_residency_change)
 from myuw.test import (
     fdao_sws_override, fdao_pws_override,
     get_request_with_date, get_request_with_user)
@@ -137,3 +139,32 @@ class TestStudentProfile(TestCase):
         req = get_request_with_user('jerror')
         eme_contacts = get_student_emergency_contacts(req)
         self.assertIsNone(eme_contacts)
+
+    def test_residency_change_skips_null_pending_code(self):
+        term_type = namedtuple('Term', ['year', 'quarter'])
+        term_current = term_type(year=2026, quarter='summer')
+        term_next = term_type(year=2026, quarter='autumn')
+
+        enrollments = {
+            term_current: SimpleNamespace(
+                pending_resident_code=None,
+                pending_resident_desc=None,
+            ),
+            term_next: SimpleNamespace(
+                pending_resident_code='5',
+                pending_resident_desc='NONRESIDENT STUDENT VISA',
+            ),
+        }
+
+        data = _get_residency_change(
+            [term_current, term_next], enrollments, current_resident_code='0'
+        )
+
+        self.assertEqual(
+            data,
+            {
+                'pending_resident_code': '5',
+                'pending_resident_desc': 'NONRESIDENT STUDENT VISA',
+                'term': {'year': 2026, 'quarter': 'autumn'},
+            },
+        )
