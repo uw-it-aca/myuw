@@ -1,4 +1,4 @@
-ARG DJANGO_CONTAINER_VERSION=3.1.1
+ARG DJANGO_CONTAINER_VERSION=3.1.2
 
 FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAINER_VERSION} AS app-prewebpack-container
 
