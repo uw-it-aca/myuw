@@ -1,23 +1,15 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-"""
-Handle SWS Section Status events
-https://wiki.cac.washington.edu/x/sNFdB
-"""
-
-import logging
-from datetime import timedelta
-import traceback
 from django.conf import settings
-from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import MessageBodyProcessor, ProcessorException
-from myuw.event import update_sws_entry_in_cache
-
+from memcached_clients.restclient import CachedHTTPResponse
+from myuw.util.cache import MyUWMemcachedCache
+import traceback
+import logging
 
 logger = logging.getLogger(__name__)
-MESSAGE_FRESHNESS = timedelta(hours=4)
 QUEUE_SETTINGS_NAME = 'SECTION_STATUS_V1'
 
 
@@ -26,52 +18,43 @@ class SectionStatusProcessorException(ProcessorException):
 
 
 class SectionStatusProcessor(MessageBodyProcessor):
+    """
+    Process SWS Section Status events
+    https://wiki.cac.washington.edu/x/sNFdB
+    """
 
-    EXCEPTION_CLASS = SectionStatusProcessorException
+    _eventMessageType = 'uw-student-section-status-prod-myuw'
+    _eventMessageVersion = '1'
 
     def __init__(self, queue_settings_name=QUEUE_SETTINGS_NAME):
         super(SectionStatusProcessor, self).__init__(logger,
                                                      queue_settings_name)
 
-    def validate_message_body(self, payload):
-        """
-        This method will be called before process_message_body.
-        Return False if payload json data misses any necessary
-        data element and the message will be skipped.
-        """
-        if (payload is None or
-                payload.get('EventDate') is None):
-            return False
+    def validate_message_body(self, message):
+        header = message.get('Header', {})
+        if ('MessageType' in header and
+                header['MessageType'] != self._eventMessageType):
+            raise SectionStatusProcessorException(
+                'Unknown Message Type: {}'.format(header['MessageType']))
 
-        self.modified = parse(payload['EventDate'])
-        if self.modified <= (timezone.now() - MESSAGE_FRESHNESS):
-            logger.debug("DISCARD Old message {}".format(payload))
-            return False
-
-        if (payload.get('Current') is None or
-                len(payload.get('Current')) == 0 or
-                payload.get('Href') is None or
-                len(payload.get('Href')) == 0):
-            logger.error("DISCARD Bad message {}".format(payload))
-            return False
+        if ('Version' in header and
+                header['Version'] != self._eventMessageVersion):
+            raise SectionStatusProcessorException(
+                'Unknown Version: {}'.format(header['Version']))
 
         return True
 
-    def process_message_body(self, payload):
-        # payload['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
-        url = "/student{}".format(payload['Href'])
-        new_value = payload['Current']
-
+    def process_message_body(self, json_data):
+        cache_client = MyUWMemcachedCache()
+        response = CachedHTTPResponse(status=200, data=json_data['Current'])
         try:
-            update_sws_entry_in_cache(url, new_value, self.modified)
+            cache_client.updateCache('sws', json_data['Href'], response)
         except Exception as ex:
             msg = {
-                "at": "SectionStatusProcessor",
-                "memcachedServers": getattr(settings, "MEMCACHED_SERVERS"),
-                "svc": "sws",
-                "url": url,
-                "newValue": new_value,
+                "svc": QUEUE_SETTINGS_NAME,
+                "url": json_data['Href'],
+                "data": json_data['Current'],
                 "err": ex,
-                "stacktrace": traceback.format_exc(chain=False).splitlines()}
+            }
             logger.error(msg)
             raise SectionStatusProcessorException(msg)
