@@ -154,13 +154,13 @@ certs:
   certPath: /certs/my.uw.edu-ic.cert
   keyPath: /certs/my.uw.edu-ic.key
   secretName: my.uw.edu-ic-certs
-cronjob:
+daemon:
   enabled: true
-  jobs:
+  daemons:
     - name: load-section-status
-      schedule: "*/1 * * * *"
-      command: ["/scripts/management_command.sh"]
-      args: ["load_section_status_changes"]
+      replicaCount: 1
+      command: ["/scripts/management_daemon.sh"]
+      args: ["--delay", "30", "load_section_status_changes"]
       resources:
         limits:
           cpu: 100m
@@ -168,6 +168,9 @@ cronjob:
         requests:
           cpu: 25m
           memory: 32Mi
+cronjob:
+  enabled: true
+  jobs:
     - name: clear-expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
