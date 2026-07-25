@@ -1,10 +1,12 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.core.management.base import BaseCommand, CommandError
-from myuw.event.section_status import SectionStatusProcessor
-from aws_message.gather import Gather, GatherException
 import logging
+
+from aws_message.gather import Gather, GatherException
+from django.core.management.base import BaseCommand, CommandError
+
+from myuw.event.section_status import SectionStatusProcessor
 
 logger = logging.getLogger(__name__)
 

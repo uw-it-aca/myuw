@@ -1,19 +1,18 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import os
-import json
-import mock
-from copy import deepcopy
-from unittest.mock import patch, MagicMock
+from unittest import mock
+
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-from myuw.util.cache import MyUWMemcachedCache
-from myuw.event.section_status import (
-    CachedHTTPResponse, SectionStatusProcessor,
-    SectionStatusProcessorException)
 
+from myuw.event.section_status import (
+    CachedHTTPResponse,
+    MyUWMemcachedCache,
+    SectionStatusProcessor,
+    SectionStatusProcessorException,
+)
 
 M1 = {
     "Header": {},
@@ -73,11 +72,34 @@ override = override_settings(
 
 class TestSectionStatusProcessor(TestCase):
     def test_message_validation(self):
-        event_hdlr = SectionStatusProcessor()
-        self.assertTrue(event_hdlr.validate_message_body({}))
-        self.assertTrue(event_hdlr.validate_message_body(M1))
-        self.assertTrue(event_hdlr.validate_message_body(
-            {"EventDate": str(timezone.now())}))
-        self.assertTrue(event_hdlr.validate_message_body(
-            {"EventDate": str(timezone.now()),
-             "Current": None}))
+        processor = SectionStatusProcessor()
+        self.assertTrue(processor.validate_message_body({}))
+        self.assertTrue(processor.validate_message_body(M1))
+        self.assertTrue(processor.validate_message_body(
+            {'EventDate': str(timezone.now())}))
+        self.assertTrue(processor.validate_message_body(
+            {'EventDate': str(timezone.now()),
+             'Current': None}))
+
+    @mock.patch.object(MyUWMemcachedCache, 'updateCache')
+    def test_process_message_content(self, mock_updateCache):
+        processor = SectionStatusProcessor()
+
+        # Tests for missing data
+        self.assertRaises(SectionStatusProcessorException,
+                          processor.process_message_body, {})
+        self.assertRaises(SectionStatusProcessorException,
+                          processor.process_message_body,
+                          {'Current': None, 'Href': '/'})
+        self.assertRaises(SectionStatusProcessorException,
+                          processor.process_message_body,
+                          {'Current': {}, 'Href': ''})
+
+        # Test for updateCache args
+        processor.process_message_body(M1)
+        args, _kwargs = mock_updateCache.call_args
+
+        self.assertEqual(args[0], 'sws')
+        self.assertEqual(args[1],
+                         '/student/v5/course/2018,autumn,HCDE,210/A/status.json')
+        self.assertIsInstance(args[2], CachedHTTPResponse)
