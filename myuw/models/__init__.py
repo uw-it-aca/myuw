@@ -49,7 +49,7 @@ class User(models.Model):
         return User.objects.filter(uwnetid=netid).exists()
 
     @classmethod
-    def get_user(cls, uwnetid, prior_netids):
+    def get_user(cls, uwnetid, prior_netids=None):
         if prior_netids is None:
             prior_netids = []
 
