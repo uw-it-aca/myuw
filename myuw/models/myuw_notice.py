@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from django.db import models
 
+from django.db import models
 
 start_week_range = range(-2, 12)
 duration_range = range(1, 12)
@@ -69,10 +69,10 @@ class MyuwNotice(models.Model):
 
     def json_data(self, include_abbr_week_month_day_format=False):
         # Returns dict in same format as SDB Notices
-        notice_format = u"<span class=\"notice-title\">{}</span>" \
-                        u"<span class=\"notice-body-with-title\">{}</span>"
-
-        notice_content = notice_format.format(self.title, self.content)
+        notice_content = (
+            f'<span class="notice-title">{self.title}</span>'
+            f'<span class="notice-body-with-title">{self.content}</span>'
+        )
         return {'notice_content': notice_content,
                 'attributes': []}
 

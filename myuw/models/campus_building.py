@@ -1,10 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.db import models
-from django.db import transaction
-from decimal import Decimal
 import json
+from decimal import Decimal
+
+from django.db import models, transaction
 
 
 class CampusBuilding(models.Model):
@@ -18,7 +18,7 @@ class CampusBuilding(models.Model):
     location_url = models.CharField(max_length=256, null=True, blank=True)
 
     def __init__(self, *args, **kwargs):
-        super(CampusBuilding, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def __eq__(self, other):
         return (
