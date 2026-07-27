@@ -3,10 +3,10 @@
 
 import logging
 import traceback
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.applications import get_applications
+from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 

@@ -3,7 +3,9 @@
 
 import logging
 import re
+
 from rc_django.views.rest_proxy import RestSearchView
+
 from myuw.dao.pws import pws
 
 logger = logging.getLogger(__name__)
@@ -11,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class MyUWRestSearchView(RestSearchView):
     def __init__(self):
-        super(MyUWRestSearchView, self).__init__()
+        super().__init__()
         self.form_action_url = "myuw_rest_search"
 
     def get_proxy_url(self, request, service, url):
@@ -20,8 +22,8 @@ class MyUWRestSearchView(RestSearchView):
         """
         params = None
         logger.debug(
-            "Enter MyUWRestProxyView service: {}, url: {}, GET: {}".format(
-                service, url, request.POST))
+            f"Enter MyUWRestProxyView service: {service}, url: {url}, "
+            f"GET: {request.POST}")
 
         if service == "book":
             if "iacourse" == url:
@@ -35,8 +37,8 @@ class MyUWRestSearchView(RestSearchView):
         elif service == "canvas":
             regid = get_regid(get_input_value(request.POST, "uwregid"))
             url = (
-                f"api/v1/users/sis_user_id:{regid}/enrollments?state[]=active"
-                + f"&type[]=StudentEnrollment&page=first&per_page=500"
+                "api/v1/users/sis_user_id:{regid}/enrollments?state[]=active"
+                "&type[]=StudentEnrollment&page=first&per_page=500"
             )
         elif service == "grad":
             params = self.format_params(request)
@@ -123,8 +125,7 @@ class MyUWRestSearchView(RestSearchView):
         else:
             service, url, params = super().get_proxy_url(request, service, url)
 
-        logger.debug(
-            "Exit MyUWRestProxyView url: {}".format(url))
+        logger.debug(f"Exit MyUWRestProxyView url: {url}")
         return service, url, params
 
 

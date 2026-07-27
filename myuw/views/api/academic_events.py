@@ -1,20 +1,22 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import timedelta, datetime
-import icalendar
-import re
 import json
 import logging
+import re
 import traceback
-from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call
+from datetime import datetime, timedelta
+
+import icalendar
+from uw_sws.term import get_term_after
+from uw_trumba import get_calendar_by_name
+
 from myuw.dao.instructor import is_instructor
 from myuw.dao.term import get_comparison_date, get_current_quarter
-from uw_trumba import get_calendar_by_name
-from uw_sws.term import get_term_after
+from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
+from myuw.views.api import ProtectedAPI
+from myuw.views.error import handle_exception
 
 CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
@@ -111,10 +113,7 @@ class AcademicEvents(ProtectedAPI):
         end = event.get('dtend')
 
         diff = end.dt - start.dt
-        if diff.days == 1 and diff.seconds == 0:
-            return True
-
-        return False
+        return bool(diff.days == 1 and diff.seconds == 0)
 
     def parse_category(self, event):
         value = event.get("categories")
@@ -132,10 +131,10 @@ class AcademicEvents(ProtectedAPI):
 
         event_id = matches.group(1)
 
-        url = ("http://www.washington.edu/calendar/academic/"
-               "?trumbaEmbed=view%3Devent%26eventid%3D{}".format(event_id))
-
-        return url
+        return (
+            f"http://www.washington.edu/calendar/academic/"
+            f"?trumbaEmbed=view%3Devent%26eventid%3D{event_id}"
+        )
 
     def parse_dates(self, event):
         return (self.format_datetime(event.get('dtstart')),
@@ -159,8 +158,7 @@ class AcademicEvents(ProtectedAPI):
                     year = value
                     break
         if None in (year, quarter):
-            logger.error(
-                "Missing year/quarter in acad-cal event: {}".format(event))
+            logger.error(f"Missing year/quarter in acad-cal event: {event}")
         return year, quarter
 
     def format_datetime(self, dt):
@@ -247,7 +245,7 @@ class AcademicEvents(ProtectedAPI):
         try:
             last = after(after(after(after(current))))
             last_date = last.grade_submission_deadline.date()
-        except Exception as ex:
+        except Exception:
             last_dt = (current.grade_submission_deadline + timedelta(days=365))
             last_date = last_dt.date()
 
@@ -270,8 +268,7 @@ class AcademicEvents(ProtectedAPI):
                 # The comparison date is the first date of the event in
                 # the ideal event window (now -> 4 weeks from now)
                 start = self.get_start_date(event)
-                if start < comparison_date:
-                    start = comparison_date
+                start = max(start, comparison_date)
 
                 date_string = self.format_native_datetime(start)
                 # We only want to show events from the first 3 days that

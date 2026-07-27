@@ -1,25 +1,27 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import re
 import logging
+import re
 import traceback
+
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+
 from myuw.dao import coda, id_photo_token
-from myuw.views.error import (
-    handle_exception, not_instructor_error)
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import (
-    get_instructor_section, check_section_instructor)
+    check_section_instructor,
+    get_instructor_section,
+)
 from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread
 from myuw.views.api import OpenAPI
-from myuw.views.api.instructor_schedule import (
-    load_schedule, _set_current)
+from myuw.views.api.instructor_schedule import _set_current, load_schedule
+from myuw.views.error import handle_exception, not_instructor_error
 
 logger = logging.getLogger(__name__)
 withdrew_grade_pattern = re.compile(r'^W')
@@ -55,7 +57,7 @@ class OpenInstSectionDetails(OpenAPI):
         section_id = kwargs.get('section_id')
         try:
             return self.make_http_resp(timer, request, section_id)
-        except Exception as ex:
+        except Exception:
             return handle_exception(logger, timer, traceback)
 
     def make_http_resp(self, timer, request, section_id):

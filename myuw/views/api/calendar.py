@@ -3,12 +3,13 @@
 
 import logging
 import traceback
+
 from myuw.dao.calendar import api_request
+from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
+from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-from myuw.views import prefetch_resources
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call
 
 logger = logging.getLogger(__name__)
 

@@ -2,13 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
-from myuw.models import VisitedLinkNew, PopularLink
+
 from myuw.dao import get_netid_of_current_user
-from myuw.views.decorators import admin_required
+from myuw.models import PopularLink, VisitedLinkNew
 from myuw.views import set_admin_wrapper_template
+from myuw.views.decorators import admin_required
 
 PAGE_SIZE = 10
 MAX_PAGE = 5
@@ -43,12 +45,10 @@ def popular_links(request, page):
                 link = PopularLink.objects.get(pk=popular_id)
                 url = link.url
                 link.delete()
-                logger.info("popular link removed. user: {}, link: {}".format(
-                    uwnetid, url))
+                logger.info(f"popular link removed. user: {uwnetid}, link: {url}")
 
     curated_popular = PopularLink.objects.all()
     existing_lookup = set()
-    curated_links = []
     for link in curated_popular:
         existing_lookup.add(link.url)
     kwargs = {}
@@ -57,11 +57,11 @@ def popular_links(request, page):
         if field in request.GET:
             value = request.GET[field]
             kwargs['is_'+value] = True
-            if value != 'any_{}'.format(field):
+            if value != f'any_{field}':
                 filter_kwargs['is_'+value] = True
                 kwargs[field] = value
         else:
-            kwargs['is_any_{}'.format(field)] = True
+            kwargs[f'is_any_{field}'] = True
 
     # typo in the original model creation.  patching here to avoid a
     # db migration

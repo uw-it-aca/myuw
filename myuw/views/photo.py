@@ -3,8 +3,10 @@
 
 import logging
 import traceback
+
 from django.contrib.auth.decorators import login_required
 from django.http import StreamingHttpResponse
+
 from myuw.dao import id_photo_token
 from myuw.dao.pws import get_idcard_photo
 from myuw.logger.logresp import log_exception

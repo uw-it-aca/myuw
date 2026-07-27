@@ -3,11 +3,13 @@
 
 import json
 import re
-from django.http import HttpResponse
-from django.views import View
-from django.utils.decorators import method_decorator
+
 from django.contrib.auth.decorators import login_required
-from myuw.views import prefetch_resources
+from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views import View
+
+from myuw.views import prefetch_resources as prefetch_resources
 
 SPACE_PATTERN = r'%20'
 AMP_PATTERN = r'%26'
@@ -46,4 +48,3 @@ class ProtectedAPI(OpenAPI):
     """
     Protected MyUW API class that adds login AuthN requirement.
     """
-    pass

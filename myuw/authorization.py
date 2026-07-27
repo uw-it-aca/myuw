@@ -1,10 +1,9 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import re
 from uw_pws import PWS
+
 from myuw.dao.admin import can_override, is_admin
-from myuw.dao import pws
 
 INVALID_STRING = "Username not a valid netid"
 NO_USER = "No override user supplied, please enter a UWNetID"

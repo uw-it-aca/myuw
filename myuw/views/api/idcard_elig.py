@@ -3,9 +3,10 @@
 
 import logging
 import traceback
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call
+
 from myuw.dao.idcard_elig import get_idcard_eli
+from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 

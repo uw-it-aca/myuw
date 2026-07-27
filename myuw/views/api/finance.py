@@ -3,10 +3,11 @@
 
 import logging
 import traceback
+
 from myuw.dao.finance import get_account_balances_for_current_user
 from myuw.dao.pws import is_student
+from myuw.logger.logresp import log_api_call, log_msg
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 

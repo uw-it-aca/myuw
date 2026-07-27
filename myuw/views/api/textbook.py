@@ -1,20 +1,26 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import timedelta
 import logging
 import traceback
+from datetime import timedelta
+
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.registration import get_schedule_by_term
+
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import (
-  get_specific_term, get_comparison_date, get_current_quarter, get_term_after)
-from myuw.dao.textbook import get_textbook_json, get_iacourse_status
-from myuw.logger.timer import Timer
+    get_comparison_date,
+    get_current_quarter,
+    get_specific_term,
+    get_term_after,
+)
+from myuw.dao.textbook import get_iacourse_status, get_textbook_json
 from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, data_not_found
+from myuw.views.error import data_not_found, handle_exception
 
 logger = logging.getLogger(__name__)
 
@@ -116,9 +122,7 @@ class IACDigitalItems(ProtectedAPI):
         except Exception:
             return handle_exception(logger, timer, traceback)
         finally:
-            log_api_call(
-                timer, request, "IACourse_Status {}.{}".format(
-                    year, quarter))
+            log_api_call(timer, request, f"IACourse_Status {year}.{quarter}")
 
 
 class IACDigitalItemsCur(ProtectedAPI):

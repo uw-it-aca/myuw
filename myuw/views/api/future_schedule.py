@@ -3,11 +3,12 @@
 
 import logging
 import traceback
-from myuw.dao.term import get_specific_term, is_past
+
 from myuw.dao.card_display_dates import in_show_grades_period
+from myuw.dao.term import get_specific_term, is_past
 from myuw.logger.timer import Timer
 from myuw.views.api.base_schedule import StudClasSche
-from myuw.views.error import invalid_future_term, handle_exception
+from myuw.views.error import handle_exception, invalid_future_term
 
 logger = logging.getLogger(__name__)
 
@@ -33,9 +34,9 @@ class StudClasScheFutureQuar(StudClasSche):
         summer_term = kwargs.get("summer_term", "full-term")
         try:
             request_term = get_specific_term(year, quarter)
-            if is_past(request_term, request):
-                if not in_show_grades_period(request_term, request):
-                    return invalid_future_term("{},{}".format(year, quarter))
+            if (is_past(request_term, request) and
+                    not in_show_grades_period(request_term, request)):
+                return invalid_future_term(f"{year},{quarter}")
 
             return self.make_http_resp(
                 timer, request_term, request, summer_term=summer_term)

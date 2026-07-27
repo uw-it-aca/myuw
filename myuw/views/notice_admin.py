@@ -2,19 +2,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import nh3
 import traceback
 import unicodedata
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+
+import nh3
 from dateutil.parser import parse
-from dateutil.parser._parser import ParserError
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+
 from myuw.dao.term import DEFAULT_TZ
-from myuw.models.myuw_notice import (
-    MyuwNotice, start_week_range, duration_range)
-from myuw.logger.logresp import log_info, log_exception
-from myuw.views.decorators import admin_required
+from myuw.logger.logresp import log_exception, log_info
+from myuw.models.myuw_notice import MyuwNotice, duration_range, start_week_range
 from myuw.views import set_admin_wrapper_template
+from myuw.views.decorators import admin_required
 
 logger = logging.getLogger(__name__)
 ALLOWED_TAGS = {
@@ -218,9 +218,7 @@ def _save_notice(request, context, notice_id=None):
         # reset filters
         fields = MyuwNotice._meta.get_fields()
         for field in fields:
-            if "is_" in field.name:
-                setattr(notice, field.name, False)
-            elif "not_" in field.name:
+            if "is_" in field.name or "not_" in field.name:
                 setattr(notice, field.name, False)
 
         if terms and len(terms) > 0:
@@ -255,19 +253,19 @@ def _get_datetime(dt_string):
         except Exception as ex:
             log_info(
                 logger,
-                {'err': ex, 'msg': "_get_datetime({})".format(dt_string)})
+                {'err': ex, 'msg': "_get_datetime({dt_string})"})
     return None
 
 
-def _get_integer(str):
-    if str and len(str):
+def _get_integer(s):
+    if s and len(s):
         try:
-            value = int(str)
+            value = int(s)
             return value
         except Exception as ex:
             log_info(
                 logger,
-                {'err': ex, 'msg': "_get_integer({})".format(str)})
+                {'err': ex, 'msg': "_get_integer({s})"})
     return 100
 
 
@@ -282,7 +280,7 @@ def _get_html(value):
         # MUWM-5092
     except TypeError as ex:
         log_info(
-            logger, {'err': ex, 'msg': "_get_html({})".format(value)})
+            logger, {'err': ex, 'msg': "_get_html({value})"})
         return None
 
 

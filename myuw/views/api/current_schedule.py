@@ -3,10 +3,11 @@
 
 import logging
 import traceback
+
 from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
-from myuw.views.error import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
+from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
 

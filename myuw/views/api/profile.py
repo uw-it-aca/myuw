@@ -3,18 +3,18 @@
 
 import logging
 import traceback
+
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.enrollment import get_latest_class_level
 from myuw.dao.gws import is_applicant, is_student
-from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.password import get_pw_json
+from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.student_profile import get_applicant_profile, get_student_profile
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call, log_exception
+from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
-from restclients_core.exceptions import DataFailureException
-from myuw.views.error import data_not_found, handle_exception
+from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
 
@@ -52,10 +52,9 @@ class MyProfile(ProtectedAPI):
             try:
                 response['password'] = get_pw_json(request)
             except Exception:
-                log_exception(logger, "get_password({0})".format(netid),
-                              traceback)
+                log_exception(logger, f"get_password({netid})", traceback)
 
             log_api_call(timer, request, "Get Applicant/Student Profile")
             return self.json_response(response)
-        except Exception as ex:
+        except Exception:
             return handle_exception(logger, timer, traceback)
