@@ -3,11 +3,11 @@
 
 import logging
 import traceback
-from django.core.mail import send_mail
+
 from django.core.management.base import BaseCommand
 from uw_space import Facilities
+
 from myuw.models import CampusBuilding
-from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 
 BUILDING_CODES = [
     "AAB",
@@ -321,15 +321,13 @@ class Command(BaseCommand):
                     fac_objs = space.search_by_code(bcode)
                     if fac_objs and len(fac_objs):
                         bdg = CampusBuilding.upd_building(fac_objs[0])
-                        logger.info("Loaded {}".format(bdg))
+                        logger.info(f"Loaded {bdg}")
                         count += 1
                 except Exception as ex:
                     msg = {"Load building": bcode, "err": ex}
                     logger.error(msg)
-                    messages.append("\n{}".format(msg))
-            logger.info(
-                "Loaded {}/{} building codes".format(
-                    count, len(BUILDING_CODES)))
+                    messages.append(f"\n{msg}")
+            logger.info(f"Loaded {count}/{len(BUILDING_CODES)} building codes")
         else:
             builds_in_db = CampusBuilding.objects.all()
             for bdg in builds_in_db:
@@ -338,20 +336,11 @@ class Command(BaseCommand):
                     if fac_objs and len(fac_objs):
                         updated_bdg = CampusBuilding.upd_building(fac_objs[0])
                         if not bdg.no_change(updated_bdg):
-                            logger.info("Updated {}".format(updated_bdg))
+                            logger.info(f"Updated {updated_bdg}")
                             count += 1
-                except Exception as ex:
+                except Exception:
                     msg = {"Update building": bdg,
                            "err": traceback.format_exc(chain=False)}
                     logger.error(msg)
-                    messages.append("\n{}".format(msg))
-            logger.info(
-                "Updated {}/{} buildings".format(
-                    count, len(builds_in_db)))
-
-        if len(messages):
-            send_mail(
-                "Update CampusBuilding",
-                "\n".join(messages),
-                "{}@uw.edu".format(get_cronjob_sender()),
-                ["{}@uw.edu".format(get_cronjob_recipient())])
+                    messages.append(f"\n{msg}")
+            logger.info(f"Updated {count}/{len(builds_in_db)} buildings")

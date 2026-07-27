@@ -1,15 +1,16 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.core.management.base import BaseCommand, CommandError
-from django.test.client import Client
-from django.urls import reverse
-from django.conf import settings
-from myuw.urls import urlpatterns
-from myuw.test.api import get_user, get_user_pass
-from myuw.util.cache_implementation import TestingMemoryCache
-from django.test.utils import override_settings
 import time
+
+from django.core.management.base import BaseCommand
+from django.test.client import Client
+from django.test.utils import override_settings
+from django.urls import reverse
+
+from myuw.test.api import get_user, get_user_pass
+from myuw.urls import urlpatterns
+from myuw.util.cache_implementation import TestingMemoryCache
 
 
 class Command(BaseCommand):
@@ -62,18 +63,18 @@ class Command(BaseCommand):
                                    RESTCLIENTS_USE_THREADING=True,
                                    MYUW_PREFETCH_THREADING=True,
                                    RESTCLIENTS_DAO_CACHE_CLASS=cache_dao)
-                def run_it():
+                def run_it(pattern_name):
 
                     client = Client()
                     client.login(username='javerage',
                                  password=get_user_pass('javerage'))
                     t0 = time.time()
-                    resp = client.get(reverse(pattern.name))
+                    client.get(reverse(pattern_name))
                     t1 = time.time()
 
                     return str(t1-t0)
 
-                values.append(run_it())
+                values.append(run_it(pattern.name))
 
             print(",".join(values))
 

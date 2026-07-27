@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
 from myuw.util.cache import MyUWMemcachedCache
 
 logger = logging.getLogger(__name__)
@@ -18,10 +20,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         flush = options["flush"]
         client = MyUWMemcachedCache()
-        # logger.info("Stats {}".format(client.stats()))
         if flush:
             try:
-                logger.info("Flushed: {}".format(client.flush_all()))
+                result = client.flush_all()
+                logger.info(f"Flushed: {result}")
             except Exception as ex:
-                logger.error("Memcached: {}, Servers: {}".format(
-                    ex, getattr(settings, "MEMCACHED_SERVERS")))
+                logger.error(f"Memcached: {ex}, Servers: {settings.MEMCACHED_SERVERS}")
