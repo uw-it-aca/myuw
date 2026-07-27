@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 
@@ -20,10 +21,10 @@ def delete_sessions(netid, scope=None):
             data = session.get_decoded()
             if _is_qualified(data, netid, scope) is True:
                 session.delete()
-                logger.info({'msg': "Deleted session of {}".format(netid),
+                logger.info({'msg': f"Deleted session of {netid}",
                              'scope': scope})
         except Exception as ex:
-            logger.error({'msg': "When deleting session of {}".format(netid),
+            logger.error({'msg': f"When deleting session of {netid}",
                           'scope': scope,
                           'err': ex})
 

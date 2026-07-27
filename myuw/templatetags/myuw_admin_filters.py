@@ -1,10 +1,9 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django import template
 from django.template import Library
-from myuw.dao.admin import is_admin, can_override
 
+from myuw.dao.admin import can_override, is_admin
 
 register = Library()
 

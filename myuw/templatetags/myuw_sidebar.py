@@ -16,9 +16,9 @@ def add_sidebar_context(context):
 
     current_url = resolve(request.path_info).url_name
 
-    context['is_{}'.format(current_url)] = True
+    context[f"is_{current_url}"] = True
 
     for f in getattr(settings, "MYUW_ENABLED_FEATURES", []):
-        context["{}_enabled".format(f.lower())] = True
+        context[f"{f.lower()}_enabled"] = True
 
     return ''

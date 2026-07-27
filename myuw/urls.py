@@ -3,70 +3,68 @@
 
 from django.conf import settings
 from django.urls import re_path
-from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from myuw.views.page import logout
-from myuw.views.home import home
-from myuw.views.teaching import teaching, teaching_section, student_photo_list
-from myuw.views.notices import notices
-from myuw.views.thrive import thrive
-from myuw.views.thrive_messages import thrive_messages
+
 from myuw.views.academic_calendar import academic_calendar
-from myuw.views.future_quarters import future_quarters
-from myuw.views.textbooks import textbooks
-from myuw.views.category import category
-from myuw.views.display_dates import override
-from myuw.views.link_admin import popular_links
-from myuw.views.logger import log_interaction
-from myuw.views.photo import show_photo
 from myuw.views.academics import academics
 from myuw.views.accounts import accounts
-from myuw.views.profile import profile
-from myuw.views.husky_experience import husky_experience
-from myuw.views.link import outbound_link
-from myuw.views.resources import resources
+from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.adviser import Advisers
-from myuw.views.rest_search import MyUWRestSearchView
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
-from myuw.views.api.persistent_messages import BannerMessage
-from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_section import InstSectionDetails
-from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
-                                                InstSect)
-from myuw.views.api.instructor_section_display import (
-    CloseMinicard, PinMinicard)
-from myuw.views.api.finance import Finance
-from myuw.views.api.hfs import HfsBalances
-from myuw.views.api.future_schedule import StudClasScheFutureQuar
-from myuw.views.api.prev_unfinished_schedule import (
-    StudUnfinishedPrevQuarClasSche)
-from myuw.views.api.grad import MyGrad
-from myuw.views.api.iasystem import IASystem
-from myuw.views.api.library import MyLibInfo
-from myuw.views.api.emaillist import Emaillist
-from myuw.views.api.profile import MyProfile
-from myuw.views.api.category_links import CategoryLinks
-from myuw.views.api.other_quarters import RegisteredFutureQuarters
-from myuw.views.api.textbook import (
-  Textbook, TextbookCur, IACDigitalItemsCur, IACDigitalItems)
-from myuw.views.api.notices import Notices
-from myuw.views.api.myplan import MyPlan
-from myuw.views.api.academic_events import AcademicEvents
-from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
-from myuw.views.search import search_res
-from myuw.views.api.upass import UPass
-from myuw.views.api.idcard_elig import IDcardElig
-from myuw.views.api.link import ManageLinks
+from myuw.views.api.category_links import CategoryLinks
+from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.directory import MyDirectoryInfo
+from myuw.views.api.emaillist import Emaillist
+from myuw.views.api.finance import Finance
+from myuw.views.api.future_schedule import StudClasScheFutureQuar
+from myuw.views.api.grad import MyGrad
+from myuw.views.api.hfs import HfsBalances
+from myuw.views.api.iasystem import IASystem
+from myuw.views.api.idcard_elig import IDcardElig
+from myuw.views.api.instructor_schedule import InstScheCurQuar, InstScheQuar, InstSect
+from myuw.views.api.instructor_section import InstSectionDetails
+from myuw.views.api.instructor_section_display import CloseMinicard, PinMinicard
+from myuw.views.api.library import MyLibInfo
+from myuw.views.api.link import ManageLinks
+from myuw.views.api.myplan import MyPlan
+from myuw.views.api.notices import Notices
+from myuw.views.api.other_quarters import RegisteredFutureQuarters
+from myuw.views.api.persistent_messages import BannerMessage
+from myuw.views.api.prev_unfinished_schedule import StudUnfinishedPrevQuarClasSche
+from myuw.views.api.profile import MyProfile
+from myuw.views.api.resources import PinnedResources, ResourcesList, ResourcesPin
+from myuw.views.api.textbook import (
+    IACDigitalItems,
+    IACDigitalItemsCur,
+    Textbook,
+    TextbookCur,
+)
+from myuw.views.api.thrive import ThriveMessages
+from myuw.views.api.upass import UPass
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
-from myuw.views.api.resources import (ResourcesList,
-                                      ResourcesPin,
-                                      PinnedResources)
+from myuw.views.category import category
+from myuw.views.display_dates import override
+from myuw.views.future_quarters import future_quarters
+from myuw.views.home import home
+from myuw.views.husky_experience import husky_experience
+from myuw.views.link import outbound_link
+from myuw.views.link_admin import popular_links
+from myuw.views.logger import log_interaction
 from myuw.views.notice_admin import create_notice, edit_notice, list_notices
-
+from myuw.views.notices import notices
+from myuw.views.page import logout
+from myuw.views.photo import show_photo
+from myuw.views.profile import profile
+from myuw.views.resources import resources
+from myuw.views.rest_search import MyUWRestSearchView
+from myuw.views.search import search_res
+from myuw.views.teaching import student_photo_list, teaching, teaching_section
+from myuw.views.textbooks import textbooks
+from myuw.views.thrive import thrive
+from myuw.views.thrive_messages import thrive_messages
 
 urlpatterns = []
 

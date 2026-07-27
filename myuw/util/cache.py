@@ -2,10 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import random
+import re
 import string
+
 from django.core.cache import cache
 from memcached_clients import RestclientPymemcacheClient
-import re
 
 FEW_SECONDS = 10
 SEVEN_MINS = 60 * 7
@@ -47,9 +48,8 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY * 30
             return ONE_DAY * 7
 
-        if "uwidp" == service:
-            if re.match(r'^/idp/profile/oidc/keyset', url):
-                return ONE_DAY
+        if ("uwidp" == service and re.match(r'^/idp/profile/oidc/keyset', url)):
+            return ONE_DAY
 
         if "gws" == service:
             return HALF_HOUR
@@ -66,7 +66,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         return FOUR_HOURS
 
 
-class MyUWCache():
+class MyUWCache:
     def cache_key(self, service, token):
         return f"{service}-key-{token}"
 
