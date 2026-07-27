@@ -53,3 +53,5 @@ class SectionStatusProcessor(MessageBodyProcessor):
         response = CachedHTTPResponse(status=200, data=content)
 
         MyUWMemcachedCache().updateCache(self._eventService, url, response)
+
+        logger.info(f'updateCache for section status: {url}')
