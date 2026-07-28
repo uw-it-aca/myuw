@@ -10,18 +10,25 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 import logging
 import traceback
 from datetime import datetime, timedelta
-from myuw.dao import log_err
-from myuw.dao.term import (
-    get_comparison_datetime, get_current_quarter, get_next_quarter,
-    get_previous_quarter, get_term_after, is_in_summer_quarter,
-    is_in_summer_b_term, get_bod_current_term_class_start,
-    get_eod_current_term_last_instruction, get_bod_7d_before_last_instruction,
-    get_eod_7d_after_class_start, get_eod_current_term_last_final_exam,
-    within_grading_period)
-from myuw.dao.term import (
-    get_bod_class_start_quarter_after as get_bod_quarter_after)
-from myuw.dao.iasystem import in_coursevel_fetch_window
 
+from myuw.dao import log_err
+from myuw.dao.iasystem import in_coursevel_fetch_window
+from myuw.dao.term import (
+    get_bod_7d_before_last_instruction,
+    get_bod_current_term_class_start,
+    get_comparison_datetime,
+    get_current_quarter,
+    get_eod_7d_after_class_start,
+    get_eod_current_term_last_final_exam,
+    get_eod_current_term_last_instruction,
+    get_next_quarter,
+    get_previous_quarter,
+    get_term_after,
+    is_in_summer_b_term,
+    is_in_summer_quarter,
+    within_grading_period,
+)
+from myuw.dao.term import get_bod_class_start_quarter_after as get_bod_quarter_after
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +87,8 @@ def get_values_by_date(now, request):
     }
     try:
         last_term = get_previous_quarter(request)
-        data["current_summer_term"] = "{},summer".format(last_term.year)
-        data["last_term"] = "{},{}".format(last_term.year, last_term.quarter)
+        data["current_summer_term"] = f"{last_term.year},summer"
+        data["last_term"] = f"{last_term.year},{last_term.quarter}"
     except Exception:
         log_err(logger, "get_previous_quarter", traceback, request)
     return data
@@ -92,10 +99,9 @@ def is_before_bof_term(now, request):
     The term switches after the grade submission deadline.
     @return true if it is before the begining of the 1st day of instruction
     """
-    logger.debug("{} is_before_bof_term {} ==> {}".format(
-        now, get_bod_current_term_class_start(request),
-        now < get_bod_current_term_class_start(request)))
-    return now < get_bod_current_term_class_start(request)
+    bot = get_bod_current_term_class_start(request)
+    logger.debug(f"{now} is_before_bof_term {bot} ==> {now < bot}")
+    return now < bot
 
 
 def is_before_eof_7d_after_class_start(now, request):
@@ -103,10 +109,9 @@ def is_before_eof_7d_after_class_start(now, request):
     @return true if it is before the end of the 7 days
     after the instruction start day
     """
-    logger.debug("{} is_before_eof_7d_after_class_start {} ==> {}".format(
-        now, get_eod_7d_after_class_start(request),
-        now < get_eod_7d_after_class_start(request)))
-    return now < get_eod_7d_after_class_start(request)
+    acs = get_eod_7d_after_class_start(request)
+    logger.debug(f"{now} is_before_eof_7d_after_class_start {acs} ==> {now < acs}")
+    return now < acs
 
 
 def is_after_7d_before_last_instruction(now, request):
@@ -114,30 +119,27 @@ def is_after_7d_before_last_instruction(now, request):
     @return true if it is after the begining of 7 days
     before instruction end
     """
-    logger.debug("{} is_after_7d_before_last_instruction {} ==> {}".format(
-        now, get_bod_7d_before_last_instruction(request),
-        now > get_bod_7d_before_last_instruction(request)))
-    return now > get_bod_7d_before_last_instruction(request)
+    bli = get_bod_7d_before_last_instruction(request)
+    logger.debug(f"{now} is_after_7d_before_last_instruction {bli} ==> {now > bli}")
+    return now > bli
 
 
 def is_before_last_day_of_classes(now, request):
     """
     @return true if it is before the end of the last day of classes
     """
-    logger.debug("{} is_before_last_day_of_classes {} ==> {}".format(
-        now, get_eod_current_term_last_instruction(request),
-        now < get_eod_current_term_last_instruction(request)))
-    return now < get_eod_current_term_last_instruction(request)
+    ct = get_eod_current_term_last_instruction(request)
+    logger.debug(f"{now} is_before_last_day_of_classes {ct} ==> {now < ct}")
+    return now < ct
 
 
 def is_before_eof_finals_week(now, request):
     """
     @return true if it is before the end of the last day of finalsweek
     """
-    logger.debug("{} is_before_eof_finals_week {} ==> {}".format(
-        now, get_eod_current_term_last_final_exam(request),
-        now < get_eod_current_term_last_final_exam(request)))
-    return now < get_eod_current_term_last_final_exam(request)
+    ct = get_eod_current_term_last_final_exam(request)
+    logger.debug(f"{now} is_before_eof_finals_week {ct} ==> {now < ct}")
+    return now < ct
 
 
 def during_myplan_peak_load(now, request):
@@ -177,8 +179,10 @@ def is_term_myplan_peak(now, term, data):
     now_date = now.date()
     if (now_date >= term.registration_period1_start and
             now_date <= term.registration_period1_end):
-        peak_start_time = datetime(now.year, now.month, now.day, 5, 30, 0)
-        peak_end_time = datetime(now.year, now.month, now.day, 6, 30, 0)
+        peak_start_time = datetime(  # noqa: DTZ001
+                now.year, now.month, now.day, 5, 30, 0)
+        peak_end_time = datetime(  # noqa: DTZ001
+            now.year, now.month, now.day, 6, 30, 0)
         if (now >= peak_start_time and now <= peak_end_time):
             return True
     return False
@@ -232,6 +236,6 @@ def set_js_overrides(request, values):
            'myuw_in_coursevel_fetch_window': 'in_coursevel_fetch_window'
            }
 
-    for key in MAP:
+    for key, value in MAP.items():
         if key in request.session:
-            values[MAP[key]] = request.session[key]
+            values[value] = request.session[key]

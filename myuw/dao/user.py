@@ -1,10 +1,9 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import logging
-from myuw.models import User
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
+from myuw.models import User
 
 
 def get_updated_user(request):

@@ -37,8 +37,8 @@ class MyUWRestSearchView(RestSearchView):
         elif service == "canvas":
             regid = get_regid(get_input_value(request.POST, "uwregid"))
             url = (
-                "api/v1/users/sis_user_id:{regid}/enrollments?state[]=active"
-                "&type[]=StudentEnrollment&page=first&per_page=500"
+                f"api/v1/users/sis_user_id:{regid}/enrollments?state[]=active"
+                f"&type[]=StudentEnrollment&page=first&per_page=500"
             )
         elif service == "grad":
             params = self.format_params(request)

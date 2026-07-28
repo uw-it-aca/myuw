@@ -5,11 +5,13 @@
 This module provides access to uw_sws registration module
 """
 
-from copy import deepcopy
 import logging
+from copy import deepcopy
+
 from restclients_core.thread import generic_prefetch
 from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.registration import get_schedule_by_regid_and_term
+
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_comparison_datetime, get_current_quarter
 from myuw.dao.user_course_display import set_course_display_pref
@@ -55,9 +57,14 @@ def myuw_section_prefetch(data):
               data["SectionID"]
               ]
 
-    key = "library-{}-{}-{}-{}-{}".format(tuple(params))
-    method = generic_prefetch(get_subject_guide_for_section_params,
-                              params)
+    method = generic_prefetch(get_subject_guide_for_section_params, params)
+
+    key = (
+        f'library-{primary["Year"]}-{primary["Quarter"]}-'
+        f'{primary["CurriculumAbbreviation"]}-{primary["CourseNumber"]}-'
+        f'{data["SectionID"]}'
+    )
+
     return [[key, method]]
 
 

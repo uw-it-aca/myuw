@@ -4,12 +4,12 @@
 import csv
 import os
 from copy import deepcopy
-from django.db.models import Q
+
+from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.exceptions import InvalidResourceCategory
+from myuw.dao.user import get_user_model
 from myuw.models import ResourceCategoryPin
 from myuw.models.res_category_link import ResCategoryLink
-from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import get_user_model
-from myuw.dao.exceptions import InvalidResourceCategory
 
 
 class MyuwLink:
@@ -162,19 +162,21 @@ class Resource_Links(MyuwLink):
 
         # remove unpinned subcats
         for category in deepcopy(links):
-            for subcat in deepcopy(links[category]['subcategories']).keys():
+            for subcat in deepcopy(links[category]['subcategories']):
                 if not links[category]['subcategories'][subcat]['is_pinned']:
                     del links[category]['subcategories'][subcat]
 
         # remove cats w/o subcat
-        for category in deepcopy(links).keys():
+        for category in deepcopy(links):
             subcat = links[category]['subcategories']
             if len(subcat) == 0:
                 del links[category]
 
         return links
 
-    def get_grouped_links(self, request, pinned_list=[]):
+    def get_grouped_links(self, request, pinned_list=None):
+        if pinned_list is None:
+            pinned_list = []
         if self.links is None:
             self.links = self.get_all_links()
 
@@ -275,8 +277,8 @@ def pin_category(request, category_id):
     user = get_user_model(request)
     rs = Resource_Links()
     if rs.category_exists(category_id):
-        rs_pin = ResourceCategoryPin.objects.\
-            get_or_create(user=user, resource_category_id=category_id)
+        _rs_pin, _created = ResourceCategoryPin.objects.get_or_create(
+            user=user, resource_category_id=category_id)
     else:
         raise InvalidResourceCategory(category_id)
 

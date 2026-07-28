@@ -9,16 +9,16 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
 from uw_sws.exceptions import InvalidSectionID
-from uw_sws.section import get_joint_sections, get_section_by_label
+from uw_sws.section import (
+    get_joint_sections,
+    get_section_by_label,
+    is_valid_section_label,
+)
 
 from myuw.dao import is_action_disabled
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import check_section_instructor
-from myuw.dao.mailman import (
-    get_course_email_lists,
-    is_valid_section_label,
-    request_mailman_lists,
-)
+from myuw.dao.mailman import get_course_email_lists, request_mailman_lists
 from myuw.dao.pws import get_person_of_current_user
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer

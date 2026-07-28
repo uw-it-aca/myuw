@@ -253,7 +253,7 @@ def _get_datetime(dt_string):
         except Exception as ex:
             log_info(
                 logger,
-                {'err': ex, 'msg': "_get_datetime({dt_string})"})
+                {'err': ex, 'msg': f"_get_datetime({dt_string})"})
     return None
 
 
@@ -265,7 +265,7 @@ def _get_integer(s):
         except Exception as ex:
             log_info(
                 logger,
-                {'err': ex, 'msg': "_get_integer({s})"})
+                {'err': ex, 'msg': f"_get_integer({s})"})
     return 100
 
 
@@ -280,7 +280,7 @@ def _get_html(value):
         # MUWM-5092
     except TypeError as ex:
         log_info(
-            logger, {'err': ex, 'msg': "_get_html({value})"})
+            logger, {'err': ex, 'msg': f"_get_html({value})"})
         return None
 
 

@@ -3,10 +3,10 @@
 
 import csv
 import os
-from myuw.dao.gws import is_grad_student
-from myuw.dao.enrollment import enrollment_history
-from myuw.dao.term import get_comparison_datetime
 
+from myuw.dao.enrollment import enrollment_history
+from myuw.dao.gws import is_grad_student
+from myuw.dao.term import get_comparison_datetime
 
 DEGREE_TYPE_COLUMN_MAP = {"major": 2,
                           "minor": 3,

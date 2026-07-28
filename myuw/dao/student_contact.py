@@ -2,12 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from restclients_core.exceptions import DataFailureException
 from uw_sps_contacts import EmergencyContacts
+
 from myuw.dao import get_userids, is_using_file_dao
 from myuw.dao.pws import (
-  get_netid_of_current_user, get_student_system_key_of_current_user)
-
+    get_netid_of_current_user,
+    get_student_system_key_of_current_user,
+)
 
 logger = logging.getLogger(__name__)
 stud_emergency_contact = EmergencyContacts()
@@ -28,10 +31,8 @@ def get_emergency_contacts(request):
         for contact in values:
             json_values.append(contact.json_data())
     else:
-        logger.error(
-            {
-                **get_userids(request),
-                **{"msg": "get_emergency_contacts missing System Key"},
-            }
-        )
+        logger.error({
+            **get_userids(request),
+            "msg": "get_emergency_contacts missing System Key",
+        })
     return json_values

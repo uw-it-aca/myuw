@@ -3,10 +3,12 @@
 
 import logging
 import traceback
+
 from uw_space import Facilities
-from myuw.models import CampusBuilding
-from myuw.logger.logresp import log_info
+
 from myuw.dao import is_using_file_dao, log_err
+from myuw.logger.logresp import log_info
+from myuw.models import CampusBuilding
 
 logger = logging.getLogger(__name__)
 space = Facilities()
@@ -23,16 +25,14 @@ def get_building_by_code(building_code):
 
         log_info(
             logger,
-            {'msg': "get_building_by_code({}) Not in DB".format(
-                building_code)})
+            {'msg': f"get_building_by_code({building_code}) Not in DB"})
 
         fac_objs = space.search_by_code(
             'MEB' if is_using_file_dao() else building_code)
 
         if len(fac_objs) == 0:
-            logger.error(
-                {'msg': "get_building_by_code({}) Invalid code!".format(
-                    building_code)})
+            logger.error({
+                'msg': f"get_building_by_code({building_code}) Invalid code!"})
             return None
 
         fac_obj = fac_objs[0]
@@ -41,8 +41,7 @@ def get_building_by_code(building_code):
 
         return CampusBuilding.upd_building(fac_obj)
     except Exception:
-        log_err(logger, "get_building_by_code({})".format(
-            building_code), traceback, None)
+        log_err(logger, f"get_building_by_code({building_code})", traceback, None)
     return None
 
 

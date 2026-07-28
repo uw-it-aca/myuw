@@ -6,12 +6,17 @@ This class encapsulates the interactions with the UPass web service.
 """
 
 from datetime import timedelta
+
 from uw_admin_systems.upass import get_upass_status
+
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student
 from myuw.dao.term import (
-    Term, get_comparison_datetime, get_current_quarter,
-    get_bod_days_before_last_instruction)
+    Term,
+    get_bod_days_before_last_instruction,
+    get_comparison_datetime,
+    get_current_quarter,
+)
 
 
 def _get_upass_status(request):

@@ -8,25 +8,28 @@ to iasystem web service.
 
 import logging
 import traceback
+
 from uw_iasystem.evaluation import search_evaluations
-from myuw.dao.pws import (
-    get_student_number_of_current_user,
-    get_person_by_employee_id)
+
 from myuw.dao import log_err
+from myuw.dao.pws import get_person_by_employee_id, get_student_number_of_current_user
 from myuw.dao.term import (
-    get_comparison_datetime, get_comparison_datetime_with_tz,
-    get_current_summer_term, get_bod_7d_before_last_instruction,
-    get_eod_current_term, is_b_term)
+    get_bod_7d_before_last_instruction,
+    get_comparison_datetime,
+    get_comparison_datetime_with_tz,
+    get_current_summer_term,
+    get_eod_current_term,
+    is_b_term,
+)
 
 logger = logging.getLogger(__name__)
 
 
 def _get_evaluations_domain(section):
-    if section.lms_ownership is None or\
-       section.lms_ownership.lower() == "campus":
-        if not section.is_campus_pce() and\
-           section.course_campus is not None:
-            return section.course_campus
+    if ((section.lms_ownership is None or
+            section.lms_ownership.lower() == "campus") and (
+                not section.is_campus_pce() and section.course_campus is not None)):
+        return section.course_campus
 
     if section.lms_ownership is not None:
         return section.lms_ownership
@@ -141,10 +144,10 @@ def json_for_evaluation(request, evaluations, section):
                 try:
                     instructor = get_person_by_employee_id(eid)
                 except Exception:
-                    log_err(logger,
-                            "Get course {} instructor (eid={})".format(
-                                section.section_label(), eid),
-                            traceback, request)
+                    log_err(
+                        logger,
+                        f"Get course {section.section_label()} instructor (eid={eid})",
+                        traceback, request)
                     continue
 
                 instructor_json = {}

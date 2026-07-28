@@ -30,7 +30,7 @@ class Command(BaseCommand):
         verify_links(links, messages)
 
         links = Resource_Links.get_all_links()
-        messages.append("\n\n{Resource_Links.csv_filename}")
+        messages.append(f"\n\n{Resource_Links.csv_filename}")
         verify_links(links, messages)
 
 

@@ -7,8 +7,10 @@ provides information of the current user
 """
 
 import logging
-from uw_pws import PWS, Person
+
 from restclients_core.exceptions import DataFailureException
+from uw_pws import PWS, Person
+
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 

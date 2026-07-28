@@ -3,12 +3,14 @@
 
 import logging
 import traceback
-from myuw.util.settings import (
-    get_myuw_astra_group_stem,
-    get_myuw_admin_group, get_myuw_override_group)
+
 from myuw.dao import get_netid_of_original_user, log_err
 from myuw.dao.gws import gws
-
+from myuw.util.settings import (
+    get_myuw_admin_group,
+    get_myuw_astra_group_stem,
+    get_myuw_override_group,
+)
 
 logger = logging.getLogger(__name__)
 MYUW_ADMIN_GROUP = get_myuw_admin_group()
@@ -44,7 +46,7 @@ def get_myuw_support_role():
 
 def is_admin():
     try:
-        is_admin, override = get_myuw_support_role()
+        is_admin, _override = get_myuw_support_role()
         return is_admin
     except Exception:
         log_err(logger, "is_admin", traceback, None)

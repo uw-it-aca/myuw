@@ -3,10 +3,12 @@
 
 import logging
 import traceback
-from uw_coda import get_fail_rate, get_course_cgpa, get_majors
+
 from restclients_core.exceptions import DataFailureException
-from myuw.util.thread import Thread
+from uw_coda import get_course_cgpa, get_fail_rate, get_majors
+
 from myuw.dao import log_err
+from myuw.util.thread import Thread
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +66,7 @@ def _process_section_label(section_label):
 
     if indices > 4:
         counts = 0
-        for i in range(0, len(section_label)):
+        for i in range(len(section_label)):
             if section_label[i] == '-':
                 counts += 1
 

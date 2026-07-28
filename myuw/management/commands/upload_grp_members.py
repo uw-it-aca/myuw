@@ -35,4 +35,4 @@ class Command(BaseCommand):
                     counter += 1
                 except Exception as ex:
                     logger.error(f"{ex!s}: {line}")
-        logger.info("Added {counter} members")
+        logger.info(f"Added {counter} members")

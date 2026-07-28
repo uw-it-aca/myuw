@@ -7,19 +7,20 @@ the SWS notice resource.
 """
 
 import logging
+
 from django.db import IntegrityError
 from restclients_core.exceptions import DataFailureException
 from uw_sws.notice import get_notices_by_regid
-from myuw.models import UserNotices
+
 from myuw.dao.category_notice import get_category_notices
 from myuw.dao.enrollment import get_latest_class_level
 from myuw.dao.instructor import is_instructor
-from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.notice_mapping import categorize_notices
-from myuw.dao.user import get_user_model
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
-from myuw.dao.pws import is_student
+from myuw.dao.notice_mapping import categorize_notices
+from myuw.dao.pws import get_regid_of_current_user, is_student
 from myuw.dao.term import within_grading_period
+from myuw.dao.user import get_user_model
+from myuw.models import UserNotices
 
 logger = logging.getLogger(__name__)
 

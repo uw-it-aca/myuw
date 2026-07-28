@@ -6,6 +6,7 @@ This class encapsulates the interactions with
 the SWS Personal Financial resource.
 """
 from uw_sws.financial import get_account_balances_by_regid
+
 from myuw.dao.pws import get_regid_of_current_user
 
 

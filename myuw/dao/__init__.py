@@ -3,12 +3,13 @@
 
 import logging
 import os
+
 from django.conf import settings
+from userservice.user import UserService, get_original_user, get_user
 from uw_sws import DAO as SWS_DAO
-from userservice.user import (
-    UserService, get_user, get_original_user)
-from myuw.util.settings import get_disable_actions_when_override
+
 from myuw.util.cache import IdPhotoToken
+from myuw.util.settings import get_disable_actions_when_override
 
 logger = logging.getLogger(__name__)
 id_photo_token = IdPhotoToken()
@@ -43,7 +44,7 @@ def get_userids(request=None):
     try:
         user = get_netid_of_current_user(request)
         orig_userid = get_netid_of_original_user(request)
-    except Exception:
+    except Exception:  # noqa: S110
         pass
     return {'acting_netid': user,
             'orig_netid': orig_userid,
@@ -79,7 +80,8 @@ def _get_file_path(settings_key, filename):
 
 
 def log_err(logger, msg_str, stacktrace, request):
-    logger.error(
-        {**get_userids(request=request),
-         **{'Msg': msg_str,
-            'Err': stacktrace.format_exc(chain=False).splitlines()}})
+    logger.error({
+        **get_userids(request=request),
+        'Msg': msg_str,
+        'Err': stacktrace.format_exc(chain=False).splitlines()
+    })

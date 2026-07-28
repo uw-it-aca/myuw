@@ -2,15 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import re
 import traceback
+
 from restclients_core.exceptions import DataFailureException
-from uw_canvas.enrollments import Enrollments
-from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
+from uw_canvas.enrollments import Enrollments
 from uw_canvas.models import CanvasCourse, CanvasSection
-from uw_sws.exceptions import (
-    InvalidCanvasIndependentStudyCourse, InvalidCanvasSection)
+from uw_canvas.sections import Sections
+from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse, InvalidCanvasSection
+
 from myuw.dao import log_err
 from myuw.dao.pws import get_regid_of_current_user
 

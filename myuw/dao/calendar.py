@@ -2,15 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import re
-from datetime import timedelta, datetime, time
-from urllib.parse import quote_plus, urlencode
+from datetime import datetime, time, timedelta
+
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
-from myuw.dao.term import (
-  DEFAULT_TZ, get_comparison_datetime_with_tz)
-from myuw.dao.calendar_mapping import get_calendars_for_current_user
 
+from myuw.dao.calendar_mapping import get_calendars_for_current_user
+from myuw.dao.term import DEFAULT_TZ, get_comparison_datetime_with_tz
 
 # Number of future days to search for displaying events
 DISPLAY_CUTOFF_DAYS = 14
@@ -65,9 +63,10 @@ def _get_future_event_json(events):
                                          'title': event.cal_title}
         else:
             future_cals[event.cal_id]['count'] += 1
+
     future_cal_list = []
-    for key in future_cals:
-        future_cal_list.append(future_cals[key])
+    for value in future_cals.values():
+        future_cal_list.append(value)
     return future_cal_list
 
 
@@ -106,10 +105,7 @@ def _get_json_for_event(event):
 
 
 def _get_is_all_day(event):
-    if event.get('X-MICROSOFT-CDO-ALLDAYEVENT') == "TRUE":
-        return True
-    else:
-        return False
+    return event.get('X-MICROSOFT-CDO-ALLDAYEVENT') == "TRUE"
 
 
 def _get_future_events(events, now):
