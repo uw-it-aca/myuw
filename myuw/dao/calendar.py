@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+from copy import deepcopy
 from datetime import datetime, time, timedelta
 
 from restclients_core.exceptions import DataFailureException
@@ -64,10 +65,7 @@ def _get_future_event_json(events):
         else:
             future_cals[event.cal_id]['count'] += 1
 
-    future_cal_list = []
-    for value in future_cals.values():
-        future_cal_list.append(value)
-    return future_cal_list
+    return deepcopy(list(future_cals.values()))
 
 
 def _get_cal_url_from_event(event):
