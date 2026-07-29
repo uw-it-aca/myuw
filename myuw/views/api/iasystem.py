@@ -2,21 +2,21 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import time
 import traceback
 from operator import itemgetter
-from myuw.dao import get_netid_of_current_user
+
+from myuw.dao.iasystem import (
+    get_evaluations_by_section,
+    in_coursevel_fetch_window,
+    json_for_evaluation,
+)
 from myuw.dao.pws import is_student
 from myuw.dao.registration import get_schedule_by_term
-from myuw.dao.iasystem import (
-    get_evaluations_by_section, json_for_evaluation, in_coursevel_fetch_window)
-from myuw.logger.logresp import (
-    log_data_not_found_response, log_msg, log_api_call)
+from myuw.logger.logresp import log_api_call, log_data_not_found_response, log_msg
 from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
-
 
 logger = logging.getLogger(__name__)
 MOCKDAO = 'restclients.dao_implementation.iasystem.File'
@@ -70,14 +70,12 @@ def load_course_eval(request, schedule):
     if schedule.term.is_summer_quarter():
         json_data["summer_term"] = schedule.summer_term
 
-    section_index = 0
-    for section in schedule.sections:
+    for section_index, section in enumerate(schedule.sections):
         section_data = json_data["sections"][section_index]
-        section_index += 1
         try:
             section_data["evaluation_data"] = json_for_evaluation(
                 request, get_evaluations_by_section(request, section), section)
-        except Exception as ex:
+        except Exception:
             section_data["evaluation_data"] = None
 
     json_data["sections"] = sorted(json_data["sections"],

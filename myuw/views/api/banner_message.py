@@ -1,12 +1,13 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import traceback
 import logging
+import traceback
+
 from myuw.dao import is_action_disabled
 from myuw.dao.user_pref import set_no_onboard_message, turn_off_pop_up
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 from myuw.views.exceptions import DisabledAction

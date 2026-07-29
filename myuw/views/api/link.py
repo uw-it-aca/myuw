@@ -1,24 +1,33 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import logging
 import json
+import logging
 import re
 import traceback
+
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
+
 from myuw.dao import is_action_disabled
 from myuw.dao.quicklinks import (
-    get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
-    edit_custom_link, add_hidden_link, delete_hidden_link,
-    get_recent_link_by_id)
-from myuw.models import VisitedLinkNew, CustomLink
+    add_custom_link,
+    add_hidden_link,
+    delete_custom_link,
+    edit_custom_link,
+    get_quicklink_data,
+    get_recent_link_by_id,
+)
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
+from myuw.models import VisitedLinkNew
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import (
-    data_not_found, invalid_input_data, disabled_action_error,
-    handle_exception)
+    data_not_found,
+    disabled_action_error,
+    handle_exception,
+    invalid_input_data,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -28,10 +37,8 @@ class ManageLinks(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            data = get_quicklink_data(request)
-            log_api_call(timer, request, "Get Quicklinks")
             return self.json_response(get_quicklink_data(request))
-        except Exception as ex:
+        except Exception:
             return handle_exception(logger, timer, traceback)
 
     @method_decorator(csrf_protect)
@@ -50,9 +57,7 @@ class ManageLinks(ProtectedAPI):
                 return True
             pre = data[field]
             data[field] = data[field].strip()
-            if "" == data[field] and "" != pre:
-                return False
-            return True
+            return not ("" == data[field] and "" != pre)
 
         if not clean("url"):
             return invalid_input_data()
@@ -72,16 +77,14 @@ class ManageLinks(ProtectedAPI):
                 except VisitedLinkNew.DoesNotExist:
                     return data_not_found()
                 link = add_custom_link(request, vlink.url, vlink.label)
-                log_api_call(timer, request,
-                             "Recent==>Custom link ({})".format(vlink.url))
+                log_api_call(timer, request, f"Recent==>Custom link ({vlink.url})")
 
         elif "custom" == data["type"]:
             # add a custom link
             url, label = get_link_data(data, get_id=False)
             if url and label:
                 link = add_custom_link(request, url, label)
-                log_api_call(timer, request,
-                             "Add Custom link ({})".format(url))
+                log_api_call(timer, request, f"Add Custom link ({url})")
             else:
                 return data_not_found()
 
@@ -89,8 +92,7 @@ class ManageLinks(ProtectedAPI):
             link_id, new_url, new_label = get_link_data(data)
             if link_id and new_url:
                 link = edit_custom_link(request, link_id, new_url, new_label)
-                log_api_call(timer, request,
-                             "Edit Custom link ({})".format(new_url))
+                log_api_call(timer, request, f"Edit Custom link ({new_url})")
             else:
                 return data_not_found()
 
@@ -107,8 +109,7 @@ class ManageLinks(ProtectedAPI):
             url = get_link_id(data)
             if url:
                 link = add_hidden_link(request, url)
-                log_api_call(timer, request,
-                             "Hide Default link ({})".format(url))
+                log_api_call(timer, request, f"Hide Default link ({url})")
             else:
                 return data_not_found()
 
@@ -129,7 +130,7 @@ def get_link_url(data):
     url = data.get('url')
     if url:
         if not re.match('^[a-z]+://', url):
-            return "http://{}".format(url)
+            return f"http://{url}"
         return url
     return None
 

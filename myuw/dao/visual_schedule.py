@@ -1,15 +1,17 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import logging
-from dateutil.relativedelta import *
-from datetime import timedelta
-import math
 import copy
-from myuw.dao.registration import get_schedule_by_term
-from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.campus_building import get_building_by_code
+import logging
+import math
+from datetime import timedelta
+
+from dateutil.relativedelta import *
 from restclients_core.exceptions import DataFailureException
+
+from myuw.dao.campus_building import get_building_by_code
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
+from myuw.dao.registration import get_schedule_by_term
 
 logger = logging.getLogger(__name__)
 
@@ -17,8 +19,7 @@ logger = logging.getLogger(__name__)
 def get_schedule_json(visual_schedule, term, summer_term=None):
     response = {}
     schedule_periods = []
-    period_id = 0
-    for period in visual_schedule:
+    for period_id, period in enumerate(visual_schedule):
         period_data = period.json_data()
         if period.meetings_trimmed_front:
             period_data['disabled_days'] = \
@@ -31,19 +32,17 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
         else:
             period_data['id'] = period_id
         schedule_periods.append(period_data)
-        period_id += 1
 
         for section in period_data["sections"]:
             # MUWM-596
-            if period_data['id'] == 'finals':
-                if section.get('final_exam'):
-                    final = section['final_exam']
-                    if final.get('building'):
-                        building = get_building_by_code(final['building'])
+            if period_data['id'] == 'finals' and section.get('final_exam'):
+                final = section['final_exam']
+                if final.get('building'):
+                    building = get_building_by_code(final['building'])
 
-                        if building is not None:
-                            final["building_name"] = building.name
-                            final["location_url"] = building.location_url
+                    if building is not None:
+                        final["building_name"] = building.name
+                        final["location_url"] = building.location_url
 
             for meeting in section["meetings"]:
                 if 'building' in meeting:
@@ -121,9 +120,10 @@ def _get_off_term_trimmed(visual_schedule):
     for period in visual_schedule:
         for section in period.sections:
             if hasattr(section, 'real_end_date'):
-                section_slug = '{} {} {}'.format(section.curriculum_abbr,
-                                                 section.course_number,
-                                                 section.section_id)
+                section_slug = (
+                    f'{section.curriculum_abbr} {section.course_number} '
+                    f'{section.section_id}'
+                )
                 seen_sections[section_slug] = section
 
     for slug, section in seen_sections.items():
@@ -292,9 +292,7 @@ def _adjust_off_term_dates(schedule):
 
 
 def _adjust_period_dates(schedule):
-    i = 0
     for period in schedule:
-        i += 1
         # modify start date
         if period.qtr_start:
             period.start_date = period.qtr_start
@@ -331,11 +329,10 @@ def _get_earliest_start_from_period(period):
                 # if a section has a NON mtg set start date to section start
                 return section.start_date
             earliest_section_meeting = _get_earliest_meeting_day(meeting)
-            if earliest_section_meeting is not None:
-                if earliest_meeting is None:
-                    earliest_meeting = earliest_section_meeting
-                elif earliest_section_meeting < earliest_meeting:
-                    earliest_meeting = earliest_section_meeting
+            if (earliest_section_meeting is not None and (
+                    earliest_meeting is None or
+                    earliest_section_meeting < earliest_meeting)):
+                earliest_meeting = earliest_section_meeting
 
     start_day = period.start_date.weekday()
     # Treat sunday as 'first' day
@@ -356,9 +353,7 @@ def _get_latest_end_from_period(period):
                 # if a section has a NON mtg set end date to section end
                 return section.end_date
             latest_section_meeting = _get_latest_meeting_day(meeting)
-            if latest_meeting is None:
-                latest_meeting = latest_section_meeting
-            elif latest_meeting < latest_section_meeting:
+            if latest_meeting is None or latest_meeting < latest_section_meeting:
                 latest_meeting = latest_section_meeting
     end_day = period.end_date.weekday()
     days_to_subtract = end_day - latest_meeting
@@ -630,11 +625,10 @@ def _consolidate_weeks(weeks):
         else:
             will_merge = True
             # Don't merge last week of A-term
-            if week.summer_term == "A-term" \
-                    and weeks.index(week) == len(weeks) - 1:
-                will_merge = False
             # Don't merge 2nd week of B term with 1st
-            elif week.summer_term == "B-term" and weeks.index(week) == 1:
+            if ((week.summer_term == "A-term" and
+                    weeks.index(week) == len(weeks) - 1) or (
+                    week.summer_term == "B-term" and weeks.index(week) == 1)):
                 will_merge = False
             else:
                 #  Merge weeks with same sections
@@ -692,8 +686,7 @@ def _get_weeks_from_bounds(bounds):
         end_date = (start + timedelta(days=end_offset))
 
         # handle case where week ends midweek
-        if end_date > end:
-            end_date = end
+        end_date = min(end_date, end)
         period.end_date = end_date
 
         periods.append(period)
@@ -709,14 +702,10 @@ def get_schedule_bounds(schedule):
     start = None
     end = None
     for section in schedule.sections:
-        if start is None:
-            start = section.start_date
-        elif start > section.start_date:
+        if start is None or start > section.start_date:
             start = section.start_date
 
-        if end is None:
-            end = section.end_date
-        elif end < section.end_date:
+        if end is None or end < section.end_date:
             end = section.end_date
 
     # set start to first sunday
@@ -756,13 +745,13 @@ def _add_dates_to_sections(schedule):
 def _trim_summer_term(schedule, summer_term):
     term_periods = []
     for period in schedule:
-        if period.summer_term is not None:
-            if period.summer_term.lower() == summer_term:
-                term_periods.append(period)
+        if (period.summer_term is not None and
+                period.summer_term.lower() == summer_term):
+            term_periods.append(period)
     return term_periods
 
 
-class SchedulePeriod():
+class SchedulePeriod:
     def __init__(self):
         self.start_date = None
         self.end_date = None

@@ -6,13 +6,16 @@ dealing with the UW Affiliation Groups
 """
 
 import logging
+
 try:
-    from sets import Set as set, ImmutableSet as frozenset
+    from sets import ImmutableSet as frozenset
+    from sets import Set as set
 except ImportError:
     pass
 from uw_gws import GWS
-from myuw.util.settings import get_myuw_test_access_group
+
 from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
+from myuw.util.settings import get_myuw_test_access_group
 
 logger = logging.getLogger(__name__)
 gws = GWS()

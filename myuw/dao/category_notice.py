@@ -8,7 +8,6 @@ they can be marked "new"
 
 from uw_sws.models import Notice
 
-
 CATEGORIZED_NOTICES = [
     {
         "NoticeCategory": "Degree",

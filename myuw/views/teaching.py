@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from myuw.dao.term import get_current_quarter
-from myuw.views.page import page
 from myuw.util.page_view import page_view
+from myuw.views.page import page
 
 
 @page_view
@@ -45,5 +45,5 @@ def get_context(year, quarter, section=None):
                              "quarter": quarter},
             }
     if section:
-        context["section"] = "{},{},{}".format(year, quarter, section)
+        context["section"] = f"{year},{quarter},{section}"
     return context

@@ -7,12 +7,17 @@ the student advisers.
 """
 from restclients_core.exceptions import DataFailureException
 from uw_sws.degree import get_degrees_by_regid
-from myuw.dao import is_using_file_dao, get_netid_of_current_user
+
+from myuw.dao import get_netid_of_current_user, is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
-    last_4instruction_weeks, during_april_may,
-    is_cur_term_before, is_cur_term_same,
-    within_2terms_after_given_term, after_last_final_exam_day)
+    after_last_final_exam_day,
+    during_april_may,
+    is_cur_term_before,
+    is_cur_term_same,
+    last_4instruction_weeks,
+    within_2terms_after_given_term,
+)
 
 
 def get_degrees(request):
@@ -20,11 +25,9 @@ def get_degrees(request):
     returns a list of uw_sws.models.DegreeStatus
     for the current user
     """
-    if is_using_file_dao():
-        if get_netid_of_current_user(request) == 'jerror':
-            raise DataFailureException(
-                "/student/v5/person/degrees.json",
-                500, "mock 500 error")
+    if is_using_file_dao() and get_netid_of_current_user(request) == 'jerror':
+        raise DataFailureException(
+            "/student/v5/person/degrees.json", 500, "mock 500 error")
     return get_degrees_by_regid(get_regid_of_current_user(request))
 
 

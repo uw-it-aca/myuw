@@ -7,18 +7,25 @@ This module encapsulates the access of the term data
 """
 
 import logging
-from django.utils import timezone
 from datetime import timedelta
+
+from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Registration
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
-from myuw.models import SeenRegistration
-from myuw.dao import is_using_file_dao, get_netid_of_current_user
-from myuw.dao.registration import get_schedule_by_term, _is_split_summer
+
+from myuw.dao import get_netid_of_current_user, is_using_file_dao
+from myuw.dao.registration import _is_split_summer, get_schedule_by_term
 from myuw.dao.term import (
-    get_current_quarter, get_next_quarter, get_term_after, get_comparison_date,
-    get_comparison_datetime, get_comparison_datetime_with_tz)
+    get_comparison_date,
+    get_comparison_datetime,
+    get_comparison_datetime_with_tz,
+    get_current_quarter,
+    get_next_quarter,
+    get_term_after,
+)
 from myuw.dao.user import get_user_model
+from myuw.models import SeenRegistration
 
 logger = logging.getLogger(__name__)
 FULL_TERM = "F"
@@ -115,10 +122,9 @@ def _get_resp_json(schedule, summer_term=None, summer_term_data=None):
     return_json = schedule.term.json_data()
     return_json["quarter"] = return_json["quarter"].title()
     return_json["summer_term"] = summer_term
-    return_json["url"] = "/{},{}".format(schedule.term.year,
-                                         schedule.term.quarter)
+    return_json["url"] = f"/{schedule.term.year},{schedule.term.quarter}"
     if summer_term is not None and summer_term_data is not None:
-        return_json["url"] = "{},{}".format(return_json["url"], summer_term)
+        return_json["url"] = f"{return_json['url']},{summer_term}"
 
         if summer_term == "a-term":
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS] +
@@ -213,12 +219,12 @@ def _should_highlight(request, data, bterm_start_dt=None):
         summer_term=summer_term,
         defaults={'first_seen_date': now})
 
-    if not is_new:
-        if summer_term == 'b':
-            # MUWM-3009 highlight in the last week before b-term start
-            if now > bterm_start_dt - timedelta(days=8):
-                srobj.first_seen_date = now
-                srobj.save()
+     # MUWM-3009 highlight in the last week before b-term start
+    if (not is_new and
+            summer_term == 'b' and
+            now > bterm_start_dt - timedelta(days=8)):
+        srobj.first_seen_date = now
+        srobj.save()
 
     # highlight on the 1st day when the reg status card shows up
     return now < srobj.first_seen_date + timedelta(days=1)

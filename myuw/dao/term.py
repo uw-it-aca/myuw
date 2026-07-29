@@ -5,19 +5,24 @@
 This module direct interfaces with restclient for the term data
 """
 
-from datetime import date, datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
 import logging
-from uw_sws.models import Term
-from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
-from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
-from uw_sws.term import (
-    get_term_by_date, get_specific_term,
-    get_term_before, get_term_after, get_next_autumn_term,
-    get_next_non_summer_term)
-from restclients_core.exceptions import DataFailureException
-from myuw.dao import is_using_file_dao
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 
+from restclients_core.exceptions import DataFailureException
+from uw_sws.models import Term
+from uw_sws.section import is_a_term, is_b_term
+from uw_sws.term import (
+    get_next_autumn_term,
+    get_next_non_summer_term,
+    get_specific_term,
+    get_term_after,
+    get_term_before,
+    get_term_by_date,
+)
+from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
+
+from myuw.dao import is_using_file_dao
 
 logger = logging.getLogger(__name__)
 DEFAULT_TZ = ZoneInfo("America/Los_Angeles")
@@ -45,7 +50,7 @@ def get_default_datetime():
     right in the middle of the "current" term.
     """
     if is_using_file_dao():
-        return datetime(2013, 4, 15, 0, 0, 1)
+        return datetime(2013, 4, 15, 0, 0, 1)  # noqa: DTZ001
     return tz_naive_now()
 
 
@@ -58,22 +63,18 @@ def get_comparison_datetime(request):
     FORMAT = "%Y-%m-%d %H:%M:%S"
 
     override_date = None
-    if request:
-        if "myuw_override_date" in request.session:
+    if request and "myuw_override_date" in request.session:
+        try:
+            val = request.session["myuw_override_date"]
+            override_date = datetime.strptime(val, FORMAT)  # noqa: DTZ007
+        except ValueError:
+            # Accepts an override date as well, but adds 1 second
+            # so date logic works
             try:
-                val = request.session["myuw_override_date"]
-                override_date = datetime.strptime(val, FORMAT)
-            except ValueError:
-                # Accepts an override date as well, but adds 1 second
-                # so date logic works
-                try:
-                    date_format = "%Y-%m-%d"
-                    override_date = (
-                        datetime.strptime(val, date_format) +
-                        timedelta(seconds=1))
-                except Exception:
-                    raise
-            except Exception as ex:
+                date_format = "%Y-%m-%d"
+                override_date = datetime.strptime(val, date_format)  # noqa: DTZ007
+                override_date = override_date + timedelta(seconds=1)
+            except Exception:  # noqa: S110
                 pass
 
     if override_date:
@@ -538,8 +539,7 @@ def add_term_data_to_context(request, context):
     context["next_quarter"] = next_term.quarter
     if "future_term" not in context:
         # if no exsiting value set by future_quarter
-        context["future_term"] = "{},{}".format(
-            next_term.year, next_term.quarter)
+        context["future_term"] = f"{next_term.year},{next_term.quarter}"
 
 
 def current_terms_prefetch(request):

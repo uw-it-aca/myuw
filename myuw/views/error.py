@@ -2,17 +2,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import sys
-from django.http import HttpResponse
-from restclients_core.exceptions import (
-    DataFailureException, InvalidNetID, InvalidRegID)
-from myuw.dao.exceptions import (
-    NotSectionInstructorException, InvalidResourceCategory)
-from myuw.models import ResourceCategoryPin
-from uw_sws.exceptions import InvalidSectionID, ThreadedDataError
-from myuw.logger.logresp import log_err, log_data_not_found_response
-from myuw.views.exceptions import (
-    DisabledAction, NotInstructorError, InvalidInputFormData)
 
+from django.http import HttpResponse
+from restclients_core.exceptions import DataFailureException, InvalidNetID, InvalidRegID
+from uw_sws.exceptions import InvalidSectionID, ThreadedDataError
+
+from myuw.dao.exceptions import InvalidResourceCategory, NotSectionInstructorException
+from myuw.logger.logresp import log_data_not_found_response, log_err
+from myuw.models import ResourceCategoryPin
+from myuw.views.exceptions import (
+    DisabledAction,
+    InvalidInputFormData,
+    NotInstructorError,
+)
 
 HTTP_BAD_REQUEST = 400
 UNAUTHORIZED_ERROR = 403
@@ -80,8 +82,7 @@ def invalid_method():
 
 
 def invalid_future_term(msg):
-    return _make_response(HTTP_GONE,
-                          "Invalid requested future term {}".format(msg))
+    return _make_response(HTTP_GONE, f"Invalid requested future term {msg}")
 
 
 def data_error():
@@ -90,7 +91,7 @@ def data_error():
 
 
 def handle_exception(logger, timer, stack_trace):
-    exc_type, exc_value, exc_traceback = sys.exc_info()
+    _exc_type, exc_value, _exc_traceback = sys.exc_info()
 
     log_err(logger, timer, stack_trace)
 
@@ -106,13 +107,13 @@ def handle_exception(logger, timer, stack_trace):
     if isinstance(exc_value, NotInstructorError):
         return not_instructor_error()
 
-    if isinstance(exc_value, InvalidNetID) or\
-       isinstance(exc_value, InvalidRegID):
+    if isinstance(exc_value, (InvalidNetID, InvalidRegID)):
         return unknown_uwnetid()
 
-    if (isinstance(exc_value, InvalidInputFormData) or
-            isinstance(exc_value, InvalidResourceCategory) or
-            isinstance(exc_value, ResourceCategoryPin.DoesNotExist)):
+    if (isinstance(exc_value, (
+            InvalidInputFormData,
+            InvalidResourceCategory,
+            ResourceCategoryPin.DoesNotExist))):
         return invalid_input_data()
 
     if isinstance(exc_value, InvalidSectionID):

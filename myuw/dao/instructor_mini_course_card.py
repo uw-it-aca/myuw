@@ -1,11 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from myuw.models import UserCourseDisplay
-from myuw.dao.instructor_schedule import (
-    check_section_instructor, get_section_by_label)
+from myuw.dao.instructor_schedule import check_section_instructor, get_section_by_label
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.user import get_user_model
+from myuw.models import UserCourseDisplay
 
 
 def set_pin_on_teaching_page(request,

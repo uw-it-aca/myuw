@@ -3,14 +3,15 @@
 
 import logging
 import traceback
+
 from myuw.dao.enrollment import get_prev_enrollments_with_open_sections
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_previous_number_quarters
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call, log_data_not_found_response
+from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
 from myuw.views.api.base_schedule import StudClasSche, load_schedule
-from myuw.views.error import handle_exception, data_not_found
+from myuw.views.error import data_not_found, handle_exception
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +37,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
             enrollment_dict = get_prev_enrollments_with_open_sections(
                 request, 2)
             has_unfinished_course = False
-            for term in enrollment_dict.keys():
+            for term in enrollment_dict:
                 term_enrollments = enrollment_dict[term]
                 if term_enrollments.has_unfinished_pce_course():
                     has_unfinished_course = True

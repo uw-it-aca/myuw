@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import hashlib
-import json
 import logging
+
 from django_user_agents.utils import get_user_agent
+
 from myuw.dao import get_userids
 from myuw.dao.affiliation import get_all_affiliations
 
@@ -18,10 +19,12 @@ def log_session(request):
 
 
 def log_session_end(request):
-    logger.info({**get_userids(request),
-                 **{'msg': 'logout',
-                    'session_key': hash_session_key(request),
-                    'is_native': is_native(request)}})
+    logger.info({
+        **get_userids(request),
+        'msg': 'logout',
+        'session_key': hash_session_key(request),
+        'is_native': is_native(request)
+    })
 
 
 def _get_session_data(request):
@@ -66,8 +69,7 @@ def hash_session_key(request):
         session_key = request.session.session_key
         return hashlib.md5(session_key.encode('utf8')).hexdigest()
     except Exception:
-        pass
-    return ""
+        return ""
 
 
 def get_ip(request):
@@ -79,7 +81,7 @@ def get_ip(request):
         else:
             return request.META.get('REMOTE_ADDR')
     except Exception as ex:
-        logger.warning("ip ==> {}".format(str(ex)))
+        logger.warning(f"ip ==> {ex!s}")
     return ""
 
 
@@ -88,7 +90,7 @@ def is_mobile(request):
         user_agent = get_user_agent(request)
         return user_agent.is_mobile or user_agent.is_tablet
     except Exception as ex:
-        logger.warning("is_mobile ==> {}".format(str(ex)))
+        logger.warning(f"is_mobile ==> {ex!s}")
     return ""
 
 

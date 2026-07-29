@@ -3,10 +3,10 @@
 
 import logging
 import re
+
 from myuw.dao.category_links import get_links_for_category
+from myuw.logger.logresp import log_api_call, log_data_not_found_response
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 
@@ -32,8 +32,7 @@ class CategoryLinks(ProtectedAPI):
         link_data = self._group_links_by_subcategory(links)
         category_name = links[0].category_name
 
-        log_api_call(timer, request,
-                     "Get CategoryLinks for {}".format(category_name))
+        log_api_call(timer, request, f"Get CategoryLinks for {category_name}")
         return self.json_response({"link_data": link_data,
                                    "category_name": category_name})
 

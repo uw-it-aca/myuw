@@ -2,10 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-from django.core.management.base import BaseCommand
-from myuw.models import CampusBuilding
-import logging
 import csv
+import logging
+
+from django.core.management.base import BaseCommand
+
+from myuw.models import CampusBuilding
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +23,7 @@ class Command(BaseCommand):
                             help="Update building models with map urls")
 
     def valid_map_url(self, url):
-        if url == "" or url == "https://map.uw.edu/":
-            return False
-        return True
+        return not (url == "" or url == "https://map.uw.edu/")
 
     def handle(self, *args, **options):
         file_path = options.get("file_path")

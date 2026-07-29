@@ -3,13 +3,14 @@
 
 import logging
 import traceback
+
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import get_updated_user
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call, log_exception
+from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
-from myuw.views.error import handle_exception, unknown_uwnetid
 from myuw.views.api import ProtectedAPI
+from myuw.views.error import handle_exception, unknown_uwnetid
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +26,7 @@ class Affiliation(ProtectedAPI):
         """
         timer = Timer()
         try:
-            person = get_updated_user(request)
+            get_updated_user(request)
         except Exception:
             log_exception(logger, "Affiliation:get_updated_user", traceback)
             return unknown_uwnetid()

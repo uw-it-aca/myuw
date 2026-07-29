@@ -7,23 +7,30 @@ Instructor class mailing list requests
 
 import logging
 import re
+
 from django.core.mail import send_mail
-from uw_sws.section import (
-    get_section_by_label, is_valid_section_label)
 from uw_mailman.basic_list import get_admin_url
 from uw_mailman.course_list import (
-    exists_course_list, get_course_list_name,
+    exists_course_list,
+    exists_section_secondary_combined_list,
+    get_course_list_name,
+    get_section_list_name,
     get_section_secondary_combined_list_name,
-    exists_section_secondary_combined_list, get_section_list_name)
+)
 from uw_mailman.instructor_term_list import (
-    get_instructor_term_list_name, exists_instructor_term_list)
-from myuw.util.thread import ThreadWithResponse
-from myuw.util.settings import get_mailman_courserequest_recipient
-from myuw.logger.logresp import log_info
+    exists_instructor_term_list,
+    get_instructor_term_list_name,
+)
+from uw_sws.section import (
+    get_joint_sections,
+    get_section_by_label,
+)
+
 from myuw.dao import get_netid_of_current_user, get_userids
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
-from uw_sws.section import get_joint_sections
-
+from myuw.logger.logresp import log_info
+from myuw.util.settings import get_mailman_courserequest_recipient
+from myuw.util.thread import ThreadWithResponse
 
 logger = logging.getLogger(__name__)
 section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
@@ -51,8 +58,7 @@ def get_section_secondary_combined_list(primary_section):
 
 def get_section_label(curriculum_abbr, course_number,
                       section_id, quarter, year):
-    return "{},{},{},{}/{}".format(year, quarter.lower(),
-                                   curriculum_abbr, course_number, section_id)
+    return f"{year},{quarter.lower()},{curriculum_abbr},{course_number}/{section_id}"
 
 
 def get_single_course_list(curriculum_abbr, course_number, section_id,
@@ -131,15 +137,15 @@ def get_all_secondary_section_lists(primary_section):
             if thread.exception is None:
                 secondaries.append(thread.response)
             else:
-                logger.error(
-                    {**get_userids(),
-                     **{'at': "get_single_course_list({},{},{},{},{})".format(
-                         primary_section.curriculum_abbr,
-                         primary_section.course_number,
-                         section_id,
-                         primary_section.term.quarter,
-                         primary_section.term.year),
-                        'err': thread.exception}})
+                course_list = (
+                    f"get_single_course_list({primary_section.curriculum_abbr},"
+                    f"{primary_section.course_number},{section_id},"
+                    f"{primary_section.term.quarter},{primary_section.term.year})"
+                )
+                logger.error({
+                    **get_userids(),
+                    "at": course_list, 
+                    "err": thread.exception})
     return secondaries
 
 
@@ -263,7 +269,7 @@ def request_mailman_lists(request,
         recipient = get_mailman_courserequest_recipient()
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
-        sender = "{}@uw.edu".format(requestor_uwnetid)
+        sender = f"{requestor_uwnetid}@uw.edu"
         send_mail(EMAIL_SUBJECT,
                   message_body,
                   sender,
@@ -282,7 +288,7 @@ def get_single_message_body(requestor_uwnetid,
     <list_address> <quarter_code> YYYY <sln>
     <list_address> <quarter_code> YYYY <sln>
     """
-    message_body = "{}\n".format(requestor_uwnetid)
+    message_body = f"{requestor_uwnetid}\n"
     num_sections_found = 0
 
     threads = []
@@ -299,10 +305,10 @@ def get_single_message_body(requestor_uwnetid,
             num_sections_found += 1
             message_body += _get_single_line(section)
         else:
-            logger.error(
-                {**get_userids(),
-                 **{'at': "get_single_message_body",
-                    'err': thread.exception}})
+            logger.error({
+                **get_userids(),
+                "at": "get_single_message_body",
+                "err": thread.exception})
     if len(single_section_labels):
         log_info(
             logger,
@@ -319,7 +325,7 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
     <joint_list_address> <quarter_code> YYYY <sln1>
     <joint_list_address> <quarter_code> YYYY <sln2>
     """
-    message_body = "{}\n".format(requestor_uwnetid)
+    message_body = f"{requestor_uwnetid}\n"
     num_sections_found = 0
 
     threads = []
@@ -336,10 +342,10 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
             num_sections_found += 1
             message_body += _get_joint_line(section)
         else:
-            logger.error(
-                {**get_userids(),
-                 **{'at': "get_joint_message_body",
-                    'err': thrd.exception}})
+            logger.error({
+                **get_userids(),
+                "at": "get_joint_message_body",
+                "err": thrd.exception})
     if len(joint_section_labels):
         log_info(
             logger,
@@ -352,10 +358,12 @@ def _get_single_line(section):
     """
     <list_address> <quarter_code> YYYY <sln>
     """
-    return "{} {} {} {}\n".format(get_section_list_name(section),
-                                  _get_quarter_code(section.term.quarter),
-                                  section.term.year,
-                                  section.sln)
+    return (
+        f"{get_section_list_name(section)} "
+        f"{_get_quarter_code(section.term.quarter)} "
+        f"{section.term.year} "
+        f"{section.sln}\n"
+    )
 
 
 def _get_joint_line(section):
@@ -367,16 +375,16 @@ def _get_joint_line(section):
         joint_slns.append(joint_section.sln)
 
     sln_string = " ".join(map(str, joint_slns))
-    return "{} {} {} {}\n".format(
-        get_course_list_name(section.curriculum_abbr,
-                             section.course_number,
-                             section.section_id,
-                             section.term.quarter,
-                             section.term.year,
-                             True),
-        _get_quarter_code(section.term.quarter),
-        section.term.year,
-        sln_string)
+    list_name = get_course_list_name(section.curriculum_abbr,
+                                     section.course_number,
+                                     section.section_id,
+                                     section.term.quarter,
+                                     section.term.year,
+                                     True)
+    return (
+        f"{list_name} {_get_quarter_code(section.term.quarter)} "
+        f"{section.term.year} {sln_string}\n"
+    )
 
 
 QUARTER_CODES = {

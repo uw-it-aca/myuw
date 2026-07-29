@@ -2,14 +2,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from persistent_message.models import Message
+
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.term import get_comparison_datetime_with_tz
 
 logger = logging.getLogger(__name__)
 
 
-class BannerMessage(object):
+class BannerMessage:
 
     def __init__(self, request):
         self.request = request
@@ -36,14 +38,12 @@ class BannerMessage(object):
                  self._student_affiliation_matched(tags))):
             return True
 
-        if self._student_affiliation_matched(tags):
-            if self._is_stud_campus_matched(tags):
-                return True
+        if (self._student_affiliation_matched(tags) and
+                self._is_stud_campus_matched(tags)):
+            return True
 
-        if self._employee_affiliation_matched(tags):
-            if self._is_employee_campus_matched(tags):
-                return True
-        return False
+        return (self._employee_affiliation_matched(tags) and
+            self._is_employee_campus_matched(tags))
 
     def _to_json(self, msg, include_tags=False):
         json_data = {

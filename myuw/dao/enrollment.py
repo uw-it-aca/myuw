@@ -9,14 +9,22 @@ import datetime
 import logging
 import traceback
 from copy import deepcopy
+
 from restclients_core.exceptions import DataFailureException
 from uw_sws.enrollment import (
-    enrollment_search_by_regid, get_enrollment_history_by_regid)
+    enrollment_search_by_regid,
+    get_enrollment_history_by_regid,
+)
+
 from myuw.dao import log_err
-from myuw.dao.term import (
-    get_current_quarter, get_comparison_date, get_term_before,
-    get_current_and_next_quarters, get_previous_number_quarters)
 from myuw.dao.pws import get_regid_of_current_user, is_student
+from myuw.dao.term import (
+    get_comparison_date,
+    get_current_and_next_quarters,
+    get_current_quarter,
+    get_previous_number_quarters,
+    get_term_before,
+)
 
 CLASS_CODES = {
     "FRESHMAN": 1,
@@ -88,7 +96,7 @@ def get_main_campus(request):
         result_dict = get_enrollments_of_terms(
             request, get_current_and_next_quarters(request, 2))
 
-        for term in result_dict.keys():
+        for term in result_dict:
             enrollment = result_dict.get(term)
             for major in enrollment.majors:
                 if major.campus and major.campus not in campuses:
@@ -146,7 +154,7 @@ def is_ended(request, end_date):
 
 def remove_finished(request, result_dict):
     # keep the sections that aren't finished
-    for prev_term in result_dict.keys():
+    for prev_term in result_dict:
         enrollment = result_dict.get(prev_term)
         if enrollment.has_unfinished_pce_course():
             unf_pce_sections = enrollment.unf_pce_courses

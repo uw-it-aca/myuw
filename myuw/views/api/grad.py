@@ -3,14 +3,22 @@
 
 import logging
 import traceback
+
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.gws import is_grad_student
+
 from myuw.dao.grad import (
-    get_grad_degree_for_current_user, get_grad_committee_for_current_user,
-    get_grad_leave_for_current_user, get_grad_petition_for_current_user,
-    degree_to_json, committee_to_json, leave_to_json, petition_to_json)
+    committee_to_json,
+    degree_to_json,
+    get_grad_committee_for_current_user,
+    get_grad_degree_for_current_user,
+    get_grad_leave_for_current_user,
+    get_grad_petition_for_current_user,
+    leave_to_json,
+    petition_to_json,
+)
+from myuw.dao.gws import is_grad_student
+from myuw.logger.logresp import log_api_call, log_exception, log_msg
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_api_call, log_exception
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 

@@ -9,10 +9,10 @@ This module provides utility the following functions:
 3. convert notice object into json format
 """
 import logging
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 from myuw.dao.notice_categorization import NOTICE_CATEGORIES
 from myuw.dao.term import get_comparison_datetime_with_tz
-
 
 logger = logging.getLogger(__name__)
 UNKNOWN_CATEGORY_NAME = "Uncategorized"
@@ -66,12 +66,11 @@ def apply_showhide(request, notices):
         if notice.notice_category != "StudentFinAid":
             continue
 
-        if equals_myuwid(notice, "StudentFinAid_AidPriorityDate"):
-            # not critical after the first week and
-            # before last two weeks
-            if (is_after_eof_days_after_open(now, notice, 15) and
-                    is_before_bof_days_before_close(now, notice, 15)):
-                notice.is_critical = False
+        # not critical after the first week and before last two weeks
+        if (equals_myuwid(notice, "StudentFinAid_AidPriorityDate") and
+                is_after_eof_days_after_open(now, notice, 15) and
+                is_before_bof_days_before_close(now, notice, 15)):
+            notice.is_critical = False
     return notices
 
 

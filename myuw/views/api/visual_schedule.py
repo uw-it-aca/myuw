@@ -3,15 +3,18 @@
 
 import logging
 import traceback
-from myuw.dao.visual_schedule import get_current_visual_schedule, \
-    get_schedule_json, get_future_visual_schedule
-from myuw.dao.term import get_specific_term, is_past
+
 from myuw.dao.card_display_dates import in_show_grades_period
-from myuw.logger.timer import Timer
+from myuw.dao.term import get_specific_term, is_past
+from myuw.dao.visual_schedule import (
+    get_current_visual_schedule,
+    get_future_visual_schedule,
+    get_schedule_json,
+)
 from myuw.logger.logresp import log_api_call
-from myuw.views.error import handle_exception, invalid_future_term, \
-    data_not_found
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
+from myuw.views.error import data_not_found, handle_exception, invalid_future_term
 
 logger = logging.getLogger(__name__)
 
@@ -61,9 +64,8 @@ class VisSchedOthrQtr(ProtectedAPI):
         try:
             term = get_specific_term(year, quarter)
 
-            if is_past(term, request):
-                if not in_show_grades_period(term, request):
-                    return invalid_future_term("{},{}".format(year, quarter))
+            if is_past(term, request) and not in_show_grades_period(term, request):
+                return invalid_future_term(f"{year},{quarter}")
 
             visual_schedule = get_future_visual_schedule(request, term,
                                                          summer_term)
@@ -72,8 +74,7 @@ class VisSchedOthrQtr(ProtectedAPI):
             response = get_schedule_json(visual_schedule, term, summer_term)
 
             resp = self.json_response(response)
-            log_api_call(timer, request,
-                         "Get Visual Schedule for {},{}".format(year, quarter))
+            log_api_call(timer, request, f"Get Visual Schedule for {year},{quarter}")
             return resp
         except Exception:
             return handle_exception(logger, timer, traceback)

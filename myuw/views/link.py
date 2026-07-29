@@ -5,17 +5,19 @@ import logging
 import os
 import re
 import traceback
-from django.contrib.auth.decorators import login_required
 from urllib.parse import unquote
+
+from django.contrib.auth.decorators import login_required
+from django.db.utils import DataError
 from django.http import HttpResponseRedirect
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao import is_action_disabled, get_netid_of_current_user
-from myuw.dao.user import get_user_model
-from myuw.models import VisitedLinkNew
-from myuw.logger.logresp import log_exception
-from myuw.views import prefetch_resources
 
+from myuw.dao import get_netid_of_current_user, is_action_disabled
+from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.user import get_user_model
+from myuw.logger.logresp import log_exception
+from myuw.models import VisitedLinkNew
+from myuw.views import prefetch_resources
 
 logger = logging.getLogger(__name__)
 ignored_links = set()
@@ -71,16 +73,13 @@ def save_visited_link(request):
                  }
     try:
         VisitedLinkNew.objects.create(**link_data)
-    except django.db.utils.DataError as ex:
+    except DataError as ex:
         log_exception(logger, ex, traceback)
 
 
 def is_link_of_interest(url):
     initialize_ignored_links()
-
-    if url in ignored_links:
-        return False
-    return True
+    return url not in ignored_links
 
 
 def initialize_ignored_links():

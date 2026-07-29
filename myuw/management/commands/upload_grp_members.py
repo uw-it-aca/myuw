@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import os
-from django.core.management.base import BaseCommand, CommandError
+
+from django.core.management.base import BaseCommand
 from uw_gws import GWS
+
 from myuw.dao import _get_file_path
 
 gws = GWS()
@@ -33,5 +34,5 @@ class Command(BaseCommand):
                     gws.add_members(group_id, [netid])
                     counter += 1
                 except Exception as ex:
-                    logger.error("{}: {}".format(str(ex), line))
-        logger.info("Added {} members".format(counter))
+                    logger.error(f"{ex!s}: {line}")
+        logger.info(f"Added {counter} members")

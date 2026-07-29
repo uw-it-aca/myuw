@@ -1,10 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from __future__ import unicode_literals
+import os
+
 from django.apps import AppConfig
 from restclients_core.dao import MockDAO
-import os
 
 
 class MyUWConfig(AppConfig):

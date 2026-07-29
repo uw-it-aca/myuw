@@ -1,8 +1,9 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.db import models
 import uuid
+
+from django.db import models
 
 
 class BannerMessage(models.Model):
@@ -27,7 +28,7 @@ class BannerMessage(models.Model):
         if not self.preview_id:
             self.preview_id = str(uuid.uuid4())
 
-        super(BannerMessage, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
-    class Meta(object):
+    class Meta:
         app_label = 'myuw'

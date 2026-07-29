@@ -3,10 +3,10 @@
 
 import logging
 import traceback
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.stud_future_terms import get_registered_future_quarters
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -30,5 +30,5 @@ class RegisteredFutureQuarters(ProtectedAPI):
             data = get_registered_future_quarters(request)
             log_api_call(timer, request, "Get RegisteredFutureQuarters")
             return self.json_response(data)
-        except Exception as ex:
+        except Exception:
             return handle_exception(logger, timer, traceback)

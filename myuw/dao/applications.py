@@ -2,11 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from restclients_core.exceptions import DataFailureException
 from uw_sdbmyuw import get_app_status
+
 from myuw.dao import get_userids, is_using_file_dao
 from myuw.dao.pws import (
-  get_netid_of_current_user, get_student_system_key_of_current_user)
+    get_netid_of_current_user,
+    get_student_system_key_of_current_user,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +30,8 @@ def get_applications(request):
         for application in applications:
             response.append(application.json_data())
     else:
-        logger.error({**get_userids(request),
-                      **{'msg': "Missing Student System Key"}})
+        logger.error({
+            **get_userids(request),
+            'msg': "Missing Student System Key",
+        })
     return response

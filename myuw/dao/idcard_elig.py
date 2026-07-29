@@ -6,6 +6,7 @@ This class interactes with the idcard eligibility web service.
 """
 
 from uw_admin_systems.idcard import get_idcard_elig
+
 from myuw.dao import get_netid_of_current_user
 
 
