@@ -68,7 +68,7 @@ def set_override_user(username, request=None):
 def get_user(username):
     try:
         return User.objects.get(username=username)
-    except Exception:  # noqa: BLE001
+    except Exception:
         return User.objects.create_user(
             username, password=get_user_pass(username))
 
