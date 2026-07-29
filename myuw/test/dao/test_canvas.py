@@ -3,17 +3,24 @@
 
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.canvas import (
-    get_canvas_active_enrollments, set_section_canvas_course_urls,
-    get_canvas_course_from_section,
-    get_canvas_course_url, sws_section_label, get_viewable_course_sections)
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
-from myuw.dao.term import get_current_quarter
+
+from myuw.dao.canvas import (
+    get_canvas_active_enrollments,
+    get_canvas_course_from_section,
+    get_canvas_course_url,
+    set_section_canvas_course_urls,
+    sws_section_label,
+)
 from myuw.dao.registration import get_schedule_by_term
+from myuw.dao.term import get_current_quarter
 from myuw.test import (
-    fdao_sws_override, get_request_with_user, get_request,
-    get_request_with_date)
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_sws_override

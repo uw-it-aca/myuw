@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.dao.campus_building import (
-    get_building_by_code, get_buildings_by_schedule)
+
+from myuw.dao.campus_building import get_building_by_code, get_buildings_by_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.models import CampusBuilding

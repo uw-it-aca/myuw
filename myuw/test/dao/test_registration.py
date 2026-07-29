@@ -2,16 +2,21 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from django.conf import settings
 from restclients_core.exceptions import DataFailureException
-from uw_sws.section import get_section_by_label
 from uw_sws.registration import get_schedule_by_regid_and_term
-from uw_sws.term import get_term_by_date, get_specific_term
+from uw_sws.term import get_specific_term
+
 from myuw.dao.registration import (
-    get_schedule_by_term, _get_current_summer_term, _is_split_summer)
+    _get_current_summer_term,
+    _is_split_summer,
+    get_schedule_by_term,
+)
 from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_user, get_request_with_date)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override

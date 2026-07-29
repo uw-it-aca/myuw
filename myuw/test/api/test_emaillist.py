@@ -2,18 +2,25 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from django.urls import reverse
+
 from django.test import Client
-from django.test.utils import override_settings
+from django.urls import reverse
 from userservice.user import UserService
-from myuw.views.api.emaillist import (
-    section_id_matched, is_emaillist_authorized)
+
 from myuw.test import (
-    get_request, get_request_with_user, get_user,
-    email_backend_override, set_override_user)
+    email_backend_override,
+    get_request_with_user,
+    get_user,
+)
 from myuw.test.api import (
-    MyuwApiTest, require_url,
-    fdao_sws_override, fdao_mailman_override, VALIDATE, OVERRIDE)
+    OVERRIDE,
+    VALIDATE,
+    MyuwApiTest,
+    fdao_mailman_override,
+    fdao_sws_override,
+    require_url,
+)
+from myuw.views.api.emaillist import is_emaillist_authorized, section_id_matched
 
 
 @email_backend_override
@@ -79,23 +86,23 @@ class TestEmaillistApi(MyuwApiTest):
         url = reverse("myuw_emaillist_api")
         resp = client.post(
             url,
-            {u'section_single_A': u'2013,spring,PHYS,122/A',
-             u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
+            {'section_single_A': '2013,spring,PHYS,122/A',
+             'secondary_single_AA': '2013,spring,PHYS,122/AA',
              })
         self.assertEqual(resp.status_code, 403)
 
     def test_section_id_matched(self):
-        self.assertTrue(section_id_matched(u'section_single_A',
-                                           u'2013,spring,PHYS,122/A'))
-        self.assertTrue(section_id_matched(u'section_single_AA',
-                                           u'2013,spring,PHYS,122/AA'))
-        self.assertFalse(section_id_matched(u'section_single_A', None))
-        self.assertFalse(section_id_matched(u'section_single_B',
-                                            u'2013,spring,PHYS,122/A'))
-        self.assertFalse(section_id_matched(u'section_single_B',
-                                            u'2013,spring,PHYS,122,A'))
-        self.assertFalse(section_id_matched(u'single_A',
-                                            u'2013,spring,PHYS,122/A'))
+        self.assertTrue(section_id_matched('section_single_A',
+                                           '2013,spring,PHYS,122/A'))
+        self.assertTrue(section_id_matched('section_single_AA',
+                                           '2013,spring,PHYS,122/AA'))
+        self.assertFalse(section_id_matched('section_single_A', None))
+        self.assertFalse(section_id_matched('section_single_B',
+                                            '2013,spring,PHYS,122/A'))
+        self.assertFalse(section_id_matched('section_single_B',
+                                            '2013,spring,PHYS,122,A'))
+        self.assertFalse(section_id_matched('single_A',
+                                            '2013,spring,PHYS,122/A'))
 
     def test_post_wo_csrf_check(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
@@ -118,8 +125,8 @@ class TestEmaillistApi(MyuwApiTest):
             #                   {'none_selected': True})
             resp = self.client.post(
                 url,
-                {u'section_single_A': u'2013,spring,PHYS,122,A',
-                 u'section_single': u'2013,spring,PHYS,122/A'})
+                {'section_single_A': '2013,spring,PHYS,122,A',
+                 'section_single': '2013,spring,PHYS,122/A'})
             self.assertEqual(resp.status_code, 400)
 
     def test_missing_section_post(self):
@@ -127,7 +134,7 @@ class TestEmaillistApi(MyuwApiTest):
         url = reverse("myuw_emaillist_api")
         resp = self.client.post(
             url,
-            {u'section_single_ZC': u'2013,spring,PHYS,122/ZC'})
+            {'section_single_ZC': '2013,spring,PHYS,122/ZC'})
         self.assertEqual(resp.status_code, 403)
 
         self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
@@ -137,7 +144,7 @@ class TestEmaillistApi(MyuwApiTest):
         url = reverse("myuw_emaillist_api")
         resp = self.client.post(
             url,
-            {u'section_single_A': u'2013,spring,ESS,102/A'})
+            {'section_single_A': '2013,spring,ESS,102/A'})
         self.assertEqual(resp.status_code, 403)
 
         self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
@@ -147,7 +154,7 @@ class TestEmaillistApi(MyuwApiTest):
         url = reverse("myuw_emaillist_api")
         resp = self.client.post(
             url,
-            {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+            {'section_single_AB': '2013,spring,ESS,102/AB'})
         self.assertEqual(resp.status_code, 403)
 
         self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')
@@ -158,7 +165,7 @@ class TestEmaillistApi(MyuwApiTest):
             url = reverse("myuw_emaillist_api")
             resp = self.client.post(
                 url,
-                {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+                {'section_single_AB': '2013,spring,ESS,102/AB'})
             self.assertEqual(resp.status_code, 200)
 
     def test_override_primary_instructor_secondary_post(self):
@@ -174,7 +181,7 @@ class TestEmaillistApi(MyuwApiTest):
             url = reverse("myuw_emaillist_api")
             resp = self.client.post(
                 url,
-                {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+                {'section_single_AB': '2013,spring,ESS,102/AB'})
             self.assertEqual(resp.status_code, 403)
 
     def test_is_emaillist_authorized(self):
@@ -189,6 +196,6 @@ class TestEmaillistApi(MyuwApiTest):
         url = reverse("myuw_emaillist_api")
         resp = self.client.post(
             url,
-            {u'section_single_A': u'2013,spring,ESS,102/A'})
+            {'section_single_A': '2013,spring,ESS,102/A'})
         self.assertEqual(resp.status_code, 403)
         self.assertEqual(resp.content, b'Access Forbidden to Non Instructor')

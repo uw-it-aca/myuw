@@ -1,8 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from datetime import timedelta
+
 from django.utils import timezone
-from datetime import datetime, timedelta
+
 from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew
 from myuw.test import get_request_with_user

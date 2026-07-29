@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from django.conf import settings
-from myuw.models import UserNotices
+
 from myuw.dao.notice import get_notices_by_regid
+from myuw.models import UserNotices
 
 
 class TestUserNotices(TestCase):

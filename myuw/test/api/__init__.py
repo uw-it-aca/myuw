@@ -1,23 +1,36 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+# ruff: noqa: F401
+
 import os
 from unittest import skipIf
-from django.urls import reverse
+
 from django.contrib.auth.models import User
-from django.test import TransactionTestCase, Client
+from django.test import Client, TransactionTestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.urls import NoReverseMatch, reverse
 from userservice.user import UserServiceMiddleware
-from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
-                       fdao_sws_override, fdao_subject_guide_override,
-                       fdao_mylib_override, fdao_ias_override,
-                       fdao_hfs_override, fdao_gws_override,
-                       fdao_pws_override, fdao_grad_override,
-                       fdao_bookstore_override, fdao_canvas_override,
-                       fdao_mailman_override, fdao_upass_override,
-                       fdao_idcard_override)
-from django.urls import NoReverseMatch
+
+from myuw.test import (
+    fdao_bookstore_override,
+    fdao_canvas_override,
+    fdao_grad_override,
+    fdao_gws_override,
+    fdao_hfs_override,
+    fdao_ias_override,
+    fdao_idcard_override,
+    fdao_mailman_override,
+    fdao_mylib_override,
+    fdao_pws_override,
+    fdao_subject_guide_override,
+    fdao_sws_override,
+    fdao_upass_override,
+    fdao_uwnetid_override,
+    get_user,
+    get_user_pass,
+)
 
 VALIDATE = "myuw.authorization.validate_netid"
 OVERRIDE = "myuw.authorization.can_override_user"
@@ -27,7 +40,7 @@ def missing_url(name, kwargs=None):
     try:
         reverse(name, kwargs=kwargs)
     except NoReverseMatch as ex:
-        print("NoReverseMatch: %s" % ex)
+        print(f"NoReverseMatch: {ex}")
         return True
 
     return False
@@ -96,7 +109,7 @@ class MyuwApiTest(TransactionTestCase):
                     section['course_number'] == number and\
                     section['section_id'] == section_id:
                 return section
-        self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
+        self.fail(f'Did not find course {abbr} {number} {section_id}')
 
     def set_userservice_override(self, username):
         with self.settings(DEBUG=False,

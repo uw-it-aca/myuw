@@ -1,19 +1,21 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+
 from django.test import TestCase
-from django.conf import settings
-from django.test.utils import override_settings
-from userservice.user import UserServiceMiddleware
-from datetime import datetime
-from myuw.dao.term import (
-    get_comparison_datetime, get_specific_term)
+
 from myuw.dao.card_display_dates import (
-    get_card_visibilty_date_values, is_before_bof_term,
-    is_before_eof_7d_after_class_start, in_show_grades_period,
-    is_after_7d_before_last_instruction, is_before_last_day_of_classes,
-    is_before_eof_finals_week, during_myplan_peak_load, get_reg_data)
-from myuw.test import fdao_sws_override, get_request_with_date, get_request
+    during_myplan_peak_load,
+    get_card_visibilty_date_values,
+    get_reg_data,
+    in_show_grades_period,
+    is_before_bof_term,
+    is_before_eof_7d_after_class_start,
+    is_before_eof_finals_week,
+    is_before_last_day_of_classes,
+)
+from myuw.dao.term import get_comparison_datetime, get_specific_term
+from myuw.test import fdao_sws_override, get_request, get_request_with_date
 
 
 @fdao_sws_override
@@ -488,13 +490,13 @@ class TestDisplayValues(TestCase):
             values = self.get_visibility_for_date(date)
             self.assertFalse(
                 values['myplan_peak_load'],
-                'Expected MyPlan peak load to be False on date %s' % date)
+                f'Expected MyPlan peak load to be False on date {date}')
 
         for date in peak_load_true:
             values = self.get_visibility_for_date(date)
             self.assertTrue(
                 values['myplan_peak_load'],
-                'Expected MyPlan peak load to be True on date %s' % date)
+                f'Expected MyPlan peak load to be True on date {date}')
 
         request = get_request_with_date('2013-04-15 06:29:00')
         now = get_comparison_datetime(request)

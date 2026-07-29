@@ -1,10 +1,8 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TransactionTestCase
 from django.core.management import call_command
-from django.contrib.sessions.models import Session
-from django.utils import timezone
+from django.test import TransactionTestCase
 
 
 class TestDeleteSessions(TransactionTestCase):

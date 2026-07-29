@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
+
 from django.urls import reverse
-from myuw.test.api import missing_url, MyuwApiTest
+
+from myuw.test.api import MyuwApiTest, missing_url
 
 
 class TestAcademicsMethods(MyuwApiTest):

@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.test.api import MyuwApiTest, require_url
+
 from django.urls import reverse
+
+from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_notices_api')
@@ -28,7 +30,8 @@ class TestNotices(MyuwApiTest):
 
         hash_value = data[0]["id_hash"]
 
-        response = self.put_notice('{"notice_hashes":["%s"]}' % hash_value)
+        response = self.put_notice(
+            '{"notice_hashes":["%s"]}' % hash_value)  # noqa: UP031
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(json.loads(response.content), '')

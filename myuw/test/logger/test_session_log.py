@@ -3,11 +3,16 @@
 
 from django.test import TestCase
 from django.test.utils import override_settings
-from userservice.user import UserServiceMiddleware, UserService
+from userservice.user import UserServiceMiddleware
+
 from myuw.logger.session_log import (
-    log_session, _get_affi, get_userids, _get_session_data, is_native)
-from myuw.test import (
-    get_request, get_request_with_user, set_override_user)
+    _get_affi,
+    _get_session_data,
+    get_userids,
+    is_native,
+    log_session,
+)
+from myuw.test import get_request, get_request_with_user, set_override_user
 
 
 @override_settings(MIDDLEWARE_CLASSES=[UserServiceMiddleware])

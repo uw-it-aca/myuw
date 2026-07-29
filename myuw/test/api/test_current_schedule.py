@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.views.api.base_schedule import irregular_start_end
-from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
+
+from myuw.test.api import MyuwApiTest, fdao_sws_override, require_url
 
 
 @fdao_sws_override

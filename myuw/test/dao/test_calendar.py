@@ -1,9 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from unittest import skipIf
 from datetime import datetime
+
 from django.test import TestCase
+
 from myuw.dao.calendar import DEFAULT_TZ, get_events
 
 

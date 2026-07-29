@@ -1,13 +1,16 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
-from django.core.management import call_command
-from django.contrib.sessions.models import Session
-from django.utils import timezone
 from datetime import timedelta
+
+from django.contrib.sessions.models import Session
+from django.core.management import call_command
+from django.test import TestCase
+from django.utils import timezone
+
 from myuw.management.commands.clear_expired_sessions import (
-    get_cut_off_params, run_delete)
+    get_cut_off_params,
+)
 
 
 class TestClearSessions(TestCase):
@@ -17,10 +20,10 @@ class TestClearSessions(TestCase):
                                session_data="a",
                                expire_date=timezone.now() - timedelta(days=1))
         call_command('clear_expired_sessions', 1)
-        for i in range(0, 10001):
+        for i in range(10001):
             Session.objects.create(
-                session_key="a{}".format(i),
-                session_data="a{}".format(i),
+                session_key=f"a{i}",
+                session_data=f"a{i}",
                 expire_date=timezone.now() - timedelta(days=1))
         self.assertEqual(Session.objects.filter(
             expire_date__lt=timezone.now()).count(), 10001)

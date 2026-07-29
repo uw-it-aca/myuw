@@ -1,20 +1,34 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
 from django.core import mail
+from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from uw_sws.section import get_section_by_label
+
 from myuw.dao.mailman import (
+    _get_quarter_code,
+    _get_single_line,
+    get_all_secondary_section_lists,
+    get_course_email_lists,
+    get_instructor_term_list,
     get_list_json,
-    get_instructor_term_list, get_section_secondary_combined_list,
-    get_single_course_list, get_single_section_list, get_section_id,
-    get_all_secondary_section_lists, get_section_email_lists,
-    get_section_label, get_course_email_lists, request_mailman_lists,
-    get_single_message_body, _get_single_line, _get_quarter_code)
+    get_section_email_lists,
+    get_section_id,
+    get_section_label,
+    get_section_secondary_combined_list,
+    get_single_course_list,
+    get_single_message_body,
+    get_single_section_list,
+    request_mailman_lists,
+)
 from myuw.test import (
-    fdao_sws_override, fdao_mailman_override, get_request,
-    get_request_with_user, email_backend_override)
+    email_backend_override,
+    fdao_mailman_override,
+    fdao_sws_override,
+    get_request,
+    get_request_with_user,
+)
 
 
 @fdao_mailman_override
@@ -71,7 +85,7 @@ class TestMailmanDao(TestCase):
             {"list_exists": True,
              "list_address": "phys121a_sp13",
              "section_id": 'A',
-             'section_label': u'2013,spring,PHYS,121/A',
+             'section_label': '2013,spring,PHYS,121/A',
              "list_admin_url": url})
 
         list_data = get_single_section_list(
@@ -178,7 +192,7 @@ class TestMailmanDao(TestCase):
         self.assertEqual(
             _get_single_line(get_section_by_label(
                 '2013,spring,PHYS,122/A')),
-            u'phys122a_sp13 2 2013 17983\n')
+            'phys122a_sp13 2 2013 17983\n')
 
     def test_get_message_body(self):
         body, num1 = get_single_message_body('billsea',
@@ -188,10 +202,10 @@ class TestMailmanDao(TestCase):
                                               '2013,spring,PHYS,122/AH'])
         self.assertEqual(num1, 3)
         self.assertEqual(body,
-                         (u'billsea\n' +
-                          u'phys122a_sp13 2 2013 17983\n' +
-                          u'phys122aa_sp13 2 2013 17984\n' +
-                          u'phys122ab_sp13 2 2013 17985\n'))
+                         ('billsea\n' +
+                          'phys122a_sp13 2 2013 17983\n' +
+                          'phys122aa_sp13 2 2013 17984\n' +
+                          'phys122ab_sp13 2 2013 17985\n'))
 
     def test_request_mailman_lists(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
@@ -222,6 +236,6 @@ class TestMailmanDao(TestCase):
                              'instructor Mailman request')
             self.assertEqual(mail.outbox[0].from_email, "billjoint@uw.edu")
             self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
-            m = u'billjoint\nmulti_pols306a_au13 4 2013 25769 12430 18778\n'
+            m = 'billjoint\nmulti_pols306a_au13 4 2013 25769 12430 18778\n'
             self.assertEqual(mail.outbox[0].body, m)
             self.assertTrue(len(mail.outbox[0].body) > 0)

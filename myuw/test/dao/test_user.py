@@ -2,8 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
-from myuw.models import User
+
 from myuw.dao.user import get_user_model, not_existing_user
+from myuw.models import User
 from myuw.test import fdao_pws_override, get_request_with_user
 
 
@@ -14,7 +15,7 @@ class TestUserDao(TransactionTestCase):
         req = get_request_with_user("javerage")
         # cached attribute doesn't exists
         with self.assertRaises(AttributeError):
-            a = req.get("myuw_user_model")
+            _a = req.get("myuw_user_model")
 
         user = get_user_model(req)
         self.assertIsNotNone(str(user))

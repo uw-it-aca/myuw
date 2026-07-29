@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.test.api import (MyuwApiTest, require_url, fdao_pws_override)
+
+from myuw.test.api import MyuwApiTest, fdao_pws_override, require_url
 
 
 @fdao_pws_override
@@ -25,7 +26,7 @@ class TestMyDirectoryInfo(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(data['surname'], 'TEACHER')
         self.assertEqual(data['positions'][0],
-                         {u'department': u'Family Medicine',
-                          u'is_primary': True,
-                          u'title': u'Associate Professor'})
+                         {'department': 'Family Medicine',
+                          'is_primary': True,
+                          'title': 'Associate Professor'})
         self.assertTrue(data['publish_in_emp_directory'])

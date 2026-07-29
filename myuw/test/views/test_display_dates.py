@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
+
 from django.urls import reverse
-from django.test import Client
-from myuw.views.display_dates import override
-from myuw.test.api import missing_url, require_url, MyuwApiTest
+
+from myuw.test.api import MyuwApiTest, missing_url, require_url
 
 
 @require_url('myuw_date_override')

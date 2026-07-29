@@ -2,8 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.dao.exceptions import EmailServiceUrlException
+
 from myuw.dao.emaillink import get_service_url_for_address
+from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.test import get_request_with_user
 

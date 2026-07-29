@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+
 from myuw.dao.myplan import get_plan
 from myuw.test import get_request_with_user
 
@@ -38,5 +39,5 @@ class TestMyPlanDao(TestCase):
 
     def test_error(self):
         req = get_request_with_user('jerror')
-        self.assertRaises(
+        self.assertRaises(  # noqa: B017
             Exception, get_plan, req, 2013, 'spring')

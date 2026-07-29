@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from datetime import timedelta
+
+from django.test import TransactionTestCase
 from persistent_message.models import Message, Tag
-from django.test import TransactionTestCase, override_settings
-from myuw.dao.term import get_comparison_datetime_with_tz
+
 from myuw.dao.persistent_messages import BannerMessage
-from myuw.test import (get_request_with_user, get_request_with_date)
+from myuw.dao.term import get_comparison_datetime_with_tz
+from myuw.test import get_request_with_user
 
 
 def setup_db(req):
@@ -19,7 +21,6 @@ def setup_db(req):
 
 
 def set_tags(msg, tag_names):
-    tags = []
     for tag in tag_names:
         msg.tags.add(Tag.objects.get(name=tag))
     msg.save()
@@ -27,7 +28,7 @@ def set_tags(msg, tag_names):
 
 
 class PersistentMessageDAOTest(TransactionTestCase):
-    fixtures = ['persistent_messages.json']
+    fixtures = ['persistent_messages.json']  # noqa: RUF012
 
     def test_tags(self):
         tags = Tag.objects.all()

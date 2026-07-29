@@ -2,11 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
-from django.test.utils import override_settings
+
 from django.urls import reverse
-from myuw.util.settings import get_logout_url
-from myuw.test.api import missing_url, MyuwApiTest
+
+from myuw.test.api import MyuwApiTest, missing_url
 from myuw.test.views import get_desktop_args
+from myuw.util.settings import get_logout_url
 
 
 class TestLogoutLink(MyuwApiTest):
@@ -14,7 +15,6 @@ class TestLogoutLink(MyuwApiTest):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_logout(self):
         logout_url = reverse("myuw_logout")
-        home_url = reverse("myuw_home")
         self.set_user('javerage')
         old_session_id = self.client.cookies['sessionid'].value
         response = self.client.get(logout_url, **get_desktop_args())

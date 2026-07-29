@@ -4,10 +4,14 @@
 # -*- coding: utf-8 -*-
 from django.test.utils import override_settings
 from django.urls import reverse
+
 from myuw.test.api import MyuwApiTest
 from myuw.views.rest_search import (
-    get_input_value, get_regid, get_employee_number, get_student_number,
-    get_student_system_key
+    get_employee_number,
+    get_input_value,
+    get_regid,
+    get_student_number,
+    get_student_system_key,
 )
 
 

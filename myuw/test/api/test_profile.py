@@ -2,9 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+
 from myuw.test.api import (
-    MyuwApiTest, require_url, fdao_pws_override,
-    fdao_sws_override, fdao_uwnetid_override)
+    MyuwApiTest,
+    fdao_pws_override,
+    fdao_sws_override,
+    fdao_uwnetid_override,
+    require_url,
+)
 
 
 @fdao_sws_override

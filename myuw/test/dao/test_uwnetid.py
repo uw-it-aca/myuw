@@ -2,10 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+
 from myuw.dao.uwnetid import (
-    get_subscriptions, get_email_forwarding_for_current_user,
-    is_2fa_permitted, BlockedNetidErr)
-from myuw.test import get_request_with_user, fdao_uwnetid_override
+    BlockedNetidErr,
+    get_email_forwarding_for_current_user,
+    get_subscriptions,
+    is_2fa_permitted,
+)
+from myuw.test import fdao_uwnetid_override, get_request_with_user
 
 
 @fdao_uwnetid_override
@@ -14,7 +18,7 @@ class TestUWNetidDao(TestCase):
     def test_subscriptions_prefetch(self):
         req = get_request_with_user('javerage')
         self.assertFalse(hasattr(req, "myuwnetid_subscriptions"))
-        subs_dict = get_subscriptions(req)
+        _subs_dict = get_subscriptions(req)
         self.assertIsNotNone(req.myuwnetid_subscriptions)
         self.assertIsNotNone(req.myuwnetid_subscriptions[105])
         self.assertIsNotNone(req.myuwnetid_subscriptions[60])

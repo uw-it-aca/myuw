@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+
 from myuw.dao import get_netid_of_original_user
-from myuw.dao.admin import is_admin, can_override
-from myuw.test import fdao_gws_override, get_request_with_user, auth_override
+from myuw.dao.admin import can_override, is_admin
+from myuw.test import auth_override, fdao_gws_override, get_request_with_user
 
 
 @fdao_gws_override

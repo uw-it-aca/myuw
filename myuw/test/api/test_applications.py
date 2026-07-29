@@ -2,12 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from django.test import TestCase
+
 from uw_pws.util import fdao_pws_override
 from uw_sdbmyuw.util import fdao_sdbmyuw_override
 from uw_sws.util import fdao_sws_override
-from myuw.dao.applications import get_applications
-from myuw.test import get_user_pass, get_user
+
 from myuw.test.api import MyuwApiTest, require_url
 
 

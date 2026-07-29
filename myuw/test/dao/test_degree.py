@@ -3,6 +3,7 @@
 
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.degree import get_degrees, get_degrees_json
 from myuw.test import get_request_with_date, get_request_with_user
 

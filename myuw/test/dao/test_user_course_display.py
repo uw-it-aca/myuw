@@ -2,18 +2,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
-from django.conf import settings
-from userservice.user import UserServiceMiddleware
-from uw_sws.exceptions import InvalidSectionID
-from myuw.models import UserCourseDisplay, User
-from myuw.dao.exceptions import NotSectionInstructorException
+
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.dao.user import get_user_model
 from myuw.dao.user_course_display import (
-    set_course_display_pref, _get_next_color, _update_color)
-from myuw.test import get_request_with_user, get_request_with_date
+    _get_next_color,
+    _update_color,
+    set_course_display_pref,
+)
+from myuw.models import User, UserCourseDisplay
+from myuw.test import get_request_with_date, get_request_with_user
 
 
 class TestUserCourseDisplayDao(TransactionTestCase):
@@ -28,23 +28,24 @@ class TestUserCourseDisplayDao(TransactionTestCase):
                 user=user,
                 year=2013,
                 quarter='spring',
-                section_label='2013,spr,A,{:d}/A'.format(i),
+                section_label=f'2013,spr,A,{i:d}/A',
                 color_id=new_color)
-        existing_color_dict, colors_taken, pin_on_teaching_2nds =\
-            UserCourseDisplay.get_course_display(user, 2013, 'spring')
+        (existing_color_dict, colors_taken,
+            _pin_on_teaching_2nds) = UserCourseDisplay.get_course_display(
+                user, 2013, 'spring')
 
         for i in range(17, 24):
             self.assertEqual(
-                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
-        self.assertEqual(existing_color_dict['2013,spr,A,24/A'.format(i)], 8)
+                existing_color_dict[f'2013,spr,A,{i:d}/A'], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,24/A'], 8)
         for i in range(25, 32):
             self.assertEqual(
-                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
-        self.assertEqual(existing_color_dict['2013,spr,A,32/A'.format(i)], 8)
+                existing_color_dict[f'2013,spr,A,{i:d}/A'], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,32/A'], 8)
         for i in range(33, 40):
             self.assertEqual(
-                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
-        self.assertEqual(existing_color_dict['2013,spr,A,40/A'.format(i)], 8)
+                existing_color_dict[f'2013,spr,A,{i:d}/A'], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,40/A'], 8)
 
         self.assertEqual(colors_taken[:8],
                          [1, 2, 3, 4, 5, 6, 7, 8])

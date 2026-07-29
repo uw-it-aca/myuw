@@ -1,15 +1,23 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import re
 from django.test import TestCase
-from django.conf import settings
+
 from myuw.util.settings import (
-    get_myuwclass_url, get_myuw_test_access_group,
-    get_mailman_courserequest_recipient, get_google_search_key,
-    get_myuw_admin_group, get_myuw_override_group, get_myuw_astra_group_stem,
-    get_disable_actions_when_override, get_enabled_features, get_logout_url,
-    no_access_check, get_cronjob_recipient, get_cronjob_sender)
+    get_cronjob_recipient,
+    get_cronjob_sender,
+    get_disable_actions_when_override,
+    get_enabled_features,
+    get_google_search_key,
+    get_logout_url,
+    get_mailman_courserequest_recipient,
+    get_myuw_admin_group,
+    get_myuw_astra_group_stem,
+    get_myuw_override_group,
+    get_myuw_test_access_group,
+    get_myuwclass_url,
+    no_access_check,
+)
 
 
 class TestSetting(TestCase):

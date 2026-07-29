@@ -1,11 +1,11 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from django.contrib.sessions.middleware import SessionMiddleware
 from django.test import TestCase
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
-from django.contrib.sessions.middleware import SessionMiddleware
-from myuw.util.thread import Thread, PrefetchThread, ThreadWithResponse
+
+from myuw.util.thread import PrefetchThread, ThreadWithResponse
 
 
 def request_prefetch(request):
@@ -17,7 +17,7 @@ def set_async_data():
 
 
 def raise_async_exception():
-    raise Exception('oops!')
+    raise Exception('oops!')  # noqa: TRY002
 
 
 class TestPrefetchThread(TestCase):

@@ -3,6 +3,7 @@
 
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.adviser import get_academic_advisers
 from myuw.test import get_request_with_user
 

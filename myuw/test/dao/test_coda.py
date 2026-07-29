@@ -3,7 +3,9 @@
 
 from unittest import TestCase
 from unittest.mock import patch
+
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao import coda
 
 
