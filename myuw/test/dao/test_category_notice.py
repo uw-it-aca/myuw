@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+
 from myuw.dao.category_notice import get_category_notices
 from myuw.dao.notice_mapping import categorize_notices
 

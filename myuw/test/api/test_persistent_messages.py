@@ -2,13 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+
 from persistent_message.models import Message
+
 from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_banner_message')
 class PersistentMessageAPITest(MyuwApiTest):
-    fixtures = ['persistent_messages.json']
+    fixtures = ['persistent_messages.json']  # noqa: RUF012
 
     def get_response(self):
         return self.get_response_by_reverse('myuw_banner_message')

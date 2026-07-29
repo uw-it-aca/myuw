@@ -1,12 +1,14 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
 import json
-from myuw.views.api.academic_events import AcademicEvents, get_term_before
-from icalendar import Event
 from datetime import date
+
+from django.test import TestCase
+from icalendar import Event
+
 from myuw.test import get_request_with_date, get_request_with_user
+from myuw.views.api.academic_events import AcademicEvents, get_term_before
 
 
 class TestAcademicEvents(TestCase):

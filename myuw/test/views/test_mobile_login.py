@@ -1,23 +1,21 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.conf import settings
 from django.urls import reverse
-from django.test.utils import override_settings
-from myuw.test import get_request_with_user
+
 from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_home')
 class TestLogins(MyuwApiTest):
 
-    _mobile_args = {
+    _mobile_args = {  # noqa: RUF012
         'HTTP_USER_AGENT': ("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 "
                             "like Mac OS X) AppleWebKit/536.26 (KHTML, "
                             "like Gecko) Version/6.0 Mobile/10B329 "
                             "Safari/8536.25")}
 
-    _desktop_args = {
+    _desktop_args = {  # noqa: RUF012
         'HTTP_USER_AGENT': ("Mozilla/5.0 (compatible; MSIE 10.0; Windows "
                             "NT 6.2; ARM; Trident/6.0; Touch)")}
 

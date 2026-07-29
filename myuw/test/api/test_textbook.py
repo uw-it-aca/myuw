@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.views.api.textbook import get_payment_quarter
+
 from myuw.test import get_request_with_date
 from myuw.test.api import MyuwApiTest, fdao_bookstore_override
+from myuw.views.api.textbook import get_payment_quarter
 
 VERBACOMPARE_URL_PREFIX = "http://uw-seattle.verbacompare.com"
 IMAGE_URL_PREFIX = "www7.bookstore.washington.edu/MyUWImage.taf"

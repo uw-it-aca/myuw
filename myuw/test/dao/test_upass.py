@@ -2,11 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.upass import get_upass, in_summer_display_window
 from myuw.test import (
-    fdao_upass_override, get_request_with_user,
-    get_request_with_date, fdao_sws_override, fdao_gws_override)
+    fdao_gws_override,
+    fdao_sws_override,
+    fdao_upass_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_upass_override
@@ -61,4 +65,4 @@ class TestUPassDao(TestCase):
             'active_student_membership': None})
 
         req = get_request_with_user("jerror")
-        self.assertRaises(Exception, get_upass, req)
+        self.assertRaises(Exception, get_upass, req)  # noqa: B017

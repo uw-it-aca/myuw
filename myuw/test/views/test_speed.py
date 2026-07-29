@@ -1,14 +1,16 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from unittest import skipIf, skipUnless
+import os
 import time
-from django.urls import reverse
-from django.test import TestCase, Client
+from unittest import skipIf, skipUnless
+
+from django.test import Client, TestCase
 from django.test.utils import override_settings
+from django.urls import reverse
+
 from myuw.test.api import missing_url
 from myuw.util.cache import MyUWMemcachedCache
-import os
 
 
 @override_settings(
@@ -33,7 +35,7 @@ class TestPageSpeeds(TestCase):
         delta = t1 - t0
         # With uncached resources
         self.assertEqual(resp.status_code, 200)
-        self.assertTrue(0.1 <= delta <= 0.3, 'Uncached time: {}'.format(delta))
+        self.assertTrue(0.1 <= delta <= 0.3, f'Uncached time: {delta}')
 
         # With cached resources
         t2 = time.time()
@@ -42,4 +44,4 @@ class TestPageSpeeds(TestCase):
 
         delta = t3 - t2
         self.assertEqual(resp.status_code, 200)
-        self.assertTrue(0.1 <= delta <= 0.2, 'Cached time: {}'.format(delta))
+        self.assertTrue(0.1 <= delta <= 0.2, f'Cached time: {delta}')

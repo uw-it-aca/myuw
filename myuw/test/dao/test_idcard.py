@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.idcard_elig import get_idcard_eli
 from myuw.test import fdao_idcard_override, get_request_with_user
 

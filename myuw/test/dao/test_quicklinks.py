@@ -2,16 +2,20 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
-from myuw.models import (
-  HiddenLink, VisitedLinkNew, CustomLink, User)
-from myuw.test import get_request_with_user
-from myuw.dao.user import get_user_model
+
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.quicklinks import (
-    get_quicklink_data, get_link_label,
-    add_custom_link, delete_custom_link, edit_custom_link,
-    add_hidden_link, delete_hidden_link, get_recent_link_by_id)
-
+    add_custom_link,
+    add_hidden_link,
+    delete_custom_link,
+    delete_hidden_link,
+    edit_custom_link,
+    get_link_label,
+    get_quicklink_data,
+    get_recent_link_by_id,
+)
+from myuw.dao.user import get_user_model
+from myuw.models import HiddenLink, VisitedLinkNew
 from myuw.test import get_request_with_user
 
 
@@ -31,7 +35,7 @@ class TestQuickLinkDAO(TransactionTestCase):
             user=user, url=u1.url, label=u1.label)
         self.assertTrue(get_recent_link_by_id(req, v1.pk))
 
-        h1 = HiddenLink.objects.create(
+        _h1 = HiddenLink.objects.create(
             user=user, url="https://uwnetid.washington.edu/manage/"
         )
 
@@ -140,7 +144,7 @@ class TestQuickLinkDAO(TransactionTestCase):
                                                     False),
             "is_intl_stud": affiliations.get('intl_stud', False)
         }
-        l1 = VisitedLinkNew.objects.create(**link_data)
+        _l1 = VisitedLinkNew.objects.create(**link_data)
 
         qls = get_quicklink_data(req)
         self.assertEqual(qls['recent_links'][0]['label'], "ISS1")

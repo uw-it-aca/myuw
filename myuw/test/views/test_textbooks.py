@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
-from django.test.utils import override_settings
+
 from django.urls import reverse
-from myuw.test.api import missing_url, require_url, MyuwApiTest
+
+from myuw.test.api import MyuwApiTest, missing_url, require_url
 
 
 @require_url('myuw_home')
@@ -24,8 +25,8 @@ class TestTextbook(MyuwApiTest):
 
         response = self.client.get(url + "/2013,spring/PHYS121AC")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['term'], u'2013,spring')
-        self.assertEqual(response.context['textbook'], u'PHYS121AC')
+        self.assertEqual(response.context['term'], '2013,spring')
+        self.assertEqual(response.context['textbook'], 'PHYS121AC')
 
     @skipIf(missing_url("myuw_textbooks_page"),
             "myuw_pref_new_site urls not configured")
@@ -34,20 +35,20 @@ class TestTextbook(MyuwApiTest):
         self.set_user("javerage")
         response = self.client.get(url + "/2013,autumn")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['term'], u'2013,autumn')
+        self.assertEqual(response.context['term'], '2013,autumn')
         self.assertIsNone(response.context['textbook'])
 
         response = self.client.get(url + "/2013,summer,a-term")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['term'], u'2013,summer,a-term')
+        self.assertEqual(response.context['term'], '2013,summer,a-term')
         self.assertIsNone(response.context['textbook'])
 
         response = self.client.get(url + "/2013,summer,b-term")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['term'], u'2013,summer,b-term')
+        self.assertEqual(response.context['term'], '2013,summer,b-term')
         self.assertIsNone(response.context['textbook'])
 
         response = self.client.get(url + "/2013,summer,b-term/TRAIN101A")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['term'], u'2013,summer,b-term')
-        self.assertEqual(response.context['textbook'], u'TRAIN101A')
+        self.assertEqual(response.context['term'], '2013,summer,b-term')
+        self.assertEqual(response.context['textbook'], 'TRAIN101A')

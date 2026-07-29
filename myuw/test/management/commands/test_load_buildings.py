@@ -2,13 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from datetime import datetime
-from django.test import TransactionTestCase
 from unittest.mock import patch
+
 from django.core.management import call_command
+from django.test import TransactionTestCase
 from restclients_core.exceptions import DataFailureException
 from uw_space.models import Facility
-from myuw.models import CampusBuilding
+
 from myuw.management.commands.load_buildings import Facilities
+from myuw.models import CampusBuilding
 
 
 class TestDeleteSessions(TransactionTestCase):
@@ -44,7 +46,7 @@ class TestDeleteSessions(TransactionTestCase):
         with patch.object(Facilities, 'search_by_code', spec=True) as mock:
             mock.return_value = [Facility(
                 code='NMEB',
-                last_updated=datetime.now(),
+                last_updated=datetime.now(),  # noqa: DTZ005
                 latitude='47.653693',
                 longitude='-122.304747',
                 name='Mechanical Engineering Building',
@@ -61,7 +63,7 @@ class TestDeleteSessions(TransactionTestCase):
     def test_error(self, mock):
         fac_obj = Facility(
             code='MEB',
-            last_updated=datetime.now(),
+            last_updated=datetime.now(),  # noqa: DTZ005
             latitude='47.653693',
             longitude='-122.304747',
             name='Mechanical Engineering Building',

@@ -2,21 +2,29 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from datetime import datetime, timezone
+
 from django.test import TestCase
-from django.conf import settings
-from django.test.utils import override_settings
-from uw_sws.models import Section
 from uw_iasystem.evaluation import get_evaluation_by_id
+from uw_sws.models import Section
 from uw_sws.section import get_section_by_label
+
 from myuw.dao.iasystem import (
-    json_for_evaluation, _get_evaluations_domain,
-    _get_evaluations_by_section_and_student, summer_term_overlaped,
-    get_evaluation_by_section_and_instructor)
+    _get_evaluations_by_section_and_student,
+    _get_evaluations_domain,
+    get_evaluation_by_section_and_instructor,
+    json_for_evaluation,
+    summer_term_overlaped,
+)
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.test import (
-    fdao_pws_override, fdao_sws_override, fdao_ias_override,
-    get_request_with_date, get_request_with_user, get_request)
+    fdao_ias_override,
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_ias_override
@@ -122,7 +130,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 1)
         self.assertEqual(json_data[0]['instructors'][0]['instructor_title'],
-                         u'Teaching Assistant')
+                         'Teaching Assistant')
         self.assertEqual(json_data[0]['close_date'],
                          "2013-03-23T07:59:59+00:00")
         # after close date

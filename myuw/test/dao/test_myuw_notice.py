@@ -1,43 +1,54 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TransactionTestCase
+from datetime import date, datetime
 from unittest.mock import patch
-from datetime import datetime, date
+
+from django.test import TransactionTestCase
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.myuw_notice import (
-    get_myuw_notices_for_user, get_prev_sunday, get_start_date,
-    get_notice_term, campus_neutral, is_stud_campus_matched,
-    is_employee_campus_matched, get_first_day_quarter,
-    get_notices_by_date, get_notices_by_term, student_affiliation_matched)
+    campus_neutral,
+    get_first_day_quarter,
+    get_myuw_notices_for_user,
+    get_notice_term,
+    get_notices_by_date,
+    get_notices_by_term,
+    get_prev_sunday,
+    get_start_date,
+    is_employee_campus_matched,
+    is_stud_campus_matched,
+    student_affiliation_matched,
+)
 from myuw.dao.notice_mapping import categorize_notices
-from myuw.test import get_request_with_user, get_request_with_date
 from myuw.models.myuw_notice import MyuwNotice
+from myuw.test import get_request_with_date, get_request_with_user
 
 
 def get_datetime_with_tz(year, month, day, hour):
-    return timezone.make_aware(datetime(year, month, day, hour, 0, 0))
+    return timezone.make_aware( 
+            datetime(year, month, day, hour, 0, 0))  # noqa: DTZ001
 
 
 class TestMyuwNotice(TransactionTestCase):
 
     def test_get_notice_term(self):
         request = get_request_with_date("2013-03-16")
-        term, cmp_date = get_notice_term(request)
+        term, _cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "winter")
         request = get_request_with_date("2013-03-17")
-        term, cmp_date = get_notice_term(request)
+        term, _cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "spring")
         request = get_request_with_date("2013-06-09")
-        term, cmp_date = get_notice_term(request)
+        term, _cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "summer")
         request = get_request_with_date("2013-08-25")
-        term, cmp_date = get_notice_term(request)
+        term, _cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "autumn")
         request = get_request_with_date("2013-12-08")
-        term, cmp_date = get_notice_term(request)
+        term, _cmp_date = get_notice_term(request)
         self.assertEqual(term.quarter, "winter")
 
     def test_get_prev_sunday(self):

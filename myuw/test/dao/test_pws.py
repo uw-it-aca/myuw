@@ -3,14 +3,27 @@
 
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException, InvalidNetID
+
 from myuw.dao.pws import (
-    pws, get_display_name_of_current_user, is_employee, is_alumni, is_faculty,
-    is_prior_employee, is_prior_student, is_retiree, is_student,
-    is_bothell_employee, is_seattle_employee, is_tacoma_employee,
-    get_person_of_current_user, get_regid_of_current_user,
-    get_employee_id_of_current_user, get_student_number_of_current_user,
-    get_student_system_key_of_current_user)
-from myuw.test import fdao_pws_override, get_request_with_user, get_request
+    get_display_name_of_current_user,
+    get_employee_id_of_current_user,
+    get_person_of_current_user,
+    get_regid_of_current_user,
+    get_student_number_of_current_user,
+    get_student_system_key_of_current_user,
+    is_alumni,
+    is_bothell_employee,
+    is_employee,
+    is_faculty,
+    is_prior_employee,
+    is_prior_student,
+    is_retiree,
+    is_seattle_employee,
+    is_student,
+    is_tacoma_employee,
+    pws,
+)
+from myuw.test import fdao_pws_override, get_request, get_request_with_user
 
 
 @fdao_pws_override
@@ -26,24 +39,25 @@ class TestPwsDao(TestCase):
 
     def test_no_pws_person_netid(self):
         req = get_request_with_user('nobody')
-        person = get_person_of_current_user(req)
+        _person = get_person_of_current_user(req)
         self.assertIsNotNone(req.myuw_pws_person)
 
     def test_get_regid_of_current_user(self):
         req = get_request_with_user('seagrad')
         self.assertEqual(get_regid_of_current_user(req),
-                         u'10000000000000000000000000000002')
+                         '10000000000000000000000000000002')
         self.assertTrue(is_employee(req))
         self.assertTrue(is_student(req))
         self.assertTrue(is_bothell_employee(req))
 
     def test_get_person_of_current_user(self):
         # test MUWM-4366 no user in request
-        self.assertRaises(Exception, get_person_of_current_user, get_request())
+        self.assertRaises(  # noqa: B017
+            Exception, get_person_of_current_user, get_request())
 
         req = get_request_with_user('javerage')
         self.assertFalse(hasattr(req, "myuw_pws_person"))
-        person = get_person_of_current_user(req)
+        _person = get_person_of_current_user(req)
         self.assertIsNotNone(req.myuw_pws_person)
 
     def test_display_name(self):
@@ -85,21 +99,21 @@ class TestPwsDao(TestCase):
         req = get_request_with_user('javerage')
         self.assertTrue(is_student(req))
         self.assertEqual(get_student_system_key_of_current_user(req),
-                         u'000083856')
+                         '000083856')
         self.assertEqual(get_student_number_of_current_user(req),
-                         u'1033334')
+                         '1033334')
 
         req = get_request_with_user('botgrad')
         self.assertTrue(is_student(req))
         self.assertEqual(get_student_system_key_of_current_user(req),
-                         u'001000003')
+                         '001000003')
         self.assertEqual(get_student_number_of_current_user(req),
-                         u'1000003')
+                         '1000003')
 
     def test_instructor_seattle_campus(self):
         req = get_request_with_user('bill')
         self.assertEqual(get_employee_id_of_current_user(req),
-                         u'123456782')
+                         '123456782')
         self.assertTrue(is_employee(req))
         self.assertTrue(is_seattle_employee(req))
 

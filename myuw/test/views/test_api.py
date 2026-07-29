@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from unittest import skipIf
-from django.urls import reverse
-from myuw.views.api import OpenAPI
-from myuw.test.api import missing_url, MyuwApiTest
 from datetime import datetime
+from unittest import skipIf
+
+from django.urls import reverse
+
+from myuw.test.api import MyuwApiTest, missing_url
+from myuw.views.api import OpenAPI
 
 
 class TestDispatchErrorCases(MyuwApiTest):
@@ -38,6 +40,7 @@ class TestJSONResponse(MyuwApiTest):
         self.assertEqual(response.status_code, 403)
         self.assertEqual(json.loads(response.content), '')
 
-        response = OpenAPI().json_response(datetime(2013, 1, 1, 0, 0, 0))
+        response = OpenAPI().json_response(datetime(  # noqa: DTZ001
+            2013, 1, 1, 0, 0, 0))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(json.loads(response.content), '2013-01-01 00:00:00')

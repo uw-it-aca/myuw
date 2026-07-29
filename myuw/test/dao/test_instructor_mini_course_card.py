@@ -3,11 +3,12 @@
 
 from django.test import TransactionTestCase
 from uw_sws.exceptions import InvalidSectionID
-from myuw.models import UserCourseDisplay
+
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.term import get_current_quarter
-from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.instructor_mini_course_card import set_pin_on_teaching_page
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
+from myuw.dao.term import get_current_quarter
+from myuw.models import UserCourseDisplay
 from myuw.test import get_request_with_user
 
 

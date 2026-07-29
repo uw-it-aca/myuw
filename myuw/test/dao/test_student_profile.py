@@ -1,15 +1,24 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
 from collections import namedtuple
 from types import SimpleNamespace
+
+from django.test import TestCase
+
 from myuw.dao.student_profile import (
-    _get_degrees_for_terms, get_student_emergency_contacts,
-    get_cur_future_enrollments, get_student_profile, _get_residency_change)
+    _get_degrees_for_terms,
+    _get_residency_change,
+    get_cur_future_enrollments,
+    get_student_emergency_contacts,
+    get_student_profile,
+)
 from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_date, get_request_with_user)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 from myuw.test.dao.test_degree import DEGREE_DATA
 
 

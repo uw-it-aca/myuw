@@ -2,11 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.term import get_current_quarter
-from myuw.dao.textbook import (
-    get_textbook_json, get_search_url, get_iacourse_status)
-from myuw.test import get_request_with_user, get_request_with_date
+from myuw.dao.textbook import get_iacourse_status, get_search_url, get_textbook_json
+from myuw.test import get_request_with_date, get_request_with_user
 
 
 class TestTextbooks(TestCase):

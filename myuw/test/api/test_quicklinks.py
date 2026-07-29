@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+
 from django.urls import reverse
+
 from myuw.dao.user import get_user_model
-from myuw.models import VisitedLinkNew, CustomLink, HiddenLink
-from myuw.views.api.link import get_link_data
+from myuw.models import CustomLink, HiddenLink, VisitedLinkNew
 from myuw.test import get_request_with_user
 from myuw.test.api import MyuwApiTest
+from myuw.views.api.link import get_link_data
 
 
 class TestQuickLinksAPI(MyuwApiTest):

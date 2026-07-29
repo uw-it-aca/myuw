@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from uw_space import Facilities
+
 from myuw.models import CampusBuilding
 from myuw.test.api import MyuwApiTest
 
@@ -9,7 +10,7 @@ from myuw.test.api import MyuwApiTest
 class TestBuilding(MyuwApiTest):
     def setUp(self):
         self.fac_obj = Facilities().search_by_number("1347")
-        b_obj = CampusBuilding.upd_building(self.fac_obj)
+        CampusBuilding.upd_building(self.fac_obj)
 
     def test_building(self):
         location_url = "https://map.uw.edu/?id=2099#!m/974994?share"

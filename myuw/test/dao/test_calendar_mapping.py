@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
+
 from myuw.dao.calendar_mapping import (
-    get_calendars_for_minors, get_calendars_for_majors,
-    get_calendars_for_gradmajors, _get_calendars,
-    _get_calendar_ids_from_text, _get_major_minors)
-from myuw.test import get_request_with_user, get_request_with_date
+    _get_calendar_ids_from_text,
+    _get_calendars,
+    _get_major_minors,
+)
+from myuw.test import get_request_with_date, get_request_with_user
 
 
 class TestCalendarMapping(TestCase):
@@ -73,9 +75,9 @@ class TestCalendarMapping(TestCase):
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 3)
         self.assertEqual(len(mm['minors']), 2)
-        self.assertTrue(u'ENGLISH' in mm['majors'])
-        self.assertTrue(u'COMPUTER SCIENCE' in mm['majors'])
-        self.assertTrue(u'ACMS (SOC & BEH SCI)' in mm['majors'])
+        self.assertTrue('ENGLISH' in mm['majors'])
+        self.assertTrue('COMPUTER SCIENCE' in mm['majors'])
+        self.assertTrue('ACMS (SOC & BEH SCI)' in mm['majors'])
 
         # has current and past, do not include past
         req = get_request_with_user('javerage',
@@ -83,8 +85,8 @@ class TestCalendarMapping(TestCase):
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 1)
         self.assertEqual(len(mm['minors']), 1)
-        self.assertTrue(u'ENGLISH' in mm['majors'])
-        self.assertTrue(u'MATH' in mm['minors'])
+        self.assertTrue('ENGLISH' in mm['majors'])
+        self.assertTrue('MATH' in mm['minors'])
 
         # has only future enrollment
         req = get_request_with_user('jbothell',
@@ -92,9 +94,9 @@ class TestCalendarMapping(TestCase):
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 1)
         self.assertEqual(len(mm['minors']), 2)
-        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
-        self.assertTrue(u'ASL' in mm['minors'])
-        self.assertTrue(u'POL SCI' in mm['minors'])
+        self.assertTrue('PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue('ASL' in mm['minors'])
+        self.assertTrue('POL SCI' in mm['minors'])
 
         # has only past enrollment
         req = get_request_with_user('jbothell',
@@ -102,5 +104,5 @@ class TestCalendarMapping(TestCase):
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 1)
         self.assertEqual(len(mm['minors']), 2)
-        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
-        self.assertTrue(u'ASL' in mm['minors'])
+        self.assertTrue('PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue('ASL' in mm['minors'])

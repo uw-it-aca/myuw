@@ -1,9 +1,11 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
 from decimal import *
+
+from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.hfs import get_account_balances_by_uwnetid
 from myuw.test import fdao_hfs_override
 

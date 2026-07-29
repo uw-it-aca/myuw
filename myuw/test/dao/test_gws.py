@@ -2,14 +2,31 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.gws import (
-    is_clinician, is_seattle_student, is_bothell_student, is_tacoma_student,
-    is_grad_and_prof_student, is_grad_student, is_undergrad_student,
-    is_student, is_pce_student, is_grad_c2, is_undergrad_c2, get_groups,
-    is_student_employee, is_staff_employee, is_alum_asso, is_applicant,
-    is_effective_member, in_myuw_test_access_group, in_fyp_group,
-    in_au_xfer_group, in_wi_xfer_group, in_hxtoolkit_group)
+    get_groups,
+    in_au_xfer_group,
+    in_fyp_group,
+    in_hxtoolkit_group,
+    in_myuw_test_access_group,
+    in_wi_xfer_group,
+    is_alum_asso,
+    is_applicant,
+    is_bothell_student,
+    is_clinician,
+    is_effective_member,
+    is_grad_and_prof_student,
+    is_grad_c2,
+    is_grad_student,
+    is_pce_student,
+    is_seattle_student,
+    is_staff_employee,
+    is_student,
+    is_student_employee,
+    is_tacoma_student,
+    is_undergrad_c2,
+    is_undergrad_student,
+)
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
@@ -19,7 +36,7 @@ class TestPwsDao(TestCase):
     def test_get_groups(self):
         req = get_request_with_user('jinter')
         self.assertFalse(hasattr(req, "myuwgwsgroups"))
-        groups = get_groups(req)
+        _groups = get_groups(req)
         self.assertIsNotNone(req.myuwgwsgroups)
         self.assertTrue(is_grad_student(req))
         self.assertTrue(is_student_employee(req))

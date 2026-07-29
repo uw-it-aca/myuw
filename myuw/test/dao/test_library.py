@@ -1,16 +1,18 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import datetime
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.library import _get_account_by_uwnetid
-from myuw.dao.library import get_subject_guide_by_section
+
+from myuw.dao.library import _get_account_by_uwnetid, get_subject_guide_by_section
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.test import (
-    fdao_pws_override, fdao_mylib_override,
-    get_request_with_user, get_request_with_date)
+    fdao_mylib_override,
+    fdao_pws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override
