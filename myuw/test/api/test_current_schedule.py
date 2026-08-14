@@ -32,8 +32,7 @@ class TestSchedule(MyuwApiTest):
             'https://canvas.uw.edu/courses/249652')
         self.assertEqual(
             phys['lib_subj_guide'],
-            'http://guides.lib.uw.edu/friendly.php' +
-            '?s=research/physics_astronomy'
+            'http://guides.lib.uw.edu/friendly.php?s=research/physics_astronomy'
         )
 
     def test_none_current_term(self):

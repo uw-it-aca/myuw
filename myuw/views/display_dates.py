@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.test.client import RequestFactory
 from django.utils.timezone import get_default_timezone
-from uw_sws.term import DataFailureException, get_term_by_date
+from restclients_core.exceptions import DataFailureException
+from uw_sws.term import get_term_by_date
 
 from myuw.dao import is_using_file_dao
 from myuw.dao.card_display_dates import (
