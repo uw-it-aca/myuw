@@ -1178,10 +1178,12 @@ class TestVisualSchedule(TestCase):
         # MUWM-3981
         self.assertEqual(meeting['building_name'],
                          "Mechanical Engineering Building")
-        self.assertEqual(meeting['location_url'], None)
+        self.assertEqual(meeting['location_url'],
+                         'https://map.uw.edu/?id=0000#!m/999999?share')
 
         # MUWM_596
         final = schedule_json['periods'][1]['sections'][0]['final_exam']
         self.assertEqual(final['building_name'],
                          "Mechanical Engineering Building")
-        self.assertEqual(final['location_url'], None)
+        self.assertEqual(final['location_url'],
+                         'https://map.uw.edu/?id=0000#!m/999999?share')

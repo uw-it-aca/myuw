@@ -50,6 +50,7 @@ class CampusBuilding(models.Model):
     @staticmethod
     @transaction.atomic
     def upd_building(fac_obj):
+        location_url = CampusBuilding._generate_location_url(fac_obj)
         qset = CampusBuilding.objects.filter(code=fac_obj.code)
         if qset:
             if len(qset.values()) > 1:
@@ -62,8 +63,7 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
-                    # TODO:  Update location_url when available
-                    # b_entry.location_url = fac_obj.location_url
+                    b_entry.location_url = location_url
                     b_entry.save()
                 return b_entry
 
@@ -79,8 +79,7 @@ class CampusBuilding(models.Model):
                     b_entry.latitude = fac_obj.latitude
                     b_entry.longitude = fac_obj.longitude
                     b_entry.name = fac_obj.name
-                    # TODO:  Update location_url when available
-                    # b_entry.location_url = fac_obj.location_url
+                    b_entry.location_url = location_url
                     b_entry.save()
                 return b_entry
 
@@ -90,8 +89,7 @@ class CampusBuilding(models.Model):
             latitude=fac_obj.latitude,
             longitude=fac_obj.longitude,
             name=fac_obj.name,
-            # TODO:  Add location_url when available
-            # location_url=fac_obj.location_url,
+            location_url=location_url,
         )
 
     def no_change(self, fac_obj):
@@ -100,9 +98,8 @@ class CampusBuilding(models.Model):
             self.number == fac_obj.number and
             self.latitude == fac_obj.latitude and
             self.longitude == fac_obj.longitude and
-            # TODO:  Add location_url when available
-            # self.location_url == fac_obj.location_url and
-            self.name == fac_obj.name
+            self.name == fac_obj.name and
+            self.location_url == CampusBuilding._generate_location_url(fac_obj)
         )
 
     def json_data(self):
@@ -115,18 +112,17 @@ class CampusBuilding(models.Model):
             "location_url": self.location_url,
         }
 
-    # TODO: Replace this temporary method with one that chooses the
-    # best-available map url from the facility obj:
-    #   1. fac_obj.campus_map_url
-    #   2. fac_obj.center_point_url
-    #   3. None (no map url available)
-    def _google_map_url(self):
-        if (self.latitude is not None and self.longitude is not None and
-                Decimal(self.latitude) and Decimal(self.longitude)):
-            return (
-                f"https://maps.google.com/maps?ll="
-                f"{self.latitude},{self.longitude}"
-            )
+    # Choose the best-available map url from the facility obj:
+    #   1. Campus map (fac.map_url)
+    #   2. Google maps url based on fac.latitude/fac.longitude
+    #   3. None
+    @staticmethod
+    def _generate_location_url(fac):
+        if fac.map_url:
+            return fac.map_url
+        elif (fac.latitude is not None and fac.longitude is not None and
+                Decimal(fac.latitude) and Decimal(fac.longitude)):
+            return f"https://maps.google.com/maps?ll={fac.latitude},{fac.longitude}"
         return None
 
     def __str__(self):

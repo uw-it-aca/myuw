@@ -72,6 +72,14 @@ jobs:
 
     needs: context
 
+    permissions:
+      contents: read
+      security-events: write
+      # Coveralls may or may not need the following permissions
+      # pull-requests: write    # For PR comments
+      # statuses: write        # For commit status updates
+      # checks: write          # For check runs
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v6
