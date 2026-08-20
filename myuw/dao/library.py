@@ -8,13 +8,16 @@ the SWS Personal Financial resource.
 
 import logging
 import traceback
+
+from restclients_core.exceptions import DataFailureException
 from uw_libraries.mylib import get_account
 from uw_libraries.subject_guides import (
-    get_subject_guide_for_section, get_default_subject_guide)
-from restclients_core.exceptions import DataFailureException
+    get_default_subject_guide,
+    get_subject_guide_for_section,
+)
+
 from myuw.dao import log_err
 from myuw.dao.pws import get_netid_of_current_user
-
 
 logger = logging.getLogger(__name__)
 
@@ -41,10 +44,10 @@ def get_subject_guide_by_section(section):
         return None
     get_default = False
     section_campus = section.course_campus.lower()
-    section_logid = "({} {} {}, {})".format(section.curriculum_abbr,
-                                            section.course_number,
-                                            section.section_id,
-                                            section_campus)
+    section_logid = (
+        f"({section.curriculum_abbr} {section.course_number} "
+        f"{section.section_id}, {section_campus})"
+        )
     try:
         subject_guide = get_subject_guide_for_section(section)
         if subject_guide.is_default_guide:
@@ -55,8 +58,7 @@ def get_subject_guide_by_section(section):
         if ex.status == 404:
             get_default = True
         else:
-            log_err(logger, "get_subject_guide for {}".format(section_logid),
-                    traceback, None)
+            log_err(logger, f"get_subject_guide for {section_logid}", traceback, None)
             raise
 
     if get_default:

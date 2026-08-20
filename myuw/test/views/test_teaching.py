@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
+
 from django.urls import reverse
-from myuw.test.api import missing_url, MyuwApiTest
+
+from myuw.test.api import MyuwApiTest, missing_url
 
 
 class TestTeachingMethods(MyuwApiTest):
@@ -73,7 +75,7 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEqual(response.context['display_term']["quarter"],
                          'spring')
         self.assertEqual(response.context['display_term'],
-                         {'quarter': u'spring', 'year': u'2013'})
+                         {'quarter': 'spring', 'year': '2013'})
         self.assertEqual(response.context['section'],
                          "2013,spring,TRAIN,101/A")
 
@@ -88,7 +90,7 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEqual(response.context['section'],
                          "2013,Spring,TRAIN,101/A")
         self.assertEqual(response.context['display_term'],
-                         {'quarter': u'Spring', 'year': u'2013'})
+                         {'quarter': 'Spring', 'year': '2013'})
 
     @skipIf(missing_url("myuw_photo_list",
                         kwargs={'year': '2013', 'quarter': 'spring',
@@ -106,7 +108,7 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEqual(response.context['section'],
                          "2013,spring,TRAIN,101/A")
         self.assertEqual(response.context['display_term'],
-                         {'quarter': u'spring', 'year': u'2013'})
+                         {'quarter': 'spring', 'year': '2013'})
 
         url = reverse("myuw_photo_list",
                       kwargs={'year': '2013', 'quarter': 'Spring',
@@ -118,7 +120,7 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEqual(response.context['section'],
                          "2013,Spring,TRAIN,101/A")
         self.assertEqual(response.context['display_term'],
-                         {'quarter': u'Spring', 'year': u'2013'})
+                         {'quarter': 'Spring', 'year': '2013'})
 
         url = reverse("myuw_photo_list",
                       kwargs={'year': '2017', 'quarter': 'autumn',

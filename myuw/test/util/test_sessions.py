@@ -2,11 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from datetime import timedelta
-from django.test import TransactionTestCase
-from django.core.management import call_command
+
 from django.contrib.sessions.models import Session
+from django.test import TransactionTestCase
 from django.utils import timezone
-from myuw.util.sessions import delete_sessions, SCOPE_IDTOKEN
+
+from myuw.util.sessions import SCOPE_IDTOKEN, delete_sessions
 
 
 class TestDeleteSessions(TransactionTestCase):

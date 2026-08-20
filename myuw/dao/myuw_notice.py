@@ -4,16 +4,19 @@
 import logging
 import traceback
 from datetime import timedelta
+
 from django.db.models import Q
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.models.myuw_notice import (
-    MyuwNotice, start_week_range, duration_range)
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import (
-    get_comparison_date, get_comparison_datetime_with_tz,
-    get_current_and_next_quarters)
+    get_comparison_date,
+    get_comparison_datetime_with_tz,
+    get_current_and_next_quarters,
+)
+from myuw.models.myuw_notice import MyuwNotice, duration_range, start_week_range
 
 logger = logging.getLogger(__name__)
 
@@ -32,8 +35,9 @@ def get_myuw_notices_for_user(request):
                     user_notices.append(notice)
             except DataFailureException:
                 log_err(
-                    logger, "is_effective_member of target group({})".format(
-                        notice.target_group), traceback, request)
+                    logger,
+                    f"is_effective_member of target group({notice.target_group})",
+                    traceback, request)
                 # notice skipped
             continue
 
@@ -131,7 +135,7 @@ def get_notices_by_term(request):
         fetched_term_notices = MyuwNotice.objects.filter(
             Q(is_summer_a=True) | Q(is_summer_b=True))
     else:
-        fltr = {"is_{}".format(term.quarter.lower()): True}
+        fltr = {f"is_{term.quarter.lower()}": True}
         fetched_term_notices = MyuwNotice.objects.filter(**fltr)
 
     for notice in fetched_term_notices:

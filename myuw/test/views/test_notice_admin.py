@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest.mock import patch
-from myuw.test.api import MyuwApiTest
+
 from django.test.client import RequestFactory
-from myuw.models.myuw_notice import MyuwNotice
-from myuw.views.notice_admin import _get_datetime, _get_html, _save_notice
+
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
-from myuw.test import get_request_with_user, get_request_with_date
+from myuw.models.myuw_notice import MyuwNotice
+from myuw.test import get_request_with_date, get_request_with_user
+from myuw.test.api import MyuwApiTest
+from myuw.views.notice_admin import _get_datetime, _get_html, _save_notice
 
 CONTENT = (
     "<p>Your Husky card is your key to efficiency on " +

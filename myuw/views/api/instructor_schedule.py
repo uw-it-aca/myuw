@@ -1,38 +1,47 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.conf import settings
+import logging
 import re
 import traceback
-from myuw.dao import coda
-from myuw.views.error import handle_exception, not_instructor_error
-import logging
+
+from django.conf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_gradepage.grading_status import get_grading_status
 from uw_iasystem.exceptions import TermEvalNotCreated
+from uw_sws.section import get_joint_sections
 from uw_sws.section_status import get_section_status_by_label
 from uw_sws.term import get_specific_term
-from myuw.dao.exceptions import NotSectionInstructorException
+
+from myuw.dao import coda
 from myuw.dao.campus_building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
-    get_instructor_schedule_by_term, check_section_instructor,
-    get_instructor_section, get_active_registrations_for_section)
+    check_section_instructor,
+    get_active_registrations_for_section,
+    get_instructor_schedule_by_term,
+    get_instructor_section,
+)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import (
-    get_current_quarter, is_past, is_future, get_comparison_datetime,
-    get_previous_number_quarters, get_future_number_quarters)
+    get_comparison_datetime,
+    get_current_quarter,
+    get_future_number_quarters,
+    get_previous_number_quarters,
+    is_future,
+    is_past,
+)
 from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
-from myuw.views.api.base_schedule import (
-    irregular_start_end, sort_pce_section_meetings)
-from uw_sws.section import get_joint_sections
-from myuw.dao.pws import get_person_of_current_user
+from myuw.views.api import ProtectedAPI, prefetch_resources
+from myuw.views.api.base_schedule import irregular_start_end, sort_pce_section_meetings
+from myuw.views.error import handle_exception, not_instructor_error
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
@@ -64,29 +73,31 @@ class InstSche(ProtectedAPI):
             for thread in threads:
                 thread.join()
 
-        log_api_call(timer, request,
-                     "Get Instructor Schedule for {},{}".format(
-                         term.year, term.quarter))
+        log_api_call(timer,
+                     request,
+                     f"Get Instructor Schedule for {term.year},{term.quarter}")
         return self.json_response(resp_data)
 
 
 def set_classroom_info_url(meeting):
-    if len(meeting.building) and meeting.building != "*" and\
-            len(meeting.room_number) and meeting.room_number != "*":
-        return 'http://www.washington.edu/classroom/{}+{}'.format(
-            meeting.building, meeting.room_number)
+    if (len(meeting.building) and meeting.building != "*" and
+            len(meeting.room_number) and meeting.room_number != "*"):
+        return (
+            f"https://www.washington.edu/classroom/"
+            f"{meeting.building}+{meeting.room_number}"
+        )
     return None
 
 
 def set_section_grading_status(section, person):
     try:
-        section_id = '-'.join([
-            section.term.canvas_sis_id(),
-            section.curriculum_abbr.upper(),
-            section.course_number,
-            section.section_id.upper(),
-            person.uwregid
-        ])
+        section_id = (
+            f"{section.term.canvas_sis_id()}-"
+            f"{section.curriculum_abbr.upper()}-"
+            f"{section.course_number}-"
+            f"{section.section_id.upper()}-"
+            f"{person.uwregid}"
+        )
         return get_grading_status(
             section_id, act_as=person.uwnetid).json_data()
     except DataFailureException as ex:
@@ -104,10 +115,10 @@ def set_section_evaluation(section, person):
         evaluations = get_evaluation_by_section_and_instructor(
             section, person.employee_id)
         if evaluations is not None:
-            for eval in evaluations:
-                if eval is not None:
-                    if not section.sln or section.sln == eval.section_sln:
-                        return eval.json_data()
+            for evl in evaluations:
+                if (evl is not None and (
+                        not section.sln or section.sln == evl.section_sln)):
+                    return evl.json_data()
         return {'eval_not_exist': True}
     except DataFailureException as ex:
         if isinstance(ex, TermEvalNotCreated):
@@ -173,7 +184,7 @@ def set_course_resources(section_data, section, person,
             if d is not None and k is not None:
                 d[k] = t.response
         else:
-            logger.error("{}: {}".format(k, t.exception))
+            logger.error(f"{k}: {t.exception}")
 
 
 def get_enrollment_status_for_section(section, section_json, is_past_term):
@@ -242,16 +253,14 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
     buildings = get_buildings_by_schedule(schedule)
     json_data["has_eos_dates"] = False
-    section_index = 0
     course_resource_threads = []
     current_user = get_person_of_current_user(request)
-    for section in schedule.sections:
+    for section_index, section in enumerate(schedule.sections):
         section_data = json_data["sections"][section_index]
         section_data["index"] = section_index
-        section_index += 1
-        if not section_data["section_type"]:
-            if len(section.meetings) > 0:
-                section_data["section_type"] = section.meetings[0].meeting_type
+
+        if (not section_data["section_type"] and len(section.meetings) > 0):
+            section_data["section_type"] = section.meetings[0].meeting_type
 
         section_data["color_id"] = section.color_id
         section_data["mini_card"] = section.pin_on_teaching
@@ -263,8 +272,7 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
             safe_label(section.section_label())
 
         if section.eos_cid:
-            section_data["myuwclass_url"] = "{}{}".format(get_myuwclass_url(),
-                                                          section.eos_cid)
+            section_data["myuwclass_url"] = f"{get_myuwclass_url()}{section.eos_cid}"
 
         if section.is_primary_section:
             if section.linked_section_urls:
@@ -365,7 +373,7 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
                             len(instructor["addresses"]) == 0):
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
-            except IndexError as ex:
+            except IndexError:
                 pass
         if section_data["has_eos_dates"]:
             if not json_data["has_eos_dates"]:
@@ -490,8 +498,7 @@ class InstSect(ProtectedAPI):
             return not_instructor_error()
 
         resp_data = load_schedule(request, schedule, schedule.summer_term)
-        log_api_call(timer, request,
-                     "Get Instructor Section for {}".format(section_id))
+        log_api_call(timer, request, f"Get Instructor Section for {section_id}")
         return self.json_response(resp_data)
 
     def get(self, request, *args, **kwargs):

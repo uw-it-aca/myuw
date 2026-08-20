@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-from datetime import date
+
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 from uw_pws import PWS
 from uw_sws.section import get_last_section_by_instructor_and_terms
 from uw_sws.term import get_specific_term
+
 from myuw.dao import is_using_file_dao
 from myuw.models import Instructor
 
@@ -19,7 +21,7 @@ class Command(BaseCommand):
     # run once in early autumn quarter of each year
 
     def handle(self, *args, **options):
-        cur_year = date.today().year
+        cur_year = timezone.now().year
         start_year = cur_year - 6  # keep those within 6 years
 
         if is_using_file_dao():
@@ -32,8 +34,8 @@ class Command(BaseCommand):
         deleted = 0
         updated = 0
         records = Instructor.objects.filter(year__lt=start_year)
-        logger.info("Total records prior of {}: {}".format(
-            start_year, len(records)))
+        logger.info(f"Total records prior of {start_year}: {len(records)}")
+
         for rec in records:
             person = pws.get_person_by_netid(rec.user.uwnetid)
             # check if the user has taught any course since then
@@ -53,15 +55,12 @@ class Command(BaseCommand):
                         user=rec.user, year=year, quarter=quarter)
                     updated += 1
                 except Exception as ex:
-                    logger.error("update({}, {}, {}): {}".format(
-                        person.uwnetid, year, quarter, ex))
+                    logger.error(f"update({person.uwnetid}, {year}, {quarter}): {ex}")
             else:
                 try:
                     rec.delete()
                     deleted += 1
                 except Exception as ex:
-                    logger.error("delete({}): {}".format(
-                        rec.user.uwnetid, ex))
+                    logger.error(f"delete({rec.user.uwnetid}): {ex}")
 
-        logger.info(
-            "Deleted {} records. Updated {} records".format(deleted, updated))
+        logger.info(f"Deleted {deleted} records. Updated {updated} records")

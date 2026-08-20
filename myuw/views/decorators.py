@@ -2,9 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.shortcuts import render
-from myuw.authorization import can_override_user, is_myuw_admin
 
-BLTI_USER_LOGIN = 'custom_canvas_user_login_id'
+from myuw.authorization import can_override_user, is_myuw_admin
 
 
 def admin_required(func):

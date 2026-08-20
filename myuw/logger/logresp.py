@@ -2,16 +2,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-from myuw.logger.session_log import hash_session_key
+
 from myuw.dao import get_userids
+from myuw.logger.session_log import hash_session_key
 
 resp_logger = logging.getLogger(__name__)
 
 
 def __log_resptime(timer, action_message):
-    resp_logger.info(
-        {**action_message,
-         **{'Time': "{} seconds".format(timer.get_elapsed())}})
+    resp_logger.info({
+        **action_message,
+        'Time': f"{timer.get_elapsed()} seconds"
+    })
 
 
 def log_page_view(timer, request, template_name):
@@ -40,11 +42,12 @@ def log_err(logger, timer, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error(
-        {**get_userids(),
-         **{'Msg': timer.get_message(),
-            'Err': exc_info.format_exc(chain=False).splitlines(),
-            'Time': "{} seconds".format(timer.get_elapsed())}})
+    logger.error({
+        **get_userids(),
+        'Msg': timer.get_message(),
+        'Err': exc_info.format_exc(chain=False).splitlines(),
+        'Time': f"{timer.get_elapsed()} seconds"
+    })
 
 
 def log_exception(logger, action, exc_info):
@@ -52,10 +55,11 @@ def log_exception(logger, action, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error(
-        {**get_userids(),
-         **{'at': action,
-            'err': exc_info.format_exc(chain=False).splitlines()}})
+    logger.error({
+        **get_userids(),
+        'at': action,
+        'err': exc_info.format_exc(chain=False).splitlines()
+    })
 
 
 def log_info(logger, msg_dict):
@@ -71,5 +75,4 @@ def log_invalid_regid_response(logger, timer):
 
 
 def log_msg(logger, timer, msg_str):
-    log_info(logger, {'msg': msg_str,
-                      'Time': "{} seconds".format(timer.get_elapsed())})
+    log_info(logger, {'msg': msg_str, 'Time': f"{timer.get_elapsed()} seconds"})

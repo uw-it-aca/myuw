@@ -1,31 +1,57 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
-from uw_sws.models import Section, ClassSchedule, SectionMeeting
-from myuw.dao.term import get_term_from_quarter_string
-from myuw.dao.registration import get_schedule_by_term
-from myuw.dao.visual_schedule import (
-    _get_visual_schedule_from_schedule, get_future_visual_schedule,
-    get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds,
-    _add_sections_to_weeks, _section_lists_are_same, _sections_are_same,
-    _consolidate_weeks, _add_weekend_meeting_data,
-    _get_combined_schedule, _get_combined_future_schedule,
-    get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period,
-    get_current_visual_schedule, _trim_summer_term,
-    _get_disabled_days, _get_earliest_meeting_day, get_schedule_json,
-    _get_latest_meeting_day, _get_earliest_start_from_period,
-    _get_latest_end_from_period, trim_section_meetings,
-    trim_weeks_no_meetings, _get_off_term_trimmed, _adjust_off_term_dates,
-    _add_qtr_start_data_to_weeks, _remove_empty_periods,
-    _adjust_period_dates, get_visual_schedule_from_schedule)
-from myuw.dao.term import get_current_quarter, get_next_quarter
-from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request, get_request_with_user, get_request_with_date)
-import datetime
 import copy
-from myuw.dao.term import get_current_summer_term
+import datetime
+
+from django.test import TestCase
+from uw_sws.models import ClassSchedule, Section, SectionMeeting
+
+from myuw.dao.registration import get_schedule_by_term
+from myuw.dao.term import (
+    get_current_quarter,
+    get_current_summer_term,
+    get_next_quarter,
+    get_term_from_quarter_string,
+)
+from myuw.dao.visual_schedule import (
+    _add_dates_to_sections,
+    _add_qtr_start_data_to_weeks,
+    _add_sections_to_weeks,
+    _add_weekend_meeting_data,
+    _adjust_period_dates,
+    _consolidate_weeks,
+    _get_combined_future_schedule,
+    _get_combined_schedule,
+    _get_disabled_days,
+    _get_earliest_meeting_day,
+    _get_earliest_start_from_period,
+    _get_finals_period,
+    _get_latest_end_from_period,
+    _get_latest_meeting_day,
+    _get_off_term_trimmed,
+    _get_visual_schedule_from_schedule,
+    _get_weeks_from_bounds,
+    _section_lists_are_same,
+    _sections_are_same,
+    _trim_summer_term,
+    get_current_visual_schedule,
+    get_future_visual_schedule,
+    get_schedule_bounds,
+    get_schedule_json,
+    get_summer_schedule_bounds,
+    get_visual_schedule_from_schedule,
+    trim_section_meetings,
+    trim_summer_meetings,
+    trim_weeks_no_meetings,
+)
+from myuw.test import (
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override
@@ -35,11 +61,9 @@ class TestVisualSchedule(TestCase):
         get_request()
 
     def _sections_are_same(self, sec1, sec2):
-        if sec1.curriculum_abbr == sec2.curriculum_abbr \
-                and sec1.course_number == sec2.course_number \
-                and sec1.section_id == sec2.section_id:
-            return True
-        return False
+        return (sec1.curriculum_abbr == sec2.curriculum_abbr and
+                    sec1.course_number == sec2.course_number and
+                    sec1.section_id == sec2.section_id)
 
     def _period_lists_are_same(self, list1, list2):
         for period1 in list1:
@@ -1013,8 +1037,7 @@ class TestVisualSchedule(TestCase):
                                             "2013-07-01"))
 
         summer_term = get_current_summer_term(request)
-        vs = get_visual_schedule_from_schedule(request, schedule,
-                                               summer_term)
+        vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
         self.assertEqual(len(vs), 2)
         self.assertEqual(len(vs[0].sections), 2)
         self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
@@ -1068,8 +1091,8 @@ class TestVisualSchedule(TestCase):
 
         _add_dates_to_sections(schedule)
 
-        for x in range(0, len(schedules)):
-            for y in range(0, len(schedules[x].sections)):
+        for x in range(len(schedules)):
+            for y in range(len(schedules[x].sections)):
                 self.assertEqual(
                     schedules[x].sections[y].end_date,
                     end_schedules[x].sections[y].end_date)
@@ -1078,7 +1101,7 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user('billsea',
                                         get_request_with_date("2020-10-01"))
         term = get_current_quarter(request)
-        schedule, term, summer_term = get_current_visual_schedule(request)
+        schedule, term, _summer_term = get_current_visual_schedule(request)
         self.assertEqual(len(schedule), 3)
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 3)
@@ -1087,7 +1110,7 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user('eight',
                                         get_request_with_date("2020-10-01"))
         term = get_current_quarter(request)
-        schedule, term, summer_term = get_current_visual_schedule(request)
+        schedule, term, _summer_term = get_current_visual_schedule(request)
         self.assertEqual(len(schedule), 3)
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 3)
@@ -1104,7 +1127,7 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user(
             'jeos', get_request_with_date("2013-05-12"))
         term = get_current_quarter(request)
-        schedule, term, summer_term = get_current_visual_schedule(request)
+        schedule, term, _summer_term = get_current_visual_schedule(request)
         self.assertEqual(len(schedule), 5)
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 5)
@@ -1132,7 +1155,7 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user(
             'jeos', get_request_with_date("2013-08-12"))
         term = get_current_quarter(request)
-        schedule, term, summer_term = get_current_visual_schedule(request)
+        schedule, term, _summer_term = get_current_visual_schedule(request)
         self.assertEqual(len(schedule), 2)
         schedule_json = get_schedule_json(schedule, term)
         self.assertTrue('year', schedule_json['term'])
@@ -1148,17 +1171,19 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user(
             'billsea', get_request_with_date("2013-04-01"))
         term = get_current_quarter(request)
-        schedule, term, summer_term = get_current_visual_schedule(request)
+        schedule, term, _summer_term = get_current_visual_schedule(request)
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 2)
         meeting = schedule_json['periods'][0]['sections'][0]['meetings'][0]
         # MUWM-3981
         self.assertEqual(meeting['building_name'],
                          "Mechanical Engineering Building")
-        self.assertEqual(meeting['location_url'], None)
+        self.assertEqual(meeting['location_url'],
+                         'https://map.uw.edu/?id=0000#!m/999999?share')
 
         # MUWM_596
         final = schedule_json['periods'][1]['sections'][0]['final_exam']
         self.assertEqual(final['building_name'],
                          "Mechanical Engineering Building")
-        self.assertEqual(final['location_url'], None)
+        self.assertEqual(final['location_url'],
+                         'https://map.uw.edu/?id=0000#!m/999999?share')

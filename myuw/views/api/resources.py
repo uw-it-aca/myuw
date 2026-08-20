@@ -3,13 +3,13 @@
 
 import logging
 import traceback
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call
+
 from myuw.dao import is_action_disabled
+from myuw.dao.category_links import Resource_Links, delete_categor_pin, pin_category
+from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-from myuw.dao.category_links import (
-    Resource_Links, pin_category, delete_categor_pin)
 from myuw.views.exceptions import DisabledAction
 
 logger = logging.getLogger(__name__)
@@ -47,12 +47,10 @@ class ResourcesPin(ProtectedAPI):
         category_id = kwargs['category_id'].lower()
         try:
             if is_action_disabled():
-                raise DisabledAction("Overriding can't Pin category {}".format(
-                    category_id))
+                raise DisabledAction(f"Overriding can't Pin category {category_id}")
 
             pin_category(request, category_id)
-            log_api_call(timer, request,
-                         "Pin category {}".format(category_id))
+            log_api_call(timer, request, f"Pin category {category_id}")
         except Exception:
             return handle_exception(logger, timer, traceback)
         return self.html_response("")
@@ -65,12 +63,10 @@ class ResourcesPin(ProtectedAPI):
         category_id = kwargs['category_id'].lower()
         try:
             if is_action_disabled():
-                raise DisabledAction(
-                    "Overriding can't Unpin category {}".format(category_id))
+                raise DisabledAction(f"Overriding can't Unpin category {category_id}")
 
             delete_categor_pin(request, category_id)
-            log_api_call(timer, request,
-                         "Unpin category {}".format(category_id))
+            log_api_call(timer, request, f"Unpin category {category_id}")
         except Exception:
             return handle_exception(logger, timer, traceback)
         return self.html_response("")

@@ -2,13 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from django.test.utils import override_settings
-from myuw.test.api import require_url, MyuwApiTest
-from restclients_core.exceptions import DataFailureException
-from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
+
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter
-from myuw.test import get_request_with_user, get_request_with_date
+from myuw.test import get_request_with_date, get_request_with_user
+from myuw.test.api import MyuwApiTest, require_url
+from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
 
 
 def get_current_quarter_instructor_schedule(request):
@@ -42,7 +41,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
 
     def test_bill_current_term(self):
         now_request = get_request_with_user('bill')
-        schedule = get_current_quarter_instructor_schedule(now_request)
+        _schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
@@ -104,7 +103,8 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         final = data['sections'][0]['final_exam']
         self.assertEqual(final['building_name'],
                          'Mechanical Engineering Building')
-        self.assertEqual(final['location_url'], None)
+        self.assertEqual(final['location_url'],
+                         'https://map.uw.edu/?id=0000#!m/999999?share')
 
 
 @require_url('myuw_instructor_schedule_api',
@@ -145,7 +145,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
     def test_having_secondary_sections_case(self):
         now_request = get_request_with_user(
             'billsea', get_request_with_date("2017-10-01"))
-        schedule = get_current_quarter_instructor_schedule(now_request)
+        _schedule = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().get(now_request)
         self.assertEqual(resp.status_code, 200)
         data = json.loads(resp.content)
@@ -194,7 +194,8 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['limit_estimate_enrollment'], 15)
         self.assertEqual(
-            data['sections'][0]['final_exam']['location_url'], None)
+            data['sections'][0]['final_exam']['location_url'],
+            'https://map.uw.edu/?id=0000#!m/999999?share')
         self.assertEqual(data['sections'][0]['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
@@ -226,7 +227,7 @@ class TestInstructorSection(MyuwApiTest):
 
     def test_billpce_current_term(self):
         now_request = get_request_with_user('bill')
-        schedule = get_current_quarter_instructor_schedule(now_request)
+        _schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
@@ -238,7 +239,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(section1['eos_cid'], None)
 
         now_request = get_request_with_user('billpce')
-        schedule = get_current_quarter_instructor_schedule(now_request)
+        _schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
@@ -277,7 +278,7 @@ class TestInstructorSection(MyuwApiTest):
 
     def test_non_instructor(self):
         now_request = get_request_with_user('staff')
-        sche = get_current_quarter_instructor_schedule(now_request)
+        _schedule = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().get(now_request)
         self.assertEqual(resp.status_code, 200)
         data = json.loads(resp.content)

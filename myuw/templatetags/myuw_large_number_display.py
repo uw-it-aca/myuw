@@ -3,7 +3,6 @@
 
 from django.template import Library
 
-
 register = Library()
 
 
@@ -15,6 +14,6 @@ def large_number(value):
     for label in ['K', 'M', 'B']:
         value //= 1000
         if value < 1000:
-            return "{}{}".format(value, label)
+            return f"{value}{label}"
 
-    return "{}{}".format(value, label)
+    return f"{value}{label}"

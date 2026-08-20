@@ -2,24 +2,38 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
-from myuw.dao.term import (
-    get_current_quarter, get_previous_quarter,
-    get_next_quarter, get_term_before, get_term_after)
+
 from myuw.dao.enrollment import (
-    get_current_quarter_enrollment, get_main_campus, enrollment_history,
-    get_enrollment_for_term, get_enrollments_of_terms, get_latest_class_level,
-    get_prev_enrollments_with_open_sections, is_ended, get_cur_class_level)
+    enrollment_history,
+    get_cur_class_level,
+    get_current_quarter_enrollment,
+    get_enrollment_for_term,
+    get_enrollments_of_terms,
+    get_latest_class_level,
+    get_main_campus,
+    get_prev_enrollments_with_open_sections,
+    is_ended,
+)
+from myuw.dao.term import (
+    get_current_quarter,
+    get_next_quarter,
+    get_previous_quarter,
+    get_term_after,
+    get_term_before,
+)
 from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_date, get_request_with_user)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override
 @fdao_sws_override
 class TestDaoEnrollment(TestCase):
 
-    def test_get_enrollment_for_term(self):
+    def test_get_enrollment_for_term_request(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-10-10"))
         enrollment = get_current_quarter_enrollment(req)

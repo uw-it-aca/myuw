@@ -8,16 +8,19 @@ Clean up the entries no longer useful
 import logging
 import time
 from datetime import timedelta
-from django.core.mail import send_mail
-from django.db import connection
+
 from django.core.management.base import BaseCommand, CommandError
-from myuw.models import (
-    VisitedLinkNew, SeenRegistration, UserNotices, UserCourseDisplay)
+from django.db import connection
+
 from myuw.dao.term import (
-  tz_aware_now, tz_naive_now, get_term_by_date,
-  get_term_before, get_term_after)
-from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
+    get_term_after,
+    get_term_before,
+    get_term_by_date,
+    tz_aware_now,
+    tz_naive_now,
+)
 from myuw.logger.timer import Timer
+from myuw.models import SeenRegistration, UserCourseDisplay, UserNotices, VisitedLinkNew
 
 logger = logging.getLogger(__name__)
 batch_size = 1000
@@ -58,12 +61,8 @@ class Command(BaseCommand):
                 time.sleep(2)
                 ids_to_delete = ids_to_delete[batch_size:]
         except Exception as ex:
-            msg = "{} {}\n".format(queryf, ex)
-            logger.error(msg)
-            send_mail(msg,
-                      "{}@uw.edu".format(get_cronjob_sender()),
-                      ["{}@uw.edu".format(get_cronjob_recipient())])
-            raise CommandError(msg)
+            logger.error(f"{queryf} {ex}\n")
+            raise CommandError(f"{queryf} {ex}")
 
     def get_cur_term(self):
         comparison_date = tz_naive_now().date()
@@ -85,12 +84,12 @@ class Command(BaseCommand):
             ids_to_delete = qset.values_list('id', flat=True)
             self.deletion(ids_to_delete, queryf)
             logger.info(
-                "Delete UserCourseDisplay {} {}, Time: {} sec\n".format(
-                    y, q, timer.get_elapsed()))
+                f"Delete UserCourseDisplay {y} {q}, Time: {timer.get_elapsed()} sec\n")
         else:
             logger.info("Found no entry to delete")
-        logger.info("UserCourseDisplay has {} entries".format(
-            UserCourseDisplay.objects.all().count()))
+
+        count = UserCourseDisplay.objects.all().count()
+        logger.info(f"UserCourseDisplay has {count} entries")
 
     def notice_read(self):
         # clean up after 180 days
@@ -102,12 +101,13 @@ class Command(BaseCommand):
             ids_to_delete = qset.values_list('id', flat=True)
             self.deletion(ids_to_delete, queryf)
             logger.info(
-                "Delete UserNotices viewed before {} Time: {} sec\n".format(
-                    cut_off_dt, timer.get_elapsed()))
+                f"Delete UserNotices viewed before {cut_off_dt} "
+                f"Time: {timer.get_elapsed()} sec\n")
         else:
             logger.info("Found no entry to delete")
-        logger.info("UserNotices has {} entries".format(
-            UserNotices.objects.all().count()))
+
+        count = UserNotices.objects.all().count()
+        logger.info(f"UserNotices has {count} entries")
 
     def registration_seen(self):
         # clean up previous quarters'
@@ -120,12 +120,13 @@ class Command(BaseCommand):
             ids_to_delete = qset.values_list('id', flat=True)
             self.deletion(ids_to_delete, queryf)
             logger.info(
-                "Delete SeenRegistration {} {} Time: {}\n".format(
-                    term.year, term.quarter, timer.get_elapsed()))
+                f"Delete SeenRegistration {term.year} {term.quarter} "
+                f"Time: {timer.get_elapsed()}\n")
         else:
             logger.info("Found no entry to delete")
-        logger.info("SeenRegistration has {} entries".format(
-            SeenRegistration.objects.all().count()))
+
+        count = SeenRegistration.objects.all().count()
+        logger.info(f"SeenRegistration has {count} entries")
 
     def link_visited(self):
         # clean up after 180 days
@@ -137,9 +138,10 @@ class Command(BaseCommand):
             ids_to_delete = qset.values_list('id', flat=True)
             self.deletion(ids_to_delete, queryf)
             logger.info(
-                "Delete VisitedLinkNew viewed before {} Time: {}\n".format(
-                    cut_off_dt, timer.get_elapsed()))
+                f"Delete VisitedLinkNew viewed before {cut_off_dt} "
+                f"Time: { timer.get_elapsed()}\n")
         else:
             logger.info("Found no entry to delete")
-        logger.info("VisitedLinkNew has {} entries".format(
-            VisitedLinkNew.objects.all().count()))
+
+        count = VisitedLinkNew.objects.all().count()
+        logger.info(f"VisitedLinkNew has {count} entries")

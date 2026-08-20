@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.dao.campus_building import (
-    get_building_by_code, get_buildings_by_schedule)
+
+from myuw.dao.campus_building import get_building_by_code, get_buildings_by_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.models import CampusBuilding
@@ -15,16 +15,14 @@ class TestBuildings(TestCase):
     def test_get_by_code(self):
         building = get_building_by_code('PAA')
         self.assertEqual(building.longitude, -122.304747)
-        self.assertEqual(
-            building.json_data(),
-            {
-                'code': 'PAA',
-                'latitude': 47.6536929997,
-                'longitude': -122.304747,
-                'name': 'Mechanical Engineering Building',
-                'number': '1347',
-                'location_url': None,
-            })
+        self.assertEqual(building.json_data(), {
+            'code': 'PAA',
+            'latitude': 47.6536929997,
+            'longitude': -122.304747,
+            'name': 'Mechanical Engineering Building',
+            'number': '1347',
+            'location_url': 'https://map.uw.edu/?id=0000#!m/999999?share',
+        })
 
         self.assertTrue(CampusBuilding.exists('PAA'))
         self.assertIsNotNone(get_building_by_code('PAA'))

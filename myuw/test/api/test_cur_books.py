@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+
 from myuw.test.api import MyuwApiTest, fdao_bookstore_override
 
 

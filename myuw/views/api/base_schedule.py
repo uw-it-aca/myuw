@@ -4,18 +4,20 @@
 import logging
 import traceback
 from operator import itemgetter
+
 from myuw.dao.campus_building import get_building_by_code
 from myuw.dao.canvas import (
-    get_canvas_active_enrollments, set_section_canvas_course_urls)
-from myuw.dao.registration import get_schedule_by_term
+    get_canvas_active_enrollments,
+    set_section_canvas_course_urls,
+)
 from myuw.dao.enrollment import is_ended
 from myuw.dao.library import get_subject_guide_by_section
+from myuw.dao.registration import get_schedule_by_term
+from myuw.logger.logresp import log_api_call, log_data_not_found_response, log_exception
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_data_not_found_response, log_api_call, log_exception)
+from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
-from myuw.views import prefetch_resources
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +33,7 @@ class StudClasSche(ProtectedAPI):
             )
         except Exception as ex:
             log_exception(logger, f"prefetch_resources {ex}", traceback)
-        return super(StudClasSche, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
@@ -67,17 +69,14 @@ def load_schedule(request, schedule):
             log_exception(
                 logger, f"get_canvas_active_enrollments {ex}", traceback)
 
-    section_index = 0
     json_data["has_eos_dates"] = False
-    for section in schedule.sections:
+    for section_index, section in enumerate(schedule.sections):
         section_data = json_data["sections"][section_index]
-        section_index += 1
         section_data["color_id"] = section.color_id
         section_data['course_abbr_slug'] = section.curriculum_abbr.replace(
             " ", "-")
-        if not section_data["section_type"]:
-            if len(section.meetings) > 0:
-                section_data["section_type"] = section.meetings[0].meeting_type
+        if (not section_data["section_type"] and len(section.meetings) > 0):
+            section_data["section_type"] = section.meetings[0].meeting_type
 
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
@@ -93,7 +92,7 @@ def load_schedule(request, schedule):
 
         try:
             section_data["canvas_url"] = section.canvas_course_url
-        except Exception:
+        except Exception:  # noqa: S110
             pass
 
         # if section.is_primary_section:
@@ -104,12 +103,10 @@ def load_schedule(request, schedule):
             except Exception as ex:
                 log_exception(
                     logger, f"get_subject_guide_by_section {ex}", traceback)
-                pass
 
-        if section.final_exam:
-            final = section_data["final_exam"]
-
-            # MUWM-596 we don't display
+        # MUWM-596 we don't display
+        # if section.final_exam:
+            # final = section_data["final_exam"]
             # if section.final_exam.building:
             #    building = get_building_by_code(section.final_exam.building)
             #    if building:
@@ -150,7 +147,7 @@ def load_schedule(request, schedule):
                             len(instructor["addresses"]) == 0):
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
-            except IndexError as ex:
+            except IndexError:
                 pass
 
         if section_data["has_eos_dates"]:

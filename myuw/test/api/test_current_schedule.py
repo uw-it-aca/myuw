@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.views.api.base_schedule import irregular_start_end
-from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
+
+from myuw.test.api import MyuwApiTest, fdao_sws_override, require_url
 
 
 @fdao_sws_override
@@ -32,8 +32,7 @@ class TestSchedule(MyuwApiTest):
             'https://canvas.uw.edu/courses/249652')
         self.assertEqual(
             phys['lib_subj_guide'],
-            'http://guides.lib.uw.edu/friendly.php' +
-            '?s=research/physics_astronomy'
+            'http://guides.lib.uw.edu/friendly.php?s=research/physics_astronomy'
         )
 
     def test_none_current_term(self):

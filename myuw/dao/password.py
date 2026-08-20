@@ -7,10 +7,10 @@ the uwnetid subscription resource.
 """
 
 import logging
-from uw_uwnetid.password import get_uwnetid_password
-from myuw.dao.term import get_comparison_datetime_with_tz
-from myuw.dao import get_netid_of_current_user
 
+from uw_uwnetid.password import get_uwnetid_password
+
+from myuw.dao import get_netid_of_current_user
 
 logger = logging.getLogger(__name__)
 

@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from django.core.management.base import BaseCommand, CommandError
+
 from myuw.models import User, UserCourseDisplay
 
 logger = logging.getLogger(__name__)
@@ -30,13 +32,10 @@ class Command(BaseCommand):
                     year=year,
                     quarter=quarter).order_by('section_label')
                 for r in records:
-                    logger.info(
-                        "For {} {} {}，Found {}".format(
-                            netid, year, quarter, r))
+                    logger.info(f"For {netid} {year} {quarter}，Found {r}")
 
                 result = UserCourseDisplay.objects.filter(
                     user=user, year=year, quarter=quarter).delete()
-                logger.info("For {} {} {}，Deleted {}".format(
-                    netid, year, quarter, result))
+                logger.info(f"For {netid} {year} {quarter}，Deleted {result}")
         except Exception as ex:
             raise CommandError(ex)

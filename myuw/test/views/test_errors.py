@@ -1,11 +1,18 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from myuw.views.error import (
-    not_instructor_error, data_not_found, no_access, data_error,
-    disabled_action_error, invalid_future_term, invalid_input_data,
-    invalid_method, not_instructor_error, unknown_uwnetid)
 from myuw.test.api import MyuwApiTest
+from myuw.views.error import (
+    data_error,
+    data_not_found,
+    disabled_action_error,
+    invalid_future_term,
+    invalid_input_data,
+    invalid_method,
+    no_access,
+    not_instructor_error,
+    unknown_uwnetid,
+)
 
 
 class TestViewsError(MyuwApiTest):
@@ -47,12 +54,6 @@ class TestViewsError(MyuwApiTest):
                 b'">UW-IT Service Center</a>.</p>'
             ),
         )
-        self.assertEqual(response.status_code, 403)
-
-    def test_not_instructor_error(self):
-        response = not_instructor_error()
-        self.assertEqual(response.content,
-                         b'Access Forbidden to Non Instructor')
         self.assertEqual(response.status_code, 403)
 
     def test_invalid_input_data(self):

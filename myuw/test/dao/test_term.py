@@ -1,28 +1,55 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import datetime
-from django.test import TestCase
-from commonconf import override_settings
-from myuw.dao.term import (
-    get_specific_term, is_past, is_future, current_terms_prefetch,
-    get_default_datetime, get_comparison_date, tz_aware_now,
-    get_current_quarter, get_next_quarter, is_cur_term_before,
-    get_previous_number_quarters, last_4instruction_weeks,
-    get_future_number_quarters, during_april_may, is_cur_term_same,
-    get_next_non_summer_quarter, get_next_autumn_quarter,
-    is_in_summer_a_term, is_in_summer_b_term, within_grading_period,
-    within_2terms_after_given_term, after_last_final_exam_day,
-    get_bod_current_term_class_start, get_eod_7d_after_class_start,
-    get_eod_current_term, get_eod_current_term_last_instruction,
-    get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
-    get_bod_class_start_quarter_after, get_eod_specific_quarter,
-    get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction,
-    get_current_and_next_quarters, add_term_data_to_context)
-from myuw.test import (
-    get_request_with_date, get_request_with_user,
-    get_request, fdao_sws_override)
+# ruff: noqa: DTZ001
 
+from datetime import datetime
+
+from commonconf import override_settings
+from django.test import TestCase
+
+from myuw.dao.term import (
+    add_term_data_to_context,
+    after_last_final_exam_day,
+    current_terms_prefetch,
+    during_april_may,
+    get_bod_7d_before_last_instruction,
+    get_bod_class_start_quarter_after,
+    get_bod_current_term_class_start,
+    get_comparison_date,
+    get_current_and_next_quarters,
+    get_current_quarter,
+    get_default_datetime,
+    get_eod_7d_after_class_start,
+    get_eod_current_term,
+    get_eod_current_term_last_final_exam,
+    get_eod_current_term_last_instruction,
+    get_eod_specific_quarter,
+    get_eod_specific_quarter_after,
+    get_eod_specific_quarter_last_instruction,
+    get_future_number_quarters,
+    get_next_autumn_quarter,
+    get_next_non_summer_quarter,
+    get_next_quarter,
+    get_previous_number_quarters,
+    get_specific_term,
+    is_cur_term_before,
+    is_cur_term_same,
+    is_future,
+    is_in_summer_a_term,
+    is_in_summer_b_term,
+    is_past,
+    last_4instruction_weeks,
+    tz_aware_now,
+    within_2terms_after_given_term,
+    within_grading_period,
+)
+from myuw.test import (
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 ldao_sws_override = override_settings(RESTCLIENTS_SWS_DAO_CLASS='Live')
 

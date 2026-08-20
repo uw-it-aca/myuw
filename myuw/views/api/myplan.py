@@ -3,12 +3,14 @@
 
 import logging
 import traceback
+
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.myplan import get_plan
+
 from myuw.dao.card_display_dates import during_myplan_peak_load
+from myuw.dao.myplan import get_plan
 from myuw.dao.term import get_comparison_datetime
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call, log_msg
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 

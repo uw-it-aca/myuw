@@ -6,9 +6,11 @@ encapsulates the interactions with the Bookstore web service.
 """
 
 import logging
+
 from restclients_core.exceptions import DataFailureException
 from uw_bookstore import Textbook
 from uw_bookstore.digital_material import IACoursesStatus as Bookstore
+
 from myuw.dao.pws import get_regid_of_current_user
 
 bookstore = Bookstore()
@@ -58,5 +60,4 @@ def get_iacourse_status(request, term):
     terms_iacourses = bookstore.get_iacourse_status(
         get_regid_of_current_user(request)
     )
-    key = "{}{}".format(term.quarter, term.year)
-    return terms_iacourses.get(key)
+    return terms_iacourses.get(f"{term.quarter}{term.year}")

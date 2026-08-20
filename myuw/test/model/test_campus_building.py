@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from uw_space import Facilities
+
 from myuw.models import CampusBuilding
 from myuw.test.api import MyuwApiTest
 
@@ -9,10 +10,10 @@ from myuw.test.api import MyuwApiTest
 class TestBuilding(MyuwApiTest):
     def setUp(self):
         self.fac_obj = Facilities().search_by_number("1347")
-        b_obj = CampusBuilding.upd_building(self.fac_obj)
+        CampusBuilding.upd_building(self.fac_obj)
 
     def test_building(self):
-        location_url = "https://map.uw.edu/?id=2099#!m/974994?share"
+        location_url = 'https://map.uw.edu/?id=0000#!m/999999?share'
 
         b_obj = CampusBuilding.get_building_by_number('1347')
         b_obj.location_url = location_url
@@ -50,7 +51,7 @@ class TestBuilding(MyuwApiTest):
         )
 
         obj2 = CampusBuilding.get_building_by_number('1347')
-        obj2.location_url = obj2._google_map_url()
+        obj2.location_url = obj2._generate_location_url(self.fac_obj)
         self.assertEqual(
             obj2.json_data(),
             {
@@ -59,9 +60,7 @@ class TestBuilding(MyuwApiTest):
                 'longitude': '-122.304747',
                 'name': 'Mechanical Engineering Building',
                 'number': '1347',
-                'location_url': (
-                    'https://maps.google.com/maps?ll=47.6536929997,-122.304747'
-                ),
+                'location_url': location_url,
             }
         )
 
@@ -73,24 +72,33 @@ class TestBuilding(MyuwApiTest):
         self.assertEqual(obj3.code, 'MEBB')
         self.assertFalse(b_obj == obj3)
 
-    def test_google_map_url(self):
-        obj = CampusBuilding.get_building_by_number('1347')
-        obj.location_url = obj._google_map_url()
-        self.assertEqual(obj.location_url, (
-                'https://maps.google.com/maps?ll=47.6536929997,-122.304747'
-            ))
+    def test_generate_location_url(self):
+        fac_obj = Facilities().search_by_number("1347")
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj),
+                         'https://map.uw.edu/?id=0000#!m/999999?share')
 
-        obj = CampusBuilding.get_building_by_number('1347')
-        obj.latitude = '0.0'
-        obj.location_url = obj._google_map_url()
-        self.assertEqual(obj.location_url, None)
+        fac_obj = Facilities().search_by_number("1347")
+        fac_obj.map_url = None
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj),
+                         'https://maps.google.com/maps?ll=47.6536929997,-122.304747')
 
-        obj = CampusBuilding.get_building_by_number('1347')
-        obj.longitude = '0.0'
-        obj.location_url = obj._google_map_url()
-        self.assertEqual(obj.location_url, None)
 
-        obj = CampusBuilding.get_building_by_number('1347')
-        obj.longitude = None
-        obj.location_url = obj._google_map_url()
-        self.assertEqual(obj.location_url, None)
+        fac_obj = Facilities().search_by_number("1347")
+        fac_obj.map_url = None
+        fac_obj.latitude = None
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj), None)
+
+        fac_obj = Facilities().search_by_number("1347")
+        fac_obj.map_url = None
+        fac_obj.longitude = None
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj), None)
+
+        fac_obj = Facilities().search_by_number("1347")
+        fac_obj.map_url = None
+        fac_obj.latitude = '0.0'
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj), None)
+
+        fac_obj = Facilities().search_by_number("1347")
+        fac_obj.map_url = None
+        fac_obj.longitude = '0.0'
+        self.assertEqual(CampusBuilding._generate_location_url(fac_obj), None)

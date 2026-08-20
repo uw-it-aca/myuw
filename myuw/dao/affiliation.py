@@ -7,21 +7,44 @@ This module provides affiliations of the current user
 
 import logging
 import traceback
+
 from myuw.dao import log_err
-from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
-    get_main_campus, get_cur_class_level, get_latest_class_level)
+    get_cur_class_level,
+    get_latest_class_level,
+    get_main_campus,
+)
+from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.gws import (
-    is_clinician, is_staff_employee, is_student_employee, is_affi_emp,
-    is_alum_asso, is_student, is_grad_student, is_undergrad_student,
-    is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
-    is_applicant, is_grad_c2, is_undergrad_c2, in_hxtoolkit_group)
+    in_hxtoolkit_group,
+    is_affi_emp,
+    is_alum_asso,
+    is_applicant,
+    is_bothell_student,
+    is_clinician,
+    is_grad_c2,
+    is_grad_student,
+    is_pce_student,
+    is_seattle_student,
+    is_staff_employee,
+    is_student,
+    is_student_employee,
+    is_tacoma_student,
+    is_undergrad_c2,
+    is_undergrad_student,
+)
 from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import (
-    get_employee_campus, is_employee, is_faculty, is_prior_employee,
-    is_prior_student, is_retiree, is_alumni)
-from myuw.dao.uwnetid import is_2fa_permitted
+    get_employee_campus,
+    is_alumni,
+    is_employee,
+    is_faculty,
+    is_prior_employee,
+    is_prior_student,
+    is_retiree,
+)
 from myuw.dao.student_profile import get_profile_of_current_user
+from myuw.dao.uwnetid import is_2fa_permitted
 
 logger = logging.getLogger(__name__)
 

@@ -1,18 +1,32 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase
-import datetime
 import csv
+import datetime
 from io import StringIO
-from myuw.dao.thrive import (
-    TARGET_FYP, TARGET_AUT_TRANSFER, TARGET_WIN_TRANSFER,
-    _get_offset, _make_urls, _is_displayed, _make_thrive_payload,
-    get_current_message, get_previous_messages, get_target_group)
+
+from django.test import TestCase
 from uw_sws.models import Term
+
+from myuw.dao.thrive import (
+    TARGET_AUT_TRANSFER,
+    TARGET_FYP,
+    TARGET_WIN_TRANSFER,
+    _get_offset,
+    _is_displayed,
+    _make_thrive_payload,
+    _make_urls,
+    get_current_message,
+    get_previous_messages,
+    get_target_group,
+)
 from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_date, get_request_with_user, get_request)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override

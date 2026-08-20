@@ -2,15 +2,20 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
-from django.conf import settings
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.stud_future_terms import (
-    _get_future_registrations, get_registered_future_quarters)
+    _get_future_registrations,
+    get_registered_future_quarters,
+)
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
 from myuw.test import (
-    get_request_with_date, get_request_with_user,
-    fdao_sws_override, fdao_pws_override)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_pws_override

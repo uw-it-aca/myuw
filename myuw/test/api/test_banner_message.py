@@ -1,11 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.urls import reverse
 from userservice.user import UserService
+
 from myuw.models import MigrationPreference, User
-from myuw.test import get_request_with_user
-from myuw.test.api import MyuwApiTest, VALIDATE, OVERRIDE
+from myuw.test.api import MyuwApiTest
 
 
 class TestBannerMessage(MyuwApiTest):

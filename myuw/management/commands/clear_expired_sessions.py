@@ -13,13 +13,13 @@ sessions each time.
 """
 
 import logging
-from datetime import timedelta
 import time
-from django.core.mail import send_mail
-from django.core.management.base import BaseCommand
+from datetime import timedelta
+
 from django.contrib.sessions.models import Session
+from django.core.management.base import BaseCommand
 from django.utils import timezone
-from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
+
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
@@ -51,13 +51,10 @@ class Command(BaseCommand):
 
                 run_delete(cut_off_dt)
             except Exception as ex:
-                logger.error(ex)
-                errors.append("{}\n".format(ex))
+                errors.append(ex)
         if len(errors):
-            send_mail("Clear Expired Django Session Weekly Cron",
-                      "\n".join(errors),
-                      "{}@uw.edu".format(get_cronjob_sender()),
-                      ["{}@uw.edu".format(get_cronjob_recipient())])
+            logger.error(
+                f"Clear Expired Django Session Errors: {'; '.join(errors)}")
 
 
 def get_cut_off_params(day_session_count):

@@ -3,18 +3,12 @@
 
 from unittest import skipIf
 from unittest.mock import patch
-from django.contrib.sessions.models import Session
+
 from django.urls import reverse
-from django.utils import timezone
-from django.test.client import RequestFactory
-from unittest.mock import patch
-from myuw.models import User
-from myuw.views.page import logout, page
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.exceptions import EmailServiceUrlException
-from myuw.dao.user import get_user_model
-from myuw.test.api import missing_url, MyuwApiTest
-from myuw.test import get_request_with_user
+from myuw.test.api import MyuwApiTest, missing_url
 
 
 class TestPageMethods(MyuwApiTest):
@@ -96,6 +90,7 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEqual(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_instructor(self):

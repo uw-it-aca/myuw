@@ -1,20 +1,20 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import hashlib
 import json
 import logging
-import hashlib
+from datetime import timedelta
 from hashlib import sha1
-from datetime import datetime, timedelta
-from dateutil.parser import parse
-from django.utils import timezone
-from django.db import models
+
+from django.db import models, transaction
 from django.db.models import Count
-from django.db import transaction
-from myuw.models.campus_building import CampusBuilding
-from myuw.models.banner_msg import BannerMessage
-from myuw.models.popular_link import PopularLink
-from myuw.models.res_category_link import ResCategoryLink
+from django.utils import timezone
+
+from myuw.models.banner_msg import BannerMessage as BannerMessage
+from myuw.models.campus_building import CampusBuilding as CampusBuilding
+from myuw.models.popular_link import PopularLink as PopularLink
+from myuw.models.res_category_link import ResCategoryLink as ResCategoryLink
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ class User(models.Model):
     last_visit = models.DateTimeField(editable=True)
 
     def __init__(self, *args, **kwargs):
-        super(User, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def __eq__(self, other):
         return self.uwnetid == other.uwnetid
@@ -49,7 +49,10 @@ class User(models.Model):
         return User.objects.filter(uwnetid=netid).exists()
 
     @classmethod
-    def get_user(cls, uwnetid, prior_netids=[]):
+    def get_user(cls, uwnetid, prior_netids=None):
+        if prior_netids is None:
+            prior_netids = []
+
         if User.exists(uwnetid):
             return User.update(uwnetid, uwnetid)
 
@@ -176,7 +179,7 @@ class Instructor(models.Model):
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
 
-    class Meta(object):
+    class Meta:
         app_label = 'myuw'
         db_table = 'myuw_known_instructors'
         unique_together = ("user", "year", "quarter")
@@ -263,7 +266,7 @@ class CustomLink(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_key = self.get_url_key(self.url)
-        super(CustomLink, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     @staticmethod
     def get_url_key(url):
@@ -280,7 +283,7 @@ class HiddenLink(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_key = self.get_url_key(self.url)
-        super(HiddenLink, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     @staticmethod
     def get_url_key(url):
@@ -372,20 +375,20 @@ class UserCourseDisplay(models.Model):
         }
 
     def __init__(self, *args, **kwargs):
-        super(UserCourseDisplay, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
 
-    class Meta(object):
+    class Meta:
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
         unique_together = ("user", "section_label")
-        indexes = [
+        indexes = (
              models.Index(fields=["user", "year", "quarter"]),
              models.Index(fields=["user", "section_label"]),
-        ]
-        ordering = ['section_label']
+        )
+        ordering = ('section_label',)
 
 
 class MigrationPreference(models.Model):
@@ -394,12 +397,12 @@ class MigrationPreference(models.Model):
     display_pop_up = models.BooleanField(default=True)
 
     def __init__(self, *args, **kwargs):
-        super(MigrationPreference, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @classmethod
     @transaction.atomic
     def _get_for_update(cls, user):
-        obj, new = MigrationPreference.objects.select_for_update(
+        obj, _new = MigrationPreference.objects.select_for_update(
         ).get_or_create(user=user)
         return obj
 
@@ -431,7 +434,7 @@ class MigrationPreference(models.Model):
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
 
-    class Meta(object):
+    class Meta:
         app_label = 'myuw'
         db_table = 'migration_preference'
 

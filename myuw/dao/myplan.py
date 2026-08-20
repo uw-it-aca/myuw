@@ -2,10 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+
 from uw_myplan import Plan
 from uw_sws.section import get_section_by_label
-from myuw.dao.pws import get_regid_of_current_user
 
+from myuw.dao.pws import get_regid_of_current_user
 
 logger = logging.getLogger(__name__)
 myplan = Plan()

@@ -3,35 +3,38 @@
 
 import logging
 import traceback
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+
 from django.contrib.auth import logout as django_logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from restclients_core.exceptions import DataFailureException, InvalidNetID
+
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import (
-    EmailServiceUrlException, BlockedNetidErr)
-from myuw.dao.gws import in_myuw_test_access_group
-from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
+from myuw.dao.emaillink import get_service_url_for_address
+from myuw.dao.exceptions import BlockedNetidErr, EmailServiceUrlException
+from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.persistent_messages import BannerMessage
 from myuw.dao.pws import is_student
+from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
+from myuw.logger.logresp import log_exception, log_page_view
+from myuw.logger.session_log import is_native, log_session, log_session_end
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_page_view, log_exception
-from myuw.logger.session_log import (
-    log_session, is_native, log_session_end)
 from myuw.util.settings import (
-    get_google_search_key, get_google_analytics_key, get_django_debug,
-    get_logout_url, no_access_check)
-from myuw.views import prefetch_resources, get_enabled_features
+    get_django_debug,
+    get_google_analytics_key,
+    get_google_search_key,
+    get_logout_url,
+    no_access_check,
+)
+from myuw.views import get_enabled_features, prefetch_resources
 from myuw.views.error import no_access
-from django.contrib.auth.decorators import login_required
-
 
 logger = logging.getLogger(__name__)
 
@@ -123,16 +126,16 @@ def prefetch(request):
         prefetch_resources(
             request,
             prefetch_migration_preference=True,
-            prefetch_enrollment=(True if is_student(request) else False),
+            prefetch_enrollment=bool(is_student(request)),
             prefetch_group=True,
             prefetch_instructor=True,
-            prefetch_sws_person=(True if is_student(request) else False)
+            prefetch_sws_person=bool(is_student(request))
         )
     except DataFailureException as ex:
-        log_exception(logger, f"prefetch_resources {ex}", traceback)
         # This ex should not block the page initial loading as it is
         # unclear at this point what impact this error will make to the
         # content panel referencing it down the line.
+        log_exception(logger, f"prefetch_resources {ex}", traceback)
 
 
 @login_required
@@ -167,8 +170,7 @@ def _add_email_forwarding(request, context):
                 my_uwemail_forwarding.fwd)
             return
         except EmailServiceUrlException:
-            logger.error('No email url for {}'.format(
-                my_uwemail_forwarding.fwd))
+            logger.error(f'No email url for {my_uwemail_forwarding.fwd}')
             return  # MUWM-4700
     c_user['email_forward_url'] = None
     c_user['email_error'] = True

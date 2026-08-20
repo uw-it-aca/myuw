@@ -5,12 +5,12 @@ import csv
 import logging
 import os
 import traceback
-from myuw.models import VisitedLinkNew, CustomLink, HiddenLink
+
 from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
 from myuw.dao.user import get_user_model
-
+from myuw.models import CustomLink, HiddenLink, VisitedLinkNew
 
 RECENT_LINKS_DISPLAY_LIMIT = 5
 CACHED_LABEL_DATA = {}
@@ -90,7 +90,7 @@ def _get_default_links(affiliations):
 
 def add_custom_link(request, url, link_label=None):
     try:
-        obj, created = CustomLink.objects.update_or_create(
+        obj, _created = CustomLink.objects.update_or_create(
             user=get_user_model(request), url=url, label=link_label)
         return obj
     except Exception:
@@ -136,7 +136,7 @@ def get_custom_link_by_url(request, url):
 def add_hidden_link(request, url):
     try:
         logger.debug(f"add_hidden_link({url})")
-        obj, created = HiddenLink.objects.update_or_create(
+        obj, _created = HiddenLink.objects.update_or_create(
             user=get_user_model(request), url=url)
         return obj
     except Exception:

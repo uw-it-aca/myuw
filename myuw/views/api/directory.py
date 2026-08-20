@@ -1,13 +1,14 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-import traceback
 import logging
+import traceback
+
 from myuw.dao.pws import get_person_of_current_user
-from myuw.views.error import handle_exception
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
+from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
 

@@ -6,9 +6,10 @@ This class encapsulates the mapping between
 email address and service provider login
 """
 
-import re
-import os
 import csv
+import os
+import re
+
 from myuw.dao.exceptions import EmailServiceUrlException
 
 
@@ -23,7 +24,7 @@ def get_service_url_for_address(address):
         next(reader)
         for row in reader:
             try:
-                if re.match(r'.*[@\.]{}$'.format(row[0]), address, re.I):
+                if re.match(rf'.*[@\.]{row[0]}$', address, re.IGNORECASE):
                     return row[1]
             except TypeError:
                 raise EmailServiceUrlException("Non-string address")

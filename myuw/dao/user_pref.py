@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-from myuw.models import MigrationPreference
-from myuw.dao.user import get_user_model
 
+from myuw.dao.user import get_user_model
+from myuw.models import MigrationPreference
 
 logger = logging.getLogger(__name__)
 

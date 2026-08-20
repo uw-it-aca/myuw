@@ -8,10 +8,12 @@ with the UW Netid Web Service
 
 import logging
 import traceback
+
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.models import Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
 from uw_uwnetid.subscription_105 import get_uwemail_forwarding
+
 from myuw.dao import get_netid_of_current_user, log_err
 from myuw.dao.exceptions import BlockedNetidErr
 
@@ -61,8 +63,7 @@ def get_subscriptions(request):
                 # True|False
 
     except DataFailureException as ex:
-        log_err(logger, "uwnetid_subscriptions({})".format(netid),
-                traceback, request)
+        log_err(logger, f"uwnetid_subscriptions({netid})", traceback, request)
         if ex.status == 409:
             raise BlockedNetidErr(ex)
 

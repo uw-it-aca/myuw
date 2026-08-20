@@ -7,17 +7,20 @@ the Grad School request resource.
 """
 
 import logging
-from datetime import date, datetime, timedelta
-from uw_grad.degree import get_degree_by_syskey
+from datetime import timedelta
+
 from uw_grad.committee import get_committee_by_syskey
+from uw_grad.degree import get_degree_by_syskey
 from uw_grad.leave import get_leave_by_syskey
 from uw_grad.petition import get_petition_by_syskey
+
 from myuw.dao.pws import get_student_system_key_of_current_user
 from myuw.dao.term import (
     get_comparison_datetime,
-    get_eod_specific_quarter_after, get_eod_specific_quarter,
-    get_eod_specific_quarter_last_instruction)
-
+    get_eod_specific_quarter,
+    get_eod_specific_quarter_after,
+    get_eod_specific_quarter_last_instruction,
+)
 
 logger = logging.getLogger(__name__)
 

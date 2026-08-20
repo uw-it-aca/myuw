@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
-import time
 import traceback
+
 from myuw.dao.adviser import get_academic_advisers
-from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
+from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -31,5 +31,5 @@ class Advisers(ProtectedAPI):
 
             log_api_call(timer, request, "Get Advisers")
             return self.json_response(resp_json)
-        except Exception as ex:
+        except Exception:
             return handle_exception(logger, timer, traceback)

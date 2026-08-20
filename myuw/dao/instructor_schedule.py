@@ -7,21 +7,23 @@ This module provides access to instructed class schedule and sections
 
 import logging
 import traceback
+
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
 from uw_sws.registration import get_active_registrations_by_section
 from uw_sws.section import (
-    get_sections_by_instructor_and_term, get_section_by_url,
-    get_section_by_label)
-from myuw.util.thread import ThreadWithResponse
-from myuw.dao import (
-    log_err, is_using_file_dao, get_netid_of_current_user)
+    get_section_by_label,
+    get_section_by_url,
+    get_sections_by_instructor_and_term,
+)
+
+from myuw.dao import get_netid_of_current_user, is_using_file_dao, log_err
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import filter_sections_by_summer_term
-from myuw.dao.term import get_current_quarter, get_comparison_datetime
+from myuw.dao.term import get_comparison_datetime, get_current_quarter
 from myuw.dao.user_course_display import set_course_display_pref
-
+from myuw.util.thread import ThreadWithResponse
 
 logger = logging.getLogger(__name__)
 
@@ -181,8 +183,7 @@ def get_linked_section(url, instructor_regid):
             linked.registrations = get_active_registrations_for_section(
                 linked, instructor_regid)
         except DataFailureException:
-            log_err(logger, "get_linked_section({})".format(url),
-                    traceback, None)
+            log_err(logger, f"get_linked_section({url})", traceback, None)
             linked.registrations = []
 
         return linked
@@ -197,13 +198,13 @@ def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
             raise NotSectionInstructorException(
-                "{} Not Instructor for {}".format(
-                    person.uwnetid, section.section_label()))
+                f"{person.uwnetid} Not Instructor for {section.section_label()}")
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
             raise NotSectionInstructorException(
-                "{} Not Instructor for {}".format(
-                    person.uwnetid, primary_section.section_label()))
+                f"{person.uwnetid} Not Instructor for "
+                f"{primary_section.section_label()}"
+            )
 
 
 def get_primary_section(secondary_section):
@@ -211,9 +212,7 @@ def get_primary_section(secondary_section):
     try:
         return get_section_by_label(primary_section_label)
     except Exception:
-        log_err(
-            logger,
-            "get_primary_section({})".format(primary_section_label),
+        log_err(logger, f"get_primary_section({primary_section_label})",
             traceback, None)
     return None
 

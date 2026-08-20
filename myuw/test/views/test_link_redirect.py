@@ -1,12 +1,11 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from myuw.test.api import missing_url, require_url, MyuwApiTest
-from myuw.models import VisitedLinkNew
-from django.urls import reverse
 from django.test.utils import override_settings
-from django.test import Client
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+
+from myuw.models import VisitedLinkNew
+from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_home')
@@ -86,7 +85,7 @@ class TestRedirect(MyuwApiTest):
         url = reverse('myuw_outbound_link')
         response = self.client.get(url, {'u': 'https://example.com',
                                          'l': 'example'})
-
+        self.assertEqual(response.status_code, 302)
         all = VisitedLinkNew.objects.all()
         self.assertEqual(len(all), 0)
 

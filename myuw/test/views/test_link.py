@@ -2,13 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import skipIf
-from django.urls import reverse
-from django.test import Client
+
 from django.test.utils import override_settings
-from myuw.models import VisitedLinkNew
-from myuw.views.link import outbound_link
-from myuw.test.api import missing_url, require_url, MyuwApiTest
 from django.urls import reverse_lazy
+
+from myuw.models import VisitedLinkNew
+from myuw.test.api import MyuwApiTest, missing_url, require_url
 
 
 @require_url('myuw_outbound_link')
@@ -21,7 +20,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
         link_url = "https%3A%2F%2Fhr.uw.edu%2F"
         label = ('.......................................................'
                  '.......................................................')
-        url = "/out/?u={}&l={}".format(link_url, label)
+        url = f"/out/?u={link_url}&l={label}"
         self.set_user('javerage')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)

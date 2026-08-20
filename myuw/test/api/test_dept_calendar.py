@@ -1,8 +1,9 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from myuw.test.api import require_url, MyuwApiTest
 import json
+
+from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_deptcal_events')
@@ -29,7 +30,7 @@ class TestDeptCalAPI(MyuwApiTest):
         sorted_events = sorted(events, key=lambda x: x.get('summary'))
 
         event_two = sorted_events[2]
-        self.assertEqual(event_two['event_location'], u'')
+        self.assertEqual(event_two['event_location'], '')
         self.assertEqual(
             event_two['summary'],
             'Organic Chemistry Seminar: Prof. Matthew Becker3')

@@ -2,22 +2,28 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from django.test.client import RequestFactory
-from django.contrib.auth.models import User
 from restclients_core.exceptions import DataFailureException
-from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
-from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_date, get_request_with_user)
-from myuw.dao.instructor_schedule import (
-    get_instructor_schedule_by_term, get_section_by_label,
-    _set_section_from_url, get_active_registrations_for_section,
-    get_instructor_section, get_primary_section, check_section_instructor)
-from myuw.dao.term import get_current_quarter, get_next_quarter
-from myuw.dao.pws import get_person_of_current_user
+from uw_sws.models import Term
+
 from myuw.dao.exceptions import NotSectionInstructorException
-from userservice.user import UserServiceMiddleware
+from myuw.dao.instructor_schedule import (
+    _set_section_from_url,
+    check_section_instructor,
+    get_active_registrations_for_section,
+    get_instructor_schedule_by_term,
+    get_instructor_section,
+    get_primary_section,
+    get_section_by_label,
+)
+from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.term import get_next_quarter
+from myuw.test import (
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request_with_date,
+    get_request_with_user,
+)
 
 
 @fdao_sws_override
@@ -116,13 +122,13 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(section.section_label(), "2018,spring,JAPAN,573/A")
 
         # The coresponding time Schedule is unpublished
-        term.time_schedule_published = {u'seattle': False}
+        term.time_schedule_published = {'seattle': False}
         term.check_time_schedule_published = True
         section = _set_section_from_url(section_url, term)
         self.assertIsNone(section)
 
         # The coresponding time Schedule is published
-        term.time_schedule_published = {u'seattle': True}
+        term.time_schedule_published = {'seattle': True}
         section = _set_section_from_url(section_url, term)
         self.assertEqual(section.section_label(), "2018,spring,JAPAN,573/A")
 
@@ -132,9 +138,9 @@ class TestInstructorSchedule(TestCase):
         term.year = 2013
         term.quarter = 'winter'
         term.check_time_schedule_published = True
-        term.time_schedule_published = {u'seattle': False,
-                                        u'tacoma': False,
-                                        u'bothell': False}
+        term.time_schedule_published = {'seattle': False,
+                                        'tacoma': False,
+                                        'bothell': False}
         section = _set_section_from_url(section_url, term)
         self.assertEqual(section.section_label(), "2013,winter,BIGDATA,220/A")
 

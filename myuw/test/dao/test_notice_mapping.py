@@ -1,19 +1,28 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TestCase, override_settings
 from datetime import datetime, timezone
+
+from django.test import TestCase, override_settings
 from django.utils.timezone import get_default_timezone
-from django.conf import settings
 from uw_sws.notice import get_notices_by_regid
+
 from myuw.dao.notice_mapping import (
-    map_notice_category, apply_showhide, categorize_notices,
-    get_open_date, get_close_date, is_after_eof_days_after_open,
-    is_before_bof_days_before_close)
+    apply_showhide,
+    categorize_notices,
+    get_close_date,
+    get_open_date,
+    is_after_eof_days_after_open,
+    is_before_bof_days_before_close,
+    map_notice_category,
+)
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.test import (
-    fdao_sws_override, fdao_pws_override,
-    get_request_with_date, get_request)
+    fdao_pws_override,
+    fdao_sws_override,
+    get_request,
+    get_request_with_date,
+)
 
 
 @fdao_sws_override

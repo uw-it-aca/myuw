@@ -2,11 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from django.test.utils import override_settings
+
 from myuw.authorization import (
-    validate_netid, INVALID_STRING, NO_USER,
-    can_override_user, is_myuw_admin)
-from myuw.test import get_request_with_user, auth_override
+    INVALID_STRING,
+    NO_USER,
+    can_override_user,
+    is_myuw_admin,
+    validate_netid,
+)
+from myuw.test import auth_override, get_request_with_user
 
 
 @auth_override

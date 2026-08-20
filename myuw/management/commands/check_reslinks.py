@@ -6,12 +6,11 @@ Test all the links in the CSV for non-200 status codes (after redirects).
 """
 
 import logging
-import sys
+
 import urllib3
-from django.core.mail import send_mail
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
 from myuw.dao.category_links import Res_Links, Resource_Links
-from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 
 # Disable SSL warnings
 urllib3.disable_warnings()
@@ -31,12 +30,8 @@ class Command(BaseCommand):
         verify_links(links, messages)
 
         links = Resource_Links.get_all_links()
-        messages.append("\n\n{}".format(Resource_Links.csv_filename))
+        messages.append(f"\n\n{Resource_Links.csv_filename}")
         verify_links(links, messages)
-        send_mail("Check Cetegory and Resource Links",
-                  "\n".join(messages),
-                  "{}@uw.edu".format(get_cronjob_sender()),
-                  ["{}@uw.edu".format(get_cronjob_recipient())])
 
 
 def verify_links(links, messages):
@@ -50,7 +45,7 @@ def verify_links(links, messages):
                    "url": link.url,
                    "status": status}
             logger.error(msg)
-            messages.append("{}\n\n".format(msg))
+            messages.append(f"{msg}\n\n")
 
 
 def get_http_status(url, messages):

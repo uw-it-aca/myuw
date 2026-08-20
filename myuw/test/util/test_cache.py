@@ -1,16 +1,10 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import timedelta
-from unittest import skipIf
 from django.test import TestCase
-from django.conf import settings
-from restclients_core.models import MockHTTP
-from restclients_core.exceptions import DataFailureException
-from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
-from myuw.util.cache import MyUWMemcachedCache, MyUWCache, IdPhotoToken
 
+from myuw.util.cache import IdPhotoToken, MyUWCache, MyUWMemcachedCache
 
 MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
 FIFTEEN_MINS = 60 * 15

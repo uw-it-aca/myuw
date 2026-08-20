@@ -3,14 +3,19 @@
 
 import logging
 import traceback
-from myuw.models import Instructor
+
 from uw_sws.section import get_last_section_by_instructor_and_terms
+
 from myuw.dao import is_using_file_dao, log_err
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import (
-    get_term_before, get_previous_quarter,
-    get_current_quarter, get_specific_term)
+    get_current_quarter,
+    get_previous_quarter,
+    get_specific_term,
+    get_term_before,
+)
 from myuw.dao.user import get_user_model
+from myuw.models import Instructor
 
 logger = logging.getLogger(__name__)
 
@@ -58,8 +63,8 @@ def set_instructor(user, sectionref):
     try:
         Instructor.add_seen_instructor(user, year, quarter)
     except Exception:
-        log_err(logger, "add_seen_instructor({}, {}, {})".format(
-            user.uwnetid, year, quarter), traceback, None)
+        log_err(logger, f"add_seen_instructor({user.uwnetid}, {year}, {quarter})",
+                traceback, None)
 
 
 def get_search_param(request, is_mock):

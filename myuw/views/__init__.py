@@ -1,19 +1,19 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.conf import settings
 from django import template
+
+from myuw.dao.canvas import canvas_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.gws import group_prefetch
 from myuw.dao.instructor import is_instructor_prefetch
-from myuw.dao.pws import person_prefetch
 from myuw.dao.password import password_prefetch
+from myuw.dao.pws import person_prefetch
 from myuw.dao.student_profile import sws_person_prefetch
 from myuw.dao.term import current_terms_prefetch
-from myuw.dao.uwnetid import subscriptions_prefetch
-from myuw.dao.canvas import canvas_prefetch
 from myuw.dao.user_pref import migration_preference_prefetch
-from myuw.util.settings import get_enabled_features
+from myuw.dao.uwnetid import subscriptions_prefetch
+from myuw.util.settings import get_enabled_features as get_enabled_features
 from myuw.util.thread import PrefetchThread
 
 
@@ -91,6 +91,3 @@ def set_admin_wrapper_template(context):
         context['wrapper_template'] = 'userservice/user_override_wrapper.html'
     except template.TemplateDoesNotExist:
         context['wrapper_template'] = 'support_wrapper.html'
-        # This is a fine exception - there doesn't need to be an extra info
-        # template
-        pass

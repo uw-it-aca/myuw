@@ -1,16 +1,22 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from django.test import TransactionTestCase
-from django.core.validators import URLValidator
+import re
+
 from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
+from django.test import TransactionTestCase
+
 from myuw.dao.category_links import (
+    Res_Links,
+    Resource_Links,
     _get_links_by_category_and_campus,
-    Res_Links, Resource_Links, pin_category, delete_categor_pin)
+    delete_categor_pin,
+    pin_category,
+)
 from myuw.dao.exceptions import InvalidResourceCategory
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.test import get_request_with_user
-import re
 
 
 class TestCategoryLinks(TransactionTestCase):
@@ -20,14 +26,13 @@ class TestCategoryLinks(TransactionTestCase):
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEqual(len(all_links), 62)
+        self.assertEqual(len(all_links), 60)
         val = URLValidator()
         for link in all_links:
             try:
                 self._test_ascii(link.url)
             except (UnicodeDecodeError, UnicodeEncodeError):
-                self.fail("%s url has non-ASCII text: %s" %
-                          (link.title, link.url))
+                self.fail(f"{link.title} url has non-ASCII text: {link.url}")
 
             try:
                 val(link.url)
@@ -121,7 +126,7 @@ class TestCategoryLinks(TransactionTestCase):
                          'academicsat')
 
     def test_category_exists(self):
-        req = get_request_with_user("javerage")
+        _req = get_request_with_user("javerage")
         rl = Resource_Links(csv_filename="test/resource_link_import.csv")
         self.assertFalse(rl.category_exists("foobar"))
         self.assertTrue(rl.category_exists("academicsat"))

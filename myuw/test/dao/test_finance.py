@@ -3,6 +3,7 @@
 
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
+
 from myuw.dao.finance import _get_account_balances_by_regid
 
 
