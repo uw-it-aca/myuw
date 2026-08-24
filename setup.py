@@ -46,7 +46,7 @@ setup(
         'uw-restclients-mailman~=2.1',
         'uw-restclients-myplan~=1.3',
         'uw-restclients-pws~=2.1',
-        'uw-restclients-sws~=2.5',
+        'uw-restclients-sws~=2.5.11',
         'uw-restclients-sdbmyuw~=1.0',
         'uw-restclients-space~=1.2',
         'uw-restclients-sps-contacts~=1.0',

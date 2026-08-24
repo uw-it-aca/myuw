@@ -37,7 +37,17 @@ M1 = {
             "SLN": "15753"},
         "SLN": "15753",
         "SpaceAvailable": 13,
-        "Status": "open"},
+        "Status": "open",
+        "JointCurrentEnrollment": 0,
+        "JointLimitEstimateEnrollment": 0,
+        "JointSpaceAvailable": 0,
+        "ResponsibleCourseNumber": "",
+        "ResponsibleCurriculumAbbreviation": "",
+        "ResponsibleSectionID": "",
+        "ResponsibleSectionJointCurrentEnrollment": None,
+        "ResponsibleSectionJointLimitEstimateEnrollment": None,
+        "ResponsibleSectionJointSpaceAvailable": None
+    },
     "Current": {
         "CurrentEnrollment": 138,
         "CurrentRegistrationPeriod": "2",
@@ -56,8 +66,19 @@ M1 = {
             "SLN": "15753"},
         "SLN": "15753",
         "SpaceAvailable": 12,
-        "Status": "open"}
+        "Status": "open",
+        "JointCurrentEnrollment": 0,
+        "JointLimitEstimateEnrollment": 0,
+        "JointSpaceAvailable": 0,
+        "ResponsibleCourseNumber": "",
+        "ResponsibleCurriculumAbbreviation": "",
+        "ResponsibleSectionID": "",
+        "ResponsibleSectionJointCurrentEnrollment": None,
+        "ResponsibleSectionJointLimitEstimateEnrollment": None,
+        "ResponsibleSectionJointSpaceAvailable": None
+    }
 }
+
 override = override_settings(
     AWS_SQS={'SECTION_STATUS_V1': {
         'QUEUE_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxx_xxxx",
