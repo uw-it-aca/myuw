@@ -42,6 +42,7 @@ gateway:
     - test.my.uw.edu
     - dev.my.uw.edu
     - myuwdev.u.washington.edu
+  redirectToFirstHostname: true
   maxRequestSize: 1Mi
   requestTimeouts:
     frontEnd: 70s
