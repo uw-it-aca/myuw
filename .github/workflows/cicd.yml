@@ -74,6 +74,7 @@ jobs:
 
     permissions:
       contents: read
+      actions: write
       security-events: write
       # Coveralls may or may not need the following permissions
       # pull-requests: write    # For PR comments
