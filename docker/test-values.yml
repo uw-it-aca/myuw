@@ -254,7 +254,7 @@ environmentVariables:
     value: "15"
 
   - name: IDCARD_ENV
-    value: PROD
+    value: EVAL
   - name: IDCARD_POOL_SIZE
     value: "5"
   - name: IDCARD_TIMEOUT
