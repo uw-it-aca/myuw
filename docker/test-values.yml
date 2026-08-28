@@ -35,6 +35,18 @@ ingress:
       if ($host != 'test.my.uw.edu') {
         return 301 $scheme://test.my.uw.edu;
       }
+
+gateway:
+  enabled: true
+  hostnames:
+    - test.my.uw.edu
+    - dev.my.uw.edu
+    - myuwdev.u.washington.edu
+  maxRequestSize: 1Mi
+  requestTimeouts:
+    frontEnd: 70s
+    backEnd: 60s
+
 lifecycle:
   enabled: true
   preStop:
@@ -47,12 +59,14 @@ readiness:
   enabled: true
 securityPolicy:
   enabled: true
+
 externalService:
   enabled: true
   name: test-my-uw-db
   type: ClusterIP
   serviceAddress: 172.18.1.210
   servicePort: 5432
+
 database:
   engine: postgres
   name: myuw_test
@@ -68,11 +82,18 @@ memcached:
   replicaCount: 1
   updateStrategy:
     type: RollingUpdate
+
 certs:
   mounted: true
-  certPath: /certs/test.my.uw.edu-ic.cert
-  keyPath: /certs/test.my.uw.edu-ic.key
-  secretName: test.my.uw.edu-ic-certs
+  certPath: /certs/test.my.uw.edu-uwca.cert
+  keyPath: /certs/test.my.uw.edu-uwca.key
+  secretName: test.my.uw.edu-uwca-certs
+
+mountedSecrets:
+  enabled: true
+  mountPath: /ssl
+  secretName: test.my.uw.edu-openssl-conf
+
 cronjob:
   enabled: true
   jobs:
@@ -153,6 +174,7 @@ cronjob:
         requests:
           cpu: 25m
           memory: 256Mi
+
 environmentVariables:
   - name: AUTH
     value: SAML
@@ -174,6 +196,9 @@ environmentVariables:
     value: PROD
   - name: CANVAS_TIMEOUT
     value: "60"
+
+  - name: CLUSTER_CNAME
+    value: test.my.uw.edu
 
   - name: CODA_ENV
     value: PROD
@@ -228,7 +253,7 @@ environmentVariables:
     value: "15"
 
   - name: IDCARD_ENV
-    value: EVAL
+    value: PROD
   - name: IDCARD_POOL_SIZE
     value: "5"
   - name: IDCARD_TIMEOUT
@@ -244,6 +269,9 @@ environmentVariables:
   - name: LIBRARIES_TIMEOUT
     value: "15"
 
+  - name: MEMCACHED_MAX_POOL_SIZE
+    value: "10"
+
   - name: MAILMAN_ENV
     value: EVAL
   - name: MAILMAN_TIMEOUT
@@ -255,6 +283,9 @@ environmentVariables:
     value: EVAL
   - name: MYPLAN_TIMEOUT
     value: "15"
+
+  - name: OPENSSL_CONF
+    value: /ssl/openssl.cnf
 
   - name: PWS_ENV
     value: EVAL
@@ -292,7 +323,6 @@ environmentVariables:
   - name: SPACE_TIMEOUT
     value: "15"
 
-
   - name: UPASS_ENV
     value: EVAL
   - name: UPASS_POOL_SIZE
@@ -310,12 +340,6 @@ environmentVariables:
   - name: UWIDP_POOL_SIZE
     value: "2"
   - name: UWIDP_TIMEOUT
-    value: "10"
-
-  - name: CLUSTER_CNAME
-    value: test.my.uw.edu
-
-  - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
 externalSecrets:
@@ -362,19 +386,24 @@ externalSecrets:
         - name: password
           property: sql_pass
 
-    - name: test.my.uw.edu-ic-certs
-      externalKey: my/test/ic-certs
+    - name: test.my.uw.edu-uwca-certs
+      externalKey: my/test/uwca-certs
       data:
-        - name: test.my.uw.edu-ic.key
-          property: key
-        - name: test.my.uw.edu-ic.cert
-          property: cert
+        - name: test.my.uw.edu-uwca.key
+          property:  test.my.uw.edu-uwca.key
+        - name: test.my.uw.edu-uwca.cert
+          property: test.my.uw.edu-uwca.cert
 
     - name: test.my.uw.edu-uw-idp-cert
       externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
+    - name: test.my.uw.edu-openssl-conf
+      externalKey: openssl-conf
+      data:
+        - name: openssl.cnf
+          property: openssl.cnf
 
 environmentVariablesSecrets:
   django-secret:
@@ -437,10 +466,6 @@ environmentVariablesSecrets:
     name: MAILMAN_API_TOKEN
     secretName: test.my.uw.edu-secrets
     secretKey: mailman-api-token
-  SAMLServiceProviderCert:
-    name: SP_CERT
-    secretName: test.my.uw.edu-ic-certs
-    secretKey: test.my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: test.my.uw.edu-uw-idp-cert
