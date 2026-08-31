@@ -1,41 +1,3 @@
-ingress:
-  enabled: true
-  tls:
-    myuw:
-      secretName: test.my.uw.edu-ingress-cert
-      hosts:
-        - test.my.uw.edu
-    devmy:
-      secretName: dev.my.uw.edu-ingress-cert
-      hosts:
-        - dev.my.uw.edu
-    myuwdev:
-      secretName: myuwdev.u.washington.edu-ingress-cert
-      hosts:
-        - myuwdev.u.washington.edu
-  hosts:
-    myuw:
-      host: test.my.uw.edu
-      paths:
-        - "/"
-    devmy:
-      host: dev.my.uw.edu
-      paths:
-        - "/"
-    myuwdev:
-      host: myuwdev.u.washington.edu
-      paths:
-        - "/"
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
-    nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
-    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($host != 'test.my.uw.edu') {
-        return 301 $scheme://test.my.uw.edu;
-      }
-
 gateway:
   enabled: true
   hostnames:
@@ -86,14 +48,9 @@ memcached:
 
 certs:
   mounted: true
-  certPath: /certs/test.my.uw.edu-uwca.cert
-  keyPath: /certs/test.my.uw.edu-uwca.key
-  secretName: test.my.uw.edu-uwca-certs
-
-mountedSecrets:
-  enabled: true
-  mountPath: /ssl
-  secretName: test.my.uw.edu-openssl-conf
+  certPath: /certs/test.my.uw.edu-ic.cert
+  keyPath: /certs/test.my.uw.edu-ic.key
+  secretName: test.my.uw.edu-ic-certs
 
 cronjob:
   enabled: true
@@ -285,9 +242,6 @@ environmentVariables:
   - name: MYPLAN_TIMEOUT
     value: "15"
 
-  - name: OPENSSL_CONF
-    value: /ssl/openssl.cnf
-
   - name: PWS_ENV
     value: EVAL
   - name: PWS_POOL_SIZE
@@ -387,24 +341,19 @@ externalSecrets:
         - name: password
           property: sql_pass
 
-    - name: test.my.uw.edu-uwca-certs
-      externalKey: my/test/uwca-certs
+    - name: test.my.uw.edu-ic-certs
+      externalKey: my/test/ic-certs
       data:
-        - name: test.my.uw.edu-uwca.key
-          property:  test.my.uw.edu-uwca.key
-        - name: test.my.uw.edu-uwca.cert
-          property: test.my.uw.edu-uwca.cert
+        - name: test.my.uw.edu-ic.key
+          property: key
+        - name: test.my.uw.edu-ic.cert
+          property: cert
 
     - name: test.my.uw.edu-uw-idp-cert
       externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
-    - name: test.my.uw.edu-openssl-conf
-      externalKey: openssl-conf
-      data:
-        - name: openssl.cnf
-          property: openssl.cnf
 
 environmentVariablesSecrets:
   django-secret:
