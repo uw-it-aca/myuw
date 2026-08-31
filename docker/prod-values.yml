@@ -54,44 +54,6 @@ affinity:
    podsSpanNodes: true
    # spread pods across different nodes
 
-ingress:
-  enabled: true
-  tls:
-    myuw:
-      secretName: my.uw.edu-ingress-cert
-      hosts:
-        - my.uw.edu
-    myuw-uw:
-      secretName: myuw.uw.edu-ingress-cert
-      hosts:
-        - myuw.uw.edu
-    myuw-washington:
-      secretName: myuw.washington.edu-ingress-cert
-      hosts:
-        - myuw.washington.edu
-  hosts:
-    myuw:
-      host: my.uw.edu
-      paths:
-        - "/"
-    myuw-uw:
-      host: myuw.uw.edu
-      paths:
-        - "/"
-    myuw-washington:
-      host: myuw.washington.edu
-      paths:
-        - "/"
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
-    nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
-    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($host != 'my.uw.edu') {
-        return 301 $scheme://my.uw.edu;
-      }
-
 gateway:
   enabled: true
   hostnames:
@@ -103,19 +65,6 @@ gateway:
   requestTimeouts:
     frontEnd: 90s
     backEnd: 90s
-  tlsOptions:
-    cipherSuites:
-      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
-      - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-      - TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
-      - TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-    minVersion: "1.0"
-    maxVersion: "1.3"
 
 lifecycle:
   enabled: true
