@@ -53,6 +53,7 @@ resources:
 affinity:
    podsSpanNodes: true
    # spread pods across different nodes
+
 ingress:
   enabled: true
   tls:
@@ -90,6 +91,19 @@ ingress:
       if ($host != 'my.uw.edu') {
         return 301 $scheme://my.uw.edu;
       }
+
+gateway:
+  enabled: true
+  hostnames:
+    - my.uw.edu
+    - myuw.uw.edu
+    - myuw.washington.edu
+  redirectToFirstHostname: true
+  maxRequestSize: 1Mi
+  requestTimeouts:
+    frontEnd: 90s
+    backEnd: 90s
+
 lifecycle:
   enabled: true
   preStop:
@@ -578,10 +592,6 @@ environmentVariablesSecrets:
     name: MAILMAN_API_TOKEN
     secretName: my.uw.edu-secrets
     secretKey: mailman-api-token
-  SAMLServiceProviderCert:
-    name: SP_CERT
-    secretName: my.uw.edu-ic-certs
-    secretKey: my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: my.uw.edu-uw-idp-cert
