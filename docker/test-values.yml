@@ -1,40 +1,28 @@
-ingress:
+gateway:
   enabled: true
-  tls:
-    myuw:
-      secretName: test.my.uw.edu-ingress-cert
-      hosts:
-        - test.my.uw.edu
-    devmy:
-      secretName: dev.my.uw.edu-ingress-cert
-      hosts:
-        - dev.my.uw.edu
-    myuwdev:
-      secretName: myuwdev.u.washington.edu-ingress-cert
-      hosts:
-        - myuwdev.u.washington.edu
-  hosts:
-    myuw:
-      host: test.my.uw.edu
-      paths:
-        - "/"
-    devmy:
-      host: dev.my.uw.edu
-      paths:
-        - "/"
-    myuwdev:
-      host: myuwdev.u.washington.edu
-      paths:
-        - "/"
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
-    nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
-    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($host != 'test.my.uw.edu') {
-        return 301 $scheme://test.my.uw.edu;
-      }
+  hostnames:
+    - test.my.uw.edu
+    - dev.my.uw.edu
+    - myuwdev.u.washington.edu
+  redirectToFirstHostname: true
+  maxRequestSize: 1Mi
+  requestTimeouts:
+    frontEnd: 70s
+    backEnd: 60s
+  tlsOptions:
+    cipherSuites:
+      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+      - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+      - TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+    minVersion: "1.0"
+    maxVersion: "1.3"
+
 lifecycle:
   enabled: true
   preStop:
@@ -47,12 +35,14 @@ readiness:
   enabled: true
 securityPolicy:
   enabled: true
+
 externalService:
   enabled: true
   name: test-my-uw-db
   type: ClusterIP
   serviceAddress: 172.18.1.210
   servicePort: 5432
+
 database:
   engine: postgres
   name: myuw_test
@@ -68,11 +58,13 @@ memcached:
   replicaCount: 1
   updateStrategy:
     type: RollingUpdate
+
 certs:
   mounted: true
   certPath: /certs/test.my.uw.edu-ic.cert
   keyPath: /certs/test.my.uw.edu-ic.key
   secretName: test.my.uw.edu-ic-certs
+
 cronjob:
   enabled: true
   jobs:
@@ -153,6 +145,7 @@ cronjob:
         requests:
           cpu: 25m
           memory: 256Mi
+
 environmentVariables:
   - name: AUTH
     value: SAML
@@ -174,6 +167,9 @@ environmentVariables:
     value: PROD
   - name: CANVAS_TIMEOUT
     value: "60"
+
+  - name: CLUSTER_CNAME
+    value: test.my.uw.edu
 
   - name: CODA_ENV
     value: PROD
@@ -244,6 +240,9 @@ environmentVariables:
   - name: LIBRARIES_TIMEOUT
     value: "15"
 
+  - name: MEMCACHED_MAX_POOL_SIZE
+    value: "10"
+
   - name: MAILMAN_ENV
     value: EVAL
   - name: MAILMAN_TIMEOUT
@@ -292,7 +291,6 @@ environmentVariables:
   - name: SPACE_TIMEOUT
     value: "15"
 
-
   - name: UPASS_ENV
     value: EVAL
   - name: UPASS_POOL_SIZE
@@ -310,12 +308,6 @@ environmentVariables:
   - name: UWIDP_POOL_SIZE
     value: "2"
   - name: UWIDP_TIMEOUT
-    value: "10"
-
-  - name: CLUSTER_CNAME
-    value: test.my.uw.edu
-
-  - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
 externalSecrets:
@@ -437,10 +429,6 @@ environmentVariablesSecrets:
     name: MAILMAN_API_TOKEN
     secretName: test.my.uw.edu-secrets
     secretKey: mailman-api-token
-  SAMLServiceProviderCert:
-    name: SP_CERT
-    secretName: test.my.uw.edu-ic-certs
-    secretKey: test.my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: test.my.uw.edu-uw-idp-cert
