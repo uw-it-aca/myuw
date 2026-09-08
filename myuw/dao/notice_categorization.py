@@ -334,6 +334,11 @@ NOTICE_CATEGORIES = {
         "location_tags": ['tuition_disbursedateB_title'],
         "critical": False
     },
+    "studentfinaid_lessthanfulltime": {
+        "myuw_category": "Fees & Finances",
+        "location_tags": ["tuition_lessthanfulltime"],
+        "critical": True
+    },
     "studentfinaid_loancounseling": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_loancounseling'],

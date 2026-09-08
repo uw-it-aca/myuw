@@ -31,7 +31,7 @@ class TestNotices(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = _get_notices_by_regid(regid)
         self.assertIsNotNone(notices)
-        self.assertEqual(len(notices), 24)
+        self.assertEqual(len(notices), 25)
 
         self.assertEqual(notices[0].custom_category, "Holds")
         self.assertEqual(
@@ -45,6 +45,17 @@ class TestNotices(TestCase):
             notices[13].location_tags,
             ['tuition_aid_reminder_title'])
         self.assertFalse(notices[12].is_critical)
+
+        less_than_full_time = next(
+            (notice for notice in notices
+             if notice.notice_type == "LessThanFullTime"),
+            None)
+        self.assertIsNotNone(less_than_full_time)
+        self.assertEqual(less_than_full_time.custom_category,
+                         "Fees & Finances")
+        self.assertEqual(less_than_full_time.location_tags,
+                         ["tuition_lessthanfulltime"])
+        self.assertTrue(less_than_full_time.is_critical)
 
         regid = "9136CCB8F66711D5BE060004AC494F31"
         notices = _get_notices_by_regid(regid)
