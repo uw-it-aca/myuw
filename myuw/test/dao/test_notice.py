@@ -47,8 +47,10 @@ class TestNotices(TestCase):
         self.assertFalse(notices[12].is_critical)
 
         less_than_full_time = next(
-            notice for notice in notices
-            if notice.notice_type == "LessThanFullTime")
+            (notice for notice in notices
+             if notice.notice_type == "LessThanFullTime"),
+            None)
+        self.assertIsNotNone(less_than_full_time)
         self.assertEqual(less_than_full_time.custom_category,
                          "Fees & Finances")
         self.assertEqual(less_than_full_time.location_tags,
