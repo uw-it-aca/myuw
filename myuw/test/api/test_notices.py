@@ -25,7 +25,7 @@ class TestNotices(MyuwApiTest):
 
         data = json.loads(response.content)
 
-        self.assertEqual(len(data), 30)
+        self.assertEqual(len(data), 31)
         self.assertFalse(data[0]["is_read"])
 
         hash_value = data[0]["id_hash"]
@@ -40,7 +40,7 @@ class TestNotices(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEqual(len(data), 30)
+        self.assertEqual(len(data), 31)
 
         match = False
         for el in data:

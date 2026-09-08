@@ -69,6 +69,7 @@ export default {
         "tuition_disbursedateB",
         "tuition_direct_deposit",
         "tuition_aid_prioritydate",
+        "tuition_lessthanfulltime",
       ];
 
       return this.allNotices.filter((n) => {

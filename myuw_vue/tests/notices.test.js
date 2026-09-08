@@ -8,6 +8,7 @@ import notices from '../vuex/store/notices';
 import NoticeCard from '../components/home/notice/notices';
 import NoticeList from '../components/home/notice/notice-items';
 import CollapsedItem from '../components/_common/collapsed-notice.vue';
+import AllNotices from '../components/notices/all-notices.vue';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
@@ -178,5 +179,38 @@ describe('Notice Card', () => {
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.noDisplayableNotices).toBe(true);
     expect(wrapper.findComponent(NoticeCard).exists()).toBe(true);
+  });
+});
+
+describe('All Notices', () => {
+  let store;
+
+  beforeEach(() => {
+    store = new Vuex.Store({
+      modules: {
+        notices,
+      },
+    });
+  });
+
+  it('groups less-than-full-time financial aid as critical', async () => {
+    axios.get.mockResolvedValue({
+      data: [{
+        notice_content: '<span class="notice-title">Less than full-time</span>',
+        attributes: [],
+        category: 'Fees & Finances',
+        sws_category: 'StudentFinAid',
+        is_critical: true,
+        is_read: false,
+        location_tags: ['tuition_lessthanfulltime'],
+      }],
+      status: 200,
+    });
+
+    const wrapper = shallowMount(AllNotices, {store, localVue});
+    await new Promise(setImmediate);
+
+    expect(wrapper.vm.criticalNotices).toHaveLength(1);
+    expect(wrapper.vm.timedNotices.future).toHaveLength(0);
   });
 });
