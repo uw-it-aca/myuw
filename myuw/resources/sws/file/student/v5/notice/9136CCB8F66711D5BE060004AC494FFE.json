@@ -398,6 +398,12 @@
             "NoticeCategory": "NewStudentGEN",
             "NoticeContent": "<span class=\"notice-title\">Expected Status</span>&nbsp;<span class=\"notice-body-with-title\">Your expected status at the University:</span>&nbsp;<ul class=\"notice-list\"> <li>Campus: SEATTLE</li><li>Class Standing: FRESHMAN</li><li>School/College: Arts & Sciences</li><li>Department: PRE MAJOR (A&S)</li><li>Student Number: 1522136</li><li>Residency Status: RES-IMMIGR</li></ul> <span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/whatsthis.html\">Have questions? Read the Notes and Definitions</a></span>",
             "NoticeType": "StatusSummary"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Important financial aid information for students planning to enroll less than full-time</span>&nbsp;<span class=\"notice-body-with-title\">Financial aid offers are initially based on full-time enrollment. If you haven't already done so, please inform the financial aid office if you are planning on attending less than full-time in your <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Financial Aid Status</a>.</span>",
+            "NoticeType": "LessThanFullTime"
         }
     ],
     "Person": {
