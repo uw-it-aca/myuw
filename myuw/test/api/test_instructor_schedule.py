@@ -237,6 +237,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertTrue('cc_display_dates' in section1)
         self.assertFalse(section1['sln'] == 0)
         self.assertEqual(section1['eos_cid'], None)
+        self.assertNotIn('myuwclass_url', section1)
 
         now_request = get_request_with_user('billpce')
         _schedule = get_current_quarter_instructor_schedule(now_request)
@@ -255,6 +256,10 @@ class TestInstructorSection(MyuwApiTest):
 
         section2 = data['sections'][1]
         self.assertTrue(section2['evaluation']["eval_not_exist"])
+        self.assertEqual(section2['section_label'], "2013_spring_ACCTG_508_A")
+        self.assertEqual(section2['eos_cid'], "MC123456")
+        self.assertNotIn('myuwclass_url', section2)
+
         section3 = data['sections'][2]
         self.assertEqual(section3["section_type"], 'CLS')
         self.assertTrue(section3["has_eos_dates"])

@@ -271,7 +271,7 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
         section_data["section_label"] =\
             safe_label(section.section_label())
 
-        if section.eos_cid:
+        if section.eos_cid and not str(section.eos_cid).startswith("MC"):
             section_data["myuwclass_url"] = f"{get_myuwclass_url()}{section.eos_cid}"
 
         if section.is_primary_section:

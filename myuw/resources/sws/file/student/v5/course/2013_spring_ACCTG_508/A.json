@@ -24,7 +24,7 @@
     "DeleteFlag": "active",
     "DistanceLearning": false,
     "DuplicateEnrollmentAllowed": false,
-    "EOS_CID": null,
+    "EOS_CID": "MC123456",
     "EndDate": "",
     "EnrollmentRestrictions": false,
     "FeeAmount": "",
