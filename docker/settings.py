@@ -144,16 +144,17 @@ LOGGING = {
     'filters': {
         'stdout_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno < logging.WARN
+            'callback': lambda record: record.levelno < logging.WARNING,
         },
         'stderr_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno > logging.INFO
+            'callback': lambda record: record.levelno > logging.INFO,
         }
     },
     'formatters': {
         'myuw': {
-            'format': '%(name)s %(levelname)-4s %(asctime)s %(message)s',
+            'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '[%d/%b/%Y:%H:%M:%S %z]',
         },
     },
     'handlers': {
@@ -169,11 +170,33 @@ LOGGING = {
             'filters': ['stderr_stream'],
             'formatter': 'myuw',
         },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
     },
     'loggers': {
+        'django.security.DisallowedHost': {
+            'handlers': ['null'],
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['stderr'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'myuw': {
+            'handlers': ['stdout', 'stderr'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'urllib3': {
+            'handlers': ['stdout', 'stderr'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
+            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG',
         }
     }
 }
