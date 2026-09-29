@@ -64,31 +64,6 @@ THRIVE_OUTPUT = "/hx_toolkit_output"
 MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 MYUW_SKIP_ACCESS_CHECK = True
 
-# dev/test site access settings
-if os.getenv("ENV", "") == "localdev":
-    MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
-    MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
-    MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
-else:
-    MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
-    MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
-    if os.getenv("ENV", "") == "prod":
-        MYUW_ADMIN_GROUP = "u_astra_myuw_prod-support-admin"
-        MYUW_OVERRIDE_GROUP = "u_astra_myuw_prod-support-impersonate"
-        MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
-    else:
-        MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
-        MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
-        MYUW_SKIP_ACCESS_CHECK = False
-
-    RESTCLIENTS_BOOK_HOST = 'https://api.ubookstore.com'
-    CSRF_TRUSTED_ORIGINS = ["https://" + os.getenv('CLUSTER_CNAME')]
-
-    # Address SSLError: DH_KEY_TOO_SMALL
-    sdb_ssl_context = ssl.SSLContext()
-    sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
-    RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
-
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
@@ -201,11 +176,24 @@ LOGGING = {
     }
 }
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
+GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
+
+# Environment-dependent settings
 DEBUG = False
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
     # RESTCLIENTS_DAO_CACHE_CLASS = None
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
+        }
+    }
+    MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
+    MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
+    MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
 
@@ -220,23 +208,29 @@ else:
             }
         }
     }
-
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
-GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
-
-# Location of stats file that can be accessed during local development and
-# collected from during production build process
-
-if os.getenv("ENV") == "localdev":
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
-        }
-    }
-else:
+    # Location of stats file that can be accessed during local development and
+    # collected from during production build process
     WEBPACK_LOADER = {
         'DEFAULT': {
             'STATS_FILE': '/static/webpack-stats.json',
         }
     }
+    # Access control
+    MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
+    MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
+    if os.getenv("ENV", "") == "prod":
+        MYUW_ADMIN_GROUP = "u_astra_myuw_prod-support-admin"
+        MYUW_OVERRIDE_GROUP = "u_astra_myuw_prod-support-impersonate"
+        MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
+    else:
+        MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
+        MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
+        MYUW_SKIP_ACCESS_CHECK = False
+
+    RESTCLIENTS_BOOK_HOST = 'https://api.ubookstore.com'
+    CSRF_TRUSTED_ORIGINS = ["https://" + os.getenv('CLUSTER_CNAME')]
+
+    # Address SSLError: DH_KEY_TOO_SMALL
+    sdb_ssl_context = ssl.SSLContext()
+    sdb_ssl_context.set_ciphers('HIGH:!DH:!aNULL')
+    RESTCLIENTS_SDBMYUW_SSL_CONTEXT = sdb_ssl_context
