@@ -50,7 +50,7 @@ def get_default_datetime():
     right in the middle of the "current" term.
     """
     if is_using_file_dao():
-        return datetime(2013, 4, 15, 0, 0, 1)  # noqa: DTZ001
+        return datetime(2013, 4, 15, 0, 0, 1)
     return tz_naive_now()
 
 
@@ -66,13 +66,13 @@ def get_comparison_datetime(request):
     if request and "myuw_override_date" in request.session:
         try:
             val = request.session["myuw_override_date"]
-            override_date = datetime.strptime(val, FORMAT)  # noqa: DTZ007
+            override_date = datetime.strptime(val, FORMAT)
         except ValueError:
             # Accepts an override date as well, but adds 1 second
             # so date logic works
             try:
                 date_format = "%Y-%m-%d"
-                override_date = datetime.strptime(val, date_format)  # noqa: DTZ007
+                override_date = datetime.strptime(val, date_format)
                 override_date = override_date + timedelta(seconds=1)
             except Exception:  # noqa: S110
                 pass
