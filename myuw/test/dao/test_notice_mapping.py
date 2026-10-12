@@ -1,7 +1,7 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from django.test import TestCase, override_settings
 from django.utils.timezone import get_default_timezone
@@ -98,10 +98,10 @@ class TestMapNotices(TestCase):
         notices = categorize_notices(get_notices_by_regid(regid))
         notice = notices[10]
         tz = get_default_timezone()
-        d1 = datetime(2013, 1, 15, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        d1 = datetime(2013, 1, 15, 0, 0, 0, tzinfo=tz).astimezone(UTC)
         self.assertFalse(is_after_eof_days_after_open(d1, notice, 14))
 
-        d2 = datetime(2013, 1, 16, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        d2 = datetime(2013, 1, 16, 0, 0, 0, tzinfo=tz).astimezone(UTC)
         self.assertTrue(is_after_eof_days_after_open(d2, notice, 14))
 
     @override_settings(TIME_ZONE='America/Los_Angeles')
@@ -110,10 +110,10 @@ class TestMapNotices(TestCase):
         notices = categorize_notices(get_notices_by_regid(regid))
         notice = notices[10]
         tz = get_default_timezone()
-        d1 = datetime(2013, 2, 14, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        d1 = datetime(2013, 2, 14, 0, 0, 0, tzinfo=tz).astimezone(UTC)
         self.assertFalse(is_before_bof_days_before_close(d1, notice, 14))
 
-        d2 = datetime(2013, 2, 13, 0, 0, 0, tzinfo=tz).astimezone(timezone.utc)
+        d2 = datetime(2013, 2, 13, 0, 0, 0, tzinfo=tz).astimezone(UTC)
         self.assertTrue(is_before_bof_days_before_close(d2, notice, 14))
 
     def test_apply_showhide(self):

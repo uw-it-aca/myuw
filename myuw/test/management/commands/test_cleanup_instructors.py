@@ -12,7 +12,7 @@ from myuw.models import Instructor, User
 class TestDeleteSessions(TransactionTestCase):
 
     def test_run(self):
-        year = date.today().year - 7  # noqa: DTZ011
+        year = date.today().year - 7
         user = User.get_user('bill')
         Instructor.add_seen_instructor(user, year, 'spring')
         user = User.get_user('billsea')
@@ -21,7 +21,7 @@ class TestDeleteSessions(TransactionTestCase):
         Instructor.add_seen_instructor(user, year, 'winter')
         user = User.get_user('billjoint')
         Instructor.add_seen_instructor(
-            user, date.today().year - 6, 'summer')  # noqa: DTZ011
+            user, date.today().year - 6, 'summer')
         records = Instructor.objects.all()
         self.assertEqual(len(records), 4)
         call_command('cleanup_instructors')

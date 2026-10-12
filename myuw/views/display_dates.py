@@ -3,7 +3,7 @@
 
 import logging
 import traceback
-from datetime import timezone
+from datetime import UTC
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -132,7 +132,7 @@ def add_seen_registration_context(request, context):
     for reg in seen_registrations:
 
         seen_date = reg.first_seen_date
-        local = seen_date.replace(tzinfo=timezone.utc).astimezone(local_tz)
+        local = seen_date.replace(tzinfo=UTC).astimezone(local_tz)
 
         seen.append({
             'year': reg.year,

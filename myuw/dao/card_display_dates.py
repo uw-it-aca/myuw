@@ -179,9 +179,9 @@ def is_term_myplan_peak(now, term, data):
     now_date = now.date()
     if (now_date >= term.registration_period1_start and
             now_date <= term.registration_period1_end):
-        peak_start_time = datetime(  # noqa: DTZ001
+        peak_start_time = datetime(
                 now.year, now.month, now.day, 5, 30, 0)
-        peak_end_time = datetime(  # noqa: DTZ001
+        peak_end_time = datetime(
             now.year, now.month, now.day, 6, 30, 0)
         if (now >= peak_start_time and now <= peak_end_time):
             return True
