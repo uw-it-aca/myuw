@@ -46,7 +46,7 @@ class TestDeleteSessions(TransactionTestCase):
         with patch.object(Facilities, 'search_by_code', spec=True) as mock:
             mock.return_value = [Facility(
                 code='NMEB',
-                last_updated=datetime.now(),  # noqa: DTZ005
+                last_updated=datetime.now(),
                 latitude='47.653693',
                 longitude='-122.304747',
                 name='Mechanical Engineering Building',
@@ -63,7 +63,7 @@ class TestDeleteSessions(TransactionTestCase):
     def test_error(self, mock):
         fac_obj = Facility(
             code='MEB',
-            last_updated=datetime.now(),  # noqa: DTZ005
+            last_updated=datetime.now(),
             latitude='47.653693',
             longitude='-122.304747',
             name='Mechanical Engineering Building',

@@ -150,7 +150,7 @@
                 >To maintain access to these materials at Day One Access pricing, you must pay for
                 these materials</strong
               >.
-              <a href="https://www.ubookstore.com/day-one-access-faq"
+              <a href="https://ubookstore.com/pages/day-one-student"
                 >About the Day One Access Program</a
               >.
             </p>
@@ -376,7 +376,9 @@ export default {
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
-      return this.toFromNowDate(this.iacData.payment_due_day);
+      // return this.toFromNowDate(this.iacData.payment_due_day);
+      // MUWM-5505
+      return "";
     },
     dayOneAccessOverDue() {
       // MUWM-5351

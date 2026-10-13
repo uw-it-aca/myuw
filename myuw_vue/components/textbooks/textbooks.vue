@@ -27,7 +27,7 @@
                 <uw-formatted-date :due-date="iacData.payment_due_day" />
               </span>.
             </strong>
-            <a href="https://www.ubookstore.com/day-one-access-faq"
+            <a href="https://ubookstore.com/pages/day-one-student"
             >About the Day One Access Program.</a>
           </p>
           <ul>

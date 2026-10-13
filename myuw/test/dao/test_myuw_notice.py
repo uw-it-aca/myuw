@@ -29,7 +29,7 @@ from myuw.test import get_request_with_date, get_request_with_user
 
 def get_datetime_with_tz(year, month, day, hour):
     return timezone.make_aware( 
-            datetime(year, month, day, hour, 0, 0))  # noqa: DTZ001
+            datetime(year, month, day, hour, 0, 0))
 
 
 class TestMyuwNotice(TransactionTestCase):
