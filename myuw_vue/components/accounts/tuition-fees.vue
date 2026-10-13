@@ -150,7 +150,7 @@
                 >To maintain access to these materials at Day One Access pricing, you must pay for
                 these materials</strong
               >.
-              <a href="https://www.ubookstore.com/day-one-access-faq"
+              <a href="https://ubookstore.com/pages/day-one-student"
                 >About the Day One Access Program</a
               >.
             </p>
