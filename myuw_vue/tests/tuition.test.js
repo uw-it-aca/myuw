@@ -119,7 +119,7 @@ describe('Tuition store', () => {
     expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
     expect(wrapper.findAllComponents(CardStatus).length).toBe(5);
     expect(wrapper.vm.hasIacData).toBeTruthy;
-    expect(wrapper.vm.dayOneAccessDueDateFromNow).toBeTruthy;
+    expect(wrapper.vm.dayOneAccessDueDateFromNow).not.toBeTruthy;
     expect(wrapper.vm.dayOneAccessOverDue).toBe(false);
   });
 

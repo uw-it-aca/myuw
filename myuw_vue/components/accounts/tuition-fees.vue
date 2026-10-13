@@ -376,7 +376,9 @@ export default {
     },
     dayOneAccessDueDateFromNow() {
       // MUWM-5272
-      return this.toFromNowDate(this.iacData.payment_due_day);
+      // return this.toFromNowDate(this.iacData.payment_due_day);
+      // MUWM-5505
+      return "";
     },
     dayOneAccessOverDue() {
       // MUWM-5351
