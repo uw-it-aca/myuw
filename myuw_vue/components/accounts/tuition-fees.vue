@@ -189,7 +189,7 @@
               <uw-formatted-date :due-date="iacData.payment_due_day" />
             </template>
             <template #status-content>
-              <div class="myuw-text-md text-body text-end ">
+              <div class="myuw-text-md text-body text-end">
                 {{ dayOneAccessDueDateFromNow }}
               </div>
             </template>
