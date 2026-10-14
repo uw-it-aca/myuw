@@ -376,13 +376,6 @@ environmentVariables:
   - name: PWS_POOL_SIZE
     value: "80"
 
-  - name: SDBMYUW_ENV
-    value: PROD
-  - name: SDBMYUW_POOL_SIZE
-    value: "20"
-  - name: SDBMYUW_TIMEOUT
-    value: "10"
-
   - name: SPS_CONTACTS_ENV
     value: PROD
   - name: SPS_CONTACTS_TIMEOUT
