@@ -26,9 +26,17 @@ def get_applications(request):
     response = []
     system_key = get_student_system_key_of_current_user(request)
     if system_key is not None:
-        applications = get_app_status(system_key)
-        for application in applications:
-            response.append(application.json_data())
+        try:
+            applications = get_app_status(system_key)
+            for application in applications:
+                response.append(application.json_data())
+        except DataFailureException as err:
+            # sdbmyuw client returns 543 status when there is no data
+            if err.status == 543:
+                logger.info(f"No applicant status data for system key '{system_key}'")
+                return response
+            else:
+                raise
     else:
         logger.error({
             **get_userids(request),
