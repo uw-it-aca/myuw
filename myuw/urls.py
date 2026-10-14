@@ -11,7 +11,6 @@ from myuw.views.accounts import accounts
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.adviser import Advisers
 from myuw.views.api.affiliation import Affiliation
-from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.api.category_links import CategoryLinks
@@ -192,9 +191,6 @@ urlpatterns += [
     re_path(r'^api/v1/profile/$',
             MyProfile.as_view(),
             name="myuw_profile_api"),
-    re_path(r'^api/v1/applications/',
-            Applications.as_view(),
-            name="myuw_applications_api"),
     re_path(r'api/v1/link/?$',
             ManageLinks.as_view(),
             name='myuw_manage_links'),
