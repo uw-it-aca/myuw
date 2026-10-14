@@ -249,11 +249,6 @@ environmentVariables:
   - name: PWS_TIMEOUT
     value: "15"
 
-  - name: SDBMYUW_ENV
-    value: PROD
-  - name: SDBMYUW_TIMEOUT
-    value: "15"
-
   - name: SPS_CONTACTS_ENV
     value: EVAL
   - name: SPS_CONTACTS_TIMEOUT
