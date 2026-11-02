@@ -14,17 +14,20 @@ Academics,Grades & Transcripts,all,https://registrar.washington.edu/transcripts/
 Academics,Grades & Transcripts,all,https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php,Order Official Transcripts,,,,,,,no
 Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,no
 Academics,Graduation,all,,,https://registrar.washington.edu/graduation/,Applying for Graduation,https://www.uwb.edu/registrar/graduation/apply,Applying for Graduation,https://www.tacoma.uw.edu/uwt/registrar/graduation-procedures,Applying to Graduate,no
-Academics,Registration,all,,,https://www.washington.edu/students/reg/calendar.html,Academic Calendar,https://www.uwb.edu/academic-calendar/,UW Bothell Academic Calendar,https://www.washington.edu/students/reg/calendar.html,Academic Calendar,no
-Academics,Registration,all,,,https://www.washington.edu/students/crscat/,Course Catalog,https://www.washington.edu/students/crscatb/,Course Catalog,https://www.washington.edu/students/crscatt/,Course Catalog,no
-Academics,Registration,all,https://myplan.uw.edu/audit/#/degree,Check Your Degree Progress (DARS),,,,,,,no
-Academics,Registration,all,https://myplan.uw.edu/,MyPlan,,,,,,,no
-Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
-Academics,Registration,all,https://dawgpath.uw.edu,DawgPath,,,,,,,no
-Academics,Registration,all,https://register.uw.edu,Registration,,,,,,,no
-Academics,Registration,all,,,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,,,no
-Academics,Registration,all,,,https://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,https://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
-Academics,Registration,all,https://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
-Academics,Registration,all,https://www.degreereg.uw.edu/how-to-register,How to Register for PCE Courses,,,,,,,no
+Academics,Admissions & Registration,all,,,https://www.washington.edu/students/reg/calendar.html,Academic Calendar,https://www.uwb.edu/academic-calendar/,UW Bothell Academic Calendar,https://www.washington.edu/students/reg/calendar.html,Academic Calendar,no
+Academics,Admissions & Registration,all,,,https://www.washington.edu/students/crscat/,Course Catalog,https://www.washington.edu/students/crscatb/,Course Catalog,https://www.washington.edu/students/crscatt/,Course Catalog,no
+Academics,Admissions & Registration,all,https://myplan.uw.edu/audit/#/degree,Check Your Degree Progress (DARS),,,,,,,no
+Academics,Admissions & Registration,all,https://myplan.uw.edu/,MyPlan,,,,,,,no
+Academics,Admissions & Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
+Academics,Admissions & Registration,all,https://dawgpath.uw.edu,DawgPath,,,,,,,no
+Academics,Admissions & Registration,all,https://register.uw.edu,Registration,,,,,,,no
+Academics,Admissions & Registration,all,,,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,https://myplan.uw.edu/plan/#/schedule,Schedule Builder,,,no
+Academics,Admissions & Registration,all,,,https://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registrar/time,UW Bothell Time Schedule,https://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
+Academics,Admissions & Registration,all,https://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
+Academics,Admissions & Registration,all,https://www.degreereg.uw.edu/how-to-register,How to Register for PCE Courses,,,,,,,no
+Academics,Admissions & Registration,all,,,https://seattle.admissions.uw.edu/apply/status,Seattle Admissions Status,,,,,no
+Academics,Admissions & Registration,all,,,,,https://admissions.uwb.edu/portal/myuwb,Bothell Admissions Status,,,no
+Academics,Admissions & Registration,all,,,,,,,https://apply.tacoma.uw.edu/portal/app_status_page,Tacoma Admissions Status,no
 Academics,Rights and Responsibilities,all,https://www.washington.edu/students/reg/ferpa.html,Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information,,,,,,,no
 Academics,Rights and Responsibilities,all,,,https://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,https://www.uwb.edu/student-affairs/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/student-conduct/student-code,Student Conduct Code,no
 Academics,Tools and Software,all,https://canvas.uw.edu/,Canvas LMS,,,,,,,no
@@ -105,8 +108,8 @@ Events and Activities,Stay Connected,all,,,https://twitter.com/UW,UW Twitter,htt
 Events and Activities,Stay Connected,all,,,https://www.linkedin.com/company/university-of-washington,UW LinkedIn,https://www.linkedin.com/groups/University-Washington-Bothell-92858?home=&gid=92858,UW Bothell LinkedIn,https://www.linkedin.com/school/university-of-washington-tacoma/,UW Tacoma LinkedIn,no
 Events and Activities,Student Clubs and Organizations,all,,,https://hub.washington.edu/sao/rso-directory/,Registered Student Organizations (RSO) Directory,https://www.uwb.edu/sea/clubs,Club Directory,https://dawgden.tacoma.uw.edu/Organizations,UW Tacoma Clubs and Organizations,no
 Events and Activities,Student Clubs and Organizations,all,,,https://huskylink.washington.edu/events,RSO & Student Government Events,,,,,no
-Events and Activities,Student Clubs and Organizations,all,,,https://www.asuw.org/,ASUW,,,,,
-Events and Activities,Student Clubs and Organizations,all,,,https://www.gpss.uw.edu/,GPSS,,,,,
+Events and Activities,Student Clubs and Organizations,all,,,https://www.asuw.org/,ASUW,,,,,no
+Events and Activities,Student Clubs and Organizations,all,,,https://www.gpss.uw.edu/,GPSS,,,,,no
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/ombud/,Office of the Ombud,,,,,,,no
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/compliance/titleix/,Office of the Title IX Coordinator,,,,,,,no
 "Health, Wellness, & Support",Advocacy and Support,all,https://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
