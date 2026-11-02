@@ -7,8 +7,6 @@
 # You can also run a command in the container by using:
 # docker-compose -f docker-compose.dev.yml run <service-name> <command>
 
-version: '3.4'
-
 services:
   python-tests:
     build:
