@@ -73,7 +73,9 @@ export default {
           { url: "https://www.lib.washington.edu/types/course",
             title: "Course Reserves" },
           { url: "https://f2.washington.edu/fm/c2/printing-copying/course-packs",
-            title: "Request Course Packs" }
+            title: "Request Course Packs" },
+          { url: "https://www.washington.edu/accesstech/guide/",
+            title: "Digital Accessibility Guide" }
         ];
       },
       webToolsLinks() {
