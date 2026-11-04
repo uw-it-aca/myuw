@@ -1,8 +1,0 @@
-[run]
-source = myuw
-parallel = True
-
-[paths]
-source =
-  myuw/
-  /app/myuw/

@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myuw"
+dynamic = ["version"]
+description = "MyUW is the portal of the University of Washington"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    {name = "UWIT Student & Educational Technology Services", email = "aca-it@uw.edu"}
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+dependencies = [
+    "django~=5.2",
+    "uw-restclients-core~=1.4",
+    "uw-restclients-bookstore~=1.4",
+    "uw-restclients-canvas~=1.2",
+    "uw-restclients-coda~=1.0",
+    "uw-restclients-grad~=1.1",
+    "uw-restclients-gradepage~=1.2",
+    "uw-restclients-gws~=2.3",
+    "uw-restclients-hfs~=1.0",
+    "uw-restclients-iasystem~=1.1",
+    "uw-restclients-libraries~=1.3",
+    "uw-restclients-mailman~=2.1",
+    "uw-restclients-myplan~=1.3",
+    "uw-restclients-pws~=2.1",
+    "uw-restclients-sws~=2.5",
+    "uw-restclients-space~=1.2",
+    "uw-restclients-sps-contacts~=1.0",
+    "uw-restclients-trumba~=1.4",
+    "uw-restclients-upass~=4.0",
+    "uw-restclients-uwnetid~=1.1",
+    "uw-django-oidc~=1.0",
+    "uw-django-saml2~=1.8",
+    "uw-memcached-clients~=1.1",
+    "uw-restclients-django-utils~=2.3",
+    "aws-message-client~=1.6",
+    "django-userservice~=3.2",
+    "django-supporttools~=3.6",
+    "django-persistent-message~=1.3",
+    "django-safe-emailbackend~=1.2",
+    "django_client_logger~=3.1",
+    "ordereddict",
+    "beautifulsoup4",
+    "nh3",
+    "pyyaml",
+    "ua-parser",
+    "user-agents",
+    "django-user-agents",
+    "django-webpack-loader==1.4.0",
+    "django-compressor",
+    "psycopg[c]",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+]
+
+[tool.setuptools]
+packages = ["myuw"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {file = "myuw/VERSION"}
+
+[tool.ruff]
+line-length = 88
+exclude = [
+    "myuw/migrations/*",
+]
+
+[tool.ruff.lint]
+ignore = [
+    "BLE001",  # allow broad Exception catches
+]
+
+[tool.coverage.run]
+source = ["myuw"]
+parallel = true
+omit = [
+     "myuw/migrations/*",
+     "myuw/test/*"
+]
+
+[tool.coverage.paths]
+source = [
+    "myuw/",
+    "/app/myuw/",
+]
