@@ -75,7 +75,9 @@ export default {
           { url: "https://f2.washington.edu/fm/c2/printing-copying/course-packs",
             title: "Request Course Packs" },
           { url: "https://www.washington.edu/accesstech/guide/",
-            title: "Digital Accessibility Guide" }
+            title: "Digital Accessibility Guide" },
+          { url: "http://washington.libwizard.com/f/librarybooksoer",
+            title: "Report Library Ebooks and OER" }
         ];
       },
       webToolsLinks() {
