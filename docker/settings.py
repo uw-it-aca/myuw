@@ -1,11 +1,11 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from .base_settings import *
 import logging
-import sys
 import os
+import sys
 
+from .base_settings import *
 
 INSTALLED_APPS += [
     'uw_oidc',
