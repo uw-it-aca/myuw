@@ -36,8 +36,9 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
         elif required_campus:
             if not affiliations or not affiliations.get(required_campus):
                 continue
-        elif required_aff and (not affiliations or not affiliations.get(required_aff)):
-            continue
+        elif required_aff:
+            if not affiliations or not affiliations.get(required_aff):
+                continue
 
         if entry.get('pce') and (not affiliations or not affiliations.get('pce')):
             continue
