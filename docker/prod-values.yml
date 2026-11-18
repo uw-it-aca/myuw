@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 30
+  minReplicas: 3
   maxReplicas: 200
 
   behavior:
