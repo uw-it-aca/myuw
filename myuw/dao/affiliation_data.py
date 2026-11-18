@@ -36,7 +36,7 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
         elif required_campus:
             if not affiliations or not affiliations.get(required_campus):
                 continue
-        elif required_aff:
+        elif required_aff:  #noqa: SIM102
             if not affiliations or not affiliations.get(required_aff):
                 continue
 
