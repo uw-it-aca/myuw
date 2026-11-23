@@ -362,10 +362,15 @@ environmentVariables:
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
+  - name: MYPLAN_AUTH_TIMEOUT
+    value: "5"
+  - name: MYPLAN_AUTH_POOL_SIZE
+    value: "5"
+
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
-    value: "10"
+    value: "5"
   - name: MYPLAN_POOL_SIZE
     value: "30"
 
@@ -379,12 +384,16 @@ environmentVariables:
   - name: SPS_CONTACTS_ENV
     value: PROD
   - name: SPS_CONTACTS_TIMEOUT
-    value: "30"
+    value: "5"
+  - name: SPS_CONTACTS_POOL_SIZE
+    value: "5"
 
   - name: SPS_CONTACTS_AUTH_ENV
     value: PROD
   - name: SPS_CONTACTS_AUTH_TIMEOUT
-    value: "20"
+    value: "5"
+  - name: SPS_CONTACTS_AUTH_POOL_SIZE
+    value: "5"
 
   - name: SWS_ENV
     value: PROD
