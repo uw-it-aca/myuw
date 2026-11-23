@@ -362,12 +362,10 @@ environmentVariables:
 
   - name: MYPLAN_AUTH_ENV
     value: PROD
-  - name: MYPLAN_AUTH_RETRY_TOTAL
-    value: "3"
-  - name: MYPLAN_AUTH_RETRY_CONNECT
-    value: "3"
-  - name: MYPLAN_AUTH_RETRY_READ
-    value: "3"
+  - name: MYPLAN_AUTH_TIMEOUT
+    value: "5"
+  - name: MYPLAN_AUTH_POOL_SIZE
+    value: "5"
 
   - name: MYPLAN_ENV
     value: PROD
@@ -375,12 +373,6 @@ environmentVariables:
     value: "5"
   - name: MYPLAN_POOL_SIZE
     value: "30"
-  - name: MYPLAN_RETRY_TOTAL
-    value: "3"
-  - name: MYPLAN_RETRY_CONNECT
-    value: "3"
-  - name: MYPLAN_RETRY_READ
-    value: "3"
 
   - name: PWS_ENV
     value: PROD
@@ -393,23 +385,15 @@ environmentVariables:
     value: PROD
   - name: SPS_CONTACTS_TIMEOUT
     value: "5"
-  - name: SPS_CONTACTS_RETRY_TOTAL
-    value: "3"
-  - name: SPS_CONTACTS_RETRY_CONNECT
-    value: "3"
-  - name: SPS_CONTACTS_RETRY_READ
-    value: "3"
+  - name: SPS_CONTACTS_POOL_SIZE
+    value: "5"
 
   - name: SPS_CONTACTS_AUTH_ENV
     value: PROD
   - name: SPS_CONTACTS_AUTH_TIMEOUT
     value: "5"
-  - name: SPS_CONTACTS_AUTH_RETRY_TOTAL
-    value: "3"
-  - name: SPS_CONTACTS_AUTH_RETRY_CONNECT
-    value: "3"
-  - name: SPS_CONTACTS_AUTH_RETRY_READ
-    value: "3"
+  - name: SPS_CONTACTS_AUTH_POOL_SIZE
+    value: "5"
 
   - name: SWS_ENV
     value: PROD
