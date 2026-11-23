@@ -237,10 +237,23 @@ environmentVariables:
 
   - name: MYPLAN_AUTH_ENV
     value: EVAL
+  - name: MYPLAN_AUTH_RETRY_TOTAL
+    value: "3"
+  - name: MYPLAN_AUTH_RETRY_CONNECT
+    value: "3"
+  - name: MYPLAN_AUTH_RETRY_READ
+    value: "3"
+
   - name: MYPLAN_ENV
     value: EVAL
   - name: MYPLAN_TIMEOUT
-    value: "15"
+    value: "5"
+  - name: MYPLAN_RETRY_TOTAL
+    value: "3"
+  - name: MYPLAN_RETRY_CONNECT
+    value: "3"
+  - name: MYPLAN_RETRY_READ
+    value: "3"
 
   - name: PWS_ENV
     value: EVAL
@@ -252,12 +265,22 @@ environmentVariables:
   - name: SPS_CONTACTS_ENV
     value: EVAL
   - name: SPS_CONTACTS_TIMEOUT
-    value: "30"
+    value: "5"
+  - name: SPS_CONTACTS_RETRY_TOTAL
+    value: "3"
+  - name: SPS_CONTACTS_RETRY_CONNECT
+    value: "3"
+  - name: SPS_CONTACTS_RETRY_READ
+    value: "3"
 
   - name: SPS_CONTACTS_AUTH_ENV
     value: EVAL
-  - name: SPS_CONTACTS_AUTH_TIMEOUT
-    value: "20"
+  - name: SPS_CONTACTS_AUTH_RETRY_TOTAL
+    value: "3"
+  - name: SPS_CONTACTS_AUTH_RETRY_CONNECT
+    value: "3"
+  - name: SPS_CONTACTS_AUTH_RETRY_READ
+    value: "3"
 
   - name: SWS_ENV
     value: EVAL
