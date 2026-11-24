@@ -46,7 +46,7 @@ MYUW_ENABLED_FEATURES = []
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
 # uw_oidc settings
-if os.getenv("ENV", "") == "dev":
+if os.getenv("ENV", "") == "test":
     UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
     UW_TOKEN_SESSION_AGE = 600
 else:
@@ -149,6 +149,11 @@ LOGGING = {
         },
     },
     'loggers': {
+        'django': {
+            'handlers': [],
+            'level': 'INFO',
+            'propagate': True,
+        },
         'django.security.DisallowedHost': {
             'handlers': ['null'],
             'propagate': False,
@@ -156,7 +161,7 @@ LOGGING = {
         'django.request': {
             'handlers': ['stderr'],
             'level': 'ERROR',
-            'propagate': True,
+            'propagate': False,
         },
         'myuw': {
             'handlers': ['stdout', 'stderr'],
@@ -166,11 +171,12 @@ LOGGING = {
         'urllib3': {
             'handlers': ['stdout', 'stderr'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG',
+            'level': 'DEBUG' if os.getenv('ENV', '') == 'localdev' else 'INFO',
+            'propagate': False,
         }
     }
 }

@@ -138,7 +138,7 @@ environmentVariables:
     value: SAML
 
   - name: ENV
-    value: dev
+    value: test
 
   - name: BOOKSTORE_ENV
     value: PROD
@@ -234,6 +234,8 @@ environmentVariables:
     value: EVAL
   - name: MAILMAN_TIMEOUT
     value: "15"
+  - name: MAILMAN_POOL_SIZE
+    value: "10"
 
   - name: MYPLAN_AUTH_ENV
     value: EVAL
