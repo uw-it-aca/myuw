@@ -191,7 +191,7 @@ if os.getenv('ENV', '') == 'localdev':
 else:
     # uw_oidc settings
     UW_TOKEN_ISSUER = os.getenv('UW_TOKEN_ISSUER')
-    UW_TOKEN_SESSION_AGE = os.getenv('UW_TOKEN_SESSION_AGE', '600')
+    UW_TOKEN_SESSION_AGE = int(os.getenv('UW_TOKEN_SESSION_AGE', '600') or '600')
     UW_TOKEN_AUDIENCE = 'oidc/myuw'
     UW_TOKEN_LEEWAY = 2
     UW_OIDC_ENABLE_LOGGING = True
