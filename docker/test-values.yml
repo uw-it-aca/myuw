@@ -293,6 +293,11 @@ environmentVariables:
   - name: UWIDP_TIMEOUT
     value: "10"
 
+  - name: UW_TOKEN_ISSUER
+    value: "https://idp-eval.u.washington.edu"
+  - name: UW_TOKEN_SESSION_AGE
+    value: "600"
+
 externalSecrets:
   enabled: true
   secrets:
