@@ -45,17 +45,6 @@ MYUW_ENABLED_FEATURES = []
 
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
-# uw_oidc settings
-if os.getenv("ENV", "") == "dev":
-    UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
-    UW_TOKEN_SESSION_AGE = 600
-else:
-    UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
-    UW_TOKEN_SESSION_AGE = 3600
-UW_TOKEN_AUDIENCE = "oidc/myuw"
-UW_TOKEN_LEEWAY = 2
-UW_OIDC_ENABLE_LOGGING = True
-
 # Thrive required settings
 MEDIA_ROOT = "../statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
@@ -149,6 +138,11 @@ LOGGING = {
         },
     },
     'loggers': {
+        'django': {
+            'handlers': [],
+            'level': 'INFO',
+            'propagate': True,
+        },
         'django.security.DisallowedHost': {
             'handlers': ['null'],
             'propagate': False,
@@ -156,7 +150,7 @@ LOGGING = {
         'django.request': {
             'handlers': ['stderr'],
             'level': 'ERROR',
-            'propagate': True,
+            'propagate': False,
         },
         'myuw': {
             'handlers': ['stdout', 'stderr'],
@@ -166,11 +160,12 @@ LOGGING = {
         'urllib3': {
             'handlers': ['stdout', 'stderr'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG',
+            'level': 'INFO' if os.getenv('ENV', '') == 'prod' else 'DEBUG',
+            'propagate': False,
         }
     }
 }
@@ -181,7 +176,7 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
 # Environment-dependent settings
 DEBUG = False
-if os.getenv("ENV", '') == "localdev":
+if os.getenv('ENV', '') == 'localdev':
     DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
     # RESTCLIENTS_DAO_CACHE_CLASS = None
@@ -194,6 +189,13 @@ if os.getenv("ENV", '') == "localdev":
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
     MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
 else:
+    # uw_oidc settings
+    UW_TOKEN_ISSUER = os.getenv('UW_TOKEN_ISSUER')
+    UW_TOKEN_SESSION_AGE = os.getenv('UW_TOKEN_SESSION_AGE', '600')
+    UW_TOKEN_AUDIENCE = 'oidc/myuw'
+    UW_TOKEN_LEEWAY = 2
+    UW_OIDC_ENABLE_LOGGING = True
+
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
     RESTCLIENTS_SPS_CONTACTS_AUTH_RETRY_TOTAL = '3'
     RESTCLIENTS_SPS_CONTACTS_AUTH_RETRY_CONNECT = '3'

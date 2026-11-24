@@ -430,6 +430,11 @@ environmentVariables:
   - name: UWIDP_TIMEOUT
     value: "10"
 
+  - name: UW_TOKEN_ISSUER
+    value: "https://idp.u.washington.edu"
+  - name: UW_TOKEN_SESSION_AGE
+    value: "3600"
+
   - name: CLUSTER_CNAME
     value: my.uw.edu
 
